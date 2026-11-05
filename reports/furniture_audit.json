@@ -1,9 +1,9 @@
 {
-  "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6",
+  "config_hash": "a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70",
   "source_sha256": "b7f7ceacb328fa5ab6e143b88e1f948443a877cfc95b67ff09c8ebabd50644e3",
   "furniture_sha256": "6d5c3b062490f71248bbafdea94b5e324863ec1e7914fe2074e29589bb32e877",
   "comparisons": 24,
-  "outside_IQR": 14,
+  "outside_IQR": 11,
   "unvalidated_states": 15,
   "no_match": 4,
   "reference_listings_before": 4625,
@@ -16,6 +16,6 @@
     "tests_pass": true
   },
   "pass": true,
-  "pytest_summary": "2 passed in 0.39s",
-  "runtime_s": 10.622825436294079
+  "pytest_summary": "2 passed in 0.44s",
+  "runtime_s": 10.548080688342452
 }

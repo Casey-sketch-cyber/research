@@ -43,7 +43,8 @@ class Unit:
     @property
     def interior(self) -> BaseGeometry:
         """Known interior space; exterior excluded areas are not counted."""
-        return polygon_union([self.classes[k] for k in ("furnishable", "walkable_only", "fixed_service")])
+        return polygon_union([self.classes.get(k, GeometryCollection()) for k in
+                              ("furnishable", "storage_only", "walkable_only", "fixed_service")]).difference(self.walls)
 
     def to_dict(self) -> dict[str, Any]:
         """Serialize only normalized research geometry and nonidentifying metadata."""

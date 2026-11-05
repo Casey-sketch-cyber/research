@@ -24,12 +24,18 @@ def summary(frame: pd.DataFrame) -> dict:
         q25, q75 = values.quantile([0.25, 0.75]).tolist()
         result.update({f"median_{suffix}": values.median(), f"q25_{suffix}": q25,
                        f"q75_{suffix}": q75, f"iqr_{suffix}": q75 - q25})
+    for side, values in (("long", frame[["width", "depth"]].max(axis=1)),
+                         ("short", frame[["width", "depth"]].min(axis=1))):
+        result.update({f"median_{side}": values.median(), f"q25_{side}": values.quantile(.25),
+                       f"q75_{side}": values.quantile(.75)})
     return result
 
 
 def outside_interval(width: float, depth: float, statistics: dict) -> bool:
-    """Compare orientation-labelled dimensions, without swapping axes to improve agreement."""
-    return not (statistics["q25_w"] <= width <= statistics["q75_w"] and statistics["q25_d"] <= depth <= statistics["q75_d"])
+    """Compare sorted footprint sides because ABO orientation labels are inconsistent."""
+    long, short = max(width, depth), min(width, depth)
+    return not (statistics["q25_long"] <= long <= statistics["q75_long"] and
+                statistics["q25_short"] <= short <= statistics["q75_short"])
 
 
 def configured_rows(furniture: dict):

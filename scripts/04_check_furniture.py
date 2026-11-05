@@ -49,16 +49,16 @@ def main():
             flags.append("OUTSIDE_IQR")
         if unvalidated:
             flags.append("UNVALIDATED_STATE")
-        comparisons.append({"item": name, "state": state, "config_w": dimensions[0], "config_d": dimensions[1],
+        comparisons.append({"item": name, "state": state, "config_w": dimensions[0], "config_d": dimensions[1], "config_long": max(dimensions), "config_short": min(dimensions),
                             "abo_type": "|".join(types), **statistics, "flag": ";".join(flags) or "WITHIN_IQR",
                             "comparison_scope": "ordinary-product analogue only" if unvalidated else "broad category reference only",
-                            "decision": "KEEP_PENDING_REVIEW", "justification": reason, "config_hash": digest})
+                            "decision": "KEEP_REVIEW_APPROVED", "justification": reason, "config_hash": digest})
     output = Path(config["paths"]["results"]) / "furniture"
     output.mkdir(parents=True, exist_ok=True)
     comparison = pd.DataFrame(comparisons)
     comparison.to_csv(output / "abo_dimension_check.csv", index=False)
     pd.DataFrame(type_rows).to_csv(output / "abo_type_statistics.csv", index=False)
-    notes = ["# ABO comparison interpretation", "", "Width is the listing width; depth is listing length. Axes are not swapped. IQR columns are q75-q25; quartile endpoint columns define the comparison interval.", "",
+    notes = ["# ABO comparison interpretation", "", "Each listing footprint is sorted into long and short sides before quartiles are computed; configured footprints are sorted the same way. Original width/length statistics remain descriptive. IQR columns are q75-q25.", "",
              "Outliers are dropped above the untrimmed 99th percentile on any dimension within each product type (linear quantile interpolation). Combined reference cohorts deduplicate listings after type-specific trimming.", "",
              "The categories mix sizes and uses. Being within the IQR is not validation of a configured item. State-specific geometry, mechanisms, clearance, storage capacity and occupant capacity are not observed by this check.", "",
              "## Item/state decisions", "", comparison[["item", "state", "flag", "justification"]].to_markdown(index=False), ""]

@@ -20,4 +20,5 @@ def test_typewise_upper_tail_and_quartile_endpoints():
     values = summary(clean)
     assert values["median_w"] == 1 and values["median_d"] == 2
     assert not outside_interval(1, 2, values)
-    assert outside_interval(2, 1, values)
+    assert not outside_interval(2, 1, values)
+    assert outside_interval(3, 1, values)

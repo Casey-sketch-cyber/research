@@ -80,4 +80,4 @@ H5 is an ablation only: walking width 0.90 m and global clearance scale 1.2. Ful
 | dinner  |           19 |         20 |            1 | dine_2 (weight=1)                              |                     1 |
 | leisure |           20 |         23 |            3 | lounge_1 (weight=1)                            |                     3 |
 
-Configuration hash: `bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6`.
+Configuration hash: `a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70`.

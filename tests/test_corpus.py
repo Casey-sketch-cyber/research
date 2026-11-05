@@ -86,3 +86,15 @@ def test_polygon_wall_with_zero_area_remnants_normalizes():
     assert normalized.walls.is_valid
     assert normalized.walls.geom_type in ("Polygon", "MultiPolygon")
     assert normalized.walls.area == pytest.approx(0.2)
+
+
+def test_observed_D2_empty_storage_with_mixed_area_collection():
+    path = Path("data/raw/resplan/extracted/ResPlan.pkl")
+    if not path.exists():
+        pytest.skip("Authorized D2 raw data required for numerical regression")
+    with path.open("rb") as stream:
+        plan = sorted(read_geometry_pickle(stream), key=lambda p: p["id"])[10659]
+    unit = from_plan(plan)
+    assert unit.classes["storage_only"].is_empty
+    assert unit.classes["furnishable"].area > 0
+    assert normalize(unit).classes["furnishable"].is_valid

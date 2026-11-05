@@ -12,7 +12,7 @@ from shapely.geometry.polygon import orient
 
 from fea.geometry.unit import Unit, parts
 
-COLORS = {"furnishable": "#d4e9d4", "walkable_only": "#d9eafa", "fixed_service": "#bcbcbc", "excluded": "#f4ead5"}
+COLORS = {"furnishable": "#d4e9d4", "storage_only": "#e5c9a3", "walkable_only": "#d9eafa", "fixed_service": "#bcbcbc", "excluded": "#f4ead5"}
 
 
 def draw_geometry(ax, geometry, color: str, filled: bool = True, width: float = 1.5):
@@ -37,7 +37,8 @@ def draw_geometry(ax, geometry, color: str, filled: bool = True, width: float = 
 def draw_unit(ax, unit: Unit, short: bool = False):
     """Show all class layers and distinguish the selected entrance from other doors."""
     for name, color in COLORS.items():
-        draw_geometry(ax, unit.classes[name], color, width=0.6)
+        if name in unit.classes:
+            draw_geometry(ax, unit.classes[name], color, width=0.6)
     draw_geometry(ax, unit.walls, "#333333", width=0.7)
     for opening in unit.windows:
         draw_geometry(ax, opening, "#167dcc", width=2.2)
@@ -52,7 +53,7 @@ def draw_unit(ax, unit: Unit, short: bool = False):
     ax.set_aspect("equal")
     ax.set_xlabel("Local x (m)")
     ax.set_ylabel("Local y (m)")
-    ax.set_title(f"{unit.source} | furnishable {unit.classes['furnishable'].area:.2f} m²" + ("" if short else f"\n{unit.unit_key}"), fontsize=10)
+    ax.set_title(f"{unit.source} | NIA {unit.interior.area:.2f} m²\nFurnishable {unit.classes['furnishable'].area:.2f} m²" + ("" if short else f"\n{unit.unit_key}"), fontsize=10)
     ax.spines[["top", "right"]].set_visible(False)
 
 
@@ -76,15 +77,24 @@ def render_samples(units: list[Unit], output: Path):
 
 
 def render_histogram(frame, output: Path, digest: str):
-    """Plot the actual included-unit furnishable-area distribution by source."""
+    """Show NIA and secondary furnishable area, with sample/full distributions."""
+    import numpy as np
     output.parent.mkdir(parents=True, exist_ok=True)
-    fig, axes = plt.subplots(1, 3, figsize=(12, 3.8), sharex=True, layout="constrained")
-    for ax, source in zip(axes, ("D1", "D2", "D3")):
-        values = frame[(frame.source == source) & frame.include].furnishable_area_m2
-        ax.hist(values, bins=15, color="#447c9d", edgecolor="white")
-        ax.set_title(f"{source} (n={len(values):,})")
-        ax.set_xlabel("Furnishable area (m²)")
-        ax.set_ylabel("Included units")
+    fig, axes = plt.subplots(2, 3, figsize=(13, 7), layout="constrained")
+    for column, source in enumerate(("D1", "D2", "D3")):
+        subset = frame[(frame.source == source) & frame.include]
+        sampled = subset[subset.in_expA_sample]
+        for row, (field, label) in enumerate((("nia_m2", "Net internal area (m²)"), ("furnishable_area_m2", "Furnishable area (m²)"))):
+            ax = axes[row, column]
+            bins = np.arange(0, 54, 2)
+            ax.hist(subset[field], bins=bins, weights=np.ones(len(subset))/max(len(subset), 1),
+                    color="#447c9d", alpha=.6, label="Full unique corpus")
+            ax.hist(sampled[field], bins=bins, weights=np.ones(len(sampled))/max(len(sampled), 1),
+                    histtype="step", linewidth=1.8, color="#d17b29", label="Frozen sample")
+            ax.set_title(f"{source}: full {len(subset):,}, sample {len(sampled):,}")
+            ax.set_xlabel(label)
+            ax.set_ylabel("Share of units")
+    axes[0, 0].legend(fontsize=8)
     fig.savefig(output.with_suffix(".png"), dpi=300, metadata={"Description": "config_hash=" + digest})
     fig.savefig(output.with_suffix(".pdf"), metadata={"Subject": "config_hash=" + digest, "Creator": "Research Automation", "CreationDate": None, "ModDate": None})
     plt.close(fig)

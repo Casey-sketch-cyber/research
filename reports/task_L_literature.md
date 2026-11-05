@@ -1,6 +1,8 @@
 # Task L: Systematic literature confirmation
 
-**Status: STOP REQUIRED; retrieval attempted for all configured queries, screening PARTIAL.**
+> Current decision: Q-12 authorizes continuation with narrowed claims; see reviews/G1_review_addendum_Q12.md. The stop and category counts below are the historical pre-review record. Remaining screening is due at G3.
+
+**Historical status: STOP REQUIRED; retrieval attempted for all configured queries, screening PARTIAL.**
 
 A new full-text-confirmed overlap with the broad C3 claim triggers docs/LITERATURE_SEARCH.md §5. Q-12 requires reviewer framing guidance before G1 corrections and Phase 5. This is not a completed systematic review.
 

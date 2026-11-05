@@ -16,6 +16,7 @@ python scripts/03_build_corpus.py --config config/project.yaml
 python scripts/03_accept_corpus.py --config config/project.yaml
 python scripts/04_check_furniture.py --config config/project.yaml
 python scripts/05_schedules.py --config config/project.yaml
+python scripts/03_review_report.py --config config/project.yaml
 python -m pytest -q
 ```
 
@@ -39,16 +40,16 @@ schema reports. No source-frame coordinates, property addresses or personal
 contact details are exported. Opaque identifiers preserve within-source groups.
 
 Read `reports/phase_02_corpus.md` before interpreting area values: D1 gross area
-is missing, D2 metric calibration is an explicit assumption for review, and D3
-gross internal area includes its fixed toilet and kitchenette. The smallest D3
-shells remain available even when excluded from the main furnishable-area
-corpus. No FCI or FEA outcomes are produced in these preparation phases.
+is missing, D2 metric calibration is an explicit review-approved assumption, and D3
+gross internal area includes its fixed toilet and kitchenette. NIA (8–50 m²) is the primary area measure. Complete-dwelling and scale filters
+precede deduplication and the frozen experiment sample. All D3 shells remain
+recorded; experiment flags are explicit. No FCI or FEA outcomes are produced in these preparation phases.
 
 Furniture checks compare broad product cohorts only and do not validate moving
 states or clearances. Table T3 preserves author schedules without optional ATUS
 calibration. Raw data must be present for observed-source loader tests; the G1
-recorded suite ran with all required data and no skips. Stop at G1 and obtain the
-review required by `AGENTS.md` before starting the solver or pilot phases.
+recorded suite ran with all required data and no skips. The G1 review and Q-12 addendum authorize the corrections followed by
+Phases 5–6, stopping at G2. Later gates still require their stated review.
 
 Before publication, stage only intended public files and run:
 

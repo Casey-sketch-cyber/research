@@ -1,5 +1,5 @@
 {
-  "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6",
+  "config_hash": "a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70",
   "checks": {
     "unique_keys": true,
     "csv_parquet_same_keys": true,
@@ -8,7 +8,19 @@
     "D1_gross_not_fabricated": true,
     "all_D3_retained": true,
     "inclusion_reason_consistent": true,
-    "included_areas_in_range": true,
+    "included_NIA_in_range": true,
+    "complete_dwellings": true,
+    "unique_included_geometry": true,
+    "duplicate_multiplicities": true,
+    "frozen_sample_matches_flags": true,
+    "frozen_sample_reproducible": true,
+    "sample_included_only": true,
+    "D1_sample_cap": true,
+    "D1_site_cap": true,
+    "all_eligible_D2_D3_sampled": true,
+    "D2_scale_bounds": true,
+    "D3_entrance_keepout_clear": true,
+    "D3_service_placement_present": true,
     "included_geometry_checks_pass": true,
     "included_normalization_preserves_area": true,
     "24_sample_images": true,
@@ -19,6 +31,6 @@
     "tests_pass_without_skips": true
   },
   "pass": true,
-  "pytest_summary": "12 passed in 34.89s",
+  "pytest_summary": "35 passed in 36.57s",
   "visual_review": "human review pending at G1"
 }

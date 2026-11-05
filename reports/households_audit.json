@@ -1,5 +1,5 @@
 {
-  "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6",
+  "config_hash": "a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70",
   "households_sha256": "9071bf875d0f0e098028888cf417d6369ad692dfec0a1bd908c20bc77c4c67af",
   "rows": 36,
   "households": 5,
@@ -18,6 +18,6 @@
     "tests_pass": true
   },
   "pass": true,
-  "pytest_summary": "9 passed in 0.38s",
-  "runtime_s": 0.6321150716394186
+  "pytest_summary": "9 passed in 0.37s",
+  "runtime_s": 0.6033920347690582
 }

@@ -34,9 +34,9 @@ After each review, tell Codex: *"Pull, read `reviews/Gx_review.md`, address the 
 
 | Gate | Status |
 |---|---|
-| Task L literature | STOP REQUIRED: full-text-confirmed C3 overlap; partial screening, see `reports/task_L_literature.md` and Q-12 |
-| G1 data & corpus | M1–M6 pending; continuation awaits Task L framing review, see `reports/GATE_G1_response.md` |
-| G2 method & pilot | not started |
+| Task L literature | Q-12 permits continuation with narrowed C2/C3; remaining screening due at G3 |
+| G1 data & corpus | M1–M6/S1–S4 corpus revisions complete; 28 acceptance checks and 35 tests pass |
+| G2 method & pilot | Phase 5 implementation in progress |
 | G3 results | not started |
 | G4 final package | not started |
 

@@ -22,7 +22,7 @@ def opaque_id(value: object) -> str:
     return hashlib.sha256(str(value).encode()).hexdigest()[:20]
 
 
-def load_d1(config: dict) -> Iterator[Unit]:
+def load_d1(config: dict, completed_keys: set[str] | None = None) -> Iterator[Unit]:
     """Yield all identifiable residential units; the common filter runs afterward."""
     root = Path(config["paths"]["raw"]) / "swiss_dwellings"
     archive = root / "swiss-dwellings-v3.0.0.zip"
@@ -50,6 +50,9 @@ def load_d1(config: dict) -> Iterator[Unit]:
     mapping = config["corpus"]["d1_subtype_classes"]
     room_types = set(mapping["furnishable"]) - {"STOREROOM", "CLOAKROOM"}
     for key, frame in tqdm(geometry.groupby(KEYS, sort=True), desc="D1 units"):
+        unit_key = "D1:" + opaque_id(tuple(str(v) for v in key))
+        if completed_keys and unit_key in completed_keys:
+            continue
         areas = frame[frame.entity_type == "area"]
         if areas.empty:
             continue
@@ -60,6 +63,7 @@ def load_d1(config: dict) -> Iterator[Unit]:
         classes["fixed_service"] = polygon_union([classes["fixed_service"], fixed])
         classes["furnishable"] = classes["furnishable"].difference(fixed)
         classes["walkable_only"] = classes["walkable_only"].difference(fixed)
+        classes["storage_only"] = classes["storage_only"].difference(fixed)
         windows = parts(polygon_union(frame.loc[frame.entity_subtype == "WINDOW", "geom"].tolist()))
         doors = parts(polygon_union(frame.loc[frame.entity_subtype.isin(["DOOR", "ENTRANCE_DOOR"]), "geom"].tolist()))
         semantic = frame.loc[frame.entity_subtype == "ENTRANCE_DOOR", "geom"].tolist()
@@ -67,24 +71,32 @@ def load_d1(config: dict) -> Iterator[Unit]:
         method = "source_entrance_door"
         if not entrances:
             shared = public.get(key[:3], GeometryCollection())
-            inside = polygon_union([classes["furnishable"], classes["walkable_only"]])
+            inside = polygon_union([classes["furnishable"], classes["storage_only"], classes["walkable_only"]])
             entrances = [door for door in doors if door.distance(shared) <= 1e-7 and door.distance(inside) <= 1e-7]
             method = "public_circulation_contact"
-        known_spaces = polygon_union([classes[k] for k in ("furnishable", "walkable_only", "fixed_service")])
+        known_spaces = polygon_union([classes[k] for k in ("furnishable", "storage_only", "walkable_only", "fixed_service")])
         entrance = min(entrances, key=lambda g: (g.distance(known_spaces) if not known_spaces.is_empty else 0, g.wkb_hex)) if entrances else None
         entrance_contact = entrance.distance(known_spaces) if entrance is not None and not known_spaces.is_empty else None
         walls = polygon_union(frame.loc[frame.entity_subtype.isin(["WALL", "COLUMN", "WINDOW"]), "geom"].tolist())
         walls = walls.difference(polygon_union(doors))
         classes["furnishable"] = classes["furnishable"].difference(walls)
+        if not classes["storage_only"].is_empty:
+            classes["storage_only"] = classes["storage_only"].difference(walls)
         classes["walkable_only"] = polygon_union([classes["walkable_only"], *doors]).difference(classes["fixed_service"])
         summary = simulations.get(key, {})
         summary = {name: float(value) for name, value in summary.items() if np.isfinite(value)}
         meta = {"entrance_method": method if entrance is not None else "unidentified", "entrance_candidates": len(entrances),
                 "gross_area_method": "unavailable: source does not define unit gross area; no proxy is relabelled gross",
-                "known_interior_space_area_m2": polygon_union([classes[k] for k in ("furnishable", "walkable_only", "fixed_service")]).area,
+                "has_sanitary": bool(any(not g.is_empty and g.area > 0 for g in frame.loc[
+                    ((frame.entity_type == "area") & frame.entity_subtype.isin(["BATHROOM", "SANITARY_ROOMS"])) |
+                    ((frame.entity_type == "feature") & (frame.entity_subtype == "TOILET")), "geom"])),
+                "has_kitchen": bool(any(not g.is_empty and g.area > 0 for g in frame.loc[
+                    ((frame.entity_type == "area") & frame.entity_subtype.isin(["KITCHEN", "KITCHEN_DINING"])) |
+                    ((frame.entity_type == "feature") & (frame.entity_subtype == "KITCHEN")), "geom"])),
+                "has_kitchen_dining": bool((areas.entity_subtype == "KITCHEN_DINING").any()),
                 "simulation_area_means": summary,
                 "source_invalid_geometries": int(sum(not g.is_valid for g in frame.geom)),
                 "entrance_distance_to_known_spaces_m": entrance_contact}
-        yield Unit("D1:" + opaque_id(tuple(str(v) for v in key)), "D1", "D1:" + opaque_id(int(key[0])),
+        yield Unit(unit_key, "D1", "D1:" + opaque_id(int(key[0])),
                    classes, walls, doors, windows, entrance, None,
                    sum(len(parts(g)) for g in areas.loc[areas.entity_subtype.isin(room_types), "geom"]), meta)

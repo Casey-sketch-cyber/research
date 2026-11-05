@@ -90,11 +90,16 @@ def load_d3(config: dict) -> Iterator[Unit]:
         service_door = toilet_door(toilet, free, internal_width, config["furniture"]["meta"]["walking_width"])
         parameters = {"gross_area_m2": area, "aspect_ratio": ratio, "entrance_position": entry_position,
                       "window_position": window_position}
+        near = all((g.centroid.y <= depth / 2 if entry_position.startswith("short_wall")
+                    else g.centroid.x <= width / 2) for g in (toilet, kitchen))
         yield Unit("D3:" + opaque_id(json.dumps(parameters, sort_keys=True)), "D3",
                    "D3:" + opaque_id((ratio, entry_position, window_position)),
-                   {"furnishable": free, "walkable_only": GeometryCollection(), "fixed_service": fixed, "excluded": GeometryCollection()},
+                   {"furnishable": free, "storage_only": GeometryCollection(), "walkable_only": GeometryCollection(), "fixed_service": fixed, "excluded": GeometryCollection()},
                    shell.boundary.difference(entrance), [entrance, service_door], [window], entrance, float(area), 1,
                    {"parameters": parameters, "entrance_method": "generated", "fixed_placement": "nearest feasible corner, then wall; no body/entrance-keepout overlap",
+                    "has_sanitary": True, "has_kitchen": True, "has_kitchen_dining": False,
+                    "service_placement": "near_entrance" if near else "far_end",
+                    "service_placement_rule": "near only when both service centroids are in the entrance-wall half of the shell",
                     "toilet_geometry": toilet.wkt, "kitchen_geometry": kitchen.wkt,
                     "opening_width_source": "D1 residential opening-record medians", "entrance_width_m": span,
                     "window_width_m": win_span, "internal_door_width_m": service_door.length,

@@ -1,64 +1,82 @@
 {
-  "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6",
-  "code_hash": "7d7490a48247e4a2eee4102f13de2b60e41f2716255cc01dbc985dda349c8fa6",
+  "config_hash": "a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70",
+  "code_hash": "6b5bf3b5ac2fb613ee42afff4c70d62ae7ca1b48657474d8e3290f3db12abe0c",
+  "conversion_code_hash": "70424f40f127ced3c7da242f31a9737861ce3d7546c49a2cf5d52adfe298b903",
   "counts": [
     {
       "source": "D1",
       "total": 46830,
-      "included": 11598,
+      "eligible_before_dedup": 3533,
+      "included": 2326,
+      "expA_sample": 1347,
       "missing_gross": 46830,
-      "missing_entrance": 1730,
-      "excluded": 35232,
-      "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6"
+      "duplicate_copies_removed": 1207,
+      "excluded": 44504,
+      "config_hash": "a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70"
     },
     {
       "source": "D2",
       "total": 17000,
-      "included": 1978,
+      "eligible_before_dedup": 892,
+      "included": 884,
+      "expA_sample": 884,
       "missing_gross": 0,
-      "missing_entrance": 6,
-      "excluded": 15022,
-      "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6"
+      "duplicate_copies_removed": 8,
+      "excluded": 16116,
+      "config_hash": "a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70"
     },
     {
       "source": "D3",
       "total": 510,
-      "included": 420,
+      "eligible_before_dedup": 510,
+      "included": 510,
+      "expA_sample": 510,
       "missing_gross": 0,
-      "missing_entrance": 0,
-      "excluded": 90,
-      "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6"
+      "duplicate_copies_removed": 0,
+      "excluded": 0,
+      "config_hash": "a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70"
     }
   ],
-  "initial_D1_qualified": 11598,
-  "effective_max_furnishable_area_m2": 45,
   "sources": [
     {
       "source": "D1",
       "records": 46830,
-      "processing_seconds_this_attempt": 906.6425679530948,
-      "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6",
-      "code_hash": "7d7490a48247e4a2eee4102f13de2b60e41f2716255cc01dbc985dda349c8fa6"
+      "processing_seconds_this_attempt": 60.70682339929044,
+      "config_hash": "a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70",
+      "code_hash": "70424f40f127ced3c7da242f31a9737861ce3d7546c49a2cf5d52adfe298b903"
     },
     {
       "source": "D2",
       "records": 17000,
-      "processing_seconds_this_attempt": 267.0110231321305,
-      "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6",
-      "code_hash": "7d7490a48247e4a2eee4102f13de2b60e41f2716255cc01dbc985dda349c8fa6"
+      "processing_seconds_this_attempt": 244.37212019599974,
+      "config_hash": "a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70",
+      "code_hash": "70424f40f127ced3c7da242f31a9737861ce3d7546c49a2cf5d52adfe298b903",
+      "reused_equivalent_conversion_hash": "5cb56cdf05ab935c2f53ea0df699de349691b876cf9e86c480ab4135495d8912"
     },
     {
       "source": "D3",
       "records": 510,
-      "processing_seconds_this_attempt": 5.07591768912971,
-      "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6",
-      "code_hash": "7d7490a48247e4a2eee4102f13de2b60e41f2716255cc01dbc985dda349c8fa6"
+      "processing_seconds_this_attempt": 5.1320164408534765,
+      "config_hash": "a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70",
+      "code_hash": "70424f40f127ced3c7da242f31a9737861ce3d7546c49a2cf5d52adfe298b903",
+      "reused_equivalent_conversion_hash": "c86a21c1b34cafd60d1928dd17d1c20db8dd8a0fd2e2fffc0ccef20877626254"
     }
   ],
-  "max_normalization_area_change_m2": 0.2832656531431752,
-  "max_included_normalization_area_change_m2": 1.650282399623393e-08,
+  "area_measure": "nia_m2",
+  "min_nia_m2": 8,
+  "max_nia_m2": 50,
+  "max_normalization_area_change_m2": 0.2832656542005765,
+  "max_included_normalization_area_change_m2": 1.213595623994479e-08,
   "D1_with_simulations": 46815,
   "sample_count": 24,
-  "total_seconds_this_invocation": 927.1902237832546,
-  "gross_area_note": "D1 missing; D2 source declaration with explicit geometric calibration; D3 generated gross internal area"
+  "total_seconds_this_invocation": 105.43455724418163,
+  "expA_kitchen_dining_units": 0,
+  "D3_max_entrance_keepout_overlap_m2": 0.0,
+  "D3_service_placement": {
+    "near_entrance": 266,
+    "far_end": 244
+  },
+  "geometry_hash_grid_m": 1e-06,
+  "duplicate_count_definition": "additional eligible copies; multiplicity = n_duplicates + 1",
+  "gross_area_note": "D1 missing; D2 source declaration with geometric calibration; D3 internal shell area; primary analysis uses NIA"
 }
