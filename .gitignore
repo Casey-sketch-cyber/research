@@ -25,3 +25,16 @@ venv/
 .DS_Store
 .idea/
 .vscode/
+
+# Private execution state and local provenance (never publish)
+.local/
+.tmp/
+.cache/
+.env
+.env.*
+!*.example
+*known_hosts*
+*.pem
+*.key
+data/processed/
+data/private/
