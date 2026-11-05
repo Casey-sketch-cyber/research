@@ -14,6 +14,9 @@ python scripts/02_inspect_schemas.py --config config/project.yaml
 python scripts/02_accept_data.py --config config/project.yaml
 python scripts/03_build_corpus.py --config config/project.yaml
 python scripts/03_accept_corpus.py --config config/project.yaml
+python scripts/04_check_furniture.py --config config/project.yaml
+python scripts/05_schedules.py --config config/project.yaml
+python -m pytest -q
 ```
 
 Each phase command supports `--dry-run`. Downloads use partial-file resume and
@@ -40,6 +43,12 @@ is missing, D2 metric calibration is an explicit assumption for review, and D3
 gross internal area includes its fixed toilet and kitchenette. The smallest D3
 shells remain available even when excluded from the main furnishable-area
 corpus. No FCI or FEA outcomes are produced in these preparation phases.
+
+Furniture checks compare broad product cohorts only and do not validate moving
+states or clearances. Table T3 preserves author schedules without optional ATUS
+calibration. Raw data must be present for observed-source loader tests; the G1
+recorded suite ran with all required data and no skips. Stop at G1 and obtain the
+review required by `AGENTS.md` before starting the solver or pilot phases.
 
 Before publication, stage only intended public files and run:
 

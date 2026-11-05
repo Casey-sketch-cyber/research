@@ -34,10 +34,15 @@ After each review, tell Codex: *"Pull, read `reviews/Gx_review.md`, address the 
 
 | Gate | Status |
 |---|---|
-| G1 data & corpus | in progress: Phase 0 complete; Phase 1 acquisition and schema audit running |
+| G1 data & corpus | Phases 0–4 computational checks passed; ready for review, publication awaiting write access |
 | G2 method & pilot | not started |
 | G3 results | not started |
 | G4 final package | not started |
+
+Start the review with [`reports/GATE_G1.md`](reports/GATE_G1.md), the
+[`24-unit contact sheet`](results/corpus/sample_contact_sheet.png), and
+[`reproduction commands`](docs/REPRODUCING.md). The complete suite passed with
+23 tests and no skips. No solver, FCI, FEA or area-saving results exist yet.
 
 ## License
 

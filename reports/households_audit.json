@@ -1,0 +1,23 @@
+{
+  "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6",
+  "households_sha256": "9071bf875d0f0e098028888cf417d6369ad692dfec0a1bd908c20bc77c4c67af",
+  "rows": 36,
+  "households": 5,
+  "variants": 6,
+  "mean_demanded_hours": {
+    "H1_single_commuter": 18.9,
+    "H2_single_remote_worker": 26.0,
+    "H3_couple_one_remote": 26.0,
+    "H4_parent_child": 28.0,
+    "H5_older_adult": 26.0
+  },
+  "checks": {
+    "all_schedules_validated": true,
+    "table_exists": true,
+    "household_defaults_unchanged": true,
+    "tests_pass": true
+  },
+  "pass": true,
+  "pytest_summary": "9 passed in 0.38s",
+  "runtime_s": 0.6321150716394186
+}
