@@ -50,12 +50,13 @@ queries:
     boolean: '("micro-housing" OR "micro housing" OR "micro-apartment" OR "micro apartment" OR "micro-unit" OR "subdivided unit" OR "subdivided flat" OR "adaptive home" OR "flexible housing") AND (furniture OR "space efficiency" OR "minimum standard")'
     keywords: "micro apartment transformable furniture space efficiency"
 
-# Claims the screening must check (from RESEARCH_PLAN §1 and reports/novelty_check.md §3).
+# Contributions to position against prior work (RESEARCH_PLAN §1). The screening maps how each
+# record relates to these; it is not a pass/fail novelty test (LITERATURE_SEARCH §5).
 claims:
-  # Narrowed after Q-12 (reviews/G1_review_addendum_Q12.md):
+  # Sharpened after Q-12 (reviews/G1_review_addendum_Q12.md):
   C2: "A computational optimization method that assigns furniture states (e.g. bed deployed/stowed) from a household's time-of-day activity schedule, with positions shared across time slots, in dwelling layouts."
   C3: "A multi-dwelling (10 or more plans) quantification of the whole-dwelling floor area that transformable furniture is equivalent to (a 'functionally equivalent area' or equivalent area-saving measure), computed from feasible layouts."
-  C3_broad_known: "Single-room or conceptual numerical area gains from transformable furniture are KNOWN (Bu & Che Mat 2026) and rated B_related, not A_overlap."
+  C3_builds_on: "Single-room or conceptual numerical area gains (Bu & Che Mat 2026) are an antecedent we generalize and test across real plans."
   C4: "Testing an area-only minimum dwelling standard against functional adequacy measured with (transformable) furniture layouts."
   H2: "Floor area is a poor proxy for functional adequacy or usability (known: Özer & Jacoby 2022)."
 

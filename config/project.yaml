@@ -110,6 +110,34 @@ experiments:
   tau_sensitivity: [0.90, 0.95, 1.00]
   bootstrap: {n: 1000, ci: 0.95}
 
+  K_kit_design:           # RESEARCH_PLAN §5.9, H4. All values are author design assumptions (verify / sensitivity).
+    target: {source: D3, nia_m2: [8, 15]}
+    holdout: {aspect_ratio: 2.5, entrance_position: long_wall_corner}
+    real_plan_check: {sources: [D1, D2], max_nia_m2: 20}
+    households: [H1_single_commuter, H2_single_remote_worker, H3_couple_one_remote]
+    variables:                # metres; grid values. q = service quality at that value (linear between points)
+      wall_bed_width_single: {values: [0.80, 0.90, 1.00], q: [0.60, 0.85, 1.00], applies_to: [H1_single_commuter, H2_single_remote_worker]}
+      wall_bed_width_double: {values: [1.20, 1.40, 1.50], q: [0.60, 0.90, 1.00], applies_to: [H3_couple_one_remote]}
+      desk_width: {values: [0.80, 1.00, 1.20], q: [0.70, 0.90, 1.00]}
+      desk_depth_deployed: {values: [0.45, 0.55], q: [0.80, 1.00]}
+      table_width: {values: [0.70, 0.80, 1.00], q: [0.80, 0.90, 1.00]}
+      table_depth_deployed: {values: [0.60, 0.75], q: [0.85, 1.00]}
+      wardrobe_frontage: {values: [0.60, 1.00, 1.40], storage_units: [0.6, 1.0, 1.4]}
+    fixed: {stowed_depths: "as in config/furniture.yaml", clearances: "as in config/furniture.yaml"}
+    objective: fciq_mean      # also report adequacy share (FCIq >= tau)
+    search: {method: successive_halving, stages: [{shells: 10, keep: 0.20}, {shells: 30, keep_top: 5}, {shells: all}], time_limit_s: 20}
+    bespoke_subsample: 30
+    flat_quality_variant: true
+    time_box_days: 2
+    fallback_order: [drop wardrobe_frontage, drop H3_couple_one_remote, report 30-shell exploratory result]
+
+  R_single_room_test:     # RESEARCH_PLAN §5.8 (supporting analysis for the Discussion; not a hypothesis)
+    reference: "Bu & Che Mat (2026), doi:10.13189/cea.2026.140514"
+    reported_values_from_source: true   # every value with page reference in results/expR/source_values.csv
+    households: [H1_single_commuter, H2_single_remote_worker]
+    measure: free_activity_area_day   # floor area not covered by furniture bodies in the 'day' slot (validator)
+    fallback_shells: {area_m2: 12, aspect_ratios: [1.0, 1.25, 1.5]}
+
 ablations:
   drop_one_transformable: true
   clearance_scale: [0.8, 1.0, 1.2]

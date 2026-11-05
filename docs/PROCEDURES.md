@@ -100,7 +100,7 @@ A `Unit` (one dwelling) holds:
 
 ## Task L: Systematic literature search (run once, before the G1 fixes)
 
-Follow `docs/LITERATURE_SEARCH.md` with `config/lit_search.yaml` and `scripts/00b_lit_search.py`. Outputs: `results/literature/raw_hits.csv`, `results/literature/screened.csv`, and a new section appended to `reports/novelty_check.md`. After Q-12, the rule in LITERATURE_SEARCH §5 logs narrowed-claim overlaps without stopping. Finish the remaining screening during Phase 7 (§5a) and report it at G3.
+Follow `docs/LITERATURE_SEARCH.md` with `config/lit_search.yaml` and `scripts/00b_lit_search.py`. Outputs: `results/literature/raw_hits.csv`, `results/literature/screened.csv`, and a new section appended to `reports/novelty_check.md`. Related work never stops the work: LITERATURE_SEARCH §5 records how we build on each paper. Finish the remaining screening during Phase 7 (§5a) and report it at G3.
 
 ---
 
@@ -279,6 +279,16 @@ Push, write `reports/GATE_G2.md`, **stop**, and wait for `reviews/G2_review.md`.
    Files: `results/expD/*.csv`.
 2. **Ablations** from `config/project.yaml` → `ablations`. For the resolution and time-limit runs, use the fixed 50-unit subset saved in `results/ablations/subset.csv`. The other ablations run on the Exp. B 200-instance sample, or on everything if time allows; state which. Write `results/ablations/*.csv` and a tornado plot (F9) of the change in median saving and ΔA_min.
 
+## Phase 9b: Experiment R, testing the single-room estimate (day 10)
+
+Follow RESEARCH_PLAN §5.8.
+1. **R1:** extract from Bu & Che Mat (2026), cached privately in task L, the room dimensions, furniture list and reported activity areas. Record each value with page and section in `results/expR/source_values.csv`. Don't redistribute their text or figures. Build the shell(s), solve S0 and S2 with H1 and H2, compute daytime free activity area with the **validator**, and write `results/expR/reproduction.csv`.
+2. **R2:** compute free activity area for the daytime slot under S0 and S2 for every Exp. A sample unit with H1/H2, from the validated layouts (no new solves). Write `results/expR/generalization.csv`.
+3. **R3:** join with `results/expA/fea.csv` and write `results/expR/bridge.csv`.
+4. Figure F11 (a–c).
+
+**Acceptance:** every value taken from the source paper has a page reference. Free activity area is computed by the validator, not the solver. If R1 does not reproduce their direction or rough magnitude, report it as a finding with the likely causes; don't tune parameters to match.
+
 ## Phase 10: Experiment C, surrogate (day 11)
 
 1. Build the features and graphs from the `Unit` objects; no solver outputs may be used as inputs.
@@ -301,6 +311,18 @@ Push, write `reports/GATE_G2.md`, **stop**, and wait for `reviews/G2_review.md`.
 Push, write `reports/GATE_G3.md` with the headline numbers and how they bear on H1–H3, **stop**, and wait for `reviews/G3_review.md`.
 
 ---
+
+## Phase 11b: Experiment K, furniture-kit design (days 11–12; time-boxed)
+
+Follow RESEARCH_PLAN §5.9 and `experiments.K_kit_design`.
+1. Implement **parametric furniture**: items whose footprint, clearance and storage units come from design variables, and **FCIq** (served hours weighted by item quality q). FCIq is computed by the validator.
+2. Build the target set (D3, 8–15 m² NIA) and the held-out transfer set. Pick the 10 and 30 representative shells by stratifying on area × aspect ratio × entrance, with a fixed seed. Save them to `results/expK/shell_sets.csv`.
+3. Run successive halving per household. Log every evaluated combination to `results/expK/search_log.csv`.
+4. Evaluate catalogue vs kit vs bespoke (bespoke on the 30-shell set: per-unit grid search with the same budget) and the flat-quality variant. Evaluate the kit on held-out shells and on real plans with NIA ≤ 20 m².
+5. Pass the designed kit to Phase 11 as strategy `S2_kit` (rerun only the Hong Kong scenario part).
+6. Write `results/expK/kit.yaml` (final dimensions per household) and figure F12, including a dimensioned top-view drawing of each kit item in every state.
+
+**Acceptance:** every kit layout passes the validator. The kit's FCIq on the target set is ≥ the catalogue's (if not, report it; don't force it). Bespoke ≥ kit on every shell, or the exception is explained (search budget). The time box is respected; any fallback used is stated.
 
 ## Phase 12: Figures, tables and drafts (days 13–14)
 

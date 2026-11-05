@@ -1,20 +1,20 @@
 # G1 review addendum: decision on Q-12 (task L stop)
 
-Verdict on Q-12: **CONTINUE, with narrowed claims.** **G1 status:** unchanged (CHANGES_REQUESTED; M1–M6 still apply). **Date:** 2026-11-05
+Verdict on Q-12: **CONTINUE, with sharpened positioning.** **G1 status:** unchanged (CHANGES_REQUESTED; M1–M6 still apply). **Date:** 2026-11-05
 
 ## Assessment
 
 The stop was correct under the rule as written, and the evidence record is good: DOI, checksum, pages checked, and a clear line between the authors' analytical comparison and measured results.
 
-Bu & Che Mat (2026) quantify the activity area of conceptual layouts in **one 12 m² bedroom**: about 5–5.5 m² with fixed furniture against about 8 m² with the wall bed folded, roughly 60%. This makes the broad wording "first quantification of how much floor area transformable furniture is worth" untenable, so that wording is **withdrawn**.
+Bu & Che Mat (2026) quantify the activity area of conceptual layouts in **one 12 m² bedroom**: about 5–5.5 m² with fixed furniture against about 8 m² with the wall bed folded, roughly 60%. This is a welcome antecedent: it supports the premise, and it gives us a concrete estimate to generalize and test. We simply phrase our contribution relative to it, rather than as a "first quantification".
 
-It doesn't touch the narrower contribution. Their work has no optimization, no activity-schedule-driven state assignment, no clearance or reachability guarantee, no multi-dwelling corpus, and no whole-dwelling equivalent area. *(The reviewer could not open the PDF independently, because the publisher blocks automated access. This decision relies on Codex's full-text record in `results/literature/fulltext_checks.json`.)*
+What our study adds to it: their analysis has no optimization, no activity-schedule-driven state assignment, no clearance or reachability guarantee, no multi-dwelling corpus, and no whole-dwelling equivalent area. *(The reviewer could not open the PDF independently, because the publisher blocks automated access. This decision relies on Codex's full-text record in `results/literature/fulltext_checks.json`.)*
 
 ## Decisions
 
-1. **Claim wording.** C3 is now: *the first large-sample, schedule- and household-specific, feasibility-guaranteed estimate of transformable furniture's benefit, expressed as whole-dwelling functionally equivalent area.* C2 is narrowed to *a computational method that assigns furniture states from time-of-day activity demand, with positions shared across slots.* Both are updated in `config/lit_search.yaml` and RESEARCH_PLAN §1.
+1. **Positioning.** Contributions are phrased as what this project adds to named prior work (RESEARCH_PLAN §1 positioning table), not as "first" claims. Relative to Bu & Che Mat: we generalize and test their single-room estimate across real plans, household schedules and dwelling sizes, with guaranteed feasibility, and express it as whole-dwelling equivalent area.
 2. **Citations.** Add Bu & Che Mat (2026) as the C3 antecedent. Their single-room ~60% figure becomes a comparison point in the Discussion: report how our per-unit relative saving at about 12 m² compares, without implying the two measures are identical. Add Xiong, Cai & Luo (2026, CAVW) as a C2 distinction (motion coordination, not schedule-driven states). Cite *Mechanisms of Spatial Efficiency* (2025) as qualitative evidence of temporal adaptability. All three are in RESEARCH_PLAN §10 now; the missing volume and page details need verifying.
-3. **Stop rule revised** (LITERATURE_SEARCH §5): only the narrowed C2/C3 trigger it, and even then it's logged without stopping the engineering work.
+3. **No stop rule** (LITERATURE_SEARCH §5, revised again on the author's guidance): the screening maps how we build on each related work. Related work never stops the engineering work.
 4. **Remaining screening** (LITERATURE_SEARCH §5a): finish it in the background of Phase 7 and report it at G3. It must not delay the G1 fixes.
 
 ## What to do now
