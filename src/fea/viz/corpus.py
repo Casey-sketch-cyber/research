@@ -86,5 +86,5 @@ def render_histogram(frame, output: Path, digest: str):
         ax.set_xlabel("Furnishable area (m²)")
         ax.set_ylabel("Included units")
     fig.savefig(output.with_suffix(".png"), dpi=300, metadata={"Description": "config_hash=" + digest})
-    fig.savefig(output.with_suffix(".pdf"), metadata={"Subject": "config_hash=" + digest, "Creator": "Research Automation"})
+    fig.savefig(output.with_suffix(".pdf"), metadata={"Subject": "config_hash=" + digest, "Creator": "Research Automation", "CreationDate": None, "ModDate": None})
     plt.close(fig)

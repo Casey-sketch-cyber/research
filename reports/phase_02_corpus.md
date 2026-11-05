@@ -1,26 +1,47 @@
 # Phase 02: Corpus construction
 
-**Status:** IN PROGRESS; Phase 01 acceptance passed.
+**Status:** COMPLETE for G1 review. Computational acceptance passed; the human visual and modelling review remains at G1. Upload awaits repository write access.
 
 ## 1. Checklist (from PROCEDURES.md)
-- [ ] Convert residential D1 records to unit geometry and identify entrances.
-- [ ] Convert D2 geometry with an explicit, audited scale and class mapping.
-- [ ] Generate every configured D3 shell family with fixed toilet and kitchenette.
-- [ ] Normalize coordinates, validate geometry and apply the corpus filter.
-- [ ] Write processed geometry, corpus CSV, inclusion/exclusion counts and area histogram.
-- [ ] Render the fixed-seed sample: eight included units per source.
-- [ ] Test at least one observed D1 dwelling and one observed D2 plan.
+- [x] Convert residential D1 records to unit geometry and identify entrances.
+- [x] Convert D2 geometry with an explicit, audited scale and class mapping.
+- [x] Generate every configured D3 shell family with fixed toilet and kitchenette.
+- [x] Normalize coordinates, validate geometry and apply the corpus filter.
+- [x] Write processed geometry, corpus CSV, inclusion/exclusion counts and area histogram.
+- [x] Render the fixed-seed sample: eight included units per source.
+- [x] Test at least one observed D1 dwelling and one observed D2 plan.
 
 ## 2. Acceptance checks
 | Check | Result | Evidence |
 |---|---|---|
-| Corpus counts and histogram | PENDING | Not run |
-| Exclusion reasons | PENDING | Not run |
-| Sample renders | PENDING | Not run; human review is at G1 |
-| Loader tests | PENDING | Not run |
+| Corpus counts and histogram | PASS | `results/corpus/counts.csv`; `results/figures/F2_corpus_area.png` and `.pdf` |
+| Exclusion reasons | PASS | `results/corpus/exclusion_reasons.csv`; reasons may overlap |
+| Sample renders | PASS, human review pending | 24 PNGs in `results/corpus/samples/`; source metadata in `sample_units.json` |
+| Loader tests | PASS | `reports/phase02_acceptance.json`: 12 tests pass without skips |
+| Full package checks | PASS | All 16 checks true, including CSV/parquet agreement and public sample local coordinates |
 
 ## 3. Key numbers
-Pending measured outputs.
+| Source | Converted | Included | Excluded | Missing entrance |
+|---|---:|---:|---:|---:|
+| D1 | 46,830 | 11,598 | 35,232 | 1,730 |
+| D2 | 17,000 | 1,978 | 15,022 | 6 |
+| D3 | 510 | 420 | 90 | 0 |
+
+Evidence: `reports/corpus_audit.json` and generated corpus tables. The area
+ceiling remains 45 m²: D1 already exceeds the minimum sample requirement. D1
+simulation summaries are available for 46,815 records. The maximum included-unit
+normalization area change is 1.6503e-8 m². Three D1 topology failures and one D2
+area-preservation failure are explicitly excluded. The complete exclusion
+table is in `results/corpus/exclusion_reasons.csv`; counts are not mutually
+exclusive. No sample cap is applied.
+
+The 24-panel contact sheet was visually inspected. Source classes, openings and
+entrances are distinguishable. D1 sample 01 has no labelled fixed-service room;
+no bathroom or kitchen was invented. D1 samples 06 and 07 have similar source
+layouts, consistent with repeated plans in a site; grouped evaluation remains
+necessary. D2 samples show no unexplained detached inner region. D3 samples
+show the nearest feasible service arrangement, which can place the toilet at
+the far end of a narrow shell. These modelling cases are highlighted for G1.
 
 ## 4. Deviations from the plan
 - D1 lacks an authoritative apartment gross-area field; gross area stays missing. Known interior-space area is recorded separately, never relabelled as gross.
@@ -56,13 +77,20 @@ known interior, so an excluded balcony may legitimately extend to negative
 local coordinates. The source-to-local transform is not exported.
 
 ## 5. Decisions
-Pending implementation and measured checks.
+See D-07 through D-10 in `reports/DECISIONS.md`. The numerical grid and failure
+exclusions are engineering safeguards; they do not change furniture dimensions
+or household schedules.
 
 ## 6. Open questions for the reviewer
 See `reports/QUESTIONS.md` for scale and shell-geometry assumptions.
 
 ## 7. Runtime and resources
-Not run.
+The successful main invocation took 927.19 s. Source conversion took 906.64 s
+for D1, 267.01 s for D2 and 5.08 s for D3; independent source conversion was
+overlapped. These times exclude earlier failed/debugging runs. CPU only; peak
+RAM was not sampled and is not estimated. See `reports/corpus_audit.json`.
 
 ## 8. Files added or changed
-This checklist.
+Source loaders, geometry representation/normalization/audits, corpus builder
+and acceptance script, rendering code, observed-source tests, scalar corpus
+tables, sample geometries/images, area figure and reproducibility instructions.

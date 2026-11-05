@@ -1,0 +1,24 @@
+{
+  "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6",
+  "checks": {
+    "unique_keys": true,
+    "csv_parquet_same_keys": true,
+    "current_config_hash": true,
+    "D1_grouping_shared": true,
+    "D1_gross_not_fabricated": true,
+    "all_D3_retained": true,
+    "inclusion_reason_consistent": true,
+    "included_areas_in_range": true,
+    "included_geometry_checks_pass": true,
+    "included_normalization_preserves_area": true,
+    "24_sample_images": true,
+    "histogram_formats": true,
+    "eight_samples_per_source": true,
+    "sample_metadata_matches_csv": true,
+    "published_samples_use_local_coordinates": true,
+    "tests_pass_without_skips": true
+  },
+  "pass": true,
+  "pytest_summary": "12 passed in 34.89s",
+  "visual_review": "human review pending at G1"
+}

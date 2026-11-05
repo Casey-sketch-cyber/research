@@ -1,0 +1,64 @@
+{
+  "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6",
+  "code_hash": "7d7490a48247e4a2eee4102f13de2b60e41f2716255cc01dbc985dda349c8fa6",
+  "counts": [
+    {
+      "source": "D1",
+      "total": 46830,
+      "included": 11598,
+      "missing_gross": 46830,
+      "missing_entrance": 1730,
+      "excluded": 35232,
+      "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6"
+    },
+    {
+      "source": "D2",
+      "total": 17000,
+      "included": 1978,
+      "missing_gross": 0,
+      "missing_entrance": 6,
+      "excluded": 15022,
+      "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6"
+    },
+    {
+      "source": "D3",
+      "total": 510,
+      "included": 420,
+      "missing_gross": 0,
+      "missing_entrance": 0,
+      "excluded": 90,
+      "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6"
+    }
+  ],
+  "initial_D1_qualified": 11598,
+  "effective_max_furnishable_area_m2": 45,
+  "sources": [
+    {
+      "source": "D1",
+      "records": 46830,
+      "processing_seconds_this_attempt": 906.6425679530948,
+      "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6",
+      "code_hash": "7d7490a48247e4a2eee4102f13de2b60e41f2716255cc01dbc985dda349c8fa6"
+    },
+    {
+      "source": "D2",
+      "records": 17000,
+      "processing_seconds_this_attempt": 267.0110231321305,
+      "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6",
+      "code_hash": "7d7490a48247e4a2eee4102f13de2b60e41f2716255cc01dbc985dda349c8fa6"
+    },
+    {
+      "source": "D3",
+      "records": 510,
+      "processing_seconds_this_attempt": 5.07591768912971,
+      "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6",
+      "code_hash": "7d7490a48247e4a2eee4102f13de2b60e41f2716255cc01dbc985dda349c8fa6"
+    }
+  ],
+  "max_normalization_area_change_m2": 0.2832656531431752,
+  "max_included_normalization_area_change_m2": 1.650282399623393e-08,
+  "D1_with_simulations": 46815,
+  "sample_count": 24,
+  "total_seconds_this_invocation": 927.1902237832546,
+  "gross_area_note": "D1 missing; D2 source declaration with explicit geometric calibration; D3 generated gross internal area"
+}
