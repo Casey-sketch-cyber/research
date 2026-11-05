@@ -59,4 +59,6 @@ python scripts/check_publication.py --staged
 The publication process additionally checks session-private terms supplied in
 memory through an environment variable; do not save such terms in a config,
 report, command file or commit. Use a neutral, nonpersonal Git author and
-committer identity. Existing upstream history is not rewritten.
+committer identity with an address such as `research-automation@example.invalid`.
+Do not guess a GitHub noreply address: it can associate the commit with an
+unrelated account. Existing upstream history is not rewritten.
