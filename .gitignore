@@ -1,0 +1,27 @@
+# data
+data/raw/
+data/interim/
+*.zip
+*.tar
+*.pkl
+
+# logs and caches
+logs/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+*.egg-info/
+
+# large model files (commit only if < 50 MB and explicitly listed)
+*.pt
+*.pth
+*.ckpt
+!results/expC/models/*.pt
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/

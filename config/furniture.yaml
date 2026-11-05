@@ -1,0 +1,160 @@
+# Furniture library: starting values.
+# Units: metres. Footprints are width (along the wall) x depth (away from the wall).
+# All dimensions and clearances are DESIGN DEFAULTS chosen by the authors and must be
+# checked in Phase 3 against ABO listings (D4). Codex must not overwrite these
+# values silently: record proposed changes in reports/phase_03_*.md and
+# config/furniture_overrides.yaml.
+#
+# Clearance zones are given as {side: depth}. Sides are relative to the item:
+#   front = the side away from the wall; left/right = short sides; back = wall side.
+# Clearance zones of different items may overlap each other, but never another item's body.
+#
+# effort: relative effort to change state once (used in the transformation burden).
+# wall_backed: the item must have wall cells directly behind it (back side).
+# tall: the item may not back onto a window segment.
+
+meta:
+  version: 0.1
+  source_note: "author design defaults; verify in Phase 3"
+  global_clearance_scale: 1.0     # varied in sensitivity analysis: 0.8 / 1.0 / 1.2
+  walking_width: 0.60             # accessibility variant: 0.90
+
+static_items:
+  single_bed:
+    serves: [sleep_1]
+    footprint: [0.90, 2.00]
+    clearance: {left: 0.60}       # beds: depth is the long axis, so left/right are the long sides
+    wall_backed: false
+    tall: false
+  double_bed:
+    serves: [sleep_2]
+    footprint: [1.40, 2.00]
+    clearance: {left: 0.60, right: 0.50}
+    wall_backed: true             # headboard against a wall
+    tall: false
+  wardrobe:
+    serves: [storage]
+    storage_units: 1.0
+    footprint: [1.00, 0.60]
+    clearance: {front: 0.70}
+    wall_backed: true
+    tall: true
+  shelving:
+    serves: [storage]
+    storage_units: 0.5
+    footprint: [0.80, 0.35]
+    clearance: {front: 0.60}
+    wall_backed: true
+    tall: true
+  desk:
+    serves: [work_1]
+    footprint: [1.20, 0.60]
+    clearance: {front: 0.75}
+    wall_backed: true
+    tall: false
+  dining_table_2:
+    serves: [dine_2]
+    footprint: [0.75, 0.75]
+    clearance: {front: 0.60, back: 0.60}
+    wall_backed: false
+    tall: false
+  dining_table_4:
+    serves: [dine_4, dine_2]
+    footprint: [1.20, 0.80]
+    clearance: {front: 0.60, back: 0.60}
+    wall_backed: false
+    tall: false
+  sofa_2:
+    serves: [lounge_2]
+    footprint: [1.60, 0.85]
+    clearance: {front: 0.60}
+    wall_backed: true
+    tall: false
+  armchair:
+    serves: [lounge_1]
+    footprint: [0.80, 0.80]
+    clearance: {front: 0.50}
+    wall_backed: false
+    tall: false
+
+transformable_items:
+  wall_bed_single:
+    serves: {deployed: [sleep_1], stowed: []}
+    states:
+      stowed:   {footprint: [1.00, 0.45], clearance: {front: 0.40}}
+      deployed: {footprint: [1.00, 2.10], clearance: {left: 0.60}}
+    wall_backed: true
+    tall: true
+    effort: 1.0
+  wall_bed_double:
+    serves: {deployed: [sleep_2], stowed: []}
+    states:
+      stowed:   {footprint: [1.50, 0.45], clearance: {front: 0.40}}
+      deployed: {footprint: [1.50, 2.15], clearance: {left: 0.60, right: 0.50}}
+    wall_backed: true
+    tall: true
+    effort: 1.0
+  wall_bed_over_sofa:
+    serves: {deployed: [sleep_2], stowed: [lounge_2]}
+    states:
+      stowed:   {footprint: [1.60, 0.90], clearance: {front: 0.60}}
+      deployed: {footprint: [1.60, 2.15], clearance: {left: 0.60, right: 0.50}}
+    wall_backed: true
+    tall: true
+    effort: 1.2
+  sofa_bed:
+    serves: {deployed: [sleep_2], stowed: [lounge_2]}
+    states:
+      stowed:   {footprint: [1.90, 0.90], clearance: {front: 0.60}}
+      deployed: {footprint: [1.90, 2.00], clearance: {front: 0.50}}
+    wall_backed: true
+    tall: false
+    effort: 1.5
+  drop_leaf_table:
+    serves: {deployed: [dine_2, work_1], stowed: []}
+    states:
+      stowed:   {footprint: [0.80, 0.20], clearance: {}}
+      deployed: {footprint: [0.80, 0.75], clearance: {front: 0.60}}
+    wall_backed: true
+    tall: false
+    effort: 0.2
+  fold_down_desk:
+    serves: {deployed: [work_1], stowed: []}
+    states:
+      stowed:   {footprint: [1.00, 0.25], clearance: {front: 0.40}}
+      deployed: {footprint: [1.00, 0.55], clearance: {front: 0.75}}
+    wall_backed: true
+    tall: true
+    effort: 0.2
+  extendable_table:
+    serves: {deployed: [dine_4, dine_2, work_1], stowed: [dine_2]}
+    states:
+      stowed:   {footprint: [0.80, 0.80], clearance: {front: 0.60, back: 0.60}}
+      deployed: {footprint: [1.60, 0.80], clearance: {front: 0.60, back: 0.60}}
+    wall_backed: false
+    tall: false
+    effort: 0.3
+
+# Optional extension (exclude from the main experiments; ceiling height not modelled in 2D)
+optional_items:
+  loft_bed_over_desk:
+    serves: [sleep_1, work_1]
+    footprint: [1.00, 2.10]
+    clearance: {left: 0.75}
+    wall_backed: true
+    tall: true
+    requires_min_ceiling_height: 2.60
+    note: "Stacking, not time-transformation. Report separately if run."
+
+# How many of each item the solver may place (upper bounds); the solver chooses 0..max.
+max_instances:
+  default: 1
+  wardrobe: 2
+  shelving: 2
+  armchair: 2
+  desk: 2
+
+strategies:
+  S0: {allow: static_items, state_mode: fixed}
+  S1: {allow: [static_items, transformable_items], state_mode: day_wide}   # one state per item per day
+  S2: {allow: [static_items, transformable_items], state_mode: per_slot}  # proposed

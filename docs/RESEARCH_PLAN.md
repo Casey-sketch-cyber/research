@@ -1,0 +1,215 @@
+# Research Plan
+
+**Working title:** *Functionally Equivalent Area: How Much Space Does Transformable Furniture Save, and What It Means for Minimum Dwelling Standards*
+
+**Target venue:** *Urban Science* (MDPI), Special Issue "Urban Transformation and Sustainable Cities". Relevant topics in the call: AI and data-driven approaches; resource efficiency and circular economy; social equity, accessibility and quality of urban life; sustainable land use; urban governance and policy innovation.
+
+**Time budget:** 3 weeks from start to submission. Computation (Codex) has about 2 weeks; the last week is for writing and revision.
+
+---
+
+## 1. Background and gap
+
+Cities facing housing shortages keep producing very small dwellings: micro-apartments, co-living rooms and subdivided units. Policymakers regulate them with **minimum floor-area standards**. One example is Hong Kong's Basic Housing Units Ordinance (in force 1 March 2026), which requires at least 8 m² internal floor area, a separate toilet, a sink outside the toilet, minimum headroom, and adequate lighting and ventilation.
+
+Floor area is a proxy. What a household needs is the ability to **carry out daily activities** (sleep, eat, work, rest, store belongings, receive a guest) with adequate ergonomic clearance. Transformable furniture (wall beds, sofa beds, drop-leaf tables, fold-down desks) lets the same floor area serve different activities at different times of day. Nobody has quantified how much floor area it effectively "saves":
+
+- **Pedro (2009)**, *Structural Survey* 27(5): derives minimum dwelling areas from furniture, typical arrangements and functional spaces. The arrangement is static, made by hand, and has no time dimension.
+- **Ulrich (2025)**, *Buildings* 15:2623: proposes minimum internal areas of 30/45/60 m² for households of 1/2/3–4 people. It mentions multifunctional furniture and "temporal zoning" but explicitly does **not** quantify them as reducing the required area. It also cites evidence of higher stress at very small areas per person, even with multifunctional furniture.
+- **Computational layout** (Merrell et al. 2011; Yu et al. 2011; LayoutVLM 2025; HomeWorld 2026; ergonomic-prior floor-plan generation, arXiv 2604.08411) produces **one static furniture arrangement** per room.
+- **Garg et al. (2016)**, *Computational Design of Reconfigurables*, SIGGRAPH: designs individual reconfigurable *objects*, not whole-dwelling layouts over a daily schedule.
+
+**Gap:** there is no schedule-aware, constraint-guaranteed, large-sample estimate of how much functional capacity transformable furniture adds to compact dwellings, and no translation of that gain into the policy unit of square metres.
+
+> **Novelty check (Phase 0, half a day, done by the human author):** search Scopus or Web of Science for `("multi-state" OR "time-varying" OR "reconfigurable") AND "furniture layout"`, `"temporal zoning" AND (dwelling OR apartment)` and `"minimum dwelling size" AND furniture`. Record the results in `reports/novelty_check.md`.
+
+## 2. Research questions and hypotheses
+
+- **RQ1.** For a compact dwelling and a given household, how much more of the household's daily activity demand can be served with transformable furniture laid out per time slot, compared with static furniture?
+- **RQ2.** What static-furniture floor area gives the same functional capacity as a transformable dwelling of area *A*? This is the **functionally equivalent area (FEA)**, and FEA − *A* is the **area saving**.
+- **RQ3.** What does this imply at city scale for minimum-area standards, using Hong Kong's subdivided and basic housing units as the case?
+
+| ID | Hypothesis | Tested in |
+|---|---|---|
+| H1 | Area saving is positive and largest, in both absolute and relative terms, in the smallest units, and it shrinks as area increases. | Exp. A |
+| H2 | Functional capacity varies substantially among units of equal area, so area-only standards misclassify adequacy for a non-trivial share of units. | Exp. D |
+| H3 | A graph-based model predicts functional capacity from the plan accurately enough (Spearman ρ ≥ 0.8 on held-out sites) to screen a housing stock. | Exp. C |
+
+## 3. Key definitions
+
+All parameters live in `config/*.yaml`.
+
+- **Household type *h*:** a set of members and a daily schedule over time slots *t ∈ T*, each slot with duration *d_t* in hours (`config/households.yaml`).
+- **Activity *a*:** something a household does in a slot. Each furniture-dependent activity needs a set of furniture items in a *deployed* state, plus their clearance zones and access from the entrance (`config/furniture.yaml`). Activities served by fixed rooms (cooking in a kitchen, hygiene in a bathroom) are recorded but excluded from FCI.
+- **Strategy *s*:**
+  - **S0 static:** only static items; one footprint all day.
+  - **S1 multifunctional, unscheduled:** transformable items allowed, but each item keeps one state for the whole day.
+  - **S2 schedule-aware (proposed):** transformable items keep a fixed position and orientation but change state per slot.
+- **Functional Capacity Index:**
+
+  FCI(u, h, s) = Σ_t Σ_{a∈A_t(h)} w_a · d_t · served(a, t) / Σ_t Σ_{a∈A_t(h)} w_a · d_t
+
+  where served(a, t) = 1 if every required item for *a* is placed, deployed in *t*, clear of collisions, and reachable from the entrance in *t*. The default weight is *w_a* = 1; occasional activities such as hosting guests are weighted by frequency.
+- **Static capacity curve:** f₀,h(A) = the expected FCI under S0 as a function of furnishable area *A*, fitted by isotonic regression (monotone non-decreasing) across the corpus for household *h*.
+- **Functionally equivalent area:** FEA(u, h) = min { A* : f₀,h(A*) ≥ FCI(u, h, S2) }. **Area saving** = FEA − A(u). **Relative saving** = (FEA − A(u)) / A(u). If the S2 FCI exceeds the curve's maximum, mark the value as right-censored.
+- **Adequacy:** a unit is adequate for *h* under *s* if FCI ≥ τ (default τ = 0.95; sensitivity at 0.90 and 1.00). **Minimum adequate area** A_min,h,s = the area at which a logistic fit of P(adequate | A) crosses 0.5. **ΔA_min** = A_min(S0) − A_min(S2) is the headline policy number.
+- **Transformation burden:** TB(u, h) = Σ_items Σ_t e_i · 1[state changes between t−1 and t], cyclic over the day, with effort weights *e_i* from the config. It is reported alongside FCI, and S2 minimizes it as a secondary objective.
+
+## 4. Data
+
+All datasets are open and downloadable without an application.
+
+| ID | Dataset | Use | License |
+|---|---|---|---|
+| D1 | Swiss Dwellings v3.0.0 (Zenodo 10.5281/zenodo.7788422; ~0.93 GB) | Main real-plan corpus: compact residential units, geometry plus area-level simulations (daylight, noise, view) | CC BY 4.0 |
+| D2 | ResPlan (github.com/m-agour/ResPlan; Kaggle mirror) | Second corpus from a different housing market, for robustness | CC BY 4.0 (data), MIT (code) |
+| D3 | **Parametric compact shells** (generated in this project) | Covers 8–40 m², the range of Hong Kong subdivided and basic housing units that D1/D2 under-represent: rectangular shells with varied aspect ratio, door and window position, a fixed toilet pod and a kitchenette | Own |
+| D4 | Amazon Berkeley Objects, `abo-listings.tar` only (83 MB) | Check furniture dimensions in the library against real products | CC BY 4.0 |
+| D5 | American Time Use Survey multi-year microdata (BLS) | *Optional:* calibrate slot durations per household type | Public domain |
+| D6 | HK 2021 Population Census, subdivided units by District Council district (data.gov.hk) | Hong Kong scenario weights | Free reuse (DATA.GOV.HK terms) |
+
+**Corpus filter (default):** residential units with net furnishable area ≤ 45 m², valid geometry, at least one entrance door, and at least one window. Codex reports how many units pass. If fewer than 300 D1 units qualify, raise the threshold to 55 m² and report it.
+
+## 5. Method
+
+### 5.1 Pipeline
+
+```
+plans (D1, D2, D3) → normalize & rasterize → candidate placements
+households (config) ─┐                                  │
+furniture (config) ──┴→ CP-SAT layout per (unit, household, strategy) → independent validator
+                                                         │
+                       FCI, TB, layouts ─→ f0 curve → FEA, saving, A_min
+                                         └→ graph surrogate (Exp. C) → HK scenario
+```
+
+### 5.2 Layout optimization (core method)
+
+- **Representation:** each unit is rasterized at grid resolution *r* (default 0.10 m). Cell classes: walkable-and-furnishable (rooms), walkable-only (corridors, door openings, configurable), blocked (walls, fixed features, bathrooms and kitchens unless configured otherwise), and door-swing keep-out.
+- **Candidates:** for every item, orientation (0/90/180/270°) and state, precompute the anchor positions where the body and the clearance zone fit inside allowed cells, and where wall-backed items have wall cells directly behind them. Use numpy/scipy convolution or integral images. Tall items may not back onto window segments.
+- **Variables:** one Boolean per (item instance, candidate pose). Pose is shared across slots, which is the anchoring constraint. Per-slot state is derived from the schedule: an item is deployed in slot *t* if it serves an activity scheduled in *t*. Under S1, state is a day-wide Boolean.
+- **Hard constraints, per slot:**
+  - Item bodies do not overlap.
+  - No body overlaps another item's active clearance zone; clearance zones may overlap each other.
+  - Door-swing keep-outs stay free.
+- **Reachability:** the entrance and every deployed item's access zone must be connected through free cells eroded by the walking radius (default 0.30 m, i.e. a 0.60 m path). Enforce it with a lazy loop: solve, check by BFS, add a no-good cut on the offending pose combination, re-solve. Cap at 30 iterations. If the cap is reached, keep the best layout that passes validation and log it.
+- **Objective (lexicographic):**
+  1. Maximize the weighted served activity-hours (the FCI numerator).
+  2. Minimize transformation burden.
+  3. Soft preference: desk and dining items closer to windows (distance to the nearest window cell).
+
+  Implement 1–2 as a weighted sum with a large weight on 1, or as two solves.
+- **Solver:** OR-Tools CP-SAT, default 60 s per instance, 8 workers, fixed seed. Record status, objective, bound and time.
+- **Independent validator:** a separate module, sharing no constraint code with the solver, that re-checks any layout JSON on the raster: geometry inside allowed cells, overlaps, clearances, door swings, reachability and wall backing. Its result is the source of truth for every algorithm in Exp. B.
+
+### 5.3 Baseline algorithms (Exp. B)
+
+1. **Greedy:** items sorted by footprint descending; each takes the first feasible wall-adjacent pose.
+2. **Simulated annealing:** same candidates; cost = −FCI + penalties; 20k iterations, 3 restarts.
+3. *(Optional, only if time allows)* **Local LLM:** Qwen2.5-7B-Instruct or similar, run locally, given room geometry and the item list as JSON and asked for placements. Run on a stratified subset of 100 instances.
+4. **CP-SAT:** the proposed method.
+
+### 5.4 Surrogate (Exp. C)
+
+- **Input:** a plan graph. Nodes are rooms or spaces with features: area, width, depth, aspect ratio, compactness, type one-hot, window count and length, door count. Edges are door or adjacency links. Also global features: net area and the household one-hot.
+- **Targets:** FCI under S0 and S2, and area saving.
+- **Models:**
+  - Linear regression on area only
+  - Gradient boosting (LightGBM, or sklearn HistGradientBoosting) on hand-made features
+  - MLP on the same features
+  - GNN (GraphSAGE or GIN via PyTorch Geometric, or a plain PyTorch implementation if PyG doesn't install)
+- **Split:** grouped by `site_id` (D1) or plan ID (D2) to prevent leakage: 70/15/15. D3 shells form a separate test set. Report MAE, RMSE, R², Spearman ρ, and inference time per unit.
+
+### 5.5 Metric validity (Exp. D)
+
+Compare FCI-based adequacy (FCI ≥ τ) with these conventional indicators:
+
+- Floor area per person
+- Rooms per person
+- Ulrich's 30/45/60 m² thresholds
+- Hong Kong's 8 m² basic-housing-unit minimum
+
+Report Spearman correlation, FCI dispersion (interquartile range) within area bins, and confusion matrices or misclassification rates.
+
+### 5.6 Hong Kong scenario (RQ3)
+
+- Use D3 shells at 8–20 m² (step 1 m², several aspect ratios) with households of 1–3 people, matching the subdivided-unit profile.
+- For each strategy, compute the share of shells that are adequate, A_min and ΔA_min.
+- Weight results by district counts and household-size distributions from D6, using whatever fields D6 provides; Codex reports the available fields first.
+- Report:
+  - The share of units below adequacy under S0 compared with S2
+  - The district-level "functional floor-area gap" in m²
+  - The embodied carbon of floor area avoided, as a parameter range. Every carbon factor must cite a source that the human author has verified; until then it stays `TODO_VERIFY`.
+
+### 5.7 Ablations and sensitivity
+
+- Remove one transformable item type at a time.
+- Each household type separately.
+- Clearance scale ×0.8 / 1.0 / 1.2.
+- Walking width 0.60 m compared with 0.90 m (accessibility).
+- Grid resolution 0.05 / 0.10 / 0.20 m, on a subset of 50 units.
+- τ ∈ {0.90, 0.95, 1.00}.
+- Solver time limit 30 / 60 / 120 s, on a subset.
+
+## 6. Planned figures and tables
+
+| ID | Content |
+|---|---|
+| F1 | Framework diagram (schematic; the author may redraw) |
+| F2 | Corpus: area distribution by source; example plans |
+| F3 | Example layouts across slots for S0 / S1 / S2 in three units (small, medium, large) |
+| F4 | FCI vs area for each strategy, with fitted f₀ curves, faceted by household |
+| F5 | Area-saving curve (absolute and relative) with bootstrap 95% CIs |
+| F6 | FCI dispersion within area bins (H2) |
+| F7 | Algorithm comparison: validity rate, FCI, runtime |
+| F8 | Surrogate parity plots and metrics |
+| F9 | Ablation and sensitivity tornado plot |
+| F10 | Hong Kong scenario: adequacy share and ΔA_min; district bars |
+| T1–T7 | Datasets; furniture library; household schedules; Exp. A–D summaries |
+
+## 7. Threats to validity (write these up in the paper)
+
+- No human evaluation of the layouts; transformation burden is modelled, not observed.
+- The real plans are Swiss and South Asian, not from Hong Kong; parametric shells stand in for subdivided units.
+- FCI measures functional fit, not wellbeing or psychological adequacy (see Ulrich 2025). Present it as a complement to area standards, not a replacement.
+- Furniture dimensions and clearances are design defaults; sensitivity analysis bounds their effect.
+- The 2D model ignores ceiling height, except for an optional loft-bed extension.
+
+## 8. Paper outline
+
+1. Introduction: the urban housing squeeze, minimum standards, and the role of time.
+2. Related work: space standards; computational layout; transformable furniture.
+3. Framework and metrics: FCI, FEA, TB.
+4. Data.
+5. Optimization method and validation.
+6. Results: Exp. A–D, ablations.
+7. Hong Kong scenario and policy implications.
+8. Discussion and limitations.
+9. Conclusion.
+
+## 9. Schedule
+
+| Days | Work | Gate |
+|---|---|---|
+| 1 | Environment; downloads; schema inspection | |
+| 2–3 | Corpus building (D1, D2, D3); configs checked against ABO | **G1:** data and corpus review |
+| 4–7 | Rasterizer, candidates, CP-SAT, validator; pilot on 20 units | **G2:** method review |
+| 8–10 | Full Exp. A, then B, D; ablations | |
+| 11–12 | Exp. C surrogate; Hong Kong scenario | **G3:** results review |
+| 13–14 | Figures, tables, draft of the methods and results sections | **G4:** final package |
+| 15–21 | Author writes and revises; reviewer feedback; submission | |
+
+## 10. References (verify full details before citing)
+
+- Pedro, J.B. (2009). How small can a dwelling be? A revision of Portuguese building regulations. *Structural Survey*, 27(5), 390–410. doi:10.1108/02630800911002648
+- Ulrich, K.T. (2025). Minimum Spatial Housing Requirements for Human Flourishing. *Buildings*, 15, 2623.
+- Garg, A., Jacobson, A., Grinspun, E. (2016). Computational Design of Reconfigurables. *ACM Transactions on Graphics (SIGGRAPH)*.
+- Merrell, P., Schkufza, E., Li, Z., Agrawala, M., Koltun, V. (2011). Interactive furniture layout using interior design guidelines. *ACM TOG (SIGGRAPH)*.
+- Yu, L.-F., Yeung, S.-K., Tang, C.-K., Terzopoulos, D., Chan, T.F., Osher, S.J. (2011). Make it home: automatic optimization of furniture arrangement. *ACM TOG (SIGGRAPH)*.
+- Sun, F.-Y., et al. (2025). LayoutVLM: Differentiable Optimization of 3D Layout via Vision-Language Models. *CVPR*. arXiv:2412.02193
+- HomeWorld (2026). arXiv:2606.06390
+- What a Comfortable World: Ergonomic Principles Guided Apartment Layout Generation (2026). arXiv:2604.08411
+- Archilyse AG. Swiss Dwellings v3.0.0. Zenodo. doi:10.5281/zenodo.7788422
+- ResPlan: A Large-Scale Vector-Graph Dataset of 17,000 Residential Floor Plans (2025). arXiv:2508.14006
+- Collins, J., et al. (2022). ABO: Dataset and Benchmarks for Real-World 3D Object Understanding. *CVPR*.
+- Hong Kong SAR Government (2025). Basic Housing Units Ordinance; commencement 1 March 2026.

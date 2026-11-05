@@ -1,0 +1,121 @@
+# Household types and daily schedules: starting values.
+# Slot durations sum to 24 h. Demands are capability tokens that furniture items
+# provide (see config/furniture.yaml `serves`). Activities served by fixed rooms
+# (cooking in a kitchen, hygiene in a bathroom) are NOT listed here and are excluded from FCI.
+#
+# Optional calibration (Phase 4): compare slot durations with ATUS (D5); record any
+# proposed change in reports/phase_04_*.md before applying it.
+
+meta:
+  version: 0.1
+  source_note: "author defaults; optional ATUS calibration in Phase 4"
+
+slots:            # name: [start_hour, end_hour]
+  night:   [23, 7]    # 8 h
+  morning: [7, 9]     # 2 h
+  day:     [9, 17]    # 8 h
+  evening: [17, 19]   # 2 h
+  dinner:  [19, 20]   # 1 h
+  leisure: [20, 23]   # 3 h
+
+# Capability rules used to decide whether a slot demand is served.
+capability_rules:
+  sleep_1: {satisfied_by: [[sleep_1]]}
+  sleep_2: {satisfied_by: [[sleep_2], [sleep_1, sleep_1]]}   # double bed OR two single beds
+  dine_2:  {satisfied_by: [[dine_2], [dine_4]]}
+  dine_4:  {satisfied_by: [[dine_4]]}
+  work_1:  {satisfied_by: [[work_1]]}
+  lounge_1: {satisfied_by: [[lounge_1], [lounge_2]]}
+  lounge_2: {satisfied_by: [[lounge_2], [lounge_1, lounge_1]]}
+  storage: {type: capacity, attribute: storage_units, partial_credit: true}  # served = min(1, units placed / units required)
+
+# Rules:
+# - Each demand has weight 1.0 unless `weight` is given (w_a in the FCI formula).
+# - In each slot, each item instance can serve at most ONE demand token (storage excepted:
+#   storage capacity counts whenever the item is placed and its front clearance is reachable
+#   in the slot where storage is demanded).
+# - Every demand token in a slot must be served simultaneously, by distinct item instances.
+# - Day variants are alternative days with frequencies; the furniture POSE is shared across
+#   variants, but states may differ. FCI = sum over variants of frequency x FCI_variant.
+
+households:
+  H1_single_commuter:
+    persons: 1
+    variants:
+      normal:
+        frequency: 1.0
+        demand:
+          night:   [{need: sleep_1}]
+          morning: [{need: storage, units: 1.0}, {need: dine_2}]
+          day:     []                       # away
+          evening: [{need: lounge_1}]
+          dinner:  [{need: dine_2}]
+          leisure: [{need: lounge_1}, {need: work_1, weight: 0.3}]
+
+  H2_single_remote_worker:
+    persons: 1
+    variants:
+      normal:
+        frequency: 1.0
+        demand:
+          night:   [{need: sleep_1}]
+          morning: [{need: storage, units: 1.0}, {need: dine_2}]
+          day:     [{need: work_1}]
+          evening: [{need: lounge_1}]
+          dinner:  [{need: dine_2}]
+          leisure: [{need: lounge_1}]
+
+  H3_couple_one_remote:
+    persons: 2
+    variants:
+      normal:
+        frequency: 0.857      # 6 of 7 days
+        demand:
+          night:   [{need: sleep_2}]
+          morning: [{need: storage, units: 2.0}, {need: dine_2}]
+          day:     [{need: work_1}]
+          evening: [{need: lounge_2}]
+          dinner:  [{need: dine_2}]
+          leisure: [{need: lounge_2}]
+      guests:
+        frequency: 0.143      # 1 of 7 days: two guests for dinner
+        demand:
+          night:   [{need: sleep_2}]
+          morning: [{need: storage, units: 2.0}, {need: dine_2}]
+          day:     [{need: work_1}]
+          evening: [{need: lounge_2}]
+          dinner:  [{need: dine_4}]
+          leisure: [{need: lounge_2}]
+
+  H4_parent_child:
+    persons: 2
+    variants:
+      normal:
+        frequency: 1.0
+        demand:
+          night:   [{need: sleep_1}, {need: sleep_1}]   # two separate sleeping places
+          morning: [{need: storage, units: 1.5}, {need: dine_2}]
+          day:     []                                   # work / school
+          evening: [{need: work_1}, {need: lounge_1}]   # homework while parent rests
+          dinner:  [{need: dine_2}]
+          leisure: [{need: lounge_2}]
+
+  H5_older_adult:
+    persons: 1
+    overrides:
+      walking_width: 0.90
+      global_clearance_scale: 1.2
+    variants:
+      normal:
+        frequency: 1.0
+        demand:
+          night:   [{need: sleep_1}]
+          morning: [{need: storage, units: 1.0}, {need: dine_2}]
+          day:     [{need: lounge_1}]
+          evening: [{need: lounge_1}]
+          dinner:  [{need: dine_2}]
+          leisure: [{need: lounge_1}]
+
+# Household types used in the main experiments (the others appear in ablations only).
+main_households: [H1_single_commuter, H2_single_remote_worker, H3_couple_one_remote, H4_parent_child]
+ablation_households: [H5_older_adult]

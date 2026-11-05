@@ -1,0 +1,105 @@
+# Project-wide settings. Every script reads this file; never hard-code these values.
+
+seed: 20261105
+
+paths:
+  raw: data/raw                 # git-ignored
+  interim: data/interim         # git-ignored
+  processed: data/processed     # small derived tables may be committed (< 50 MB each)
+  results: results
+  figures: results/figures
+  layouts: results/layouts
+  reports: reports
+
+datasets:
+  D1_swiss_dwellings:
+    url: "https://zenodo.org/records/7788422"
+    doi: "10.5281/zenodo.7788422"
+    file: "swiss-dwellings-v3.0.0.zip"
+    license: "CC BY 4.0"
+  D2_resplan:
+    url: "https://github.com/m-agour/ResPlan"
+    mirror: "https://www.kaggle.com/datasets/resplan/resplan"
+    license: "CC BY 4.0 (data), MIT (code)"
+  D4_abo_listings:
+    url: "https://amazon-berkeley-objects.s3.amazonaws.com/archives/abo-listings.tar"
+    index: "https://amazon-berkeley-objects.s3.amazonaws.com/index.html"
+    license: "CC BY 4.0"
+    note: "Download ONLY abo-listings.tar (83 MB). Do not download images or 3D models."
+  D5_atus:
+    url: "https://www.bls.gov/tus/data.htm"
+    optional: true
+  D6_hk_census_sdu:
+    url: "https://data.gov.hk/en-data/dataset/hk-censtatd-census_geo-2021-population-census-su-by-dcd"
+    license: "DATA.GOV.HK terms (free reuse)"
+
+corpus:
+  max_furnishable_area_m2: 45      # raise to 55 if fewer than 300 D1 units qualify; report it
+  min_furnishable_area_m2: 8
+  require_entrance_door: true
+  require_window: true
+  d1_unit_usage: RESIDENTIAL
+  # Codex fills this mapping in Phase 1 after listing all entity_subtype values:
+  d1_subtype_classes:
+    furnishable: [TODO_FILL_IN_PHASE_1]   # e.g. ROOM, BEDROOM, LIVING_ROOM, DINING
+    walkable_only: [TODO_FILL_IN_PHASE_1] # e.g. CORRIDOR
+    fixed_service: [TODO_FILL_IN_PHASE_1] # e.g. BATHROOM, KITCHEN
+    excluded: [TODO_FILL_IN_PHASE_1]      # e.g. BALCONY, SHAFT, STAIRCASE
+  sample_cap_per_source: null      # set an integer only if runtime forces it; report it
+
+shells_D3:
+  areas_m2: [8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 25, 28, 32, 36, 40]
+  aspect_ratios: [1.0, 1.5, 2.0, 2.5, 3.0]   # long side / short side
+  entrance_positions: [short_wall_center, short_wall_corner, long_wall_corner]
+  window_positions: [opposite_short_wall, long_wall]
+  toilet_pod: {footprint: [1.20, 1.50], placement: corner_near_entrance}   # fixed service
+  kitchenette: {footprint: [1.20, 0.60], placement: along_wall_near_entrance} # fixed service
+  ceiling_height: 2.50
+  note: "Area includes the toilet pod and kitchenette (gross internal). Report both gross and furnishable area."
+
+raster:
+  resolution_m: 0.10
+  door_swing_keepout: "width x width square on the room side; both sides if the room side is ambiguous"
+  orientations_deg: [0, 90, 180, 270]
+  align_to_dominant_axis: true
+
+solver:
+  engine: ortools_cp_sat
+  time_limit_s: 60
+  num_workers: 8
+  reachability_max_iterations: 30
+  objective: lexicographic   # 1) served weighted hours, 2) transformation burden, 3) window proximity
+  weights: {served: 1000.0, burden: 1.0, window: 0.01}
+
+experiments:
+  A_strategies: {strategies: [S0, S1, S2], households: main}
+  B_algorithms:
+    algorithms: [greedy, simulated_annealing, cp_sat]
+    optional: [local_llm]
+    instances: "stratified sample of 200 (unit, household) pairs under S2"
+    sa: {iterations: 20000, restarts: 3}
+    llm: {model: "Qwen/Qwen2.5-7B-Instruct", instances: 100, temperature: 0.2, max_retries: 2}
+  C_surrogate:
+    models: [linear_area, gbm_features, mlp_features, gnn_graph]
+    targets: [fci_S0, fci_S2, saving_m2]
+    split: {by: site_id, train: 0.70, val: 0.15, test: 0.15}
+    extra_test_sets: [D2, D3]
+  D_metric_validity:
+    indicators: [area_per_person, rooms_per_person, ulrich_threshold, hk_bhu_8m2]
+    ulrich_thresholds_m2: {1: 30, 2: 45, 3: 60, 4: 60}
+    hk_bhu_min_m2: 8
+  adequacy_tau: 0.95
+  tau_sensitivity: [0.90, 0.95, 1.00]
+  bootstrap: {n: 1000, ci: 0.95}
+
+ablations:
+  drop_one_transformable: true
+  clearance_scale: [0.8, 1.0, 1.2]
+  walking_width: [0.60, 0.90]
+  resolution_m: {values: [0.05, 0.10, 0.20], subset: 50}
+  time_limit_s: {values: [30, 60, 120], subset: 50}
+
+hk_scenario:
+  shells: "D3 with areas 8-20 m2"
+  households: [H1_single_commuter, H3_couple_one_remote, H4_parent_child]
+  embodied_carbon_kgco2e_per_m2: TODO_VERIFY   # range plus a verified source; the human author supplies it
