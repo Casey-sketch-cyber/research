@@ -41,7 +41,7 @@ def main():
 
 **Status: M1–M6 and S1–S4 corpus changes complete; continued engineering authorized through G2.**
 
-Q-12 continuation is authorized in reviews/G1_review_addendum_Q12.md. The broad first-quantification claim is withdrawn. Remaining Task L screening is due during Phase 7/G3; the historical stop report is not the current instruction.
+Q-12 continuation is authorized in reviews/G1_review_addendum_Q12.md. Related work is evidence to build on; no first/novelty claim or literature-based engineering stop remains. Later Experiments R and K are added by the author and remain beyond G2. Remaining Task L screening is due during Phase 7/G3; the historical stop report is not the current instruction.
 
 ## M1: NIA — done
 NIA is the union of furnishable, storage-only, walkable-only and fixed-service regions minus walls. Excluded outdoor/service classes are not added. The primary filter is 8–50 m² with only a 1e-6 m² numerical tolerance; the obsolete furnishable-area fallback is not applied. D1 gross area remains missing. F2 reports NIA first and furnishable area second.
@@ -49,7 +49,7 @@ NIA is the union of furnishable, storage-only, walkable-only and fixed-service r
 ## M2: Complete dwellings — done
 Require a habitable room with positive furnishable area, sanitary room/fixture and kitchen room/fixture. Explicit reasons are in exclusion_reasons.csv (reasons overlap, so their counts must not be summed as unique exclusions).
 
-## M3: Storage-only rooms — done for corpus; carried into Phase 5
+## M3: Storage-only rooms — done in corpus and Phase 5
 STOREROOM/CLOAKROOM and D2 storage are a separate storage_only layer. Their area counts towards NIA and circulation; only storage furniture bodies may occupy them in candidate generation and validation. No beds/tables/seating are recategorized as storage furniture.
 
 ## M4: Deduplication — done

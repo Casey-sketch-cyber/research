@@ -8,7 +8,7 @@
 - [x] Separate storage-only areas, deduplicate geometry and freeze the site-capped sample.
 - [x] Audit D2 scales and D3 entrance keepouts; publish exclusion-bias distributions.
 - [x] Regenerate counts, F2 and 24 sample views.
-- [x] Run observed-source loader regressions and corpus acceptance: 35 passed in 36.57s; 28 checks passed.
+- [x] Run observed-source loader regressions and corpus acceptance: 40 passed in 38.52s; 28 checks passed.
 
 ## Key numbers
 | source   |   total |   eligible_before_dedup |   included |   expA_sample |   missing_gross |   duplicate_copies_removed |   excluded |
@@ -56,4 +56,4 @@ NIA includes fixed rooms and storage but excludes walls. Source gross-area claim
 Review the revised views and scale/entrance distributions at G2. No unsupported novelty, FCI or FEA conclusion is inferred from corpus construction.
 
 ## Runtime and reproducibility
-Successful aggregation invocation: 105.435 s (cached source conversion excluded). Per-source conversion attempts are recorded in corpus_audit.json; interrupted/restarted attempts are not presented as total end-to-end runtime. Config hash: a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70. Commands: docs/REPRODUCING.md.
+Successful aggregation invocation: 47.691 s (cached source conversion excluded). Per-source conversion attempts are recorded in corpus_audit.json; interrupted/restarted attempts are not presented as total end-to-end runtime. Config hash: 82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de. Commands: docs/REPRODUCING.md.

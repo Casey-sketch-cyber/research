@@ -1,5 +1,5 @@
 {
-  "config_hash": "a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70",
+  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
   "source_sha256": "b7f7ceacb328fa5ab6e143b88e1f948443a877cfc95b67ff09c8ebabd50644e3",
   "furniture_sha256": "6d5c3b062490f71248bbafdea94b5e324863ec1e7914fe2074e29589bb32e877",
   "comparisons": 24,
@@ -16,6 +16,6 @@
     "tests_pass": true
   },
   "pass": true,
-  "pytest_summary": "2 passed in 0.44s",
-  "runtime_s": 10.548080688342452
+  "pytest_summary": "2 passed in 0.46s",
+  "runtime_s": 10.317409189417958
 }

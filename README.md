@@ -35,8 +35,8 @@ After each review, tell Codex: *"Pull, read `reviews/Gx_review.md`, address the 
 | Gate | Status |
 |---|---|
 | Task L literature | Q-12 permits continuation with narrowed C2/C3; remaining screening due at G3 |
-| G1 data & corpus | M1–M6/S1–S4 corpus revisions complete; 28 acceptance checks and 35 tests pass |
-| G2 method & pilot | Phase 5 implementation in progress |
+| G1 data & corpus | M1–M6/S1–S4 corpus revisions complete; 28 acceptance checks and 40 tests pass |
+| G2 method & pilot | Phase 5 accepted; Phase 6 implementation in progress |
 | G3 results | not started |
 | G4 final package | not started |
 

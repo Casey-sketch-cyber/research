@@ -1,0 +1,14 @@
+{
+  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
+  "units": 24,
+  "median_candidate_time_s": 0.13855983968824148,
+  "max_candidate_time_s": 0.1918485201895237,
+  "median_raster_time_s": 0.13218338880687952,
+  "tests": ".....                                                                    [100%]\n5 passed in 1.19s",
+  "checks": {
+    "tests_pass": true,
+    "median_candidate_time_under_2s": true,
+    "all_units_in_frozen_sample": true
+  },
+  "pass": true
+}

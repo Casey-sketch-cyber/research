@@ -2,7 +2,7 @@
 
 **Status: M1–M6 and S1–S4 corpus changes complete; continued engineering authorized through G2.**
 
-Q-12 continuation is authorized in reviews/G1_review_addendum_Q12.md. The broad first-quantification claim is withdrawn. Remaining Task L screening is due during Phase 7/G3; the historical stop report is not the current instruction.
+Q-12 continuation is authorized in reviews/G1_review_addendum_Q12.md. Related work is evidence to build on; no first/novelty claim or literature-based engineering stop remains. Later Experiments R and K are added by the author and remain beyond G2. Remaining Task L screening is due during Phase 7/G3; the historical stop report is not the current instruction.
 
 ## M1: NIA — done
 NIA is the union of furnishable, storage-only, walkable-only and fixed-service regions minus walls. Excluded outdoor/service classes are not added. The primary filter is 8–50 m² with only a 1e-6 m² numerical tolerance; the obsolete furnishable-area fallback is not applied. D1 gross area remains missing. F2 reports NIA first and furnishable area second.
@@ -10,7 +10,7 @@ NIA is the union of furnishable, storage-only, walkable-only and fixed-service r
 ## M2: Complete dwellings — done
 Require a habitable room with positive furnishable area, sanitary room/fixture and kitchen room/fixture. Explicit reasons are in exclusion_reasons.csv (reasons overlap, so their counts must not be summed as unique exclusions).
 
-## M3: Storage-only rooms — done for corpus; carried into Phase 5
+## M3: Storage-only rooms — done in corpus and Phase 5
 STOREROOM/CLOAKROOM and D2 storage are a separate storage_only layer. Their area counts towards NIA and circulation; only storage furniture bodies may occupy them in candidate generation and validation. No beds/tables/seating are recategorized as storage furniture.
 
 ## M4: Deduplication — done
@@ -64,7 +64,7 @@ The comparison below includes only units whose complete reason set is a nonempty
 Maximum fixed-service/entrance-keepout overlap: 0 m². Placement counts: {"far_end": 244, "near_entrance": 266}. near_entrance requires both service centroids in the entrance-wall half of the shell; otherwise far_end. All generated shells remain recorded, even if a later check excludes one.
 
 ## Acceptance and scope
-28/28 automated acceptance checks passed. Full suite: 35 passed in 36.57s. Config hash: a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70. The corpus package contains no FCI/FEA results. Continue Phases 5–6 and stop at G2 under the review authorization.
+28/28 automated acceptance checks passed. Full suite: 40 passed in 38.52s. Config hash: 82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de. The corpus package contains no FCI/FEA results. Continue Phases 5–6 and stop at G2 under the review authorization.
 
 ## Engineering corrections
 D1 and D2 records exposed a GEOS assertion when subtracting mixed-dimensional geometry from empty storage. Empty storage now bypasses that identity operation; the observed D2 record has a regression test and both full sources are checked. Completed cached records were reused only where the correction was semantically identical; new clean runs regenerate all source data. D1/D2 resume skips already completed keys before geometric conversion.
