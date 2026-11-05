@@ -16,12 +16,14 @@ Floor area is a proxy. What a household needs is the ability to **carry out dail
 
 - **Pedro (2009)**, *Structural Survey* 27(5): derives minimum dwelling areas from furniture, typical arrangements and functional spaces. The arrangement is static, made by hand, and has no time dimension.
 - **Ulrich (2025)**, *Buildings* 15:2623: proposes minimum internal areas of 30/45/60 m² for households of 1/2/3–4 people. It mentions multifunctional furniture and "temporal zoning" but explicitly does **not** quantify them as reducing the required area. It also cites evidence of higher stress at very small areas per person, even with multifunctional furniture.
-- **Computational layout** (Merrell et al. 2011; Yu et al. 2011; LayoutVLM 2025; HomeWorld 2026; ergonomic-prior floor-plan generation, arXiv 2604.08411) produces **one static furniture arrangement** per room.
+- **Computational layout** (Merrell et al. 2011; Yu et al. 2011; LayoutVLM 2025; HomeWorld 2026; ergonomic-prior floor-plan generation, arXiv 2604.08411; Co-Layout 2025) produces one static furniture arrangement per room.
+- **Transformable-layout graphics work** generates and sequences multi-state layouts for design exploration: convertible-layout motion planning (Xiong et al., TVCG), Magic Furniture (Fu et al., TVCG), the DIFF flexible-furniture dataset (Liu et al. 2025) and SceneExplorer (Zhang et al. 2025). None of these ties furniture states to a household's daily activity demand, guarantees ergonomic clearance and reachability, uses a corpus of real dwellings, or measures what the transformation is worth in floor area.
+- **Usability and space efficiency at scale:** Özer & Jacoby (2022) show, with static furniture on 2,283 London plans, that dwelling size is an incomplete measure of usability. Weber et al. (2024) quantify furniture-based "excess area" and its carbon cost. Goessler & Kaluarachchi (2023) propose, without quantifying it, that adaptive homes could use space two to three times more efficiently.
 - **Garg et al. (2016)**, *Computational Design of Reconfigurables*, SIGGRAPH: designs individual reconfigurable *objects*, not whole-dwelling layouts over a daily schedule.
 
 **Gap:** there is no schedule-aware, constraint-guaranteed, large-sample estimate of how much functional capacity transformable furniture adds to compact dwellings, and no translation of that gain into the policy unit of square metres.
 
-> **Novelty check (Phase 0, half a day, done by the human author):** search Scopus or Web of Science for `("multi-state" OR "time-varying" OR "reconfigurable") AND "furniture layout"`, `"temporal zoning" AND (dwelling OR apartment)` and `"minimum dwelling size" AND furniture`. Record the results in `reports/novelty_check.md`.
+> **Novelty check:** done; see `reports/novelty_check.md`. The contribution is the *combination* of schedule-aware transformable layouts, guaranteed clearance and reachability, a real-plan corpus, and translation into floor-area and policy terms. "Transformable layouts" alone and "size ≠ usability" alone are not new. Confirm with the database queries in §5 of that report.
 
 ## 2. Research questions and hypotheses
 
@@ -32,7 +34,7 @@ Floor area is a proxy. What a household needs is the ability to **carry out dail
 | ID | Hypothesis | Tested in |
 |---|---|---|
 | H1 | Area saving is positive and largest, in both absolute and relative terms, in the smallest units, and it shrinks as area increases. | Exp. A |
-| H2 | Functional capacity varies substantially among units of equal area, so area-only standards misclassify adequacy for a non-trivial share of units. | Exp. D |
+| H2 | Functional capacity varies substantially among units of equal area, so area-only standards misclassify adequacy for a non-trivial share of units. This confirms and extends Özer & Jacoby (2022) to time-of-day use and transformable furniture. | Exp. D |
 | H3 | A graph-based model predicts functional capacity from the plan accurately enough (Spearman ρ ≥ 0.8 on held-out sites) to screen a housing stock. | Exp. C |
 
 ## 3. Key definitions
@@ -215,3 +217,13 @@ Report Spearman correlation, FCI dispersion (interquartile range) within area bi
 - ResPlan: A Large-Scale Vector-Graph Dataset of 17,000 Residential Floor Plans (2025). arXiv:2508.14006
 - Collins, J., et al. (2022). ABO: Dataset and Benchmarks for Real-World 3D Object Understanding. *CVPR*.
 - Hong Kong SAR Government (2025). Basic Housing Units Ordinance; commencement 1 March 2026.
+- Xiong, G., Fu, Q., Fu, H., Zhou, B., Luo, G., Deng, Z. Motion Planning for Convertible Indoor Scene Layout Design. *IEEE TVCG* (year and volume to verify).
+- Fu, Q., Zhang, F., Li, X., Fu, H. Magic Furniture: Design Paradigm of Multi-function Assembly. *IEEE TVCG* (year and volume to verify).
+- Liu, J.-H., Zhang, S.-K., Sun, S., Wang, Z., Zhang, S.-H. (2025). DIFF: A dataset for indoor flexible furniture. *Graphical Models*, 141.
+- Zhang, S.-K., Liu, J.-H., Huang, J., Chi, Z., Tam, H., Yang, Y., Zhang, S.-H. (2025). SceneExplorer: An Interactive System for Expanding, Scheduling, and Organizing Transformable Layouts. *IEEE TVCG*, 31(9), 6008–6021. doi:10.1109/TVCG.2024.3488744
+- Özer, S., Jacoby, S. (2022). Dwelling size and usability in London: a study of floor plan data using machine learning. *Building Research & Information*.
+- Weber, R.E., Mueller, C., Reinhart, C. (2024). A hypergraph model shows the carbon reduction potential of effective space use in housing. *Nature Communications*, 15. doi:10.1038/s41467-024-52506-z
+- Goessler, T., Kaluarachchi, Y. (2023). Smart Adaptive Homes and Their Potential to Improve Space Efficiency and Personalisation. *Buildings*, 13(5), 1132. doi:10.3390/buildings13051132
+- Daglio, L., Ginelli, E., Vignati, G. (2023). Housing Design: Furniture or Fixtures? Accommodating Change through Technological and Typological Innovation. *Buildings*, 13(7), 1862.
+- Xiang, C., et al. (2025). Co-Layout: LLM-driven Co-optimization for Interior Layout. arXiv:2511.12474
+- Johanes, M., Kocour, S., Tang, S., De Wolf, C. (2026). Exploring Adaptable Office Fit-Out Layouts Using Configurable Floor Plan Graphs and Large Language Models. *EC³ 2026*.
