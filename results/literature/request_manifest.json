@@ -1,0 +1,530 @@
+{
+  "config_hash": "a5d6bc0e20a07cce43e51c76759eec561b2b56b8c863af5a52435b1aca1ae0f4",
+  "requests": [
+    {
+      "source": "openalex",
+      "query_id": "Q1_transformable_layout",
+      "url": "https://api.openalex.org/works?filter=from_publication_date%3A2000-01-01%2Cto_publication_date%3A2026-12-31%2Clanguage%3Aen%2Ctitle_and_abstract.search%3A%28transformable+OR+convertible+OR+multifunctional+OR+flexible+OR+reconfigurable+OR+foldable%29+AND+furniture+AND+%28layout+OR+arrangement+OR+%22scene+synthesis%22%29+AND+%28optimization+OR+optimisation+OR+generation+OR+planning%29&per-page=200&cursor=%2A",
+      "retrieved_at": "2026-11-05T12:30:20.240751+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:29:06.916229+00:00",
+          "status": 429,
+          "error_type": ""
+        },
+        {
+          "date": "2026-11-05T12:29:40.001777+00:00",
+          "status": 429,
+          "error_type": ""
+        },
+        {
+          "date": "2026-11-05T12:30:20.240751+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "b4e7ad5d2c98707c33790df8ba06acb3d858f27b12aa25cd3146f69fa6c5c759"
+    },
+    {
+      "source": "openalex",
+      "query_id": "Q1_transformable_layout",
+      "url": "https://api.openalex.org/works?filter=from_publication_date%3A2000-01-01%2Cto_publication_date%3A2026-12-31%2Clanguage%3Aen%2Ctitle_and_abstract.search%3A%28transformable+OR+convertible+OR+multifunctional+OR+flexible+OR+reconfigurable+OR+foldable%29+AND+furniture+AND+%28layout+OR+arrangement+OR+%22scene+synthesis%22%29+AND+%28optimization+OR+optimisation+OR+generation+OR+planning%29&per-page=200&cursor=IlsxLjc3MDQxMzUsIDEzNzc2NDgwMDAwMDAsICdodHRwczovL29wZW5hbGV4Lm9yZy9XNDI0MDQ4MDgxOCddIg%3D%3D",
+      "retrieved_at": "2026-11-05T12:30:24.427123+00:00",
+      "status": 401,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:30:24.427123+00:00",
+          "status": 401,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "6657336d7055d70c8262369739e0dffa349947cc54ac79ccc740820da9fdc98f"
+    },
+    {
+      "source": "openalex",
+      "query_id": "Q1_transformable_layout",
+      "url": "https://api.openalex.org/works?filter=from_publication_date%3A2000-01-01%2Cto_publication_date%3A2026-12-31%2Clanguage%3Aen%2Ctitle_and_abstract.search%3A%28transformable+OR+convertible+OR+multifunctional+OR+flexible+OR+reconfigurable+OR+foldable%29+AND+furniture+AND+%28layout+OR+arrangement+OR+%22scene+synthesis%22%29+AND+%28optimization+OR+optimisation+OR+generation+OR+planning%29&per_page=100&page=1",
+      "retrieved_at": "2026-11-05T12:34:52.508074+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:33:34.269397+00:00",
+          "status": 429,
+          "error_type": ""
+        },
+        {
+          "date": "2026-11-05T12:34:14.294307+00:00",
+          "status": 429,
+          "error_type": ""
+        },
+        {
+          "date": "2026-11-05T12:34:52.508074+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "0f935ec6b89be84de68a76491c9dca4a3081d37feb01f967c8856dace15526a4"
+    },
+    {
+      "source": "openalex",
+      "query_id": "Q1_transformable_layout",
+      "url": "https://api.openalex.org/works?filter=from_publication_date%3A2000-01-01%2Cto_publication_date%3A2026-12-31%2Clanguage%3Aen%2Ctitle_and_abstract.search%3A%28transformable+OR+convertible+OR+multifunctional+OR+flexible+OR+reconfigurable+OR+foldable%29+AND+furniture+AND+%28layout+OR+arrangement+OR+%22scene+synthesis%22%29+AND+%28optimization+OR+optimisation+OR+generation+OR+planning%29&per_page=100&page=2",
+      "retrieved_at": "2026-11-05T12:34:55.694316+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:34:55.694316+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "3ad6f3197abaff24fa4baeb51a6bc012b62d6596915bc401cbd455eb2f945b18"
+    },
+    {
+      "source": "openalex",
+      "query_id": "Q1_transformable_layout",
+      "url": "https://api.openalex.org/works?filter=from_publication_date%3A2000-01-01%2Cto_publication_date%3A2026-12-31%2Clanguage%3Aen%2Ctitle_and_abstract.search%3A%28transformable+OR+convertible+OR+multifunctional+OR+flexible+OR+reconfigurable+OR+foldable%29+AND+furniture+AND+%28layout+OR+arrangement+OR+%22scene+synthesis%22%29+AND+%28optimization+OR+optimisation+OR+generation+OR+planning%29&per_page=100&page=3",
+      "retrieved_at": "2026-11-05T12:36:41.444953+00:00",
+      "status": 429,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:34:59.755462+00:00",
+          "status": 429,
+          "error_type": ""
+        },
+        {
+          "date": "2026-11-05T12:35:30.987878+00:00",
+          "status": 429,
+          "error_type": ""
+        },
+        {
+          "date": "2026-11-05T12:36:09.240227+00:00",
+          "status": 429,
+          "error_type": ""
+        },
+        {
+          "date": "2026-11-05T12:36:41.444953+00:00",
+          "status": 429,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "fa665c3355876e26a52b9bac9497abf468deec7fb8f0eb40d28ad092964d9084"
+    },
+    {
+      "source": "openalex",
+      "query_id": "Q2_time_schedule_dwelling",
+      "url": "https://api.openalex.org/works?filter=from_publication_date%3A2000-01-01%2Cto_publication_date%3A2026-12-31%2Clanguage%3Aen%2Ctitle_and_abstract.search%3A%28dwelling+OR+housing+OR+apartment+OR+home%29+AND+furniture+AND+%28%22time+use%22+OR+%22daily+schedule%22+OR+%22activity+schedule%22+OR+%22time+of+day%22+OR+temporal+OR+%22time-sharing%22%29+AND+%28layout+OR+%22floor+area%22+OR+%22space+use%22%29&per-page=200&cursor=%2A",
+      "retrieved_at": "2026-11-05T12:30:24.933094+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:30:24.933094+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "4bcc968ad21cd901eba1eb35316ed6e460a7e1c6ac3ed467eeb5d68bd5b8d5cf"
+    },
+    {
+      "source": "openalex",
+      "query_id": "Q2_time_schedule_dwelling",
+      "url": "https://api.openalex.org/works?filter=from_publication_date%3A2000-01-01%2Cto_publication_date%3A2026-12-31%2Clanguage%3Aen%2Ctitle_and_abstract.search%3A%28dwelling+OR+housing+OR+apartment+OR+home%29+AND+furniture+AND+%28%22time+use%22+OR+%22daily+schedule%22+OR+%22activity+schedule%22+OR+%22time+of+day%22+OR+temporal+OR+%22time-sharing%22%29+AND+%28layout+OR+%22floor+area%22+OR+%22space+use%22%29&per_page=100&page=1",
+      "retrieved_at": "2026-11-05T12:38:29.638598+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:36:41.945020+00:00",
+          "status": 429,
+          "error_type": ""
+        },
+        {
+          "date": "2026-11-05T12:37:22.168301+00:00",
+          "status": 429,
+          "error_type": ""
+        },
+        {
+          "date": "2026-11-05T12:37:57.381034+00:00",
+          "status": 429,
+          "error_type": ""
+        },
+        {
+          "date": "2026-11-05T12:38:29.638598+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "017e56f37251444f1ca35fc9c1bb8df20d9328abd0864de6112c6f155d52c6ce"
+    },
+    {
+      "source": "openalex",
+      "query_id": "Q3_quantified_savings",
+      "url": "https://api.openalex.org/works?filter=from_publication_date%3A2000-01-01%2Cto_publication_date%3A2026-12-31%2Clanguage%3Aen%2Ctitle_and_abstract.search%3A%28%22multifunctional+furniture%22+OR+%22transformable+furniture%22+OR+%22convertible+furniture%22+OR+%22wall+bed%22+OR+%22murphy+bed%22+OR+%22space-saving+furniture%22%29+AND+%28%22floor+area%22+OR+%22space+saving%22+OR+%22space+efficiency%22+OR+%22usable+area%22%29&per-page=200&cursor=%2A",
+      "retrieved_at": "2026-11-05T12:30:26.235565+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:30:26.235565+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "18ac8dc1b5ffe3009f5954e2983c439161e7dc568e6a7bcf2a857b0e6eab6dcf"
+    },
+    {
+      "source": "openalex",
+      "query_id": "Q3_quantified_savings",
+      "url": "https://api.openalex.org/works?filter=from_publication_date%3A2000-01-01%2Cto_publication_date%3A2026-12-31%2Clanguage%3Aen%2Ctitle_and_abstract.search%3A%28%22multifunctional+furniture%22+OR+%22transformable+furniture%22+OR+%22convertible+furniture%22+OR+%22wall+bed%22+OR+%22murphy+bed%22+OR+%22space-saving+furniture%22%29+AND+%28%22floor+area%22+OR+%22space+saving%22+OR+%22space+efficiency%22+OR+%22usable+area%22%29&per_page=100&page=1",
+      "retrieved_at": "2026-11-05T12:39:10.757087+00:00",
+      "status": 429,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:38:30.523064+00:00",
+          "status": 429,
+          "error_type": ""
+        },
+        {
+          "date": "2026-11-05T12:39:10.757087+00:00",
+          "status": 429,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "fa665c3355876e26a52b9bac9497abf468deec7fb8f0eb40d28ad092964d9084"
+    },
+    {
+      "source": "openalex",
+      "query_id": "Q4_minimum_size_function",
+      "url": "https://api.openalex.org/works?filter=from_publication_date%3A2000-01-01%2Cto_publication_date%3A2026-12-31%2Clanguage%3Aen%2Ctitle_and_abstract.search%3A%28%22minimum+dwelling%22+OR+%22space+standard%22+OR+%22space+standards%22+OR+%22minimum+floor+area%22+OR+%22minimum+size%22%29+AND+%28furniture+OR+activities+OR+functional%29+AND+%28housing+OR+dwelling+OR+apartment%29&per-page=200&cursor=%2A",
+      "retrieved_at": "2026-11-05T12:31:37.288523+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:30:27.840003+00:00",
+          "status": 429,
+          "error_type": ""
+        },
+        {
+          "date": "2026-11-05T12:30:58.051929+00:00",
+          "status": 429,
+          "error_type": ""
+        },
+        {
+          "date": "2026-11-05T12:31:37.288523+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "0297741c38f4acc1b750a2c5427bfdb48ab5fe08a6a8a3291d7a42bc2a94600c"
+    },
+    {
+      "source": "openalex",
+      "query_id": "Q5_usability_scale",
+      "url": "https://api.openalex.org/works?filter=from_publication_date%3A2000-01-01%2Cto_publication_date%3A2026-12-31%2Clanguage%3Aen%2Ctitle_and_abstract.search%3A%28%22floor+plan%22+OR+%22floor+plans%22+OR+floorplan%29+AND+%28usability+OR+furnishability+OR+%22space+efficiency%22+OR+%22excess+space%22%29+AND+%28housing+OR+dwelling%29+AND+%28dataset+OR+%22machine+learning%22+OR+automated+OR+computational%29&per-page=200&cursor=%2A",
+      "retrieved_at": "2026-11-05T12:32:09.981934+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:31:39.749531+00:00",
+          "status": 429,
+          "error_type": ""
+        },
+        {
+          "date": "2026-11-05T12:32:09.981934+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "02938ed7a896bc62cefdb55b64bd7b0997adb1a2d069159e95ce0fad8b51e7fc"
+    },
+    {
+      "source": "openalex",
+      "query_id": "Q6_micro_housing_adaptive",
+      "url": "https://api.openalex.org/works?filter=from_publication_date%3A2000-01-01%2Cto_publication_date%3A2026-12-31%2Clanguage%3Aen%2Ctitle_and_abstract.search%3A%28%22micro-housing%22+OR+%22micro+housing%22+OR+%22micro-apartment%22+OR+%22micro+apartment%22+OR+%22micro-unit%22+OR+%22subdivided+unit%22+OR+%22subdivided+flat%22+OR+%22adaptive+home%22+OR+%22flexible+housing%22%29+AND+%28furniture+OR+%22space+efficiency%22+OR+%22minimum+standard%22%29&per-page=200&cursor=%2A",
+      "retrieved_at": "2026-11-05T12:32:12.183758+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:32:12.183758+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "e088240b3393ef8a69684cd2ad3fc589d47ccf7bc3e15ec26d2049cbcba6e419"
+    },
+    {
+      "source": "semantic_scholar",
+      "query_id": "Q1_transformable_layout",
+      "url": "https://api.semanticscholar.org/graph/v1/paper/search/bulk?query=%28+transformable+%7C+convertible+%7C+multifunctional+%7C+flexible+%7C+reconfigurable+%7C+foldable+%29+%2B+furniture+%2B+%28+layout+%7C+arrangement+%7C+%22scene+synthesis%22+%29+%2B+%28+optimization+%7C+optimisation+%7C+generation+%7C+planning+%29&year=2000%3A2026&fields=title%2Cyear%2Cvenue%2CpublicationTypes%2Cauthors%2Cabstract%2CcitationCount%2CexternalIds%2CopenAccessPdf%2Curl",
+      "retrieved_at": "2026-11-05T12:29:06.917226+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:29:06.917226+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "92169d3111b69751b4b3068250a66b34695b7e061febf854a9d566a27fefe703"
+    },
+    {
+      "source": "semantic_scholar",
+      "query_id": "Q2_time_schedule_dwelling",
+      "url": "https://api.semanticscholar.org/graph/v1/paper/search/bulk?query=%28+dwelling+%7C+housing+%7C+apartment+%7C+home+%29+%2B+furniture+%2B+%28+%22time+use%22+%7C+%22daily+schedule%22+%7C+%22activity+schedule%22+%7C+%22time+of+day%22+%7C+temporal+%7C+%22time-sharing%22+%29+%2B+%28+layout+%7C+%22floor+area%22+%7C+%22space+use%22+%29&year=2000%3A2026&fields=title%2Cyear%2Cvenue%2CpublicationTypes%2Cauthors%2Cabstract%2CcitationCount%2CexternalIds%2CopenAccessPdf%2Curl",
+      "retrieved_at": "2026-11-05T12:33:34.270396+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:33:34.270396+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "97ddb4857bd7650d8d6acd235e60de41afed2fc2051a990fe4f88fab4c9bd4c2"
+    },
+    {
+      "source": "semantic_scholar",
+      "query_id": "Q3_quantified_savings",
+      "url": "https://api.semanticscholar.org/graph/v1/paper/search/bulk?query=%28+%22multifunctional+furniture%22+%7C+%22transformable+furniture%22+%7C+%22convertible+furniture%22+%7C+%22wall+bed%22+%7C+%22murphy+bed%22+%7C+%22space-saving+furniture%22+%29+%2B+%28+%22floor+area%22+%7C+%22space+saving%22+%7C+%22space+efficiency%22+%7C+%22usable+area%22+%29&year=2000%3A2026&fields=title%2Cyear%2Cvenue%2CpublicationTypes%2Cauthors%2Cabstract%2CcitationCount%2CexternalIds%2CopenAccessPdf%2Curl",
+      "retrieved_at": "2026-11-05T12:29:57.623472+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:29:57.623472+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "97ddb4857bd7650d8d6acd235e60de41afed2fc2051a990fe4f88fab4c9bd4c2"
+    },
+    {
+      "source": "semantic_scholar",
+      "query_id": "Q4_minimum_size_function",
+      "url": "https://api.semanticscholar.org/graph/v1/paper/search/bulk?query=%28+%22minimum+dwelling%22+%7C+%22space+standard%22+%7C+%22space+standards%22+%7C+%22minimum+floor+area%22+%7C+%22minimum+size%22+%29+%2B+%28+furniture+%7C+activities+%7C+functional+%29+%2B+%28+housing+%7C+dwelling+%7C+apartment+%29&year=2000%3A2026&fields=title%2Cyear%2Cvenue%2CpublicationTypes%2Cauthors%2Cabstract%2CcitationCount%2CexternalIds%2CopenAccessPdf%2Curl",
+      "retrieved_at": "2026-11-05T12:29:59.629968+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:29:59.629968+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "0302d67f2ffdccee0d1520044e78cf07aeb71fc553a088071a6c23a04c04db86"
+    },
+    {
+      "source": "semantic_scholar",
+      "query_id": "Q5_usability_scale",
+      "url": "https://api.semanticscholar.org/graph/v1/paper/search/bulk?query=%28+%22floor+plan%22+%7C+%22floor+plans%22+%7C+floorplan+%29+%2B+%28+usability+%7C+furnishability+%7C+%22space+efficiency%22+%7C+%22excess+space%22+%29+%2B+%28+housing+%7C+dwelling+%29+%2B+%28+dataset+%7C+%22machine+learning%22+%7C+automated+%7C+computational+%29&year=2000%3A2026&fields=title%2Cyear%2Cvenue%2CpublicationTypes%2Cauthors%2Cabstract%2CcitationCount%2CexternalIds%2CopenAccessPdf%2Curl",
+      "retrieved_at": "2026-11-05T12:30:05.857188+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:30:01.622765+00:00",
+          "status": 429,
+          "error_type": ""
+        },
+        {
+          "date": "2026-11-05T12:30:05.857188+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "97ddb4857bd7650d8d6acd235e60de41afed2fc2051a990fe4f88fab4c9bd4c2"
+    },
+    {
+      "source": "semantic_scholar",
+      "query_id": "Q6_micro_housing_adaptive",
+      "url": "https://api.semanticscholar.org/graph/v1/paper/search/bulk?query=%28+%22micro-housing%22+%7C+%22micro+housing%22+%7C+%22micro-apartment%22+%7C+%22micro+apartment%22+%7C+%22micro-unit%22+%7C+%22subdivided+unit%22+%7C+%22subdivided+flat%22+%7C+%22adaptive+home%22+%7C+%22flexible+housing%22+%29+%2B+%28+furniture+%7C+%22space+efficiency%22+%7C+%22minimum+standard%22+%29&year=2000%3A2026&fields=title%2Cyear%2Cvenue%2CpublicationTypes%2Cauthors%2Cabstract%2CcitationCount%2CexternalIds%2CopenAccessPdf%2Curl",
+      "retrieved_at": "2026-11-05T12:30:07.862596+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:30:07.862596+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "97ddb4857bd7650d8d6acd235e60de41afed2fc2051a990fe4f88fab4c9bd4c2"
+    },
+    {
+      "source": "crossref",
+      "query_id": "Q1_transformable_layout",
+      "url": "https://api.crossref.org/works?query.bibliographic=transformable+furniture+layout+optimization&filter=from-pub-date%3A2000-01-01%2Cuntil-pub-date%3A2026-12-31&rows=500&offset=0",
+      "retrieved_at": "2026-11-05T12:29:06.917226+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:29:06.917226+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "84baf95e99d4e69adf6e007324edbc8e04f3625f54914c4ca31b34412f67da90"
+    },
+    {
+      "source": "crossref",
+      "query_id": "Q2_time_schedule_dwelling",
+      "url": "https://api.crossref.org/works?query.bibliographic=furniture+layout+daily+activity+schedule+dwelling&filter=from-pub-date%3A2000-01-01%2Cuntil-pub-date%3A2026-12-31&rows=500&offset=0",
+      "retrieved_at": "2026-11-05T12:29:12.635595+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:29:12.635595+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "bfe1d357e51d800e4c836230174ce273fe3fdc493ea44da064211807289178fb"
+    },
+    {
+      "source": "crossref",
+      "query_id": "Q3_quantified_savings",
+      "url": "https://api.crossref.org/works?query.bibliographic=multifunctional+furniture+floor+area+space+saving+quantification&filter=from-pub-date%3A2000-01-01%2Cuntil-pub-date%3A2026-12-31&rows=500&offset=0",
+      "retrieved_at": "2026-11-05T12:29:15.210516+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:29:15.210516+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "e3eae1c889f06e2369c8a03f0b9b0e6c662c0931418f4137066883bc1dee08e0"
+    },
+    {
+      "source": "crossref",
+      "query_id": "Q4_minimum_size_function",
+      "url": "https://api.crossref.org/works?query.bibliographic=minimum+dwelling+size+furniture+activities+space+standards&filter=from-pub-date%3A2000-01-01%2Cuntil-pub-date%3A2026-12-31&rows=500&offset=0",
+      "retrieved_at": "2026-11-05T12:29:16.987304+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:29:16.987304+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "9e17deee311dd115178009c8a9d265f7ded9bd536bb1129c2c966d0025a2a9e2"
+    },
+    {
+      "source": "crossref",
+      "query_id": "Q5_usability_scale",
+      "url": "https://api.crossref.org/works?query.bibliographic=dwelling+floor+plan+usability+furniture+machine+learning&filter=from-pub-date%3A2000-01-01%2Cuntil-pub-date%3A2026-12-31&rows=500&offset=0",
+      "retrieved_at": "2026-11-05T12:29:18.082940+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:29:18.082940+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "3668e34e27bb85060c05e91ab8c78cc4612887acbf7356938cc72e80fc044dfd"
+    },
+    {
+      "source": "crossref",
+      "query_id": "Q6_micro_housing_adaptive",
+      "url": "https://api.crossref.org/works?query.bibliographic=micro+apartment+transformable+furniture+space+efficiency&filter=from-pub-date%3A2000-01-01%2Cuntil-pub-date%3A2026-12-31&rows=500&offset=0",
+      "retrieved_at": "2026-11-05T12:29:20.135724+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:29:20.135724+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "1f51f91251cc1b79edbd175c60c764575330c8165792af41accafcdf2e20d93e"
+    },
+    {
+      "source": "arxiv",
+      "query_id": "Q1_transformable_layout",
+      "url": "https://export.arxiv.org/api/query?search_query=%28%28+all%3Atransformable+OR+all%3Aconvertible+OR+all%3Amultifunctional+OR+all%3Aflexible+OR+all%3Areconfigurable+OR+all%3Afoldable+%29+AND+all%3Afurniture+AND+%28+all%3Alayout+OR+all%3Aarrangement+OR+all%3A%22scene+synthesis%22+%29+AND+%28+all%3Aoptimization+OR+all%3Aoptimisation+OR+all%3Ageneration+OR+all%3Aplanning+%29%29+AND+submittedDate%3A%5B200001010000+TO+202612312359%5D&start=0&max_results=500&sortBy=relevance&sortOrder=descending",
+      "retrieved_at": "2026-11-05T12:29:06.918228+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:29:06.918228+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "ff70a99066613120263bfea840be16fd1df7b84b20218e1edc5bf76a2fb8904e"
+    },
+    {
+      "source": "arxiv",
+      "query_id": "Q2_time_schedule_dwelling",
+      "url": "https://export.arxiv.org/api/query?search_query=%28%28+all%3Adwelling+OR+all%3Ahousing+OR+all%3Aapartment+OR+all%3Ahome+%29+AND+all%3Afurniture+AND+%28+all%3A%22time+use%22+OR+all%3A%22daily+schedule%22+OR+all%3A%22activity+schedule%22+OR+all%3A%22time+of+day%22+OR+all%3Atemporal+OR+all%3A%22time-sharing%22+%29+AND+%28+all%3Alayout+OR+all%3A%22floor+area%22+OR+all%3A%22space+use%22+%29%29+AND+submittedDate%3A%5B200001010000+TO+202612312359%5D&start=0&max_results=500&sortBy=relevance&sortOrder=descending",
+      "retrieved_at": "2026-11-05T12:29:10.028252+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:29:10.028252+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "e2473ea65acca01a01c9f60b0647c80477c971753886b8cf9a2dc5cd4bc86b59"
+    },
+    {
+      "source": "arxiv",
+      "query_id": "Q3_quantified_savings",
+      "url": "https://export.arxiv.org/api/query?search_query=%28%28+all%3A%22multifunctional+furniture%22+OR+all%3A%22transformable+furniture%22+OR+all%3A%22convertible+furniture%22+OR+all%3A%22wall+bed%22+OR+all%3A%22murphy+bed%22+OR+all%3A%22space-saving+furniture%22+%29+AND+%28+all%3A%22floor+area%22+OR+all%3A%22space+saving%22+OR+all%3A%22space+efficiency%22+OR+all%3A%22usable+area%22+%29%29+AND+submittedDate%3A%5B200001010000+TO+202612312359%5D&start=0&max_results=500&sortBy=relevance&sortOrder=descending",
+      "retrieved_at": "2026-11-05T12:29:13.142530+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:29:13.142530+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "9f36195fcb715212dce41f0990d9fb5604d87b3553db97b482a888cb4888e1b5"
+    },
+    {
+      "source": "arxiv",
+      "query_id": "Q4_minimum_size_function",
+      "url": "https://export.arxiv.org/api/query?search_query=%28%28+all%3A%22minimum+dwelling%22+OR+all%3A%22space+standard%22+OR+all%3A%22space+standards%22+OR+all%3A%22minimum+floor+area%22+OR+all%3A%22minimum+size%22+%29+AND+%28+all%3Afurniture+OR+all%3Aactivities+OR+all%3Afunctional+%29+AND+%28+all%3Ahousing+OR+all%3Adwelling+OR+all%3Aapartment+%29%29+AND+submittedDate%3A%5B200001010000+TO+202612312359%5D&start=0&max_results=500&sortBy=relevance&sortOrder=descending",
+      "retrieved_at": "2026-11-05T12:29:16.240055+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:29:16.240055+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "9ea3aa094020f3047f182eeef74b573793443a6cf82ddb694edd3074e1353207"
+    },
+    {
+      "source": "arxiv",
+      "query_id": "Q5_usability_scale",
+      "url": "https://export.arxiv.org/api/query?search_query=%28%28+all%3A%22floor+plan%22+OR+all%3A%22floor+plans%22+OR+all%3Afloorplan+%29+AND+%28+all%3Ausability+OR+all%3Afurnishability+OR+all%3A%22space+efficiency%22+OR+all%3A%22excess+space%22+%29+AND+%28+all%3Ahousing+OR+all%3Adwelling+%29+AND+%28+all%3Adataset+OR+all%3A%22machine+learning%22+OR+all%3Aautomated+OR+all%3Acomputational+%29%29+AND+submittedDate%3A%5B200001010000+TO+202612312359%5D&start=0&max_results=500&sortBy=relevance&sortOrder=descending",
+      "retrieved_at": "2026-11-05T12:29:19.339194+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:29:19.339194+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "2fe49f192318d64b3fb61e0ebaca36bb3fcf2b6d657ee40f7f31594b7b9fe1f3"
+    },
+    {
+      "source": "arxiv",
+      "query_id": "Q6_micro_housing_adaptive",
+      "url": "https://export.arxiv.org/api/query?search_query=%28%28+all%3A%22micro-housing%22+OR+all%3A%22micro+housing%22+OR+all%3A%22micro-apartment%22+OR+all%3A%22micro+apartment%22+OR+all%3A%22micro-unit%22+OR+all%3A%22subdivided+unit%22+OR+all%3A%22subdivided+flat%22+OR+all%3A%22adaptive+home%22+OR+all%3A%22flexible+housing%22+%29+AND+%28+all%3Afurniture+OR+all%3A%22space+efficiency%22+OR+all%3A%22minimum+standard%22+%29%29+AND+submittedDate%3A%5B200001010000+TO+202612312359%5D&start=0&max_results=500&sortBy=relevance&sortOrder=descending",
+      "retrieved_at": "2026-11-05T12:29:22.436880+00:00",
+      "status": 200,
+      "attempts": [
+        {
+          "date": "2026-11-05T12:29:22.436880+00:00",
+          "status": 200,
+          "error_type": ""
+        }
+      ],
+      "response_sha256": "aed2f383d960e94c707a97ca9497f2983ac936dec117b76de4b7cb06165a95bd"
+    }
+  ]
+}

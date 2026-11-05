@@ -19,3 +19,10 @@ def test_allows_research_provenance():
     assert module.inspect_text("Swiss Dwellings; Hong Kong; doi:10.5281/zenodo.7788422; 0.60 m", []) == []
     assert module.inspect_text("0.1543218 abc54321def", ["54321"]) == []
     assert module.inspect_text("port: 54321", ["54321"]) == ["explicit_private_term"]
+
+
+def test_doi_numeric_suffix_is_not_a_network_address():
+    assert module.inspect_text("doi:10.1182/blood.v104.11.994.994", []) == []
+    documentation_address = ".".join(map(str, (192, 0, 2, 1)))
+    assert "ipv4_address" in module.inspect_text(documentation_address, [])
+    assert "explicit_private_term" in module.inspect_text("104.11.994.994", ["104.11.994.994"])

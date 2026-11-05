@@ -34,7 +34,8 @@ After each review, tell Codex: *"Pull, read `reviews/Gx_review.md`, address the 
 
 | Gate | Status |
 |---|---|
-| G1 data & corpus | Reviewed: CHANGES_REQUESTED (see `reviews/G1_review.md`); continue to Phases 5–6 after M1–M6 |
+| Task L literature | STOP REQUIRED: full-text-confirmed C3 overlap; partial screening, see `reports/task_L_literature.md` and Q-12 |
+| G1 data & corpus | M1–M6 pending; continuation awaits Task L framing review, see `reports/GATE_G1_response.md` |
 | G2 method & pilot | not started |
 | G3 results | not started |
 | G4 final package | not started |
@@ -42,7 +43,9 @@ After each review, tell Codex: *"Pull, read `reviews/Gx_review.md`, address the 
 Start the review with [`reports/GATE_G1.md`](reports/GATE_G1.md), the
 [`24-unit contact sheet`](results/corpus/sample_contact_sheet.png), and
 [`reproduction commands`](docs/REPRODUCING.md). The complete suite passed with
-23 tests and no skips. No solver, FCI, FEA or area-saving results exist yet.
+23 tests and no skips at the original G1 submission. The added Task L tests pass
+(5 tests); its screening is explicitly incomplete. No solver, FCI, FEA or
+area-saving results from this project exist yet.
 
 ## License
 

@@ -1,0 +1,153 @@
+{
+  "config_hash": "a5d6bc0e20a07cce43e51c76759eec561b2b56b8c863af5a52435b1aca1ae0f4",
+  "note": "Retry warnings from saved run logs; overlap with manifest attempts, so do not add the counts. Initial cache versions retained the latest response per URL; this log also preserves earlier failed-pass warnings.",
+  "events": [
+    {
+      "date": "2026-11-05T12:29:08.001000+00:00",
+      "source": "openalex",
+      "query_id": "Q1_transformable_layout",
+      "attempt": 1,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:29:09.156000+00:00",
+      "source": "semantic_scholar",
+      "query_id": "Q2_time_schedule_dwelling",
+      "attempt": 1,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:29:13.397000+00:00",
+      "source": "semantic_scholar",
+      "query_id": "Q2_time_schedule_dwelling",
+      "attempt": 2,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:29:25.623000+00:00",
+      "source": "semantic_scholar",
+      "query_id": "Q2_time_schedule_dwelling",
+      "attempt": 3,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:29:40.239000+00:00",
+      "source": "openalex",
+      "query_id": "Q1_transformable_layout",
+      "attempt": 2,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:29:55.870000+00:00",
+      "source": "semantic_scholar",
+      "query_id": "Q2_time_schedule_dwelling",
+      "attempt": 4,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:30:01.856000+00:00",
+      "source": "semantic_scholar",
+      "query_id": "Q5_usability_scale",
+      "attempt": 1,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:30:28.050000+00:00",
+      "source": "openalex",
+      "query_id": "Q4_minimum_size_function",
+      "attempt": 1,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:30:58.287000+00:00",
+      "source": "openalex",
+      "query_id": "Q4_minimum_size_function",
+      "attempt": 2,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:31:39.981000+00:00",
+      "source": "openalex",
+      "query_id": "Q5_usability_scale",
+      "attempt": 1,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:33:35.293000+00:00",
+      "source": "openalex",
+      "query_id": "Q1_transformable_layout",
+      "attempt": 1,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:34:14.507000+00:00",
+      "source": "openalex",
+      "query_id": "Q1_transformable_layout",
+      "attempt": 2,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:34:59.987000+00:00",
+      "source": "openalex",
+      "query_id": "Q1_transformable_layout",
+      "attempt": 1,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:35:31.237000+00:00",
+      "source": "openalex",
+      "query_id": "Q1_transformable_layout",
+      "attempt": 2,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:36:09.444000+00:00",
+      "source": "openalex",
+      "query_id": "Q1_transformable_layout",
+      "attempt": 3,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:36:41.688000+00:00",
+      "source": "openalex",
+      "query_id": "Q1_transformable_layout",
+      "attempt": 4,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:36:42.167000+00:00",
+      "source": "openalex",
+      "query_id": "Q2_time_schedule_dwelling",
+      "attempt": 1,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:37:22.379000+00:00",
+      "source": "openalex",
+      "query_id": "Q2_time_schedule_dwelling",
+      "attempt": 2,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:37:57.637000+00:00",
+      "source": "openalex",
+      "query_id": "Q2_time_schedule_dwelling",
+      "attempt": 3,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:38:30.756000+00:00",
+      "source": "openalex",
+      "query_id": "Q3_quantified_savings",
+      "attempt": 1,
+      "status": 429
+    },
+    {
+      "date": "2026-11-05T12:39:11.004000+00:00",
+      "source": "openalex",
+      "query_id": "Q3_quantified_savings",
+      "attempt": 2,
+      "status": 429
+    }
+  ]
+}

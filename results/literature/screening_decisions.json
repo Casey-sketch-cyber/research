@@ -1,0 +1,187 @@
+{
+  "status": "STOP_REQUIRED_PARTIAL_SCREENING",
+  "reviewed_at": "2026-11-05T12:40:59.402Z",
+  "decisions": {
+    "10.13189/cea.2026.140514": {
+      "stage1": "KEEP",
+      "stage2": "A_overlap",
+      "claim_affected": "C3",
+      "note": "Full-text §§3, 5–7, Fig. 10 and Table 2 quantify approximate activity-area gains from a wall bed, folding desk and storage modules; this overlaps broad C3, while a validated schedule-constrained optimizer and whole-dwelling FEA inversion are not demonstrated.",
+      "fulltext_checked": true,
+      "abstract_read": true
+    },
+    "10.1002/cav.70113": {
+      "stage1": "KEEP",
+      "stage2": "B_related",
+      "claim_affected": "C2",
+      "note": "The API abstract describes coordinated collision-free furniture movement and navigation, but does not mention household time-of-day demand optimization with shared positions.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "10.51459/futajeet.2024.18.1.522": {
+      "stage1": "KEEP",
+      "stage2": "B_related",
+      "claim_affected": "C3",
+      "note": "The API abstract measures available hostel space to size a shelf-to-table prototype, but does not report the floor-area gain against a conventional layout.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "10.47363/jmsmr/2022(3)127": {
+      "stage1": "KEEP",
+      "stage2": "B_related",
+      "claim_affected": "C3",
+      "note": "The API abstract describes a multifunctional bed/table/cabinet design and prototype tests, but supplies no quantified floor-area saving or equivalent-area metric.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "10.55057/ijbtm.2025.7.6.13": {
+      "stage1": "KEEP",
+      "stage2": "B_related",
+      "claim_affected": "C2|C3",
+      "note": "The API abstract identifies temporal adaptability through qualitative interviews, but does not describe schedule-driven layout optimization or quantified area gains.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "10.62982/seti07.saha.54": {
+      "stage1": "KEEP",
+      "stage2": "B_related",
+      "claim_affected": "C3",
+      "note": "The API abstract discusses multifunctional furniture for restricted residential space, but provides no numerical area-saving comparison.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "https://openalex.org/W7213378212": {
+      "stage1": "KEEP",
+      "stage2": "B_related",
+      "claim_affected": "C3",
+      "note": "The API abstract develops kinematic and posture analysis for a reconfigurable prototype, but reports no dwelling-level area-equivalence calculation.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "10.24237/djes.2020.13210": {
+      "stage1": "KEEP",
+      "stage2": "B_related",
+      "claim_affected": "C3|H2",
+      "note": "The API abstract uses a checklist to assess minimalist furniture and living-room efficiency, but does not state a transformable-furniture area-saving value or schedule model.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "10.62441/nano-ntp.v20is3.61": {
+      "stage1": "KEEP",
+      "stage2": "B_related",
+      "claim_affected": "C3|H2",
+      "note": "The API abstract relates small-apartment furniture and well-being and mentions occupied floor space, but gives no comparative transformable-area gain.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "10.14288/1.0103142": {
+      "stage1": "KEEP",
+      "stage2": "B_related",
+      "claim_affected": "C3",
+      "note": "The API abstract reviews transformable furniture designs, mechanisms and markets, but does not report an equivalent-area computation.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "10.26686/wgtn.25807507": {
+      "stage1": "KEEP",
+      "stage2": "B_related",
+      "claim_affected": "C2|C3",
+      "note": "The API abstract reviews and designs small-apartment live/work transformations, but does not describe a schedule optimization algorithm or numerical area equivalence.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "https://openalex.org/W7140019671": {
+      "stage1": "KEEP",
+      "stage2": "B_related",
+      "claim_affected": "C3",
+      "note": "The API abstract describes an extendable table with storage and technology features, but does not quantify floor-area savings against a baseline.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "https://openalex.org/W7167866473": {
+      "stage1": "KEEP",
+      "stage2": "B_related",
+      "claim_affected": "C3",
+      "note": "The API abstract describes a folding lounge-chair prototype for dorm rooms, but gives no quantified room-area savings.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "10.26686/wgtn.17058221": {
+      "stage1": "KEEP",
+      "stage2": "B_related",
+      "claim_affected": "C2|H2",
+      "note": "The API abstract links observed household time use, room provision and lifecycle resource demand, but does not optimize transformable furniture states or calculate their area equivalence.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "10.1109/bdai70753.2026.11655114": {
+      "stage1": "KEEP",
+      "stage2": "C_irrelevant",
+      "claim_affected": "",
+      "note": "The API abstract concerns activity-recognition domain generalization; furniture layouts are nuisance backgrounds rather than design or adequacy outcomes.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "10.5281/zenodo.23456177": {
+      "stage1": "KEEP",
+      "stage2": "C_irrelevant",
+      "claim_affected": "",
+      "note": "The API abstract describes a radar activity-recognition dataset in furnished homes, not a furniture layout or area-adequacy study.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "10.33153/dewaruci.v18i1.5189": {
+      "stage1": "KEEP",
+      "stage2": "B_related",
+      "claim_affected": "H2",
+      "note": "The API abstract relates cramped apartment furniture to child development and design requirements, but does not test an area-only standard or quantified transformable-area gain.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "10.47016/18.1.8": {
+      "stage1": "KEEP",
+      "stage2": "B_related",
+      "claim_affected": "C3",
+      "note": "The English API abstract analyzes six limited-space residential cases and flexible furniture ideas, but reports no numerical area-saving measure.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "10.32629/asc.v6i3.4140": {
+      "stage1": "KEEP",
+      "stage2": "C_irrelevant",
+      "claim_affected": "",
+      "note": "The API abstract focuses on bamboo material and multifunctional product design, without a residential layout or area-use evaluation.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    },
+    "10.2478/mspe-2024-0029": {
+      "stage1": "KEEP",
+      "stage2": "C_irrelevant",
+      "claim_affected": "",
+      "note": "The API abstract concerns wood-waste product development and economic feasibility for a gallon-pump unit rather than dwelling functional adequacy.",
+      "fulltext_checked": false,
+      "abstract_read": true
+    }
+  },
+  "verdicts": {
+    "C2": {
+      "verdict": "weakened",
+      "note": "The narrow shared-position schedule-constrained optimizer remains a candidate distinction, but Bu & Che Mat already connect daily needs, folding furniture and spatial states; screening is incomplete, so novelty is not cleared."
+    },
+    "C3": {
+      "verdict": "not novel",
+      "note": "Broad quantification of transformable-furniture floor-area gains is preceded by the full-text-confirmed Bu & Che Mat study; whole-dwelling FEA inversion may be narrower, but requires reframing and review."
+    },
+    "C4": {
+      "verdict": "weakened",
+      "note": "The reviewed subset does not establish a direct minimum-standard overlap; incomplete screening cannot confirm novelty, and the combined claim must be reconsidered with C3."
+    },
+    "H2": {
+      "verdict": "not novel",
+      "note": "Retain the already acknowledged Ozer & Jacoby precedent from the earlier report; this interim subset does not independently revalidate that known reference."
+    }
+  },
+  "overlap_evidence": "Bu and Che Mat (2026), DOI 10.13189/cea.2026.140514, compare three conceptual layouts within a 12 m² bedroom. PDF pp. 12–14 (§6.1–6.3, Fig. 10, Table 2) report approximately 5–5.5 m² of activity area for fixed furniture and approximately 8 m² when a wall bed is folded, described by the authors as roughly 60% improvement. The authors explicitly describe an analytical comparison, not measured performance in occupied dwellings (§3.3, §6.1, §7). Their time-based zoning is relevant to C2, but no shared-position schedule-constrained optimization algorithm, independent reachability validator or whole-dwelling FEA inversion is demonstrated in the checked methods/results. This is sufficient overlap with the broad C3 wording to activate the protocol stop; it does not establish that the entire proposed project has been done. These are the paper’s reported values, not results of our experiments. The full-text download URL, checksum, checked sections and evidence classification are recorded in fulltext_checks.json.",
+  "proposals": "For reviewer consideration: add Bu & Che Mat as a C3 antecedent; MAFC-Driven Dynamic Layout Transformation System (10.1002/cav.70113) as a motion-coordination distinction for C2; and Mechanisms of Spatial Efficiency (10.55057/ijbtm.2025.7.6.13) as qualitative evidence on temporal adaptability. RESEARCH_PLAN has not been edited. Proposed narrower framing: quantify household-specific, time-weighted whole-dwelling functional equivalence on real plans with independently validated clearance and reachability, rather than claim the first numerical area benefit of transformable furniture. The reviewer must decide whether this distinction is sufficient.",
+  "limitations": "Screening was deliberately interrupted when the explicit C3 stop rule was met; the pending majority has not been screened, and neither citation saturation nor absence of other overlaps can be claimed. OpenAlex and Semantic Scholar returned HTTP 429 responses. OpenAlex cursor continuation required a key (HTTP 401); a retry used documented public basic paging with 100 records per page, but repeated rate limiting left Q1 incomplete. Completed earlier responses were retained even when a later retry failed. All six Crossref keyword queries reached the configured 500-record cap and are relevance-ranked, not exhaustive Boolean searches. Semantic Scholar zero totals are retained as returned and do not demonstrate absence of literature. Crossref metadata was merged only where DOI or normalized title/year matched; unresolved field completion remains pending. OpenAlex applied language:en; other providers expose inconsistent language metadata, so the English-language restriction is not fully verified and non-English records remain unscreened. arXiv used HTTPS for the configured endpoint. The optional Chinese search was not run. One reviewer (Codex) made the explicit judgements. Full-text TLS validation succeeded using the operating system trust store after the Python client could not validate the publisher chain; no certificate checks were disabled."
+}

@@ -1,0 +1,19 @@
+{
+  "status": "CONFIRMED_C3_OVERLAP",
+  "doi": "10.13189/cea.2026.140514",
+  "source_metadata": "OpenAlex API; Q2_time_schedule_dwelling",
+  "url": "https://www.hrpub.org/download/20260830/CEA14-14845472.pdf",
+  "accessed_date": "2026-11-05",
+  "sha256": "591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc",
+  "bytes": 7848078,
+  "pages": 17,
+  "methods_results_read": "PDF pages 4–15; sections 3–7",
+  "visual_checks": [
+    "PDF page 13, Figure 10",
+    "PDF page 14, Table 2"
+  ],
+  "verification": "Text extraction plus visual inspection; conceptual/analytical claims distinguished from occupied-dwelling measurements",
+  "redistributed": false,
+  "config_hash": "a5d6bc0e20a07cce43e51c76759eec561b2b56b8c863af5a52435b1aca1ae0f4",
+  "seed": 20261105
+}
