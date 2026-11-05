@@ -20,11 +20,16 @@ from shapely.ops import unary_union
 from tqdm import tqdm
 
 from fea.geometry.unit import Unit, parts
-from fea.geometry.raster import rasterize, door_keepout, fixed_service_doors
+from fea.geometry.raster import rasterize, door_keepout, fixed_service_doors, FURNISHABLE
 from fea.households import parse_households
 from fea.io import prepare_cli, start_run, write_json, sha256_file
 from fea.validate import validate_layout
 from fea.viz.corpus import draw_unit
+from fea.viz.layouts import render_layout
+
+REVIEW_RENDER_STYLE = {"figure.constrained_layout.h_pad": .15,
+    "figure.constrained_layout.w_pad": .08, "figure.constrained_layout.hspace": .16,
+    "figure.constrained_layout.wspace": .06}
 
 
 def method_signature() -> str:
@@ -136,6 +141,7 @@ def main():
     parser = prepare_cli(__doc__)
     parser.add_argument("--geometry-only", action="store_true")
     parser.add_argument("--run-tests", action="store_true", help="Run only when no pilot solver is active")
+    parser.add_argument("--keep-renders", action="store_true", help="Reuse already checked review-style renders")
     args = parser.parse_args()
     config, digest, _ = start_run(args, "06_report")
     if args.dry_run:
@@ -144,17 +150,33 @@ def main():
     units = [Unit.from_dict(u) for u in json.loads(Path("results/pilot/pilot_units.json").read_text())["units"]]
     households = parse_households(config["households"], config["furniture"])
     first_h = households[config["households"]["main_households"][0]]
-    grids, empty_checked, access_rows = {}, {}, []
+    grids, empty_checked, access_rows, space_rows = {}, {}, [], []
     for unit in tqdm(units, desc="Empty geometry diagnostic"):
         grid = grids[unit.unit_key] = rasterize(unit, config["raster"]["resolution_m"])
         result = empty_checked[unit.unit_key] = validate_layout({"strategy": "S0", "items": [], "service": {}}, grid, config, first_h, diagnostics=True)
         access_rows.extend(access_diagnostic(unit, grid, result, config["furniture"]["meta"]["walking_width"]))
+        free = unary_union([unit.classes.get(k, GeometryCollection()) for k in
+            ("furnishable", "storage_only", "walkable_only")]).difference(unit.walls)
+        portal = door_keepout(unit.entrance, unit.interior, both_sides=True).difference(unit.interior).difference(unit.walls)
+        components = parts(unary_union([free, portal]).buffer(1e-9))
+        connected = unary_union([p for p in components if p.intersection(portal).area > 1e-9])
+        space_rows.append(dict(unit_key=unit.unit_key, source=unit.source, nia_m2=unit.interior.area,
+            free_components_before_walking_erosion=len(components),
+            connected_furnishable_area_before_erosion_m2=connected.intersection(unit.classes["furnishable"]).area,
+            furnishable_area_m2=unit.classes["furnishable"].area,
+            furnishable_cells=int((grid.labels == FURNISHABLE).sum()),
+            reachable_empty_furnishable_cells=int(((grid.labels == FURNISHABLE) & result["paths"]["normal"]["night"]).sum()),
+            empty_fixed_service_valid=result["pass"], config_hash=digest))
     pd.DataFrame(access_rows).to_csv("results/pilot/fixed_service_diagnostic.csv", index=False)
+    pd.DataFrame(space_rows).to_csv("results/pilot/empty_space_summary.csv", index=False)
     render_access(units, grids, empty_checked)
     if args.geometry_only:
         print(json.dumps(dict(units=len(units), empty_access_failures=sum(not r["pass"] for r in empty_checked.values()))))
         return
     frame = pd.read_csv("results/pilot/pilot_solutions.csv")
+    # Publication padding avoids overlapping row titles on near-square plans.
+    # This changes presentation only, never JSON layouts or solver checkpoints.
+    plt.rcParams.update(REVIEW_RENDER_STYLE)
     signature = method_signature()
     checks = dict(expected_count=len(frame) == len(units)*len(config["households"]["main_households"])*3,
                   unique_cases=not frame.duplicated(["unit_key", "household", "strategy"]).any(),
@@ -167,6 +189,8 @@ def main():
                 path = Path("results/layouts/pilot")/(stem+".json")
                 layout = json.loads(path.read_text())
                 result = validate_layout(layout, grids[unit.unit_key], config, households[household_name])
+                if not args.keep_renders:
+                    render_layout(unit, layout, config, households[household_name], path.with_suffix(".png"), grids[unit.unit_key])
                 row = frame[(frame.unit_key == unit.unit_key) & (frame.household == household_name) & (frame.strategy == strategy)].iloc[0]
                 solver = layout["solver"]
                 expected_failure = (not result["pass"] and not empty_checked[unit.unit_key]["pass"]
@@ -179,9 +203,16 @@ def main():
                     solver_assignment_fci_difference=abs(solver["fci_solver"]-result["fci"]),
                     tb_difference=abs(layout["tb"]-result["tb"]),
                     hash_match=layout["config_hash"] == digest and layout["code_hash"] == signature,
+                    metadata_match=(layout["unit_key"] == unit.unit_key and layout["source"] == unit.source
+                        and layout["household"] == household_name and layout["strategy"] == strategy
+                        and abs(layout["nia_m2"]-unit.interior.area) <= 1e-6),
+                    saved_validation_match=(layout["validator"]["pass"] == result["pass"]
+                        and layout["validator"]["violations"] == result["violations"]
+                        and bool(row.validator_pass) == result["pass"]),
                     status=solver["status"], termination=solver.get("termination", "search_completed_or_budget_limit"),
                     retained_previous_incumbent=solver.get("retained_previous_incumbent", False),
                     primary_upper_bound=solver.get("primary_upper_bound"),
+                    raw_last_model_fci=solver.get("raw_last_model_fci"),
                     window_tiebreak_optimized=solver.get("window_tiebreak_optimized", False),
                     violations=";".join(result["violations"])))
                 for item in (path, path.with_suffix(".png")):
@@ -189,9 +220,12 @@ def main():
     audit = pd.DataFrame(audits)
     audit.to_csv("results/pilot/validation_audit.csv", index=False)
     pd.DataFrame(artifacts).to_csv("results/pilot/layout_manifest.csv", index=False)
+    write_json("reports/pilot_render_style.json", dict(style=REVIEW_RENDER_STYLE,
+        layout_jsons_unchanged=True, config_hash=digest, code_hash=signature))
     checks.update(all_valid_or_explained=bool((audit.independently_valid | audit.explained_failure).all()),
         fci_agreement=bool(audit[["csv_fci_difference", "json_fci_difference", "solver_assignment_fci_difference"]].max().max() <= 1e-6),
         tb_agreement=bool(audit.tb_difference.max() <= 1e-6), layout_hashes=bool(audit.hash_match.all()),
+        layout_metadata=bool(audit.metadata_match.all()), saved_validation=bool(audit.saved_validation_match.all()),
         publication_sizes=all(a["bytes"] < 50_000_000 for a in artifacts))
     pivot = frame.pivot(index=["unit_key", "household"], columns="strategy", values="fci_validator").reset_index()
     pivot["S1_minus_S0"], pivot["S2_minus_S1"] = pivot.S1-pivot.S0, pivot.S2-pivot.S1
@@ -206,6 +240,11 @@ def main():
         valid=("validator_pass", "sum"), mean_fci=("fci_validator", "mean"), median_fci=("fci_validator", "median"),
         mean_s=("solve_time_s", "mean"), median_s=("solve_time_s", "median"), max_s=("solve_time_s", "max"))
     stats.to_csv("results/pilot/summary_by_group.csv")
+    unit_summary = frame.assign(zero_service=frame.fci_validator <= 1e-9).groupby(
+        ["source", "unit_key", "nia_m2"]).agg(cases=("status", "size"),
+        valid=("validator_pass", "sum"), zero_service=("zero_service", "sum"),
+        mean_fci=("fci_validator", "mean"), solver_total_s=("solve_time_s", "sum"))
+    unit_summary.to_csv("results/pilot/summary_by_unit.csv")
     projection = runtime_projection(frame, config)
     write_json("reports/pilot_runtime_projection.json", projection)
     test_path = Path("reports/pilot_tests.json")
@@ -222,6 +261,8 @@ def main():
         status_counts={k: int(v) for k, v in frame.status.value_counts().items()},
         final_valid_empty=int(((frame.n_items == 0) & frame.validator_pass).sum()),
         final_valid_nonempty=int(((frame.n_items > 0) & frame.validator_pass).sum()),
+        final_valid_zero_service=int(((frame.fci_validator <= 1e-9) & frame.validator_pass).sum()),
+        final_valid_nonempty_zero_service=int(((frame.n_items > 0) & (frame.fci_validator <= 1e-9) & frame.validator_pass).sum()),
         retained_previous_incumbents=int(audit.retained_previous_incumbent.sum()),
         early_bound_incumbents=int((audit.termination == "primary_bound_incumbent").sum()),
         solver_time_sum_s=float(frame.solve_time_s.sum()),

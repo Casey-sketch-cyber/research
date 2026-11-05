@@ -38,3 +38,6 @@ venv/
 *.key
 data/processed/
 data/private/
+
+# Incomplete pilot aggregates are checkpoints, not review results.
+results/pilot/*_PARTIAL.csv

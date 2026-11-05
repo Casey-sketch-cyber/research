@@ -1,4 +1,4 @@
-# Reproducing the data and corpus package
+# Reproducing the corpus and method pilot
 
 Use Python 3.11 and a project-local virtual environment. Keep temporary files,
 caches and outputs inside the project or another explicitly selected workspace.
@@ -50,6 +50,30 @@ states or clearances. Table T3 preserves author schedules without optional ATUS
 calibration. Raw data must be present for observed-source loader tests; the G1
 recorded suite ran with all required data and no skips. The G1 review and Q-12 addendum authorize the corrections followed by
 Phases 5–6, stopping at G2. Later gates still require their stated review.
+
+## Method and frozen pilot
+
+After the preparation commands above:
+
+```sh
+python scripts/05_candidates.py --config config/project.yaml
+python scripts/06_pilot.py --config config/project.yaml
+python scripts/06_report.py --config config/project.yaml --run-tests
+python scripts/06_gate.py --config config/project.yaml
+```
+
+The pilot chooses its units from the frozen experiment sample before viewing
+outcomes. Its checkpoint directory combines configuration and method-code hashes;
+only an identical run resumes. Every saved case receives independent revalidation.
+Run the test step after the pilot finishes, so the tiny solver tests do not overlap
+the pilot's solver threads. Keep raw and interim data private.
+
+`06_gate.py` additionally requires the recorded visual-review image hashes to match.
+Multi-threaded CP-SAT does not guarantee identical incumbents on reruns despite the
+fixed seed. If images change, inspect the new images and update the review record;
+do not carry forward a visual approval for different output. All pilot layouts and
+renders are published, together with a file-hash manifest. The pilot is a method
+review; full-experiment FEA, minimum-area and R/K results belong to later phases.
 
 Before publication, stage only intended public files and run:
 
