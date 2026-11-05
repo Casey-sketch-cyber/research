@@ -20,6 +20,7 @@ def main():
         print("Would compare corpus CSV/parquet, source counts, inclusion flags and sample geometry, then run tests.")
         return
     corpus = pd.read_csv("results/corpus/corpus_units.csv", keep_default_na=False)
+    corpus["furnishable_area_m2"] = pd.to_numeric(corpus.furnishable_area_m2, errors="coerce")
     audit = json.loads(Path("reports/corpus_audit.json").read_text())
     samples = json.loads(Path("results/corpus/sample_units.json").read_text())
     processed = pd.read_parquet(Path(config["paths"]["processed"]) / "corpus_units.parquet")
@@ -33,17 +34,21 @@ def main():
         "inclusion_reason_consistent": (corpus.include == (corpus.exclude_reason == "")).all(),
         "included_areas_in_range": corpus[corpus.include].furnishable_area_m2.between(config["corpus"]["min_furnishable_area_m2"], audit["effective_max_furnishable_area_m2"]).all(),
         "included_geometry_checks_pass": (corpus.loc[corpus.include, "geometry_failures"] == "").all(),
+        "included_normalization_preserves_area": audit["max_included_normalization_area_change_m2"] <= 1e-6,
         "24_sample_images": len(list(Path("results/corpus/samples").glob("*.png"))) == 24,
         "histogram_formats": all(Path("results/figures/F2_corpus_area" + suffix).exists() for suffix in (".png", ".pdf")),
         "eight_samples_per_source": pd.Series([u["source"] for u in samples["units"]]).value_counts().to_dict() == {"D1": 8, "D2": 8, "D3": 8},
     }
     sample_ok = True
+    local_coordinates = True
     for record in tqdm(samples["units"], desc="Sample audit"):
         unit = Unit.from_dict(record)
         row = corpus.set_index("unit_key").loc[unit.unit_key]
         sample_ok &= bool(row.include and abs(unit.classes["furnishable"].area - row.furnishable_area_m2) < 1e-6)
         sample_ok &= unit.entrance is not None and bool(unit.windows)
+        local_coordinates &= max(abs(x) for x in unit.interior.bounds[:2]) < 1e-8
     checks["sample_metadata_matches_csv"] = sample_ok
+    checks["published_samples_use_local_coordinates"] = local_coordinates
     result = subprocess.run([sys.executable, "-m", "pytest", "-q"], capture_output=True, text=True)
     checks["tests_pass_without_skips"] = result.returncode == 0 and "skipped" not in result.stdout
     write_json("reports/phase02_acceptance.json", {"config_hash": digest,

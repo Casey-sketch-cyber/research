@@ -4,11 +4,14 @@ from __future__ import annotations
 import hashlib
 import json
 import time
+from dataclasses import replace
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
+from shapely.errors import GEOSException
+from shapely.geometry import GeometryCollection
 
 from fea.data.d1_swiss import load_d1
 from fea.data.d2_resplan import load_d2
@@ -45,11 +48,25 @@ def source_cache(source, loader, config, digest, signature):
             if unit.unit_key in records:
                 continue
             before = {name: geometry.area for name, geometry in unit.classes.items()}
-            unit = normalize(unit)
-            delta = max(abs(before[name] - geometry.area) for name, geometry in unit.classes.items())
-            if delta > 1e-6:
-                raise ValueError("Rigid normalization changed an area")
-            record = {"unit": unit.to_dict(), "scalars": describe(unit), "max_area_change_m2": delta}
+            try:
+                unit = normalize(unit)
+                delta = max(abs(before[name] - geometry.area) for name, geometry in unit.classes.items())
+                scalars = describe(unit)
+                if delta > 1e-6:
+                    scalars["geometry_failures"] = ";".join(filter(None, [scalars["geometry_failures"], "normalization_changed_area"]))
+            except GEOSException:
+                # A source-specific topology failure excludes the record. Do not
+                # publish source-frame geometry or invent an area for a failed unit.
+                source_counts = {"n_windows": len(unit.windows), "n_doors": len(unit.doors)}
+                unit = replace(unit, classes={k: GeometryCollection() for k in unit.classes},
+                               walls=GeometryCollection(), doors=[], windows=[], entrance=None,
+                               meta={"geometry_unavailable": "GEOS topology error during normalization/audit"})
+                scalars = describe(unit)
+                scalars.update(furnishable_area_m2=None, known_interior_area_m2=None,
+                               geometry_failures="geometry_processing_error")
+                scalars.update(source_counts)
+                delta = None
+            record = {"unit": unit.to_dict(), "scalars": scalars, "max_area_change_m2": delta}
             stream.write(json.dumps(record, allow_nan=False) + "\n")
             stream.flush()
             records[unit.unit_key] = record
@@ -120,7 +137,8 @@ def main():
     write_json("reports/corpus_audit.json", {"config_hash": digest, "code_hash": signature,
         "counts": counts.reset_index().to_dict("records"), "initial_D1_qualified": int(qualified_d1),
         "effective_max_furnishable_area_m2": limit, "sources": runtimes,
-        "max_normalization_area_change_m2": max(record["max_area_change_m2"] for record in records),
+        "max_normalization_area_change_m2": max(record["max_area_change_m2"] for record in records if record["max_area_change_m2"] is not None),
+        "max_included_normalization_area_change_m2": max(records[i]["max_area_change_m2"] for i in frame.index[frame.include]),
         "D1_with_simulations": int(((frame.source == "D1") & (frame.simulation_fields > 0)).sum()),
         "sample_count": len(samples), "total_seconds_this_invocation": time.perf_counter() - started,
         "gross_area_note": "D1 missing; D2 source declaration with explicit geometric calibration; D3 generated gross internal area"})

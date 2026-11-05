@@ -1,13 +1,18 @@
 """Geometric invariants and integration checks on authorized observed source data."""
 import math
 from pathlib import Path
+from dataclasses import replace
 
 import pytest
 from shapely import affinity, from_wkt
+from shapely.geometry import GeometryCollection, LineString, box
 
 from fea.config import load_config
 from fea.data.d1_swiss import load_d1
+from fea.data.d1_swiss import opaque_id
 from fea.data.d2_resplan import load_d2
+from fea.data.d2_resplan import from_plan
+from fea.data.archives import read_geometry_pickle
 from fea.data.d3_shells import load_d3
 from fea.geometry.normalize import normalize
 from fea.geometry.unit import Unit
@@ -58,3 +63,26 @@ def test_observed_source_unit_loader(source, loader, archive):
     else:
         assert unit.meta["raw_geometry_area_after_scaling_m2"] == pytest.approx(unit.gross_area_m2)
         assert unit.meta["released_net_area_unused"]
+
+
+def test_observed_near_coincident_D2_vertices_preserve_fixed_area():
+    path = Path("data/raw/resplan/extracted/ResPlan.pkl")
+    if not path.exists():
+        pytest.skip("Authorized D2 raw data required for numerical regression")
+    with path.open("rb") as stream:
+        plans = read_geometry_pickle(stream)
+    plan = next(p for p in plans if opaque_id(p["id"]) == "a33686b000cb614d879a")
+    unit = from_plan(plan)
+    normalized = normalize(unit)
+    for name, geometry in unit.classes.items():
+        assert normalized.classes[name].is_valid
+        assert abs(normalized.classes[name].area - geometry.area) < 1e-6
+
+
+def test_polygon_wall_with_zero_area_remnants_normalizes():
+    unit = next(load_d3(load_config("config/project.yaml")))
+    wall = GeometryCollection([box(0, 0, 0.1, 2), LineString([(0.1, 2), (0.1, 2.1)])])
+    normalized = normalize(replace(unit, walls=wall))
+    assert normalized.walls.is_valid
+    assert normalized.walls.geom_type in ("Polygon", "MultiPolygon")
+    assert normalized.walls.area == pytest.approx(0.2)

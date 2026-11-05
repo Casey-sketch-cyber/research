@@ -5,10 +5,10 @@ import math
 from dataclasses import replace
 
 import numpy as np
-from shapely import affinity, from_wkt, make_valid
+from shapely import affinity, from_wkt, make_valid, set_precision
 from shapely.geometry.base import BaseGeometry
 
-from .unit import Unit, parts
+from .unit import Unit, parts, polygon_union
 
 
 def normalize(unit: Unit) -> Unit:
@@ -24,10 +24,19 @@ def normalize(unit: Unit) -> Unit:
 
     repairs = []
     def transform(g: BaseGeometry) -> BaseGeometry:
-        result = affinity.translate(affinity.rotate(g, -angle, origin=(0, 0)), xoff=-origin[0], yoff=-origin[1])
+        if g.geom_type == "GeometryCollection" and parts(g):
+            g = polygon_union([g])
+        # A nanometre numerical grid removes near-coincident vertices before
+        # rotation; it is many orders below both input resolution and raster size.
+        # Pointwise snapping afterward prevents roundoff from changing hole parity.
+        cleaned = set_precision(g if g.is_valid else make_valid(g), 1e-9)
+        result = affinity.translate(affinity.rotate(cleaned, -angle, origin=(0, 0)), xoff=-origin[0], yoff=-origin[1])
+        result = set_precision(result, 1e-9, mode="pointwise")
         if not result.is_valid:
             repairs.append(True)
             result = make_valid(result)
+        if result.geom_type == "GeometryCollection" and parts(g):
+            result = polygon_union([result])
         return result
 
     # The inverse/source-frame transform is deliberately not published.
@@ -37,4 +46,5 @@ def normalize(unit: Unit) -> Unit:
                    meta={**unit.meta, **{k: transform(from_wkt(unit.meta[k])).wkt
                                          for k in ("toilet_geometry", "kitchen_geometry") if k in unit.meta},
                          "normalization_repaired_layers": len(repairs),
+                         "numerical_coordinate_grid_m": 1e-9,
                          "coordinates": "dominant-axis-aligned local metres"})
