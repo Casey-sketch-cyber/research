@@ -6,7 +6,7 @@ from shapely.geometry import GeometryCollection, LineString, box
 
 from fea.config import load_config
 from fea.geometry.unit import Unit
-from fea.geometry.raster import rasterize, STORAGE_ONLY, KEEPOUT
+from fea.geometry.raster import rasterize, fixed_service_doors, STORAGE_ONLY, KEEPOUT
 from fea.furniture.library import library, rectangles
 from fea.furniture.candidates import generate_candidates
 
@@ -16,6 +16,19 @@ def empty_room(width=3., depth=4.):
     return Unit("toy", "test", "test", {"furnishable": room, "storage_only": GeometryCollection(),
         "walkable_only": GeometryCollection(), "fixed_service": GeometryCollection()}, room.boundary,
         [], [], None, width*depth, 1)
+
+
+def test_service_target_ignores_balcony_opening_but_keeps_interior_approach():
+    """A door polygon added to circulation must not count as a room by itself."""
+    room = empty_room(4, 4)
+    indoor = box(1.9, 1, 2.1, 2)
+    balcony = box(2.7, 3.9, 3.7, 4.1)
+    room = replace(room, doors=[indoor, balcony], classes={**room.classes,
+        "furnishable": box(0, 0, 2, 4), "fixed_service": box(2.1, 0, 4, 3.9),
+        "walkable_only": indoor.union(balcony), "excluded": box(2.1, 4.1, 4, 5)})
+    targets = fixed_service_doors(room)
+    assert len(targets) == 1 and targets[0].equals(indoor)
+    assert len(rasterize(room).service_targets) == 1
 
 
 def test_desk_count_in_3_by_4_room_is_analytical():

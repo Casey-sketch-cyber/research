@@ -55,6 +55,29 @@ def door_keepout(door, interior, both_sides: bool = False):
         centre+tangent*width/2+sign*normal*width, centre-tangent*width/2+sign*normal*width]) for sign in sides])
 
 
+def fixed_service_doors(unit: Unit, resolution: float = .1) -> list:
+    """Identify service approaches, excluding openings onto excluded exterior space.
+
+    Source conversion adds door polygons to circulation. Remove those polygons
+    when deciding whether an opening also touches usable interior space, so a
+    kitchen-to-balcony opening cannot qualify itself as an indoor approach.
+    Unknown non-exterior connections remain targets and can fail conservatively.
+    """
+    fixed = unit.classes.get("fixed_service", GeometryCollection())
+    excluded = unit.classes.get("excluded", GeometryCollection())
+    inside = polygon_union([unit.classes.get(k, GeometryCollection()) for k in
+                            ("furnishable", "storage_only", "walkable_only")])
+    inside = inside.difference(unit.walls).difference(unary_union(unit.doors))
+    result = []
+    for door in unit.doors:
+        if unit.entrance is not None and door.equals(unit.entrance): continue
+        if door.distance(fixed) > resolution: continue
+        exterior_only = (not excluded.is_empty and door.distance(excluded) <= 1e-7
+                         and (inside.is_empty or door.distance(inside) > 1e-7))
+        if not exterior_only: result.append(door)
+    return result
+
+
 def rasterize(unit: Unit, resolution: float = .1) -> Raster:
     """Cover whole cells only; fixed services and physical walls remain blocked."""
     if resolution <= 0 or unit.interior.is_empty:
@@ -93,12 +116,9 @@ def rasterize(unit: Unit, resolution: float = .1) -> Raster:
     if unit.entrance is not None:
         entrance = (labels != BLOCKED) & shapely.intersects(cells, unit.entrance.buffer(r*.51))
         exterior = door_keepout(unit.entrance, unit.interior, both_sides=True).difference(unit.interior).difference(unit.walls)
-        extension = covered(exterior)
-    fixed = unit.classes.get("fixed_service", GeometryCollection())
-    targets = []
-    for door in unit.doors:
-        if unit.entrance is not None and door.equals(unit.entrance):
-            continue
-        if door.distance(fixed) <= r:
-            targets.append((labels != BLOCKED) & shapely.intersects(cells, door.buffer(.3+r)))
+        # Cover the UNION before discretizing. Separately rasterizing inside and
+        # outside leaves a false blocked seam in cells straddling the threshold.
+        extension = covered(polygon_union([free, exterior])) & (labels == BLOCKED)
+    targets = [(labels != BLOCKED) & shapely.intersects(cells, door.buffer(.3+r))
+               for door in fixed_service_doors(unit, r)]
     return Raster(labels, r, origin, wall, window, entrance, extension, targets, keepout)
