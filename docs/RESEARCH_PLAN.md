@@ -158,6 +158,7 @@ Report Spearman correlation, FCI dispersion (interquartile range) within area bi
 | F1 | Framework diagram (schematic; the author may redraw) |
 | F2 | Corpus: area distribution by source; example plans |
 | F3 | Example layouts across slots for S0 / S1 / S2 in three units (small, medium, large) |
+| F3b | 3D axonometric renders (Blender) of the same units, S0 vs S2 across night/day/dinner; also the graphical abstract. Optional: a transformation animation as supplementary material |
 | F4 | FCI vs area for each strategy, with fitted f₀ curves, faceted by household |
 | F5 | Area-saving curve (absolute and relative) with bootstrap 95% CIs |
 | F6 | FCI dispersion within area bins (H2) |
@@ -196,7 +197,7 @@ Report Spearman correlation, FCI dispersion (interquartile range) within area bi
 | 4–7 | Rasterizer, candidates, CP-SAT, validator; pilot on 20 units | **G2:** method review |
 | 8–10 | Full Exp. A, then B, D; ablations | |
 | 11–12 | Exp. C surrogate; Hong Kong scenario | **G3:** results review |
-| 13–14 | Figures, tables, draft of the methods and results sections | **G4:** final package |
+| 13–14 | Figures, tables, 3D renders, draft of the methods and results sections | **G4:** final package |
 | 15–21 | Author writes and revises; reviewer feedback; submission | |
 
 ## 10. References (verify full details before citing)

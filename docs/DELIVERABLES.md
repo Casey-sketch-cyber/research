@@ -42,6 +42,8 @@ After each phase, add `reports/phase_NN_<name>.md` using `reports/TEMPLATE_phase
 | `results/scenario_hk/*.csv` | area_m2, household, strategy, adequate_share, a_min, plus district weights if available |
 | `results/tables/T1..T7.(csv,md)` | — |
 | `results/figures/F1..F10.(png,pdf)` | — |
+| `results/figures/F3b_<unit>.(png,pdf)` | 3D render grid: S0/S2 × night/day/dinner (Phase 12b) |
+| `results/renders3d/stills/*.png`, `results/renders3d/scenes/*.json`, `results/renders3d/animation.(mp4,gif)` (optional) | 3D stills, their scene descriptions, and the optional transformation animation; each file < 50 MB |
 
 Layout renderings to commit:
 
@@ -60,7 +62,7 @@ At each gate, write `reports/GATE_Gx.md` and push, then **stop**.
 | **G1** (after Phase 4) | ENVIRONMENT.md, data MANIFEST summary, schema reports, final `d1_subtype_classes` mapping, corpus counts and area histogram, 24 sample renders, ABO check, household table, open questions |
 | **G2** (after Phase 6) | Solver and validator description (how the code actually implements §5.2, including any simplifications), test results, pilot CSV, at least 20 pilot renders (all are committed), status and runtime statistics, FCI ordering check, Exp. A runtime projection and proposed adjustments |
 | **G3** (after Phase 11) | Headline numbers for H1–H3: median saving per household and area bin, ΔA_min with CIs, Exp. B table, Exp. C metrics, Exp. D misclassification rates, top ablation sensitivities, HK scenario results; anomalies and a list of known issues |
-| **G4** (after Phase 12) | All figures and tables, the manuscript drafts, FINAL_SUMMARY.md, and a reproduction command list |
+| **G4** (after Phase 12 and 12b) | All figures and tables (including the F3b 3D renders), the manuscript drafts, FINAL_SUMMARY.md, and a reproduction command list |
 
 ## 5. `reports/FINAL_SUMMARY.md` (G4)
 

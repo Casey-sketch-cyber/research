@@ -1,0 +1,70 @@
+# 3D renderings (Phase 12b). Presentation only: the analysis stays 2D.
+# Heights are author defaults for visual purposes; they do not affect any result.
+
+tool:
+  primary: blender            # headless: blender -b -P scripts/12b_render3d.py -- --config config/render.yaml
+  blender_version: ">=4.2"    # must support the RTX 5090 (Blackwell) for GPU rendering; check the release notes
+  engine: CYCLES              # fallback: BLENDER_EEVEE_NEXT, or CYCLES on CPU
+  device: GPU                 # OPTIX on the RTX 5090; CPU if no GPU in the sandbox
+  samples: 128
+  denoise: true
+  resolution: [2400, 1800]
+  fallback_python: "trimesh + pyrender (or matplotlib Poly3DCollection) if Blender is unavailable"
+
+scene:
+  ceiling_height: 2.50
+  wall_thickness: 0.10
+  cutaway: "remove the two walls facing the camera; keep the others full height"
+  floor_material: light_oak
+  wall_material: off_white
+  window: "glass opening with a sill at 0.90 m and a head at 2.20 m"
+  lighting: "sun through the windows plus a soft world light; same for every render"
+  camera:
+    type: orthographic        # axonometric
+    azimuth_deg: -45
+    elevation_deg: 35
+    framing: "fit the unit bounding box with a 10% margin; same scale for every unit of similar size"
+
+# Item heights (m) per state, for procedural meshes built from boxes and bevels (no external 3D models).
+heights:
+  single_bed: 0.50
+  double_bed: 0.50
+  wardrobe: 2.10
+  shelving: 1.80
+  desk: 0.75
+  dining_table_2: 0.75
+  dining_table_4: 0.75
+  sofa_2: 0.85
+  armchair: 0.85
+  wall_bed_single: {stowed: 2.15, deployed: 0.50}      # the stowed cabinet stays as a headboard cabinet when deployed
+  wall_bed_double: {stowed: 2.15, deployed: 0.50}
+  wall_bed_over_sofa: {stowed: 2.15, deployed: 0.50}
+  sofa_bed: {stowed: 0.85, deployed: 0.50}
+  drop_leaf_table: {stowed: 0.75, deployed: 0.75}
+  fold_down_desk: {stowed: 1.00, deployed: 0.75}
+  extendable_table: {stowed: 0.75, deployed: 0.75}
+  fixed_toilet_pod: 2.30
+  fixed_kitchenette: 0.90
+
+# Colour by function, matching the 2D layout figures.
+palette:
+  sleep: "#4C78A8"
+  work: "#F58518"
+  dine: "#54A24B"
+  storage: "#B279A2"
+  lounge: "#72B7B2"
+  fixed: "#BDBDBD"
+
+outputs:
+  stills:
+    units: "the 3 F3 showcase units + one 8 m2 and one 12 m2 D3 shell"
+    strategies: [S0, S2]
+    slots: [night, day, dinner]
+    household: H3_couple_one_remote   # shells: H1_single_commuter
+  animation:
+    optional: true
+    units: "one showcase unit, S2"
+    content: "night → morning → day → dinner; wall beds rotate about their base hinge, leaves fold"
+    fps: 24
+    seconds: 8
+    formats: [mp4, gif]

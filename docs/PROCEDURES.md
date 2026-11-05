@@ -302,5 +302,28 @@ Push, write `reports/GATE_G3.md` with the headline numbers and how they bear on 
 2. Write `manuscript/draft_methods.md` and `manuscript/draft_results.md`: factual descriptions of what was done and found, with every number traceable to a results file (cite the file path in an HTML comment next to each number). **No discussion or speculation, and no references that are not already in RESEARCH_PLAN §10.**
 3. Write `reports/FINAL_SUMMARY.md` (see DELIVERABLES §5).
 
+## Phase 12b: 3D renderings (days 13–14; presentation only)
+
+The renders illustrate solved layouts for the paper and the graphical abstract. They never feed into any metric.
+
+1. Export each solved layout to a scene description, `results/renders3d/scenes/<unit>_<household>_<strategy>.json`: unit polygons, walls, doors, windows, and every item's pose and per-slot state. Use the layout JSON plus the `Unit`.
+2. `scripts/12b_render3d.py`, a Blender Python script run headless as `blender -b -P scripts/12b_render3d.py -- --config config/render.yaml`:
+   - Extrude the walls to the ceiling height and apply the cutaway.
+   - Build each item procedurally from boxes and bevels, using the 2D footprint (`config/furniture.yaml`, after any approved overrides) and the heights in `config/render.yaml`. Don't download any 3D model.
+   - Use the colour-by-function palette so the renders match the 2D figures.
+   - Render the stills listed in `config/render.yaml → outputs.stills` with one fixed camera, lighting and scale.
+3. Compose figure **F3b**: rows = strategy (S0, S2), columns = slots (night, day, dinner), one figure per showcase unit, with the FCI and TB values (read from the results files) in the panel titles.
+4. *(Optional)* The transformation animation in `outputs.animation`, saved as MP4 and GIF.
+5. **If Blender can't run in your environment:** still commit the scene JSONs and `12b_render3d.py`, test the script on one scene with the CPU or the Python fallback, and write in the phase report the exact command for the author to run on their RTX 5090.
+
+**Acceptance**
+- The scene geometry in a render matches the 2D layout for the same instance. Check 3 instances by overlaying a top-view orthographic render on the 2D layout; overlap error should be under 2 cm.
+- Every still listed in the config exists.
+- The renders use the same camera and palette.
+
 ### ⛔ GATE G4: final package
 Push, **stop**, and wait for `reviews/G4_review.md`.
+
+---
+
+**Visual target.** `docs/img/mockup_studio_S2.png` is a hand-made, illustrative mock-up (not a result) of the style expected for the per-slot layout renders (Phase 6) and the simple 3D massing. Final 3D renders (Phase 12b) should be higher quality.

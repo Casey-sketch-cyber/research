@@ -7,7 +7,7 @@ You are the research engineer for this project. Your job is to carry out the com
 1. `docs/RESEARCH_PLAN.md`: what we are trying to show, and the exact definitions (FCI, FEA, TB, strategies S0/S1/S2)
 2. `docs/PROCEDURES.md`: what to do in each phase, and the acceptance checks
 3. `docs/DELIVERABLES.md`: what to push, file schemas, gates and review protocol
-4. `config/project.yaml`, `config/furniture.yaml`, `config/households.yaml`: all parameters
+4. `config/project.yaml`, `config/furniture.yaml`, `config/households.yaml`: all parameters; `config/render.yaml`: 3D render settings (Phase 12b, presentation only)
 
 If these documents conflict, the order of precedence is: a review file in `reviews/` > PROCEDURES > RESEARCH_PLAN > DELIVERABLES. Log any conflict you find in `reports/QUESTIONS.md`.
 
@@ -35,7 +35,7 @@ If these documents conflict, the order of precedence is: a review file in `revie
 
 ## Engineering conventions
 
-- Python 3.11. Package `src/fea/` (install with `pip install -e .`, so create `pyproject.toml`). Scripts in `scripts/` are numbered by phase: `00_env_report.py`, `01_download.py`, `02_inspect_schemas.py`, `03_build_corpus.py`, `04_check_furniture.py`, `05_schedules.py`, `06_pilot.py`, `07_run_expA.py`, `08_run_expB.py`, `09_run_expD_ablations.py`, `10_run_expC.py`, `11_scenario_hk.py`, `12_make_figures.py`, `12_make_tables.py`.
+- Python 3.11. Package `src/fea/` (install with `pip install -e .`, so create `pyproject.toml`). Scripts in `scripts/` are numbered by phase: `00_env_report.py`, `01_download.py`, `02_inspect_schemas.py`, `03_build_corpus.py`, `04_check_furniture.py`, `05_schedules.py`, `06_pilot.py`, `07_run_expA.py`, `08_run_expB.py`, `09_run_expD_ablations.py`, `10_run_expC.py`, `11_scenario_hk.py`, `12_make_figures.py`, `12_make_tables.py`, `12b_render3d.py` (Blender, headless).
 - Every script: `--config`, `--dry-run`, a log file in `logs/`, resumable long runs, and a progress bar.
 - Tests in `tests/` with `pytest`. At minimum, test the raster, candidates, validator (hand-made violating layouts must be caught), metrics (FCI on a toy case computed by hand; FEA inversion on a synthetic monotone curve), and a tiny end-to-end solve.
 - Type hints and docstrings on public functions. No notebook-only logic: notebooks, if any, go in `notebooks/` and only import from `src/fea/`.
