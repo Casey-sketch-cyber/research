@@ -1,0 +1,184 @@
+{
+  "unit_key": "D3:384eb538ea7940b40792",
+  "source": "D3",
+  "nia_m2": 12.000000000739435,
+  "furnishable_area_m2": 9.480000000739436,
+  "household": "H4_parent_child",
+  "strategy": "S2",
+  "algorithm": "cp_sat",
+  "resolution_m": 0.1,
+  "items": [],
+  "service": {},
+  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
+  "fci": 0.0,
+  "fci_by_variant": {
+    "normal": 0.0
+  },
+  "tb": 0.0,
+  "served_hours": 0.0,
+  "demanded_hours": 28.0,
+  "validator": {
+    "fci": 0.0,
+    "fci_by_variant": {
+      "normal": 0.0
+    },
+    "served_hours_by_variant": {
+      "normal": 0.0
+    },
+    "served_hours": 0.0,
+    "demanded_hours": 28.0,
+    "tb": 0.0,
+    "pass": true,
+    "violations": [],
+    "credits": {
+      "normal:night:0": 0.0,
+      "normal:night:1": 0.0,
+      "normal:morning:0": 0.0,
+      "normal:morning:1": 0.0,
+      "normal:evening:0": 0.0,
+      "normal:evening:1": 0.0,
+      "normal:dinner:0": 0.0,
+      "normal:leisure:0": 0.0
+    },
+    "unreachable_items": []
+  },
+  "solver": {
+    "status": "TIMEOUT_WITH_INCUMBENT",
+    "last_search_status": "FEASIBLE",
+    "time_s": 60.084459599107504,
+    "build_time_s": 0.0384749211370945,
+    "objective": 488445.0,
+    "bound": 1204877.0,
+    "reach_iterations": 8,
+    "fci_solver": 0.0,
+    "raw_last_model_fci": 0.5357142857142857,
+    "objective_bound_scope": "last raw CP-SAT search; may differ from retained validated layout",
+    "retained_previous_incumbent": true,
+    "trace": [
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.5357142857142857,
+        "validator_fci": 0.0,
+        "reachability_failures": 10,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:night:0"
+        ],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.5357142857142857,
+        "validator_fci": 0.0,
+        "reachability_failures": 7,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:night:0"
+        ],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.5357142857142857,
+        "validator_fci": 0.0,
+        "reachability_failures": 7,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:night:0"
+        ],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.5357142857142857,
+        "validator_fci": 0.0,
+        "reachability_failures": 7,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:night:0"
+        ],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.5357142857142857,
+        "validator_fci": 0.0,
+        "reachability_failures": 7,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:night:0"
+        ],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.5357142857142857,
+        "validator_fci": 0.0,
+        "reachability_failures": 7,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:night:0"
+        ],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.5357142857142857,
+        "validator_fci": 0.0,
+        "reachability_failures": 7,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:night:0"
+        ],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.5357142857142857,
+        "validator_fci": 0.0,
+        "reachability_failures": 7,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:night:0"
+        ],
+        "stopped_at_primary_bound": false
+      }
+    ],
+    "primary_upper_bound": 0.7142857142857143,
+    "window_tiebreak_optimized": false,
+    "encoding": "exhaustive candidate tables + optional rectangle intervals + boundary/assignment no-goods"
+  },
+  "code_hash": "71438b4cd01d4a7b6c9d7d46ab91a4a6edd0d7c93e4fd64534b33b1637f46761"
+}

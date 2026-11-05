@@ -1,0 +1,61 @@
+{
+  "unit_key": "D3:3039fa9dc0ece06809b4",
+  "source": "D3",
+  "nia_m2": 16.000000000043105,
+  "furnishable_area_m2": 13.480000000043106,
+  "household": "H2_single_remote_worker",
+  "strategy": "S2",
+  "algorithm": "cp_sat",
+  "resolution_m": 0.1,
+  "items": [],
+  "service": {},
+  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
+  "fci": 0.0,
+  "fci_by_variant": {
+    "normal": 0.0
+  },
+  "tb": 0.0,
+  "served_hours": 0.0,
+  "demanded_hours": 26.0,
+  "solver": {
+    "status": "STRUCTURAL_UNREACHABLE",
+    "time_s": 0.00651131384074688,
+    "objective": null,
+    "bound": null,
+    "reach_iterations": 0,
+    "fci_solver": 0.0,
+    "termination": "fixed_service_unreachable_without_furniture"
+  },
+  "validator": {
+    "fci": 0.0,
+    "fci_by_variant": {
+      "normal": 0.0
+    },
+    "served_hours_by_variant": {
+      "normal": 0.0
+    },
+    "served_hours": 0.0,
+    "demanded_hours": 26.0,
+    "tb": 0.0,
+    "pass": false,
+    "violations": [
+      "fixed_service_unreachable:normal:day:0",
+      "fixed_service_unreachable:normal:dinner:0",
+      "fixed_service_unreachable:normal:evening:0",
+      "fixed_service_unreachable:normal:leisure:0",
+      "fixed_service_unreachable:normal:morning:0",
+      "fixed_service_unreachable:normal:night:0"
+    ],
+    "credits": {
+      "normal:night:0": 0.0,
+      "normal:morning:0": 0.0,
+      "normal:morning:1": 0.0,
+      "normal:day:0": 0.0,
+      "normal:evening:0": 0.0,
+      "normal:dinner:0": 0.0,
+      "normal:leisure:0": 0.0
+    },
+    "unreachable_items": []
+  },
+  "code_hash": "71438b4cd01d4a7b6c9d7d46ab91a4a6edd0d7c93e4fd64534b33b1637f46761"
+}

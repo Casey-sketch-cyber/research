@@ -111,7 +111,7 @@ def runtime_projection(frame, config):
     sources.to_csv("results/pilot/runtime_projection.csv", index=False)
     total = float(sources.projected_h.sum())
     rng = np.random.default_rng(config["seed"])
-    draws = np.zeros(1000)
+    draws = np.zeros(config["experiments"]["bootstrap"]["n"])
     for row in source_rows:
         values = by_unit[by_unit.source == row["source"]].solve_time_s.to_numpy()
         draws += row["full_units"]*(rng.choice(values, (len(draws), len(values)), replace=True).mean(axis=1)
@@ -122,11 +122,17 @@ def runtime_projection(frame, config):
     cap = max(0, min(d1["full_units"], math.floor((36*3600-base_other_s)/d1_unit_s)))
     # Buffer is an explicit scheduling assumption, not an observed performance gain.
     buffered_cap = max(0, min(cap, math.floor((36*3600/1.2-base_other_s)/d1_unit_s)))
+    coverage_fraction = min(1., 36/(1.2*total)) if total else 1.
+    fallback_caps = {r["source"]: math.floor(r["full_units"]*coverage_fraction) for r in source_rows}
+    fallback_h = sum(fallback_caps[r["source"]]*(r["mean_unit_solver_s"]+r["mean_unit_preparation_s"])/3600 for r in source_rows)
     return dict(concurrent_solves=1, projected_h=total,
                 descriptive_unit_bootstrap_interval_h=np.quantile(draws, [.025, .975]).tolist(),
                 budget_h=36, over_budget=total > 36,
                 d2_d3_only_h=base_other_s/3600, d1_max_at_point_estimate=cap,
                 d1_max_with_20pct_scheduling_margin=buffered_cap,
+                fallback_source_caps_at_existing_solver_budget=fallback_caps,
+                fallback_source_caps_projected_h=fallback_h,
+                fallback_source_caps_with_margin_h=fallback_h*1.2,
                 adjustment="lower_D1_cap_first" if total > 36 else "no_cap_change_proposed",
                 limitations=["One solve at a time; 12 household/strategy cases per unit; preceding-strategy incumbents retained.",
                     "Measured preparation overhead comes from the frozen 24-unit candidate benchmark.",
@@ -193,6 +199,14 @@ def main():
                     render_layout(unit, layout, config, households[household_name], path.with_suffix(".png"), grids[unit.unit_key])
                 row = frame[(frame.unit_key == unit.unit_key) & (frame.household == household_name) & (frame.strategy == strategy)].iloc[0]
                 solver = layout["solver"]
+                lower_strategy = {"S1": "S0", "S2": "S1"}.get(strategy)
+                observed_gain_lower_feasible = False
+                if lower_strategy and result["pass"]:
+                    lower_row = frame[(frame.unit_key == unit.unit_key) & (frame.household == household_name)
+                                      & (frame.strategy == lower_strategy)].iloc[0]
+                    if result["fci"] > lower_row.fci_validator+1e-6:
+                        lower_check = validate_layout({**layout, "strategy": lower_strategy}, grids[unit.unit_key], config, households[household_name])
+                        observed_gain_lower_feasible = lower_check["pass"] and abs(lower_check["fci"]-result["fci"]) <= 1e-6
                 expected_failure = (not result["pass"] and not empty_checked[unit.unit_key]["pass"]
                     and solver["status"] == "STRUCTURAL_UNREACHABLE"
                     and all(v.startswith("fixed_service_unreachable:") for v in result["violations"]))
@@ -210,7 +224,10 @@ def main():
                         and layout["validator"]["violations"] == result["violations"]
                         and bool(row.validator_pass) == result["pass"]),
                     status=solver["status"], termination=solver.get("termination", "search_completed_or_budget_limit"),
+                    last_search_status=solver.get("last_search_status", solver["status"]),
                     retained_previous_incumbent=solver.get("retained_previous_incumbent", False),
+                    n_transformable_items=sum(i["type"] in config["furniture"]["transformable_items"] for i in layout["items"]),
+                    observed_gain_lower_strategy_feasible=observed_gain_lower_feasible,
                     primary_upper_bound=solver.get("primary_upper_bound"),
                     raw_last_model_fci=solver.get("raw_last_model_fci"),
                     window_tiebreak_optimized=solver.get("window_tiebreak_optimized", False),
@@ -259,12 +276,14 @@ def main():
         empty_invalid_units=sum(not c["pass"] for c in empty_checked.values()),
         ordering_pairs=len(pivot), ordering_failures=int((~pivot.ordering_pass).sum()),
         status_counts={k: int(v) for k, v in frame.status.value_counts().items()},
+        last_search_status_counts={k: int(v) for k, v in audit.last_search_status.value_counts().items()},
         final_valid_empty=int(((frame.n_items == 0) & frame.validator_pass).sum()),
         final_valid_nonempty=int(((frame.n_items > 0) & frame.validator_pass).sum()),
         final_valid_zero_service=int(((frame.fci_validator <= 1e-9) & frame.validator_pass).sum()),
         final_valid_nonempty_zero_service=int(((frame.n_items > 0) & (frame.fci_validator <= 1e-9) & frame.validator_pass).sum()),
         retained_previous_incumbents=int(audit.retained_previous_incumbent.sum()),
         early_bound_incumbents=int((audit.termination == "primary_bound_incumbent").sum()),
+        observed_gains_lower_strategy_feasible=int(audit.observed_gain_lower_strategy_feasible.sum()),
         solver_time_sum_s=float(frame.solve_time_s.sum()),
         runtime_quantiles_s={str(q): float(frame.solve_time_s.quantile(q)) for q in (.5, .9, .95, 1)},
         layout_artifacts=len(artifacts), artifact_bytes=sum(a["bytes"] for a in artifacts),

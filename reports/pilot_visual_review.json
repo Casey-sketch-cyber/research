@@ -1,0 +1,67 @@
+{
+  "method": "Visual inspection by the implementing assistant of complete six-slot PNGs and all empty-access source sheets; metrics verified separately by the independent audit. This record is not the external G2 reviewer verdict.",
+  "reviews": [
+    {
+      "path": "results/layouts/pilot/D1_26c3cf1fe59956b266da_H1_S0.png",
+      "sha256": "d9bd7950f3f39744e89a366755c30493f1af8cab5d47e3069d3f00d7a2053cd8",
+      "observation": "Static bodies remain fixed across all normal-day slots. Drawn routes enter through the circulation space and reach the relevant access strips; kitchen and sanitary areas remain unoccupied. Titles and legend are readable."
+    },
+    {
+      "path": "results/layouts/pilot/D1_26c3cf1fe59956b266da_H2_S1.png",
+      "sha256": "71269180edaf9e601ff7efc4a5414df17bb5e3d8bf0197b68b9cc32413986792",
+      "observation": "The selected S1 solution uses static furniture. The work-slot route reaches the desk access strip; no within-day body/state changes appear. Shared clearance zones are translucent and distinguishable from bodies."
+    },
+    {
+      "path": "results/layouts/pilot/D1_26c3cf1fe59956b266da_H3_S2.png",
+      "sha256": "bd2c757bfba7d56704fe3f8e16dd00250842952188e6664a1ad9f037e0cc067e",
+      "observation": "Wall bed deploys at night and folds for the remaining slots; the drop-leaf table shows the converse normal-day pattern. Hatched stowed footprints preserve their anchors. Night routes reach both bed access zones, and the incomplete activity score is clearly shown rather than hidden."
+    },
+    {
+      "path": "results/layouts/pilot/D1_f732e6230a6c7ba6ab35_H1_S0.png",
+      "sha256": "24da5dac022461c960373c0b7ba1cc2ab71775f164fe9e894031c39710f976b4",
+      "observation": "Furniture is visible in every slot, but no credited activity routes are drawn and the title reports zero FCI. The entrance circulation region is disconnected from furnishable cells under the source classification; this is a valid zero-service result, not evidence of a successfully furnished dwelling. Panel titles, axes and legend do not overlap."
+    },
+    {
+      "path": "results/layouts/pilot/D1_49816767142d653310ef_H1_S0.png",
+      "sha256": "c6e3b7c36774b2803cc682cd6f8127fb33175b3e703d19f165944424cf0d172e",
+      "observation": "The retained empty layout is explicitly labelled INVALID in all-slot summary metadata, with zero FCI. The entrance vestibule is separated from the lower service approach by fixed-classified space. No furniture or invented activity paths conceal the structural-access failure."
+    },
+    {
+      "path": "results/layouts/pilot/D2_016671f59dcf2ba8685b_H3_S2.png",
+      "sha256": "0ca526108554d6981eb1e74f44c155dc1f4dbf8d8cc192630ea4f711b02a5c7d",
+      "observation": "The S2 result uses only static furniture, unchanged across the six slots. Bed, desk, dining and two distinct armchair instances are visible; the drawn activity routes connect through the internal doorway to the left room. Fixed rooms remain unoccupied. Full reported FCI with zero burden therefore does not itself demonstrate a transformation benefit."
+    },
+    {
+      "path": "results/layouts/pilot/D3_c664e38ee8ad7512e30e_H1_S0.png",
+      "sha256": "1ae0785421cb99d724350d4b95a0ca5167146cb5b4f9f9c6d081c244ea43b574",
+      "observation": "The 8 m² shell remains empty and is labelled INVALID with zero FCI. Pod and kitchenette footprints are preserved; no fabricated furniture route bypasses the narrow passage. The matching empty-access sheet and continuous diagnostic explain the conservative raster loss."
+    },
+    {
+      "path": "results/layouts/pilot/D3_384eb538ea7940b40792_H1_S2.png",
+      "sha256": "8bca49ef4a380064c9dd62c0f4ca59b88526b78d68a4186ea77f827e61b9fcf8",
+      "observation": "The 12 m² shell passes empty fixed-service access but the retained S2 layout is empty, with zero FCI and no activity routes across all slots. This clearly exposes a search fallback; it is not proof that furnishing this shell is impossible. Titles, axes and the empty-layout legend remain readable."
+    },
+    {
+      "path": "results/layouts/pilot/D3_bdf0c78c4eba6436fb93_H1_S2.png",
+      "sha256": "6d225ea1fc66221027f6cbae7d10792b40093da60d8074afc850e7cdc0c97bd1",
+      "observation": "The 32 m² shell contains six static items with unchanged footprints across the normal day. Routes from the bottom entrance reach the bed, dining/storage and lounge approach zones in the relevant slots; the fixed pod and kitchenette remain clear of furniture bodies. Full FCI and zero burden are shown without implying a need for transformation."
+    }
+  ],
+  "empty_access_reviews": [
+    {
+      "path": "results/pilot/empty_access_D1.png",
+      "sha256": "13023eb4f349a5f621d2347a1a9b4c91fee52ea40a9c867c981c7a42e59bea16",
+      "observation": "All eight frozen units inspected. One fixed-service failure is visible in the 40.02 m² unit; the 32.74 m² unit passes fixed-service access but only its entrance circulation is reachable. The exterior balcony-side doors no longer appear as mandatory indoor targets."
+    },
+    {
+      "path": "results/pilot/empty_access_D2.png",
+      "sha256": "3b5e3b5ea2403fc4c7a863c4060ecf4b15d0622919102ee22479b073bcc42b49",
+      "observation": "All six units inspected. The 48.78 m² unit has a disconnected upper-room service approach; the other five have reachable required approaches. Source-space gaps are preserved rather than visually bridged."
+    },
+    {
+      "path": "results/pilot/empty_access_D3.png",
+      "sha256": "5cb1289317402693b37ec2113150f8ff8181ab32c84e23d8f7a6db48e6061e1b",
+      "observation": "All six shells inspected. The 8, 16 and 22 m² shells show disconnected service approaches near the pod/kitchen passage; 12, 32 and 40 m² shells pass empty access. The continuous/raster diagnostic distinguishes narrow continuous routes from classification failures."
+    }
+  ]
+}

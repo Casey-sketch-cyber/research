@@ -1,0 +1,29 @@
+{
+  "concurrent_solves": 1,
+  "projected_h": 264.07778495829285,
+  "descriptive_unit_bootstrap_interval_h": [
+    193.4899235204999,
+    340.4100681511395
+  ],
+  "budget_h": 36,
+  "over_budget": true,
+  "d2_d3_only_h": 108.70268247635379,
+  "d1_max_at_point_estimate": 0,
+  "d1_max_with_20pct_scheduling_margin": 0,
+  "fallback_source_caps_at_existing_solver_budget": {
+    "D1": 153,
+    "D2": 100,
+    "D3": 57
+  },
+  "fallback_source_caps_projected_h": 29.894410228845487,
+  "fallback_source_caps_with_margin_h": 35.873292274614585,
+  "adjustment": "lower_D1_cap_first",
+  "limitations": [
+    "One solve at a time; 12 household/strategy cases per unit; preceding-strategy incumbents retained.",
+    "Measured preparation overhead comes from the frozen 24-unit candidate benchmark.",
+    "Source-stratified extrapolation from a small pilot, not a guaranteed completion time.",
+    "D3 intentionally spans six area values rather than a probability sample; bootstrap interval is descriptive.",
+    "Includes fast structurally invalid cases; geometry revisions require a new pilot projection.",
+    "Excludes full-experiment aggregation, I/O, and the selected publication renders; 20% margin is an optional scheduling assumption."
+  ]
+}

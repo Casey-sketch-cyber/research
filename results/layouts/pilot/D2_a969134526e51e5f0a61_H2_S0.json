@@ -1,0 +1,252 @@
+{
+  "unit_key": "D2:a969134526e51e5f0a61",
+  "source": "D2",
+  "nia_m2": 43.442007588149764,
+  "furnishable_area_m2": 33.86532873844538,
+  "household": "H2_single_remote_worker",
+  "strategy": "S0",
+  "algorithm": "cp_sat",
+  "resolution_m": 0.1,
+  "items": [],
+  "service": {},
+  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
+  "fci": 0.0,
+  "fci_by_variant": {
+    "normal": 0.0
+  },
+  "tb": 0.0,
+  "served_hours": 0.0,
+  "demanded_hours": 26.0,
+  "validator": {
+    "fci": 0.0,
+    "fci_by_variant": {
+      "normal": 0.0
+    },
+    "served_hours_by_variant": {
+      "normal": 0.0
+    },
+    "served_hours": 0.0,
+    "demanded_hours": 26.0,
+    "tb": 0.0,
+    "pass": true,
+    "violations": [],
+    "credits": {
+      "normal:night:0": 0.0,
+      "normal:morning:0": 0.0,
+      "normal:morning:1": 0.0,
+      "normal:day:0": 0.0,
+      "normal:evening:0": 0.0,
+      "normal:dinner:0": 0.0,
+      "normal:leisure:0": 0.0
+    },
+    "unreachable_items": []
+  },
+  "solver": {
+    "status": "TIMEOUT_WITH_INCUMBENT",
+    "last_search_status": "UNKNOWN",
+    "time_s": 60.13130786642432,
+    "build_time_s": 0.11821494065225124,
+    "objective": 129888.0,
+    "bound": 184998.0,
+    "reach_iterations": 10,
+    "fci_solver": 0.0,
+    "raw_last_model_fci": 1.0,
+    "objective_bound_scope": "last raw CP-SAT search; may differ from retained validated layout",
+    "retained_previous_incumbent": false,
+    "trace": [
+      {
+        "status": "FEASIBLE",
+        "model_fci": 1.0,
+        "validator_fci": 0.0,
+        "reachability_failures": 20,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:day:1",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:dinner:1",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:evening:1",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:leisure:1",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:morning:1",
+          "fixed_service_unreachable:normal:night:0",
+          "fixed_service_unreachable:normal:night:1"
+        ],
+        "stopped_at_primary_bound": true
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 1.0,
+        "validator_fci": 0.0,
+        "reachability_failures": 20,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:day:1",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:dinner:1",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:evening:1",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:leisure:1",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:morning:1",
+          "fixed_service_unreachable:normal:night:0",
+          "fixed_service_unreachable:normal:night:1"
+        ],
+        "stopped_at_primary_bound": true
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 1.0,
+        "validator_fci": 0.0,
+        "reachability_failures": 20,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:day:1",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:dinner:1",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:evening:1",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:leisure:1",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:morning:1",
+          "fixed_service_unreachable:normal:night:0",
+          "fixed_service_unreachable:normal:night:1"
+        ],
+        "stopped_at_primary_bound": true
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 1.0,
+        "validator_fci": 0.0,
+        "reachability_failures": 20,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:day:1",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:dinner:1",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:evening:1",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:leisure:1",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:morning:1",
+          "fixed_service_unreachable:normal:night:0",
+          "fixed_service_unreachable:normal:night:1"
+        ],
+        "stopped_at_primary_bound": true
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 1.0,
+        "validator_fci": 0.0,
+        "reachability_failures": 20,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:day:1",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:dinner:1",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:evening:1",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:leisure:1",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:morning:1",
+          "fixed_service_unreachable:normal:night:0",
+          "fixed_service_unreachable:normal:night:1"
+        ],
+        "stopped_at_primary_bound": true
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 1.0,
+        "validator_fci": 0.0,
+        "reachability_failures": 20,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:day:1",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:dinner:1",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:evening:1",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:leisure:1",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:morning:1",
+          "fixed_service_unreachable:normal:night:0",
+          "fixed_service_unreachable:normal:night:1"
+        ],
+        "stopped_at_primary_bound": true
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 1.0,
+        "validator_fci": 0.0,
+        "reachability_failures": 17,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:day:1",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:dinner:1",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:evening:1",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:leisure:1",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:morning:1",
+          "fixed_service_unreachable:normal:night:0",
+          "fixed_service_unreachable:normal:night:1"
+        ],
+        "stopped_at_primary_bound": true
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 1.0,
+        "validator_fci": 0.0,
+        "reachability_failures": 20,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:day:1",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:dinner:1",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:evening:1",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:leisure:1",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:morning:1",
+          "fixed_service_unreachable:normal:night:0",
+          "fixed_service_unreachable:normal:night:1"
+        ],
+        "stopped_at_primary_bound": true
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 1.0,
+        "validator_fci": 0.0,
+        "reachability_failures": 20,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:day:1",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:dinner:1",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:evening:1",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:leisure:1",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:morning:1",
+          "fixed_service_unreachable:normal:night:0",
+          "fixed_service_unreachable:normal:night:1"
+        ],
+        "stopped_at_primary_bound": true
+      }
+    ],
+    "primary_upper_bound": 1.0,
+    "window_tiebreak_optimized": false,
+    "encoding": "exhaustive candidate tables + optional rectangle intervals + boundary/assignment no-goods"
+  },
+  "code_hash": "71438b4cd01d4a7b6c9d7d46ab91a4a6edd0d7c93e4fd64534b33b1637f46761"
+}

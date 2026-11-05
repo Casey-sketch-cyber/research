@@ -36,16 +36,13 @@ After each review, tell Codex: *"Pull, read `reviews/Gx_review.md`, address the 
 |---|---|
 | Task L literature | Q-12 permits continuation with narrowed C2/C3; remaining screening due at G3 |
 | G1 data & corpus | M1–M6/S1–S4 corpus revisions complete; 28 acceptance checks and 40 tests pass |
-| G2 method & pilot | Phase 5 accepted; Phase 6 implementation in progress |
+| G2 method & pilot | 240-case pilot complete; 56 tests pass; ready for review |
 | G3 results | not started |
 | G4 final package | not started |
 
-Start the review with [`reports/GATE_G1.md`](reports/GATE_G1.md), the
-[`24-unit contact sheet`](results/corpus/sample_contact_sheet.png), and
-[`reproduction commands`](docs/REPRODUCING.md). The complete suite passed with
-23 tests and no skips at the original G1 submission. The added Task L tests pass
-(5 tests); its screening is explicitly incomplete. No solver, FCI, FEA or
-area-saving results from this project exist yet.
+Start the review with [`reports/GATE_G2.md`](reports/GATE_G2.md), which opens with the revised G1 corpus, F2 and contact sheet. [Reproduction commands](docs/REPRODUCING.md), the [complete artifact manifest](results/pilot/layout_manifest.csv) and [independent audit](reports/pilot_audit.json) accompany the package. The current full suite passes all 56 tests.
+
+The pilot contains 180 valid layouts and 60 explained invalid cases. Search-quality limitations, conservative access failures and the 264.08 h Exp. A projection against a 36 h budget require G2 review. Proposed scope adjustments have not been applied. Phase 7 has not started, and no full-experiment FEA or area-saving conclusion is claimed. Task L literature screening remains explicitly incomplete and is due at G3.
 
 ## License
 

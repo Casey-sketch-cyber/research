@@ -31,13 +31,16 @@ def main():
     visual = read("reports/pilot_visual_review.json")
     assert audit["pass"] and audit["config_hash"] == digest
     assert len(visual["reviews"]) >= 6
-    for row in visual["reviews"]:
+    for row in visual["reviews"] + visual.get("empty_access_reviews", []):
         assert sha256_file(Path(row["path"])) == row["sha256"], "Visual review is stale"
     counts = pd.read_csv("results/corpus/counts.csv")
     runtime = pd.read_csv("results/pilot/runtime_projection.csv")
     frame = pd.read_csv("results/pilot/pilot_solutions.csv")
     diagnostic = pd.read_csv("results/pilot/fixed_service_diagnostic.csv")
     failed = diagnostic[~diagnostic.raster_reachable]
+    access_notes = read("reports/pilot_access_notes.json")
+    assert set(access_notes["units"]) == set(failed.unit_key), "Every failed unit needs an up-to-date explanation"
+    access_text = "\n".join(f"- `{key}`: {value}" for key, value in access_notes["units"].items())
     statuses = pd.DataFrame([dict(status=k, cases=v) for k, v in audit["status_counts"].items()])
     if not projection["over_budget"]:
         adjustment = "The point projection is within the budget. No D1 cap or solver-budget change is proposed on this evidence. Retain the uncertainty and rerun the projection after any method correction."
@@ -52,6 +55,12 @@ def main():
             f"with an explicit 20% scheduling margin it permits {projection['d1_max_with_20pct_scheduling_margin']}. "
             "Use the existing NIA-bin × room-count stratification and site cap if approved. "
             "The frozen sample remains unchanged pending G2; reducing solve time comes after this review-prioritized adjustment.")
+    if projection["over_budget"]:
+        caps = projection["fallback_source_caps_at_existing_solver_budget"]
+        adjustment += (f" A concrete fallback at the existing solver budget is source caps D1/D2/D3 = {caps['D1']}/{caps['D2']}/{caps['D3']}, "
+            f"giving a point projection of {projection['fallback_source_caps_projected_h']:.2f} h, or {projection['fallback_source_caps_with_margin_h']:.2f} h with the scheduling margin. "
+            "This uniformly reduces source coverage after checking the D1-only option and requires reviewer approval because D2/D3 were originally all-inclusive. "
+            "It is a scope proposal, not an executed experiment or a promise about unseen runtimes; preserve source-specific NIA stratification and the D1 site cap.")
     visual_text = "\n".join(f"- [`{r['path']}`](../{r['path']}): {r['observation']}" for r in visual["reviews"])
     results = f"""## Pilot results
 
@@ -61,13 +70,17 @@ All {audit['cases']} cases from {audit['units']} frozen units are present. Indep
 
 The {audit['ordering_pairs']} unit/household triples have {audit['ordering_failures']} violations of S2 ≥ S1 ≥ S0. Retaining prior-strategy incumbents contributes to this property: {audit['retained_previous_incumbents']} cases retained one, including {audit['early_bound_incumbents']} stopped at a proved primary bound. This is a finite-budget method check, not evidence that all strategy optima were solved. Strategy differences can include unequal search difficulty or a poor static incumbent; they must not yet be interpreted as furniture-caused area savings.
 
-Retained-assignment FCI agreement and every saved config/code hash passed the independent audit. Agreement compares the separately recomputed, access-adjusted assignment score (`fci_solver`) with the validator, not the raw CP-SAT relaxation; raw scores and access failures remain in each solver trace. The saved objective/bound values describe the last raw CP-SAT search, not necessarily the retained validated layout. Tests: `{tests['stdout']}`. Detailed checks: [pilot_audit.json](pilot_audit.json); every layout and image: [layout_manifest.csv](../results/pilot/layout_manifest.csv).
+In {audit['observed_gains_lower_strategy_feasible']} observed adjacent-strategy improvements, the improved saved layout also passes the independent validator under the lower strategy with the same score. These are explicit witnesses of a weaker lower-strategy search result, not evidence that its furniture restrictions prevent that score. The per-case diagnostic is retained in [validation_audit.csv](../results/pilot/validation_audit.csv); this check does not alter any selected layout or score.
+
+Retained-assignment FCI agreement and every saved config/code hash passed the independent audit. Agreement compares the separately recomputed, access-adjusted assignment score (`fci_solver`) with the validator, not the raw CP-SAT relaxation; raw scores and access failures remain in each solver trace. The saved objective/bound values describe the last raw CP-SAT search, not necessarily the retained validated layout. Tests: `{tests['stdout'].splitlines()[-1]}`. Detailed checks and final/raw search-status counts: [pilot_audit.json](pilot_audit.json); every layout and image: [layout_manifest.csv](../results/pilot/layout_manifest.csv).
 
 The [per-unit summary](../results/pilot/summary_by_unit.csv) includes zero-service counts and runtimes; the [source/household/strategy summary](../results/pilot/summary_by_group.csv) preserves all cases, including failures.
 
 ## Access failures and interpretation
 
 {table(failed, ['unit_key', 'target_index', 'continuous_diagnostic_reachable', 'reason'])}
+
+{access_text}
 
 The diagnostic continuous check erodes the same conservative source-space classification. `conservative_raster_loss` means a continuous route exists but the whole-cell raster and conservative walking-disc criterion remove it; the required resolution sensitivity must examine this. Other failures also occur under the continuous classification, because fixed rooms, narrow connections or source geometry interrupt the approach. None establishes that the original dwelling is physically unusable. These cases remain in the denominator with invalid status and zero FCI.
 
@@ -88,6 +101,8 @@ The source-weighted projection is **{projection['projected_h']:.2f} h**, against
 {adjustment}
 
 ## Recorded visual review
+
+All frozen empty layouts were also inspected on the three source contact sheets; observations and image hashes are recorded in [pilot_visual_review.json](pilot_visual_review.json).
 
 {visual_text}
 
@@ -127,19 +142,32 @@ The implemented solver, independent validator, simplifications and full result i
 
 ## Review decisions requested
 
-- Check the exact encoding, service-target scope, S1 variant-day interpretation and early-stop/retained-incumbent protocol before full experiments.
+- Check the exact encoding, service-target scope, alternative-clearance approach rule for multi-person items, S1 variant-day interpretation and early-stop/retained-incumbent protocol before full experiments.
 - Review conservative access failures and valid empty/time-limited fallbacks; decide any method or resolution changes before treating FCI as an optimized research outcome.
 - Review the measured runtime projection and the proposed scope response. Furniture and household parameters were not adjusted to improve outcomes.
 - Return the verdict in `reviews/G2_review.md`. Work stops at this gate as required.
 """
     Path("reports/GATE_G2.md").write_text(gate, encoding="utf-8")
+    question_path = Path("reports/QUESTIONS.md")
+    existing = question_path.read_text(encoding="utf-8").split("## G2 method questions (generated)")[0].rstrip()
+    questions = f"""
+
+## G2 method questions (generated)
+
+| ID | Issue for review | Current handling |
+|---|---|---|
+| Q-14 | {audit['empty_invalid_units']} frozen units fail empty fixed-service access; source-space disconnection and conservative raster losses are diagnosed separately. Should any source conversion, approach rule or resolution be revised before Exp. A? | Keep the frozen sample and original dimensions; do not fill gaps or reinterpret source spaces to obtain a preferred result. See GATE_G2.md and the connectivity CSVs. |
+| Q-15 | {audit['observed_gains_lower_strategy_feasible']} apparent adjacent-strategy improvements have a same-score witness feasible under the lower strategy; {audit['final_valid_empty']} valid empty fallbacks remain. Which search-quality improvements are required before capacity/area inference? | Preserve the timed protocol and raw traces; interpret no pilot gain as causal furniture savings. Review stronger feasible initialization or bidirectional incumbent reuse under an explicitly measured budget. |
+| Q-16 | Exp. A projects to {projection['projected_h']:.2f} h against {projection['budget_h']} h. Which measured scope response is approved? | Evaluate the review-prioritized D1 cap first. Concrete alternative caps and their assumptions are in GATE_G2.md; no sample or time-limit adjustment has been applied. |
+"""
+    question_path.write_text(existing+questions, encoding="utf-8")
     candidate = read("reports/candidates_audit.json")
     path = Path("reports/phase_05_candidates.md")
     text = path.read_text(encoding="utf-8")
     before, after = text.split("## Key numbers and runtime")[0], text.split("## Decisions and limitations")[1]
     numbers = (f"\n\nCandidate-generation median {candidate['median_candidate_time_s']:.6f} s/unit; maximum {candidate['max_candidate_time_s']:.6f} s/unit. "
                f"Rasterization median {candidate['median_raster_time_s']:.6f} s/unit. These are measured separately after the entrance/target corrections. "
-               f"The median is below the 2 s target. Per-item counts: results/candidates/counts.csv. Tests: {candidate['tests']}. Config hash: {digest}.\n\n")
+               f"The median is below the 2 s target. Per-item counts: results/candidates/counts.csv. Tests: {candidate['tests'].splitlines()[-1]}. Config hash: {digest}.\n\n")
     path.write_text(before+"## Key numbers and runtime"+numbers+"## Decisions and limitations"+after, encoding="utf-8")
     text = path.read_text(encoding="utf-8").replace("Continue solver/validator implementation and the required 240-instance pilot.",
         "The solver/validator and pilot are now complete; see the G2 method review. The publication audit redraws pilot images with explicit padding, leaving saved layouts unchanged.")
