@@ -57,6 +57,8 @@ The phrase "functionally equivalent area" was not found in this sense.
 
 ## 5. Confirmation in Scopus or Web of Science (author, about 15 minutes)
 
+> **Update:** the project has no Scopus or Web of Science access. Codex runs this confirmation instead, with free databases (OpenAlex, Semantic Scholar, Crossref, arXiv), as **task L** (`docs/LITERATURE_SEARCH.md`). The queries below are kept for reference if database access becomes available.
+
 Run these and skim titles from 2015 onward. Add anything that matches the "appears novel" rows to §2.
 
 **Scopus**

@@ -41,6 +41,8 @@ After each phase, add `reports/phase_NN_<name>.md` using `reports/TEMPLATE_phase
 | `results/ablations/*.csv` | ablation, value, n, median_fci_S2, median_saving_m2, delta_a_min_m2 |
 | `results/scenario_hk/*.csv` | area_m2, household, strategy, adequate_share, a_min, plus district weights if available |
 | `results/tables/T1..T7.(csv,md)` | — |
+| `results/literature/raw_hits.csv` (task L) | rec_id, doi, title, year, venue, type, authors_first3, sources, query_ids, cited_by, abstract_available, url |
+| `results/literature/screened.csv` (task L) | rec_id, doi, title, year, venue, stage1, stage2, claim_affected, note, fulltext_checked |
 | `results/figures/F1..F10.(png,pdf)` | — |
 | `results/figures/F3b_<unit>.(png,pdf)` | 3D render grid: S0/S2 × night/day/dinner (Phase 12b) |
 | `results/renders3d/stills/*.png`, `results/renders3d/scenes/*.json`, `results/renders3d/animation.(mp4,gif)` (optional) | 3D stills, their scene descriptions, and the optional transformation animation; each file < 50 MB |

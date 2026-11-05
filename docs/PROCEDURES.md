@@ -98,6 +98,12 @@ A `Unit` (one dwelling) holds:
 
 ---
 
+## Task L: Systematic literature search (run once, before the G1 fixes)
+
+Follow `docs/LITERATURE_SEARCH.md` with `config/lit_search.yaml` and `scripts/00b_lit_search.py`. Outputs: `results/literature/raw_hits.csv`, `results/literature/screened.csv`, and a new section appended to `reports/novelty_check.md`. Stop only if the stop rule in LITERATURE_SEARCH §5 triggers; otherwise continue.
+
+---
+
 ## Phase 1: Data acquisition and schema inspection (day 1)
 
 **Steps**

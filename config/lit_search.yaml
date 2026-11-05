@@ -1,0 +1,72 @@
+# Systematic literature search (task L, see docs/LITERATURE_SEARCH.md).
+# Free sources only. Never commit API keys or email addresses.
+
+years: [2000, 2026]
+languages: [en]          # Chinese sources are optional (see docs/LITERATURE_SEARCH.md §6)
+max_records_per_query_per_source: 500
+
+sources:
+  openalex:
+    endpoint: "https://api.openalex.org/works"
+    field: "title_and_abstract.search"     # boolean AND / OR / NOT and "quoted phrases" supported
+    note: "Optionally add mailto=<address> locally for the polite pool; never commit it."
+  semantic_scholar:
+    endpoint: "https://api.semanticscholar.org/graph/v1/paper/search/bulk"
+    syntax: "+ (AND), | (OR), - (NOT), \"phrases\", parentheses"
+    note: "Unauthenticated use is rate-limited: sleep and retry with backoff."
+  crossref:
+    endpoint: "https://api.crossref.org/works"
+    field: "query.bibliographic"           # no boolean; use the short keyword form
+    note: "Use for DOI/metadata completion and the short keyword queries only."
+  arxiv:
+    endpoint: "http://export.arxiv.org/api/query"
+    syntax: "search_query with AND / OR / ANDNOT on all: or abs:"
+    note: "At most one request every 3 s."
+
+# Each query has a boolean form (OpenAlex / Semantic Scholar / arXiv) and a short keyword form (Crossref).
+queries:
+  Q1_transformable_layout:
+    claim: C2
+    boolean: '(transformable OR convertible OR multifunctional OR flexible OR reconfigurable OR foldable) AND furniture AND (layout OR arrangement OR "scene synthesis") AND (optimization OR optimisation OR generation OR planning)'
+    keywords: "transformable furniture layout optimization"
+  Q2_time_schedule_dwelling:
+    claim: C2
+    boolean: '(dwelling OR housing OR apartment OR home) AND furniture AND ("time use" OR "daily schedule" OR "activity schedule" OR "time of day" OR temporal OR "time-sharing") AND (layout OR "floor area" OR "space use")'
+    keywords: "furniture layout daily activity schedule dwelling"
+  Q3_quantified_savings:
+    claim: C3
+    boolean: '("multifunctional furniture" OR "transformable furniture" OR "convertible furniture" OR "wall bed" OR "murphy bed" OR "space-saving furniture") AND ("floor area" OR "space saving" OR "space efficiency" OR "usable area")'
+    keywords: "multifunctional furniture floor area space saving quantification"
+  Q4_minimum_size_function:
+    claim: C3
+    boolean: '("minimum dwelling" OR "space standard" OR "space standards" OR "minimum floor area" OR "minimum size") AND (furniture OR activities OR functional) AND (housing OR dwelling OR apartment)'
+    keywords: "minimum dwelling size furniture activities space standards"
+  Q5_usability_scale:
+    claim: H2
+    boolean: '("floor plan" OR "floor plans" OR floorplan) AND (usability OR furnishability OR "space efficiency" OR "excess space") AND (housing OR dwelling) AND (dataset OR "machine learning" OR automated OR computational)'
+    keywords: "dwelling floor plan usability furniture machine learning"
+  Q6_micro_housing_adaptive:
+    claim: C4
+    boolean: '("micro-housing" OR "micro housing" OR "micro-apartment" OR "micro apartment" OR "micro-unit" OR "subdivided unit" OR "subdivided flat" OR "adaptive home" OR "flexible housing") AND (furniture OR "space efficiency" OR "minimum standard")'
+    keywords: "micro apartment transformable furniture space efficiency"
+
+# Claims the screening must check (from RESEARCH_PLAN §1 and reports/novelty_check.md §3).
+claims:
+  C2: "Layout optimization in which furniture states (e.g. bed deployed/stowed) are driven by a household's time-of-day activity schedule, with positions shared across time slots."
+  C3: "A quantification of how much floor area transformable furniture is worth (a 'functionally equivalent area' or equivalent area-saving measure)."
+  C4: "Testing an area-only minimum dwelling standard against functional adequacy measured with (transformable) furniture layouts."
+  H2: "Floor area is a poor proxy for functional adequacy or usability (known: Özer & Jacoby 2022)."
+
+already_known:   # do not report these as new; mark them KNOWN in screening
+  - "Xiong et al., Motion Planning for Convertible Indoor Scene Layout Design (TVCG)"
+  - "Fu et al., Magic Furniture: Design Paradigm of Multi-function Assembly (TVCG)"
+  - "Liu et al. 2025, DIFF: A dataset for indoor flexible furniture (Graphical Models)"
+  - "Zhang et al. 2025, SceneExplorer (TVCG)"
+  - "Garg et al. 2016, Computational Design of Reconfigurables"
+  - "Özer & Jacoby 2022, Dwelling size and usability in London (BRI)"
+  - "Weber, Mueller & Reinhart 2024 (Nature Communications)"
+  - "Goessler & Kaluarachchi 2023 (Buildings)"
+  - "Ulrich 2025 (Buildings)"
+  - "Pedro 2009 (Structural Survey)"
+  - "Daglio, Ginelli & Vignati 2023 (Buildings)"
+  - "Merrell et al. 2011; Yu et al. 2011; LayoutVLM 2025; HomeWorld 2026; Co-Layout 2025; Architect-Ant 2026; RenoLayout 2026"
