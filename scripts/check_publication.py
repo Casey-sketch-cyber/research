@@ -23,7 +23,16 @@ def inspect_text(text: str, private_terms: list[str]) -> list[str]:
         "machine_identifier": r"(?i)(?:GPU-[0-9a-f-]{16,}|(?:hostname|machine_id|mac_address)\s*[:=]\s*['\"]?[^\s,}\]]+)",
     }
     findings = [name for name, pattern in patterns.items() if re.search(pattern, text)]
-    if any(term and term.casefold() in text.casefold() for term in private_terms):
+    def matches_private_term(term: str) -> bool:
+        if not term:
+            return False
+        # Short numeric IDs/ports must not match substrings of scientific
+        # measurements or opaque hashes. Complete literal values still fail.
+        if term.isdigit() and len(term) < 8:
+            return re.search(r"(?<![\w.])" + re.escape(term) + r"(?![\w.])", text) is not None
+        return term.casefold() in text.casefold()
+
+    if any(matches_private_term(term) for term in private_terms):
         findings.append("explicit_private_term")
     return findings
 

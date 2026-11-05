@@ -16,6 +16,10 @@ def load_config(path: str | Path) -> dict[str, Any]:
     project = yaml.safe_load(path.read_text(encoding="utf-8"))
     for name in ("furniture", "households"):
         project[name] = yaml.safe_load((path.parent / f"{name}.yaml").read_text(encoding="utf-8"))
+    for name in ("downloads", "data_processing"):
+        resource = path.parent / f"{name}.yaml"
+        if resource.exists():
+            project[name] = yaml.safe_load(resource.read_text(encoding="utf-8"))
     return project
 
 

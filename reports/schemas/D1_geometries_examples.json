@@ -1,0 +1,80 @@
+{
+  "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6",
+  "rows": [
+    {
+      "apartment_id": "id_a3b6b96965017ad6",
+      "site_id": "id_d29d53701d3c859e",
+      "building_id": "id_0f78540965a86402",
+      "plan_id": "id_7d7179c146d0d6af",
+      "floor_id": "id_d24eac45e69be063",
+      "unit_id": "id_8ff46e300d4fe79b",
+      "area_id": "id_37c2c8684d0d313e",
+      "unit_usage": "RESIDENTIAL",
+      "entity_type": "area",
+      "entity_subtype": "BATHROOM",
+      "geometry": "POLYGON ((0 1.5214620480142074, 1.028486198765929 2.7471641703270677, 1.5557092753431299 2.3047714812229856, 1.45163659605738 2.180742491793289, 2.7376213811968...",
+      "elevation": 0.0,
+      "height": 2.6
+    },
+    {
+      "apartment_id": "id_a3b6b96965017ad6",
+      "site_id": "id_d29d53701d3c859e",
+      "building_id": "id_0f78540965a86402",
+      "plan_id": "id_7d7179c146d0d6af",
+      "floor_id": "id_d24eac45e69be063",
+      "unit_id": "id_8ff46e300d4fe79b",
+      "area_id": "id_e38570593fefa42a",
+      "unit_usage": "RESIDENTIAL",
+      "entity_type": "area",
+      "entity_subtype": "LIVING_ROOM",
+      "geometry": "POLYGON ((5.3628177673375115 2.5965488475884406, 3.18405458699226 0, 0 2.6717390295935317, 2.1787631803452516 5.268287877181972, 5.3628177673375115 2.5965488475...",
+      "elevation": 0.0,
+      "height": 2.6
+    },
+    {
+      "apartment_id": "id_a3b6b96965017ad6",
+      "site_id": "id_d29d53701d3c859e",
+      "building_id": "id_0f78540965a86402",
+      "plan_id": "id_7d7179c146d0d6af",
+      "floor_id": "id_d24eac45e69be063",
+      "unit_id": "id_8ff46e300d4fe79b",
+      "area_id": "id_b729ce172db98d48",
+      "unit_usage": "RESIDENTIAL",
+      "entity_type": "area",
+      "entity_subtype": "ROOM",
+      "geometry": "POLYGON ((3.6690794770816177 0.4387095891417552, 3.336159558086119 0.7180625703824486, 2.7336335201159985 0, 0 2.2937908785031826, 2.8798843881650287 5.72590344...",
+      "elevation": 0.0,
+      "height": 2.6
+    },
+    {
+      "apartment_id": "id_a3b6b96965017ad6",
+      "site_id": "id_d29d53701d3c859e",
+      "building_id": "id_0f78540965a86402",
+      "plan_id": "id_7d7179c146d0d6af",
+      "floor_id": "id_d24eac45e69be063",
+      "unit_id": "id_8ff46e300d4fe79b",
+      "area_id": "id_e6faf3109b93ecd9",
+      "unit_usage": "RESIDENTIAL",
+      "entity_type": "area",
+      "entity_subtype": "KITCHEN",
+      "geometry": "POLYGON ((5.165627427638197 2.361546551826912, 3.18405458699226 0, 0 2.6717390295935317, 1.9815728406459368 5.033285581420444, 5.165627427638197 2.3615465518269...",
+      "elevation": 0.0,
+      "height": 2.6
+    },
+    {
+      "apartment_id": "id_a3b6b96965017ad6",
+      "site_id": "id_d29d53701d3c859e",
+      "building_id": "id_0f78540965a86402",
+      "plan_id": "id_7d7179c146d0d6af",
+      "floor_id": "id_d24eac45e69be063",
+      "unit_id": "id_8ff46e300d4fe79b",
+      "area_id": "id_5dc2589c81e4601c",
+      "unit_usage": "RESIDENTIAL",
+      "entity_type": "area",
+      "entity_subtype": "ROOM",
+      "geometry": "POLYGON ((2.3321334445558275 5.39629234619113, 5.450909616058776 2.7793284109585166, 3.1187761715029483 0, 0 2.6169639352326133, 2.3321334445558275 5.3962923461...",
+      "elevation": 0.0,
+      "height": 2.6
+    }
+  ]
+}

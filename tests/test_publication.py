@@ -17,3 +17,5 @@ def test_rejects_operational_details_without_echoing_them():
 
 def test_allows_research_provenance():
     assert module.inspect_text("Swiss Dwellings; Hong Kong; doi:10.5281/zenodo.7788422; 0.60 m", []) == []
+    assert module.inspect_text("0.1543218 abc54321def", ["54321"]) == []
+    assert module.inspect_text("port: 54321", ["54321"]) == ["explicit_private_term"]

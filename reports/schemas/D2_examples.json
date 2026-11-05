@@ -1,0 +1,400 @@
+{
+  "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6",
+  "rows": [
+    {
+      "balcony": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 6088.460530236014,
+        "empty": false
+      },
+      "bathroom": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 4770.9870123554865,
+        "empty": false
+      },
+      "bedroom": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 17362.078231378604,
+        "empty": false
+      },
+      "door": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 664.9932153228297,
+        "empty": false
+      },
+      "garden": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 0.0,
+        "empty": true
+      },
+      "inner": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 46029.28563780071,
+        "empty": false
+      },
+      "parking": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 0.0,
+        "empty": true
+      },
+      "pool": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 0.0,
+        "empty": true
+      },
+      "wall": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 5827.997057181324,
+        "empty": false
+      },
+      "window": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 595.406260704848,
+        "empty": false
+      },
+      "front_door": {
+        "type": "Polygon",
+        "area_in_source_units": 105.07169306556149,
+        "empty": false
+      },
+      "id": "05867e834f3b21a0",
+      "kitchen": {
+        "type": "Polygon",
+        "area_in_source_units": 3308.8961659548654,
+        "empty": false
+      },
+      "land": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 60836.04935571964,
+        "empty": false
+      },
+      "net_area": 95.65991257881466,
+      "area": 120.7739,
+      "neighbor": {
+        "type": "tuple"
+      },
+      "living": {
+        "type": "Polygon",
+        "area_in_source_units": 18806.475802695957,
+        "empty": false
+      },
+      "wall_depth": 4.50299826766757
+    },
+    {
+      "balcony": {
+        "type": "Polygon",
+        "area_in_source_units": 1682.962711921093,
+        "empty": false
+      },
+      "bathroom": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 5826.441018837741,
+        "empty": false
+      },
+      "bedroom": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 18525.375525709234,
+        "empty": false
+      },
+      "door": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 587.4113394332783,
+        "empty": false
+      },
+      "garden": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 0.0,
+        "empty": true
+      },
+      "inner": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 43837.3977330052,
+        "empty": false
+      },
+      "parking": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 0.0,
+        "empty": true
+      },
+      "pool": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 0.0,
+        "empty": true
+      },
+      "wall": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 6246.725064868826,
+        "empty": false
+      },
+      "window": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 701.3866739501844,
+        "empty": false
+      },
+      "front_door": {
+        "type": "Polygon",
+        "area_in_source_units": 131.51000136565898,
+        "empty": false
+      },
+      "id": "764b895a86708ccc",
+      "kitchen": {
+        "type": "Polygon",
+        "area_in_source_units": 3796.6374742880434,
+        "empty": false
+      },
+      "land": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 53359.28364260479,
+        "empty": false
+      },
+      "net_area": 207.8176846644011,
+      "area": 84.54173,
+      "neighbor": {
+        "type": "tuple"
+      },
+      "living": {
+        "type": "Polygon",
+        "area_in_source_units": 14154.664339548526,
+        "empty": false
+      },
+      "wall_depth": 5.128547579298831
+    },
+    {
+      "balcony": {
+        "type": "Polygon",
+        "area_in_source_units": 793.1897163208515,
+        "empty": false
+      },
+      "bathroom": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 3051.748671881588,
+        "empty": false
+      },
+      "bedroom": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 12417.645071205003,
+        "empty": false
+      },
+      "door": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 348.264939162008,
+        "empty": false
+      },
+      "garden": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 0.0,
+        "empty": true
+      },
+      "inner": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 29698.615860040376,
+        "empty": false
+      },
+      "parking": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 0.0,
+        "empty": true
+      },
+      "pool": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 0.0,
+        "empty": true
+      },
+      "wall": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 3657.993283763477,
+        "empty": false
+      },
+      "window": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 844.5520012301538,
+        "empty": false
+      },
+      "front_door": {
+        "type": "Polygon",
+        "area_in_source_units": 62.41492849737838,
+        "empty": false
+      },
+      "id": "8fca2928bc0d2ce5",
+      "kitchen": {
+        "type": "Polygon",
+        "area_in_source_units": 3527.3460047878325,
+        "empty": false
+      },
+      "land": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 37479.568708158375,
+        "empty": false
+      },
+      "net_area": 5.970781374928613,
+      "area": 160.536384,
+      "neighbor": {
+        "type": "tuple"
+      },
+      "living": {
+        "type": "Polygon",
+        "area_in_source_units": 9706.491939341733,
+        "empty": false
+      },
+      "wall_depth": 3.4209354120267257
+    },
+    {
+      "balcony": {
+        "type": "Polygon",
+        "area_in_source_units": 2817.6972160535224,
+        "empty": false
+      },
+      "bathroom": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 3898.937345385526,
+        "empty": false
+      },
+      "bedroom": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 14586.85126130289,
+        "empty": false
+      },
+      "door": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 440.00170142254586,
+        "empty": false
+      },
+      "garden": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 0.0,
+        "empty": true
+      },
+      "inner": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 43489.53817174014,
+        "empty": false
+      },
+      "parking": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 0.0,
+        "empty": true
+      },
+      "pool": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 0.0,
+        "empty": true
+      },
+      "wall": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 5554.353707458029,
+        "empty": false
+      },
+      "window": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 591.5254661508396,
+        "empty": false
+      },
+      "front_door": {
+        "type": "Polygon",
+        "area_in_source_units": 107.81498644128527,
+        "empty": false
+      },
+      "id": "d6eb8df9d65094db",
+      "kitchen": {
+        "type": "Polygon",
+        "area_in_source_units": 3980.492002408767,
+        "empty": false
+      },
+      "land": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 52118.66054989029,
+        "empty": false
+      },
+      "net_area": 0.0,
+      "area": 124.49002,
+      "neighbor": {
+        "type": "tuple"
+      },
+      "living": {
+        "type": "Polygon",
+        "area_in_source_units": 19835.72091164772,
+        "empty": false
+      },
+      "wall_depth": 4.352065094990738
+    },
+    {
+      "balcony": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 2699.8730506126885,
+        "empty": false
+      },
+      "bathroom": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 4257.021704734473,
+        "empty": false
+      },
+      "bedroom": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 15237.23964461033,
+        "empty": false
+      },
+      "door": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 701.9150472635808,
+        "empty": false
+      },
+      "garden": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 0.0,
+        "empty": true
+      },
+      "inner": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 40562.01549758611,
+        "empty": false
+      },
+      "parking": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 0.0,
+        "empty": true
+      },
+      "pool": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 0.0,
+        "empty": true
+      },
+      "wall": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 5696.412836220539,
+        "empty": false
+      },
+      "window": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 836.5339283540916,
+        "empty": false
+      },
+      "front_door": {
+        "type": "Polygon",
+        "area_in_source_units": 145.56760923364027,
+        "empty": false
+      },
+      "id": "9d95bba7023609ee",
+      "kitchen": {
+        "type": "Polygon",
+        "area_in_source_units": 4232.787748670778,
+        "empty": false
+      },
+      "land": {
+        "type": "MultiPolygon",
+        "area_in_source_units": 48886.70665134732,
+        "empty": false
+      },
+      "net_area": 71.94396254336415,
+      "area": 92.903,
+      "neighbor": {
+        "type": "tuple"
+      },
+      "living": {
+        "type": "Polygon",
+        "area_in_source_units": 14818.317335388863,
+        "empty": false
+      },
+      "wall_depth": 4.891719745222931
+    }
+  ]
+}

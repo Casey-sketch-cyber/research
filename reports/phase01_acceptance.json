@@ -1,0 +1,15 @@
+{
+  "config_hash": "bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6",
+  "checks": {
+    "all_authorized_resources_present": true,
+    "checksums_present": true,
+    "acquisition_complete": true,
+    "schema_run_complete": true,
+    "all_schema_reports_present": true,
+    "configuration_hashes_current": true,
+    "mapping_complete_and_disjoint": true,
+    "tests_pass": true
+  },
+  "pass": true,
+  "pytest_summary": "7 passed in 0.08s"
+}

@@ -1,0 +1,19 @@
+# Concrete resources of the datasets authorized in project.yaml.
+# D2 is pinned to the inspected upstream revision. No images or models are downloaded.
+resources:
+  - dataset: D1
+    file: swiss_dwellings/swiss-dwellings-v3.0.0.zip
+    url: https://zenodo.org/records/7788422/files/swiss-dwellings-v3.0.0.zip?download=1
+    md5: 3b7915ecd5bf8e492a3e78c598b74123
+  - dataset: D2
+    file: resplan/ResPlan.zip
+    url: https://raw.githubusercontent.com/m-agour/ResPlan/e2b78fe069aee1ab1e1828a612743f308e3c32a7/ResPlan.zip
+  - dataset: D4
+    file: abo/abo-listings.tar
+    url: https://amazon-berkeley-objects.s3.amazonaws.com/archives/abo-listings.tar
+  - dataset: D6
+    file: hk_census/DC_21C_SDU.zip
+    url: https://www.census2021.gov.hk/doc/DC_21C_SDU.zip
+  - dataset: D6_dictionary
+    file: hk_census/data_dictionary.pdf
+    url: https://www.census2021.gov.hk/doc/2021-statistics-classification-idds-en.pdf
