@@ -1,6 +1,6 @@
 # Phase 02: Corpus construction
 
-**Status:** COMPLETE for G1 review. Computational acceptance passed; the human visual and modelling review remains at G1. Upload awaits repository write access.
+**Status:** COMPLETE for G1 review. Computational acceptance passed; the human visual and modelling review remains at G1.
 
 ## 1. Checklist (from PROCEDURES.md)
 - [x] Convert residential D1 records to unit geometry and identify entrances.

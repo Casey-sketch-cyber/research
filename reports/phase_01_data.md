@@ -1,6 +1,6 @@
 # Phase 01: Data acquisition and schema inspection
 
-**Status:** COMPLETE. The remote full run passed the checks in `reports/phase01_acceptance.json`; the repository upload remains pending write access.
+**Status:** COMPLETE. The full run passed the checks in `reports/phase01_acceptance.json`.
 
 ## 1. Checklist (from PROCEDURES.md)
 - [x] Download only D1, D2, D4 listings and D6, with resumable transfers and SHA-256 manifest.
@@ -39,7 +39,7 @@
 ## 4. Deviations from the plan
 - Published examples will omit original source IDs, addresses, coordinates in the source frame and any personal data. Normalized room geometry is research data and may be published.
 - Optional ATUS is deferred; no optional data are downloaded.
-- Phase 00 push was denied because the active GitHub connection lacks repository write access. Local commits are preserved while the author restores access; computational work continues. No private account details are recorded here.
+- Publication was initially delayed by missing write authorization. Repository-owner authorization was subsequently verified for the G1 package; the computational work and neutral commit authorship were preserved. No private account details are recorded here.
 - The slow D1 transfer was completed through another authorized execution environment, checked against the publisher MD5 and transferred unchanged. The complete acquisition/schema/test run then passed in the computational environment; preliminary partial reports are superseded.
 - D2 coordinates are normalized source coordinates, and its net_area field is inconsistent with source gross area. Phase 2 will expose a gross-area calibration assumption rather than treating those coordinates as metres. G1 must review this assumption; source declared areas themselves are not independently validated.
 - The linked general IDDS PDF does not supply a specific SDU field dictionary. The official CSV supplies English/Chinese field names and SDU definitions directly, so those are used. D6 has no household-size or floor-area distribution; neither is inferred.

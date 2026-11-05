@@ -34,7 +34,7 @@ After each review, tell Codex: *"Pull, read `reviews/Gx_review.md`, address the 
 
 | Gate | Status |
 |---|---|
-| G1 data & corpus | Phases 0–4 computational checks passed; ready for review, publication awaiting write access |
+| G1 data & corpus | Phases 0–4 computational checks passed; review package ready, awaiting G1 reviewer verdict |
 | G2 method & pilot | not started |
 | G3 results | not started |
 | G4 final package | not started |

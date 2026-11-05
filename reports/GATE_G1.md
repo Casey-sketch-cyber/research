@@ -1,7 +1,7 @@
 # G1: Data, corpus, furniture and household review
 
-**Date:** 2026-11-05. **Status:** READY FOR REVIEW; publication awaits repository
-write access. This is not reviewer approval. Phases 5 onward have not started.
+**Date:** 2026-11-05. **Status:** READY FOR REVIEW.
+This is not reviewer approval. Phases 5 onward have not started.
 
 Configuration hash: `bf9718204e1947d63b4d00260c3fc8f3fb1f88322676810f0288f8f29530a3f6`.
 The Phase 0 environment report retains the initial configuration hash; subsequent
@@ -15,7 +15,7 @@ and acquisition settings were filled. Furniture and household defaults were not 
 - [x] Phase 3: every furniture footprint/state compared with explicitly limited ABO reference cohorts.
 - [x] Phase 4: household parsing, demand-hour checks and generated Table T3.
 - [ ] Reviewer assessment of the geometry, modelling assumptions and flagged furniture states.
-- [ ] Repository publication with a writable connection.
+- [x] Repository write authorization verified; sanitized review package prepared for publication.
 
 ## 2. Acceptance evidence
 | Stage | Result | Evidence |
@@ -101,9 +101,8 @@ No raw archives or operational files are included. Existing upstream history is
 not rewritten. GitHub itself may retain authentication/push audit metadata; file
 sanitization does not promise anonymity from the hosting service.
 
-The current connection does not grant write access, so this report does not claim
-that the package has been uploaded. Local commits preserve the complete review
-package while publication is pending.
+Repository write authorization has been verified using the repository owner's
+Git authorization. The review package retains its neutral commit authorship.
 
 Per `AGENTS.md`, stop at G1. The reviewer should create `reviews/G1_review.md` with
 `Verdict: APPROVED` or `Verdict: CHANGES_REQUESTED` and numbered [must]/[should]
