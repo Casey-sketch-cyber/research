@@ -38,6 +38,9 @@ After each phase, add `reports/phase_NN_<name>.md` using `reports/TEMPLATE_phase
 | `results/expC/metrics.csv` | model, target, household, test_set, mae, rmse, r2, spearman, infer_ms_per_unit |
 | `results/expC/predictions.csv` | unit_key, household, test_set, target, y_true, y_pred_<model>… |
 | `results/expD/correlations.csv`, `results/expD/dispersion.csv`, `results/expD/confusion.csv` | as described in PROCEDURES Phase 9 |
+| `results/expR/source_values.csv` | quantity, value, unit, page, section, note |
+| `results/expR/reproduction.csv` | shell_id, aspect_ratio, household, strategy, free_activity_area_day_m2, gain_m2, gain_rel, reported_value_m2, reported_gain_rel |
+| `results/expR/generalization.csv`, `results/expR/bridge.csv` | unit_key, source, nia_m2, aspect_ratio, compactness, household, free_area_day_S0_m2, free_area_day_S2_m2, gain_rel, saving_rel_fea |
 | `results/ablations/*.csv` | ablation, value, n, median_fci_S2, median_saving_m2, delta_a_min_m2 |
 | `results/scenario_hk/*.csv` | area_m2, household, strategy, adequate_share, a_min, plus district weights if available |
 | `results/tables/T1..T7.(csv,md)` | — |
@@ -63,7 +66,7 @@ At each gate, write `reports/GATE_Gx.md` and push, then **stop**.
 |---|---|
 | **G1** (after Phase 4) | ENVIRONMENT.md, data MANIFEST summary, schema reports, final `d1_subtype_classes` mapping, corpus counts and area histogram, 24 sample renders, ABO check, household table, open questions |
 | **G2** (after Phase 6) | Solver and validator description (how the code actually implements §5.2, including any simplifications), test results, pilot CSV, at least 20 pilot renders (all are committed), status and runtime statistics, FCI ordering check, Exp. A runtime projection and proposed adjustments |
-| **G3** (after Phase 11) | Headline numbers for H1–H3: median saving per household and area bin, ΔA_min with CIs, Exp. B table, Exp. C metrics, Exp. D misclassification rates, top ablation sensitivities, HK scenario results; anomalies and a list of known issues |
+| **G3** (after Phase 11) | Headline numbers for H1–H4 (including Exp. R reproduction and generalization): median saving per household and area bin, ΔA_min with CIs, Exp. B table, Exp. C metrics, Exp. D misclassification rates, top ablation sensitivities, HK scenario results; anomalies and a list of known issues |
 | **G4** (after Phase 12 and 12b) | All figures and tables (including the F3b 3D renders), the manuscript drafts, FINAL_SUMMARY.md, and a reproduction command list |
 
 ## 5. `reports/FINAL_SUMMARY.md` (G4)

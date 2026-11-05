@@ -42,6 +42,7 @@ See `reports/novelty_check.md` for the evidence behind this table.
 | H1 | Area saving is positive and largest, in both absolute and relative terms, in the smallest units, and it shrinks as area increases. | Exp. A |
 | H2 | Functional capacity varies substantially among units of equal area, so area-only standards misclassify adequacy for a non-trivial share of units. This confirms and extends Özer & Jacoby (2022) to time-of-day use and transformable furniture. | Exp. D |
 | H3 | A graph-based model predicts functional capacity from the plan accurately enough (Spearman ρ ≥ 0.8 on held-out sites) to screen a housing stock. | Exp. C |
+| H4 | The single-room activity-area gain of about 60% reported by Bu & Che Mat (2026) is reproduced in a comparable 12 m² room, but varies widely across real plans of similar size and shrinks as dwellings get larger. | Exp. R |
 
 ## 3. Key definitions
 
@@ -160,6 +161,15 @@ Report Spearman correlation, FCI dispersion (interquartile range) within area bi
 - τ ∈ {0.90, 0.95, 1.00}.
 - Solver time limit 30 / 60 / 120 s, on a subset.
 
+
+### 5.8 Experiment R: testing and generalizing the single-room estimate
+
+Bu & Che Mat (2026) report that folding a wall bed raises a 12 m² bedroom's activity area from about 5–5.5 m² to about 8 m² (≈60%). Exp. R reproduces their comparison in our framework and then asks how far it generalizes.
+
+- **R1, reproduction.** Rebuild their room as a shell using the dimensions, furniture list and layout description in their paper, citing page and section for every value taken from it. If a value isn't stated, use the D3 12 m² shells (aspect ratios 1.0–1.5) and say so. Compute their measure, **free activity area** (floor area not covered by furniture bodies in the daytime slot), for a static layout and for the wall-bed-stowed layout. Compare it with their reported values. Agreement in direction and magnitude counts as reproduction; report any gap and its likely causes (clearance rules, furniture sizes).
+- **R2, generalization.** For every unit in the Exp. A sample with the single-person households (H1, H2), compute the same free-activity-area gain (S2 daytime vs S0 daytime) from the validated Exp. A layouts. Plot its distribution against NIA with their ~60% point marked. Report the share of plans near, above and below it, and how the gain changes with size and plan shape (aspect ratio, compactness).
+- **R3, bridging the measures.** For the same units, compare the free-activity-area gain with our FEA-based relative saving. This shows what a room-level "activity area" figure does and doesn't say about whole-dwelling equivalence.
+
 ## 6. Planned figures and tables
 
 | ID | Content |
@@ -175,6 +185,7 @@ Report Spearman correlation, FCI dispersion (interquartile range) within area bi
 | F8 | Surrogate parity plots and metrics |
 | F9 | Ablation and sensitivity tornado plot |
 | F10 | Hong Kong scenario: adequacy share and ΔA_min; district bars |
+| F11 | Exp. R: (a) reproduction of the 12 m² bedroom comparison; (b) distribution of the free-activity-area gain across real plans against NIA, with the ~60% reference; (c) free-activity-area gain vs FEA relative saving |
 | T1–T7 | Datasets; furniture library; household schedules; Exp. A–D summaries |
 
 ## 7. Threats to validity (write these up in the paper)
@@ -204,7 +215,7 @@ Report Spearman correlation, FCI dispersion (interquartile range) within area bi
 | 1 | Environment; downloads; schema inspection | |
 | 2–3 | Corpus building (D1, D2, D3); configs checked against ABO | **G1:** data and corpus review |
 | 4–7 | Rasterizer, candidates, CP-SAT, validator; pilot on 20 units | **G2:** method review |
-| 8–10 | Full Exp. A, then B, D; ablations | |
+| 8–10 | Full Exp. A, then B, D, R; ablations | |
 | 11–12 | Exp. C surrogate; Hong Kong scenario | **G3:** results review |
 | 13–14 | Figures, tables, 3D renders, draft of the methods and results sections | **G4:** final package |
 | 15–21 | Author writes and revises; reviewer feedback; submission | |

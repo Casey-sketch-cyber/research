@@ -279,6 +279,16 @@ Push, write `reports/GATE_G2.md`, **stop**, and wait for `reviews/G2_review.md`.
    Files: `results/expD/*.csv`.
 2. **Ablations** from `config/project.yaml` → `ablations`. For the resolution and time-limit runs, use the fixed 50-unit subset saved in `results/ablations/subset.csv`. The other ablations run on the Exp. B 200-instance sample, or on everything if time allows; state which. Write `results/ablations/*.csv` and a tornado plot (F9) of the change in median saving and ΔA_min.
 
+## Phase 9b: Experiment R, testing the single-room estimate (day 10)
+
+Follow RESEARCH_PLAN §5.8.
+1. **R1:** extract from Bu & Che Mat (2026), cached privately in task L, the room dimensions, furniture list and reported activity areas. Record each value with page and section in `results/expR/source_values.csv`. Don't redistribute their text or figures. Build the shell(s), solve S0 and S2 with H1 and H2, compute daytime free activity area with the **validator**, and write `results/expR/reproduction.csv`.
+2. **R2:** compute free activity area for the daytime slot under S0 and S2 for every Exp. A sample unit with H1/H2, from the validated layouts (no new solves). Write `results/expR/generalization.csv`.
+3. **R3:** join with `results/expA/fea.csv` and write `results/expR/bridge.csv`.
+4. Figure F11 (a–c).
+
+**Acceptance:** every value taken from the source paper has a page reference. Free activity area is computed by the validator, not the solver. If R1 does not reproduce their direction or rough magnitude, report it as a finding with the likely causes; don't tune parameters to match.
+
 ## Phase 10: Experiment C, surrogate (day 11)
 
 1. Build the features and graphs from the `Unit` objects; no solver outputs may be used as inputs.

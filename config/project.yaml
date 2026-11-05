@@ -110,6 +110,13 @@ experiments:
   tau_sensitivity: [0.90, 0.95, 1.00]
   bootstrap: {n: 1000, ci: 0.95}
 
+  R_single_room_test:     # RESEARCH_PLAN §5.8, H4
+    reference: "Bu & Che Mat (2026), doi:10.13189/cea.2026.140514"
+    reported_values_from_source: true   # every value with page reference in results/expR/source_values.csv
+    households: [H1_single_commuter, H2_single_remote_worker]
+    measure: free_activity_area_day   # floor area not covered by furniture bodies in the 'day' slot (validator)
+    fallback_shells: {area_m2: 12, aspect_ratios: [1.0, 1.25, 1.5]}
+
 ablations:
   drop_one_transformable: true
   clearance_scale: [0.8, 1.0, 1.2]
