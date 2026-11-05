@@ -25,6 +25,7 @@ The aim isn't to be "first" at any one element. It is to combine what several st
 | Transformable-layout graphics: Xiong et al.; Fu et al.; Liu et al. 2025 (DIFF); Zhang et al. 2025 (SceneExplorer); Xiong, Cai & Luo 2026; Garg et al. 2016 | How to represent, generate, sequence and animate multi-state furniture and layouts | Design-exploration tools; states aren't driven by household activity demand; no clearance/reachability guarantee or dwelling-level metric | A schedule-driven, constraint-guaranteed optimization with an independent validator, applied to real dwellings |
 | Static layout optimization: Merrell 2011; Yu 2011; LayoutVLM 2025; HomeWorld 2026; Co-Layout 2025 | Effective constraint, IP and LLM methods for furniture placement | One static arrangement | Extends constraint-based placement to several time slots with shared anchors |
 | Usability and efficiency at scale: Özer & Jacoby (2022); Weber et al. (2024); Goessler & Kaluarachchi (2023) | Size is an incomplete measure of usability; furniture-based "excess area" carries a carbon cost; adaptive homes may use space 2–3× more efficiently | Static furniture (Özer & Jacoby; Weber et al.); the 2–3× is a proposal without measurement (Goessler & Kaluarachchi) | Extends the usability argument to time-of-day use; puts a measured, distributional number on the adaptive-home efficiency proposal; complements "excess area" with "area that transformable furniture makes unnecessary" |
+| Furniture design: Garg et al. 2016; Fu et al. (Magic Furniture); Liu et al. 2025 (DIFF) | How to design reconfigurable objects and flexible modules | Objects designed one at a time, not dimensioned for the actual homes of a city | **Exp. K:** optimizes a standard transformable kit's dimensions against a population of the smallest units, compared with a catalogue and with bespoke furniture |
 | Policy | Area-only minimums, e.g. Hong Kong's 8 m² basic housing units | Area says little about function | Tests an area-only minimum against functional adequacy and proposes a performance-based reading of minimum standards |
 
 **Value proposition in one sentence:** we turn a design intuition ("transformable furniture makes small homes work like bigger ones"), so far supported by single-room analyses and proposals, into a measured, household-specific and policy-ready quantity across real housing stock.
@@ -36,13 +37,14 @@ See `reports/novelty_check.md` for the evidence behind this table.
 - **RQ1.** For a compact dwelling and a given household, how much more of the household's daily activity demand can be served with transformable furniture laid out per time slot, compared with static furniture?
 - **RQ2.** What static-furniture floor area gives the same functional capacity as a transformable dwelling of area *A*? This is the **functionally equivalent area (FEA)**, and FEA − *A* is the **area saving**.
 - **RQ3.** What does this imply at city scale for minimum-area standards, using Hong Kong's subdivided and basic housing units as the case?
+- **RQ4 (design).** What transformable furniture *dimensions* make the smallest units work best? How much does one standard kit tuned to a city's smallest units gain over a generic catalogue, and how close does it come to bespoke furniture designed for each unit?
 
 | ID | Hypothesis | Tested in |
 |---|---|---|
 | H1 | Area saving is positive and largest, in both absolute and relative terms, in the smallest units, and it shrinks as area increases. | Exp. A |
 | H2 | Functional capacity varies substantially among units of equal area, so area-only standards misclassify adequacy for a non-trivial share of units. This confirms and extends Özer & Jacoby (2022) to time-of-day use and transformable furniture. | Exp. D |
 | H3 | A graph-based model predicts functional capacity from the plan accurately enough (Spearman ρ ≥ 0.8 on held-out sites) to screen a housing stock. | Exp. C |
-| H4 | The single-room activity-area gain of about 60% reported by Bu & Che Mat (2026) is reproduced in a comparable 12 m² room, but varies widely across real plans of similar size and shrinks as dwellings get larger. | Exp. R |
+| H4 | A standard transformable-furniture kit whose dimensions are optimized for 8–15 m² units raises the share of adequate units over the generic catalogue, and achieves most of the gain of bespoke per-unit furniture. | Exp. K |
 
 ## 3. Key definitions
 
@@ -150,6 +152,7 @@ Report Spearman correlation, FCI dispersion (interquartile range) within area bi
   - The share of units below adequacy under S0 compared with S2
   - The district-level "functional floor-area gap" in m²
   - The embodied carbon of floor area avoided, as a parameter range. Every carbon factor must cite a source that the human author has verified; until then it stays `TODO_VERIFY`.
+- **With the designed kit (Exp. K):** repeat the adequacy and A_min results for strategy `S2_kit`. This answers the design-policy question: what can a purpose-designed fit-out do for an 8–12 m² unit?
 
 ### 5.7 Ablations and sensitivity
 
@@ -162,13 +165,31 @@ Report Spearman correlation, FCI dispersion (interquartile range) within area bi
 - Solver time limit 30 / 60 / 120 s, on a subset.
 
 
-### 5.8 Experiment R: testing and generalizing the single-room estimate
+### 5.8 Supporting analysis R: comparison with a published single-room estimate (Discussion only)
 
-Bu & Che Mat (2026) report that folding a wall bed raises a 12 m² bedroom's activity area from about 5–5.5 m² to about 8 m² (≈60%). Exp. R reproduces their comparison in our framework and then asks how far it generalizes.
+Bu & Che Mat (2026) report that folding a wall bed raises a 12 m² bedroom's activity area from about 5–5.5 m² to about 8 m² (≈60%). This is a light supporting check for the Discussion, not a hypothesis of the paper: it reproduces their comparison in our framework and shows how far it generalizes.
 
 - **R1, reproduction.** Rebuild their room as a shell using the dimensions, furniture list and layout description in their paper, citing page and section for every value taken from it. If a value isn't stated, use the D3 12 m² shells (aspect ratios 1.0–1.5) and say so. Compute their measure, **free activity area** (floor area not covered by furniture bodies in the daytime slot), for a static layout and for the wall-bed-stowed layout. Compare it with their reported values. Agreement in direction and magnitude counts as reproduction; report any gap and its likely causes (clearance rules, furniture sizes).
 - **R2, generalization.** For every unit in the Exp. A sample with the single-person households (H1, H2), compute the same free-activity-area gain (S2 daytime vs S0 daytime) from the validated Exp. A layouts. Plot its distribution against NIA with their ~60% point marked. Report the share of plans near, above and below it, and how the gain changes with size and plan shape (aspect ratio, compactness).
 - **R3, bridging the measures.** For the same units, compare the free-activity-area gain with our FEA-based relative saving. This shows what a room-level "activity area" figure does and doesn't say about whole-dwelling equivalence.
+
+
+### 5.9 Experiment K: designing the furniture kit (the "bold bet")
+
+The core experiments choose furniture *placements* from a fixed catalogue. Exp. K also optimizes the furniture's **dimensions**, turning the method from an evaluation tool into an AI-assisted furniture design tool: *which transformable kit should be manufactured for a city's smallest homes?*
+
+- **Target population:** D3 shells of 8–15 m² NIA (the Hong Kong basic-housing range), for households H1, H2 and H3. Hold out one aspect ratio and one entrance position as a transfer test. Also evaluate on any real D1/D2 plans of NIA ≤ 20 m².
+- **Design variables** (coarse grid; all values are design assumptions in `config/project.yaml → experiments.K_kit_design`): wall-bed width, desk width and deployed depth, drop-leaf table width and deployed depth, wardrobe frontage. Stowed depths stay fixed, since they depend on the mechanism.
+- **Value model:** without one, the optimizer would always pick the smallest furniture. So each item has a **service quality** q ∈ [0, 1] that rises from its minimum usable size to its recommended size, and storage capacity scales with frontage. The kit objective is the quality-weighted FCI, **FCIq**, averaged over the target units, with the share of units with FCIq ≥ τ reported alongside. A flat-quality variant (q = 1 everywhere) shows what happens without the value model.
+- **Search:** successive halving. Evaluate all grid combinations on 10 representative shells, keep the top 20% and evaluate them on 30 shells, keep the top 5 and evaluate them on all target shells. Time limit 20 s per solve.
+- **Comparisons:**
+  1. Generic catalogue (`config/furniture.yaml`)
+  2. **Designed kit** (one set of dimensions for all units)
+  3. **Bespoke** (dimensions optimized per unit; upper bound, on a 30-shell subsample)
+
+  Report how much of the bespoke gain the kit captures, the change in adequacy share at 8, 10 and 12 m², and ΔA_min with the kit.
+- **Into the Hong Kong scenario:** add "S2 + designed kit" as a strategy in §5.6.
+- **Time box and fallback:** 1.5–2 days. If solves are too slow, drop wardrobe frontage and H3 first, then report the kit search on 30 shells as exploratory. The core results don't depend on Exp. K.
 
 ## 6. Planned figures and tables
 
@@ -185,7 +206,8 @@ Bu & Che Mat (2026) report that folding a wall bed raises a 12 m² bedroom's act
 | F8 | Surrogate parity plots and metrics |
 | F9 | Ablation and sensitivity tornado plot |
 | F10 | Hong Kong scenario: adequacy share and ΔA_min; district bars |
-| F11 | Exp. R: (a) reproduction of the 12 m² bedroom comparison; (b) distribution of the free-activity-area gain across real plans against NIA, with the ~60% reference; (c) free-activity-area gain vs FEA relative saving |
+| F12 | Exp. K: the designed kit (dimensioned drawing per household), FCIq and adequacy share for catalogue vs kit vs bespoke, and kit transfer to held-out shells and real plans |
+| S1 (supplementary) | Analysis R: (a) reproduction of the 12 m² bedroom comparison; (b) distribution of the free-activity-area gain across real plans against NIA, with the ~60% reference; (c) free-activity-area gain vs FEA relative saving |
 | T1–T7 | Datasets; furniture library; household schedules; Exp. A–D summaries |
 
 ## 7. Threats to validity (write these up in the paper)
@@ -216,7 +238,7 @@ Bu & Che Mat (2026) report that folding a wall bed raises a 12 m² bedroom's act
 | 2–3 | Corpus building (D1, D2, D3); configs checked against ABO | **G1:** data and corpus review |
 | 4–7 | Rasterizer, candidates, CP-SAT, validator; pilot on 20 units | **G2:** method review |
 | 8–10 | Full Exp. A, then B, D, R; ablations | |
-| 11–12 | Exp. C surrogate; Hong Kong scenario | **G3:** results review |
+| 11–12 | Exp. C surrogate; Exp. K kit design (time-boxed); Hong Kong scenario incl. designed kit | **G3:** results review |
 | 13–14 | Figures, tables, 3D renders, draft of the methods and results sections | **G4:** final package |
 | 15–21 | Author writes and revises; reviewer feedback; submission | |
 
