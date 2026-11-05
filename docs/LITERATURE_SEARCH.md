@@ -45,7 +45,19 @@ Append a section **"Systematic confirmation (task L)"** to `reports/novelty_chec
 
 ## 5. Stop rule
 
-If any record is rated **A_overlap for C2 or C3** after the full-text check (or is A with no full text available), add it to `reports/QUESTIONS.md`, push, and **stop** before Phase 5. The reviewer decides whether the framing must change. Otherwise, push and continue with the G1 fixes.
+**Revised after Q-12.** Claims C2 and C3 have been narrowed (see `config/lit_search.yaml`). Single-room or conceptual numerical area gains are now `B_related`, not `A_overlap`.
+
+Only a record that meets the **narrowed** C2 or C3 after a full-text check triggers the rule: either an optimization method that assigns furniture states from a time-of-day activity schedule in dwellings, or a quantification of whole-dwelling equivalent floor area across 10 or more plans. In that case, add it to `reports/QUESTIONS.md` and push, but **don't stop the engineering work**. The reviewer will respond at the next gate.
+
+## 5a. Completing the screening (revised schedule)
+
+Finish screening **in the background of the long Phase 7 runs**, not before the G1 fixes. It must be complete by Gate G3.
+
+1. **Title screening:** all 2,908 pending records.
+2. **Abstract screening:** every title-retained record with an API abstract.
+3. **Records without an API abstract:** if the title is clearly relevant, try the Crossref or OpenAlex abstract once. Otherwise mark them `NO_ABSTRACT_TITLE_RELEVANT` and list them in the report. Don't guess their content.
+4. **OpenAlex Q1:** retry once with polite backoff (it was incomplete because of HTTP 429). If it still fails, report the gap.
+5. The Chinese-language search stays optional.
 
 ## 6. Optional: Chinese-language literature
 

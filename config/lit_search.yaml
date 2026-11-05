@@ -52,8 +52,10 @@ queries:
 
 # Claims the screening must check (from RESEARCH_PLAN §1 and reports/novelty_check.md §3).
 claims:
-  C2: "Layout optimization in which furniture states (e.g. bed deployed/stowed) are driven by a household's time-of-day activity schedule, with positions shared across time slots."
-  C3: "A quantification of how much floor area transformable furniture is worth (a 'functionally equivalent area' or equivalent area-saving measure)."
+  # Narrowed after Q-12 (reviews/G1_review_addendum_Q12.md):
+  C2: "A computational optimization method that assigns furniture states (e.g. bed deployed/stowed) from a household's time-of-day activity schedule, with positions shared across time slots, in dwelling layouts."
+  C3: "A multi-dwelling (10 or more plans) quantification of the whole-dwelling floor area that transformable furniture is equivalent to (a 'functionally equivalent area' or equivalent area-saving measure), computed from feasible layouts."
+  C3_broad_known: "Single-room or conceptual numerical area gains from transformable furniture are KNOWN (Bu & Che Mat 2026) and rated B_related, not A_overlap."
   C4: "Testing an area-only minimum dwelling standard against functional adequacy measured with (transformable) furniture layouts."
   H2: "Floor area is a poor proxy for functional adequacy or usability (known: Özer & Jacoby 2022)."
 
