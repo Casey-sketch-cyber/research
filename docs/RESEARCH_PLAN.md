@@ -50,7 +50,8 @@ All parameters live in `config/*.yaml`.
   FCI(u, h, s) = Σ_t Σ_{a∈A_t(h)} w_a · d_t · served(a, t) / Σ_t Σ_{a∈A_t(h)} w_a · d_t
 
   where served(a, t) = 1 if every required item for *a* is placed, deployed in *t*, clear of collisions, and reachable from the entrance in *t*. The default weight is *w_a* = 1; occasional activities such as hosting guests are weighted by frequency.
-- **Static capacity curve:** f₀,h(A) = the expected FCI under S0 as a function of furnishable area *A*, fitted by isotonic regression (monotone non-decreasing) across the corpus for household *h*.
+- **Area measure *A* (revised at G1):** net internal area (NIA), the internal floor area of the dwelling including kitchen, bathroom and circulation, excluding walls and balconies. This is the unit that minimum-size standards use. Furnishable area is reported as a secondary measure.
+- **Static capacity curve:** f₀,h(A) = the expected FCI under S0 as a function of NIA *A*, fitted by isotonic regression (monotone non-decreasing) across the corpus for household *h*.
 - **Functionally equivalent area:** FEA(u, h) = min { A* : f₀,h(A*) ≥ FCI(u, h, S2) }. **Area saving** = FEA − A(u). **Relative saving** = (FEA − A(u)) / A(u). If the S2 FCI exceeds the curve's maximum, mark the value as right-censored.
 - **Adequacy:** a unit is adequate for *h* under *s* if FCI ≥ τ (default τ = 0.95; sensitivity at 0.90 and 1.00). **Minimum adequate area** A_min,h,s = the area at which a logistic fit of P(adequate | A) crosses 0.5. **ΔA_min** = A_min(S0) − A_min(S2) is the headline policy number.
 - **Transformation burden:** TB(u, h) = Σ_items Σ_t e_i · 1[state changes between t−1 and t], cyclic over the day, with effort weights *e_i* from the config. It is reported alongside FCI, and S2 minimizes it as a secondary objective.
@@ -68,7 +69,7 @@ All datasets are open and downloadable without an application.
 | D5 | American Time Use Survey multi-year microdata (BLS) | *Optional:* calibrate slot durations per household type | Public domain |
 | D6 | HK 2021 Population Census, subdivided units by District Council district (data.gov.hk) | Hong Kong scenario weights | Free reuse (DATA.GOV.HK terms) |
 
-**Corpus filter (default):** residential units with net furnishable area ≤ 45 m², valid geometry, at least one entrance door, and at least one window. Codex reports how many units pass. If fewer than 300 D1 units qualify, raise the threshold to 55 m² and report it.
+**Corpus filter (revised at G1):** residential units with NIA 8–50 m², valid geometry, an entrance door, a window, at least one habitable room, a sanitary space and a kitchen (room or fixture). Repeated identical plans are deduplicated. For Exp. A, a frozen stratified sample is drawn: up to 1,500 D1 plans (stratified by NIA bin and room count, at most 5 per site), all compact D2 plans and all D3 shells.
 
 ## 5. Method
 
@@ -133,7 +134,7 @@ Report Spearman correlation, FCI dispersion (interquartile range) within area bi
 
 ### 5.6 Hong Kong scenario (RQ3)
 
-- Use D3 shells at 8–20 m² (step 1 m², several aspect ratios) with households of 1–3 people, matching the subdivided-unit profile.
+- Use D3 shells at 8–20 m² (step 1 m², several aspect ratios) with the configured one- and two-person households (H1, H3, H4). Larger households are out of scope and stated as a limitation.
 - For each strategy, compute the share of shells that are adequate, A_min and ΔA_min.
 - Weight results by district counts and household-size distributions from D6, using whatever fields D6 provides; Codex reports the available fields first.
 - Report:

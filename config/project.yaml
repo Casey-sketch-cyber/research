@@ -34,18 +34,36 @@ datasets:
     license: "DATA.GOV.HK terms (free reuse)"
 
 corpus:
-  max_furnishable_area_m2: 45      # raise to 55 if fewer than 300 D1 units qualify; report it
-  min_furnishable_area_m2: 8
+  # G1 review (M1): "compact" is defined on net internal area (NIA) = union of furnishable,
+  # storage_only, walkable_only and fixed_service spaces (interior, excluding walls, balconies
+  # and other excluded classes). NIA is the primary area axis for f0, FEA and A_min, because
+  # minimum-size standards are stated in internal floor area. Furnishable area is secondary.
+  area_measure: nia
+  max_nia_m2: 50
+  min_nia_m2: 8
+  max_furnishable_area_m2: 45      # superseded by max_nia_m2 (G1 review M1); kept for traceability only
+  min_furnishable_area_m2: 8       # superseded by min_nia_m2 (G1 review M1)
   require_entrance_door: true
   require_window: true
+  require_habitable_room: true     # G1 review M2: at least one habitable (furnishable) room
+  require_sanitary: true           # G1 review M2: BATHROOM/SANITARY_ROOMS area, or a TOILET feature
+  require_kitchen: true            # G1 review M2: KITCHEN/KITCHEN_DINING area, or a KITCHEN feature
+  deduplicate: {enabled: true, key: "normalized geometry hash", keep: one representative, record: n_duplicates}  # G1 review M4
   d1_unit_usage: RESIDENTIAL
   # Codex fills this mapping in Phase 1 after listing all entity_subtype values:
   d1_subtype_classes:
-    furnishable: [BEDROOM, CLOAKROOM, DINING, LIVING_DINING, LIVING_ROOM, OFFICE, OFFICE_SPACE, ROOM, STOREROOM, STUDIO]   # e.g. ROOM, BEDROOM, LIVING_ROOM, DINING
+    furnishable: [BEDROOM, DINING, LIVING_DINING, LIVING_ROOM, OFFICE, OFFICE_SPACE, ROOM, STUDIO]
+    storage_only: [CLOAKROOM, STOREROOM]   # G1 review M3: only storage items (wardrobe, shelving) may be placed here
     walkable_only: [CORRIDOR, CORRIDORS_AND_HALLS, FOYER, LOBBY] # e.g. CORRIDOR
     fixed_service: [BATHROOM, COMMON_KITCHEN, KITCHEN, KITCHEN_DINING, SANITARY_ROOMS, WASH_AND_DRY_ROOM] # e.g. BATHROOM, KITCHEN
     excluded: [AIR, ARCADE, ARCHIVE, BALCONY, BASEMENT, BASEMENT_COMPARTMENT, BIKE_STORAGE, BREAK_ROOM, CANTEEN, CARPARK, COLD_STORAGE, COMMUNITY_ROOM, COUNTER_ROOM, DEDICATED_MEDICAL_ROOM, ELECTRICAL_SUPPLY, ELEVATOR, ELEVATOR_FACILITIES, FACTORY_ROOM, GARAGE, GARDEN, GAS, HEATING, HOUSE_TECHNICS_FACILITIES, LIGHTWELL, LOGGIA, LOGISTICS, MEDICAL_ROOM, MEETING_ROOM, NOT_DEFINED, OFFICE_TECH_ROOM, OIL_TANK, OPEN_PLAN_OFFICE, OPERATIONS_FACILITIES, OUTDOOR_VOID, PATIO, PHYSIO_AND_REHABILITATION, PRAM, PRAM_AND_BIKE_STORAGE_ROOM, RADATION_THERAPY, RECEPTION_ROOM, SALESROOM, SHAFT, SHELTER, SHOWROOM, SPORTS_ROOMS, STAIRCASE, TEACHING_ROOM, TECHNICAL_AREA, TERRACE, TRANSPORT_SHAFT, VEHICLE_TRAFFIC_AREA, VOID, WAITING_ROOM, WAREHOUSE, WATER_SUPPLY, WINTERGARTEN, WORKSHOP]      # e.g. BALCONY, SHAFT, STAIRCASE
   sample_cap_per_source: null      # set an integer only if runtime forces it; report it
+  # G1 review M5: frozen experiment sample, written to results/corpus/expA_sample.csv before the pilot
+  expA_sample:
+    D1: {n_max: 1500, stratify_by: [nia_bin_2m2, n_rooms], max_per_site: 5}
+    D2: {n_max: all}
+    D3: {n_max: all}
+    note: "If the Phase 6 runtime projection exceeds 36 h, reduce D1 n_max first and report it."
 
 shells_D3:
   areas_m2: [8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 25, 28, 32, 36, 40]
