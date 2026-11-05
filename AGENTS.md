@@ -33,6 +33,12 @@ If these documents conflict, the order of precedence is: a review file in `revie
 7. **Don't download data that isn't listed** in `config/project.yaml: datasets`. Download only `abo-listings.tar` from ABO, never its images or 3D models. Never commit raw data.
 8. **If an expected pattern doesn't appear** (for example S2 < S0 somewhere, or a hypothesis isn't supported), **don't tune things until it does.** Report it, investigate whether it's a bug, and let the reviewer decide.
 
+## How to treat related work
+
+Related or similar prior work is context to build on, not a reason to stop or to drop a direction. In reports and drafts:
+- Don't claim to be "first" or "novel". State what the project **adds** relative to named prior work: overcoming a limitation, generalizing or testing a claim at scale, meeting a new need, reframing the problem, or a more effective method.
+- If you find work close to ours, describe the remaining difference precisely, propose how the study could be adjusted to add value, log it in `reports/QUESTIONS.md`, and keep working.
+
 ## Engineering conventions
 
 - Python 3.11. Package `src/fea/` (install with `pip install -e .`, so create `pyproject.toml`). Scripts in `scripts/` are numbered by phase: `00_env_report.py`, `01_download.py`, `02_inspect_schemas.py`, `03_build_corpus.py`, `04_check_furniture.py`, `05_schedules.py`, `06_pilot.py`, `07_run_expA.py`, `08_run_expB.py`, `09_run_expD_ablations.py`, `10_run_expC.py`, `11_scenario_hk.py`, `12_make_figures.py`, `12_make_tables.py`, `12b_render3d.py` (Blender, headless).

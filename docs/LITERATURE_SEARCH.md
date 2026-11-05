@@ -43,11 +43,16 @@ Append a section **"Systematic confirmation (task L)"** to `reports/novelty_chec
 4. Any B record that should be added to RESEARCH_PLAN §10, listed as a *proposal* for the reviewer to accept. Don't edit RESEARCH_PLAN yourself.
 5. Limitations: which sources failed or were rate-limited, and the total number of abstracts screened.
 
-## 5. Stop rule
+## 5. Purpose of the screening: positioning, not clearance (revised)
 
-**Revised after Q-12.** Claims C2 and C3 have been narrowed (see `config/lit_search.yaml`). Single-room or conceptual numerical area gains are now `B_related`, not `A_overlap`.
+The search maps **what the project builds on and how it adds value**. It is not a test the idea must pass. Finding closely related work is useful, and it never stops the engineering work.
 
-Only a record that meets the **narrowed** C2 or C3 after a full-text check triggers the rule: either an optimization method that assigns furniture states from a time-of-day activity schedule in dwellings, or a quantification of whole-dwelling equivalent floor area across 10 or more plans. In that case, add it to `reports/QUESTIONS.md` and push, but **don't stop the engineering work**. The reviewer will respond at the next gate.
+- `A_overlap` now means **closely related**: the paper must be engaged with explicitly in the paper's Introduction or Discussion. It does not mean the direction has lost its value.
+- For every A and B record, write two short notes instead of a verdict:
+  1. **Established:** what the work shows that we can build on.
+  2. **How we add:** one or more of *overcomes a limitation* · *generalizes or tests its claim at scale* · *meets a new need* (e.g. working from home, ageing) · *reframes the problem* · *offers a more effective method* · *complements it* — with one sentence of specifics.
+- If a record seems to do almost exactly what we plan, describe precisely where the remaining difference lies, and suggest how our study could be **adjusted to add value**: a different population, a validation or replication, a new metric, a policy translation. Add it to `reports/QUESTIONS.md` and keep working.
+- In the report, replace "novel / not novel" verdicts with a **positioning table**: strand · established · limitation for our question · what we add. RESEARCH_PLAN §1 has the model.
 
 ## 5a. Completing the screening (revised schedule)
 

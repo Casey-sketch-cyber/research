@@ -100,7 +100,7 @@ A `Unit` (one dwelling) holds:
 
 ## Task L: Systematic literature search (run once, before the G1 fixes)
 
-Follow `docs/LITERATURE_SEARCH.md` with `config/lit_search.yaml` and `scripts/00b_lit_search.py`. Outputs: `results/literature/raw_hits.csv`, `results/literature/screened.csv`, and a new section appended to `reports/novelty_check.md`. After Q-12, the rule in LITERATURE_SEARCH §5 logs narrowed-claim overlaps without stopping. Finish the remaining screening during Phase 7 (§5a) and report it at G3.
+Follow `docs/LITERATURE_SEARCH.md` with `config/lit_search.yaml` and `scripts/00b_lit_search.py`. Outputs: `results/literature/raw_hits.csv`, `results/literature/screened.csv`, and a new section appended to `reports/novelty_check.md`. Related work never stops the work: LITERATURE_SEARCH §5 records how we build on each paper. Finish the remaining screening during Phase 7 (§5a) and report it at G3.
 
 ---
 
