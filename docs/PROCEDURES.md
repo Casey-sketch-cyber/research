@@ -314,7 +314,7 @@ The renders illustrate solved layouts for the paper and the graphical abstract. 
    - Render the stills listed in `config/render.yaml → outputs.stills` with one fixed camera, lighting and scale.
 3. Compose figure **F3b**: rows = strategy (S0, S2), columns = slots (night, day, dinner), one figure per showcase unit, with the FCI and TB values (read from the results files) in the panel titles.
 4. *(Optional)* The transformation animation in `outputs.animation`, saved as MP4 and GIF.
-5. **If Blender can't run in your environment:** still commit the scene JSONs and `12b_render3d.py`, test the script on one scene with the CPU or the Python fallback, and write in the phase report the exact command for the author to run on their RTX 5090.
+5. **If Blender can't run in your environment:** still commit the scene JSONs and `12b_render3d.py`, test the script on one scene with the CPU or the Python fallback, and write in the phase report a portable command for the author to run in a compatible environment, without personal equipment identifiers.
 
 **Acceptance**
 - The scene geometry in a render matches the 2D layout for the same instance. Check 3 instances by overlaying a top-view orthographic render on the 2D layout; overlap error should be under 2 cm.

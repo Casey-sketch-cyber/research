@@ -40,7 +40,7 @@ If these documents conflict, the order of precedence is: a review file in `revie
 - Tests in `tests/` with `pytest`. At minimum, test the raster, candidates, validator (hand-made violating layouts must be caught), metrics (FCI on a toy case computed by hand; FEA inversion on a synthetic monotone curve), and a tiny end-to-end solve.
 - Type hints and docstrings on public functions. No notebook-only logic: notebooks, if any, go in `notebooks/` and only import from `src/fea/`.
 - **Parallelism:** CP-SAT uses `num_workers` threads per solve. Run `max(1, cores // num_workers)` solves in parallel and never oversubscribe.
-- **Hardware notes:** the author's machine has 1× RTX 5090 (32 GB) and about 700 GB of RAM. Only Exp. C (GNN) and the optional LLM baseline use the GPU. The 5090 needs PyTorch ≥ 2.7 with CUDA 12.8+. If you run without a GPU, Exp. C still works on the CPU (the data is small). Skip the LLM baseline and say so.
+- **Hardware notes:** Only Exp. C (GNN) and the optional LLM baseline use the GPU. Select a compatible PyTorch/CUDA build for the execution environment. If you run without a GPU, Exp. C still works on the CPU (the data is small). Skip the LLM baseline and say so. Do not publish personal equipment or operational identifiers.
 - **No internet in the sandbox?** Follow PROCEDURES Phase 1 step 2: list the exact files for the human to download, then stop.
 
 ## Time budget
