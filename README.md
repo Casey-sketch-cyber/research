@@ -36,7 +36,7 @@ After each review, tell Codex: *"Pull, read `reviews/Gx_review.md`, address the 
 |---|---|
 | Task L literature | Q-12 permits continuation with narrowed C2/C3; remaining screening due at G3 |
 | G1 data & corpus | M1–M6/S1–S4 corpus revisions complete; 28 acceptance checks and 40 tests pass |
-| G2 method & pilot | 240-case pilot complete; 56 tests pass; ready for review |
+| G2 method & pilot | Reviewed: CHANGES_REQUESTED (see `reviews/G2_review.md`); proceed to Phase 7 if §3 criteria pass |
 | G3 results | not started |
 | G4 final package | not started |
 
