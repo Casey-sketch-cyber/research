@@ -147,3 +147,18 @@ def test_kitchen_reclassification_preserves_extent_outside_generic_inner_polygon
     assert unit.classes['walkable_only'].intersection(kitchen).area == pytest.approx(.3)
     assert unit.interior.area == pytest.approx(16.1)
     assert unit.meta['rooms_outside_source_outline_m2'] == pytest.approx(.1)
+
+
+def test_kitchen_fixture_near_door_does_not_create_a_second_kitchen_target():
+    from shapely.geometry import LineString
+    from fea.geometry.raster import fixed_service_doors
+    unit=empty_room(4,4);bath=box(2,3,4,4);fixture=box(3.4,0,4,1)
+    kitchen_door=LineString([(3.4,0),(3.4,1)])
+    bath_door=LineString([(2.1,3),(3,3)])
+    unit=replace(unit,doors=[kitchen_door,bath_door],classes={**unit.classes,
+        'fixed_service':bath.union(fixture),'furnishable':box(0,0,2,4),
+        'walkable_only':box(2,0,4,3).difference(fixture)},
+        meta={'service_room_geometry':bath.wkt,'kitchen_region_geometry':box(2,0,3.4,3).wkt})
+    doors=fixed_service_doors(unit)
+    assert len(doors)==1 and doors[0].equals(bath_door)
+    assert len(rasterize(unit).service_targets)==2

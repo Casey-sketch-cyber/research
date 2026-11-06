@@ -66,6 +66,8 @@ def fixed_service_doors(unit: Unit, resolution: float = .1) -> list:
     Unknown non-exterior connections remain targets and can fail conservatively.
     """
     fixed = unit.classes.get("fixed_service", GeometryCollection())
+    if "service_room_geometry" in unit.meta: fixed = shapely.from_wkt(unit.meta["service_room_geometry"])
+    elif "toilet_geometry" in unit.meta: fixed = shapely.from_wkt(unit.meta["toilet_geometry"])
     excluded = unit.classes.get("excluded", GeometryCollection())
     inside = polygon_union([unit.classes.get(k, GeometryCollection()) for k in
                             ("furnishable", "storage_only", "walkable_only")])

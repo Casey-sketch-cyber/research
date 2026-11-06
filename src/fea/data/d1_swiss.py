@@ -58,6 +58,7 @@ def load_d1(config: dict, completed_keys: set[str] | None = None) -> Iterator[Un
             continue
         classes = {name: polygon_union(areas.loc[areas.entity_subtype.isin(subtypes), "geom"].tolist())
                    for name, subtypes in mapping.items()}
+        service_rooms = classes["fixed_service"]
         fixed_objects = frame[(frame.entity_type == "feature") | (frame.entity_subtype == "COLUMN")].geom.tolist()
         fixed = polygon_union(fixed_objects)
         classes["fixed_service"] = polygon_union([classes["fixed_service"], fixed])
@@ -94,6 +95,7 @@ def load_d1(config: dict, completed_keys: set[str] | None = None) -> Iterator[Un
                     ((frame.entity_type == "area") & frame.entity_subtype.isin(["KITCHEN", "KITCHEN_DINING"])) |
                     ((frame.entity_type == "feature") & (frame.entity_subtype == "KITCHEN")), "geom"])),
                 "has_kitchen_dining": bool((areas.entity_subtype == "KITCHEN_DINING").any()),
+                "service_room_geometry": service_rooms.wkt,
                 "kitchen_geometry": polygon_union(frame.loc[(frame.entity_type == "feature") & (frame.entity_subtype == "KITCHEN"), "geom"].tolist()).wkt,
                 "kitchen_region_geometry": polygon_union(areas.loc[areas.entity_subtype.isin(["KITCHEN", "KITCHEN_DINING", "COMMON_KITCHEN"]), "geom"].tolist()).difference(fixed).wkt,
                 "simulation_area_means": summary,

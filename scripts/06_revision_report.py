@@ -136,6 +136,7 @@ def projections(config,summary,frame):
         retained_expA_hours=duration(counts),source_counts_before=before,source_counts_after=counts,
         caps_applied=actions,D3_small_shells_preserved=len(small),expA_within_36h=duration(counts)<=36,
         expK_projected_solves=kcount,expK_projected_hours=float(kframe.projected_hours_with_margin.sum()),
+        expK_within_two_day_timebox=bool(kframe.projected_hours_with_margin.sum()<=48),
         expK_projection_scope='full grid, repeated flat-quality search, per-unit bespoke grid and catalogue/kit/flat transfer evaluations; conservative 20 s cap scaled by pilot throughput',
         expK_caveat='No K solve was run; changed parametric domains and FCIq may change build/search cost. Recheck on a K pilot before its 2-day time box.',
         stopping_rule='Stop for review; no formal experiment is launched by this script.')
@@ -179,8 +180,40 @@ def zero_diagnosis(unit,household,layout,config,grid):
         proof_scope='catalogue, independent empty access, full 0.10 m anchors, configured grid; not continuous-world impossibility')
 
 
+def render_empty(units,config):
+    """Review sheets for every frozen empty plan, showing all service approaches."""
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Patch
+    from fea.viz.corpus import draw_unit
+    for source in ('D1','D2','D3'):
+        subset=[u for u in units if u.source==source]
+        fig,axes=plt.subplots(math.ceil(len(subset)/2),2,figsize=(12,4*math.ceil(len(subset)/2)),layout='constrained')
+        for ax,unit in zip(axes.flat,subset):
+            grid=rasterize(unit,config['raster']['resolution_m'])
+            reached=_reachable(grid,np.zeros_like(grid.labels,bool),config['furniture']['meta']['walking_width'])
+            draw_unit(ax,unit,short=True)
+            ny,nx=reached.shape;ox,oy=grid.origin;r=grid.resolution
+            ax.imshow(np.ma.masked_where(~reached,reached),origin='lower',extent=(ox,ox+nx*r,oy,oy+ny*r),
+                cmap='Blues',vmin=0,vmax=1,alpha=.2,interpolation='nearest')
+            for i,target in enumerate(grid.service_targets):
+                points=np.argwhere(target)
+                if len(points):
+                    y,x=points.mean(axis=0);ax.text(ox+(x+.5)*r,oy+(y+.5)*r,str(i),
+                        color='green' if (target & reached).any() else 'red',fontsize=10,fontweight='bold')
+            passed=all((target & reached).any() for target in grid.service_targets)
+            ax.set_title(f'{unit.unit_key} | NIA {unit.interior.area:.2f} m² | empty access {passed}',fontsize=9)
+            x0,y0,x1,y1=unit.interior.bounds;ax.set_xlim(x0-.3,x1+.3);ax.set_ylim(y0-.3,y1+.3)
+        for ax in list(axes.flat)[len(subset):]:ax.set_visible(False)
+        fig.legend(handles=[Patch(facecolor='#156d9c',alpha=.2,label='reachable covered area'),
+            Patch(facecolor='#d3d3d3',hatch='...',label='walkable kitchen')],loc='outside lower center',ncol=2)
+        fig.savefig(f'results/pilot/empty_access_{source}.png',dpi=180);plt.close(fig)
+
+
 def export(config,selection,render=False):
     root=Path('results/pilot');arm=root/'benchmarks'/selection['selected_arm']
+    for name in ('pilot_audit.json','pilot_runtime_projection.json','pilot_tests.json','pilot_access_notes.json','pilot_render_style.json'):
+        old=Path('reports')/name;backup=root/'baseline_g2'/('report_'+name)
+        if old.exists() and not backup.exists():backup.write_bytes(old.read_bytes())
     summary=json.loads((arm/'summary.json').read_text())
     assert summary['fresh_throughput_measurement']
     assert summary['config_hash']==config_hash(config),'Selected benchmark configuration differs'
@@ -188,6 +221,10 @@ def export(config,selection,render=False):
     households=parse_households(config['households'],config['furniture'])
     units=[Unit.from_dict(u) for u in json.loads((root/'pilot_units.json').read_text())['units']]
     from fea.viz.layouts import render_layout
+    import matplotlib.pyplot as plt
+    style={"figure.constrained_layout.h_pad":.15,"figure.constrained_layout.w_pad":.08,
+           "figure.constrained_layout.hspace":.16,"figure.constrained_layout.wspace":.06}
+    plt.rcParams.update(style)
     for unit in units:
         grid=rasterize(unit,config['raster']['resolution_m'])
         checked_empty=validate_layout({'strategy':'S0','items':[],'service':{}},grid,config,households[config['households']['main_households'][0]])
@@ -249,6 +286,21 @@ def export(config,selection,render=False):
         criteria={k:bool(v) for k,v in criteria.items()},all_five_criteria_pass=all(criteria.values()),
         worker_quality_criterion_met=selection['worker_quality_criterion_met'],projection=projection)
     write_json('reports/g2_revision_audit.json',result)
+    write_json('reports/pilot_audit.json',result)
+    write_json('reports/pilot_runtime_projection.json',projection)
+    notes_path=Path('reports/pilot_access_notes.json')
+    notes=json.loads(notes_path.read_text()) if notes_path.exists() else {}
+    if notes.get('code_hash')!=summary['code_hash']:
+        write_json(notes_path,dict(basis='Current empty-access audit; complete visual diagnosis before release',
+            config_hash=config_hash(config),code_hash=summary['code_hash'],
+            units={r['unit_key']:'Pending visual diagnosis' for r in result['structural_failure_units']}))
+    write_json('reports/pilot_render_style.json',dict(style=style,plots_follow_saved_json=True,config_hash=config_hash(config),code_hash=summary['code_hash']))
+    gap_rows=pd.read_csv(root/'gap_connectivity_audit.csv')
+    gap_rows[gap_rows.unit_key.isin([u.unit_key for u in units])].to_csv(root/'empty_space_summary.csv',index=False)
+    if render:
+        render_empty(units,config)
+        from fea.viz.corpus import render_histogram
+        render_histogram(pd.read_csv('results/corpus/corpus_units.csv'),Path('results/figures/F2_corpus_area'),config_hash(config))
     return result
 
 
@@ -259,6 +311,7 @@ def tests():
     if result.returncode or not match:raise RuntimeError('Regression test failure: '+output[-6000:])
     write_json('reports/g2_revision_tests.json',dict(command='python -m pytest -q',passed=int(match[1]),
         elapsed_s=float(match[2]),exit_code=result.returncode,tests_hash=hashlib.sha256(b''.join(p.read_bytes() for p in sorted(Path('tests').glob('*.py')))).hexdigest()))
+    Path('reports/pilot_tests.json').write_bytes(Path('reports/g2_revision_tests.json').read_bytes())
 
 
 def report():
@@ -266,8 +319,16 @@ def report():
     checks=json.loads(Path('reports/g2_revision_tests.json').read_text())
     visual=json.loads(Path('reports/pilot_visual_review.json').read_text())
     records=visual['reviews']
+    access_notes=json.loads(Path('reports/pilot_access_notes.json').read_text())
+    for failure in audit['structural_failure_units']:
+        assert failure['unit_key'] in access_notes['units'] and 'Pending' not in access_notes['units'][failure['unit_key']]
     assert len(records)>=6
     for record in records:assert sha256_file(Path(record['path']))==record['sha256']
+    reviewed={r['path'] for r in records}
+    for unit in json.loads(Path('results/pilot/pilot_units.json').read_text())['units']:
+        if unit['source']=='D3' and unit['gross_area_m2'] in (8,12):
+            for strategy in ('S0','S2'):
+                assert 'results/layouts/pilot/'+unit['unit_key'].replace(':','_')+'_H1_'+strategy+'.png' in reviewed
     summaries=[json.loads((Path('results/pilot/benchmarks')/a/'summary.json').read_text()) for a in selection['completed_arms']]
     rows=[dict(arm=s['arm'],workers=s['num_workers'],concurrency=s['concurrent_solves'],seconds_per_100=round(s['wall_time_per_100_cases_s'],3),
         median_FCI=round(s['fci_distribution']['0.5'],6),mean_FCI=round(s['mean_fci'],6),valid=s['validator_pass_cases'],
@@ -277,6 +338,7 @@ def report():
     old=pd.read_csv('results/pilot/baseline_g2/pilot_solutions.csv');new=pd.read_csv('results/pilot/pilot_solutions.csv')
     paired=old[['unit_key','household','strategy','fci_validator','reach_iterations']].merge(new[['unit_key','household','strategy','fci_validator','reach_iterations']],on=['unit_key','household','strategy'],suffixes=('_old','_new'))
     paired.to_csv('results/pilot/baseline_comparison.csv',index=False)
+    diagnosis_text='\n'.join('- '+key+': '+value for key,value in access_notes['units'].items()) or 'No unit fails empty fixed-service access.'
     cut_summary=pd.read_csv('results/pilot/cut_comparison/summary.csv').round(6)
     p=audit['projection']
     text=f"""# Gate G2 response
@@ -296,6 +358,8 @@ Status: READY_FOR_CLAUDE_REVIEW. Reviewed baseline: 67af2ee; requested correctio
 D3 tries ordered near-corner/wall placements, rejects bodies touching the entrance keepout, checks continuous 0.90 m disc connectivity to the main floor and pod door, then tests empty raster access. Parameter keys are retained. Rejected combinations are labelled generator_infeasible and excluded before sampling. The mapping has {len(mapping)} parameter combinations and {int((mapping.new_sample==False).sum())} exclusions; see d3_regeneration_mapping.csv. All original pilot D3 parameters are preserved.
 
 Kitchen rooms are walkable, not furnishable; fixtures and sanitary bodies remain blocked. Kitchen reachability is tested separately. A wall-aware morphological close adds circulation across source seams up to 0.15 m, without changing NIA. In the full uncapped sample, {int(gaps.connectivity_changed.sum())} of {len(gaps)} units gain reachability to previously existing cells. Detailed staged pilot diagnostics are in fixed_service_diagnostic.csv; remaining valid zeros and explicit evidence are in zero_service_diagnoses.csv. The 0.30 m gap probe in that file is diagnosis only and is never used to optimize scores.
+
+{diagnosis_text}
 
 Solver and validator independently erode by an even/odd discrete disc, traverse reference positions and dilate by the same disc to recover covered access area. Exact 0.60/0.50 m and 0.90/0.80 m corridor boundaries, bed-side strips, rotated cases and irregular obstacles are tested. Both still share rasterization; validation therefore does not independently establish source geometry correctness.
 
@@ -319,7 +383,7 @@ First CP-valid time excludes the preceding greedy/incumbent checks; cases return
 
 Measured parallel wall time calibrates source-specific mean solve costs, including preparation/queue overhead in the calibration factor. Exp. A projection with 15% margin: {p['uncapped_expA_hours']:.3f} h before caps, {p['retained_expA_hours']:.3f} h for the retained sample. Source counts: {json.dumps(p['source_counts_after'],sort_keys=True)}. Cap actions: {json.dumps(p['caps_applied'])}. Every valid D3 shell at NIA ≤20 m² is preserved ({p['D3_small_shells_preserved']}). D1/D2 floors and the 60 larger-D3 floor are enforced; no further reduction is authorized by this script.
 
-Exp. K is projected separately: {p['expK_projected_solves']} solves, {p['expK_projected_hours']:.3f} h with 15% margin under the full workload in expK_projection.csv. {p['expK_caveat']} These are explicit workload projections, not observed K results or guarantees.
+Exp. K is projected separately: {p['expK_projected_solves']} solves, {p['expK_projected_hours']:.3f} h with 15% margin under the full workload in expK_projection.csv. {p['expK_caveat']} Within the planned two-day K time box: {p["expK_within_two_day_timebox"]}. These are explicit workload projections, not observed K results or guarantees.
 
 ## Visual review and limitations
 
@@ -332,9 +396,10 @@ After installing dependencies and supplying the pinned raw releases:
 1. python scripts/03_build_corpus.py
 2. python scripts/06_revision.py --prepare
 3. python scripts/06_revision_pipeline.py
-4. python scripts/06_revision_report.py --export --render --run-tests
-5. Inspect the new images and update their factual visual-review record.
-6. python scripts/06_revision_report.py --write-report
+4. python scripts/06_cut_comparison.py
+5. python scripts/06_revision_report.py --export --render --run-tests
+6. Inspect the new images and update their factual visual-review record.
+7. python scripts/06_revision_report.py --write-report
 
 The optional prepare-pilot mode can overlap completed D1 / selected D2 conversion with later nonpilot conversion. Publication requires exact equality with the subsequent full-corpus pilot serialization. Cached benchmark cases may be resumed for results, but resumed throughput is explicitly ineligible for selection. Parallel CP-SAT incumbents may vary with scheduling despite a fixed seed. No FEA, minimum-area estimate or hypothesis verdict is inferred from this methods pilot.
 """

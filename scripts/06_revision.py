@@ -52,7 +52,7 @@ def prepare_pilot(config):
     must reproduce these exact serialized units before benchmark results are used.
     """
     from fea.data.archives import read_geometry_pickle
-    from fea.data.d1_swiss import opaque_id
+    from fea.data.d1_swiss import opaque_id, load_d1
     from fea.data.d2_resplan import from_plan
     from fea.data.d3_shells import load_d3
     from fea.geometry.normalize import normalize
@@ -67,6 +67,11 @@ def prepare_pilot(config):
         for line in stream:
             if any(key in line for key in keys if key.startswith('D1:')):
                 unit=Unit.from_dict(json.loads(line)['unit']);found[unit.unit_key]=unit
+    missing={key for key in keys if key.startswith('D1:') and (key not in found or 'service_room_geometry' not in found[key].meta)}
+    if missing:
+        all_keys=set(pd.read_csv('results/corpus/corpus_units.csv').query("source == 'D1'").unit_key)
+        for unit in load_d1(config,completed_keys=all_keys-missing):
+            if unit.unit_key in missing:found[unit.unit_key]=normalize(unit)
     with (Path(config['paths']['raw'])/'resplan/extracted/ResPlan.pkl').open('rb') as stream:
         plans=read_geometry_pickle(stream)
     for plan in plans:

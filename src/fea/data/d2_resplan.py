@@ -66,6 +66,7 @@ def from_plan(plan: dict) -> Unit:
                  "has_sanitary": union(["bathroom"]).area > 0,
                  "has_kitchen": union(["kitchen"]).area > 0,
                  "has_kitchen_dining": False,
+                 "service_room_geometry": metric(fixed).wkt,
                  "kitchen_region_geometry": metric(kitchen.difference(walls).difference(fixed)).wkt,
                  **scale_measurements(metric(walls), [metric(g) for g in doors],
                                       float(plan["wall_depth"]) * scale if plan.get("wall_depth") is not None else None),
