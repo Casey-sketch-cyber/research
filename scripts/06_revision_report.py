@@ -37,13 +37,20 @@ def table(frame):
 
 def freeze_configuration(selection,config_path="config/project.yaml"):
     """Record the empirically selected solver parameters, retaining YAML comments."""
-    path=Path(config_path);text=path.read_text()
-    text=re.sub(r'^  num_workers: .*$',f"  num_workers: {selection['workers']}",text,flags=re.M)
-    text=re.sub(r'^  time_limit_s: .*$',f"  time_limit_s: {selection['time_limit_s']}",text,flags=re.M)
-    if '  reachability_round_s:' not in text:
-        text=text.replace('  reachability_max_iterations: 30','  reachability_max_iterations: 30\n  reachability_round_s: 5.0')
+    path=Path(config_path);text=path.read_text(encoding='utf-8')
+    # Only update the solver section; ablations also contains time_limit_s.
+    match=re.search(r'^solver:\n(?P<body>(?:[ \t].*\n|\n)*)',text,flags=re.M)
+    if match is None:raise ValueError('Missing solver section')
+    body=match.group('body')
+    body=re.sub(r'^  num_workers: .*$',f"  num_workers: {selection['workers']}",body,flags=re.M)
+    body=re.sub(r'^  time_limit_s: .*$',f"  time_limit_s: {selection['time_limit_s']}",body,flags=re.M)
+    if '  reachability_round_s:' not in body:
+        body=body.replace('  reachability_max_iterations: 30','  reachability_max_iterations: 30\n  reachability_round_s: 5.0')
+    text=text[:match.start('body')]+body+text[match.end('body'):]
     path.write_text(text,encoding='utf-8')
-    return load_config(path)
+    config=load_config(path)
+    assert config['raster']['anchor_stride_m']==selection['anchor_stride_m']
+    return config
 
 
 def stratified_subset(frame, count, seed):

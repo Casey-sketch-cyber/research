@@ -1,0 +1,21 @@
+{
+  "selected_arm": "w1_s20_t30",
+  "workers": 1,
+  "time_limit_s": 30,
+  "anchor_stride_m": 0.2,
+  "reference_exhaustive_median": 1.0,
+  "reference_coarse_median": 1.0,
+  "quality_threshold": 0.99,
+  "worker_quality_criterion_met": true,
+  "selection_rule": "fastest eligible 60 s worker arm; accept 30 s only within 0.01 median FCI and faster",
+  "completed_arms": [
+    "w8_s10_t60",
+    "w8_s20_t60",
+    "w1_s20_t60",
+    "w2_s20_t60",
+    "w4_s20_t60",
+    "w1_s20_t30"
+  ],
+  "code_hash": "8c399699fbe427144e47ae4659179cba13e7b37fb9f2cd04f7a48d1490e2b97b",
+  "config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b"
+}

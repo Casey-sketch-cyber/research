@@ -1,0 +1,17 @@
+{
+  "config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b",
+  "cases_per_arm": 20,
+  "household": "H1_single_commuter",
+  "strategy": "S2",
+  "shared_geometry": "corrected G2 pilot",
+  "greedy": "enabled in both arms",
+  "search_round_s": 5.0,
+  "method_code_hash": "8c399699fbe427144e47ae4659179cba13e7b37fb9f2cd04f7a48d1490e2b97b",
+  "unknown_slice_retry": "double within remaining total budget",
+  "input_hash": "e8d8bb4b34637f3788e2375475af1f1cfe0f24da9aaad7a3ce72ba3e3c9da82c",
+  "num_workers": 1,
+  "time_limit_s": 30,
+  "comparison": "exact frontier-owner pose no-goods and initial hint only versus guarded geometric frontier cuts and refreshed hints",
+  "limitation": "This isolates cuts/restarts under the revised geometry and common round schedule; it is not a rerun of the geometrically biased old pilot.",
+  "code_hash": "ebc160c2839ce251249a10f3d1beeee2a1a9d6b8c92def4c03fce0d30edf276a"
+}

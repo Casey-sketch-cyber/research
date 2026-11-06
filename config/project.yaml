@@ -85,9 +85,10 @@ raster:
 
 solver:
   engine: ortools_cp_sat
-  time_limit_s: 60
-  num_workers: 8
+  time_limit_s: 30
+  num_workers: 1
   reachability_max_iterations: 30
+  reachability_round_s: 5.0
   objective: lexicographic   # 1) served weighted hours, 2) transformation burden, 3) window proximity
   weights: {served: 1000.0, burden: 1.0, window: 0.01}
 

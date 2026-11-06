@@ -1,0 +1,33 @@
+{
+  "arm": "w4_s20_t60",
+  "num_workers": 4,
+  "concurrent_solves": 3,
+  "time_limit_s": 60,
+  "anchor_stride_m": 0.2,
+  "collision_resolution_m": 0.1,
+  "config_hash": "39806c882dd2462c4030a727d9b22c935ac08a2577abc256bbfe3ababe94910c",
+  "code_hash": "8c399699fbe427144e47ae4659179cba13e7b37fb9f2cd04f7a48d1490e2b97b",
+  "input_hash": "e8d8bb4b34637f3788e2375475af1f1cfe0f24da9aaad7a3ce72ba3e3c9da82c",
+  "expected_cases": 240,
+  "cache": "data/interim/g2_revision/39806c882dd2_8c399699fbe4/w4_s20_t60",
+  "completed_cases": 240,
+  "resumed_checkpoints": 0,
+  "fresh_throughput_measurement": true,
+  "wall_time_s": 693.0439606234431,
+  "wall_time_per_100_cases_s": 288.76831692643464,
+  "validator_pass_cases": 240,
+  "distribution_includes_invalid_at_zero": true,
+  "fci_distribution": {
+    "0": 0.019230769230769232,
+    "0.1": 0.6186813186813188,
+    "0.25": 0.8822751322751323,
+    "0.5": 1.0,
+    "0.75": 1.0,
+    "0.9": 1.0,
+    "1": 1.0
+  },
+  "mean_fci": 0.8908579712725546,
+  "median_iterations": 0.0,
+  "mean_first_valid_time_s": 0.03103790559495489,
+  "shared_improvements": 1
+}
