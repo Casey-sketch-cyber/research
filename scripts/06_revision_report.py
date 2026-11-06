@@ -265,6 +265,7 @@ def export(config,selection,render=False):
         if old.exists() and not backup.exists():backup.write_bytes(old.read_bytes())
     summary=json.loads((arm/'summary.json').read_text())
     assert summary['fresh_throughput_measurement']
+    assert summary['input_hash']==sha256_file(root/'pilot_units.json'),'Pilot input changed after measurement'
     assert summary['config_hash']==config_hash(config),'Selected benchmark configuration differs'
     selection['config_hash']=config_hash(config)
     write_json(root/'benchmark_selection.json',selection)
@@ -331,6 +332,7 @@ def export(config,selection,render=False):
         explained_valid_zeros=badzero==0,ordering=bool(wide.ordered.all()),
         validator_agreement=all(v['agreement'] for v in audit),budget=projection['expA_within_36h'])
     result=dict(selected_arm=selection['selected_arm'],config_hash=config_hash(config),code_hash=summary['code_hash'],
+        input_hash=summary['input_hash'],
         report_code_hash=sha256_file(Path(__file__)),
         cases=len(frame),valid=int(frame.validator_pass.sum()),invalid=int((~frame.validator_pass).sum()),
         valid_zero_cases=len(zeros),zero_causes=pd.Series([z['cause'] for z in zeros],dtype='str').value_counts().to_dict(),
@@ -470,6 +472,8 @@ def report():
             for strategy in ('S0','S2'):
                 assert 'results/layouts/pilot/'+unit['unit_key'].replace(':','_')+'_H1_'+strategy+'.png' in reviewed
     summaries=[json.loads((Path('results/pilot/benchmarks')/a/'summary.json').read_text()) for a in selection['completed_arms']]
+    assert len(summaries)==6 and all(s['completed_cases']==240 and s['fresh_throughput_measurement'] for s in summaries)
+    assert all(s['input_hash']==audit['input_hash'] and s['code_hash']==audit['code_hash'] for s in summaries)
     rows=[dict(arm=s['arm'],workers=s['num_workers'],concurrency=s['concurrent_solves'],seconds_per_100=round(s['wall_time_per_100_cases_s'],3),
         median_FCI=round(s['fci_distribution']['0.5'],6),mean_FCI=round(s['mean_fci'],6),valid=s['validator_pass_cases'],
         median_iterations=s['median_iterations'],first_positive_valid_s=round(s['mean_first_valid_time_s'],3) if s['mean_first_valid_time_s'] is not None else '') for s in summaries]
