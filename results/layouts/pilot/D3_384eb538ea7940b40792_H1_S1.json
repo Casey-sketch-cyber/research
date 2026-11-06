@@ -2,422 +2,213 @@
   "unit_key": "D3:384eb538ea7940b40792",
   "source": "D3",
   "nia_m2": 12.000000000739435,
-  "furnishable_area_m2": 9.480000000739436,
+  "furnishable_area_m2": 9.480000000739434,
   "household": "H1_single_commuter",
   "strategy": "S1",
   "algorithm": "cp_sat",
   "resolution_m": 0.1,
-  "items": [],
-  "service": {},
-  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
-  "fci": 0.0,
+  "items": [
+    {
+      "instance_id": "single_bed#1",
+      "type": "single_bed",
+      "x": 1.8,
+      "y": 2.2,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "shelving#1",
+      "type": "shelving",
+      "x": 0.0,
+      "y": 0.0,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "armchair#1",
+      "type": "armchair",
+      "x": 1.4,
+      "y": 1.0,
+      "orientation_deg": 90,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "drop_leaf_table#1",
+      "type": "drop_leaf_table",
+      "x": 2.8,
+      "y": 1.4,
+      "orientation_deg": 90,
+      "states": {
+        "normal": {
+          "night": "deployed",
+          "morning": "deployed",
+          "day": "deployed",
+          "evening": "deployed",
+          "dinner": "deployed",
+          "leisure": "deployed"
+        }
+      }
+    }
+  ],
+  "service": {
+    "normal": {
+      "night": [
+        {
+          "demand_id": "normal:night:0",
+          "need": "sleep_1",
+          "by": [
+            "single_bed#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "morning": [
+        {
+          "demand_id": "normal:morning:0",
+          "need": "storage",
+          "by": [
+            "shelving#1"
+          ],
+          "model_credit": 0.5
+        },
+        {
+          "demand_id": "normal:morning:1",
+          "need": "dine_2",
+          "by": [
+            "drop_leaf_table#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "day": [],
+      "evening": [
+        {
+          "demand_id": "normal:evening:0",
+          "need": "lounge_1",
+          "by": [
+            "armchair#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "dinner": [
+        {
+          "demand_id": "normal:dinner:0",
+          "need": "dine_2",
+          "by": [
+            "drop_leaf_table#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "leisure": [
+        {
+          "demand_id": "normal:leisure:0",
+          "need": "lounge_1",
+          "by": [
+            "armchair#1"
+          ],
+          "model_credit": 1.0
+        },
+        {
+          "demand_id": "normal:leisure:1",
+          "need": "work_1",
+          "by": [
+            "drop_leaf_table#1"
+          ],
+          "model_credit": 1.0
+        }
+      ]
+    }
+  },
+  "config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b",
+  "fci": 0.9470899470899471,
   "fci_by_variant": {
-    "normal": 0.0
+    "normal": 0.9470899470899471
   },
   "tb": 0.0,
-  "served_hours": 0.0,
+  "served_hours": 17.9,
   "demanded_hours": 18.9,
   "validator": {
-    "fci": 0.0,
+    "fci": 0.9470899470899471,
     "fci_by_variant": {
-      "normal": 0.0
+      "normal": 0.9470899470899471
     },
     "served_hours_by_variant": {
-      "normal": 0.0
+      "normal": 17.9
     },
-    "served_hours": 0.0,
+    "served_hours": 17.9,
     "demanded_hours": 18.9,
     "tb": 0.0,
     "pass": true,
     "violations": [],
     "credits": {
-      "normal:night:0": 0.0,
-      "normal:morning:0": 0.0,
-      "normal:morning:1": 0.0,
-      "normal:evening:0": 0.0,
-      "normal:dinner:0": 0.0,
-      "normal:leisure:0": 0.0,
-      "normal:leisure:1": 0.0
+      "normal:night:0": 1.0,
+      "normal:morning:0": 0.5,
+      "normal:morning:1": 1.0,
+      "normal:evening:0": 1.0,
+      "normal:dinner:0": 1.0,
+      "normal:leisure:0": 1.0,
+      "normal:leisure:1": 1.0
     },
     "unreachable_items": []
   },
   "solver": {
-    "status": "TIMEOUT_WITH_INCUMBENT",
-    "last_search_status": "UNKNOWN",
-    "time_s": 60.008183646947145,
-    "build_time_s": 0.03377288579940796,
-    "objective": 168969.0,
-    "bound": 168969.0,
-    "reach_iterations": 25,
-    "fci_solver": 0.0,
-    "raw_last_model_fci": 0.8941798941798942,
-    "objective_bound_scope": "last raw CP-SAT search; may differ from retained validated layout",
-    "retained_previous_incumbent": true,
+    "status": "OPTIMAL",
+    "last_search_status": "OPTIMAL",
+    "time_s": 0.977063899859786,
+    "build_time_s": 0.07808337919414043,
+    "objective": 179000.0,
+    "bound": 179000.0,
+    "first_valid_time_s": 0.0077993422746658325,
+    "greedy_time_s": 0.057242196053266525,
+    "greedy_fci": 0.6878306878306879,
+    "geometric_cuts": 0,
+    "reach_iterations": 1,
+    "fci_solver": 0.9470899470899471,
+    "raw_last_model_fci": 0.9470899470899471,
+    "objective_bound_scope": "last solution-bearing raw CP-SAT search; may differ from retained validated layout",
+    "retained_previous_incumbent": false,
     "trace": [
       {
         "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 11,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 6,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 6,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 6,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 6,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 6,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 11,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 12,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 11,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 12,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.8941798941798942,
-        "validator_fci": 0.0,
-        "reachability_failures": 6,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
+        "model_fci": 0.9470899470899471,
+        "validator_fci": 0.9470899470899471,
+        "reachability_failures": 0,
+        "validator_violations": [],
         "stopped_at_primary_bound": false
       }
     ],
     "primary_upper_bound": 1.0,
-    "window_tiebreak_optimized": false,
-    "encoding": "exhaustive candidate tables + optional rectangle intervals + boundary/assignment no-goods"
+    "window_tiebreak_optimized": true,
+    "encoding": "configured anchor tables + optional rectangle intervals + guarded geometric frontier cuts"
   },
-  "code_hash": "71438b4cd01d4a7b6c9d7d46ab91a4a6edd0d7c93e4fd64534b33b1637f46761"
+  "code_hash": "8c399699fbe427144e47ae4659179cba13e7b37fb9f2cd04f7a48d1490e2b97b"
 }

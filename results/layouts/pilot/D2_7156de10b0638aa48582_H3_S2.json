@@ -11,9 +11,84 @@
     {
       "instance_id": "double_bed#1",
       "type": "double_bed",
-      "x": 2.1,
-      "y": 4.4,
-      "orientation_deg": 180,
+      "x": 4.8,
+      "y": 0.0,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        },
+        "guests": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "sofa_2#1",
+      "type": "sofa_2",
+      "x": 9.0,
+      "y": 1.8,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        },
+        "guests": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "dining_table_4#1",
+      "type": "dining_table_4",
+      "x": 0.2,
+      "y": 2.6,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        },
+        "guests": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "desk#1",
+      "type": "desk",
+      "x": 1.0,
+      "y": 1.2,
+      "orientation_deg": 0,
       "states": {
         "normal": {
           "night": "static",
@@ -36,8 +111,8 @@
     {
       "instance_id": "wardrobe#1",
       "type": "wardrobe",
-      "x": 9.6,
-      "y": 1.8,
+      "x": 6.8,
+      "y": 0.0,
       "orientation_deg": 0,
       "states": {
         "normal": {
@@ -82,156 +157,6 @@
           "leisure": "static"
         }
       }
-    },
-    {
-      "instance_id": "shelving#1",
-      "type": "shelving",
-      "x": 7.0,
-      "y": 0.0,
-      "orientation_deg": 0,
-      "states": {
-        "normal": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        },
-        "guests": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        }
-      }
-    },
-    {
-      "instance_id": "shelving#2",
-      "type": "shelving",
-      "x": 5.4,
-      "y": 3.1,
-      "orientation_deg": 180,
-      "states": {
-        "normal": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        },
-        "guests": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        }
-      }
-    },
-    {
-      "instance_id": "desk#1",
-      "type": "desk",
-      "x": 11.2,
-      "y": 2.4,
-      "orientation_deg": 90,
-      "states": {
-        "normal": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        },
-        "guests": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        }
-      }
-    },
-    {
-      "instance_id": "desk#2",
-      "type": "desk",
-      "x": 6.6,
-      "y": 3.1,
-      "orientation_deg": 180,
-      "states": {
-        "normal": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        },
-        "guests": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        }
-      }
-    },
-    {
-      "instance_id": "dining_table_4#1",
-      "type": "dining_table_4",
-      "x": 7.0,
-      "y": 1.4,
-      "orientation_deg": 180,
-      "states": {
-        "normal": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        },
-        "guests": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        }
-      }
-    },
-    {
-      "instance_id": "sofa_2#1",
-      "type": "sofa_2",
-      "x": 4.2,
-      "y": 0.0,
-      "orientation_deg": 0,
-      "states": {
-        "normal": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        },
-        "guests": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        }
-      }
     }
   ],
   "service": {
@@ -242,8 +167,7 @@
           "need": "sleep_2",
           "by": [
             "double_bed#1"
-          ],
-          "model_credit": 1.0
+          ]
         }
       ],
       "morning": [
@@ -251,20 +175,16 @@
           "demand_id": "normal:morning:0",
           "need": "storage",
           "by": [
-            "shelving#1",
-            "shelving#2",
             "wardrobe#1",
             "wardrobe#2"
-          ],
-          "model_credit": 1.0
+          ]
         },
         {
           "demand_id": "normal:morning:1",
           "need": "dine_2",
           "by": [
             "dining_table_4#1"
-          ],
-          "model_credit": 1.0
+          ]
         }
       ],
       "day": [
@@ -273,8 +193,7 @@
           "need": "work_1",
           "by": [
             "desk#1"
-          ],
-          "model_credit": 1.0
+          ]
         }
       ],
       "evening": [
@@ -283,8 +202,7 @@
           "need": "lounge_2",
           "by": [
             "sofa_2#1"
-          ],
-          "model_credit": 1.0
+          ]
         }
       ],
       "dinner": [
@@ -293,8 +211,7 @@
           "need": "dine_2",
           "by": [
             "dining_table_4#1"
-          ],
-          "model_credit": 1.0
+          ]
         }
       ],
       "leisure": [
@@ -303,8 +220,7 @@
           "need": "lounge_2",
           "by": [
             "sofa_2#1"
-          ],
-          "model_credit": 1.0
+          ]
         }
       ]
     },
@@ -315,8 +231,7 @@
           "need": "sleep_2",
           "by": [
             "double_bed#1"
-          ],
-          "model_credit": 1.0
+          ]
         }
       ],
       "morning": [
@@ -324,20 +239,16 @@
           "demand_id": "guests:morning:0",
           "need": "storage",
           "by": [
-            "shelving#1",
-            "shelving#2",
             "wardrobe#1",
             "wardrobe#2"
-          ],
-          "model_credit": 1.0
+          ]
         },
         {
           "demand_id": "guests:morning:1",
           "need": "dine_2",
           "by": [
             "dining_table_4#1"
-          ],
-          "model_credit": 1.0
+          ]
         }
       ],
       "day": [
@@ -345,9 +256,8 @@
           "demand_id": "guests:day:0",
           "need": "work_1",
           "by": [
-            "desk#2"
-          ],
-          "model_credit": 1.0
+            "desk#1"
+          ]
         }
       ],
       "evening": [
@@ -356,8 +266,7 @@
           "need": "lounge_2",
           "by": [
             "sofa_2#1"
-          ],
-          "model_credit": 1.0
+          ]
         }
       ],
       "dinner": [
@@ -366,8 +275,7 @@
           "need": "dine_4",
           "by": [
             "dining_table_4#1"
-          ],
-          "model_credit": 1.0
+          ]
         }
       ],
       "leisure": [
@@ -376,13 +284,12 @@
           "need": "lounge_2",
           "by": [
             "sofa_2#1"
-          ],
-          "model_credit": 1.0
+          ]
         }
       ]
     }
   },
-  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
+  "config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b",
   "fci": 1.0,
   "fci_by_variant": {
     "normal": 1.0,
@@ -391,6 +298,16 @@
   "tb": 0.0,
   "served_hours": 26.0,
   "demanded_hours": 26.0,
+  "served_hours_by_variant": {
+    "normal": 0.0,
+    "guests": 0.0
+  },
+  "greedy": {
+    "validated_trials": 171,
+    "first_positive_s": 0.01793997921049595,
+    "fci": 1.0,
+    "algorithm": "descending footprint / first feasible wall-adjacent pose"
+  },
   "validator": {
     "fci": 1.0,
     "fci_by_variant": {
@@ -427,8 +344,11 @@
   "solver": {
     "status": "FEASIBLE",
     "termination": "primary_bound_incumbent",
-    "time_s": 0.21835755184292793,
-    "build_time_s": 0.21835792064666748,
+    "time_s": 1.8576048035174608,
+    "first_valid_time_s": 0.02075105719268322,
+    "greedy_time_s": 1.752381818369031,
+    "greedy_fci": 0.9560384615384615,
+    "build_time_s": 1.8576055634766817,
     "objective": null,
     "bound": null,
     "reach_iterations": 0,
@@ -437,5 +357,5 @@
     "window_tiebreak_optimized": false,
     "primary_upper_bound": 1.0
   },
-  "code_hash": "71438b4cd01d4a7b6c9d7d46ab91a4a6edd0d7c93e4fd64534b33b1637f46761"
+  "code_hash": "8c399699fbe427144e47ae4659179cba13e7b37fb9f2cd04f7a48d1490e2b97b"
 }

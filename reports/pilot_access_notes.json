@@ -1,10 +1,6 @@
 {
-  "basis": "Visual inspection of the empty-access contact sheets, checked against the continuous diagnostic in fixed_service_diagnostic.csv. These explain model failures, not physical accessibility certification.",
-  "units": {
-    "D1:49816767142d653310ef": "The entrance component reaches the upper service approach. The lower service approach lies beyond the region blocked by the whole-room fixed-service classification; its normal interior route is not available to this conservative model.",
-    "D2:08f1c19ec3fae64971ce": "The upper-right room and its service approach lie outside the entrance component across the narrow source-geometry connection. Both the continuous diagnostic using the conservative classification and the raster reject this approach.",
-    "D3:c664e38ee8ad7512e30e": "The route around the toilet pod and kitchenette corners survives the continuous diagnostic but loses connectivity under whole-cell rasterization and conservative walking-disc erosion. This is a resolution/conservatism failure, not evidence of a continuously blocked shell.",
-    "D3:3039fa9dc0ece06809b4": "The toilet pod and kitchenette leave a narrow connection between the entrance pocket and the main space. The service approach fails both the continuous diagnostic and the raster under the configured walking width.",
-    "D3:bef90434d4b523903474": "The narrow passage between fixed blocks near the entrance remains connected in the continuous diagnostic but disconnects on the conservative raster. Resolution sensitivity is required before interpreting its zero score."
-  }
+  "basis": "Current empty-access audit; complete visual diagnosis before release",
+  "config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b",
+  "code_hash": "8c399699fbe427144e47ae4659179cba13e7b37fb9f2cd04f7a48d1490e2b97b",
+  "units": {}
 }

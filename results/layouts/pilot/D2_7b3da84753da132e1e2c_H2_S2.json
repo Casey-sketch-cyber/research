@@ -11,9 +11,9 @@
     {
       "instance_id": "single_bed#1",
       "type": "single_bed",
-      "x": 1.3,
-      "y": 3.8,
-      "orientation_deg": 180,
+      "x": 1.8,
+      "y": 0.0,
+      "orientation_deg": 0,
       "states": {
         "normal": {
           "night": "static",
@@ -26,11 +26,28 @@
       }
     },
     {
-      "instance_id": "wardrobe#1",
-      "type": "wardrobe",
+      "instance_id": "sofa_2#1",
+      "type": "sofa_2",
       "x": 11.6,
-      "y": 2.3,
+      "y": 2.4,
       "orientation_deg": 90,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "dining_table_4#1",
+      "type": "dining_table_4",
+      "x": 0.2,
+      "y": 2.6,
+      "orientation_deg": 0,
       "states": {
         "normal": {
           "night": "static",
@@ -45,9 +62,9 @@
     {
       "instance_id": "desk#1",
       "type": "desk",
-      "x": 2.7,
-      "y": 4.4,
-      "orientation_deg": 180,
+      "x": 4.8,
+      "y": 0.0,
+      "orientation_deg": 0,
       "states": {
         "normal": {
           "night": "static",
@@ -60,45 +77,11 @@
       }
     },
     {
-      "instance_id": "dining_table_2#1",
-      "type": "dining_table_2",
-      "x": 10.2,
-      "y": 4.5,
-      "orientation_deg": 270,
-      "states": {
-        "normal": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        }
-      }
-    },
-    {
-      "instance_id": "armchair#1",
-      "type": "armchair",
-      "x": 2.7,
-      "y": 1.2,
-      "orientation_deg": 90,
-      "states": {
-        "normal": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        }
-      }
-    },
-    {
-      "instance_id": "armchair#2",
-      "type": "armchair",
-      "x": 3.6,
-      "y": 2.8,
-      "orientation_deg": 90,
+      "instance_id": "wardrobe#1",
+      "type": "wardrobe",
+      "x": 9.4,
+      "y": 1.4,
+      "orientation_deg": 0,
       "states": {
         "normal": {
           "night": "static",
@@ -119,8 +102,7 @@
           "need": "sleep_1",
           "by": [
             "single_bed#1"
-          ],
-          "model_credit": 1.0
+          ]
         }
       ],
       "morning": [
@@ -129,16 +111,14 @@
           "need": "storage",
           "by": [
             "wardrobe#1"
-          ],
-          "model_credit": 1.0
+          ]
         },
         {
           "demand_id": "normal:morning:1",
           "need": "dine_2",
           "by": [
-            "dining_table_2#1"
-          ],
-          "model_credit": 1.0
+            "dining_table_4#1"
+          ]
         }
       ],
       "day": [
@@ -147,8 +127,7 @@
           "need": "work_1",
           "by": [
             "desk#1"
-          ],
-          "model_credit": 1.0
+          ]
         }
       ],
       "evening": [
@@ -156,9 +135,8 @@
           "demand_id": "normal:evening:0",
           "need": "lounge_1",
           "by": [
-            "armchair#2"
-          ],
-          "model_credit": 1.0
+            "sofa_2#1"
+          ]
         }
       ],
       "dinner": [
@@ -166,9 +144,8 @@
           "demand_id": "normal:dinner:0",
           "need": "dine_2",
           "by": [
-            "dining_table_2#1"
-          ],
-          "model_credit": 1.0
+            "dining_table_4#1"
+          ]
         }
       ],
       "leisure": [
@@ -176,14 +153,13 @@
           "demand_id": "normal:leisure:0",
           "need": "lounge_1",
           "by": [
-            "armchair#1"
-          ],
-          "model_credit": 1.0
+            "sofa_2#1"
+          ]
         }
       ]
     }
   },
-  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
+  "config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b",
   "fci": 1.0,
   "fci_by_variant": {
     "normal": 1.0
@@ -191,6 +167,15 @@
   "tb": 0.0,
   "served_hours": 26.0,
   "demanded_hours": 26.0,
+  "served_hours_by_variant": {
+    "normal": 0.0
+  },
+  "greedy": {
+    "validated_trials": 108,
+    "first_positive_s": 0.020518334582448006,
+    "fci": 1.0,
+    "algorithm": "descending footprint / first feasible wall-adjacent pose"
+  },
   "validator": {
     "fci": 1.0,
     "fci_by_variant": {
@@ -218,8 +203,11 @@
   "solver": {
     "status": "FEASIBLE",
     "termination": "primary_bound_incumbent",
-    "time_s": 0.1519243475049734,
-    "build_time_s": 0.1519247405230999,
+    "time_s": 3.078333208337426,
+    "first_valid_time_s": 0.024624953046441078,
+    "greedy_time_s": 3.014675598591566,
+    "greedy_fci": 0.9230769230769231,
+    "build_time_s": 3.078333867713809,
     "objective": null,
     "bound": null,
     "reach_iterations": 0,
@@ -228,5 +216,5 @@
     "window_tiebreak_optimized": false,
     "primary_upper_bound": 1.0
   },
-  "code_hash": "71438b4cd01d4a7b6c9d7d46ab91a4a6edd0d7c93e4fd64534b33b1637f46761"
+  "code_hash": "8c399699fbe427144e47ae4659179cba13e7b37fb9f2cd04f7a48d1490e2b97b"
 }

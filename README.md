@@ -35,14 +35,14 @@ After each review, tell Codex: *"Pull, read `reviews/Gx_review.md`, address the 
 | Gate | Status |
 |---|---|
 | Task L literature | Q-12 permits continuation with narrowed C2/C3; remaining screening due at G3 |
-| G1 data & corpus | M1–M6/S1–S4 corpus revisions complete; 28 acceptance checks and 40 tests pass |
-| G2 method & pilot | Reviewed: CHANGES_REQUESTED (see `reviews/G2_review.md`); proceed to Phase 7 if §3 criteria pass |
+| G1 data & corpus | G1 review completed; G2 geometry refresh is recorded in current corpus artifacts |
+| G2 method & pilot | Revision complete; awaiting the author-requested Claude review; see reports/GATE_G2_response.md |
 | G3 results | not started |
 | G4 final package | not started |
 
-Start the review with [`reports/GATE_G2.md`](reports/GATE_G2.md), which opens with the revised G1 corpus, F2 and contact sheet. [Reproduction commands](docs/REPRODUCING.md), the [complete artifact manifest](results/pilot/layout_manifest.csv) and [independent audit](reports/pilot_audit.json) accompany the package. The current full suite passes all 56 tests.
+Start the review with [reports/GATE_G2_response.md](reports/GATE_G2_response.md). The corrected pilot has 240 valid and 0 invalid layouts out of 240, 100% independent FCI agreement, and 79 passing tests. The [artifact manifest](results/pilot/layout_manifest.csv), [audit](reports/g2_revision_audit.json), [benchmarks](results/pilot/benchmark_comparison.csv) and [reproduction instructions](docs/REPRODUCING.md) accompany the package.
 
-The pilot contains 180 valid layouts and 60 explained invalid cases. Search-quality limitations, conservative access failures and the 264.08 h Exp. A projection against a 36 h budget require G2 review. Proposed scope adjustments have not been applied. Phase 7 has not started, and no full-experiment FEA or area-saving conclusion is claimed. Task L literature screening remains explicitly incomplete and is due at G3.
+Selected configuration: w1_s20_t30. Exp. A projects to 9.510 h including the 15% margin; Exp. K is estimated separately. All five G2 continuation criteria pass: True. The author requested another Claude review before proceeding. Phase 7, K and R remain unstarted; no FEA or hypothesis conclusion is claimed. Literature screening remains due at G3.
 
 ## License
 

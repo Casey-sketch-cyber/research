@@ -1,57 +1,52 @@
 {
-  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
-  "code_hash": "71438b4cd01d4a7b6c9d7d46ab91a4a6edd0d7c93e4fd64534b33b1637f46761",
+  "selected_arm": "w1_s20_t30",
+  "config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b",
+  "code_hash": "8c399699fbe427144e47ae4659179cba13e7b37fb9f2cd04f7a48d1490e2b97b",
+  "input_hash": "e8d8bb4b34637f3788e2375475af1f1cfe0f24da9aaad7a3ce72ba3e3c9da82c",
+  "report_code_hash": "f76a03f5cc327c8ad7ba6c590730bcbb49e8177fc53cbd56af241d163f4b28ee",
   "cases": 240,
-  "units": 20,
-  "valid": 180,
-  "explained_invalid": 60,
-  "empty_invalid_units": 5,
-  "ordering_pairs": 80,
-  "ordering_failures": 0,
-  "status_counts": {
-    "FEASIBLE": 80,
-    "FEASIBLE_ACCESS_ADJUSTED": 60,
-    "STRUCTURAL_UNREACHABLE": 60,
-    "TIMEOUT_WITH_INCUMBENT": 32,
-    "OPTIMAL": 8
+  "valid": 240,
+  "invalid": 0,
+  "valid_zero_cases": 0,
+  "zero_causes": {},
+  "structural_failure_units": [],
+  "ordering_violations": 0,
+  "missed_downward_improvements": 0,
+  "validator_agreement_rate": 1.0,
+  "criteria": {
+    "structural_failures": true,
+    "explained_valid_zeros": true,
+    "ordering": true,
+    "validator_agreement": true,
+    "budget": true
   },
-  "last_search_status_counts": {
-    "FEASIBLE": 89,
-    "UNKNOWN": 80,
-    "STRUCTURAL_UNREACHABLE": 60,
-    "OPTIMAL": 11
-  },
-  "final_valid_empty": 17,
-  "final_valid_nonempty": 163,
-  "final_valid_zero_service": 29,
-  "final_valid_nonempty_zero_service": 12,
-  "retained_previous_incumbents": 66,
-  "early_bound_incumbents": 45,
-  "observed_gains_lower_strategy_feasible": 16,
-  "solver_time_sum_s": 6642.711229460314,
-  "runtime_quantiles_s": {
-    "0.5": 13.783791839145124,
-    "0.9": 60.072353383339944,
-    "0.95": 60.13145051077008,
-    "1": 60.4751805588603
-  },
-  "layout_artifacts": 480,
-  "artifact_bytes": 58672705,
-  "checks": {
-    "expected_count": true,
-    "unique_cases": true,
-    "config_hash": true,
-    "code_hash": true,
-    "all_valid_or_explained": true,
-    "fci_agreement": true,
-    "tb_agreement": true,
-    "layout_hashes": true,
-    "layout_metadata": true,
-    "saved_validation": true,
-    "publication_sizes": true,
-    "strategy_ordering": true,
-    "independent_validator_imports": true,
-    "tests_current_and_passed": true
-  },
-  "pass": true
+  "all_five_criteria_pass": true,
+  "worker_quality_criterion_met": true,
+  "projection": {
+    "config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b",
+    "code_hash": "8c399699fbe427144e47ae4659179cba13e7b37fb9f2cd04f7a48d1490e2b97b",
+    "measured_parallel_factor": 1.2005266888372246,
+    "margin": 0.15,
+    "uncapped_expA_hours": 9.510158819743635,
+    "retained_expA_hours": 9.510158819743635,
+    "source_counts_before": {
+      "D1": 1348,
+      "D2": 884,
+      "D3": 510
+    },
+    "source_counts_after": {
+      "D1": 1348,
+      "D2": 884,
+      "D3": 510
+    },
+    "caps_applied": [],
+    "D3_small_shells_preserved": 330,
+    "expA_within_36h": true,
+    "expK_projected_solves": 67443,
+    "expK_projected_hours": 37.38210428460923,
+    "expK_within_two_day_timebox": true,
+    "expK_projection_scope": "full grid, repeated flat-quality search, per-unit bespoke grid and catalogue/kit/flat transfer evaluations; conservative 20 s cap scaled by pilot throughput",
+    "expK_caveat": "No K solve was run; changed parametric domains and FCIq may change build/search cost. Recheck on a K pilot before its 2-day time box.",
+    "stopping_rule": "Stop for review; no formal experiment is launched by this script."
+  }
 }

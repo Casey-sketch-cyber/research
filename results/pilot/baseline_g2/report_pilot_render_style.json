@@ -1,0 +1,11 @@
+{
+  "style": {
+    "figure.constrained_layout.h_pad": 0.15,
+    "figure.constrained_layout.w_pad": 0.08,
+    "figure.constrained_layout.hspace": 0.16,
+    "figure.constrained_layout.wspace": 0.06
+  },
+  "layout_jsons_unchanged": true,
+  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
+  "code_hash": "71438b4cd01d4a7b6c9d7d46ab91a4a6edd0d7c93e4fd64534b33b1637f46761"
+}

@@ -1,67 +1,85 @@
 {
-  "method": "Visual inspection by the implementing assistant of complete six-slot PNGs and all empty-access source sheets; metrics verified separately by the independent audit. This record is not the external G2 reviewer verdict.",
+  "reviewer": "Codex visual inspection",
+  "status": "Inspected current rendered artifacts; Claude gate review remains pending",
+  "config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b",
+  "code_hash": "8c399699fbe427144e47ae4659179cba13e7b37fb9f2cd04f7a48d1490e2b97b",
   "reviews": [
     {
       "path": "results/layouts/pilot/D1_26c3cf1fe59956b266da_H1_S0.png",
-      "sha256": "d9bd7950f3f39744e89a366755c30493f1af8cab5d47e3069d3f00d7a2053cd8",
-      "observation": "Static bodies remain fixed across all normal-day slots. Drawn routes enter through the circulation space and reach the relevant access strips; kitchen and sanitary areas remain unoccupied. Titles and legend are readable."
+      "sha256": "e63f40d78ea04360370f3e4ee5f0dd4b186b01863f52ff5f2eeb9c4ecfa3912e",
+      "observation": "Four static bodies keep the same poses across six slots; the entrance-to-main-room access guides remain clear, the kitchen hatch and blocked sanitary room are distinct, and the displayed FCI 0.9524 matches the saved validated layout."
     },
     {
-      "path": "results/layouts/pilot/D1_26c3cf1fe59956b266da_H2_S1.png",
-      "sha256": "71269180edaf9e601ff7efc4a5414df17bb5e3d8bf0197b68b9cc32413986792",
-      "observation": "The selected S1 solution uses static furniture. The work-slot route reaches the desk access strip; no within-day body/state changes appear. Shared clearance zones are translucent and distinguishable from bodies."
+      "path": "results/layouts/pilot/D1_f732e6230a6c7ba6ab35_H4_S2.png",
+      "sha256": "395cacf1bb57a843bce68d7336886c9f99f5eb635efc1bb7a2f925ef47e7ea83",
+      "observation": "The parent-child layout has only a single bed, table and wardrobe and therefore reports partial service (FCI 0.5119); the entry route reaches the main room beside the kitchen without crossing sanitary bodies. No day-state transformation is shown and TB is zero."
     },
     {
-      "path": "results/layouts/pilot/D1_26c3cf1fe59956b266da_H3_S2.png",
-      "sha256": "bd2c757bfba7d56704fe3f8e16dd00250842952188e6664a1ad9f037e0cc067e",
-      "observation": "Wall bed deploys at night and folds for the remaining slots; the drop-leaf table shows the converse normal-day pattern. Hatched stowed footprints preserve their anchors. Night routes reach both bed access zones, and the incomplete activity score is clearly shown rather than hidden."
+      "path": "results/layouts/pilot/D1_9cbdceea9fb0a993fb36_H2_S2.png",
+      "sha256": "9d64f1b9c5f6acf4faff60db7e6499c1fef027be2880b0094466dcbacff452f1",
+      "observation": "The six-item home-worker layout has a visible desk, bed, sofa, table and storage; the separate kitchen hatch and blocked sanitary body remain legible. Poses stay fixed across the six slots, consistent with zero TB and FCI 1.0."
     },
     {
-      "path": "results/layouts/pilot/D1_f732e6230a6c7ba6ab35_H1_S0.png",
-      "sha256": "24da5dac022461c960373c0b7ba1cc2ab71775f164fe9e894031c39710f976b4",
-      "observation": "Furniture is visible in every slot, but no credited activity routes are drawn and the title reports zero FCI. The entrance circulation region is disconnected from furnishable cells under the source classification; this is a valid zero-service result, not evidence of a successfully furnished dwelling. Panel titles, axes and legend do not overlap."
+      "path": "results/layouts/pilot/D2_016671f59dcf2ba8685b_H2_S2.png",
+      "sha256": "2e0cb59ba1eae95872f90fa8f80687bd20138ab75315aff4c7ad5ef6cf2f792a",
+      "observation": "Five static items occupy the two furnished rooms; access from the entrance reaches the desk room through the internal door, while the separate kitchen is visibly hatched and sanitary rooms remain blocked. All six panels and their FCI 1.0 / TB 0 title are readable."
     },
     {
-      "path": "results/layouts/pilot/D1_49816767142d653310ef_H1_S0.png",
-      "sha256": "c6e3b7c36774b2803cc682cd6f8127fb33175b3e703d19f165944424cf0d172e",
-      "observation": "The retained empty layout is explicitly labelled INVALID in all-slot summary metadata, with zero FCI. The entrance vestibule is separated from the lower service approach by fixed-classified space. No furniture or invented activity paths conceal the structural-access failure."
+      "path": "results/layouts/pilot/D2_7156de10b0638aa48582_H3_S0.png",
+      "sha256": "4d93adb2339a5a828ec6fed9070bf857de639b05ac24d80258fb2b4ba490348d",
+      "observation": "The six-body couple layout keeps the double bed, sofa, desk, dining table and storage fixed across slots. Access guides connect the interior rooms around the bed, and the lower-right kitchen hatch is distinct from the sanitary bodies. The FCI 1.0 title agrees with the validated JSON; the approved one-side bed-access simplification remains applicable."
     },
     {
-      "path": "results/layouts/pilot/D2_016671f59dcf2ba8685b_H3_S2.png",
-      "sha256": "0ca526108554d6981eb1e74f44c155dc1f4dbf8d8cc192630ea4f711b02a5c7d",
-      "observation": "The S2 result uses only static furniture, unchanged across the six slots. Bed, desk, dining and two distinct armchair instances are visible; the drawn activity routes connect through the internal doorway to the left room. Fixed rooms remain unoccupied. Full reported FCI with zero burden therefore does not itself demonstrate a transformation benefit."
+      "path": "results/layouts/pilot/D1_57d50b49366fe21c3aca_H4_S2.png",
+      "sha256": "8d966df8d5513b0c4f99f7a9058808c895f393e50f2574d01d97066171555e36",
+      "observation": "The wall bed is deployed at night and visibly stowed during the five later slots, while the single bed remains in the lower room. The extendable table remains in its compact state. The displayed cyclic TB 2.0 matches the night/day bed changes; this endpoint view does not establish swept-motion clearance. Kitchen hatches and entry routes remain readable."
     },
     {
       "path": "results/layouts/pilot/D3_c664e38ee8ad7512e30e_H1_S0.png",
-      "sha256": "1ae0785421cb99d724350d4b95a0ca5167146cb5b4f9f9c6d081c244ea43b574",
-      "observation": "The 8 m² shell remains empty and is labelled INVALID with zero FCI. Pod and kitchenette footprints are preserved; no fabricated furniture route bypasses the narrow passage. The matching empty-access sheet and continuous diagnostic explain the conservative raster loss."
+      "sha256": "fe2e53c4d4f8184e82d8d3aa4660e800ed945261ae473f695ea37a8d280bc967",
+      "observation": "The 8 m² S0 shell keeps an armchair in the lower-left corner; the entrance, main floor and pod approach remain visibly connected without passing through the kitchenette or toilet body. The saved FCI is 0.2646 and no bed is shown."
+    },
+    {
+      "path": "results/layouts/pilot/D3_c664e38ee8ad7512e30e_H1_S2.png",
+      "sha256": "a4c9e3cc0b690547a6c055dd393989a84e62e5a6f6e13ae4146e1130166386f9",
+      "observation": "The 8 m² S2 render retains the same single-armchair arrangement and FCI 0.2646 as S0 across all slots. No transformation or additional service gain is implied; the service-body approaches remain open."
+    },
+    {
+      "path": "results/layouts/pilot/D3_384eb538ea7940b40792_H1_S0.png",
+      "sha256": "5148f1c5ab4db2c407e47d98532e1a33e8f64393cf6ddcdf62a6cd5c1d451938",
+      "observation": "The 12 m² S0 shell contains a single bed, armchair and two shelves, with a clear entry-to-pod approach. Poses are unchanged through the day, and the title reports the matching partial FCI 0.7937 and zero TB."
     },
     {
       "path": "results/layouts/pilot/D3_384eb538ea7940b40792_H1_S2.png",
-      "sha256": "8bca49ef4a380064c9dd62c0f4ca59b88526b78d68a4186ea77f827e61b9fcf8",
-      "observation": "The 12 m² shell passes empty fixed-service access but the retained S2 layout is empty, with zero FCI and no activity routes across all slots. This clearly exposes a search fallback; it is not proof that furnishing this shell is impossible. Titles, axes and the empty-layout legend remain readable."
-    },
-    {
-      "path": "results/layouts/pilot/D3_bdf0c78c4eba6436fb93_H1_S2.png",
-      "sha256": "6d225ea1fc66221027f6cbae7d10792b40093da60d8074afc850e7cdc0c97bd1",
-      "observation": "The 32 m² shell contains six static items with unchanged footprints across the normal day. Routes from the bottom entrance reach the bed, dining/storage and lounge approach zones in the relevant slots; the fixed pod and kitchenette remain clear of furniture bodies. Full FCI and zero burden are shown without implying a need for transformation."
+      "sha256": "03617be1df4fe29179f4081701cb8e07fca45175055836dd247ac3578dfac3d4",
+      "observation": "The 12 m² S2 shell contains a bed, armchair, shelf and drop-leaf table. The table remains in one deployed state across the displayed day, matching TB 0; the FCI 0.9471 improvement over S0 cannot be attributed to within-day transformation. Entry, bed-side coverage and pod approach are visibly clear."
     }
   ],
-  "empty_access_reviews": [
+  "preparation_reviews": [
     {
       "path": "results/pilot/empty_access_D1.png",
-      "sha256": "13023eb4f349a5f621d2347a1a9b4c91fee52ea40a9c867c981c7a42e59bea16",
-      "observation": "All eight frozen units inspected. One fixed-service failure is visible in the 40.02 m² unit; the 32.74 m² unit passes fixed-service access but only its entrance circulation is reachable. The exterior balcony-side doors no longer appear as mandatory indoor targets."
+      "sha256": "9db8481d46b17a9819bdde69e02a4a3933a94b84028a1e7487a5f2b5f3ea31f7",
+      "observation": "All eight pilot units show connected covered floor reaching the green sanitary and kitchen targets; blocked sanitary rooms remain grey, kitchen hatches are distinct, and titles/legend are readable."
     },
     {
       "path": "results/pilot/empty_access_D2.png",
-      "sha256": "3b5e3b5ea2403fc4c7a863c4060ecf4b15d0622919102ee22479b073bcc42b49",
-      "observation": "All six units inspected. The 48.78 m² unit has a disconnected upper-room service approach; the other five have reachable required approaches. Source-space gaps are preserved rather than visually bridged."
+      "sha256": "65249996ba18115867e366074d89c5604ffb6d32596dbf8184dda0e5438d20cf",
+      "observation": "All six pilot plans show kitchen cells reached through indoor circulation; sanitary interiors remain blocked, all three target labels are green, and exterior balconies are not used as routes."
     },
     {
       "path": "results/pilot/empty_access_D3.png",
-      "sha256": "5cb1289317402693b37ec2113150f8ff8181ab32c84e23d8f7a6db48e6061e1b",
-      "observation": "All six shells inspected. The 8, 16 and 22 m² shells show disconnected service approaches near the pod/kitchen passage; 12, 32 and 40 m² shells pass empty access. The continuous/raster diagnostic distinguishes narrow continuous routes from classification failures."
+      "sha256": "27b1a8532b46d950f715bc7c0c6a0ce52f05b13744694b742929c4ecd9a9b8ae",
+      "observation": "All six regenerated pilot shells show connected covered access to the pod approach and kitchenette; 8 and 12 m² entrances are clear. Numerical target labels identify target regions, not precise walking-disc centres."
+    },
+    {
+      "path": "results/corpus/sample_contact_sheet.png",
+      "sha256": "4822612f7ebcb047ba2a1a9b591c0584e4f36ff2b1c5572996f33f4db93056e2",
+      "observation": "All 24 preparation plans show readable NIA/furnishable labels; kitchens are visibly hatched and separate from sanitary bodies and storage. D3 service bodies leave the indicated entrance and pod-door approaches open."
+    },
+    {
+      "path": "results/figures/F2_corpus_area.png",
+      "sha256": "d2fc8afc69d9d99fcf575e0df5278f670566856567eed008d2d821ba4ec030f0",
+      "observation": "All six panels are readable and distinguish NIA from furnishable area. Titles report D1 full 2327/sample 1348, D2 884/884 and D3 510/510; complete-source sample outlines coincide for D2/D3, and no runtime cap has reduced the sample."
     }
   ]
 }

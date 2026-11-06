@@ -1,0 +1,57 @@
+{
+  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
+  "code_hash": "71438b4cd01d4a7b6c9d7d46ab91a4a6edd0d7c93e4fd64534b33b1637f46761",
+  "cases": 240,
+  "units": 20,
+  "valid": 180,
+  "explained_invalid": 60,
+  "empty_invalid_units": 5,
+  "ordering_pairs": 80,
+  "ordering_failures": 0,
+  "status_counts": {
+    "FEASIBLE": 80,
+    "FEASIBLE_ACCESS_ADJUSTED": 60,
+    "STRUCTURAL_UNREACHABLE": 60,
+    "TIMEOUT_WITH_INCUMBENT": 32,
+    "OPTIMAL": 8
+  },
+  "last_search_status_counts": {
+    "FEASIBLE": 89,
+    "UNKNOWN": 80,
+    "STRUCTURAL_UNREACHABLE": 60,
+    "OPTIMAL": 11
+  },
+  "final_valid_empty": 17,
+  "final_valid_nonempty": 163,
+  "final_valid_zero_service": 29,
+  "final_valid_nonempty_zero_service": 12,
+  "retained_previous_incumbents": 66,
+  "early_bound_incumbents": 45,
+  "observed_gains_lower_strategy_feasible": 16,
+  "solver_time_sum_s": 6642.711229460314,
+  "runtime_quantiles_s": {
+    "0.5": 13.783791839145124,
+    "0.9": 60.072353383339944,
+    "0.95": 60.13145051077008,
+    "1": 60.4751805588603
+  },
+  "layout_artifacts": 480,
+  "artifact_bytes": 58672705,
+  "checks": {
+    "expected_count": true,
+    "unique_cases": true,
+    "config_hash": true,
+    "code_hash": true,
+    "all_valid_or_explained": true,
+    "fci_agreement": true,
+    "tb_agreement": true,
+    "layout_hashes": true,
+    "layout_metadata": true,
+    "saved_validation": true,
+    "publication_sizes": true,
+    "strategy_ordering": true,
+    "independent_validator_imports": true,
+    "tests_current_and_passed": true
+  },
+  "pass": true
+}

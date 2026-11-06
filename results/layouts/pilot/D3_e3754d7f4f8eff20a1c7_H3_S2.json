@@ -2,18 +2,43 @@
   "unit_key": "D3:e3754d7f4f8eff20a1c7",
   "source": "D3",
   "nia_m2": 39.999999998297604,
-  "furnishable_area_m2": 37.47999999829761,
+  "furnishable_area_m2": 37.47999999829759,
   "household": "H3_couple_one_remote",
   "strategy": "S2",
   "algorithm": "cp_sat",
   "resolution_m": 0.1,
   "items": [
     {
+      "instance_id": "double_bed#1",
+      "type": "double_bed",
+      "x": 0.0,
+      "y": 3.2,
+      "orientation_deg": 270,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        },
+        "guests": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
       "instance_id": "wardrobe#1",
       "type": "wardrobe",
-      "x": 5.1,
-      "y": 6.7,
-      "orientation_deg": 90,
+      "x": 1.8,
+      "y": 0.0,
+      "orientation_deg": 0,
       "states": {
         "normal": {
           "night": "static",
@@ -34,35 +59,10 @@
       }
     },
     {
-      "instance_id": "shelving#1",
-      "type": "shelving",
-      "x": 5.1,
-      "y": 5.9,
-      "orientation_deg": 90,
-      "states": {
-        "normal": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        },
-        "guests": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        }
-      }
-    },
-    {
-      "instance_id": "shelving#2",
-      "type": "shelving",
+      "instance_id": "wardrobe#2",
+      "type": "wardrobe",
       "x": 0.0,
-      "y": 6.9,
+      "y": 6.0,
       "orientation_deg": 270,
       "states": {
         "normal": {
@@ -86,9 +86,9 @@
     {
       "instance_id": "desk#1",
       "type": "desk",
-      "x": 3.7,
-      "y": 7.7,
-      "orientation_deg": 180,
+      "x": 0.0,
+      "y": 5.0,
+      "orientation_deg": 270,
       "states": {
         "normal": {
           "night": "static",
@@ -111,8 +111,8 @@
     {
       "instance_id": "dining_table_4#1",
       "type": "dining_table_4",
-      "x": 3.7,
-      "y": 2.8,
+      "x": 4.2,
+      "y": 2.4,
       "orientation_deg": 90,
       "states": {
         "normal": {
@@ -134,77 +134,27 @@
       }
     },
     {
-      "instance_id": "wall_bed_over_sofa#1",
-      "type": "wall_bed_over_sofa",
+      "instance_id": "sofa_2#1",
+      "type": "sofa_2",
       "x": 0.0,
-      "y": 4.6,
+      "y": 7.6,
       "orientation_deg": 270,
       "states": {
         "normal": {
-          "night": "deployed",
-          "morning": "deployed",
-          "day": "deployed",
-          "evening": "deployed",
-          "dinner": "deployed",
-          "leisure": "deployed"
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
         },
         "guests": {
-          "night": "stowed",
-          "morning": "stowed",
-          "day": "stowed",
-          "evening": "stowed",
-          "dinner": "stowed",
-          "leisure": "stowed"
-        }
-      }
-    },
-    {
-      "instance_id": "sofa_bed#1",
-      "type": "sofa_bed",
-      "x": 5.1,
-      "y": 4.0,
-      "orientation_deg": 90,
-      "states": {
-        "normal": {
-          "night": "stowed",
-          "morning": "stowed",
-          "day": "stowed",
-          "evening": "stowed",
-          "dinner": "stowed",
-          "leisure": "stowed"
-        },
-        "guests": {
-          "night": "deployed",
-          "morning": "deployed",
-          "day": "deployed",
-          "evening": "deployed",
-          "dinner": "deployed",
-          "leisure": "deployed"
-        }
-      }
-    },
-    {
-      "instance_id": "drop_leaf_table#1",
-      "type": "drop_leaf_table",
-      "x": 5.1,
-      "y": 3.1,
-      "orientation_deg": 90,
-      "states": {
-        "normal": {
-          "night": "stowed",
-          "morning": "stowed",
-          "day": "stowed",
-          "evening": "stowed",
-          "dinner": "stowed",
-          "leisure": "stowed"
-        },
-        "guests": {
-          "night": "deployed",
-          "morning": "deployed",
-          "day": "deployed",
-          "evening": "deployed",
-          "dinner": "deployed",
-          "leisure": "deployed"
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
         }
       }
     }
@@ -216,7 +166,7 @@
           "demand_id": "normal:night:0",
           "need": "sleep_2",
           "by": [
-            "wall_bed_over_sofa#1"
+            "double_bed#1"
           ],
           "model_credit": 1.0
         }
@@ -226,9 +176,8 @@
           "demand_id": "normal:morning:0",
           "need": "storage",
           "by": [
-            "shelving#1",
-            "shelving#2",
-            "wardrobe#1"
+            "wardrobe#1",
+            "wardrobe#2"
           ],
           "model_credit": 1.0
         },
@@ -256,7 +205,7 @@
           "demand_id": "normal:evening:0",
           "need": "lounge_2",
           "by": [
-            "sofa_bed#1"
+            "sofa_2#1"
           ],
           "model_credit": 1.0
         }
@@ -276,7 +225,7 @@
           "demand_id": "normal:leisure:0",
           "need": "lounge_2",
           "by": [
-            "sofa_bed#1"
+            "sofa_2#1"
           ],
           "model_credit": 1.0
         }
@@ -288,7 +237,7 @@
           "demand_id": "guests:night:0",
           "need": "sleep_2",
           "by": [
-            "sofa_bed#1"
+            "double_bed#1"
           ],
           "model_credit": 1.0
         }
@@ -298,16 +247,17 @@
           "demand_id": "guests:morning:0",
           "need": "storage",
           "by": [
-            "shelving#1",
-            "shelving#2",
-            "wardrobe#1"
+            "wardrobe#1",
+            "wardrobe#2"
           ],
           "model_credit": 1.0
         },
         {
           "demand_id": "guests:morning:1",
           "need": "dine_2",
-          "by": [],
+          "by": [
+            "dining_table_4#1"
+          ],
           "model_credit": 1.0
         }
       ],
@@ -326,7 +276,7 @@
           "demand_id": "guests:evening:0",
           "need": "lounge_2",
           "by": [
-            "wall_bed_over_sofa#1"
+            "sofa_2#1"
           ],
           "model_credit": 1.0
         }
@@ -346,33 +296,33 @@
           "demand_id": "guests:leisure:0",
           "need": "lounge_2",
           "by": [
-            "wall_bed_over_sofa#1"
+            "sofa_2#1"
           ],
           "model_credit": 1.0
         }
       ]
     }
   },
-  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
-  "fci": 0.989,
+  "config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b",
+  "fci": 1.0,
   "fci_by_variant": {
     "normal": 1.0,
-    "guests": 0.9230769230769231
+    "guests": 1.0
   },
   "tb": 0.0,
-  "served_hours": 25.714,
+  "served_hours": 26.0,
   "demanded_hours": 26.0,
   "validator": {
-    "fci": 0.989,
+    "fci": 1.0,
     "fci_by_variant": {
       "normal": 1.0,
-      "guests": 0.9230769230769231
+      "guests": 1.0
     },
     "served_hours_by_variant": {
       "normal": 26.0,
-      "guests": 24.0
+      "guests": 26.0
     },
-    "served_hours": 25.714,
+    "served_hours": 26.0,
     "demanded_hours": 26.0,
     "tb": 0.0,
     "pass": true,
@@ -387,60 +337,29 @@
       "normal:leisure:0": 1.0,
       "guests:night:0": 1.0,
       "guests:morning:0": 1.0,
-      "guests:morning:1": 0.0,
+      "guests:morning:1": 1.0,
       "guests:day:0": 1.0,
       "guests:evening:0": 1.0,
       "guests:dinner:0": 1.0,
       "guests:leisure:0": 1.0
     },
-    "unreachable_items": [
-      "normal:night:drop_leaf_table#1",
-      "normal:morning:drop_leaf_table#1",
-      "normal:day:drop_leaf_table#1",
-      "normal:evening:drop_leaf_table#1",
-      "normal:dinner:drop_leaf_table#1",
-      "normal:leisure:drop_leaf_table#1",
-      "guests:night:drop_leaf_table#1",
-      "guests:morning:drop_leaf_table#1",
-      "guests:day:drop_leaf_table#1",
-      "guests:evening:drop_leaf_table#1",
-      "guests:dinner:drop_leaf_table#1",
-      "guests:leisure:drop_leaf_table#1"
-    ]
+    "unreachable_items": []
   },
   "solver": {
-    "status": "FEASIBLE_ACCESS_ADJUSTED",
-    "last_search_status": "UNKNOWN",
-    "time_s": 60.152983071282506,
-    "build_time_s": 0.3629920016974211,
-    "objective": 34201545559951.0,
-    "bound": 34201545560000.0,
-    "reach_iterations": 3,
-    "fci_solver": 0.989,
-    "raw_last_model_fci": 1.0,
-    "objective_bound_scope": "last raw CP-SAT search; may differ from retained validated layout",
-    "retained_previous_incumbent": false,
-    "trace": [
-      {
-        "status": "FEASIBLE",
-        "model_fci": 1.0,
-        "validator_fci": 0.989,
-        "reachability_failures": 1,
-        "validator_violations": [],
-        "stopped_at_primary_bound": true
-      },
-      {
-        "status": "FEASIBLE",
-        "model_fci": 1.0,
-        "validator_fci": 0.956,
-        "reachability_failures": 1,
-        "validator_violations": [],
-        "stopped_at_primary_bound": true
-      }
-    ],
-    "primary_upper_bound": 1.0,
+    "status": "FEASIBLE",
+    "termination": "primary_bound_incumbent",
+    "time_s": 0.9828293714672327,
+    "first_valid_time_s": 0.022574856877326965,
+    "greedy_time_s": 0.8649841863662004,
+    "greedy_fci": 0.9752692307692308,
+    "build_time_s": 0.9828299414366484,
+    "objective": null,
+    "bound": null,
+    "reach_iterations": 0,
+    "fci_solver": 1.0,
+    "retained_previous_incumbent": true,
     "window_tiebreak_optimized": false,
-    "encoding": "exhaustive candidate tables + optional rectangle intervals + boundary/assignment no-goods"
+    "primary_upper_bound": 1.0
   },
-  "code_hash": "71438b4cd01d4a7b6c9d7d46ab91a4a6edd0d7c93e4fd64534b33b1637f46761"
+  "code_hash": "8c399699fbe427144e47ae4659179cba13e7b37fb9f2cd04f7a48d1490e2b97b"
 }

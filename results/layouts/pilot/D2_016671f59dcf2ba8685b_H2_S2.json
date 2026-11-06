@@ -11,9 +11,9 @@
     {
       "instance_id": "single_bed#1",
       "type": "single_bed",
-      "x": 4.3,
-      "y": 2.5,
-      "orientation_deg": 0,
+      "x": 3.8,
+      "y": 3.4,
+      "orientation_deg": 270,
       "states": {
         "normal": {
           "night": "static",
@@ -28,8 +28,8 @@
     {
       "instance_id": "wardrobe#1",
       "type": "wardrobe",
-      "x": 2.9,
-      "y": 4.1,
+      "x": 0.0,
+      "y": 2.6,
       "orientation_deg": 270,
       "states": {
         "normal": {
@@ -45,9 +45,9 @@
     {
       "instance_id": "desk#1",
       "type": "desk",
-      "x": 6.6,
-      "y": 3.3,
-      "orientation_deg": 90,
+      "x": 0.0,
+      "y": 4.4,
+      "orientation_deg": 270,
       "states": {
         "normal": {
           "night": "static",
@@ -62,9 +62,9 @@
     {
       "instance_id": "dining_table_2#1",
       "type": "dining_table_2",
-      "x": 0.6,
-      "y": 4.5,
-      "orientation_deg": 270,
+      "x": 6.6,
+      "y": 3.0,
+      "orientation_deg": 180,
       "states": {
         "normal": {
           "night": "static",
@@ -77,11 +77,11 @@
       }
     },
     {
-      "instance_id": "sofa_2#1",
-      "type": "sofa_2",
-      "x": 0.0,
-      "y": 3.1,
-      "orientation_deg": 270,
+      "instance_id": "armchair#1",
+      "type": "armchair",
+      "x": 5.2,
+      "y": 0.8,
+      "orientation_deg": 0,
       "states": {
         "normal": {
           "night": "static",
@@ -139,7 +139,7 @@
           "demand_id": "normal:evening:0",
           "need": "lounge_1",
           "by": [
-            "sofa_2#1"
+            "armchair#1"
           ],
           "model_credit": 1.0
         }
@@ -159,14 +159,14 @@
           "demand_id": "normal:leisure:0",
           "need": "lounge_1",
           "by": [
-            "sofa_2#1"
+            "armchair#1"
           ],
           "model_credit": 1.0
         }
       ]
     }
   },
-  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
+  "config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b",
   "fci": 1.0,
   "fci_by_variant": {
     "normal": 1.0
@@ -200,29 +200,19 @@
   },
   "solver": {
     "status": "FEASIBLE",
-    "last_search_status": "FEASIBLE",
-    "time_s": 8.657987268641591,
-    "build_time_s": 0.08510051481425762,
-    "objective": 6197214.0,
-    "bound": 6197230.0,
-    "reach_iterations": 1,
+    "termination": "primary_bound_incumbent",
+    "time_s": 0.31441805325448513,
+    "first_valid_time_s": 0.016760265454649925,
+    "greedy_time_s": 0.27484990656375885,
+    "greedy_fci": 0.6538461538461539,
+    "build_time_s": 0.31441871635615826,
+    "objective": null,
+    "bound": null,
+    "reach_iterations": 0,
     "fci_solver": 1.0,
-    "raw_last_model_fci": 1.0,
-    "objective_bound_scope": "last raw CP-SAT search; may differ from retained validated layout",
-    "retained_previous_incumbent": false,
-    "trace": [
-      {
-        "status": "FEASIBLE",
-        "model_fci": 1.0,
-        "validator_fci": 1.0,
-        "reachability_failures": 0,
-        "validator_violations": [],
-        "stopped_at_primary_bound": true
-      }
-    ],
-    "primary_upper_bound": 1.0,
+    "retained_previous_incumbent": true,
     "window_tiebreak_optimized": false,
-    "encoding": "exhaustive candidate tables + optional rectangle intervals + boundary/assignment no-goods"
+    "primary_upper_bound": 1.0
   },
-  "code_hash": "71438b4cd01d4a7b6c9d7d46ab91a4a6edd0d7c93e4fd64534b33b1637f46761"
+  "code_hash": "8c399699fbe427144e47ae4659179cba13e7b37fb9f2cd04f7a48d1490e2b97b"
 }

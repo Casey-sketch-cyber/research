@@ -2,18 +2,18 @@
   "unit_key": "D3:384eb538ea7940b40792",
   "source": "D3",
   "nia_m2": 12.000000000739435,
-  "furnishable_area_m2": 9.480000000739436,
+  "furnishable_area_m2": 9.480000000739434,
   "household": "H2_single_remote_worker",
   "strategy": "S1",
   "algorithm": "cp_sat",
   "resolution_m": 0.1,
   "items": [
     {
-      "instance_id": "desk#1",
-      "type": "desk",
-      "x": 2.8,
-      "y": 1.4,
-      "orientation_deg": 90,
+      "instance_id": "single_bed#1",
+      "type": "single_bed",
+      "x": 1.8,
+      "y": 2.2,
+      "orientation_deg": 0,
       "states": {
         "normal": {
           "night": "static",
@@ -26,11 +26,11 @@
       }
     },
     {
-      "instance_id": "dining_table_2#1",
-      "type": "dining_table_2",
-      "x": 1.4,
-      "y": 1.9,
-      "orientation_deg": 90,
+      "instance_id": "shelving#1",
+      "type": "shelving",
+      "x": 0.0,
+      "y": 0.0,
+      "orientation_deg": 0,
       "states": {
         "normal": {
           "night": "static",
@@ -45,9 +45,9 @@
     {
       "instance_id": "armchair#1",
       "type": "armchair",
-      "x": 0.0,
-      "y": 0.0,
-      "orientation_deg": 0,
+      "x": 0.8,
+      "y": 1.8,
+      "orientation_deg": 180,
       "states": {
         "normal": {
           "night": "static",
@@ -58,6 +58,23 @@
           "leisure": "static"
         }
       }
+    },
+    {
+      "instance_id": "drop_leaf_table#1",
+      "type": "drop_leaf_table",
+      "x": 2.8,
+      "y": 1.4,
+      "orientation_deg": 90,
+      "states": {
+        "normal": {
+          "night": "deployed",
+          "morning": "deployed",
+          "day": "deployed",
+          "evening": "deployed",
+          "dinner": "deployed",
+          "leisure": "deployed"
+        }
+      }
     }
   ],
   "service": {
@@ -66,22 +83,26 @@
         {
           "demand_id": "normal:night:0",
           "need": "sleep_1",
-          "by": [],
-          "model_credit": 0.0
+          "by": [
+            "single_bed#1"
+          ],
+          "model_credit": 1.0
         }
       ],
       "morning": [
         {
           "demand_id": "normal:morning:0",
           "need": "storage",
-          "by": [],
-          "model_credit": 0.0
+          "by": [
+            "shelving#1"
+          ],
+          "model_credit": 0.5
         },
         {
           "demand_id": "normal:morning:1",
           "need": "dine_2",
           "by": [
-            "dining_table_2#1"
+            "drop_leaf_table#1"
           ],
           "model_credit": 1.0
         }
@@ -91,7 +112,7 @@
           "demand_id": "normal:day:0",
           "need": "work_1",
           "by": [
-            "desk#1"
+            "drop_leaf_table#1"
           ],
           "model_credit": 1.0
         }
@@ -111,7 +132,7 @@
           "demand_id": "normal:dinner:0",
           "need": "dine_2",
           "by": [
-            "dining_table_2#1"
+            "drop_leaf_table#1"
           ],
           "model_credit": 1.0
         }
@@ -128,30 +149,30 @@
       ]
     }
   },
-  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
-  "fci": 0.6153846153846154,
+  "config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b",
+  "fci": 0.9615384615384616,
   "fci_by_variant": {
-    "normal": 0.6153846153846154
+    "normal": 0.9615384615384616
   },
   "tb": 0.0,
-  "served_hours": 16.0,
+  "served_hours": 25.0,
   "demanded_hours": 26.0,
   "validator": {
-    "fci": 0.6153846153846154,
+    "fci": 0.9615384615384616,
     "fci_by_variant": {
-      "normal": 0.6153846153846154
+      "normal": 0.9615384615384616
     },
     "served_hours_by_variant": {
-      "normal": 16.0
+      "normal": 25.0
     },
-    "served_hours": 16.0,
+    "served_hours": 25.0,
     "demanded_hours": 26.0,
     "tb": 0.0,
     "pass": true,
     "violations": [],
     "credits": {
-      "normal:night:0": 0.0,
-      "normal:morning:0": 0.0,
+      "normal:night:0": 1.0,
+      "normal:morning:0": 0.5,
       "normal:morning:1": 1.0,
       "normal:day:0": 1.0,
       "normal:evening:0": 1.0,
@@ -161,397 +182,34 @@
     "unreachable_items": []
   },
   "solver": {
-    "status": "TIMEOUT_WITH_INCUMBENT",
-    "last_search_status": "UNKNOWN",
-    "time_s": 59.653147120028734,
-    "build_time_s": 0.03511938825249672,
-    "objective": 119969.0,
-    "bound": 119969.0,
-    "reach_iterations": 26,
-    "fci_solver": 0.6153846153846154,
-    "raw_last_model_fci": 0.9230769230769231,
-    "objective_bound_scope": "last raw CP-SAT search; may differ from retained validated layout",
-    "retained_previous_incumbent": true,
+    "status": "OPTIMAL",
+    "last_search_status": "OPTIMAL",
+    "time_s": 1.426250757649541,
+    "build_time_s": 0.06493734195828438,
+    "objective": 125000.0,
+    "bound": 125000.0,
+    "first_valid_time_s": 0.008847462013363838,
+    "greedy_time_s": 0.0459733922034502,
+    "greedy_fci": 0.6153846153846154,
+    "geometric_cuts": 0,
+    "reach_iterations": 1,
+    "fci_solver": 0.9615384615384616,
+    "raw_last_model_fci": 0.9615384615384616,
+    "objective_bound_scope": "last solution-bearing raw CP-SAT search; may differ from retained validated layout",
+    "retained_previous_incumbent": false,
     "trace": [
       {
         "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 11,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 6,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 6,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 6,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 11,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 6,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 6,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 12,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 12,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 12,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 8,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
-        "stopped_at_primary_bound": false
-      },
-      {
-        "status": "OPTIMAL",
-        "model_fci": 0.9230769230769231,
-        "validator_fci": 0.0,
-        "reachability_failures": 12,
-        "validator_violations": [
-          "fixed_service_unreachable:normal:day:0",
-          "fixed_service_unreachable:normal:dinner:0",
-          "fixed_service_unreachable:normal:evening:0",
-          "fixed_service_unreachable:normal:leisure:0",
-          "fixed_service_unreachable:normal:morning:0",
-          "fixed_service_unreachable:normal:night:0"
-        ],
+        "model_fci": 0.9615384615384616,
+        "validator_fci": 0.9615384615384616,
+        "reachability_failures": 0,
+        "validator_violations": [],
         "stopped_at_primary_bound": false
       }
     ],
     "primary_upper_bound": 1.0,
-    "window_tiebreak_optimized": false,
-    "encoding": "exhaustive candidate tables + optional rectangle intervals + boundary/assignment no-goods"
+    "window_tiebreak_optimized": true,
+    "encoding": "configured anchor tables + optional rectangle intervals + guarded geometric frontier cuts"
   },
-  "code_hash": "71438b4cd01d4a7b6c9d7d46ab91a4a6edd0d7c93e4fd64534b33b1637f46761"
+  "code_hash": "8c399699fbe427144e47ae4659179cba13e7b37fb9f2cd04f7a48d1490e2b97b"
 }

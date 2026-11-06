@@ -12,8 +12,59 @@
       "instance_id": "single_bed#1",
       "type": "single_bed",
       "x": 4.8,
-      "y": 1.7,
-      "orientation_deg": 270,
+      "y": 0.0,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "sofa_2#1",
+      "type": "sofa_2",
+      "x": 5.8,
+      "y": 0.0,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "dining_table_4#1",
+      "type": "dining_table_4",
+      "x": 10.0,
+      "y": 2.4,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "desk#1",
+      "type": "desk",
+      "x": 1.0,
+      "y": 1.2,
+      "orientation_deg": 0,
       "states": {
         "normal": {
           "night": "static",
@@ -28,8 +79,8 @@
     {
       "instance_id": "wardrobe#1",
       "type": "wardrobe",
-      "x": 6.8,
-      "y": 0.0,
+      "x": 9.0,
+      "y": 1.8,
       "orientation_deg": 0,
       "states": {
         "normal": {
@@ -45,76 +96,8 @@
     {
       "instance_id": "wardrobe#2",
       "type": "wardrobe",
-      "x": 5.6,
-      "y": 3.1,
-      "orientation_deg": 180,
-      "states": {
-        "normal": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        }
-      }
-    },
-    {
-      "instance_id": "desk#1",
-      "type": "desk",
-      "x": 6.8,
-      "y": 3.1,
-      "orientation_deg": 180,
-      "states": {
-        "normal": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        }
-      }
-    },
-    {
-      "instance_id": "dining_table_2#1",
-      "type": "dining_table_2",
-      "x": 11.2,
+      "x": 3.6,
       "y": 3.4,
-      "orientation_deg": 180,
-      "states": {
-        "normal": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        }
-      }
-    },
-    {
-      "instance_id": "armchair#1",
-      "type": "armchair",
-      "x": 2.5,
-      "y": 2.3,
-      "orientation_deg": 90,
-      "states": {
-        "normal": {
-          "night": "static",
-          "morning": "static",
-          "day": "static",
-          "evening": "static",
-          "dinner": "static",
-          "leisure": "static"
-        }
-      }
-    },
-    {
-      "instance_id": "armchair#2",
-      "type": "armchair",
-      "x": 1.7,
-      "y": 3.6,
       "orientation_deg": 90,
       "states": {
         "normal": {
@@ -134,16 +117,14 @@
         {
           "demand_id": "normal:night:0",
           "need": "sleep_1",
-          "by": [],
-          "model_credit": 0.0
+          "by": []
         },
         {
           "demand_id": "normal:night:1",
           "need": "sleep_1",
           "by": [
             "single_bed#1"
-          ],
-          "model_credit": 1.0
+          ]
         }
       ],
       "morning": [
@@ -153,16 +134,14 @@
           "by": [
             "wardrobe#1",
             "wardrobe#2"
-          ],
-          "model_credit": 1.0
+          ]
         },
         {
           "demand_id": "normal:morning:1",
           "need": "dine_2",
           "by": [
-            "dining_table_2#1"
-          ],
-          "model_credit": 1.0
+            "dining_table_4#1"
+          ]
         }
       ],
       "day": [],
@@ -172,16 +151,14 @@
           "need": "work_1",
           "by": [
             "desk#1"
-          ],
-          "model_credit": 1.0
+          ]
         },
         {
           "demand_id": "normal:evening:1",
           "need": "lounge_1",
           "by": [
-            "armchair#2"
-          ],
-          "model_credit": 1.0
+            "sofa_2#1"
+          ]
         }
       ],
       "dinner": [
@@ -189,9 +166,8 @@
           "demand_id": "normal:dinner:0",
           "need": "dine_2",
           "by": [
-            "dining_table_2#1"
-          ],
-          "model_credit": 1.0
+            "dining_table_4#1"
+          ]
         }
       ],
       "leisure": [
@@ -199,15 +175,13 @@
           "demand_id": "normal:leisure:0",
           "need": "lounge_2",
           "by": [
-            "armchair#1",
-            "armchair#2"
-          ],
-          "model_credit": 1.0
+            "sofa_2#1"
+          ]
         }
       ]
     }
   },
-  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
+  "config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b",
   "fci": 0.7142857142857143,
   "fci_by_variant": {
     "normal": 0.7142857142857143
@@ -215,6 +189,15 @@
   "tb": 0.0,
   "served_hours": 20.0,
   "demanded_hours": 28.0,
+  "served_hours_by_variant": {
+    "normal": 0.0
+  },
+  "greedy": {
+    "validated_trials": 131,
+    "first_positive_s": 0.0177091546356678,
+    "fci": 0.7142857142857143,
+    "algorithm": "descending footprint / first feasible wall-adjacent pose"
+  },
   "validator": {
     "fci": 0.7142857142857143,
     "fci_by_variant": {
@@ -242,53 +225,19 @@
   },
   "solver": {
     "status": "FEASIBLE",
-    "last_search_status": "FEASIBLE",
-    "time_s": 21.788648791611195,
-    "build_time_s": 0.12908230535686016,
-    "objective": 300000.0,
-    "bound": 450000.0,
-    "reach_iterations": 4,
+    "termination": "primary_bound_incumbent",
+    "time_s": 1.407864224165678,
+    "first_valid_time_s": 0.03763734735548496,
+    "greedy_time_s": 1.3652749564498663,
+    "greedy_fci": 0.7142857142857143,
+    "build_time_s": 1.407864710316062,
+    "objective": null,
+    "bound": null,
+    "reach_iterations": 0,
     "fci_solver": 0.7142857142857143,
-    "raw_last_model_fci": 0.7142857142857143,
-    "objective_bound_scope": "last raw CP-SAT search; may differ from retained validated layout",
-    "retained_previous_incumbent": false,
-    "trace": [
-      {
-        "status": "FEASIBLE",
-        "model_fci": 0.7142857142857143,
-        "validator_fci": 0.6904761904761906,
-        "reachability_failures": 1,
-        "validator_violations": [],
-        "stopped_at_primary_bound": true
-      },
-      {
-        "status": "FEASIBLE",
-        "model_fci": 0.7142857142857143,
-        "validator_fci": 0.6071428571428571,
-        "reachability_failures": 1,
-        "validator_violations": [],
-        "stopped_at_primary_bound": true
-      },
-      {
-        "status": "FEASIBLE",
-        "model_fci": 0.7142857142857143,
-        "validator_fci": 0.6071428571428571,
-        "reachability_failures": 1,
-        "validator_violations": [],
-        "stopped_at_primary_bound": true
-      },
-      {
-        "status": "FEASIBLE",
-        "model_fci": 0.7142857142857143,
-        "validator_fci": 0.7142857142857143,
-        "reachability_failures": 0,
-        "validator_violations": [],
-        "stopped_at_primary_bound": true
-      }
-    ],
-    "primary_upper_bound": 0.7142857142857143,
+    "retained_previous_incumbent": true,
     "window_tiebreak_optimized": false,
-    "encoding": "exhaustive candidate tables + optional rectangle intervals + boundary/assignment no-goods"
+    "primary_upper_bound": 0.7142857142857143
   },
-  "code_hash": "71438b4cd01d4a7b6c9d7d46ab91a4a6edd0d7c93e4fd64534b33b1637f46761"
+  "code_hash": "8c399699fbe427144e47ae4659179cba13e7b37fb9f2cd04f7a48d1490e2b97b"
 }

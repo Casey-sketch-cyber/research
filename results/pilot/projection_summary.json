@@ -1,0 +1,27 @@
+{
+  "config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b",
+  "code_hash": "8c399699fbe427144e47ae4659179cba13e7b37fb9f2cd04f7a48d1490e2b97b",
+  "measured_parallel_factor": 1.2005266888372246,
+  "margin": 0.15,
+  "uncapped_expA_hours": 9.510158819743635,
+  "retained_expA_hours": 9.510158819743635,
+  "source_counts_before": {
+    "D1": 1348,
+    "D2": 884,
+    "D3": 510
+  },
+  "source_counts_after": {
+    "D1": 1348,
+    "D2": 884,
+    "D3": 510
+  },
+  "caps_applied": [],
+  "D3_small_shells_preserved": 330,
+  "expA_within_36h": true,
+  "expK_projected_solves": 67443,
+  "expK_projected_hours": 37.38210428460923,
+  "expK_within_two_day_timebox": true,
+  "expK_projection_scope": "full grid, repeated flat-quality search, per-unit bespoke grid and catalogue/kit/flat transfer evaluations; conservative 20 s cap scaled by pilot throughput",
+  "expK_caveat": "No K solve was run; changed parametric domains and FCIq may change build/search cost. Recheck on a K pilot before its 2-day time box.",
+  "stopping_rule": "Stop for review; no formal experiment is launched by this script."
+}

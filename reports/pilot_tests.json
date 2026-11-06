@@ -1,8 +1,8 @@
 {
+  "config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b",
   "command": "python -m pytest -q",
+  "passed": 79,
+  "elapsed_s": 57.75,
   "exit_code": 0,
-  "stdout": "........................................................                 [100%]\n56 passed in 42.08s",
-  "stderr": "",
-  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
-  "code_hash": "71438b4cd01d4a7b6c9d7d46ab91a4a6edd0d7c93e4fd64534b33b1637f46761"
+  "tests_hash": "56255d44c9d951340e1ed449198649681ead5fee660e7bbd658e6d1a7f99014a"
 }
