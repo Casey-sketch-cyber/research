@@ -14,6 +14,7 @@ import time
 import pandas as pd
 from tqdm import tqdm
 
+from fea.config import config_hash
 from fea.geometry.unit import Unit
 from fea.households import parse_households
 from fea.io import prepare_cli,start_run,write_json
@@ -89,8 +90,10 @@ def main():
         mean_iterations=('iterations','mean'),median_iterations=('iterations','median'),
         mean_first_cp_valid_s=('first_cp_valid_s','mean'),mean_first_positive_including_greedy_s=('first_positive_including_greedy_s','mean'),
         valid=('validator_pass','sum')).reset_index()
-    aggregate['wall_time_s']=aggregate['mode'].map(timings);aggregate.to_csv(output/'summary.csv',index=False)
-    write_json(output/'protocol.json',dict(cases_per_arm=20,household='H1_single_commuter',strategy='S2',
+    aggregate['wall_time_s']=aggregate['mode'].map(timings)
+    aggregate['config_hash']=config_hash(config);aggregate['code_hash']=selection['code_hash']
+    aggregate.to_csv(output/'summary.csv',index=False)
+    write_json(output/'protocol.json',dict(config_hash=config_hash(config),cases_per_arm=20,household='H1_single_commuter',strategy='S2',
         shared_geometry='corrected G2 pilot',greedy='enabled in both arms',search_round_s=5.,
         method_code_hash=selection['code_hash'],unknown_slice_retry='double within remaining total budget',
         input_hash=hashlib.sha256(Path('results/pilot/pilot_units.json').read_bytes()).hexdigest(),

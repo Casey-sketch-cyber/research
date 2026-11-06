@@ -41,3 +41,6 @@ data/private/
 
 # Incomplete pilot aggregates are checkpoints, not review results.
 results/pilot/*_PARTIAL.csv
+
+# Nested revision benchmark/cut-comparison checkpoints are not review results.
+results/pilot/**/*_PARTIAL.csv

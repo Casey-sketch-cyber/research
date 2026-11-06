@@ -15,6 +15,7 @@ from types import SimpleNamespace
 import numpy as np
 import pandas as pd
 from scipy import ndimage
+from tqdm import tqdm
 
 from fea.config import config_hash, load_config
 from fea.furniture.library import library, rectangles
@@ -96,8 +97,10 @@ def projections(config,summary,frame):
     all_units['in_expA_sample']=all_units.unit_key.isin(retained.unit_key)
     all_units['analysis_config_hash']=config_hash(config)
     all_units.to_csv('results/corpus/corpus_units.csv',index=False)
-    all_units[all_units.include].groupby(['source','nia_bin_2m2','n_rooms']).agg(
-        full_unique=('unit_key','size'),sampled=('in_expA_sample','sum')).reset_index().to_csv('results/corpus/sample_strata.csv',index=False)
+    strata=all_units[all_units.include].groupby(['source','nia_bin_2m2','n_rooms']).agg(
+        full_unique=('unit_key','size'),sampled=('in_expA_sample','sum')).reset_index()
+    strata['config_hash']=config_hash(config);strata['code_hash']=summary['code_hash']
+    strata.to_csv('results/corpus/sample_strata.csv',index=False)
     count_table=pd.read_csv('results/corpus/counts.csv')
     count_table['expA_sample']=count_table.source.map(counts)
     count_table['analysis_config_hash']=config_hash(config)
@@ -109,7 +112,11 @@ def projections(config,summary,frame):
     lo,hi=settings['target']['nia_m2']
     target=d3[(d3.nia_m2>=lo-1e-6)&(d3.nia_m2<=hi+1e-6)]
     units={u['unit_key']:u for u in json.loads(Path('results/pilot/pilot_units.json').read_text())['units']}
-    mapping=pd.read_csv('results/pilot/d3_regeneration_mapping.csv').set_index('old_unit_key')
+    mapping=pd.read_csv('results/pilot/d3_regeneration_mapping.csv')
+    mapping['retained_analysis_sample']=mapping.new_unit_key.isin(retained.unit_key)
+    mapping['analysis_config_hash']=config_hash(config)
+    mapping.to_csv('results/pilot/d3_regeneration_mapping.csv',index=False)
+    mapping=mapping.set_index('old_unit_key')
     held=target.unit_key.map(lambda k:math.isclose(mapping.loc[k,'aspect_ratio'],settings['holdout']['aspect_ratio']) or
         mapping.loc[k,'entrance_position']==settings['holdout']['entrance_position'])
     train_count=int((~held).sum());holdout_count=int(held.sum())
@@ -132,7 +139,8 @@ def projections(config,summary,frame):
     per_k=(settings['search']['time_limit_s']+overrun)*factor/concurrent
     kframe['projected_hours_with_margin']=kframe[kcolumns].sum(axis=1)*per_k/3600*1.15
     kframe.to_csv('results/pilot/expK_projection.csv',index=False)
-    result=dict(measured_parallel_factor=factor,margin=.15,uncapped_expA_hours=duration(before),
+    result=dict(config_hash=config_hash(config),code_hash=summary['code_hash'],
+        measured_parallel_factor=factor,margin=.15,uncapped_expA_hours=duration(before),
         retained_expA_hours=duration(counts),source_counts_before=before,source_counts_after=counts,
         caps_applied=actions,D3_small_shells_preserved=len(small),expA_within_36h=duration(counts)<=36,
         expK_projected_solves=kcount,expK_projected_hours=float(kframe.projected_hours_with_margin.sum()),
@@ -258,13 +266,15 @@ def export(config,selection,render=False):
     summary=json.loads((arm/'summary.json').read_text())
     assert summary['fresh_throughput_measurement']
     assert summary['config_hash']==config_hash(config),'Selected benchmark configuration differs'
+    selection['config_hash']=config_hash(config)
+    write_json(root/'benchmark_selection.json',selection)
     raw=pd.read_csv(arm/'cases.csv');rows=[];audit=[];zeros=[];manifest=[];empty=[]
     households=parse_households(config['households'],config['furniture'])
     units=[Unit.from_dict(u) for u in json.loads((root/'pilot_units.json').read_text())['units']]
     from fea.viz.layouts import render_layout
     import matplotlib.pyplot as plt
     style=configure_render_style()
-    for unit in units:
+    for unit in tqdm(units,desc='Export/revalidate/render'):
         grid=rasterize(unit,config['raster']['resolution_m'])
         checked_empty=validate_layout({'strategy':'S0','items':[],'service':{}},grid,config,households[config['households']['main_households'][0]])
         empty.append(dict(unit_key=unit.unit_key,source=unit.source,nia_m2=unit.interior.area,
@@ -359,12 +369,12 @@ def export(config,selection,render=False):
     return result
 
 
-def tests():
+def tests(config):
     result=subprocess.run([sys.executable,'-m','pytest','-q'],text=True,capture_output=True)
     output=result.stdout+result.stderr
     match=re.search(r'(\d+) passed in ([0-9.]+)s',output)
     if result.returncode or not match:raise RuntimeError('Regression test failure: '+output[-6000:])
-    write_json('reports/g2_revision_tests.json',dict(command='python -m pytest -q',passed=int(match[1]),
+    write_json('reports/g2_revision_tests.json',dict(config_hash=config_hash(config),command='python -m pytest -q',passed=int(match[1]),
         elapsed_s=float(match[2]),exit_code=result.returncode,tests_hash=hashlib.sha256(b''.join(p.read_bytes() for p in sorted(Path('tests').glob('*.py')))).hexdigest()))
     Path('reports/pilot_tests.json').write_bytes(Path('reports/g2_revision_tests.json').read_bytes())
 
@@ -472,7 +482,7 @@ def report():
     paired.assign(config_hash=audit['config_hash'],baseline_config_hash=old.config_hash.iloc[0],
         code_hash=audit['code_hash']).to_csv('results/pilot/baseline_comparison.csv',index=False)
     diagnosis_text='\n'.join('- '+key+': '+value for key,value in access_notes['units'].items()) or 'No unit fails empty fixed-service access.'
-    cut_summary=pd.read_csv('results/pilot/cut_comparison/summary.csv').round(6)
+    cut_summary=pd.read_csv('results/pilot/cut_comparison/summary.csv').drop(columns=['config_hash','code_hash'],errors='ignore').round(6)
     p=audit['projection']
     text=f"""# Gate G2 response
 
@@ -488,7 +498,7 @@ Status: READY_FOR_CLAUDE_REVIEW. Reviewed baseline: 67af2ee; requested correctio
 
 ## M1–M3 and M8: geometry and access
 
-D3 tries ordered near-corner/wall placements, rejects bodies touching the entrance keepout, checks continuous 0.90 m disc connectivity to the main floor and pod door, then tests empty raster access. Parameter keys are retained. Rejected combinations are labelled generator_infeasible and excluded before sampling. The mapping has {len(mapping)} parameter combinations and {int((mapping.new_sample==False).sum())} exclusions; see d3_regeneration_mapping.csv. All original pilot D3 parameters are preserved.
+D3 tries ordered near-corner/wall placements, rejects bodies touching the entrance keepout, checks continuous 0.90 m disc connectivity to the main floor and pod door, then tests empty raster access. Parameter keys are retained. Rejected combinations are labelled generator_infeasible and excluded before sampling. The mapping has {len(mapping)} parameter combinations and {int((mapping.reason=='generator_infeasible').sum())} generator exclusions; see d3_regeneration_mapping.csv. Its new_sample flag records the uncapped geometry redraw; retained_analysis_sample records the later budget selection. All original pilot D3 parameters are preserved.
 
 Kitchen rooms are walkable, not furnishable; fixtures and sanitary bodies remain blocked. Kitchen reachability is tested separately. A wall-aware morphological close adds circulation across source seams up to 0.15 m, without changing NIA. The complete D1/D2 blocker-type audit confirms that the loaded source blockers are polygonal; a separate raster regression preserves zero-thickness internal separators. In the full uncapped sample, {int(gaps.connectivity_changed.sum())} of {len(gaps)} units gain reachability to previously existing cells. Detailed staged pilot diagnostics are in fixed_service_diagnostic.csv; remaining valid zeros and explicit evidence are in zero_service_diagnoses.csv. The 0.30 m gap probe in that file is diagnosis only and is never used to optimize scores.
 
@@ -502,7 +512,7 @@ Solver and validator independently erode by an even/odd discrete disc, traverse 
 
 Selected arm: **{selection['selected_arm']}**. Worker quality criterion met: {selection['worker_quality_criterion_met']}. The fastest 60 s worker arm must be within 0.01 median FCI of both corrected 8-worker references; 30 s is retained only if faster and within 0.01 of that selection as well. All distributions include invalid cases at zero, and individual case scores are published. The 8-worker exhaustive arm isolates corrected-geometry full anchors; the second arm isolates 0.20 m anchors. Collision and access remain 0.10 m. The full-anchor check remains required in resolution sensitivity.
 
-The greedy baseline sorts by descending footprint, takes the first improving feasible wall-adjacent pose, and is independently checked before hinting CP-SAT. Each search uses at most 3 s (also bounded by 15% of its total budget) for that warm start. Geometry constraints, lazy checks and validation share the total 30/60 s budget; CP search initially uses 5 s rounds so access can be checked promptly. A round returning UNKNOWN is retried with a doubled slice, up to the remaining total budget; it does not terminate the case early. After a solution-bearing round the slice resets to 5 s. Iterations are consequently not directly equivalent to the old single long search. First-valid timings refer to positive-FCI layouts, not the empty initial incumbent.
+The greedy baseline sorts by descending footprint, takes the first improving feasible wall-adjacent pose, and is independently checked before hinting CP-SAT. Each search uses at most 3 s (also bounded by 15% of its total budget) for that warm start. Geometry constraints, lazy checks and validation share the total 30/60 s budget; CP search initially uses 5 s rounds so access can be checked promptly. A round returning UNKNOWN is retried with a doubled slice, up to the remaining total budget; it does not terminate the case early. After a solution-bearing round the slice resets to 5 s. Iterations are consequently not directly equivalent to the old single long search. First-valid timings refer to positive-FCI layouts, not the empty initial incumbent. The budget is checked between stages and solver calls; model construction and final validation are not preempted and may overrun it slightly. Runtime projections use the measured elapsed times.
 
 All strategies exchange only layouts independently feasible under the receiving strategy. Scores and differences are reported after this exchange. The final validation audit searches again for missed downward improvements.
 
@@ -510,7 +520,7 @@ M9 uses geometric frontier witness rectangles. A cut requires at least one block
 
 {table(cut_summary)}
 
-First CP-valid time excludes the preceding greedy/incumbent checks; cases returning at an incumbent bound before CP have no such timing. Paired case records are in cut_comparison/cases.csv. The old pilot did not record time to first valid solution, so no retrospective timing is invented. The raw CP-SAT objective/bound describes its last solution-bearing search, not an optimality gap of a shared or retained layout.
+First CP-valid time runs from case start to the first positive, independently checked CP-generated candidate. Greedy/incumbent checks do not trigger this event; their elapsed time is still included. Cases returning at an incumbent bound before CP have no such timing. Paired case records are in cut_comparison/cases.csv. The old pilot did not record time to first valid solution, so no retrospective timing is invented. The raw CP-SAT objective/bound describes its last solution-bearing search, not an optimality gap of a shared or retained layout.
 
 ## M6–M7: projections and sample rule
 
@@ -551,8 +561,8 @@ def main():
     if args.dry_run:print('Would audit the selected complete arm, render/review artifacts, and report A/K projections.');return
     if args.export:
         selection=json.loads(Path('results/pilot/benchmark_selection.json').read_text())
-        config=freeze_configuration(selection,args.config);export(config,selection,args.render)
-    if args.run_tests:tests()
+        config=freeze_configuration(selection,args.config);print(json.dumps(export(config,selection,args.render)))
+    if args.run_tests:tests(config)
     if args.write_report:report()
 
 
