@@ -13,7 +13,7 @@ def describe(unit: Unit) -> dict:
     interior = unit.interior
     rectangle = interior.minimum_rotated_rectangle
     edges = np.linalg.norm(np.diff(np.asarray(rectangle.exterior.coords), axis=0), axis=1) if rectangle.geom_type == "Polygon" else []
-    failures = []
+    failures = [unit.meta["generator_failure"]] if unit.meta.get("generator_failure") else []
     layers = [*unit.classes.values(), unit.walls, *unit.doors, *unit.windows]
     if any(not g.is_valid for g in layers):
         failures.append("invalid_geometry")

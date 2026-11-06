@@ -19,6 +19,7 @@ from fea.geometry.raster import rasterize
 from fea.households import demanded_hours
 from fea.validate import validate_layout
 from .reachability import check_connectivity
+from .greedy import greedy_layout
 
 
 @dataclass
@@ -88,7 +89,7 @@ class Model:
 
     Each body/clearance strip is a rectangle at the common raster anchor. Global
     NoOverlap2D constraints impose the same body/body and body/clearance exclusions
-    while allowing clearance/clearance overlap. No candidate pose is sampled out.
+    while allowing clearance/clearance overlap. The configured anchor lattice is explicit; geometry stays at raster resolution.
     """
     def __init__(self, grid, household, items, candidates, strategy, config):
         self.grid, self.household, self.items, self.config = grid, household, items, config
@@ -276,9 +277,10 @@ class Model:
             furnishable_area_m2=unit.classes["furnishable"].area, household=self.household.name, strategy=strategy,
             algorithm="cp_sat", resolution_m=self.grid.resolution, items=placed, service=service, config_hash=digest)
 
-    def warm_start(self, layout):
+    def warm_start(self, layout, enforce_bound=True):
         """Seed a valid nested-strategy incumbent without removing any candidates."""
         m, indexed = self.model, {i["instance_id"]: i for i in layout["items"]}
+        m.ClearHints()
         hinted_states = set()
         for identity, instance in self.instances.items():
             item = indexed.get(identity)
@@ -292,25 +294,46 @@ class Model:
                 hinted_states.add(variable.Index())
                 value = [s.name for s in instance.item.states].index(item["states"][variant][slot]) if item else 0
                 m.AddHint(variable, value)
-        m.Add(self.primary >= round(layout["fci"]*float(self.primary_scale)))
+        if enforce_bound: m.Add(self.primary >= round(layout["fci"]*float(self.primary_scale)))
 
     def cut(self, problems, solver):
-        """Forbid the boundary-blocker combination only while the failed service is claimed."""
+        """Require a certified barrier to open, or change/withdraw the target.
+
+        Unlike reserving all old bottleneck rectangles, this disjunction retains
+        alternate routes: at least one witness rectangle must cease to be fully
+        covered by its current owner. Movable service targets are pose-guarded.
+        """
+        m = self.model
+        count = 0
+        signatures = set()
         for problem in problems:
-            variables = []
-            for identity in problem["blockers"]:
+            signature = str(problem)
+            if signature in signatures: continue
+            signatures.add(signature)
+            alternatives = []
+            def escape(expression, name):
+                literal = m.NewBoolVar("access_open:"+name+":"+str(len(m.Proto().constraints)))
+                m.Add(expression).OnlyEnforceIf(literal)
+                alternatives.append(literal)
+            for identity, (x0,y0,x1,y1) in problem["barrier_rectangles"].items():
                 instance = self.instances[identity]
-                variables.extend([instance.present, instance.x, instance.y, instance.orientation])
-                state = instance.states[problem["variant"], problem["slot"]]
-                if not isinstance(state, int): variables.append(state)
-            # Including assignment bits preserves the option to leave an unreachable
-            # item unserved while retaining it for another time slot.
+                ix, iy = self.rectangle(instance,(problem["variant"],problem["slot"]),"body")
+                alternatives.append(instance.present.Not())
+                for expression in (ix.StartExpr()>x0, iy.StartExpr()>y0, ix.EndExpr()<x1, iy.EndExpr()<y1):
+                    escape(expression,identity)
             if problem["demand_id"]:
-                variables.extend(y for key, y in self.assignment.items()
-                    if key[:3] == (problem["variant"], problem["slot"], problem["demand_id"])
-                    and key[-1] == problem["instance_id"] and solver.Value(y))
-            variables = list({v.Index(): v for v in variables}.values())
-            if variables: self.model.AddForbiddenAssignments(variables, [[solver.Value(v) for v in variables]])
+                instance = self.instances[problem["instance_id"]]
+                # The service region moves with this pose; without this guard a
+                # cut could wrongly eliminate a relocation beside the entrance.
+                for variable in (instance.x,instance.y,instance.orientation,instance.states[problem["variant"],problem["slot"]]):
+                    if not isinstance(variable,int): escape(variable != solver.Value(variable),"target")
+                claimed = [y for key,y in self.assignment.items() if key[:3]==
+                    (problem["variant"],problem["slot"],problem["demand_id"]) and key[-1]==problem["instance_id"] and solver.Value(y)]
+                alternatives.extend(y.Not() for y in claimed)
+            if alternatives:
+                m.AddBoolOr(alternatives)
+                count += 1
+        return count
 
 
 def solve_layout(unit, household, strategy, config, incumbent=None, prepared=None):
@@ -320,8 +343,8 @@ def solve_layout(unit, household, strategy, config, incumbent=None, prepared=Non
     width = household.overrides.get("walking_width", config["furniture"]["meta"]["walking_width"])
     items = library(config["furniture"], strategy, scale)
     if prepared is None:
-        grid = rasterize(unit, config["raster"]["resolution_m"])
-        candidates = generate_candidates(grid, items, config["raster"]["orientations_deg"])
+        grid = rasterize(unit, config["raster"]["resolution_m"], width, config["raster"].get("source_gap_close_m",.15))
+        candidates = generate_candidates(grid, items, config["raster"]["orientations_deg"], config["raster"].get("anchor_stride_m"))
     else:
         grid, candidates = prepared
     digest = config_hash(config)
@@ -340,10 +363,19 @@ def solve_layout(unit, household, strategy, config, incumbent=None, prepared=Non
             objective=None, bound=None, reach_iterations=0, fci_solver=0., termination="fixed_service_unreachable_without_furniture")
         best["validator"] = best_validation
         return best
+    greedy_started = time.perf_counter()
+    greedy = greedy_layout(empty, grid, items, candidates, household, config,
+        min(started+config["solver"]["time_limit_s"]*.15, greedy_started+3.))
+    greedy_time = time.perf_counter()-greedy_started
+    if greedy["fci"]>best["fci"]+1e-9:
+        best = greedy
+        best_validation = validate_layout(best, grid, config, household)
+    first_valid = time.perf_counter()-started if best["fci"]>0 else None
     model = Model(grid, household, items, candidates, strategy, config)
-    if incumbent is not None and best_validation["pass"] and best["tb"] == 0 and round(best["fci"]*float(model.primary_scale)) >= model.primary_upper:
+    if best_validation["pass"] and best["tb"] == 0 and round(best["fci"]*float(model.primary_scale)) >= model.primary_upper:
         best["validator"] = best_validation
         best["solver"] = dict(status="FEASIBLE", termination="primary_bound_incumbent", time_s=time.perf_counter()-started,
+            first_valid_time_s=first_valid, greedy_time_s=greedy_time, greedy_fci=greedy["fci"],
             build_time_s=time.perf_counter()-started, objective=None, bound=None, reach_iterations=0,
             fci_solver=best["fci"], retained_previous_incumbent=True, window_tiebreak_optimized=False,
             primary_upper_bound=model.primary_upper/float(model.primary_scale))
@@ -357,11 +389,12 @@ def solve_layout(unit, household, strategy, config, incumbent=None, prepared=Non
     raw_fci, selected_fci, found = 0., best["fci"], False
     selected_status = "TIMEOUT_WITH_INCUMBENT"
     diagnostics = []
+    geometric_cuts = 0
     for iteration in range(config["solver"]["reachability_max_iterations"]):
         remaining = deadline-time.perf_counter()
         if remaining <= .01: break
         solver = cp_model.CpSolver()
-        solver.parameters.max_time_in_seconds = remaining
+        solver.parameters.max_time_in_seconds = min(remaining, config["solver"].get("reachability_round_s", 5.))
         solver.parameters.num_search_workers = config["solver"]["num_workers"]
         solver.parameters.random_seed = config["seed"]
         callback = PrimaryBoundStop(model)
@@ -388,6 +421,7 @@ def solve_layout(unit, household, strategy, config, incumbent=None, prepared=Non
         diagnostics.append(dict(status=status_name, model_fci=raw_fci, validator_fci=checked["fci"],
                                 reachability_failures=len(problems), validator_violations=checked["violations"],
                                 stopped_at_primary_bound=callback.reached))
+        if checked["pass"] and checked["fci"]>0 and first_valid is None: first_valid = time.perf_counter()-started
         if checked["pass"] and (checked["fci"] > best["fci"]+1e-9 or
             (abs(checked["fci"]-best["fci"]) <= 1e-9 and checked["tb"] <= best["tb"])):
             best, best_validation, found = layout, checked, True
@@ -404,14 +438,26 @@ def solve_layout(unit, household, strategy, config, incumbent=None, prepared=Non
                 totals[variant.name] = served/demanded_hours(household, variant.name)
             selected_fci = sum(v.frequency*totals[v.name] for v in household.variants)
             if abs(selected_fci-best["fci"]) > 1e-6: raise RuntimeError("Adjusted assignment/validator mismatch")
-        if not problems: break
-        model.cut(problems, solver)
+        if not problems and (status==cp_model.OPTIMAL or callback.reached): break
+        geometric_cuts += model.cut(problems, solver)
+        hint = deepcopy(layout)
+        offenders = {i for problem in problems for i in problem["blockers"]}
+        offenders.update(problem["instance_id"] for problem in problems if problem["instance_id"])
+        hint["items"] = [i for i in hint["items"] if i["instance_id"] not in offenders]
+        for slots in hint["service"].values():
+            for entries in slots.values():
+                for entry in entries:
+                    if offenders.intersection(entry["by"]):
+                        entry["by"] = [i for i in entry["by"] if i not in offenders] if entry["need"]=="storage" else []
+        model.warm_start(hint, enforce_bound=False)
+        model.model.Add(model.primary >= round(best["fci"]*float(model.primary_scale)))
     best["validator"] = best_validation
     best["solver"] = dict(status=selected_status, last_search_status=status_name,
         time_s=time.perf_counter()-started, build_time_s=built-started, objective=objective, bound=bound,
+        first_valid_time_s=first_valid, greedy_time_s=greedy_time, greedy_fci=greedy["fci"], geometric_cuts=geometric_cuts,
         reach_iterations=iterations, fci_solver=selected_fci, raw_last_model_fci=raw_fci,
         objective_bound_scope="last raw CP-SAT search; may differ from retained validated layout",
         retained_previous_incumbent=not found and incumbent is not None, trace=diagnostics,
         primary_upper_bound=model.primary_upper/float(model.primary_scale), window_tiebreak_optimized=selected_status == "OPTIMAL",
-        encoding="exhaustive candidate tables + optional rectangle intervals + boundary/assignment no-goods")
+        encoding="configured anchor tables + optional rectangle intervals + guarded geometric frontier cuts")
     return best

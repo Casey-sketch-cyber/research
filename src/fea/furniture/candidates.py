@@ -21,8 +21,11 @@ def rectangle_fits(mask: np.ndarray, rect: tuple[int, int, int, int]) -> np.ndar
     return valid & (count == w*h)
 
 
-def generate_candidates(raster: Raster, items: dict[str, Item], orientations=(0, 90, 180, 270)) -> dict[str, np.ndarray]:
+def generate_candidates(raster: Raster, items: dict[str, Item], orientations=(0, 90, 180, 270), anchor_stride_m: float | None = None) -> dict[str, np.ndarray]:
     """Return integer (column, row, degrees) anchors fitting every allowed state."""
+    stride = max(1, int(round((anchor_stride_m or raster.resolution)/raster.resolution)))
+    if anchor_stride_m and abs(stride*raster.resolution-anchor_stride_m) > 1e-8:
+        raise ValueError("Anchor stride must be an integer multiple of collision resolution")
     result = {}
     clearance = np.isin(raster.labels, [FURNISHABLE, STORAGE_ONLY, WALKABLE])
     for name, item in items.items():
@@ -38,6 +41,8 @@ def generate_candidates(raster: Raster, items: dict[str, Item], orientations=(0,
                     valid &= rectangle_fits(clearance, strip)
                 if item.wall_backed:
                     valid &= rectangle_fits(raster.wall & (~raster.window if item.tall else True), back)
+            yy, xx = np.indices(valid.shape)
+            valid &= ((xx+round(raster.origin[0]/raster.resolution)) % stride == 0) & ((yy+round(raster.origin[1]/raster.resolution)) % stride == 0)
             rows, columns = np.nonzero(valid)
             poses.extend(np.column_stack((columns, rows, np.full(len(rows), orientation))))
         result[name] = np.asarray(poses, dtype=np.int32).reshape(-1, 3)

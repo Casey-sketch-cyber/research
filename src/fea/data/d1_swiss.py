@@ -77,7 +77,7 @@ def load_d1(config: dict, completed_keys: set[str] | None = None) -> Iterator[Un
         known_spaces = polygon_union([classes[k] for k in ("furnishable", "storage_only", "walkable_only", "fixed_service")])
         entrance = min(entrances, key=lambda g: (g.distance(known_spaces) if not known_spaces.is_empty else 0, g.wkb_hex)) if entrances else None
         entrance_contact = entrance.distance(known_spaces) if entrance is not None and not known_spaces.is_empty else None
-        walls = polygon_union(frame.loc[frame.entity_subtype.isin(["WALL", "COLUMN", "WINDOW"]), "geom"].tolist())
+        walls = polygon_union(frame.loc[frame.entity_subtype.isin(["WALL", "COLUMN", "WINDOW", "SEPARATOR", "RAILING"]), "geom"].tolist())
         walls = walls.difference(polygon_union(doors))
         classes["furnishable"] = classes["furnishable"].difference(walls)
         if not classes["storage_only"].is_empty:
@@ -94,6 +94,8 @@ def load_d1(config: dict, completed_keys: set[str] | None = None) -> Iterator[Un
                     ((frame.entity_type == "area") & frame.entity_subtype.isin(["KITCHEN", "KITCHEN_DINING"])) |
                     ((frame.entity_type == "feature") & (frame.entity_subtype == "KITCHEN")), "geom"])),
                 "has_kitchen_dining": bool((areas.entity_subtype == "KITCHEN_DINING").any()),
+                "kitchen_geometry": polygon_union(frame.loc[(frame.entity_type == "feature") & (frame.entity_subtype == "KITCHEN"), "geom"].tolist()).wkt,
+                "kitchen_region_geometry": polygon_union(areas.loc[areas.entity_subtype.isin(["KITCHEN", "KITCHEN_DINING", "COMMON_KITCHEN"]), "geom"].tolist()).difference(fixed).wkt,
                 "simulation_area_means": summary,
                 "source_invalid_geometries": int(sum(not g.is_valid for g in frame.geom)),
                 "entrance_distance_to_known_spaces_m": entrance_contact}

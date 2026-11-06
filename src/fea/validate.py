@@ -6,7 +6,7 @@ import itertools
 import math
 
 import numpy as np
-from scipy.ndimage import distance_transform_edt
+
 
 from .geometry.raster import Raster, FURNISHABLE, STORAGE_ONLY, WALKABLE
 from .households import Household
@@ -44,13 +44,21 @@ def _mask(shape, anchor, rectangle):
 
 
 def _reachable(grid: Raster, occupied: np.ndarray, walking_width: float) -> np.ndarray:
-    """Explicit four-neighbour BFS after conservative Euclidean-radius erosion."""
+    """Explicit cell-offset erosion, four-neighbour BFS and matching coverage.
+
+    Even diameters use half-cell-centred discs. This implementation deliberately
+    does not call solver morphology or reuse its footprint construction.
+    """
     free = (grid.walkable & ~occupied) | grid.entrance_extension
-    radius = walking_width/2
-    # Subtract the blocked cell's half diagonal, so diagonal corners cannot
-    # falsely admit a walking disc that the centre-to-centre distance misses.
-    distances = distance_transform_edt(np.pad(free, 1))[1:-1, 1:-1]*grid.resolution-grid.resolution/math.sqrt(2)
-    centres = free & (distances >= radius-1e-9)
+    diameter = walking_width / grid.resolution
+    size = math.ceil(diameter - 1e-9)
+    offsets = [(j-size//2, i-size//2) for j in range(size) for i in range(size)
+               if (j-(size-1)/2)**2 + (i-(size-1)/2)**2 <= (diameter/2)**2+1e-9]
+    def shifted(mask, dy, dx):
+        padded = np.pad(mask, size)
+        return padded[size+dy:size+dy+mask.shape[0], size+dx:size+dx+mask.shape[1]]
+    centres = np.ones_like(free)
+    for dy, dx in offsets: centres &= shifted(free, dy, dx)
     seen = np.zeros_like(free)
     queue = deque(map(tuple, np.argwhere(centres & grid.entrance_extension)))
     for y, x in queue: seen[y, x] = True
@@ -61,7 +69,9 @@ def _reachable(grid: Raster, occupied: np.ndarray, walking_width: float) -> np.n
             if 0 <= a < free.shape[0] and 0 <= b < free.shape[1] and centres[a, b] and not seen[a, b]:
                 seen[a, b] = True
                 queue.append((a, b))
-    return seen & grid.walkable
+    covered = np.zeros_like(free)
+    for dy, dx in offsets: covered |= shifted(seen, -dy, -dx)
+    return covered & grid.walkable & ~occupied
 
 
 def validate_layout(layout: dict, grid: Raster, config: dict, household: Household, diagnostics: bool = False) -> dict:
@@ -123,7 +133,7 @@ def validate_layout(layout: dict, grid: Raster, config: dict, household: Househo
                 selected_states.append(state)
                 if state not in states: violations.append("invalid_state:"+identity)
             if strategy in ("S0", "S1") and len(set(selected_states)) > 1: violations.append("day_wide_state_changed:"+identity)
-    paths, access = {}, {}
+    paths, access, reach_cache = {}, {}, {}
     for variant in household.variants:
         paths[variant.name] = {}
         for slot in household.slots:
@@ -136,7 +146,9 @@ def validate_layout(layout: dict, grid: Raster, config: dict, household: Househo
             if np.any(occupancy > 1): violations.append(f"body_overlap:{variant.name}:{slot.name}")
             for identity, (_, body, clear) in active.items():
                 if np.any(clear & ((occupancy-body.astype(int)) > 0)): violations.append(f"clearance_collision:{variant.name}:{slot.name}:{identity}")
-            reachable = _reachable(grid, occupancy > 0, width)
+            occupancy_key = (occupancy > 0).tobytes()
+            if occupancy_key not in reach_cache: reach_cache[occupancy_key] = _reachable(grid, occupancy > 0, width)
+            reachable = reach_cache[occupancy_key]
             paths[variant.name][slot.name] = reachable
             for index, target in enumerate(grid.service_targets):
                 if not np.any(target & reachable): violations.append(f"fixed_service_unreachable:{variant.name}:{slot.name}:{index}")

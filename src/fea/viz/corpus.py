@@ -15,7 +15,7 @@ from fea.geometry.unit import Unit, parts
 COLORS = {"furnishable": "#d4e9d4", "storage_only": "#e5c9a3", "walkable_only": "#d9eafa", "fixed_service": "#bcbcbc", "excluded": "#f4ead5"}
 
 
-def draw_geometry(ax, geometry, color: str, filled: bool = True, width: float = 1.5):
+def draw_geometry(ax, geometry, color: str, filled: bool = True, width: float = 1.5, hatch: str | None = None):
     """Render polygon holes correctly and support opening line geometries."""
     if geometry.is_empty:
         return
@@ -26,12 +26,12 @@ def draw_geometry(ax, geometry, color: str, filled: bool = True, width: float = 
             points = list(ring.coords)
             vertices.extend(points)
             codes.extend([MplPath.MOVETO] + [MplPath.LINETO] * (len(points) - 2) + [MplPath.CLOSEPOLY])
-        ax.add_patch(PathPatch(MplPath(vertices, codes), facecolor=color if filled else "none", edgecolor=color, linewidth=width))
+        ax.add_patch(PathPatch(MplPath(vertices, codes), facecolor=color if filled else "none", edgecolor=color, linewidth=width, hatch=hatch))
     elif geometry.geom_type in ("LineString", "LinearRing"):
         ax.plot(*geometry.xy, color=color, linewidth=width)
     else:
         for child in getattr(geometry, "geoms", []):
-            draw_geometry(ax, child, color, filled, width)
+            draw_geometry(ax, child, color, filled, width, hatch)
 
 
 def draw_unit(ax, unit: Unit, short: bool = False):
@@ -39,6 +39,9 @@ def draw_unit(ax, unit: Unit, short: bool = False):
     for name, color in COLORS.items():
         if name in unit.classes:
             draw_geometry(ax, unit.classes[name], color, width=0.6)
+    if "kitchen_region_geometry" in unit.meta:
+        from shapely import from_wkt
+        draw_geometry(ax, from_wkt(unit.meta["kitchen_region_geometry"]), "#d3d3d3", width=.5, hatch="...")
     draw_geometry(ax, unit.walls, "#333333", width=0.7)
     for opening in unit.windows:
         draw_geometry(ax, opening, "#167dcc", width=2.2)

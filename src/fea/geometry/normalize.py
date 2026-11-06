@@ -44,7 +44,7 @@ def normalize(unit: Unit) -> Unit:
                    doors=[transform(g) for g in unit.doors], windows=[transform(g) for g in unit.windows],
                    entrance=transform(unit.entrance) if unit.entrance is not None else None,
                    meta={**unit.meta, **{k: transform(from_wkt(unit.meta[k])).wkt
-                                         for k in ("toilet_geometry", "kitchen_geometry") if k in unit.meta},
+                                         for k in ("toilet_geometry", "kitchen_geometry", "kitchen_region_geometry") if k in unit.meta},
                          "normalization_repaired_layers": len(repairs),
                          "numerical_coordinate_grid_m": 1e-9,
                          "coordinates": "dominant-axis-aligned local metres"})

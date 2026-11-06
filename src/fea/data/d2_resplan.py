@@ -31,9 +31,10 @@ def from_plan(plan: dict) -> Unit:
     def metric(g: BaseGeometry) -> BaseGeometry:
         return affinity.scale(g, xfact=scale, yfact=scale, origin=(0, 0))
 
-    fixed = union(["bathroom", "kitchen"])
+    fixed = union(["bathroom"])
+    kitchen = union(["kitchen"])
     excluded = union(["balcony", "balacony", "garden", "parking", "pool", "stair"])
-    furnishable = union(["bedroom", "living", "dining", "office"]).intersection(inner).difference(fixed)
+    furnishable = union(["bedroom", "living", "dining", "office"]).intersection(inner).difference(polygon_union([fixed, kitchen]))
     storage = union(["storage"]).intersection(inner).difference(fixed)
     walls = union(["wall", "window"])
     furnishable = furnishable.difference(walls)
@@ -42,6 +43,9 @@ def from_plan(plan: dict) -> Unit:
     if not storage.is_empty:
         storage = storage.difference(walls).difference(furnishable)
     walkable = inner.difference(polygon_union([furnishable, storage, fixed, excluded, walls]))
+    # Preserve the original kitchen-room extent/NIA when changing its access class.
+    # Some released kitchen edges extend beyond the generic inner polygon.
+    walkable = polygon_union([walkable, kitchen.difference(fixed).difference(walls)])
     doors = parts(union(["door", "front_door"]))
     walls = walls.difference(polygon_union(doors))
     front = union(["front_door"])
@@ -62,6 +66,7 @@ def from_plan(plan: dict) -> Unit:
                  "has_sanitary": union(["bathroom"]).area > 0,
                  "has_kitchen": union(["kitchen"]).area > 0,
                  "has_kitchen_dining": False,
+                 "kitchen_region_geometry": metric(kitchen.difference(walls).difference(fixed)).wkt,
                  **scale_measurements(metric(walls), [metric(g) for g in doors],
                                       float(plan["wall_depth"]) * scale if plan.get("wall_depth") is not None else None),
                  "raw_geometry_area_after_scaling_m2": footprint.area * scale ** 2,

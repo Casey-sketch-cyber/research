@@ -1,7 +1,7 @@
 """Conservative, vectorized floor-grid representation with separate opening masks."""
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import math
 
 import numpy as np
@@ -27,6 +27,8 @@ class Raster:
     entrance_extension: np.ndarray
     service_targets: list[np.ndarray]
     keepout_geometry: object
+    kitchen: np.ndarray | None = None
+    gap_repair: dict = field(default_factory=dict)
 
     @property
     def walkable(self) -> np.ndarray:
@@ -78,7 +80,20 @@ def fixed_service_doors(unit: Unit, resolution: float = .1) -> list:
     return result
 
 
-def rasterize(unit: Unit, resolution: float = .1) -> Raster:
+def gap_fill(unit: Unit, max_gap: float = .15):
+    """Close narrow source seams as circulation, preserving NIA and all blockers."""
+    original = polygon_union([unit.classes.get(k, GeometryCollection()) for k in
+                              ("furnishable", "storage_only", "walkable_only", "fixed_service")])
+    if max_gap <= 0: return GeometryCollection()
+    closed = original.buffer(max_gap/2+1e-8, join_style=2).buffer(-max_gap/2-1e-8, join_style=2)
+    blockers = unary_union([unit.walls, unit.classes.get("fixed_service", GeometryCollection()),
+                            unit.classes.get("excluded", GeometryCollection())])
+    # Polygon walls are removed exactly. Line separators receive an infinitesimal
+    # buffer, sufficient to prevent full-cell coverage across them.
+    return closed.difference(original).difference(blockers.buffer(1e-7))
+
+
+def rasterize(unit: Unit, resolution: float = .1, walking_width: float = .6, max_gap: float = .15) -> Raster:
     """Cover whole cells only; fixed services and physical walls remain blocked."""
     if resolution <= 0 or unit.interior.is_empty:
         raise ValueError("Positive grid resolution and nonempty interior required")
@@ -94,6 +109,13 @@ def rasterize(unit: Unit, resolution: float = .1) -> Raster:
     cells = shapely.box(origin[0]+xx*r, origin[1]+yy*r, origin[0]+(xx+1)*r, origin[1]+(yy+1)*r)
     free = polygon_union([unit.classes.get(k, GeometryCollection()) for k in
                           ("furnishable", "storage_only", "walkable_only")]).difference(unit.walls)
+    repair = gap_fill(unit, max_gap)
+    free = polygon_union([free, repair])
+    def line_layers(geometry):
+        if geometry.geom_type in ("LineString", "LinearRing"): return [geometry]
+        return [line for child in getattr(geometry,"geoms",[]) for line in line_layers(child)]
+    interior_lines = unary_union(line_layers(unit.walls)).intersection(unit.interior.buffer(-1e-6))
+    if not interior_lines.is_empty: free = free.difference(interior_lines.buffer(1e-7))
     # Mixed class cells can be circulation but never receive a non-storage body.
     labels = np.zeros((ny, nx), np.uint8)
     def covered(g):
@@ -102,7 +124,7 @@ def rasterize(unit: Unit, resolution: float = .1) -> Raster:
         return shapely.covers(padded, cells)
     labels[covered(free)] = WALKABLE
     for name, value in (("storage_only", STORAGE_ONLY), ("furnishable", FURNISHABLE)):
-        labels[covered(unit.classes.get(name, GeometryCollection()).difference(unit.walls))] = value
+        labels[covered(unit.classes.get(name, GeometryCollection()).difference(unit.walls)) & (labels != BLOCKED)] = value
     keepout = polygon_union([door_keepout(d, unit.interior) for d in unit.doors])
     # A positive-area overlap, not a shared edge, excludes a cell.
     reserved = shapely.area(shapely.intersection(cells, keepout)) > 1e-10
@@ -119,6 +141,15 @@ def rasterize(unit: Unit, resolution: float = .1) -> Raster:
         # Cover the UNION before discretizing. Separately rasterizing inside and
         # outside leaves a false blocked seam in cells straddling the threshold.
         extension = covered(polygon_union([free, exterior])) & (labels == BLOCKED)
-    targets = [(labels != BLOCKED) & shapely.intersects(cells, door.buffer(.3+r))
+    targets = [(labels != BLOCKED) & shapely.intersects(cells, door.buffer(walking_width/2+r))
                for door in fixed_service_doors(unit, r)]
-    return Raster(labels, r, origin, wall, window, entrance, extension, targets, keepout)
+    kitchen = np.zeros_like(wall)
+    if "kitchen_region_geometry" in unit.meta:
+        kitchen = (labels != BLOCKED) & covered(shapely.from_wkt(unit.meta["kitchen_region_geometry"]))
+        if kitchen.any(): targets.append(kitchen)
+    if not kitchen.any() and "kitchen_geometry" in unit.meta:
+        kitchen_body = shapely.from_wkt(unit.meta["kitchen_geometry"])
+        if not kitchen_body.is_empty:
+            targets.append((labels != BLOCKED) & shapely.intersects(cells, kitchen_body.buffer(walking_width/2+r)))
+    return Raster(labels, r, origin, wall, window, entrance, extension, targets, keepout, kitchen,
+                  {"max_gap_m": max_gap, "added_circulation_m2": repair.area, "nia_changed": False})

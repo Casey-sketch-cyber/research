@@ -1,3 +1,13 @@
+> G2 revision in progress. The results below are the historical 67af2ee baseline and will be replaced after the controlled rerun. See [revision checklist](GATE_G2_response.md).
+
+Revision acceptance checklist (PROCEDURES Phase 6, superseded where specified by G2 review):
+- [ ] Explain every validation failure and remaining zero-service case.
+- [ ] Verify S2 ≥ S1 ≥ S0 after bidirectional incumbent sharing.
+- [ ] Publish all 240 corrected solutions and normal-day panels.
+- [ ] Inspect at least six renders, including H1 S0/S2 for 8 and 12 m² D3.
+- [ ] Report measured parallel throughput, A/K projections, 15% margin and any approved minimum-preserving cap.
+- [ ] Upload the response and stop for the author's requested Claude review.
+
 # Phase 06: Solver, independent validator and pilot
 
 **Status: COMPLETE; G2 ready for method review.**

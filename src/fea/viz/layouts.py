@@ -18,7 +18,7 @@ from .corpus import draw_unit
 
 
 def _paths(reached, entrance, targets):
-    """Draw shortest four-neighbour routes within the checked centre-access region."""
+    """Draw shortest four-neighbour routes within the checked covered area (illustrative guides, not disc-centre trajectories)."""
     if not reached.any() or not entrance.any(): return []
     distance = ndimage.distance_transform_edt(~entrance)
     candidates = np.argwhere(reached)
@@ -81,7 +81,8 @@ def render_layout(unit, layout: dict, config: dict, household, output: Path, gri
         ax.set_title(f"{slot.name} ({slot.hours:g} h)", fontsize=10)
     names = sorted({i["type"] for i in layout["items"]})
     handles = [Patch(facecolor=colors[n], label=n.replace("_", " ")) for n in names]
-    handles += [Patch(facecolor="none", edgecolor="gray", hatch="///", label="stowed"), Patch(facecolor="#156d9c", alpha=.2, label="reachable / route")]
+    handles += [Patch(facecolor="none", edgecolor="gray", hatch="///", label="stowed"), Patch(facecolor="#156d9c", alpha=.2, label="reachable area / guide")]
+    if grid.kitchen is not None and grid.kitchen.any(): handles.append(Patch(facecolor="#d3d3d3",hatch="...",label="walkable kitchen"))
     fig.legend(handles=handles, loc="outside lower center", ncol=5, fontsize=8)
     fig.suptitle(f"{unit.unit_key} | {household.name} | {layout['strategy']}\n"
         f"NIA {unit.interior.area:.2f} m² | Furnishable {unit.classes['furnishable'].area:.2f} m² | "
