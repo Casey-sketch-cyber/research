@@ -1,0 +1,13 @@
+{
+  "arm": "w1_s20_t60",
+  "num_workers": 1,
+  "concurrent_solves": 14,
+  "time_limit_s": 60,
+  "anchor_stride_m": 0.2,
+  "collision_resolution_m": 0.1,
+  "config_hash": "d0a3ad7385edfcc872c3eb59398f53db9cc3cb34905f4b17e2f9d62486aceefc",
+  "code_hash": "8c399699fbe427144e47ae4659179cba13e7b37fb9f2cd04f7a48d1490e2b97b",
+  "input_hash": "e8d8bb4b34637f3788e2375475af1f1cfe0f24da9aaad7a3ce72ba3e3c9da82c",
+  "expected_cases": 240,
+  "cache": "data/interim/g2_revision/d0a3ad7385ed_8c399699fbe4/w1_s20_t60"
+}

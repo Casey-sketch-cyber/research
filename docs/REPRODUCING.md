@@ -16,7 +16,6 @@ python scripts/03_build_corpus.py --config config/project.yaml
 python scripts/03_accept_corpus.py --config config/project.yaml
 python scripts/04_check_furniture.py --config config/project.yaml
 python scripts/05_schedules.py --config config/project.yaml
-python scripts/03_review_report.py --config config/project.yaml
 python -m pytest -q
 ```
 
@@ -76,7 +75,7 @@ After inspecting at least six current complete renders, including H1 S0/S2 at 8 
 python scripts/06_revision_report.py --config config/project.yaml --write-report
 ```
 
-That command verifies the inspected image hashes. Every final layout and normal-day render is published with its hash. Historical pre-review results remain under `results/pilot/baseline_g2/` and at commit 67af2ee; the old `06_pilot.py`, `06_report.py` and `06_gate.py` describe that historical workflow. Use the revision commands for the corrected method.
+That command verifies the inspected image hashes. Every final layout and normal-day render is published with its hash. Historical pre-review results remain under `results/pilot/baseline_g2/` and at commit 67af2ee; `03_review_report.py` is the historical G1 report writer, and the old `06_pilot.py`, `06_report.py` and `06_gate.py` describe the pre-correction pilot workflow. Use the revision commands for the corrected method.
 
 The export records selected solver parameters, calibrates source-specific runtime to measured parallel throughput, adds 15%, and applies only the review-approved caps if Exp. A still exceeds 36 h. It preserves the uncapped sample and all valid D3 shells at NIA ≤20 m². Geometry-conversion config hashes remain provenance; the analysis config hash identifies the selected solve. Exp. K's separate workload projection is not a measured K result. Formal experiments remain unstarted until the author-requested review.
 

@@ -292,7 +292,11 @@ def export(config,selection,render=False):
             target=Path('results/layouts/pilot')/row.layout_file
             write_json(target,layout)
             if render:render_layout(unit,layout,config,household,target.with_suffix('.png'),grid)
-            values=row.to_dict();values.update(algorithm='cp_sat',furnishable_area_m2=unit.classes['furnishable'].area,
+            solver=layout['solver'];trace=solver.get('trace',[])
+            stopped_at_bound=solver.get('termination')=='primary_bound_incumbent' or bool(trace and
+                trace[-1].get('stopped_at_primary_bound') and trace[-1].get('reachability_failures')==0)
+            values=row.to_dict();values.update(stopped_at_proved_bound=stopped_at_bound,
+                algorithm='cp_sat',furnishable_area_m2=unit.classes['furnishable'].area,
                 served_hours=checked['served_hours'],demanded_hours=checked['demanded_hours'],
                 n_violations=len(checked['violations']),objective=layout['solver'].get('objective'),bound=layout['solver'].get('bound'))
             rows.append(values)
@@ -320,7 +324,8 @@ def export(config,selection,render=False):
     frame['zero_service_fallback']=[(r.unit_key,r.household,r.strategy) in fallback_keys for r in frame.itertuples()]
     frame.assign(zero_service=frame.fci_validator<=1e-12).groupby(['source','strategy']).agg(
         n=('fci_validator','size'),mean_fci=('fci_validator','mean'),median_fci=('fci_validator','median'),
-        validator_pass_share=('validator_pass','mean'),proved_bound_share=('at_proved_bound','mean'),
+        validator_pass_share=('validator_pass','mean'),proved_bound_share=('stopped_at_proved_bound','mean'),
+        final_at_proved_bound_share=('at_proved_bound','mean'),
         timeout_with_incumbent_share=('timeout_with_incumbent','mean'),zero_service_share=('zero_service','mean'),
         zero_service_fallback_share=('zero_service_fallback','mean')).reset_index().to_csv(root/'summary_by_group.csv',index=False)
     frame.groupby(['unit_key','source','nia_m2']).agg(n=('strategy','size'),valid=('validator_pass','sum'),
@@ -480,8 +485,29 @@ def report():
     benchmarks=pd.DataFrame(rows)
     benchmarks.assign(config_hash=[v['config_hash'] for v in summaries],code_hash=[v['code_hash'] for v in summaries],
         input_hash=[v['input_hash'] for v in summaries]).to_csv('results/pilot/benchmark_comparison.csv',index=False)
+    full=pd.read_csv(Path('results/pilot/benchmarks')/selection['completed_arms'][0]/'cases.csv')
+    coarse=pd.read_csv(Path('results/pilot/benchmarks')/selection['completed_arms'][1]/'cases.csv')
+    keys=['unit_key','household','strategy']
+    anchors=full[keys+['source','nia_m2','fci_validator']].merge(coarse[keys+['fci_validator']],
+        on=keys,suffixes=('_full','_coarse'),validate='one_to_one')
+    assert len(anchors)==240
+    anchors['delta_FCI']=anchors.fci_validator_coarse-anchors.fci_validator_full
+    anchors.assign(full_config_hash=summaries[0]['config_hash'],coarse_config_hash=summaries[1]['config_hash'],
+        code_hash=audit['code_hash'],input_hash=audit['input_hash']).to_csv('results/pilot/anchor_stride_comparison.csv',index=False)
+    anchor_summary=anchors.groupby(['source','strategy']).agg(n=('delta_FCI','size'),
+        mean_full_FCI=('fci_validator_full','mean'),mean_coarse_FCI=('fci_validator_coarse','mean'),
+        mean_delta_FCI=('delta_FCI','mean'),min_delta_FCI=('delta_FCI','min'),max_delta_FCI=('delta_FCI','max'),
+        improved=('delta_FCI',lambda x:int((x>1e-9).sum())),reduced=('delta_FCI',lambda x:int((x< -1e-9).sum()))).reset_index()
+    anchor_summary.assign(full_config_hash=summaries[0]['config_hash'],coarse_config_hash=summaries[1]['config_hash'],
+        code_hash=audit['code_hash']).to_csv('results/pilot/anchor_stride_summary.csv',index=False)
     gaps=pd.read_csv('results/pilot/gap_connectivity_audit.csv');mapping=pd.read_csv('results/pilot/d3_regeneration_mapping.csv')
     old=pd.read_csv('results/pilot/baseline_g2/pilot_solutions.csv');new=pd.read_csv('results/pilot/pilot_solutions.csv')
+    selected_pair=full[keys+['source','nia_m2','fci_validator']].merge(new[keys+['fci_validator']],
+        on=keys,suffixes=('_reference','_selected'),validate='one_to_one')
+    assert len(selected_pair)==240
+    selected_pair['delta_FCI']=selected_pair.fci_validator_selected-selected_pair.fci_validator_reference
+    selected_pair.assign(reference_config_hash=summaries[0]['config_hash'],selected_config_hash=audit['config_hash'],
+        code_hash=audit['code_hash'],input_hash=audit['input_hash']).to_csv('results/pilot/selected_reference_comparison.csv',index=False)
     paired=old[['unit_key','household','strategy','fci_validator','reach_iterations']].merge(new[['unit_key','household','strategy','fci_validator','reach_iterations']],on=['unit_key','household','strategy'],suffixes=('_old','_new'))
     paired.assign(config_hash=audit['config_hash'],baseline_config_hash=old.config_hash.iloc[0],
         code_hash=audit['code_hash']).to_csv('results/pilot/baseline_comparison.csv',index=False)
@@ -496,6 +522,8 @@ Status: READY_FOR_CLAUDE_REVIEW. Reviewed baseline: 67af2ee; requested correctio
 
 - Fixed pilot: {audit['cases']} cases; {audit['valid']} valid and {audit['invalid']} invalid. Independent FCI agreement: {audit['validator_agreement_rate']:.0%}.
 - Ordering violations after sharing: {audit['ordering_violations']}; missed feasible downward improvements: {audit['missed_downward_improvements']}.
+- Anchor comparison at 8 workers / 60 s: mean FCI change (0.20 m minus 0.10 m) {anchors.delta_FCI.mean():+.6f}; source means {json.dumps({k:round(v,6) for k,v in anchors.groupby('source').delta_FCI.mean().items()},sort_keys=True)}. Passing the median selection rule does not establish equal quality for every source or case.
+- Selected configuration versus the corrected full-anchor 8-worker reference: mean FCI change {selected_pair.delta_FCI.mean():+.6f}; by source {json.dumps({k:round(v,6) for k,v in selected_pair.groupby('source').delta_FCI.mean().items()},sort_keys=True)}. See selected_reference_comparison.csv; these finite-budget quality changes remain part of this review even if every continuation criterion passes.
 - Valid zero-service cases: {audit['valid_zero_cases']}; causes: {json.dumps(audit['zero_causes'],sort_keys=True)}.
 - Tests: {checks['passed']} passed; measured test runtime {checks['elapsed_s']:.2f} s.
 - All five reviewer continuation criteria pass: **{audit['all_five_criteria_pass']}**. Criterion results: {json.dumps(audit['criteria'],sort_keys=True)}.
@@ -516,7 +544,15 @@ Solver and validator independently erode by an even/odd discrete disc, traverse 
 
 Selected arm: **{selection['selected_arm']}**. Worker quality criterion met: {selection['worker_quality_criterion_met']}. The fastest 60 s worker arm must be within 0.01 median FCI of both corrected 8-worker references; 30 s is retained only if faster and within 0.01 of that selection as well. All distributions include invalid cases at zero, and individual case scores are published. The 8-worker exhaustive arm isolates corrected-geometry full anchors; the second arm isolates 0.20 m anchors. Collision and access remain 0.10 m. The full-anchor check remains required in resolution sensitivity.
 
+Paired 0.20 m minus 0.10 m anchor differences, with 8 workers and 60 s held fixed:
+
+{table(anchor_summary.round(6))}
+
+The complete 240 paired changes are in anchor_stride_comparison.csv. Positive differences reflect finite-budget search outcomes, not a claim that the coarser feasible set contains the finer one.
+
 The greedy baseline sorts by descending footprint, takes the first improving feasible wall-adjacent pose, and is independently checked before hinting CP-SAT. Each search uses at most 3 s (also bounded by 15% of its total budget) for that warm start. Geometry constraints, lazy checks and validation share the total 30/60 s budget; CP search initially uses 5 s rounds so access can be checked promptly. A round returning UNKNOWN is retried with a doubled slice, up to the remaining total budget; it does not terminate the case early. After a solution-bearing round the slice resets to 5 s. Iterations are consequently not directly equivalent to the old single long search. First-valid timings refer to positive-FCI layouts, not the empty initial incumbent. The budget is checked between stages and solver calls; model construction and final validation are not preempted and may overrun it slightly. Runtime projections use the measured elapsed times.
+
+In summary_by_group.csv, proved_bound_share records an actual early bound stop in the case's own search; final_at_proved_bound_share records whether the final, possibly shared layout attains the relaxed bound with zero burden. Timeout-with-incumbent uses recorded timeout status or elapsed time at the limit. These flags are not mutually exclusive after sharing; zero_service_fallback_share counts valid zeros specifically diagnosed as search_fallback.
 
 All strategies exchange only layouts independently feasible under the receiving strategy. Scores and differences are reported after this exchange. The final validation audit searches again for missed downward improvements.
 
