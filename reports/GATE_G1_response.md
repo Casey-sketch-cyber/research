@@ -1,3 +1,5 @@
+> Historical G1 review response. Current G2 geometry, sample counts and method corrections are documented in phase_02_corpus.md and GATE_G2_response.md.
+
 # Response to G1 review
 
 **Status: M1–M6 and S1–S4 corpus changes complete; continued engineering authorized through G2.**

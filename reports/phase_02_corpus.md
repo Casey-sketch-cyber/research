@@ -1,59 +1,23 @@
-# Phase 02: Corpus construction — G1 revision
+# Phase 02: Corpus construction — G2 geometry refresh
 
-**Status: COMPLETE, superseding the original furnishable-area corpus.**
+Status: COMPLETE. Current geometry supersedes the G1 kitchen/service treatment; the earlier phase report is preserved under results/pilot/baseline_g2/.
 
-## Checklist and acceptance
-- [x] Convert all authorized D1/D2 and generated D3 units; preserve source group IDs as opaque keys.
-- [x] Normalize, audit and filter by NIA and complete-dwelling requirements.
-- [x] Separate storage-only areas, deduplicate geometry and freeze the site-capped sample.
-- [x] Audit D2 scales and D3 entrance keepouts; publish exclusion-bias distributions.
-- [x] Regenerate counts, F2 and 24 sample views.
-- [x] Run observed-source loader regressions and corpus acceptance: 40 passed in 38.52s; 28 checks passed.
+## Current counts
 
-## Key numbers
-| source   |   total |   eligible_before_dedup |   included |   expA_sample |   missing_gross |   duplicate_copies_removed |   excluded |
-|:---------|--------:|------------------------:|-----------:|--------------:|----------------:|---------------------------:|-----------:|
-| D1       |   46830 |                    3533 |       2326 |          1347 |           46830 |                       1207 |      44504 |
-| D2       |   17000 |                     892 |        884 |           884 |               0 |                          8 |      16116 |
-| D3       |     510 |                     510 |        510 |           510 |               0 |                          0 |          0 |
+| source | total | eligible_before_dedup | included | expA_sample | missing_gross | duplicate_copies_removed | excluded |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| D1 | 46830 | 3533 | 2327 | 1348 | 46830 | 1206 | 44503 |
+| D2 | 17000 | 892 | 884 | 884 | 0 | 8 | 16116 |
+| D3 | 510 | 510 | 510 | 510 | 0 | 0 | 0 |
 
-## Exclusions (nonexclusive reasons)
-| source   | exclude_reason                     |     n |
-|:---------|:-----------------------------------|------:|
-| D1       | above_max_nia                      | 40279 |
-| D2       | above_max_nia                      | 16061 |
-| D1       | entrance_not_touching_known_spaces |  7263 |
-| D1       | no_kitchen                         |  2816 |
-| D1       | missing_entrance                   |  1730 |
-| D1       | no_sanitary                        |  1371 |
-| D1       | duplicate_geometry                 |  1207 |
-| D2       | rooms_outside_source_outline       |   666 |
-| D1       | missing_window                     |   508 |
-| D2       | implausible_scale                  |   355 |
-| D1       | no_habitable_room                  |   255 |
-| D2       | entrance_not_touching_known_spaces |   233 |
-| D1       | furnishable_wall_overlap           |   208 |
-| D2       | no_kitchen                         |   125 |
-| D2       | unsupported_detached_interior      |    96 |
-| D1       | detached_entrance                  |    57 |
-| D1       | below_min_nia                      |    56 |
-| D2       | missing_window                     |    51 |
-| D2       | duplicate_geometry                 |     8 |
-| D2       | missing_entrance                   |     6 |
-| D2       | below_min_nia                      |     6 |
-| D1       | geometry_processing_error          |     3 |
-| D1       | missing_nia                        |     3 |
-| D2       | normalization_changed_area         |     1 |
+The expA_sample column is the retained analysis sample after the approved G2 budget rule, if a cap is required. The uncapped G2 sample and conversion counts remain in expA_sample_uncapped_G2.csv and corpus_audit.json. All normalized geometries remain in the local processed corpus; the scalar publication table records the final analysis selection. The 24 preparation review views are sampled from the uncapped corpus and are not reselected for a later budget cap.
 
-## Decisions and deviations
-Normalized geometry hashes include class layers, walls, sorted openings, entrance, room count and service flags. IDs/sites are excluded. Hashing uses a 1 micrometre grid; analysis coordinates remain unchanged. Mirrors and quarter-turn equivalence are not inferred. n_duplicates counts additional eligible copies, not total multiplicity. The representative is the lexically first source/unit key. Site grouping is retained.
+## Acceptance and geometry
 
-D1 uses fixed-seed random order within 2 m² NIA × room-count strata, selected by proportional-quota deficit subject to at most five per site. Site caps can prevent exact proportional allocation; sample_strata.csv and F2 expose the difference. All eligible unique D2/D3 units are retained. The pilot must draw from this frozen file.
+The rebuilt uncapped corpus passed 28/28 checks and 78 passed in 57.16s. These checks precede analysis-only caps; all-eligible-D2/D3 sampling checks describe the uncapped preparation stage. Conversion config hash: 6b045c7aaf2423758dca393571baee8e1c4fae6e6c5344b5a087d6c94ad74bb7. The selected solver configuration has a separate analysis hash in final outputs.
 
-NIA includes fixed rooms and storage but excludes walls. Source gross-area claims are not substituted for NIA. There is no furnishable-area fallback. D2 geometric scale calibration and strict entrance contact remain approved assumptions. Missing D1 gross area remains missing. See GATE_G1_response.md for all M/S responses and selection-bias tables.
+Kitchens are walkable but not furnishable; fixtures and sanitary rooms remain blocked. Sanitary room boundaries and kitchen regions have separate access targets. All 3721 included geometries were checked: 0 empty sanitary geometries and 0 kitchen/furniture-class overlaps. D3 uses the corrected continuous 0.90 m entrance/pod passage check and empty-layout raster validation. Gap filling is circulation only and does not redefine NIA.
 
-## Open questions
-Review the revised views and scale/entrance distributions at G2. No unsupported novelty, FCI or FEA conclusion is inferred from corpus construction.
+NIA retains the reviewed union-of-interior-classes definition. D1 gross area remains missing; D2 metric calibration remains an assumption, with the same scale and completeness filters. Geometry deduplication uses a 1e-6 m hash grid, keeps source/site grouping, and does not equate mirrors or quarter turns. D1 sampling remains stratified by NIA/room count with the approved site cap. D1/D2 projection caps, when needed, retain stratification; all valid D3 shells at NIA ≤20 m² are retained. See the G2 response for cap actions and final counts.
 
-## Runtime and reproducibility
-Successful aggregation invocation: 47.691 s (cached source conversion excluded). Per-source conversion attempts are recorded in corpus_audit.json; interrupted/restarted attempts are not presented as total end-to-end runtime. Config hash: 82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de. Commands: docs/REPRODUCING.md.
+No FEA or hypothesis conclusion follows from preparation. Figures and numerical tables are regenerated by the committed scripts; the recorded conversion attempt timings exclude prior interrupted runs.

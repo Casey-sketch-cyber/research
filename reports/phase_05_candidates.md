@@ -1,24 +1,9 @@
-# Phase 05: Rasterization and candidate generation
+# Phase 05: Rasterization and candidate generation — G2 refresh
 
-**Status: COMPLETE.**
+Status: COMPLETE. The full 0.10 m anchor benchmark on 24 uncapped review units passed all checks. This is a candidate-generation check; the G2 pilot separately compares 0.10/0.20 m anchors and selects the latter only under the declared score criterion.
 
-## Checklist and acceptance
-- [x] Separate furnishable, storage-only, walkable, blocked and door keepout cells.
-- [x] Physical-wall/window masks, entrance portal and fixed-service approach masks.
-- [x] Vectorized summed-area rectangle queries for every grid anchor/orientation.
-- [x] Body/clearance fit, complete backing and tall-item window exclusions.
-- [x] All transformation states fit the same anchor; only storage furniture can occupy storage rooms.
-- [x] Analytical desk-count, backing, keepout, storage and state-anchor tests.
-- [x] Benchmark on 24 frozen-sample review units; all checks pass.
+Candidate generation: median 0.122848 s/unit, maximum 0.170088 s/unit. Rasterization median: 0.134132 s/unit. Config hash: 6b045c7aaf2423758dca393571baee8e1c4fae6e6c5344b5a087d6c94ad74bb7. Tests: 6 passed in 1.47s.
 
-## Key numbers and runtime
+Whole-cell collision, complete backing, door keepouts, storage-only item constraints, tall-item window exclusions and all-state anchor consistency remain enforced. Walls and fixed bodies block circulation; kitchen rooms are walkable and hatched in the revised figures. The half-diagonal distance test is superseded by exact-diameter even/odd disc erosion, independent traversal and dilation in both solver and validator. The 0.60/0.50 m and 0.90/0.80 m boundaries and bed-side access strips have regression coverage.
 
-Candidate-generation median 0.108766 s/unit; maximum 0.171069 s/unit. Rasterization median 0.105321 s/unit. These are measured separately after the entrance/target corrections. The median is below the 2 s target. Per-item counts: results/candidates/counts.csv. Tests: 6 passed in 1.11s. Config hash: 82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de.
-
-## Decisions and limitations
-Cells must be fully covered by allowed space. Dimensions round outward to the 0.1 m grid; all states rotate about the same back-left anchor. Clearance strips omit corner extensions and may overlap other clearances. Bodies cannot occupy mixed-class circulation cells. A storage-only item has no capability other than storage. Window unions preserve both polygon and line openings.
-
-Door swing squares occupy each possible room side. An exterior entrance portal is used only for walking-radius erosion and BFS seeding; it never admits furniture. Walls and fixed services remain blocked. Free-space distance to blocked cells is conservatively reduced by the blocked cell’s half diagonal, so a continuous passage at the exact walking-width threshold can vanish on the grid. Resolution sensitivity remains required.
-
-## Open questions and next step
-No parameter defaults changed. Candidate feasibility is a raster-level guarantee; reachability and simultaneous placement are checked in Phase 6. The new geometry tests exposed and fixed an initial line-window omission before publication. The solver/validator and pilot are now complete; see the G2 method review. The publication audit redraws pilot images with explicit padding, leaving saved layouts unchanged.
+The candidate table uses full-resolution anchors. Final solver anchors use the G2 selected lattice while collisions/access retain a 0.10 m raster. The full-resolution sensitivity remains due. Furniture and household defaults are unchanged; no swept-motion feasibility is implied.

@@ -209,6 +209,47 @@ def render_empty(units,config):
         fig.savefig(f'results/pilot/empty_access_{source}.png',dpi=180);plt.close(fig)
 
 
+
+def configure_render_style():
+    """Make the kitchen hatch visible without altering measured numerical code."""
+    import matplotlib.pyplot as plt
+    from fea.viz import corpus
+    from matplotlib.image import AxesImage
+    # Equal z-order preserves insertion order: coverage sits above floor patches
+    # and below furniture that is subsequently drawn. Default images sit underneath.
+    AxesImage.zorder=1
+    style={"figure.constrained_layout.h_pad":.15,"figure.constrained_layout.w_pad":.08,
+           "figure.constrained_layout.hspace":.16,"figure.constrained_layout.wspace":.06}
+    plt.rcParams.update(style)
+    original=corpus.draw_geometry
+    def contrasting_hatch(ax,*args,**kwargs):
+        before=len(ax.patches)
+        original(ax,*args,**kwargs)
+        for patch in list(ax.patches)[before:]:
+            if patch.get_hatch():patch.set_edgecolor('#858585')
+    corpus.draw_geometry=contrasting_hatch
+    return dict(style,kitchen_hatch_edgecolor='#858585',coverage_image_zorder=1)
+
+
+def render_preparation_views():
+    """Use the same geometry renderer with a complete walkable-kitchen legend."""
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Patch
+    from fea.viz.corpus import draw_unit,COLORS
+    units=[Unit.from_dict(u) for u in json.loads(Path('results/corpus/sample_units.json').read_text())['units']]
+    legend=[Patch(color=value,label=key.replace('_',' ')) for key,value in COLORS.items()]
+    legend.append(Patch(facecolor='#d3d3d3',edgecolor='#858585',hatch='...',label='walkable kitchen'))
+    legend.extend(Patch(color=value,label=key) for key,value in [('walls','#333333'),('door','#dc8c18'),('window','#167dcc'),('entrance','#bf2441')])
+    for i,unit in enumerate(units):
+        fig,ax=plt.subplots(figsize=(7,7),layout='constrained');draw_unit(ax,unit)
+        fig.legend(handles=legend,loc='outside lower center',ncol=4,fontsize=8)
+        fig.savefig(f'results/corpus/samples/{unit.source}_{i%8+1:02d}.png',dpi=300);plt.close(fig)
+    fig,axes=plt.subplots(6,4,figsize=(16,23),layout='constrained')
+    for ax,unit in zip(axes.flat,units):draw_unit(ax,unit,short=True)
+    fig.legend(handles=legend,loc='outside lower center',ncol=4,fontsize=11)
+    fig.savefig('results/corpus/sample_contact_sheet.png',dpi=180);plt.close(fig)
+
+
 def export(config,selection,render=False):
     root=Path('results/pilot');arm=root/'benchmarks'/selection['selected_arm']
     for name in ('pilot_audit.json','pilot_runtime_projection.json','pilot_tests.json','pilot_access_notes.json','pilot_render_style.json'):
@@ -222,9 +263,7 @@ def export(config,selection,render=False):
     units=[Unit.from_dict(u) for u in json.loads((root/'pilot_units.json').read_text())['units']]
     from fea.viz.layouts import render_layout
     import matplotlib.pyplot as plt
-    style={"figure.constrained_layout.h_pad":.15,"figure.constrained_layout.w_pad":.08,
-           "figure.constrained_layout.hspace":.16,"figure.constrained_layout.wspace":.06}
-    plt.rcParams.update(style)
+    style=configure_render_style()
     for unit in units:
         grid=rasterize(unit,config['raster']['resolution_m'])
         checked_empty=validate_layout({'strategy':'S0','items':[],'service':{}},grid,config,households[config['households']['main_households'][0]])
@@ -304,6 +343,7 @@ def export(config,selection,render=False):
     gap_rows[gap_rows.unit_key.isin([u.unit_key for u in units])].to_csv(root/'empty_space_summary.csv',index=False)
     if render:
         render_empty(units,config)
+        render_preparation_views()
         from fea.viz.corpus import render_histogram
         render_histogram(pd.read_csv('results/corpus/corpus_units.csv'),Path('results/figures/F2_corpus_area'),config_hash(config))
     prepared_names={'fixed_service_diagnostic.csv','d3_regeneration_mapping.csv','gap_connectivity_audit.csv','empty_space_summary.csv'}
@@ -351,17 +391,69 @@ def update_readme(audit,selection,checks):
     path.write_text(text,encoding='utf-8')
 
 
+
+def preparation_reports():
+    """Refresh earlier phase summaries while retaining their historical reports."""
+    root=Path('results/pilot/baseline_g2')
+    for name in ('phase_02_corpus.md','phase_05_candidates.md'):
+        previous=Path('reports')/name; saved=root/('report_'+name)
+        if previous.exists() and not saved.exists():saved.write_bytes(previous.read_bytes())
+    corpus=json.loads(Path('reports/corpus_audit.json').read_text())
+    acceptance=json.loads(Path('reports/phase02_acceptance.json').read_text())
+    candidate=json.loads(Path('reports/candidates_audit.json').read_text())
+    semantic=json.loads(Path('reports/g2_service_geometry_audit.json').read_text())
+    assert acceptance['pass'] and candidate['pass'] and semantic['pass']
+    counts=pd.read_csv('results/corpus/counts.csv').drop(columns=['config_hash','analysis_config_hash'],errors='ignore')
+    phase2=f"""# Phase 02: Corpus construction — G2 geometry refresh
+
+Status: COMPLETE. Current geometry supersedes the G1 kitchen/service treatment; the earlier phase report is preserved under results/pilot/baseline_g2/.
+
+## Current counts
+
+{table(counts)}
+
+The expA_sample column is the retained analysis sample after the approved G2 budget rule, if a cap is required. The uncapped G2 sample and conversion counts remain in expA_sample_uncapped_G2.csv and corpus_audit.json. All normalized geometries remain in the local processed corpus; the scalar publication table records the final analysis selection. The 24 preparation review views are sampled from the uncapped corpus and are not reselected for a later budget cap.
+
+## Acceptance and geometry
+
+The rebuilt uncapped corpus passed {sum(acceptance['checks'].values())}/{len(acceptance['checks'])} checks and {acceptance['pytest_summary']}. These checks precede analysis-only caps; all-eligible-D2/D3 sampling checks describe the uncapped preparation stage. Conversion config hash: {corpus['config_hash']}. The selected solver configuration has a separate analysis hash in final outputs.
+
+Kitchens are walkable but not furnishable; fixtures and sanitary rooms remain blocked. Sanitary room boundaries and kitchen regions have separate access targets. All {semantic['included_units']} included geometries were checked: {semantic['empty_service_room_geometry']} empty sanitary geometries and {semantic['kitchen_furniture_overlap_units']} kitchen/furniture-class overlaps. D3 uses the corrected continuous 0.90 m entrance/pod passage check and empty-layout raster validation. Gap filling is circulation only and does not redefine NIA.
+
+NIA retains the reviewed union-of-interior-classes definition. D1 gross area remains missing; D2 metric calibration remains an assumption, with the same scale and completeness filters. Geometry deduplication uses a 1e-6 m hash grid, keeps source/site grouping, and does not equate mirrors or quarter turns. D1 sampling remains stratified by NIA/room count with the approved site cap. D1/D2 projection caps, when needed, retain stratification; all valid D3 shells at NIA ≤20 m² are retained. See the G2 response for cap actions and final counts.
+
+No FEA or hypothesis conclusion follows from preparation. Figures and numerical tables are regenerated by the committed scripts; the recorded conversion attempt timings exclude prior interrupted runs.
+"""
+    Path('reports/phase_02_corpus.md').write_text(phase2,encoding='utf-8')
+    phase5=f"""# Phase 05: Rasterization and candidate generation — G2 refresh
+
+Status: COMPLETE. The full 0.10 m anchor benchmark on {candidate['units']} uncapped review units passed all checks. This is a candidate-generation check; the G2 pilot separately compares 0.10/0.20 m anchors and selects the latter only under the declared score criterion.
+
+Candidate generation: median {candidate['median_candidate_time_s']:.6f} s/unit, maximum {candidate['max_candidate_time_s']:.6f} s/unit. Rasterization median: {candidate['median_raster_time_s']:.6f} s/unit. Config hash: {candidate['config_hash']}. Tests: {candidate['tests'].strip().splitlines()[-1]}.
+
+Whole-cell collision, complete backing, door keepouts, storage-only item constraints, tall-item window exclusions and all-state anchor consistency remain enforced. Walls and fixed bodies block circulation; kitchen rooms are walkable and hatched in the revised figures. The half-diagonal distance test is superseded by exact-diameter even/odd disc erosion, independent traversal and dilation in both solver and validator. The 0.60/0.50 m and 0.90/0.80 m boundaries and bed-side access strips have regression coverage.
+
+The candidate table uses full-resolution anchors. Final solver anchors use the G2 selected lattice while collisions/access retain a 0.10 m raster. The full-resolution sensitivity remains due. Furniture and household defaults are unchanged; no swept-motion feasibility is implied.
+"""
+    Path('reports/phase_05_candidates.md').write_text(phase5,encoding='utf-8')
+    path=Path('reports/GATE_G1_response.md');previous=path.read_text()
+    marker='> Historical G1 review response.'
+    if not previous.startswith(marker):
+        path.write_text(marker+' Current G2 geometry, sample counts and method corrections are documented in phase_02_corpus.md and GATE_G2_response.md.\n\n'+previous,encoding='utf-8')
+
+
 def report():
     audit=json.loads(Path('reports/g2_revision_audit.json').read_text());selection=json.loads(Path('results/pilot/benchmark_selection.json').read_text())
     checks=json.loads(Path('reports/g2_revision_tests.json').read_text())
     assert json.loads(Path('reports/g2_blocker_geometry_types.json').read_text())['polygon_source_blockers_only']
+    assert json.loads(Path('reports/g2_service_geometry_audit.json').read_text())['pass']
     visual=json.loads(Path('reports/pilot_visual_review.json').read_text())
     records=visual['reviews']
     access_notes=json.loads(Path('reports/pilot_access_notes.json').read_text())
     for failure in audit['structural_failure_units']:
         assert failure['unit_key'] in access_notes['units'] and 'Pending' not in access_notes['units'][failure['unit_key']]
     assert len(records)>=6
-    for record in records:assert sha256_file(Path(record['path']))==record['sha256']
+    for record in records+visual.get('preparation_reviews',[]):assert sha256_file(Path(record['path']))==record['sha256']
     reviewed={r['path'] for r in records}
     for unit in json.loads(Path('results/pilot/pilot_units.json').read_text())['units']:
         if unit['source']=='D3' and unit['gross_area_m2'] in (8,12):
@@ -428,7 +520,7 @@ Exp. K is projected separately: {p['expK_projected_solves']} solves, {p['expK_pr
 
 ## Visual review and limitations
 
-{len(records)} current renders were inspected; paths, hashes and observations are in pilot_visual_review.json, including H1 S0/S2 at 8 and 12 m². Kitchen rooms have a light-grey hatch. Drawn lines guide through the covered area; they are not swept-motion trajectories. Multi-person access still uses one reachable point in the union of strips; the approved strict_access sensitivity is due on the future 200-instance Exp. B sample. Endpoint-only transformations, catalogue assumptions and the anchor-based window tie-break remain explicit limitations.
+{len(records)} current layout renders and {len(visual.get('preparation_reviews',[]))} preparation/contact views were inspected; paths, hashes and observations are in pilot_visual_review.json, including H1 S0/S2 at 8 and 12 m². Kitchen rooms have a light-grey hatch with a contrasting edge and an explicit legend. The presentation wrapper adjusts hatch contrast only, preserving the measured numerical implementation. Drawn lines guide through the covered area; they are not swept-motion trajectories. Multi-person access still uses one reachable point in the union of strips; the approved strict_access sensitivity is due on the future 200-instance Exp. B sample. Endpoint-only transformations, catalogue assumptions and the anchor-based window tie-break remain explicit limitations.
 
 ## Reproduction
 
@@ -449,6 +541,7 @@ The optional prepare-pilot mode can overlap completed D1 / selected D2 conversio
     Path('reports/GATE_G2.md').write_text('# Gate G2: revision ready for review\n\nSee [the complete response](GATE_G2_response.md), [phase report](phase_06_pilot.md), and [audit](g2_revision_audit.json). Formal experiments remain unstarted pending the author-requested Claude review.\n',encoding='utf-8')
 
     update_readme(audit,selection,checks)
+    preparation_reports()
 
 
 def main():

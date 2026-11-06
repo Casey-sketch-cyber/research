@@ -1,0 +1,8 @@
+{
+  "config_hash": "6b045c7aaf2423758dca393571baee8e1c4fae6e6c5344b5a087d6c94ad74bb7",
+  "included_units": 3721,
+  "empty_service_room_geometry": 0,
+  "kitchen_furniture_overlap_units": 0,
+  "maximum_kitchen_overlap_m2": 5.715227639739812e-12,
+  "pass": true
+}

@@ -1,18 +1,18 @@
 {
-  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
-  "code_hash": "6b5bf3b5ac2fb613ee42afff4c70d62ae7ca1b48657474d8e3290f3db12abe0c",
-  "conversion_code_hash": "70424f40f127ced3c7da242f31a9737861ce3d7546c49a2cf5d52adfe298b903",
+  "config_hash": "6b045c7aaf2423758dca393571baee8e1c4fae6e6c5344b5a087d6c94ad74bb7",
+  "code_hash": "50245e05802be325fe94cd0d884ad3e4ac0816fe50dacde62e001ac022f69393",
+  "conversion_code_hash": "a3193f783cb8e96e953dc77ec313648a6b043d1a352243c72a44114fdaca7e48",
   "counts": [
     {
       "source": "D1",
       "total": 46830,
       "eligible_before_dedup": 3533,
-      "included": 2326,
-      "expA_sample": 1347,
+      "included": 2327,
+      "expA_sample": 1348,
       "missing_gross": 46830,
-      "duplicate_copies_removed": 1207,
-      "excluded": 44504,
-      "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de"
+      "duplicate_copies_removed": 1206,
+      "excluded": 44503,
+      "config_hash": "6b045c7aaf2423758dca393571baee8e1c4fae6e6c5344b5a087d6c94ad74bb7"
     },
     {
       "source": "D2",
@@ -23,7 +23,7 @@
       "missing_gross": 0,
       "duplicate_copies_removed": 8,
       "excluded": 16116,
-      "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de"
+      "config_hash": "6b045c7aaf2423758dca393571baee8e1c4fae6e6c5344b5a087d6c94ad74bb7"
     },
     {
       "source": "D3",
@@ -34,50 +34,45 @@
       "missing_gross": 0,
       "duplicate_copies_removed": 0,
       "excluded": 0,
-      "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de"
+      "config_hash": "6b045c7aaf2423758dca393571baee8e1c4fae6e6c5344b5a087d6c94ad74bb7"
     }
   ],
   "sources": [
     {
       "source": "D1",
       "records": 46830,
-      "processing_seconds_this_attempt": 60.70682339929044,
-      "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
-      "code_hash": "70424f40f127ced3c7da242f31a9737861ce3d7546c49a2cf5d52adfe298b903",
-      "reused_geometry_config_hash": "a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70"
+      "processing_seconds_this_attempt": 1174.0026357602328,
+      "config_hash": "6b045c7aaf2423758dca393571baee8e1c4fae6e6c5344b5a087d6c94ad74bb7",
+      "code_hash": "ccb033efadf28c5ae891a6a0e2a1a0a37d406e92132a8c655164edca09449e38"
     },
     {
       "source": "D2",
       "records": 17000,
-      "processing_seconds_this_attempt": 244.37212019599974,
-      "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
-      "code_hash": "70424f40f127ced3c7da242f31a9737861ce3d7546c49a2cf5d52adfe298b903",
-      "reused_equivalent_conversion_hash": "5cb56cdf05ab935c2f53ea0df699de349691b876cf9e86c480ab4135495d8912",
-      "reused_geometry_config_hash": "a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70"
+      "processing_seconds_this_attempt": 690.862751595676,
+      "config_hash": "6b045c7aaf2423758dca393571baee8e1c4fae6e6c5344b5a087d6c94ad74bb7",
+      "code_hash": "ccb033efadf28c5ae891a6a0e2a1a0a37d406e92132a8c655164edca09449e38"
     },
     {
       "source": "D3",
       "records": 510,
-      "processing_seconds_this_attempt": 5.1320164408534765,
-      "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
-      "code_hash": "70424f40f127ced3c7da242f31a9737861ce3d7546c49a2cf5d52adfe298b903",
-      "reused_equivalent_conversion_hash": "c86a21c1b34cafd60d1928dd17d1c20db8dd8a0fd2e2fffc0ccef20877626254",
-      "reused_geometry_config_hash": "a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70"
+      "processing_seconds_this_attempt": 31.724800946190953,
+      "config_hash": "6b045c7aaf2423758dca393571baee8e1c4fae6e6c5344b5a087d6c94ad74bb7",
+      "code_hash": "ccb033efadf28c5ae891a6a0e2a1a0a37d406e92132a8c655164edca09449e38"
     }
   ],
   "area_measure": "nia_m2",
   "min_nia_m2": 8,
   "max_nia_m2": 50,
-  "max_normalization_area_change_m2": 0.2832656542005765,
+  "max_normalization_area_change_m2": 0.28326565169545503,
   "max_included_normalization_area_change_m2": 1.213595623994479e-08,
   "D1_with_simulations": 46815,
   "sample_count": 24,
-  "total_seconds_this_invocation": 47.69123464636505,
+  "total_seconds_this_invocation": 49.32932686805725,
   "expA_kitchen_dining_units": 0,
   "D3_max_entrance_keepout_overlap_m2": 0.0,
   "D3_service_placement": {
-    "near_entrance": 266,
-    "far_end": 244
+    "near_entrance": 258,
+    "far_end": 252
   },
   "geometry_hash_grid_m": 1e-06,
   "duplicate_count_definition": "additional eligible copies; multiplicity = n_duplicates + 1",

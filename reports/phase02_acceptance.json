@@ -1,5 +1,5 @@
 {
-  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
+  "config_hash": "6b045c7aaf2423758dca393571baee8e1c4fae6e6c5344b5a087d6c94ad74bb7",
   "checks": {
     "unique_keys": true,
     "csv_parquet_same_keys": true,
@@ -31,6 +31,6 @@
     "tests_pass_without_skips": true
   },
   "pass": true,
-  "pytest_summary": "40 passed in 38.52s",
+  "pytest_summary": "78 passed in 57.16s",
   "visual_review": "human review pending at G1"
 }

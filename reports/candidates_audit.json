@@ -1,10 +1,10 @@
 {
-  "config_hash": "82d8d08d5c86d0a16688aa23f5568be927e5b7239aec81d2bdfa8935128f33de",
+  "config_hash": "6b045c7aaf2423758dca393571baee8e1c4fae6e6c5344b5a087d6c94ad74bb7",
   "units": 24,
-  "median_candidate_time_s": 0.10876611340790987,
-  "max_candidate_time_s": 0.17106924206018448,
-  "median_raster_time_s": 0.10532066877931356,
-  "tests": "......                                                                   [100%]\n6 passed in 1.11s",
+  "median_candidate_time_s": 0.12284822575747967,
+  "max_candidate_time_s": 0.17008821479976177,
+  "median_raster_time_s": 0.13413206208497286,
+  "tests": "......                                                                   [100%]\n6 passed in 1.47s",
   "checks": {
     "tests_pass": true,
     "median_candidate_time_under_2s": true,

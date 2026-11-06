@@ -1,0 +1,56 @@
+{
+  "config_hash": "6b045c7aaf2423758dca393571baee8e1c4fae6e6c5344b5a087d6c94ad74bb7",
+  "records": [
+    {
+      "source": "D1",
+      "subtype": "COLUMN",
+      "geometry_type": "POLYGON",
+      "n": 19105
+    },
+    {
+      "source": "D1",
+      "subtype": "RAILING",
+      "geometry_type": "POLYGON",
+      "n": 145911
+    },
+    {
+      "source": "D1",
+      "subtype": "WALL",
+      "geometry_type": "POLYGON",
+      "n": 1178839
+    },
+    {
+      "source": "D1",
+      "subtype": "WINDOW",
+      "geometry_type": "POLYGON",
+      "n": 230804
+    },
+    {
+      "source": "D2",
+      "subtype": "wall",
+      "geometry_type": "MULTIPOLYGON",
+      "n": 16988
+    },
+    {
+      "source": "D2",
+      "subtype": "wall",
+      "geometry_type": "POLYGON",
+      "n": 12
+    },
+    {
+      "source": "D2",
+      "subtype": "window",
+      "geometry_type": "MULTIPOLYGON",
+      "n": 16843
+    },
+    {
+      "source": "D2",
+      "subtype": "window",
+      "geometry_type": "POLYGON",
+      "n": 106
+    }
+  ],
+  "polygon_source_blockers_only": true,
+  "unsupported": [],
+  "scope": "All identifiable D1 residential blocker records and all nonempty D2 wall/window layers. Synthetic line separators have a raster regression test."
+}

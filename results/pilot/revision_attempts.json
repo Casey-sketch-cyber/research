@@ -1,0 +1,24 @@
+[
+  {
+    "arm": "w8_s10_t60",
+    "code_hash": "c180653fb53e766da5236d01b63bb1b86cb7a5682a78b7be23b93e0110df129d",
+    "completed_cases": 102,
+    "status": "interrupted_not_used",
+    "reason": "D2 kitchen extent audit; rebuild and freeze inputs again before comparing arms"
+  },
+  {
+    "arm": "w8_s10_t60",
+    "code_hash": "a4b6ff375ded19a86823432df86d2c7bed87b585856d45359447b60a73a626e2",
+    "completed_cases": 75,
+    "status": "interrupted_not_used",
+    "reason": "separate sanitary-door targets from kitchen fixture obstacles before final method freeze"
+  },
+  {
+    "arm": "w8_s10_t60",
+    "code_hash": "f888920672d2a75bbf75bbb68bea27aaea4de99381280a5db17586db69e3edce",
+    "completed_cases": 111,
+    "status": "interrupted_not_used",
+    "early_unknown_cases": 45,
+    "reason": "search round UNKNOWN stopped before total budget; add adaptive round retry and regression"
+  }
+]
