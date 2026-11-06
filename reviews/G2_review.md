@@ -17,7 +17,7 @@ The method itself is approved, apart from the points below. **Two things block P
 
 The fallback source caps of 153/100/57 are **not approved**: 57 D3 shells would gut the Hong Kong scenario and Exp. K. Fix the model and the throughput first (M1–M6), then apply the cap rule in M7 only if needed.
 
-**How to continue:** implement M1–M7, rerun the same 20-unit pilot (regenerating its D3 units with the same parameters) and update `reports/phase_06_pilot.md`. Then write `reports/GATE_G2_response.md`. **If every criterion in §3 passes, go straight on to Phase 7 without another stop.** Otherwise stop and report.
+**How to continue:** implement M1–M9 (M8 and M9 come from the code review in §6), rerun the same 20-unit pilot (regenerating its D3 units with the same parameters) and update `reports/phase_06_pilot.md`. Then write `reports/GATE_G2_response.md`. **If every criterion in §3 passes, go straight on to Phase 7 without another stop.** Otherwise stop and report.
 
 ---
 
@@ -62,6 +62,30 @@ The fallback source caps of 153/100/57 are **not approved**: 57 D3 shells would 
      3. D3: keep **every valid shell with NIA ≤ 20 m²** (needed by the HK scenario and Exp. K) and sample the larger shells down to at least 60.
    - If the minimums still don't fit, stop and report; don't go below them.
 
+8. **[must] M8: Fix the walking-width test, a bug that biases FCI downwards.** Code review addendum. Both `validate._reachable` and `solve/reachability.check_connectivity` accept a cell as a walking-disc centre if `edt·res − res/√2 ≥ walking_width/2`. On a 0.10 m raster, **a 0.60 m corridor never passes this test; the narrowest passable corridor is 0.70 m.** The reviewer reproduced this with the same `distance_transform_edt` call.
+
+   Consequences:
+   - The effective walking width is about 0.70 m, not the configured 0.60 m.
+   - A 0.60 m bed-side or desk clearance strip between the item and a wall or another body is never "reached", so the item gets no service, although the strip is exactly the access zone the config intends.
+   - Small units are hit hardest. This feeds directly into FCI, FEA, A_min and the D3 `conservative_raster_loss` failures.
+
+   Replace the test, in both modules, with an exact-width disc test: erode the free mask with a disc whose diameter is `walking_width / resolution` cells (even sizes allowed, e.g. a 6×6-cell disc for 0.60 m), run the BFS on the eroded reference positions, and dilate the reached set back by the same disc to get the area a walking person can cover. An item is accessible if its active clearance strip intersects that area.
+
+   Add unit tests, shared by solver and validator expectations but implemented separately:
+   - (a) a straight 0.60 m corridor is passable;
+   - (b) a 0.50 m corridor is not;
+   - (c) a 0.60 m clearance strip between a bed and a wall makes the bed accessible;
+   - (d) the same cases at walking width 0.90 m (0.90 passes, 0.80 fails).
+
+   The reviewer checked that an even-sized disc erosion separates 0.50 m from 0.60 m correctly. Rerun the pilot after this fix; it may resolve several of the access failures on its own.
+
+9. **[must] M9: Use stronger access cuts in the solver.** When access fails, `Model.cut` forbids only the *exact* combination of present/x/y/orientation/state values of the blocking items. Each failure removes one point from a space of thousands of anchors, which explains the many 60 s timeouts and the empty fallback layouts. Replace or supplement it with a **geometric cut**:
+   - identify the bottleneck cells (blocking bodies ∩ dilated border of the disconnected region) and their bounding rectangles;
+   - add fixed optional intervals for those rectangles, enforced only when the failed assignment literal is true, into the slot's body NoOverlap2D;
+   - that forbids **every** pose covering the bottleneck while that service is claimed.
+
+   Also hint each iteration with the previous iteration's solution minus the offending items, so restarts don't begin cold. Report the change in iterations per case and in time to first valid solution.
+
 ## 2. Method decisions (answers to "Review decisions requested")
 
 | Item | Decision |
@@ -93,6 +117,23 @@ If any criterion fails, stop, write `reports/GATE_G2_response.md` with the evide
 - **[should] S1:** add to `summary_by_group.csv` the share of cases ending at the proved bound, at timeout with an incumbent, and with zero-service fallbacks, per source × strategy.
 - **[should] S2:** in the layout renders, draw kitchen cells as walkable (light grey hatch) after M2, so reviewers can see routes through kitchens.
 - **[should] S3:** in the next report, include one rerun render each of the 8 m² and 12 m² D3 shells under S0 and S2 for H1. These are the key Hong Kong cases.
+
+## 6. Code review notes
+
+The reviewer read `validate.py`, `metrics.py`, `solve/cpsat.py` and `solve/reachability.py`. The tests could not be run in the review environment, so the 56-test result is Codex's.
+
+- **Validator independence: good.** It imports no solver or candidate logic, reconstructs rectangles from the config, recomputes service, access, FCI and cyclic TB, and ignores credits supplied in the input. One limit to note in the methods: solver and validator share the rasterization (`geometry/raster.py`), so a raster defect such as the source gaps in M3 can't be caught by the validator.
+- **Correct as implemented:**
+  - CP-SAT NoOverlap2D encoding (bodies against bodies; each clearance strip against the other bodies)
+  - S1 as one state per variant-day
+  - cyclic burden in S2 only
+  - the rational FCI coefficients
+  - the forced-use constraint (`present ≤ Σ assignments`)
+  - the relaxed capacity bound
+  - `invert_monotone` (right-censoring rather than extrapolation)
+- **Bug:** M8 (walking-width test).
+- **Performance:** M9 (weak exact-value no-goods; cold restarts).
+- **Minor [should]:** the window-distance cost uses the anchor cell, not the body centre. It's harmless as a tie-break, but say so in the methods.
 
 ## 5. Note for the author (not for Codex)
 
