@@ -33,6 +33,10 @@ If these documents conflict, the order of precedence is: a review file in `revie
 7. **Don't download data that isn't listed** in `config/project.yaml: datasets`. Download only `abo-listings.tar` from ABO, never its images or 3D models. Never commit raw data.
 8. **If an expected pattern doesn't appear** (for example S2 < S0 somewhere, or a hypothesis isn't supported), **don't tune things until it does.** Report it, investigate whether it's a bug, and let the reviewer decide.
 
+## Review files
+
+Never edit files in `reviews/`; they are the reviewer's record. If a review file needs a change (for example a privacy redaction), describe it in `reports/QUESTIONS.md` and the reviewer will make it.
+
 ## How to treat related work
 
 Related or similar prior work is context to build on, not a reason to stop or to drop a direction. In reports and drafts:
