@@ -363,6 +363,7 @@ def solve_layout(unit, household, strategy, config, incumbent=None, prepared=Non
             objective=None, bound=None, reach_iterations=0, fci_solver=0., termination="fixed_service_unreachable_without_furniture")
         best["validator"] = best_validation
         return best
+    first_valid = time.perf_counter()-started if best_validation["pass"] and best["fci"]>0 else None
     greedy_started = time.perf_counter()
     greedy = greedy_layout(empty, grid, items, candidates, household, config,
         min(started+config["solver"]["time_limit_s"]*.15, greedy_started+3.))
@@ -370,7 +371,8 @@ def solve_layout(unit, household, strategy, config, incumbent=None, prepared=Non
     if greedy["fci"]>best["fci"]+1e-9:
         best = greedy
         best_validation = validate_layout(best, grid, config, household)
-    first_valid = time.perf_counter()-started if best["fci"]>0 else None
+    if first_valid is None and greedy["fci"]>0:
+        first_valid = greedy_started-started + greedy.get("greedy",{}).get("first_positive_s",greedy_time)
     model = Model(grid, household, items, candidates, strategy, config)
     if best_validation["pass"] and best["tb"] == 0 and round(best["fci"]*float(model.primary_scale)) >= model.primary_upper:
         best["validator"] = best_validation
@@ -390,18 +392,27 @@ def solve_layout(unit, household, strategy, config, incumbent=None, prepared=Non
     selected_status = "TIMEOUT_WITH_INCUMBENT"
     diagnostics = []
     geometric_cuts = 0
+    round_limit = float(config["solver"].get("reachability_round_s", 5.))
     for iteration in range(config["solver"]["reachability_max_iterations"]):
         remaining = deadline-time.perf_counter()
         if remaining <= .01: break
         solver = cp_model.CpSolver()
-        solver.parameters.max_time_in_seconds = min(remaining, config["solver"].get("reachability_round_s", 5.))
+        solver.parameters.max_time_in_seconds = min(remaining, round_limit)
         solver.parameters.num_search_workers = config["solver"]["num_workers"]
         solver.parameters.random_seed = config["seed"]
         callback = PrimaryBoundStop(model)
         status = solver.Solve(model.model, callback)
         status_name = solver.StatusName(status)
         iterations = iteration+1
+        if status == cp_model.UNKNOWN:
+            # A slice can expire during presolve, before any incumbent exists.
+            # Retry with a larger slice instead of wasting the remaining budget.
+            diagnostics.append(dict(status=status_name, slice_limit_s=min(remaining,round_limit),
+                elapsed_s=time.perf_counter()-started, reachability_failures=None))
+            round_limit = min(deadline-time.perf_counter(), round_limit*2)
+            continue
         if status not in (cp_model.OPTIMAL, cp_model.FEASIBLE): break
+        round_limit = float(config["solver"].get("reachability_round_s", 5.))
         objective, bound = solver.ObjectiveValue(), solver.BestObjectiveBound()
         layout = model.extract(solver, unit, strategy, digest)
         raw_fci = solver.Value(model.primary)/float(model.primary_scale)
@@ -456,7 +467,7 @@ def solve_layout(unit, household, strategy, config, incumbent=None, prepared=Non
         time_s=time.perf_counter()-started, build_time_s=built-started, objective=objective, bound=bound,
         first_valid_time_s=first_valid, greedy_time_s=greedy_time, greedy_fci=greedy["fci"], geometric_cuts=geometric_cuts,
         reach_iterations=iterations, fci_solver=selected_fci, raw_last_model_fci=raw_fci,
-        objective_bound_scope="last raw CP-SAT search; may differ from retained validated layout",
+        objective_bound_scope="last solution-bearing raw CP-SAT search; may differ from retained validated layout",
         retained_previous_incumbent=not found and incumbent is not None, trace=diagnostics,
         primary_upper_bound=model.primary_upper/float(model.primary_scale), window_tiebreak_optimized=selected_status == "OPTIMAL",
         encoding="configured anchor tables + optional rectangle intervals + guarded geometric frontier cuts")

@@ -61,6 +61,7 @@ def run_case(job):
         cpsat.Model.cut,cpsat.Model.warm_start,cpsat.Model.__init__,cpsat.validate_layout=original_cut,original_hint,original_init,original_check
     sol=layout['solver']
     return dict(unit_key=unit.unit_key,source=unit.source,nia_m2=unit.interior.area,mode=mode,
+        config_hash=layout['config_hash'],comparison_code_hash=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         fci=layout['validator']['fci'],validator_pass=layout['validator']['pass'],iterations=sol['reach_iterations'],
         time_s=sol['time_s'],first_positive_including_greedy_s=sol.get('first_valid_time_s'),
         first_cp_valid_s=state['first_cp_valid'],cuts=sol.get('geometric_cuts',0))
@@ -69,7 +70,8 @@ def run_case(job):
 def main():
     parser=prepare_cli(__doc__);args=parser.parse_args();config,_,_=start_run(args,'06_cut_comparison')
     selection=json.loads(Path('results/pilot/benchmark_selection.json').read_text())
-    config['solver'].update(num_workers=selection['workers'],time_limit_s=selection['time_limit_s'],reachability_round_s=5.)
+    config['solver'].update(num_workers=selection['workers'],time_limit_s=selection['time_limit_s'],
+        reachability_round_s=5.)
     config['raster']['anchor_stride_m']=.2
     if args.dry_run:print('Would compare exact no-goods/cold restarts with guarded geometric cuts/refreshed hints on 20 H1 S2 cases.');return
     units=json.loads(Path('results/pilot/pilot_units.json').read_text())['units']
@@ -90,6 +92,8 @@ def main():
     aggregate['wall_time_s']=aggregate['mode'].map(timings);aggregate.to_csv(output/'summary.csv',index=False)
     write_json(output/'protocol.json',dict(cases_per_arm=20,household='H1_single_commuter',strategy='S2',
         shared_geometry='corrected G2 pilot',greedy='enabled in both arms',search_round_s=5.,
+        method_code_hash=selection['code_hash'],unknown_slice_retry='double within remaining total budget',
+        input_hash=hashlib.sha256(Path('results/pilot/pilot_units.json').read_bytes()).hexdigest(),
         num_workers=selection['workers'],time_limit_s=selection['time_limit_s'],
         comparison='exact frontier-owner pose no-goods and initial hint only versus guarded geometric frontier cuts and refreshed hints',
         limitation='This isolates cuts/restarts under the revised geometry and common round schedule; it is not a rerun of the geometrically biased old pilot.',

@@ -107,9 +107,11 @@ def prepare(config):
     selected.drop(columns='unit_json').reset_index().to_csv(root/'pilot_units.csv',index=False)
     mapping=[]
     original=pd.read_csv(root/'baseline_g2/expA_sample.csv')
+    old_hashes=original.set_index('unit_key').geometry_hash.to_dict()
     for _,row in frame[frame.source=='D3'].iterrows():
         unit=Unit.from_dict(json.loads(row.unit_json))
         mapping.append(dict(old_unit_key=row.unit_key,new_unit_key=row.unit_key if row.include else '',
+            old_geometry_hash=old_hashes.get(row.unit_key,''),new_geometry_hash=row.geometry_hash if row.include else '',
             old_sample=row.unit_key in set(original.unit_key),new_sample=bool(row.in_expA_sample),
             reason='regenerated_same_parameters' if row.include else row.exclude_reason,
             **unit.meta['parameters'],candidate_attempts=unit.meta.get('candidate_attempts')))
@@ -194,7 +196,7 @@ def solve_triplet(job):
             first_valid_time_s=sol.get('first_valid_time_s'),greedy_fci=sol.get('greedy_fci',0),
             geometric_cuts=sol.get('geometric_cuts',0),
             at_proved_bound=checked['pass'] and abs(checked['fci']-sol.get('primary_upper_bound',-1))<1e-8 and checked['tb']==0,
-            timeout_with_incumbent=checked['pass'] and sol['time_s']>=config['solver']['time_limit_s']-.1,
+            timeout_with_incumbent=checked['pass'] and (sol['time_s']>=config['solver']['time_limit_s']-.1 or sol['status']=='TIMEOUT_WITH_INCUMBENT'),
             primary_upper_bound=sol.get('primary_upper_bound'),status=sol['status'],termination=sol.get('termination',''),
             shared_from_strategy=sol.get('shared_from_strategy',''),own_search_fci=sol.get('own_search_fci',layout['fci']),
             config_hash=config_hash(config),code_hash=code_hash,layout_file=filename))

@@ -88,7 +88,8 @@ def main():
         return
     code_files = [Path("src/fea") / p for p in (
         "data/archives.py", "data/d1_swiss.py", "data/d2_resplan.py", "data/d3_shells.py",
-        "geometry/unit.py", "geometry/normalize.py", "geometry/audit.py", "geometry/scale.py")]
+        "geometry/unit.py", "geometry/normalize.py", "geometry/audit.py", "geometry/scale.py",
+        "geometry/raster.py", "validate.py")]
     signature = hashlib.sha256(b"".join(path.read_bytes() for path in code_files)).hexdigest()
     pipeline_signature = hashlib.sha256((signature + Path(__file__).read_text() + Path("src/fea/corpus.py").read_text()).encode()).hexdigest()
     records, runtimes = [], []

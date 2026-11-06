@@ -52,6 +52,8 @@ def greedy_layout(empty, grid, items, candidates, household, config, deadline):
     Constant states are attempted before a demand-priority per-slot state pattern
     (S2 only). Every accepted addition improves independently validated FCI.
     """
+    started = time.perf_counter()
+    first_positive = None
     layout = deepcopy(empty)
     layout.update(validate_layout(layout,grid,config,household))
     width = household.overrides.get("walking_width",config["furniture"]["meta"]["walking_width"])
@@ -97,8 +99,9 @@ def greedy_layout(empty, grid, items, candidates, household, config, deadline):
                     checked=validate_layout(trial,grid,config,household)
                     if checked["pass"] and checked["fci"]>layout["fci"]+1e-9:
                         trial.update({k:checked[k] for k in ("fci","fci_by_variant","tb","served_hours","demanded_hours")})
+                        if first_positive is None and checked["fci"]>0: first_positive=time.perf_counter()-started
                         layout=trial;accepted=True;break
                 if accepted or time.perf_counter()>=deadline: break
             if not accepted: break
-    layout["greedy"] = {"validated_trials":attempts,"fci":layout["fci"],"algorithm":"descending footprint / first feasible wall-adjacent pose"}
+    layout["greedy"] = {"validated_trials":attempts,"first_positive_s":first_positive,"fci":layout["fci"],"algorithm":"descending footprint / first feasible wall-adjacent pose"}
     return layout

@@ -51,29 +51,34 @@ calibration. Raw data must be present for observed-source loader tests; the G1
 recorded suite ran with all required data and no skips. The G1 review and Q-12 addendum authorize the corrections followed by
 Phases 5–6, stopping at G2. Later gates still require their stated review.
 
-## Method and frozen pilot
+## Corrected G2 method and frozen pilot
 
-After the preparation commands above:
+The G2 rerun preserves the 20 reviewed pilot keys and regenerates D3 with the same parameters. Kitchens are walkable with blocked fixtures; sanitary doors and kitchen areas have separate targets. Source gap repair changes circulation, not NIA. Rebuild the corrected full corpus before preparing the pilot.
 
 ```sh
+python scripts/03_blocker_audit.py --config config/project.yaml
 python scripts/05_candidates.py --config config/project.yaml
-python scripts/06_pilot.py --config config/project.yaml
-python scripts/06_report.py --config config/project.yaml --run-tests
-python scripts/06_gate.py --config config/project.yaml
+python scripts/06_revision.py --config config/project.yaml --prepare
+python scripts/06_revision_pipeline.py --config config/project.yaml --rerun
+python scripts/06_cut_comparison.py --config config/project.yaml
+python scripts/06_revision_report.py --config config/project.yaml --export --render --run-tests
 ```
 
-The pilot chooses its units from the frozen experiment sample before viewing
-outcomes. Its checkpoint directory combines configuration and method-code hashes;
-only an identical run resumes. Every saved case receives independent revalidation.
-Run the test step after the pilot finishes, so the tiny solver tests do not overlap
-the pilot's solver threads. Keep raw and interim data private.
+The six full 240-case arms compare 8-worker 0.10/0.20 m anchors, then 1/2/4 workers at 0.20 m, then a 30 s limit at the selected worker count. The 60 s arms are the time-limit reference. The selection rule is fixed in the pipeline; cases are independently revalidated and feasible incumbents are shared in both directions before comparisons. Invalid cases remain in FCI distributions at zero. Numeric libraries use one thread per process. CP-SAT concurrency is 1, 3, 7 or 14 for 8, 4, 2 or 1 search workers respectively.
 
-`06_gate.py` additionally requires the recorded visual-review image hashes to match.
-Multi-threaded CP-SAT does not guarantee identical incumbents on reruns despite the
-fixed seed. If images change, inspect the new images and update the review record;
-do not carry forward a visual approval for different output. All pilot layouts and
-renders are published, together with a file-hash manifest. The pilot is a method
-review; full-experiment FEA, minimum-area and R/K results belong to later phases.
+The cut/restart comparison uses the same 20 units with H1/S2, holding geometry, greedy, anchors and limits fixed. It records both first positive incumbent time and first positive independently valid CP-search result.
+
+Long case runs have project-local checkpoints. A resumed result is explicitly ineligible for throughput measurement. The pipeline preserves published/interrupted arms and gives a fresh rerun a numbered suffix; a clean clone does not treat a committed summary as a locally completed experiment. Multithreaded CP-SAT may return different incumbents despite a fixed seed.
+
+After inspecting at least six current complete renders, including H1 S0/S2 at 8 and 12 m², update the paths, hashes and factual observations in `reports/pilot_visual_review.json`. Diagnose any structural failure in `reports/pilot_access_notes.json`. Then run:
+
+```sh
+python scripts/06_revision_report.py --config config/project.yaml --write-report
+```
+
+That command verifies the inspected image hashes. Every final layout and normal-day render is published with its hash. Historical pre-review results remain under `results/pilot/baseline_g2/` and at commit 67af2ee; the old `06_pilot.py`, `06_report.py` and `06_gate.py` describe that historical workflow. Use the revision commands for the corrected method.
+
+The export records selected solver parameters, calibrates source-specific runtime to measured parallel throughput, adds 15%, and applies only the review-approved caps if Exp. A still exceeds 36 h. It preserves the uncapped sample and all valid D3 shells at NIA ≤20 m². Geometry-conversion config hashes remain provenance; the analysis config hash identifies the selected solve. Exp. K's separate workload projection is not a measured K result. Formal experiments remain unstarted until the author-requested review.
 
 Before publication, stage only intended public files and run:
 

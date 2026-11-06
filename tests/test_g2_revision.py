@@ -162,3 +162,29 @@ def test_kitchen_fixture_near_door_does_not_create_a_second_kitchen_target():
     doors=fixed_service_doors(unit)
     assert len(doors)==1 and doors[0].equals(bath_door)
     assert len(rasterize(unit).service_targets)==2
+
+
+def test_unknown_search_slice_does_not_discard_remaining_total_budget(monkeypatch):
+    from copy import deepcopy
+    from shapely.geometry import LineString
+    from ortools.sat.python import cp_model
+    from fea.solve import cpsat
+    config,household,_,_=fixture()
+    config=deepcopy(config);config['solver'].update(time_limit_s=10,num_workers=1)
+    config['furniture']['static_items']={'single_bed':config['furniture']['static_items']['single_bed']}
+    config['furniture']['transformable_items']={}
+    def empty_greedy(empty,grid,items,candidates,h,c,deadline):
+        value=deepcopy(empty);value.update(validate_layout(value,grid,c,h));return value
+    monkeypatch.setattr(cpsat,'greedy_layout',empty_greedy)
+    original=cp_model.CpSolver.Solve;calls=[]
+    def interrupted_first_slice(self,model,*args,**kwargs):
+        calls.append(self.parameters.max_time_in_seconds)
+        if len(calls)==1:return cp_model.UNKNOWN
+        return original(self,model,*args,**kwargs)
+    monkeypatch.setattr(cp_model.CpSolver,'Solve',interrupted_first_slice)
+    unit=empty_room();door=LineString([(0,0),(1,0)])
+    unit=replace(unit,doors=[door],entrance=door,walls=unit.walls.difference(door))
+    result=cpsat.solve_layout(unit,household,'S0',config)
+    assert len(calls)>=2
+    assert calls[1]>calls[0]
+    assert result['validator']['pass'] and result['fci']==pytest.approx(8/18.9)

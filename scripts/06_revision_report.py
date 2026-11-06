@@ -237,6 +237,8 @@ def export(config,selection,render=False):
             agreement=abs(checked['fci']-layout['fci'])<1e-7 and abs(checked['fci']-layout['solver']['fci_solver'])<1e-7
             assert agreement
             layout['validator']=checked
+            for obsolete in ('pass','violations','credits','unreachable_items'):
+                layout.pop(obsolete,None)
             target=Path('results/layouts/pilot')/row.layout_file
             write_json(target,layout)
             if render:render_layout(unit,layout,config,household,target.with_suffix('.png'),grid)
@@ -264,10 +266,13 @@ def export(config,selection,render=False):
     wide=frame.pivot(index=['unit_key','household'],columns='strategy',values='fci_validator').reset_index()
     wide['ordered']=(wide.S2>=wide.S1-1e-9)&(wide.S1>=wide.S0-1e-9)
     wide.to_csv(root/'ordering.csv',index=False)
+    fallback_keys={(z['unit_key'],z['household'],z['strategy']) for z in zeros if z['cause']=='search_fallback'}
+    frame['zero_service_fallback']=[(r.unit_key,r.household,r.strategy) in fallback_keys for r in frame.itertuples()]
     frame.assign(zero_service=frame.fci_validator<=1e-12).groupby(['source','strategy']).agg(
         n=('fci_validator','size'),mean_fci=('fci_validator','mean'),median_fci=('fci_validator','median'),
         validator_pass_share=('validator_pass','mean'),proved_bound_share=('at_proved_bound','mean'),
-        timeout_with_incumbent_share=('timeout_with_incumbent','mean'),zero_service_share=('zero_service','mean')).reset_index().to_csv(root/'summary_by_group.csv',index=False)
+        timeout_with_incumbent_share=('timeout_with_incumbent','mean'),zero_service_share=('zero_service','mean'),
+        zero_service_fallback_share=('zero_service_fallback','mean')).reset_index().to_csv(root/'summary_by_group.csv',index=False)
     frame.groupby(['unit_key','source','nia_m2']).agg(n=('strategy','size'),valid=('validator_pass','sum'),
         mean_fci=('fci_validator','mean'),zero=('fci_validator',lambda x:int((x<=1e-12).sum()))).reset_index().to_csv(root/'summary_by_unit.csv',index=False)
     projection=projections(config,summary,frame)
@@ -301,6 +306,16 @@ def export(config,selection,render=False):
         render_empty(units,config)
         from fea.viz.corpus import render_histogram
         render_histogram(pd.read_csv('results/corpus/corpus_units.csv'),Path('results/figures/F2_corpus_area'),config_hash(config))
+    prepared_names={'fixed_service_diagnostic.csv','d3_regeneration_mapping.csv','gap_connectivity_audit.csv','empty_space_summary.csv'}
+    input_digest=json.loads((root/'pilot_units.json').read_text())['config_hash']
+    for name in ['pilot_solutions.csv','validation_audit.csv','zero_service_diagnoses.csv','layout_manifest.csv',
+                 'empty_access_audit.csv','ordering.csv','summary_by_group.csv','summary_by_unit.csv',
+                 'runtime_projection.csv','expK_projection.csv',*sorted(prepared_names)]:
+        data=pd.read_csv(root/name)
+        data['config_hash']=input_digest if name in prepared_names else config_hash(config)
+        data['code_hash']=summary['code_hash']
+        data['analysis_config_hash']=config_hash(config)
+        data.to_csv(root/name,index=False)
     return result
 
 
@@ -314,9 +329,32 @@ def tests():
     Path('reports/pilot_tests.json').write_bytes(Path('reports/g2_revision_tests.json').read_bytes())
 
 
+def update_readme(audit,selection,checks):
+    """Keep the review entry consistent with generated results."""
+    path=Path('README.md')
+    text=path.read_text()
+    text=re.sub(r'\| G2 method & pilot \|[^\n]*',
+        '| G2 method & pilot | Revision complete; awaiting the author-requested Claude review; see reports/GATE_G2_response.md |',text)
+    text=re.sub(r'\| G1 data & corpus \|[^\n]*',
+        '| G1 data & corpus | G1 review completed; G2 geometry refresh is recorded in current corpus artifacts |',text)
+    status=(f"Start the review with [reports/GATE_G2_response.md](reports/GATE_G2_response.md). "
+        f"The corrected pilot has {audit['valid']} valid and {audit['invalid']} invalid layouts out of {audit['cases']}, "
+        f"{audit['validator_agreement_rate']:.0%} independent FCI agreement, and {checks['passed']} passing tests. "
+        "The [artifact manifest](results/pilot/layout_manifest.csv), [audit](reports/g2_revision_audit.json), "
+        "[benchmarks](results/pilot/benchmark_comparison.csv) and [reproduction instructions](docs/REPRODUCING.md) accompany the package.\n\n"
+        f"Selected configuration: {selection['selected_arm']}. Exp. A projects to {audit['projection']['retained_expA_hours']:.3f} h "
+        "including the 15% margin; Exp. K is estimated separately. "
+        f"All five G2 continuation criteria pass: {audit['all_five_criteria_pass']}. "
+        "The author requested another Claude review before proceeding. Phase 7, K and R remain unstarted; "
+        "no FEA or hypothesis conclusion is claimed. Literature screening remains due at G3.\n")
+    text=re.sub(r'Start the review with[\s\S]*?(?=\n## License)',lambda _:status,text)
+    path.write_text(text,encoding='utf-8')
+
+
 def report():
     audit=json.loads(Path('reports/g2_revision_audit.json').read_text());selection=json.loads(Path('results/pilot/benchmark_selection.json').read_text())
     checks=json.loads(Path('reports/g2_revision_tests.json').read_text())
+    assert json.loads(Path('reports/g2_blocker_geometry_types.json').read_text())['polygon_source_blockers_only']
     visual=json.loads(Path('reports/pilot_visual_review.json').read_text())
     records=visual['reviews']
     access_notes=json.loads(Path('reports/pilot_access_notes.json').read_text())
@@ -333,11 +371,14 @@ def report():
     rows=[dict(arm=s['arm'],workers=s['num_workers'],concurrency=s['concurrent_solves'],seconds_per_100=round(s['wall_time_per_100_cases_s'],3),
         median_FCI=round(s['fci_distribution']['0.5'],6),mean_FCI=round(s['mean_fci'],6),valid=s['validator_pass_cases'],
         median_iterations=s['median_iterations'],first_positive_valid_s=round(s['mean_first_valid_time_s'],3) if s['mean_first_valid_time_s'] is not None else '') for s in summaries]
-    benchmarks=pd.DataFrame(rows);benchmarks.to_csv('results/pilot/benchmark_comparison.csv',index=False)
+    benchmarks=pd.DataFrame(rows)
+    benchmarks.assign(config_hash=[v['config_hash'] for v in summaries],code_hash=[v['code_hash'] for v in summaries],
+        input_hash=[v['input_hash'] for v in summaries]).to_csv('results/pilot/benchmark_comparison.csv',index=False)
     gaps=pd.read_csv('results/pilot/gap_connectivity_audit.csv');mapping=pd.read_csv('results/pilot/d3_regeneration_mapping.csv')
     old=pd.read_csv('results/pilot/baseline_g2/pilot_solutions.csv');new=pd.read_csv('results/pilot/pilot_solutions.csv')
     paired=old[['unit_key','household','strategy','fci_validator','reach_iterations']].merge(new[['unit_key','household','strategy','fci_validator','reach_iterations']],on=['unit_key','household','strategy'],suffixes=('_old','_new'))
-    paired.to_csv('results/pilot/baseline_comparison.csv',index=False)
+    paired.assign(config_hash=audit['config_hash'],baseline_config_hash=old.config_hash.iloc[0],
+        code_hash=audit['code_hash']).to_csv('results/pilot/baseline_comparison.csv',index=False)
     diagnosis_text='\n'.join('- '+key+': '+value for key,value in access_notes['units'].items()) or 'No unit fails empty fixed-service access.'
     cut_summary=pd.read_csv('results/pilot/cut_comparison/summary.csv').round(6)
     p=audit['projection']
@@ -357,7 +398,7 @@ Status: READY_FOR_CLAUDE_REVIEW. Reviewed baseline: 67af2ee; requested correctio
 
 D3 tries ordered near-corner/wall placements, rejects bodies touching the entrance keepout, checks continuous 0.90 m disc connectivity to the main floor and pod door, then tests empty raster access. Parameter keys are retained. Rejected combinations are labelled generator_infeasible and excluded before sampling. The mapping has {len(mapping)} parameter combinations and {int((mapping.new_sample==False).sum())} exclusions; see d3_regeneration_mapping.csv. All original pilot D3 parameters are preserved.
 
-Kitchen rooms are walkable, not furnishable; fixtures and sanitary bodies remain blocked. Kitchen reachability is tested separately. A wall-aware morphological close adds circulation across source seams up to 0.15 m, without changing NIA. In the full uncapped sample, {int(gaps.connectivity_changed.sum())} of {len(gaps)} units gain reachability to previously existing cells. Detailed staged pilot diagnostics are in fixed_service_diagnostic.csv; remaining valid zeros and explicit evidence are in zero_service_diagnoses.csv. The 0.30 m gap probe in that file is diagnosis only and is never used to optimize scores.
+Kitchen rooms are walkable, not furnishable; fixtures and sanitary bodies remain blocked. Kitchen reachability is tested separately. A wall-aware morphological close adds circulation across source seams up to 0.15 m, without changing NIA. The complete D1/D2 blocker-type audit confirms that the loaded source blockers are polygonal; a separate raster regression preserves zero-thickness internal separators. In the full uncapped sample, {int(gaps.connectivity_changed.sum())} of {len(gaps)} units gain reachability to previously existing cells. Detailed staged pilot diagnostics are in fixed_service_diagnostic.csv; remaining valid zeros and explicit evidence are in zero_service_diagnoses.csv. The 0.30 m gap probe in that file is diagnosis only and is never used to optimize scores.
 
 {diagnosis_text}
 
@@ -369,7 +410,7 @@ Solver and validator independently erode by an even/odd discrete disc, traverse 
 
 Selected arm: **{selection['selected_arm']}**. Worker quality criterion met: {selection['worker_quality_criterion_met']}. The fastest 60 s worker arm must be within 0.01 median FCI of both corrected 8-worker references; 30 s is retained only if faster and within 0.01 of that selection as well. All distributions include invalid cases at zero, and individual case scores are published. The 8-worker exhaustive arm isolates corrected-geometry full anchors; the second arm isolates 0.20 m anchors. Collision and access remain 0.10 m. The full-anchor check remains required in resolution sensitivity.
 
-The greedy baseline sorts by descending footprint, takes the first improving feasible wall-adjacent pose, and is independently checked before hinting CP-SAT. Each search uses at most 3 s (also bounded by 15% of its total budget) for that warm start. Geometry constraints, lazy checks and validation share the total 30/60 s budget; CP search is split into at most 5 s rounds so access can be checked before the budget expires. Iterations are consequently not directly equivalent to the old single long search. First-valid timings refer to positive-FCI layouts, not the empty initial incumbent.
+The greedy baseline sorts by descending footprint, takes the first improving feasible wall-adjacent pose, and is independently checked before hinting CP-SAT. Each search uses at most 3 s (also bounded by 15% of its total budget) for that warm start. Geometry constraints, lazy checks and validation share the total 30/60 s budget; CP search initially uses 5 s rounds so access can be checked promptly. A round returning UNKNOWN is retried with a doubled slice, up to the remaining total budget; it does not terminate the case early. After a solution-bearing round the slice resets to 5 s. Iterations are consequently not directly equivalent to the old single long search. First-valid timings refer to positive-FCI layouts, not the empty initial incumbent.
 
 All strategies exchange only layouts independently feasible under the receiving strategy. Scores and differences are reported after this exchange. The final validation audit searches again for missed downward improvements.
 
@@ -377,7 +418,7 @@ M9 uses geometric frontier witness rectangles. A cut requires at least one block
 
 {table(cut_summary)}
 
-First CP-valid time excludes the preceding greedy/incumbent checks; cases returning at an incumbent bound before CP have no such timing. Paired case records are in cut_comparison/cases.csv. The old pilot did not record time to first valid solution, so no retrospective timing is invented. The raw CP-SAT objective/bound describes its last search, not an optimality gap of a shared or retained layout.
+First CP-valid time excludes the preceding greedy/incumbent checks; cases returning at an incumbent bound before CP have no such timing. Paired case records are in cut_comparison/cases.csv. The old pilot did not record time to first valid solution, so no retrospective timing is invented. The raw CP-SAT objective/bound describes its last solution-bearing search, not an optimality gap of a shared or retained layout.
 
 ## M6–M7: projections and sample rule
 
@@ -406,6 +447,8 @@ The optional prepare-pilot mode can overlap completed D1 / selected D2 conversio
     Path('reports/GATE_G2_response.md').write_text(text,encoding='utf-8')
     Path('reports/phase_06_pilot.md').write_text('# Phase 6: corrected pilot and G2 response\n\n'+text.split('\n',1)[1],encoding='utf-8')
     Path('reports/GATE_G2.md').write_text('# Gate G2: revision ready for review\n\nSee [the complete response](GATE_G2_response.md), [phase report](phase_06_pilot.md), and [audit](g2_revision_audit.json). Formal experiments remain unstarted pending the author-requested Claude review.\n',encoding='utf-8')
+
+    update_readme(audit,selection,checks)
 
 
 def main():

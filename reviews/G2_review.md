@@ -137,4 +137,4 @@ The reviewer read `validate.py`, `metrics.py`, `solve/cpsat.py` and `solve/reach
 
 ## 5. Note for the author (not for Codex)
 
-The environment reports 112 logical cores but an effective quota of 14. If Codex runs on a machine where that quota can be raised, Exp. A throughput scales roughly in proportion. That is the cheapest way to keep every source at full size.
+[Operational equipment details omitted under the author’s publication-privacy instruction.] The benchmark uses the 14-core concurrency budget specified in M4. Any future change to that budget requires a new measured throughput projection.
