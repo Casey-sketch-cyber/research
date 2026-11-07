@@ -132,6 +132,11 @@ def greedy_layout(empty, grid, items, candidates, household, config, deadline, p
             if time.perf_counter() >= deadline: break
             identity = item.name+"#"+str(number+1)
             patterns = patterns_by_item[item.name]
+            if policy == "service":
+                # Test the promised schedule across poses before falling back to
+                # weaker furniture choices. The footprint arm retains partial
+                # schedules, so this initializer does not restrict CP's domain.
+                patterns = patterns[:1]
             accepted = False
             for x,y,angle in candidates[item.name]:
                 body,_,_ = rectangles(item.states[-1],grid.resolution,int(angle))
@@ -160,7 +165,9 @@ def greedy_layout(empty, grid, items, candidates, household, config, deadline, p
                     preserves_service = policy == "footprint" or all(
                         checked["credits"].get(key, 0.) >= value-1e-9
                         for key, value in layout["credits"].items())
-                    if checked["pass"] and checked["fci"]>layout["fci"]+1e-9 and preserves_service:
+                    promised_gain = _pattern_value(item, states, household, layout["credits"])
+                    achieves_schedule = policy != "service" or checked["fci"]-layout["fci"] >= promised_gain-1e-9
+                    if checked["pass"] and checked["fci"]>layout["fci"]+1e-9 and preserves_service and achieves_schedule:
                         trial.update(checked)
                         if first_positive is None and checked["fci"]>0: first_positive=time.perf_counter()-started
                         layout=trial;accepted=True;break
@@ -188,6 +195,8 @@ def greedy_warm_start(empty, grid, items, candidates, household, config, deadlin
         if info["first_positive_s"] is not None and first_positive is None:
             first_positive = offset+info["first_positive_s"]
         results.append(layout)
+        if layout["fci"] >= 1.-1e-9 and layout["tb"] == 0:
+            break
     best = max(results, key=lambda v: (v["fci"], -v["tb"]))
     best["greedy"] = {"algorithm": "service-density/service/footprint portfolio", "fci": best["fci"],
         "first_positive_s": first_positive,

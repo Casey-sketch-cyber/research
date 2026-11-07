@@ -123,7 +123,7 @@ def test_full_witness_hint_is_feasible_without_changing_the_search_domain():
     assert checked["pass"] and checked["fci"] >= witness["fci"]-1e-9
 
 
-@pytest.mark.parametrize("area", [9, 11])
+@pytest.mark.parametrize("area", [9, 11, 13])
 def test_generic_warm_start_finds_sharing_without_witness_input(area):
     import time
     from fea.furniture.candidates import generate_candidates

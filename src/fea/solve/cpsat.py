@@ -400,7 +400,7 @@ def solve_layout(unit, household, strategy, config, incumbent=None, prepared=Non
     first_valid = time.perf_counter()-started if best_validation["pass"] and best["fci"]>0 else None
     greedy_started = time.perf_counter()
     greedy = greedy_layout(empty, grid, items, candidates, household, config,
-        min(started+config["solver"]["time_limit_s"]*.15, greedy_started+3.))
+        min(started+config["solver"]["time_limit_s"]*.15, greedy_started+6.))
     greedy_time = time.perf_counter()-greedy_started
     if greedy["fci"]>best["fci"]+1e-9:
         best = greedy

@@ -209,16 +209,19 @@ def benchmark(config,args):
     config['raster']['anchor_stride_m']=args.stride
     digest,code_hash=config_hash(config),signature()
     input_hash=hashlib.sha256(Path('results/pilot/pilot_units.json').read_bytes()).hexdigest()
-    concurrent=max(1,14//args.workers)
+    concurrent=min(max(1,14//args.workers),getattr(args,'max_jobs',None) or 14)
     output=Path('results/pilot/benchmarks')/args.arm
     output.mkdir(parents=True,exist_ok=True)
     cache=Path(config['paths']['interim'])/'g2_revision'/(digest[:12]+'_'+code_hash[:12])/args.arm
     units=json.loads(Path('results/pilot/pilot_units.json').read_text())['units']
+    max_nia=getattr(args,'max_nia',None)
+    if max_nia is not None:
+        units=[u for u in units if Unit.from_dict(u).interior.area<=max_nia+1e-8]
     jobs=[(u,h,config,str(cache),code_hash) for u in units for h in config['households']['main_households']]
     expected=len(jobs)*3
     manifest=dict(arm=args.arm,num_workers=args.workers,concurrent_solves=concurrent,time_limit_s=args.limit,
         anchor_stride_m=args.stride,collision_resolution_m=config['raster']['resolution_m'],
-        config_hash=digest,code_hash=code_hash,input_hash=input_hash,expected_cases=expected,cache=str(cache))
+        config_hash=digest,code_hash=code_hash,input_hash=input_hash,expected_cases=expected,cache=str(cache),max_nia_m2=max_nia)
     # Cache is a project-relative research artifact, never an operational path.
     write_json(output/'run.json',manifest)
     completed=[]
@@ -231,7 +234,7 @@ def benchmark(config,args):
             pd.DataFrame(completed).to_csv(output/'cases_PARTIAL.csv',index=False)
     elapsed=time.perf_counter()-started
     frame=pd.DataFrame(completed).sort_values(['unit_key','household','strategy'])
-    assert len(frame)==expected==240
+    assert len(frame)==expected and expected>0
     frame.to_csv(output/'cases.csv',index=False)
     valid=frame.fci_validator
     summary={**manifest,'completed_cases':len(frame),'resumed_checkpoints':prior_checkpoints,'fresh_throughput_measurement':prior_checkpoints==0,'wall_time_s':elapsed,'wall_time_per_100_cases_s':elapsed/len(frame)*100,
@@ -249,8 +252,10 @@ def main():
     parser.add_argument('--prepare-pilot',action='store_true')
     parser.add_argument('--arm',default='w1_s20_t60')
     parser.add_argument('--workers',type=int,choices=[1,2,4,8],default=1)
-    parser.add_argument('--limit',type=int,choices=[30,60],default=60)
+    parser.add_argument('--limit',type=int,choices=[30,60,120,300],default=60)
     parser.add_argument('--stride',type=float,choices=[.1,.2],default=.2)
+    parser.add_argument('--max-nia',type=float,help='Explicit diagnostic subset; never replaces the frozen pilot')
+    parser.add_argument('--max-jobs',type=int,choices=range(1,15))
     args=parser.parse_args()
     config,_,_=start_run(args,'06_revision')
     if args.dry_run:
