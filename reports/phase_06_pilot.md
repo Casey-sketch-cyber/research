@@ -102,3 +102,11 @@ Author delegates self-review and continuation; no uploads. Earlier production se
 - [ ] R1: measure and select a size-dependent budget if required; document unsupported hypotheses without changing household/furniture defaults.
 - [ ] Reproject A <=36 hours and K <=48 hours, applying the stated scope reductions if needed.
 - [ ] Write an evidence-backed self-review before Phase 7; do not change reviewer records.
+
+### R1 engineering diagnosis log
+
+The original 4-worker/120-second 9 m² H3 probe is retained as `mechanism_probe_w4_t120`: S2 remains below the independent witness. A separate unchanged-search 8-worker/300-second probe tests whether time alone resolves it. The CP model can represent all six fixed witnesses; these constrained tests are not counted as search success.
+
+Warm-start development trials, all on diagnostic inputs rather than Exp. A outcomes: (1) prioritize item service and per-slot schedules; (2) reject additions that reduce an already served demand; (3) add a marginal-service-per-maximum-footprint ordering; (4) for equal service, prefer the schedule with fewer occupied area-hours. The final portfolio includes both service orderings and the original descending-footprint baseline within the existing total initialization budget. No furniture dimensions, household demand, seed or feasible-domain constraints changed. The first two H3 fixtures meet their lower bounds; the 13 m² fixture remains an open unconstrained-search check. These are explicit development trials, not confirmatory study evidence.
+
+A further hint correction supplies candidate indices and the actual simultaneous service-assignment literals, in addition to poses/states. A fixed-hint consistency test verifies these hints are jointly feasible; production search does not fix them. The original-search 8-worker/300-second 9 m² H3 probe reached the independent lower bound and improved on S1, establishing that extra search can reveal sharing without changing physical assumptions. All six final mechanism comparisons are now queued with the corrected generic warm start; long-budget population diagnostics remain next.

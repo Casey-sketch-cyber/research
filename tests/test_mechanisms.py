@@ -81,3 +81,62 @@ def test_constraint_model_can_represent_known_witness(area, prefix):
     layout = model.extract(solver, unit, "S2", "diagnostic")
     checked = validate_layout(layout, grid, config, household)
     assert checked["pass"] and checked["fci"] >= lower-1e-9
+
+
+def test_service_schedule_tie_prefers_smaller_idle_footprint():
+    """Equal service must not automatically select a permanently deployed table."""
+    from fea.furniture.library import library
+    from fea.solve.greedy import _patterns, _pattern_value, _footprint_hours
+    config = load_config("config/project.yaml")
+    h = parse_households(config["households"], config["furniture"])["H3_couple_one_remote"]
+    item = library(config["furniture"])["drop_leaf_table"]
+    patterns = _patterns(item, h, "S2")
+    best = min(patterns, key=lambda p: (-_pattern_value(item, p, h), _footprint_hours(item, p, h)))
+    assert best["normal"]["night"] == "stowed"
+    assert best["normal"]["day"] == "deployed"
+
+
+def test_full_witness_hint_is_feasible_without_changing_the_search_domain():
+    from ortools.sat.python import cp_model
+    from fea.furniture.candidates import generate_candidates
+    from fea.furniture.library import library
+    from fea.solve.cpsat import Model
+    config = load_config("config/project.yaml")
+    h = parse_households(config["households"], config["furniture"])["H3_couple_one_remote"]
+    unit = mechanism_shell(13)
+    grid = rasterize(unit)
+    items = library(config["furniture"])
+    model = Model(grid, h, items, generate_candidates(grid, items), "S2", config)
+    witness = mechanism_witness(13, h)
+    witness.update(validate_layout(witness, grid, config, h))
+    variables_before = len(model.model.Proto().variables)
+    model.warm_start(witness)
+    assert len(model.model.Proto().variables) == variables_before
+    assert not model.model.Validate()
+    solver = cp_model.CpSolver()
+    solver.parameters.num_search_workers = 1
+    solver.parameters.max_time_in_seconds = 10
+    # Diagnostic only: test every supplied hint together for consistency.
+    solver.parameters.fix_variables_to_their_hinted_value = True
+    assert solver.Solve(model.model) in (cp_model.FEASIBLE, cp_model.OPTIMAL)
+    checked = validate_layout(model.extract(solver, unit, "S2", "diagnostic"), grid, config, h)
+    assert checked["pass"] and checked["fci"] >= witness["fci"]-1e-9
+
+
+@pytest.mark.parametrize("area", [9, 11])
+def test_generic_warm_start_finds_sharing_without_witness_input(area):
+    import time
+    from fea.furniture.candidates import generate_candidates
+    from fea.furniture.library import library
+    from fea.solve.greedy import greedy_warm_start
+    config = load_config("config/project.yaml")
+    h = parse_households(config["households"], config["furniture"])["H3_couple_one_remote"]
+    grid = rasterize(mechanism_shell(area))
+    items = library(config["furniture"])
+    candidates = generate_candidates(grid, items)
+    result = greedy_warm_start({"strategy": "S2", "items": [], "service": {}}, grid, items,
+                               candidates, h, config, time.perf_counter()+12)
+    checked = validate_layout(result, grid, config, h)
+    lower = validate_layout(mechanism_witness(area, h), grid, config, h)["fci"]
+    assert checked["pass"] and checked["fci"] >= lower-1e-9
+    assert checked["credits"] == result["credits"]

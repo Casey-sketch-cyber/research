@@ -19,7 +19,7 @@ from fea.geometry.raster import rasterize
 from fea.households import demanded_hours
 from fea.validate import validate_layout
 from .reachability import check_connectivity
-from .greedy import greedy_layout
+from .greedy import greedy_warm_start as greedy_layout
 
 
 @dataclass
@@ -32,6 +32,7 @@ class Instance:
     y: object
     orientation: object
     states: dict
+    pose: object
 
 
 def _integer_coefficients(values):
@@ -93,6 +94,8 @@ class Model:
     """
     def __init__(self, grid, household, items, candidates, strategy, config):
         self.grid, self.household, self.items, self.config = grid, household, items, config
+        self.pose_indices = {name: {tuple(int(v) for v in p): n+1 for n, p in enumerate(poses)}
+                             for name, poses in candidates.items()}
         self.model = m = cp_model.CpModel()
         self.instances, self.assignment, self.credit = {}, {}, {}
         self.primary_terms, self.burden_terms, self.window_terms = [], [], []
@@ -125,7 +128,7 @@ class Model:
                                  else m.NewBoolVar(f"{identity}:{variant.name}:{slot.name}:state"))
                         if not isinstance(state, int): m.Add(state <= present)
                         states[variant.name, slot.name] = state
-                instance = Instance(identity, item, present, x, y, orient, states)
+                instance = Instance(identity, item, present, x, y, orient, states, pose)
                 self.instances[identity] = instance
                 if any(t.startswith(("work", "dine")) for s in item.states for t in s.serves):
                     costs = [0]+[int(round(window_distance[min(int(b), ny-1), min(int(a), nx-1)])) for a, b, _ in poses]
@@ -289,11 +292,42 @@ class Model:
                 value = round((item[("x", "y")[i]]-self.grid.origin[i])/self.grid.resolution) if item else 0
                 m.AddHint(variable, value)
             m.AddHint(instance.orientation, item["orientation_deg"]//90 if item else 0)
+            pose_key = (round((item["x"]-self.grid.origin[0])/self.grid.resolution),
+                        round((item["y"]-self.grid.origin[1])/self.grid.resolution), item["orientation_deg"]) if item else None
+            pose_index = self.pose_indices[instance.item.name].get(pose_key) if item else 0
+            if pose_index is not None:
+                m.AddHint(instance.pose, pose_index)
             for (variant, slot), variable in instance.states.items():
                 if isinstance(variable, int) or variable.Index() in hinted_states: continue
                 hinted_states.add(variable.Index())
                 value = [s.name for s in instance.item.states].index(item["states"][variant][slot]) if item else 0
                 m.AddHint(variable, value)
+        # A pose/state hint alone leaves the primary objective's assignment
+        # literals unspecified. Hint one explicit capability allocation too,
+        # without fixing it or removing any alternative from the model.
+        selected = set()
+        for variant in self.household.variants:
+            for slot in self.household.slots:
+                entries = {e["demand_id"]: e for e in layout.get("service", {}).get(variant.name, {}).get(slot.name, [])}
+                for demand in variant.demand[slot.name]:
+                    by = entries.get(demand.id, {}).get("by", [])
+                    by = sorted(i for i in by if i in indexed and i in self.instances)
+                    if demand.need == "storage":
+                        selected.update((variant.name, slot.name, demand.id, 0, 0, i) for i in by)
+                        continue
+                    for alternative, tokens in enumerate(self.household.capability_rules[demand.need]["satisfied_by"]):
+                        if len(tokens) != len(by):
+                            continue
+                        match = next((permutation for permutation in itertools.permutations(by) if all(
+                            token in next(s.serves for s in self.instances[i].item.states
+                                          if s.name == indexed[i]["states"][variant.name][slot.name])
+                            for token, i in zip(tokens, permutation))), None)
+                        if match is not None:
+                            selected.update((variant.name, slot.name, demand.id, alternative, t, i)
+                                            for t, i in enumerate(match))
+                            break
+        for key, variable in self.assignment.items():
+            m.AddHint(variable, int(key in selected))
         if enforce_bound: m.Add(self.primary >= round(layout["fci"]*float(self.primary_scale)))
 
     def cut(self, problems, solver):

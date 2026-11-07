@@ -147,8 +147,9 @@ def run(config: dict, args) -> None:
     assert units and names
     directory = ROOT/args.arm
     cache = Path(config["paths"]["interim"])/"round2"/args.arm
+    concurrency = min(max(1, 14//args.workers), args.max_jobs or 14)
     manifest = dict(mode=args.mode, arm=args.arm, code_hash=signature, config_hash=config_hash(config),
-        num_workers=args.workers, concurrent_solves=max(1, 14//args.workers), time_limit_s=args.limit,
+        num_workers=args.workers, concurrent_solves=concurrency, time_limit_s=args.limit,
         anchor_stride_m=args.stride, expected_cases=len(units)*len(names)*2,
         inputs_hash=hashlib.sha256(json.dumps([units, names], sort_keys=True).encode()).hexdigest(),
         cache=cache.as_posix(), witness_provided_to_solver=False)
@@ -185,6 +186,7 @@ def main():
     parser.add_argument("--stride", type=float, choices=[.1, .2], default=.1)
     parser.add_argument("--unit-key")
     parser.add_argument("--household")
+    parser.add_argument("--max-jobs", type=int, choices=range(1, 15), help="Lower concurrency when another diagnostic uses resources")
     args = parser.parse_args()
     config, _, _ = start_run(args, "06_round2")
     if args.dry_run:
