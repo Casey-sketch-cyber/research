@@ -1,4 +1,4 @@
 arm,expected_cases,saved_case_checkpoints,status,completed_validated_cases
-small_final_w8_t300,128,117,running,0
-small_final_w4_t120,128,0,queued,0
-small_final_w1_t30,128,0,queued,0
+small_final_w8_t300,128,128,complete,128
+small_final_w4_t120,128,128,complete,128
+small_final_w1_t30,128,128,complete,128

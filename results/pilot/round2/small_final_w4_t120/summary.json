@@ -1,0 +1,22 @@
+{
+  "mode": "small",
+  "arm": "small_final_w4_t120",
+  "code_hash": "b92c31ca595906ef1d9dc66760aa1d16ae2224a003fec89468c7f5de7cee551e",
+  "config_hash": "75f9e041facd3cf0e1899d03aa6303a67590e3460d7db83e811f0d34d1d6ddda",
+  "num_workers": 4,
+  "concurrent_solves": 3,
+  "time_limit_s": 120,
+  "anchor_stride_m": 0.1,
+  "expected_cases": 128,
+  "inputs_hash": "0ed92ca97bf69da9d8bda59cd7d55ff0e7ddb58777f0107f73a871391c3becc9",
+  "cache": "data/interim/round2/small_final_w4_t120",
+  "witness_provided_to_solver": false,
+  "completed_cases": 128,
+  "wall_time_s": 1912.0645046122372,
+  "resumed_checkpoints": 0,
+  "fresh_throughput_measurement": true,
+  "s2_improved_pairs": 5,
+  "mean_s1": 0.6974878821988197,
+  "mean_s2": 0.7108091963013838,
+  "s2_below_witness": 0
+}

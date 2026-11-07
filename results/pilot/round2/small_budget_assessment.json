@@ -1,0 +1,15 @@
+{
+  "provisional_small_arm": "small_final_w4_t120",
+  "num_workers": 4,
+  "time_limit_s": 120,
+  "anchor_stride_m": 0.1,
+  "selection_rule": "Choose 4-worker/120-second full anchors if S2 mean is within 0.01 of 8-worker/300-second full anchors in both scopes; otherwise retain the long setting",
+  "long_improved_pairs": 5,
+  "long_gain_missing_in_short_pairs": 1,
+  "interpretation": "time-sharing gains observed in long-budget diagnostic cohort",
+  "numerical_hash": "b92c31ca595906ef1d9dc66760aa1d16ae2224a003fec89468c7f5de7cee551e",
+  "r2_hybrid_quality_pending": true,
+  "fixed_state_mean_gap_needs_attention": false,
+  "runtime_reprojection_pending": true,
+  "formal_experiment_authorized_by_this_file": false
+}

@@ -1,0 +1,487 @@
+{
+  "unit_key": "D3:23b21b9aaca9cecbfcd4",
+  "source": "D3",
+  "nia_m2": 13.000000002076398,
+  "furnishable_area_m2": 10.480000002076402,
+  "household": "H4_parent_child",
+  "strategy": "S1",
+  "algorithm": "cp_sat",
+  "resolution_m": 0.1,
+  "items": [
+    {
+      "instance_id": "drop_leaf_table#1",
+      "type": "drop_leaf_table",
+      "x": 2.5,
+      "y": 1.8,
+      "orientation_deg": 90,
+      "states": {
+        "normal": {
+          "night": "deployed",
+          "morning": "deployed",
+          "day": "deployed",
+          "evening": "deployed",
+          "dinner": "deployed",
+          "leisure": "deployed"
+        }
+      }
+    },
+    {
+      "instance_id": "single_bed#1",
+      "type": "single_bed",
+      "x": 1.6,
+      "y": 2.6,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "wall_bed_single#1",
+      "type": "wall_bed_single",
+      "x": 1.0,
+      "y": 5.0,
+      "orientation_deg": 180,
+      "states": {
+        "normal": {
+          "night": "deployed",
+          "morning": "deployed",
+          "day": "deployed",
+          "evening": "deployed",
+          "dinner": "deployed",
+          "leisure": "deployed"
+        }
+      }
+    },
+    {
+      "instance_id": "shelving#1",
+      "type": "shelving",
+      "x": 0.0,
+      "y": 1.9,
+      "orientation_deg": 270,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "shelving#2",
+      "type": "shelving",
+      "x": 0.0,
+      "y": 2.7,
+      "orientation_deg": 270,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    }
+  ],
+  "service": {
+    "normal": {
+      "night": [
+        {
+          "demand_id": "normal:night:0",
+          "need": "sleep_1",
+          "by": [
+            "single_bed#1"
+          ]
+        },
+        {
+          "demand_id": "normal:night:1",
+          "need": "sleep_1",
+          "by": [
+            "wall_bed_single#1"
+          ]
+        }
+      ],
+      "morning": [
+        {
+          "demand_id": "normal:morning:0",
+          "need": "storage",
+          "by": [
+            "shelving#1",
+            "shelving#2"
+          ]
+        },
+        {
+          "demand_id": "normal:morning:1",
+          "need": "dine_2",
+          "by": [
+            "drop_leaf_table#1"
+          ]
+        }
+      ],
+      "day": [],
+      "evening": [
+        {
+          "demand_id": "normal:evening:0",
+          "need": "work_1",
+          "by": [
+            "drop_leaf_table#1"
+          ]
+        },
+        {
+          "demand_id": "normal:evening:1",
+          "need": "lounge_1",
+          "by": []
+        }
+      ],
+      "dinner": [
+        {
+          "demand_id": "normal:dinner:0",
+          "need": "dine_2",
+          "by": [
+            "drop_leaf_table#1"
+          ]
+        }
+      ],
+      "leisure": [
+        {
+          "demand_id": "normal:leisure:0",
+          "need": "lounge_2",
+          "by": []
+        }
+      ]
+    }
+  },
+  "config_hash": "bb248d73b0ab2deb5b6bdf165ffecc0779bacfd811478e39fcbb0402f316b24d",
+  "fci": 0.7976190476190476,
+  "fci_by_variant": {
+    "normal": 0.7976190476190476
+  },
+  "tb": 0.0,
+  "served_hours": 22.333333333333332,
+  "demanded_hours": 28.0,
+  "served_hours_by_variant": {
+    "normal": 22.333333333333332
+  },
+  "pass": true,
+  "violations": [],
+  "credits": {
+    "normal:night:0": 1.0,
+    "normal:night:1": 1.0,
+    "normal:morning:0": 0.6666666666666666,
+    "normal:morning:1": 1.0,
+    "normal:evening:0": 1.0,
+    "normal:evening:1": 0.0,
+    "normal:dinner:0": 1.0,
+    "normal:leisure:0": 0.0
+  },
+  "unreachable_items": [],
+  "greedy": {
+    "algorithm": "service-density/service/footprint portfolio",
+    "fci": 0.7976190476190476,
+    "first_positive_s": 0.010161453858017921,
+    "validated_trials": 114,
+    "arms": [
+      {
+        "validated_trials": 27,
+        "first_positive_s": 0.010159730911254883,
+        "fci": 0.7976190476190476,
+        "algorithm": "service_density / first improving feasible wall-adjacent pose"
+      },
+      {
+        "validated_trials": 37,
+        "first_positive_s": 0.008853776380419731,
+        "fci": 0.511904761904762,
+        "algorithm": "service / first improving feasible wall-adjacent pose"
+      },
+      {
+        "validated_trials": 50,
+        "first_positive_s": 0.007974935695528984,
+        "fci": 0.5833333333333334,
+        "algorithm": "footprint / first improving feasible wall-adjacent pose"
+      }
+    ]
+  },
+  "validator": {
+    "fci": 0.7976190476190476,
+    "fci_by_variant": {
+      "normal": 0.7976190476190476
+    },
+    "served_hours_by_variant": {
+      "normal": 22.333333333333332
+    },
+    "served_hours": 22.333333333333332,
+    "demanded_hours": 28.0,
+    "tb": 0.0,
+    "pass": true,
+    "violations": [],
+    "credits": {
+      "normal:night:0": 1.0,
+      "normal:night:1": 1.0,
+      "normal:morning:0": 0.6666666666666666,
+      "normal:morning:1": 1.0,
+      "normal:evening:0": 1.0,
+      "normal:evening:1": 0.0,
+      "normal:dinner:0": 1.0,
+      "normal:leisure:0": 0.0
+    },
+    "unreachable_items": []
+  },
+  "solver": {
+    "status": "TIMEOUT_WITH_INCUMBENT",
+    "last_search_status": "OPTIMAL",
+    "time_s": 157.73953285813332,
+    "build_time_s": 1.0141911432147026,
+    "objective": 354975.0,
+    "bound": 354975.0,
+    "first_valid_time_s": 0.019019024446606636,
+    "greedy_time_s": 0.9203310329467058,
+    "greedy_fci": 0.7976190476190476,
+    "geometric_cuts": 85,
+    "reach_iterations": 30,
+    "fci_solver": 0.7976190476190476,
+    "raw_last_model_fci": 0.8452380952380952,
+    "objective_bound_scope": "last solution-bearing raw CP-SAT search; may differ from retained validated layout",
+    "retained_previous_incumbent": false,
+    "trace": [
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.9285714285714286,
+        "validator_fci": 0.07142857142857142,
+        "reachability_failures": 6,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.9285714285714286,
+        "validator_fci": 0.07142857142857142,
+        "reachability_failures": 6,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.9285714285714286,
+        "validator_fci": 0.0,
+        "reachability_failures": 8,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 21.35774234868586,
+        "reachability_failures": null
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.9285714285714286,
+        "validator_fci": 0.0,
+        "reachability_failures": 7,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.9285714285714286,
+        "validator_fci": 0.0,
+        "reachability_failures": 8,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.8928571428571429,
+        "validator_fci": 0.0,
+        "reachability_failures": 7,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.8214285714285714,
+        "validator_fci": 0.25,
+        "reachability_failures": 2,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.8452380952380952,
+        "validator_fci": 0.2738095238095238,
+        "reachability_failures": 2,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.8214285714285714,
+        "validator_fci": 0.35714285714285715,
+        "reachability_failures": 4,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 58.25358694791794,
+        "reachability_failures": null
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.8452380952380952,
+        "validator_fci": 0.20238095238095236,
+        "reachability_failures": 3,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 70.14299799501896,
+        "reachability_failures": null
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.8452380952380952,
+        "validator_fci": 0.2738095238095238,
+        "reachability_failures": 2,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.8452380952380952,
+        "validator_fci": 0.023809523809523808,
+        "reachability_failures": 6,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 85.96838996373117,
+        "reachability_failures": null
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.8452380952380952,
+        "validator_fci": 0.09523809523809523,
+        "reachability_failures": 5,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 97.26636762171984,
+        "reachability_failures": null
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.8452380952380952,
+        "validator_fci": 0.2738095238095238,
+        "reachability_failures": 2,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 108.22093248739839,
+        "reachability_failures": null
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.8452380952380952,
+        "validator_fci": 0.2738095238095238,
+        "reachability_failures": 2,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.8452380952380952,
+        "validator_fci": 0.2738095238095238,
+        "reachability_failures": 2,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 122.95854597911239,
+        "reachability_failures": null
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.8452380952380952,
+        "validator_fci": 0.2738095238095238,
+        "reachability_failures": 2,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.8452380952380952,
+        "validator_fci": 0.2738095238095238,
+        "reachability_failures": 2,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.8452380952380952,
+        "validator_fci": 0.4880952380952381,
+        "reachability_failures": 2,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 142.30781667493284,
+        "reachability_failures": null
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.8452380952380952,
+        "validator_fci": 0.20238095238095236,
+        "reachability_failures": 3,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.8452380952380952,
+        "validator_fci": 0.4880952380952381,
+        "reachability_failures": 2,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "OPTIMAL",
+        "model_fci": 0.8452380952380952,
+        "validator_fci": 0.2738095238095238,
+        "reachability_failures": 2,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      }
+    ],
+    "primary_upper_bound": 1.0,
+    "window_tiebreak_optimized": false,
+    "encoding": "configured anchor tables + optional rectangle intervals + guarded geometric frontier cuts"
+  },
+  "code_hash": "b92c31ca595906ef1d9dc66760aa1d16ae2224a003fec89468c7f5de7cee551e"
+}

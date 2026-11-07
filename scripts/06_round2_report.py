@@ -61,13 +61,17 @@ def main():
         best_known["best_observed_S2_minus_S1"] = best_known.S2-best_known.S1
         best_known = best_known.reset_index()
         best_known.to_csv(root/"mechanism_cross_run_best_known.csv", index=False)
-    lines = ["# G2 round-2 self-review (in progress)", "",
+    assessment_path = root/"small_budget_assessment.json"
+    assessment = json.loads(assessment_path.read_text()) if assessment_path.exists() else None
+    audit_path = root/"completed_layout_audit.json"
+    audit = json.loads(audit_path.read_text()) if audit_path.exists() else None
+    lines = ["# G2 round-2 self-review (formal-run acceptance pending)", "",
         "The author delegates continuation and self-review. Publication instructions are recorded in DECISIONS.md. This file is an engineering self-review, not a replacement for the immutable reviewer records.", "",
         "## Wall-flush lattice correction", "",
         "Stride is applied along the wall only for wall-backed furniture. Perpendicular flush coordinates remain eligible. Free-standing items still use both axes. Translated-wall tests exercise all four orientations.", "",
         f"Arm `{args.arm}` completed {summary['completed_cases']} cases in {summary['wall_time_s']:.3f} s; all {summary['validator_pass_cases']} layouts pass independent validation. Mean FCI is {summary['mean_fci']:.9f}.", "",
         group_frame.to_markdown(index=False, floatfmt=".6f"), "",
-        "The full-anchor reference is the frozen earlier benchmark. At stride 0.10 m the wall correction is an identity; no full-anchor candidate changes. Numerical comparisons are provisional until R1 search checks finish. Positive differences are finite-budget outcomes, not dominance of a coarse domain.", "",
+        "The full-anchor reference is the frozen earlier benchmark. At stride 0.10 m the wall correction is an identity; no full-anchor candidate changes. These earlier comparisons predate the final search corrections and cannot approve the current production setting. A fresh reference and size-dependent pilot are required. Positive differences are finite-budget outcomes, not dominance of a coarse domain.", "",
         "## Known-answer diagnostic fixtures", "",
         "Three hand-built rectangles have 9, 11 and 13 m² NIA. Each has a synthetic 0.8×0.8 m fixed pod and 0.4×0.6 m kitchen obstacle, deliberately separate from the D3 dwelling generator. These are algorithmic diagnostics, not habitable minimum dimensions or study-population observations. They must not enter A, K, minimum-area estimates or policy claims.", "",
         "The hand-written table's deployed body intersects the bed's night footprint. The six schedules pass the independent validator, and fixing their poses/states yields feasible CP models. Simultaneous deployment and S1 relabelling are rejected. H1 cannot claim sleep_1 from the requested sleep_2 bed under the unchanged capability rules; its lower bound explicitly omits sleep. H3 exercises the sleep/lounge transformation mechanism.", "",
@@ -84,13 +88,31 @@ def main():
         ("Snapshot observed at "+json.loads((root/"progress_snapshot.json").read_text())["observed_at_utc"]+
          ". Saved checkpoints are not a completed-arm acceptance. No partial score means are reported.")
         if (root/"progress_snapshot.json").exists() else "", "",
+        "## Completed budget comparison", "",
+        pd.read_csv(root/"small_budget_quality.csv").to_markdown(index=False, floatfmt=".6f")
+        if assessment else "Pending complete matched arms.", "",
+        (f"Provisional small-home setting: {assessment['num_workers']} workers, {assessment['time_limit_s']} s, "
+         f"{assessment['anchor_stride_m']:.2f} m anchors. The predeclared rule compares S2 means with the long arm in both scopes. "
+         f"The long arm has {assessment['long_improved_pairs']} S2>S1 pairs; "
+         f"{assessment['long_gain_missing_in_short_pairs']} of these gains is absent in the short arm. "
+         "The 30-second arm's additional within-arm gains do not demonstrate a stronger physical effect: its S1 mean is lower. "
+         "A medium-arm mean slightly above the long-arm mean is a finite-budget scheduling outcome, not method dominance. "
+         "This selection does not authorize formal experiments; current source-quality and A/K runtime checks remain pending.")
+        if assessment else "", "",
+        (f"Independent saved-layout audit: {audit['validator_pass_cases']}/{audit['expected_cases']} valid, "
+         f"{audit['score_mismatches']} score mismatches, exact unit/household/strategy coverage. "
+         "All layouts and their byte hashes are archived; see `completed_layout_audit.csv`. "
+         "The validator is independent of solver constraint code but shares geometry rasterization.")
+        if audit else "Saved-layout revalidation is pending.", "",
         "## Remaining acceptance checks", "",
         ("- [x] All six S2 diagnostic searches reach their hand-written lower bounds; at least one shell has a demonstrated time-sharing improvement. Within-arm and cross-run comparisons are both retained above."
          if mechanism_pass else "- [ ] All six S2 diagnostic searches must reach their hand-written lower bounds; at least one diagnostic shell must have S2>S1."),
-        "- Freeze and solve every pilot NIA<=22 plus 12 seed-selected D3 shells of 9–15 m²; use full anchors / 8 workers / 300 s for S1/S2 and all four households.",
-        "- Select the size-dependent setting by the predeclared mean criteria; rerun any benchmarks affected by a search correction.",
-        "- Reproject A and K; do not start formal A based on the superseded median rule.", "",
-        "Reproduce: `python scripts/06_round2.py --mode prepare`; use the explicit mode/arm/worker/limit arguments in each run.json; `python scripts/06_round2_report.py --render`.", ""]
+        ("- [x]" if assessment else "- [ ]")+" Freeze and solve every pilot NIA<=22 plus 12 seed-selected D3 shells of 9–15 m²; full anchors / 8 workers / 300 s for S1/S2 and all four households, with matched medium/short arms.",
+        ("- [x]" if audit else "- [ ]")+" Independently revalidate and archive every completed small-home layout.",
+        ("- [x]" if assessment else "- [ ]")+" Apply the predeclared small-home mean-quality budget rule (provisional until hybrid acceptance).",
+        "- [ ] Rerun the full pilot reference and size-dependent candidate affected by the search correction; check source means.",
+        "- [ ] Reproject A and K; do not start formal A based on the superseded median rule.", "",
+        "Reproduce: `python scripts/06_round2.py --mode prepare`; use the explicit mode/arm/worker/limit arguments in each run.json; then run `06_round2_budget_report.py`, `06_round2_audit.py`, `06_round2_status.py` and `06_round2_report.py --render` under `scripts/`.", ""]
     Path("reports/G2_round2_self_review.md").write_text("\n".join(lines), encoding="utf-8")
     if args.render:
         households = parse_households(config["households"], config["furniture"])

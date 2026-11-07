@@ -52,12 +52,19 @@ tests, with a separate additional budget-comparison integration test.
 
 The old w1_s20_t30 selection and its A/K projections are historical and must be
 replaced using the round-2 mean-quality and small-home budget checks. The frozen
-16-unit small-home comparisons are in progress; see the dated
+16-unit small-home comparisons are complete: 384/384 layouts independently
+revalidated, with no score mismatches. The provisional small-home setting is
+4 workers / 120 s / full anchors, satisfying the predeclared S2 mean criterion
+against the 300 s reference in both scopes. See the dated
 [progress snapshot](results/pilot/round2/progress_snapshot.json). A guarded Phase 7 runner exists
 but refuses to start without accepted current settings and a <=36-hour projection.
 Formal A, K and R remain unstarted; no FEA or population-level hypothesis conclusion
 is claimed. Literature screening remains due at G3. Uploads have been reauthorized; the current review package includes completed
-mechanism evidence and a dated snapshot of the unfinished budget comparisons.
+mechanism evidence, all 384 small-home layouts with hashes, and completed budget
+comparisons. Fresh full-pilot source-quality checks and A/K runtime projections
+remain required after the search corrections. The pilot refresh has started;
+its serial plan and last observed state are in
+[pilot_refresh_status.json](results/pilot/round2/pilot_refresh_status.json).
 
 ## License
 

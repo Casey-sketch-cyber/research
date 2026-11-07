@@ -2,8 +2,23 @@
 
 > Current round-2 status takes precedence: see [G2_round2_self_review.md](G2_round2_self_review.md). The earlier median-based production selection and runtime projections below are historical. The author has delegated self-review and reauthorized sanitized uploads; formal experiments await the updated quality and runtime checks.
 
+## Round-2 completion checklist
 
-Status: READY_FOR_CLAUDE_REVIEW. Reviewed baseline: 67af2ee; requested corrections: a228786. No Phase 7, K or R experiment was started. The author requests another review even if the continuation criteria pass.
+- [x] Complete all three frozen 128-case small-home budget arms.
+- [x] Revalidate every saved layout, check provenance and archive case-level evidence.
+- [x] Apply the predeclared mean-quality budget rule and prepare the completed comparison for publication.
+- [ ] Refresh the full pilot reference and size-dependent candidate after the search corrections.
+- [ ] Check source means and reproject A (36 h) and K (48 h) before formal runs.
+
+Current completion evidence: all three small-home arms are complete (384 cases).
+The saved-layout audit revalidates all 384, confirms exact case coverage and
+matching scores, and archives their exact bytes and hashes. The provisional
+small-home choice is 4 workers / 120 s / full anchors. Fresh benchmark arms have
+started under `06_round2_pilot_queue.py`; it runs only pilot comparisons and never
+starts formal experiments. See the generated self-review for measured values.
+
+
+Historical round-1 status: READY_FOR_CLAUDE_REVIEW. Reviewed baseline: 67af2ee; requested corrections: a228786. The subsequent author-delegated self-review supersedes that wait instruction. No Phase 7, K or R experiment has started.
 
 ## Outcomes
 

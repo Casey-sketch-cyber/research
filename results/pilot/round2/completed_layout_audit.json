@@ -1,0 +1,11 @@
+{
+  "expected_cases": 384,
+  "audited_cases": 384,
+  "validator_pass_cases": 384,
+  "exact_case_coverage": true,
+  "score_mismatches": 0,
+  "common_numerical_hash": "b92c31ca595906ef1d9dc66760aa1d16ae2224a003fec89468c7f5de7cee551e",
+  "layout_bytes": 3402404,
+  "manifest": "results/pilot/round2/completed_layout_audit.csv",
+  "formal_experiment_acceptance": false
+}

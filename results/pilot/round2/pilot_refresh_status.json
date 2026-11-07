@@ -1,0 +1,30 @@
+{
+  "plan": [
+    {
+      "arm": "refresh_large_w1_s20_t30",
+      "workers": 1,
+      "limit": 30,
+      "stride": 0.2,
+      "max_nia": null
+    },
+    {
+      "arm": "refresh_small_w4_s10_t120",
+      "workers": 4,
+      "limit": 120,
+      "stride": 0.1,
+      "max_nia": 20
+    },
+    {
+      "arm": "refresh_reference_w8_s10_t60",
+      "workers": 8,
+      "limit": 60,
+      "stride": 0.1,
+      "max_nia": null
+    }
+  ],
+  "completed_arms": [],
+  "numerical_hash": "21c8cc38317c527075edf93987f9eec0237493ba789367910c6ffd03c852cea8",
+  "stage": "running",
+  "formal_experiments_started": false,
+  "current_arm": "refresh_large_w1_s20_t30"
+}
