@@ -1,5 +1,7 @@
 # Phase 6: corrected pilot and G2 response
 
+> Current round-2 status takes precedence: see [G2_round2_self_review.md](G2_round2_self_review.md). The earlier median-based production selection and runtime projections below are historical. The author has delegated self-review and paused uploads; formal experiments await the updated quality and runtime checks.
+
 
 Status: READY_FOR_CLAUDE_REVIEW. Reviewed baseline: 67af2ee; requested corrections: a228786. No Phase 7, K or R experiment was started. The author requests another review even if the continuation criteria pass.
 
@@ -95,9 +97,9 @@ The optional prepare-pilot mode can overlap completed D1 / selected D2 conversio
 
 Author delegates self-review and continuation; no uploads. Earlier production selection is provisional and superseded by round-2 mean-quality criteria.
 
-- [ ] R2: preserve perpendicular wall-flush coordinates; test translated walls and free-standing items.
+- [x] R2: preserve perpendicular wall-flush coordinates; test translated walls and free-standing items.
 - [ ] R2: repeat frozen pilot; require source means within 0.02 and small-unit mean within 0.01 of full-anchor reference.
-- [ ] R1: validate hand-written time-sharing witnesses on three diagnostic shells; compare unseeded S1/S2 for H1 and H3.
+- [x] R1: validate hand-written time-sharing witnesses on three diagnostic shells; compare unseeded S1/S2 for H1 and H3.
 - [ ] R1: freeze 12 additional small shells and rerun every pilot NIA <=22 plus these shells with full anchors / 8 workers / 300 seconds.
 - [ ] R1: measure and select a size-dependent budget if required; document unsupported hypotheses without changing household/furniture defaults.
 - [ ] Reproject A <=36 hours and K <=48 hours, applying the stated scope reductions if needed.
@@ -112,3 +114,5 @@ Warm-start development trials, all on diagnostic inputs rather than Exp. A outco
 A further hint correction supplies candidate indices and the actual simultaneous service-assignment literals, in addition to poses/states. A fixed-hint consistency test verifies these hints are jointly feasible; production search does not fix them. The original-search 8-worker/300-second 9 m² H3 probe reached the independent lower bound and improved on S1, establishing that extra search can reveal sharing without changing physical assumptions. All six final mechanism comparisons are now queued with the corrected generic warm start; long-budget population diagnostics remain next.
 
 The first complete corrected-search batch (`mechanism_final_w4_t120`) is retained as a failed development batch: one S2 case (13 m² H3) remained below its witness. No population experiments were started by its controller. Diagnosis showed that the service-first greedy arm accepted weaker schedules at early poses, blocking stronger later additions. It now searches its highest-service schedule across candidate poses, requires its claimed marginal schedule service to be accessible, and retains partial-service alternatives in the other arms. The generic portfolio now independently reaches all three H3 witnesses, including the 13 m² shell. Its cap is 6 seconds, still <=15% of the unchanged total case budget; full FCI with zero burden ends the portfolio immediately. A new full mechanism batch and full tests are running under a distinct fingerprint.
+
+Final mechanism batch `mechanism_verified_w4_t120`: all 12 layouts are valid, all six S2 results reach the independent lower bounds, and at least one time-sharing improvement is demonstrated. Cross-run best-known S1/S2 results are also retained to avoid attributing a weaker S1 search to a furniture benefit. The final numerical suite passes 103 tests; the separate budget-comparison integration test passes. All three hand-written H3 schedule figures were visually inspected for furniture states, overlaps, service obstacles and labels. The controller has begun `small_final_w8_t300` and will then run the fixed medium and short arms; no formal A/K/R experiment has started.

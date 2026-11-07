@@ -17,6 +17,10 @@ Research project for a submission to *Urban Science* (MDPI), Special Issue "Urba
 
 ## Workflow
 
+**Current author instruction (2026-11-06):** continue under self-review and pause
+all uploads. The historical push/reviewer sequence below is superseded for the
+current work; preserve the methodological checks and immutable review records.
+
 ```
 Codex: Phases 0–4  → push → GATE G1 (data & corpus)  → review in reviews/G1_review.md
 Codex: Phases 5–6  → push → GATE G2 (method & pilot) → review
@@ -40,9 +44,18 @@ After each review, tell Codex: *"Pull, read `reviews/Gx_review.md`, address the 
 | G3 results | not started |
 | G4 final package | not started |
 
-Start the review with [reports/GATE_G2_response.md](reports/GATE_G2_response.md). The corrected pilot has 240 valid and 0 invalid layouts out of 240, 100% independent FCI agreement, and 79 passing tests. The [artifact manifest](results/pilot/layout_manifest.csv), [audit](reports/g2_revision_audit.json), [benchmarks](results/pilot/benchmark_comparison.csv) and [reproduction instructions](docs/REPRODUCING.md) accompany the package.
+Current work is recorded in [G2 round-2 self-review](reports/G2_round2_self_review.md).
+The wall-flush correction has been benchmarked on the unchanged 240 cases. The
+six hand-written witnesses and unconstrained mechanism comparisons now pass;
+unsuccessful development arms remain visible. The numerical suite passes 103
+tests, with a separate additional budget-comparison integration test.
 
-Selected configuration: w1_s20_t30. Exp. A projects to 9.510 h including the 15% margin; Exp. K is estimated separately. All five G2 continuation criteria pass: True. The author requested another Claude review before proceeding. Phase 7, K and R remain unstarted; no FEA or hypothesis conclusion is claimed. Literature screening remains due at G3.
+The old w1_s20_t30 selection and its A/K projections are historical and must be
+replaced using the round-2 mean-quality and small-home budget checks. The frozen
+16-unit small-home comparisons are in progress. A guarded Phase 7 runner exists
+but refuses to start without accepted current settings and a <=36-hour projection.
+Formal A, K and R remain unstarted; no FEA or population-level hypothesis conclusion
+is claimed. Literature screening remains due at G3. No new work has been uploaded.
 
 ## License
 

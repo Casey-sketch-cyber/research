@@ -1,5 +1,7 @@
 # Gate G2 response
 
+> Current round-2 status takes precedence: see [G2_round2_self_review.md](G2_round2_self_review.md). The earlier median-based production selection and runtime projections below are historical. The author has delegated self-review and paused uploads; formal experiments await the updated quality and runtime checks.
+
 Status: READY_FOR_CLAUDE_REVIEW. Reviewed baseline: 67af2ee; requested corrections: a228786. No Phase 7, K or R experiment was started. The author requests another review even if the continuation criteria pass.
 
 ## Outcomes

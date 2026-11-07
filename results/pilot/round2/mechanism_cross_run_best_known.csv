@@ -1,0 +1,7 @@
+unit_key,household,S1,S2,best_observed_S2_minus_S1
+mechanism:11,H1_single_commuter,1.0,1.0,0.0
+mechanism:11,H3_couple_one_remote,0.6923076923076923,0.9944999999999999,0.30219230769230765
+mechanism:13,H1_single_commuter,1.0,1.0,0.0
+mechanism:13,H3_couple_one_remote,0.9752692307692308,0.9752692307692308,0.0
+mechanism:9,H1_single_commuter,1.0,1.0,0.0
+mechanism:9,H3_couple_one_remote,0.7252692307692307,0.9175769230769231,0.1923076923076924

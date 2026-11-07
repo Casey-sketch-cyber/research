@@ -49,6 +49,18 @@ def main():
         record = json.loads(path.read_text())
         runs.append({k: record[k] for k in ("arm", "mode", "completed_cases", "mean_s1", "mean_s2",
                     "s2_improved_pairs", "s2_below_witness", "wall_time_s")})
+    verified = next((r for r in runs if r["arm"] == "mechanism_verified_w4_t120"), None)
+    mechanism_pass = bool(verified and verified["completed_cases"] == 12 and
+                          verified["s2_below_witness"] == 0 and verified["s2_improved_pairs"] > 0)
+    known_frames = [pd.read_csv(root/r["arm"]/"cases.csv") for r in runs if r["mode"] == "mechanism"]
+    best_known = pd.DataFrame()
+    if known_frames:
+        all_known = pd.concat(known_frames, ignore_index=True)
+        assert all_known.validator_pass.all()
+        best_known = all_known.groupby(["unit_key", "household", "strategy"]).fci_validator.max().unstack()
+        best_known["best_observed_S2_minus_S1"] = best_known.S2-best_known.S1
+        best_known = best_known.reset_index()
+        best_known.to_csv(root/"mechanism_cross_run_best_known.csv", index=False)
     lines = ["# G2 round-2 self-review (in progress)", "",
         "The author delegates continuation and self-review and has paused uploads. This file is an engineering self-review, not a replacement for the immutable reviewer records.", "",
         "## Wall-flush lattice correction", "",
@@ -63,8 +75,12 @@ def main():
         "Unconstrained searches never receive these witnesses as incumbents. Fixed-pose model tests establish expressiveness only, not search success.", "",
         "## Completed search diagnostics", "",
         pd.DataFrame(runs).to_markdown(index=False, floatfmt=".6f") if runs else "No completed search diagnostic yet.", "",
+        "Cross-run best independently validated scores (lower bounds, not one timed algorithm arm):", "",
+        best_known.to_markdown(index=False, floatfmt=".6f") if len(best_known) else "Pending.", "",
+        "Do not infer physical S2 benefit from a weaker S1 search in one arm. Earlier valid S1 results remain evidence even when a later short search scores lower. In particular, the 13 m² fixture already has a stronger constant-state layout in an earlier arm. Mechanism success establishes representability and the ability to find sharing; it does not establish population-wide gains or optimality of every timed output.", "",
         "## Remaining acceptance checks", "",
-        "- All six S2 diagnostic searches must reach their hand-written lower bounds; at least one diagnostic shell must have S2>S1.",
+        ("- [x] All six S2 diagnostic searches reach their hand-written lower bounds; at least one shell has a demonstrated time-sharing improvement. Within-arm and cross-run comparisons are both retained above."
+         if mechanism_pass else "- [ ] All six S2 diagnostic searches must reach their hand-written lower bounds; at least one diagnostic shell must have S2>S1."),
         "- Freeze and solve every pilot NIA<=22 plus 12 seed-selected D3 shells of 9–15 m²; use full anchors / 8 workers / 300 s for S1/S2 and all four households.",
         "- Select the size-dependent setting by the predeclared mean criteria; rerun any benchmarks affected by a search correction.",
         "- Reproject A and K; do not start formal A based on the superseded median rule.", "",

@@ -1,0 +1,396 @@
+{
+  "unit_key": "mechanism:9",
+  "source": "diagnostic",
+  "nia_m2": 8.999999999999998,
+  "furnishable_area_m2": 8.12,
+  "household": "H3_couple_one_remote",
+  "strategy": "S2",
+  "algorithm": "cp_sat",
+  "resolution_m": 0.1,
+  "items": [
+    {
+      "instance_id": "sofa_bed#1",
+      "type": "sofa_bed",
+      "x": 0.0,
+      "y": 2.0,
+      "orientation_deg": 270,
+      "states": {
+        "normal": {
+          "night": "deployed",
+          "morning": "stowed",
+          "day": "stowed",
+          "evening": "stowed",
+          "dinner": "stowed",
+          "leisure": "stowed"
+        },
+        "guests": {
+          "night": "deployed",
+          "morning": "stowed",
+          "day": "stowed",
+          "evening": "stowed",
+          "dinner": "stowed",
+          "leisure": "stowed"
+        }
+      }
+    },
+    {
+      "instance_id": "drop_leaf_table#1",
+      "type": "drop_leaf_table",
+      "x": 2.7,
+      "y": 2.5,
+      "orientation_deg": 180,
+      "states": {
+        "normal": {
+          "night": "stowed",
+          "morning": "deployed",
+          "day": "deployed",
+          "evening": "deployed",
+          "dinner": "deployed",
+          "leisure": "deployed"
+        },
+        "guests": {
+          "night": "stowed",
+          "morning": "deployed",
+          "day": "deployed",
+          "evening": "deployed",
+          "dinner": "stowed",
+          "leisure": "stowed"
+        }
+      }
+    }
+  ],
+  "service": {
+    "normal": {
+      "night": [
+        {
+          "demand_id": "normal:night:0",
+          "need": "sleep_2",
+          "by": [
+            "sofa_bed#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "morning": [
+        {
+          "demand_id": "normal:morning:0",
+          "need": "storage",
+          "by": [],
+          "model_credit": 0.0
+        },
+        {
+          "demand_id": "normal:morning:1",
+          "need": "dine_2",
+          "by": [
+            "drop_leaf_table#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "day": [
+        {
+          "demand_id": "normal:day:0",
+          "need": "work_1",
+          "by": [
+            "drop_leaf_table#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "evening": [
+        {
+          "demand_id": "normal:evening:0",
+          "need": "lounge_2",
+          "by": [
+            "sofa_bed#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "dinner": [
+        {
+          "demand_id": "normal:dinner:0",
+          "need": "dine_2",
+          "by": [
+            "drop_leaf_table#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "leisure": [
+        {
+          "demand_id": "normal:leisure:0",
+          "need": "lounge_2",
+          "by": [
+            "sofa_bed#1"
+          ],
+          "model_credit": 1.0
+        }
+      ]
+    },
+    "guests": {
+      "night": [
+        {
+          "demand_id": "guests:night:0",
+          "need": "sleep_2",
+          "by": [
+            "sofa_bed#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "morning": [
+        {
+          "demand_id": "guests:morning:0",
+          "need": "storage",
+          "by": [],
+          "model_credit": 0.0
+        },
+        {
+          "demand_id": "guests:morning:1",
+          "need": "dine_2",
+          "by": [
+            "drop_leaf_table#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "day": [
+        {
+          "demand_id": "guests:day:0",
+          "need": "work_1",
+          "by": [
+            "drop_leaf_table#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "evening": [
+        {
+          "demand_id": "guests:evening:0",
+          "need": "lounge_2",
+          "by": [
+            "sofa_bed#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "dinner": [
+        {
+          "demand_id": "guests:dinner:0",
+          "need": "dine_4",
+          "by": [],
+          "model_credit": 0.0
+        }
+      ],
+      "leisure": [
+        {
+          "demand_id": "guests:leisure:0",
+          "need": "lounge_2",
+          "by": [
+            "sofa_bed#1"
+          ],
+          "model_credit": 1.0
+        }
+      ]
+    }
+  },
+  "config_hash": "bb248d73b0ab2deb5b6bdf165ffecc0779bacfd811478e39fcbb0402f316b24d",
+  "fci": 0.9175769230769231,
+  "fci_by_variant": {
+    "normal": 0.9230769230769231,
+    "guests": 0.8846153846153846
+  },
+  "tb": 3.3999999999999995,
+  "served_hours": 23.857,
+  "demanded_hours": 26.0,
+  "validator": {
+    "fci": 0.9175769230769231,
+    "fci_by_variant": {
+      "normal": 0.9230769230769231,
+      "guests": 0.8846153846153846
+    },
+    "served_hours_by_variant": {
+      "normal": 24.0,
+      "guests": 23.0
+    },
+    "served_hours": 23.857,
+    "demanded_hours": 26.0,
+    "tb": 3.3999999999999995,
+    "pass": true,
+    "violations": [],
+    "credits": {
+      "normal:night:0": 1.0,
+      "normal:morning:0": 0.0,
+      "normal:morning:1": 1.0,
+      "normal:day:0": 1.0,
+      "normal:evening:0": 1.0,
+      "normal:dinner:0": 1.0,
+      "normal:leisure:0": 1.0,
+      "guests:night:0": 1.0,
+      "guests:morning:0": 0.0,
+      "guests:morning:1": 1.0,
+      "guests:day:0": 1.0,
+      "guests:evening:0": 1.0,
+      "guests:dinner:0": 0.0,
+      "guests:leisure:0": 1.0
+    },
+    "unreachable_items": [
+      "normal:night:drop_leaf_table#1",
+      "guests:night:drop_leaf_table#1",
+      "guests:dinner:drop_leaf_table#1",
+      "guests:leisure:drop_leaf_table#1"
+    ]
+  },
+  "solver": {
+    "status": "FEASIBLE",
+    "last_search_status": "UNKNOWN",
+    "time_s": 300.0290688034147,
+    "build_time_s": 0.4290111716836691,
+    "objective": 78916893570.0,
+    "bound": 80768589285.0,
+    "first_valid_time_s": 0.00927000679075718,
+    "greedy_time_s": 0.36112937703728676,
+    "greedy_fci": 0.6291153846153845,
+    "geometric_cuts": 8,
+    "reach_iterations": 20,
+    "fci_solver": 0.9175769230769231,
+    "raw_last_model_fci": 0.9368076923076923,
+    "objective_bound_scope": "last solution-bearing raw CP-SAT search; may differ from retained validated layout",
+    "retained_previous_incumbent": false,
+    "trace": [
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 5.465873388573527,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 10.0,
+        "elapsed_s": 12.128290247172117,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 20.0,
+        "elapsed_s": 26.42685546912253,
+        "reachability_failures": null
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.9368076923076923,
+        "validator_fci": 0.6291153846153845,
+        "reachability_failures": 2,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 71.8466066122055,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 10.0,
+        "elapsed_s": 79.0778897125274,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 20.0,
+        "elapsed_s": 94.1175921075046,
+        "reachability_failures": null
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.9175769230769231,
+        "validator_fci": 0.9175769230769231,
+        "reachability_failures": 0,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 139.56474748440087,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 10.0,
+        "elapsed_s": 146.79150332137942,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 20.0,
+        "elapsed_s": 162.0187659803778,
+        "reachability_failures": null
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.9368076923076923,
+        "validator_fci": 0.6153653846153846,
+        "reachability_failures": 4,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 207.36623156256974,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 10.0,
+        "elapsed_s": 214.92917980626225,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 20.0,
+        "elapsed_s": 230.9369781371206,
+        "reachability_failures": null
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.9368076923076923,
+        "validator_fci": 0.6291153846153845,
+        "reachability_failures": 2,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 276.31128198094666,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 10.0,
+        "elapsed_s": 283.1818137858063,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 16.81818125769496,
+        "elapsed_s": 298.18724971450865,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 1.8127453997731209,
+        "elapsed_s": 300.0290619600564,
+        "reachability_failures": null
+      }
+    ],
+    "primary_upper_bound": 1.0,
+    "window_tiebreak_optimized": false,
+    "encoding": "configured anchor tables + optional rectangle intervals + guarded geometric frontier cuts"
+  },
+  "code_hash": "7bd5d70bf151b60826f0f3c5cf5de1d9d3d5ec6aade09d8833ace0b166b59676"
+}

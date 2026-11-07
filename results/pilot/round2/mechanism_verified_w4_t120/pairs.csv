@@ -1,0 +1,7 @@
+unit_key,household,S1,S2,gain_S2_minus_S1
+mechanism:11,H1_single_commuter,1.0,1.0,0.0
+mechanism:11,H3_couple_one_remote,0.6923076923076923,0.9560384615384615,0.2637307692307692
+mechanism:13,H1_single_commuter,1.0,1.0,0.0
+mechanism:13,H3_couple_one_remote,0.6923076923076923,0.9615384615384615,0.26923076923076916
+mechanism:9,H1_single_commuter,1.0,1.0,0.0
+mechanism:9,H3_couple_one_remote,0.6483461538461538,0.9175769230769231,0.2692307692307693

@@ -36,13 +36,30 @@ Unconstrained searches never receive these witnesses as incumbents. Fixed-pose m
 
 ## Completed search diagnostics
 
-| arm                     | mode      |   completed_cases |   mean_s1 |   mean_s2 |   s2_improved_pairs |   s2_below_witness |   wall_time_s |
-|:------------------------|:----------|------------------:|----------:|----------:|--------------------:|-------------------:|--------------:|
-| mechanism_probe_w4_t120 | mechanism |                 2 |  0.725269 |  0.725269 |                   0 |                  1 |    226.225759 |
+| arm                           | mode      |   completed_cases |   mean_s1 |   mean_s2 |   s2_improved_pairs |   s2_below_witness |   wall_time_s |
+|:------------------------------|:----------|------------------:|----------:|----------:|--------------------:|-------------------:|--------------:|
+| mechanism_final_w4_t120       | mechanism |                12 |  0.851647 |  0.941388 |                   3 |                  1 |    479.032614 |
+| mechanism_original_w8_t300    | mechanism |                 2 |  0.725269 |  0.917577 |                   1 |                  0 |    409.723669 |
+| mechanism_portfolio13_w4_t120 | mechanism |                 2 |  0.975269 |  0.975269 |                   0 |                  0 |    240.358316 |
+| mechanism_probe_w4_t120       | mechanism |                 2 |  0.725269 |  0.725269 |                   0 |                  1 |    226.225759 |
+| mechanism_verified_w4_t120    | mechanism |                12 |  0.838827 |  0.972526 |                   3 |                  0 |    268.341014 |
+
+Cross-run best independently validated scores (lower bounds, not one timed algorithm arm):
+
+| unit_key     | household            |       S1 |       S2 |   best_observed_S2_minus_S1 |
+|:-------------|:---------------------|---------:|---------:|----------------------------:|
+| mechanism:11 | H1_single_commuter   | 1.000000 | 1.000000 |                    0.000000 |
+| mechanism:11 | H3_couple_one_remote | 0.692308 | 0.994500 |                    0.302192 |
+| mechanism:13 | H1_single_commuter   | 1.000000 | 1.000000 |                    0.000000 |
+| mechanism:13 | H3_couple_one_remote | 0.975269 | 0.975269 |                    0.000000 |
+| mechanism:9  | H1_single_commuter   | 1.000000 | 1.000000 |                    0.000000 |
+| mechanism:9  | H3_couple_one_remote | 0.725269 | 0.917577 |                    0.192308 |
+
+Do not infer physical S2 benefit from a weaker S1 search in one arm. Earlier valid S1 results remain evidence even when a later short search scores lower. In particular, the 13 m² fixture already has a stronger constant-state layout in an earlier arm. Mechanism success establishes representability and the ability to find sharing; it does not establish population-wide gains or optimality of every timed output.
 
 ## Remaining acceptance checks
 
-- All six S2 diagnostic searches must reach their hand-written lower bounds; at least one diagnostic shell must have S2>S1.
+- [x] All six S2 diagnostic searches reach their hand-written lower bounds; at least one shell has a demonstrated time-sharing improvement. Within-arm and cross-run comparisons are both retained above.
 - Freeze and solve every pilot NIA<=22 plus 12 seed-selected D3 shells of 9–15 m²; use full anchors / 8 workers / 300 s for S1/S2 and all four households.
 - Select the size-dependent setting by the predeclared mean criteria; rerun any benchmarks affected by a search correction.
 - Reproject A and K; do not start formal A based on the superseded median rule.

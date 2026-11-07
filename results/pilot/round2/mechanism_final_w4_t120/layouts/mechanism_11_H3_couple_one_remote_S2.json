@@ -1,0 +1,384 @@
+{
+  "unit_key": "mechanism:11",
+  "source": "diagnostic",
+  "nia_m2": 11.0,
+  "furnishable_area_m2": 10.12,
+  "household": "H3_couple_one_remote",
+  "strategy": "S2",
+  "algorithm": "cp_sat",
+  "resolution_m": 0.1,
+  "items": [
+    {
+      "instance_id": "wardrobe#1",
+      "type": "wardrobe",
+      "x": 0.0,
+      "y": 1.0,
+      "orientation_deg": 270,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        },
+        "guests": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "wardrobe#2",
+      "type": "wardrobe",
+      "x": 0.0,
+      "y": 2.1,
+      "orientation_deg": 270,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        },
+        "guests": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "wall_bed_over_sofa#1",
+      "type": "wall_bed_over_sofa",
+      "x": 2.9,
+      "y": 2.5,
+      "orientation_deg": 180,
+      "states": {
+        "normal": {
+          "night": "deployed",
+          "morning": "stowed",
+          "day": "stowed",
+          "evening": "stowed",
+          "dinner": "stowed",
+          "leisure": "stowed"
+        },
+        "guests": {
+          "night": "deployed",
+          "morning": "stowed",
+          "day": "stowed",
+          "evening": "stowed",
+          "dinner": "stowed",
+          "leisure": "stowed"
+        }
+      }
+    },
+    {
+      "instance_id": "drop_leaf_table#1",
+      "type": "drop_leaf_table",
+      "x": 2.7,
+      "y": 0.0,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "stowed",
+          "morning": "deployed",
+          "day": "deployed",
+          "evening": "deployed",
+          "dinner": "deployed",
+          "leisure": "stowed"
+        },
+        "guests": {
+          "night": "stowed",
+          "morning": "deployed",
+          "day": "deployed",
+          "evening": "deployed",
+          "dinner": "deployed",
+          "leisure": "stowed"
+        }
+      }
+    }
+  ],
+  "service": {
+    "normal": {
+      "night": [
+        {
+          "demand_id": "normal:night:0",
+          "need": "sleep_2",
+          "by": [
+            "wall_bed_over_sofa#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "morning": [
+        {
+          "demand_id": "normal:morning:0",
+          "need": "storage",
+          "by": [
+            "wardrobe#1",
+            "wardrobe#2"
+          ],
+          "model_credit": 1.0
+        },
+        {
+          "demand_id": "normal:morning:1",
+          "need": "dine_2",
+          "by": [
+            "drop_leaf_table#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "day": [
+        {
+          "demand_id": "normal:day:0",
+          "need": "work_1",
+          "by": [
+            "drop_leaf_table#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "evening": [
+        {
+          "demand_id": "normal:evening:0",
+          "need": "lounge_2",
+          "by": [
+            "wall_bed_over_sofa#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "dinner": [
+        {
+          "demand_id": "normal:dinner:0",
+          "need": "dine_2",
+          "by": [
+            "drop_leaf_table#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "leisure": [
+        {
+          "demand_id": "normal:leisure:0",
+          "need": "lounge_2",
+          "by": [
+            "wall_bed_over_sofa#1"
+          ],
+          "model_credit": 1.0
+        }
+      ]
+    },
+    "guests": {
+      "night": [
+        {
+          "demand_id": "guests:night:0",
+          "need": "sleep_2",
+          "by": [
+            "wall_bed_over_sofa#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "morning": [
+        {
+          "demand_id": "guests:morning:0",
+          "need": "storage",
+          "by": [
+            "wardrobe#1",
+            "wardrobe#2"
+          ],
+          "model_credit": 1.0
+        },
+        {
+          "demand_id": "guests:morning:1",
+          "need": "dine_2",
+          "by": [
+            "drop_leaf_table#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "day": [
+        {
+          "demand_id": "guests:day:0",
+          "need": "work_1",
+          "by": [
+            "drop_leaf_table#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "evening": [
+        {
+          "demand_id": "guests:evening:0",
+          "need": "lounge_2",
+          "by": [
+            "wall_bed_over_sofa#1"
+          ],
+          "model_credit": 1.0
+        }
+      ],
+      "dinner": [
+        {
+          "demand_id": "guests:dinner:0",
+          "need": "dine_4",
+          "by": [],
+          "model_credit": 0.0
+        }
+      ],
+      "leisure": [
+        {
+          "demand_id": "guests:leisure:0",
+          "need": "lounge_2",
+          "by": [
+            "wall_bed_over_sofa#1"
+          ],
+          "model_credit": 1.0
+        }
+      ]
+    }
+  },
+  "config_hash": "75f9e041facd3cf0e1899d03aa6303a67590e3460d7db83e811f0d34d1d6ddda",
+  "fci": 0.9944999999999999,
+  "fci_by_variant": {
+    "normal": 1.0,
+    "guests": 0.9615384615384616
+  },
+  "tb": 2.8,
+  "served_hours": 25.857,
+  "demanded_hours": 26.0,
+  "validator": {
+    "fci": 0.9944999999999999,
+    "fci_by_variant": {
+      "normal": 1.0,
+      "guests": 0.9615384615384616
+    },
+    "served_hours_by_variant": {
+      "normal": 26.0,
+      "guests": 25.0
+    },
+    "served_hours": 25.857,
+    "demanded_hours": 26.0,
+    "tb": 2.8,
+    "pass": true,
+    "violations": [],
+    "credits": {
+      "normal:night:0": 1.0,
+      "normal:morning:0": 1.0,
+      "normal:morning:1": 1.0,
+      "normal:day:0": 1.0,
+      "normal:evening:0": 1.0,
+      "normal:dinner:0": 1.0,
+      "normal:leisure:0": 1.0,
+      "guests:night:0": 1.0,
+      "guests:morning:0": 1.0,
+      "guests:morning:1": 1.0,
+      "guests:day:0": 1.0,
+      "guests:evening:0": 1.0,
+      "guests:dinner:0": 0.0,
+      "guests:leisure:0": 1.0
+    },
+    "unreachable_items": [
+      "normal:night:wardrobe#1",
+      "normal:night:wardrobe#2",
+      "normal:night:drop_leaf_table#1",
+      "normal:leisure:drop_leaf_table#1",
+      "guests:night:wardrobe#1",
+      "guests:night:wardrobe#2",
+      "guests:night:drop_leaf_table#1",
+      "guests:leisure:drop_leaf_table#1"
+    ]
+  },
+  "solver": {
+    "status": "FEASIBLE",
+    "last_search_status": "UNKNOWN",
+    "time_s": 120.038933230564,
+    "build_time_s": 2.44331444054842,
+    "objective": 83776910570.0,
+    "bound": 84240260000.0,
+    "first_valid_time_s": 0.01339404471218586,
+    "greedy_time_s": 2.3510201666504145,
+    "greedy_fci": 0.9368076923076922,
+    "geometric_cuts": 0,
+    "reach_iterations": 9,
+    "fci_solver": 0.9944999999999999,
+    "raw_last_model_fci": 0.9945,
+    "objective_bound_scope": "last solution-bearing raw CP-SAT search; may differ from retained validated layout",
+    "retained_previous_incumbent": false,
+    "trace": [
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 7.5182976964861155,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 10.0,
+        "elapsed_s": 14.600820951163769,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 20.0,
+        "elapsed_s": 30.768342273309827,
+        "reachability_failures": null
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.9945,
+        "validator_fci": 0.9944999999999999,
+        "reachability_failures": 0,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 75.96033381484449,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 10.0,
+        "elapsed_s": 83.24688013643026,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 20.0,
+        "elapsed_s": 99.46912099979818,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 20.53087398968637,
+        "elapsed_s": 115.62928154878318,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 4.370712349191308,
+        "elapsed_s": 120.03892493061721,
+        "reachability_failures": null
+      }
+    ],
+    "primary_upper_bound": 1.0,
+    "window_tiebreak_optimized": false,
+    "encoding": "configured anchor tables + optional rectangle intervals + guarded geometric frontier cuts"
+  },
+  "code_hash": "ba741b6261115344447ca1fb5970019933912857c346fed2eb93696117df2c39"
+}

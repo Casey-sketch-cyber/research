@@ -1,0 +1,14 @@
+{
+  "mode": "mechanism",
+  "arm": "mechanism_portfolio13_w4_t120",
+  "code_hash": "a7db85c3e2dca3049de066272dd988798cefab261e7dc5a366795a5c9b3eeabb",
+  "config_hash": "75f9e041facd3cf0e1899d03aa6303a67590e3460d7db83e811f0d34d1d6ddda",
+  "num_workers": 4,
+  "concurrent_solves": 3,
+  "time_limit_s": 120,
+  "anchor_stride_m": 0.1,
+  "expected_cases": 2,
+  "inputs_hash": "6d6be43646bcd83de085ad975072089aff0e5824db233ae14ce5baa046b0ff60",
+  "cache": "data/interim/round2/mechanism_portfolio13_w4_t120",
+  "witness_provided_to_solver": false
+}
