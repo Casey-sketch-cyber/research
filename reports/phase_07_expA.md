@@ -5,8 +5,9 @@ authorizes starting Experiment A without another stop once the fresh hybrid
 quality comparison and <=36-hour projection pass. See `reviews/G2_review_round3.md`.
 No formal Experiment A result is available yet. Publication remains authorized.
 
-Execution-policy update D-37: the author permits K to exceed two days. Retain its
-planned full scope and solve budgets; calibrate K with a pilot. This does not
+Execution-policy update D-38 supersedes D-37: restore K's two-day limit and
+withdraw the full grid. Plan the reduced exploratory scope, freeze its candidate
+grid and calibrate K with a pilot; retain its per-solve budgets. This does not
 change A's quality checks or the currently applicable 36-hour A criterion.
 See [COMPUTE_BUDGET.md](COMPUTE_BUDGET.md) for the estimated subtotal and unknowns.
 

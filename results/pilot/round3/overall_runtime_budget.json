@@ -13,14 +13,17 @@
       "basis": "all selected small units, H3/H4, S0/S1/S2; full 120 s cap plus pilot overhead, not measured A2"
     },
     {
-      "experiment": "K_full",
-      "solves": 74049,
-      "hours": 1291.340258335112,
-      "basis": "planned full grid at 120 s cap plus pilot overhead, not measured K"
+      "experiment": "K_reduced_exploratory",
+      "solves": 2360,
+      "hours": 41.15603194737085,
+      "basis": "active planned scope at 120 s cap plus pilot overhead, not measured K"
     }
   ],
-  "quantified_subtotal_hours": 1354.8730955975718,
-  "quantified_subtotal_days_at_continuous_execution": 56.453045649898826,
+  "quantified_subtotal_hours": 104.68886920983066,
+  "K_scope": "exploratory_8_kits_30_train_15_holdout_15_real_H1_H2",
+  "full_K_grid_selected": false,
+  "execution_policy_decision": "D-38",
+  "quantified_subtotal_days_at_continuous_execution": 4.362036217076278,
   "margin_included": 0.15,
   "still_uncalibrated": [
     {

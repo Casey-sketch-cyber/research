@@ -1,6 +1,6 @@
 # G2 round-3 implementation and status
 
-Observed: 2026-11-07T08:24:03+00:00
+Observed: 2026-11-07T08:32:07+00:00
 
 The reviewer conditionally approves Phase 7. The author requests implementing this review. Main runs keep the two-side double-bed clearances; the approved one-side variant is A2 only. Review files are unchanged.
 
@@ -10,7 +10,7 @@ The reviewer conditionally approves Phase 7. The author requests implementing th
 |:-----------------------------|-----------------:|--------------------:|----------------------------:|:------------------|
 | refresh_large_w1_s20_t30     |              240 |                 240 |                         240 | complete          |
 | refresh_small_w4_s10_t120    |               36 |                  36 |                          36 | complete          |
-| refresh_reference_w8_s10_t60 |              240 |                 165 |                           0 | running_or_queued |
+| refresh_reference_w8_s10_t60 |              240 |                 199 |                           0 | running_or_queued |
 
 Execution stage: `waiting_for_reference`. Formal A has not started at this snapshot. Checkpoints are not completed-arm acceptance. No partial score means are reported.
 
@@ -22,14 +22,14 @@ A under the measured candidate setting: 26.073873 projected hours including 15% 
 
 K uses the approved 120 s small-home budget, including full S0/S1/S2 evaluations for the time effect. The table is a conservative workload projection, not observed K runtime:
 
-| scope                                                |   total_solves |   projected_hours_with_margin | within_48h   |
-|:-----------------------------------------------------|---------------:|------------------------------:|:-------------|
-| also_drop_H3                                         |          22606 |                       394.226 | False        |
-| drop_wardrobe_frontage                               |          33909 |                       591.339 | False        |
-| exploratory_8_kits_30_train_15_holdout_15_real_H1_H2 |           2360 |                        41.156 | True         |
-| full_grid                                            |          74049 |                      1291.340 | False        |
+| scope                                                |   total_solves |   projected_hours_with_margin | within_48h   | selected_for_planning   |
+|:-----------------------------------------------------|---------------:|------------------------------:|:-------------|:------------------------|
+| also_drop_H3                                         |          22606 |                       394.226 | False        | False                   |
+| drop_wardrobe_frontage                               |          33909 |                       591.339 | False        | False                   |
+| exploratory_8_kits_30_train_15_holdout_15_real_H1_H2 |           2360 |                        41.156 | True         | True                    |
+| full_grid                                            |          74049 |                      1291.340 | False        | False                   |
 
-K has not started. D-37 waives the two-day limit; the planned full grid and per-solve budgets are retained. A K pilot must calibrate actual costs. The smaller-scope rows are historical alternatives, not selected changes.
+K has not started. D-38 restores the two-day limit and withdraws the full grid. Plan the previously reported eight-kit exploratory scope: H1/H2, 30 training shells, 15 held-out shells and 15 real plans. Freeze the candidate grid and confirm cost in a K pilot. Per-solve budgets remain unchanged; the full-grid row is a rejected historical alternative.
 
 ## Implementation and remaining work
 

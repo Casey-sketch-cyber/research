@@ -57,7 +57,9 @@ def main():
         f"A under the measured candidate setting: {projection['retained_hours']:.6f} projected hours including 15% margin; caps: {json.dumps(projection['caps'])}. This remains conditional on the hybrid quality comparison. Source/size cost calibration is in `expA_cost_calibration.csv`; absent small-source pilot cells use the full solve cap plus observed overrun.", "",
         "K uses the approved 120 s small-home budget, including full S0/S1/S2 evaluations for the time effect. The table is a conservative workload projection, not observed K runtime:", "",
         pd.DataFrame(kp["options"]).to_markdown(index=False, floatfmt=".3f"), "",
-        ("K has not started. D-37 waives the two-day limit; the planned full grid and per-solve budgets are retained. A K pilot must calibrate actual costs. The smaller-scope rows are historical alternatives, not selected changes."
+        ("K has not started. D-38 restores the two-day limit and withdraws the full grid. Plan the previously reported eight-kit exploratory scope: H1/H2, 30 training shells, 15 held-out shells and 15 real plans. Freeze the candidate grid and confirm cost in a K pilot. Per-solve budgets remain unchanged; the full-grid row is a rejected historical alternative."
+         if policy.get("full_grid_enabled") is False else
+         "K has not started. D-37 waives the two-day limit; the planned full grid and per-solve budgets are retained. A K pilot must calibrate actual costs. The smaller-scope rows are historical alternatives, not selected changes."
          if not policy.get("two_day_limit_enforced", True) else
          "K has not started. The full grid and the first two prescribed reductions still exceed 48 h. The reduced exploratory option is a proposal requiring a frozen candidate grid and a confirming K pilot; it is not a selected scope. Per-solve budgets are not shortened."), "",
         "## Implementation and remaining work", "",

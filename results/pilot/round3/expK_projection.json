@@ -1,41 +1,61 @@
 {
   "full_scope_hours": 1291.340258335112,
   "full_scope_within_48h": false,
-  "two_day_limit_enforced": false,
-  "planned_full_scope_retained": true,
+  "planned_scope": "exploratory_8_kits_30_train_15_holdout_15_real_H1_H2",
+  "planned_scope_hours": 41.15603194737085,
+  "planned_scope_within_48h": true,
+  "two_day_limit_enforced": true,
+  "planned_full_scope_retained": false,
   "runtime_pilot_pending": true,
   "execution_policy": {
-    "two_day_limit_enforced": false,
-    "replacement_deadline_days": null,
-    "preserve_planned_full_scope": true,
+    "two_day_limit_enforced": true,
+    "replacement_deadline_days": 2,
+    "preserve_planned_full_scope": false,
+    "full_grid_enabled": false,
+    "planned_scope": "exploratory_8_kits_30_train_15_holdout_15_real_H1_H2",
+    "scope_status": "pending_candidate_grid_freeze_and_runtime_pilot",
+    "reduced_scope": {
+      "households": [
+        "H1_single_commuter",
+        "H2_single_remote_worker"
+      ],
+      "candidate_kits": 8,
+      "training_shells": 30,
+      "heldout_shells": 15,
+      "real_plans": 15
+    },
     "require_runtime_pilot": true,
-    "decision": "D-37",
-    "note": "Author permits K to exceed two days. No replacement deadline was specified. Retain the planned scope and calibrate the full workload with a K pilot before the large run."
+    "decision": "D-38",
+    "note": "Author withdraws the full K scope and restores the prior two-day budget. Plan the previously reported reduced exploratory scope; freeze its candidate grid and confirm runtime before running. Keep per-solve budgets and all non-K experiments unchanged. Supersedes D-37."
   },
   "options": [
     {
       "scope": "also_drop_H3",
       "total_solves": 22606,
       "projected_hours_with_margin": 394.22595686536675,
-      "within_48h": false
+      "within_48h": false,
+      "selected_for_planning": false
     },
     {
       "scope": "drop_wardrobe_frontage",
       "total_solves": 33909,
       "projected_hours_with_margin": 591.3389352980502,
-      "within_48h": false
+      "within_48h": false,
+      "selected_for_planning": false
     },
     {
       "scope": "exploratory_8_kits_30_train_15_holdout_15_real_H1_H2",
       "total_solves": 2360,
       "projected_hours_with_margin": 41.15603194737085,
-      "within_48h": true
+      "within_48h": true,
+      "selected_for_planning": true
     },
     {
       "scope": "full_grid",
       "total_solves": 74049,
       "projected_hours_with_margin": 1291.340258335112,
-      "within_48h": false
+      "within_48h": false,
+      "selected_for_planning": false
     }
   ],
   "K_started": false,

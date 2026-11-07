@@ -176,6 +176,9 @@ def k_projection(config: dict, small_frame: pd.DataFrame, ss: dict) -> dict:
     """Project full and reduced K scopes at the approved small-home budget."""
     old = pd.read_csv("results/pilot/expK_projection.csv")
     settings = config["experiments"]["K_kit_design"]
+    policy_path = Path("config/execution_policy.yaml")
+    policy = yaml.safe_load(policy_path.read_text())["K_kit_design"] if policy_path.exists() else {}
+    planned_scope = policy.get("planned_scope", "full_grid")
     factor = max(1., ss["wall_time_s"]*ss["concurrent_solves"]/small_frame.solve_time_s.sum())
     per_solve = (ss["time_limit_s"]+max(0., small_frame.solve_time_s.max()-ss["time_limit_s"]))
     hours = per_solve*factor/ss["concurrent_solves"]/3600*1.15
@@ -202,16 +205,21 @@ def k_projection(config: dict, small_frame: pd.DataFrame, ss: dict) -> dict:
                 flat_quality_search_solves=search, bespoke_solves=bespoke, evaluation_solves=evaluations,
                 total_solves=total, projected_hours_with_margin=total*hours,
                 time_limit_s=ss["time_limit_s"], num_workers=ss["num_workers"],
-                scope_change_requires_review=scope != "full_grid"))
+                selected_for_planning=scope == planned_scope,
+                scope_change_requires_review=scope != planned_scope))
     table = pd.DataFrame(rows)
     table.to_csv(ROOT/"expK_workload_options.csv", index=False)
     totals = table.groupby("scope")[["total_solves", "projected_hours_with_margin"]].sum()
     totals["within_48h"] = totals.projected_hours_with_margin <= 48
+    totals["selected_for_planning"] = totals.index == planned_scope
     totals.to_csv(ROOT/"expK_projection.csv")
-    policy_path = Path("config/execution_policy.yaml")
-    policy = yaml.safe_load(policy_path.read_text())["K_kit_design"] if policy_path.exists() else {}
+    if planned_scope not in totals.index:
+        raise ValueError("K policy names an unprojected scope")
     return dict(full_scope_hours=float(totals.loc["full_grid", "projected_hours_with_margin"]),
         full_scope_within_48h=bool(totals.loc["full_grid", "within_48h"]),
+        planned_scope=planned_scope,
+        planned_scope_hours=float(totals.loc[planned_scope, "projected_hours_with_margin"]),
+        planned_scope_within_48h=bool(totals.loc[planned_scope, "within_48h"]),
         two_day_limit_enforced=policy.get("two_day_limit_enforced", True),
         planned_full_scope_retained=policy.get("preserve_planned_full_scope", False),
         runtime_pilot_pending=True, execution_policy=policy,
@@ -275,7 +283,8 @@ def main():
         sample_path=selected_path.as_posix(), sample_sha256=sha256_file(selected_path),
         reviewer_record="reviews/G2_review_round3.md", main_double_bed_access="two_sides",
         audit_cases=len(audit), all_pilot_layouts_valid=True,
-        K_requires_scope_decision=bool(kp["two_day_limit_enforced"] and not kp["full_scope_within_48h"]),
+        K_requires_scope_decision=bool(kp["two_day_limit_enforced"] and not kp["planned_scope_within_48h"]),
+        K_planned_scope=kp["planned_scope"], K_planned_scope_hours=kp["planned_scope_hours"],
         K_two_day_limit_waived=not kp["two_day_limit_enforced"], K_runtime_pilot_pending=True)
     write_json("results/pilot/round2/production_selection.json", result)
     write_json(ROOT/"acceptance.json", result)
@@ -287,7 +296,9 @@ def main():
         f"Exp. A: {len(retained)} units, {len(retained)*12} solves, {projection['retained_hours']:.6f} projected hours including a 15% margin. Caps: {json.dumps(actions)}. Small sources absent from the pilot use the full 120 s cap plus observed overrun, rather than borrowing an easier source's mean. This is a measured-pilot projection, not a runtime guarantee.", "",
         "Separate K workload projections (not observed K runtimes):", "",
         pd.DataFrame(kp["options"]).to_markdown(index=False, floatfmt=".3f"), "",
-        ("The author waived the two-day K limit in D-37. Retain the planned full scope and per-solve budgets; K has not started. A K pilot must calibrate actual design-domain/FCIq costs before the full run. Reduced scopes below are historical alternatives, not selected changes."
+        (f"D-38 restores the two-day K limit and withdraws the full grid. Planned scope: `{kp['planned_scope']}`, projected at {kp['planned_scope_hours']:.3f} hours including margin. It is exploratory, with H1/H2 only, eight candidate kits, 30 training shells, 15 held-out shells and 15 real plans. The candidate grid must be frozen and a K pilot must confirm runtime before execution. Per-solve budgets are unchanged; K has not started."
+         if kp["planned_scope"] != "full_grid" else
+         "The author waived the two-day K limit in D-37. Retain the planned full scope and per-solve budgets; K has not started. A K pilot must calibrate actual design-domain/FCIq costs before the full run. Reduced scopes below are historical alternatives, not selected changes."
          if not kp["two_day_limit_enforced"] else
          "The full K grid exceeds 48 hours. Keep per-solve budgets unchanged. The reduced scopes are proposals; K has not started. The exploratory option uses eight prespecified kits, 30 training shells, 15 held-out shells, 15 real plans, and H1/H2; a K pilot must confirm cost before any scope is selected. Grid reduction would limit claims and must remain visible.")+
         " Evaluation counts include S0/S1/S2 for the separate time effect.", "",

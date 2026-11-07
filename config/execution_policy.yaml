@@ -1,8 +1,17 @@
 # Execution-only author decisions. This file does not alter solver inputs.
 K_kit_design:
-  two_day_limit_enforced: false
-  replacement_deadline_days: null
-  preserve_planned_full_scope: true
+  two_day_limit_enforced: true
+  replacement_deadline_days: 2
+  preserve_planned_full_scope: false
+  full_grid_enabled: false
+  planned_scope: exploratory_8_kits_30_train_15_holdout_15_real_H1_H2
+  scope_status: pending_candidate_grid_freeze_and_runtime_pilot
+  reduced_scope:
+    households: [H1_single_commuter, H2_single_remote_worker]
+    candidate_kits: 8
+    training_shells: 30
+    heldout_shells: 15
+    real_plans: 15
   require_runtime_pilot: true
-  decision: D-37
-  note: "Author permits K to exceed two days. No replacement deadline was specified. Retain the planned scope and calibrate the full workload with a K pilot before the large run."
+  decision: D-38
+  note: "Author withdraws the full K scope and restores the prior two-day budget. Plan the previously reported reduced exploratory scope; freeze its candidate grid and confirm runtime before running. Keep per-solve budgets and all non-K experiments unchanged. Supersedes D-37."
