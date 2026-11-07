@@ -38,3 +38,5 @@ Append one line per decision: `D-NN | date | phase | decision | reason | approve
 | D-28 | 2026-11-06 | G2 revision | Include raster and independent validator dependencies in the corpus conversion cache key | D3 generation calls empty-access validation; migration reuses byte-identical caches only when the original conversion inputs and code match | provenance correction |
 
 | D-29 | 2026-11-06 | G2 revision | Select 1 worker / 14 concurrent solves / 30 s / 0.20 m anchors using the predeclared median-FCI and throughput rule | All six 240-case arms are complete and valid; selected wall time is 209.889 s and median FCI is 1.0, while mean FCI falls from 0.909685 in the corrected full-anchor reference to 0.862174; disclose source/case differences and stop for review | measured selection under reviewer M4/M5; quality tradeoff pending review |
+
+| D-30 | 2026-11-06 | continuation | Continue under author-delegated self-review; do not upload or push until instructed again | Author supersedes the Claude-wait and publication steps; retain all methodological checks, report null findings, and leave reviews/ unchanged | author |

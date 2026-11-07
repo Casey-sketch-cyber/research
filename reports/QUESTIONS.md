@@ -26,3 +26,9 @@ Codex adds questions here between gates, each with the default assumption it is 
 | Q-14 | 5 frozen units fail empty fixed-service access; source-space disconnection and conservative raster losses are diagnosed separately. Should any source conversion, approach rule or resolution be revised before Exp. A? | Keep the frozen sample and original dimensions; do not fill gaps or reinterpret source spaces to obtain a preferred result. See GATE_G2.md and the connectivity CSVs. |
 | Q-15 | 16 apparent adjacent-strategy improvements have a same-score witness feasible under the lower strategy; 17 valid empty fallbacks remain. Which search-quality improvements are required before capacity/area inference? | Preserve the timed protocol and raw traces; interpret no pilot gain as causal furniture savings. Review stronger feasible initialization or bidirectional incumbent reuse under an explicitly measured budget. |
 | Q-16 | Exp. A projects to 264.08 h against 36 h. Which measured scope response is approved? | Evaluate the review-prioritized D1 cap first. Concrete alternative caps and their assumptions are in GATE_G2.md; no sample or time-limit adjustment has been applied. |
+
+## Round-2 self-review notes
+
+- Q-17 (2026-11-06): The requested wall_bed_over_sofa witness serves sleep_2; the unchanged H1 sleep_1 rule does not accept it. Preserve the rule and report H1's unserved sleep explicitly. H3 supplies the actual sleep/lounge mechanism test.
+- Q-18 (2026-11-06): Hand-built diagnostic service obstacles are intentionally smaller than the D3 pod/kitchen defaults. They test search and geometry only; exclude them from all study-population statistics. D3 defaults remain unchanged.
+- Q-19 (2026-11-06): The author delegates self-review and continuation and pauses uploads. Follow round-2 methodological checks without waiting for Claude; no changes to reviews/.

@@ -1,0 +1,22 @@
+{
+  "mode": "mechanism",
+  "arm": "mechanism_probe_w4_t120",
+  "code_hash": "7bd5d70bf151b60826f0f3c5cf5de1d9d3d5ec6aade09d8833ace0b166b59676",
+  "config_hash": "75f9e041facd3cf0e1899d03aa6303a67590e3460d7db83e811f0d34d1d6ddda",
+  "num_workers": 4,
+  "concurrent_solves": 3,
+  "time_limit_s": 120,
+  "anchor_stride_m": 0.1,
+  "expected_cases": 2,
+  "inputs_hash": "38c06d61ab76490d92ce8515df1ad745fbd7af6590ab8d8e797476632e53dc4c",
+  "cache": "data/interim/round2/mechanism_probe_w4_t120",
+  "witness_provided_to_solver": false,
+  "completed_cases": 2,
+  "wall_time_s": 226.225759441033,
+  "resumed_checkpoints": 0,
+  "fresh_throughput_measurement": true,
+  "s2_improved_pairs": 0,
+  "mean_s1": 0.7252692307692307,
+  "mean_s2": 0.7252692307692307,
+  "s2_below_witness": 1
+}

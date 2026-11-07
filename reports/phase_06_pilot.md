@@ -90,3 +90,15 @@ After installing dependencies and supplying the pinned raw releases:
 7. python scripts/06_revision_report.py --write-report
 
 The optional prepare-pilot mode can overlap completed D1 / selected D2 conversion with later nonpilot conversion. Publication requires exact equality with the subsequent full-corpus pilot serialization. Cached benchmark cases may be resumed for results, but resumed throughput is explicitly ineligible for selection. Parallel CP-SAT incumbents may vary with scheduling despite a fixed seed. No FEA, minimum-area estimate or hypothesis verdict is inferred from this methods pilot.
+
+## Round 2 execution checklist (2026-11-06)
+
+Author delegates self-review and continuation; no uploads. Earlier production selection is provisional and superseded by round-2 mean-quality criteria.
+
+- [ ] R2: preserve perpendicular wall-flush coordinates; test translated walls and free-standing items.
+- [ ] R2: repeat frozen pilot; require source means within 0.02 and small-unit mean within 0.01 of full-anchor reference.
+- [ ] R1: validate hand-written time-sharing witnesses on three diagnostic shells; compare unseeded S1/S2 for H1 and H3.
+- [ ] R1: freeze 12 additional small shells and rerun every pilot NIA <=22 plus these shells with full anchors / 8 workers / 300 seconds.
+- [ ] R1: measure and select a size-dependent budget if required; document unsupported hypotheses without changing household/furniture defaults.
+- [ ] Reproject A <=36 hours and K <=48 hours, applying the stated scope reductions if needed.
+- [ ] Write an evidence-backed self-review before Phase 7; do not change reviewer records.

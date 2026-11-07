@@ -1,0 +1,7 @@
+unit_key,nia_m2,household,lower_bound,tb,validator_pass,h1_sleep2_does_not_satisfy_sleep1,population_eligible
+mechanism:9,9,H1_single_commuter,0.47089947089947093,2.8,True,True,False
+mechanism:9,9,H3_couple_one_remote,0.9175769230769231,2.8,True,False,False
+mechanism:11,11,H1_single_commuter,0.5238095238095238,2.8,True,True,False
+mechanism:11,11,H3_couple_one_remote,0.9368076923076922,2.8,True,False,False
+mechanism:13,13,H1_single_commuter,0.5767195767195767,2.8,True,True,False
+mechanism:13,13,H3_couple_one_remote,0.9560384615384615,2.8,True,False,False

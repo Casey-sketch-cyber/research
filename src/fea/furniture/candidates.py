@@ -42,7 +42,15 @@ def generate_candidates(raster: Raster, items: dict[str, Item], orientations=(0,
                 if item.wall_backed:
                     valid &= rectangle_fits(raster.wall & (~raster.window if item.tall else True), back)
             yy, xx = np.indices(valid.shape)
-            valid &= ((xx+round(raster.origin[0]/raster.resolution)) % stride == 0) & ((yy+round(raster.origin[1]/raster.resolution)) % stride == 0)
+            along_x = (xx+round(raster.origin[0]/raster.resolution)) % stride == 0
+            along_y = (yy+round(raster.origin[1]/raster.resolution)) % stride == 0
+            # A wall fixes the perpendicular coordinate, which need not lie on
+            # the coarse lattice. Only thin anchors along that wall; retaining
+            # every flush coordinate also handles offset interior partitions.
+            if item.wall_backed:
+                valid &= along_x if orientation in (0, 180) else along_y
+            else:
+                valid &= along_x & along_y
             rows, columns = np.nonzero(valid)
             poses.extend(np.column_stack((columns, rows, np.full(len(rows), orientation))))
         result[name] = np.asarray(poses, dtype=np.int32).reshape(-1, 3)

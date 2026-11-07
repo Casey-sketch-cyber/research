@@ -1,0 +1,25 @@
+{
+  "unit_key": "mechanism:9",
+  "source": "diagnostic",
+  "group_id": "mechanism",
+  "classes": {
+    "furnishable": "POLYGON ((3.6 0.6, 3.2 0.6, 3.2 0, 0 0, 0 2.5, 2.8 2.5, 2.8 1.7, 3.6 1.7, 3.6 0.6))",
+    "fixed_service": "MULTIPOLYGON (((3.6 1.7, 3.6 2.5, 2.8 2.5, 2.8 1.7, 3.6 1.7)), ((3.6 0, 3.6 0.6, 3.2 0.6, 3.2 0, 3.6 0)))"
+  },
+  "walls": "MULTILINESTRING ((3.6 0, 3.6 0.7), (3.6 1.6, 3.6 1.7), (3.6 1.7, 3.6 2.5), (3.6 2.5, 2.8 2.5), (2.8 2.5, 0 2.5, 0 0, 3.6 0), (2.8 2.5, 2.8 1.7, 2.9000000000000004 1.7), (3.5 1.7, 3.6 1.7))",
+  "doors": [
+    "LINESTRING (3.6 0.7, 3.6 1.6)",
+    "LINESTRING (2.9000000000000004 1.7, 3.5 1.7)"
+  ],
+  "windows": [],
+  "entrance": "LINESTRING (3.6 0.7, 3.6 1.6)",
+  "gross_area_m2": 9.0,
+  "n_rooms": 1,
+  "meta": {
+    "toilet_geometry": "POLYGON ((3.6 1.7, 3.6 2.5, 2.8 2.5, 2.8 1.7, 3.6 1.7))",
+    "kitchen_geometry": "POLYGON ((3.6 0, 3.6 0.6, 3.2 0.6, 3.2 0, 3.6 0))",
+    "diagnostic_only": true,
+    "population_eligible": false,
+    "service_blocks_note": "Synthetic obstacles; not habitable minimum dimensions"
+  }
+}

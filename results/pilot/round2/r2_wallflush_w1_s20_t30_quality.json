@@ -1,0 +1,45 @@
+{
+  "arm": "r2_wallflush_w1_s20_t30",
+  "reference": "w8_s10_t60",
+  "all_quality_checks_pass": false,
+  "source_checks_pass": true,
+  "small_unit_check_pass": false,
+  "groups": [
+    {
+      "group": "D1",
+      "cases": 96,
+      "mean_fci": 0.9443647232397233,
+      "reference_mean": 0.9564540216727716,
+      "difference": -0.012089298433048436,
+      "allowed_loss": 0.02,
+      "passes": true
+    },
+    {
+      "group": "D2",
+      "cases": 72,
+      "mean_fci": 0.970899470899471,
+      "reference_mean": 0.9598087098087098,
+      "difference": 0.011090761090761087,
+      "allowed_loss": 0.02,
+      "passes": true
+    },
+    {
+      "group": "D3",
+      "cases": 72,
+      "mean_fci": 0.7970562904174016,
+      "reference_mean": 0.7972018495907385,
+      "difference": -0.0001455591733369501,
+      "allowed_loss": 0.02,
+      "passes": true
+    },
+    {
+      "group": "NIA<=20",
+      "cases": 36,
+      "mean_fci": 0.6218903586125807,
+      "reference_mean": 0.6368843666621443,
+      "difference": -0.014994008049563606,
+      "allowed_loss": 0.01,
+      "passes": false
+    }
+  ]
+}

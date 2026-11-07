@@ -1,5 +1,6 @@
 """Analytical and adversarial checks of geometry-to-candidate conversion."""
 from dataclasses import replace
+from shapely.affinity import translate
 
 import numpy as np
 from shapely.geometry import GeometryCollection, LineString, box
@@ -84,3 +85,31 @@ def test_shared_anchor_rejects_a_pose_when_deployed_state_does_not_fit():
     item = library(load_config("config/project.yaml")["furniture"])["wall_bed_single"]
     assert len(generate_candidates(grid, {item.name: replace(item, states=(item.states[0],))})[item.name]) > 0
     assert len(generate_candidates(grid, {item.name: item})[item.name]) == 0
+
+
+def test_coarse_wall_anchors_preserve_off_lattice_flush_coordinates():
+    """All four walls at odd 0.1 m coordinates survive a 0.2 m stride."""
+    room = empty_room(3., 4.)
+    room = replace(room, classes={k: translate(v, .1, .1) for k, v in room.classes.items()},
+                   walls=translate(room.walls, .1, .1))
+    grid = rasterize(room)
+    item = library(load_config("config/project.yaml")["furniture"])["desk"]
+    full = generate_candidates(grid, {item.name: item})[item.name]
+    coarse = generate_candidates(grid, {item.name: item}, anchor_stride_m=.2)[item.name]
+    offset = np.rint(np.asarray(grid.origin)/grid.resolution).astype(int)
+    expected = {tuple(p) for p in full if (p[0]+offset[0] if p[2] in (0, 180)
+                                         else p[1]+offset[1]) % 2 == 0}
+    assert {tuple(p) for p in coarse} == expected
+    assert set(coarse[:, 2]) == {0, 90, 180, 270}
+    assert all((p[1]+offset[1] if p[2] in (0, 180) else p[0]+offset[0]) % 2 == 1
+               for p in coarse)
+
+
+def test_free_standing_anchors_still_stride_in_both_axes():
+    grid = rasterize(empty_room())
+    item = library(load_config("config/project.yaml")["furniture"])["single_bed"]
+    full = generate_candidates(grid, {item.name: item})[item.name]
+    coarse = generate_candidates(grid, {item.name: item}, anchor_stride_m=.2)[item.name]
+    offset = np.rint(np.asarray(grid.origin)/grid.resolution).astype(int)
+    expected = {tuple(p) for p in full if np.all((p[:2]+offset) % 2 == 0)}
+    assert expected and {tuple(p) for p in coarse} == expected
