@@ -1,18 +1,18 @@
 # G2 round-3 implementation and status
 
-Observed: 2026-11-07T08:32:07+00:00
+Observed: 2026-11-07T10:08:53+00:00
 
 The reviewer conditionally approves Phase 7. The author requests implementing this review. Main runs keep the two-side double-bed clearances; the approved one-side variant is A2 only. Review files are unchanged.
 
 ## Fresh pilot and continuation
 
-| arm                          |   expected_cases |   saved_checkpoints |   completed_validated_cases | status            |
-|:-----------------------------|-----------------:|--------------------:|----------------------------:|:------------------|
-| refresh_large_w1_s20_t30     |              240 |                 240 |                         240 | complete          |
-| refresh_small_w4_s10_t120    |               36 |                  36 |                          36 | complete          |
-| refresh_reference_w8_s10_t60 |              240 |                 199 |                           0 | running_or_queued |
+| arm                          |   expected_cases |   saved_checkpoints |   completed_validated_cases | status   |
+|:-----------------------------|-----------------:|--------------------:|----------------------------:|:---------|
+| refresh_large_w1_s20_t30     |              240 |                 240 |                         240 | complete |
+| refresh_small_w4_s10_t120    |               36 |                  36 |                          36 | complete |
+| refresh_reference_w8_s10_t60 |              240 |                 240 |                         240 | complete |
 
-Execution stage: `waiting_for_reference`. Formal A has not started at this snapshot. Checkpoints are not completed-arm acceptance. No partial score means are reported.
+Execution stage: `running_expA`. Formal A has started; see its run/progress records. Checkpoints are not completed-arm acceptance. No partial score means are reported.
 
 The continuation checks the source means, small-home mean, current code/configuration and measured runtime. It tries 2 workers / 60 s only for the reviewed larger-home quality fallback. Failed conditions stop A. Passing conditions launch the guarded A runner without another review stop, then generate A1 only after the complete A table passes solve acceptance.
 

@@ -1,0 +1,6 @@
+{
+  "run_started_at_utc": "2026-11-07T08:43:57+00:00",
+  "timestamp_basis": "initial observed run-manifest timestamp; a future resume must be identified separately",
+  "initial_manifest_mtime": 1794041037.5930376,
+  "code_hash": "8cc6832f1b626ea2f849dd5e1db3647a25bf0bd716456ebed06e4cf7add9a59f"
+}

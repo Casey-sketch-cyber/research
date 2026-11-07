@@ -1,0 +1,15 @@
+{
+  "uncapped_hours": 26.073872591717187,
+  "retained_hours": 26.073872591717187,
+  "margin": 0.15,
+  "caps": [],
+  "original_units": 2742,
+  "retained_units": 2742,
+  "selected_source_counts": {
+    "D1": 1348,
+    "D2": 884,
+    "D3": 510
+  },
+  "original_sample_sha256": "9e3b60b22c78f357d6e4ea3193c6570a2fd870b360ff3bc7854dc5420e464871",
+  "within_36h": true
+}

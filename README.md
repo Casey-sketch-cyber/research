@@ -67,14 +67,15 @@ revalidated, with no score mismatches. The provisional small-home setting is
 against the 300 s reference in both scopes. See the dated
 [progress snapshot](results/pilot/round2/progress_snapshot.json). A guarded Phase 7 runner exists
 but refuses to start without accepted current settings and a <=36-hour projection.
-Formal A, K and R remain unstarted; no FEA or population-level hypothesis conclusion
-is claimed at the round-3 publication snapshot. A is configured to start when
-the fresh quality and runtime checks pass; its current execution state is in
+Formal A has started after passing the fresh quality and runtime checks; K and R
+remain unstarted. No FEA or population-level hypothesis conclusion is claimed
+from the unfinished A run. Its dated progress snapshot is in
+`results/expA/progress_snapshot.json`; continuation state is in
 `results/pilot/round3/execution_status.json`. Literature screening remains due at G3. Uploads have been reauthorized; the current review package includes completed
 mechanism evidence, all 384 small-home layouts with hashes, and completed budget
-comparisons. Fresh full-pilot source-quality checks and A/K runtime projections
-remain required after the search corrections. The pilot refresh has started;
-its serial plan and last observed state are in
+comparisons. The fresh pilot and source-quality checks are complete; A retains
+all 2742 units with a 26.074-hour projection including margin. The pilot plan and
+completion state are in
 [pilot_refresh_status.json](results/pilot/round2/pilot_refresh_status.json).
 
 ## License

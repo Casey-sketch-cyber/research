@@ -20,6 +20,22 @@ Still uncalibrated:
 | D_R_HK                | reuse A layouts where applicable; R reproduction and kit-HK extensions need their own checks |
 | analysis_and_delivery | FEA/adequacy/bootstrap analysis, literature, figures, rendering and review revisions         |
 
+## Provisional remaining delivery schedule
+
+Using the dated A progress snapshot, the remaining quantified solve budget is 103.274 h (4.303 days). This uses the accepted pilot projection, not a linear extrapolation from early cases.
+
+The following are explicit, unmeasured engineering planning allowances for work outside those solves, based on the remaining Phase 7–12 task list:
+
+| work                                                  |   low_days |   high_days |
+|:------------------------------------------------------|-----------:|------------:|
+| A metrics, statistical analysis and validation        |        0.5 |         1.0 |
+| B algorithm implementation and comparisons            |        0.5 |         1.0 |
+| other sensitivities plus D/R analysis                 |        1.0 |         2.0 |
+| C surrogate models and HK scenario                    |        1.0 |         2.0 |
+| remaining literature, figures, renders and package QA |        2.0 |         3.0 |
+
+Provisional planning range for a complete package ready for review: about **10–14 further days**. This assumes continuous execution and active implementation, the reduced K scope, and no major methodological rework. External review waiting, author writing and submission are excluded. It is a planning allowance, not a measured total runtime or promised completion date.
+
 Do not interpret this partial subtotal as the whole project's delivery date. Actual early stopping can shorten solves, while changed parametric domains, implementation, failures and review can extend the calendar. K's reduced scope is exploratory, with limited household and design-grid coverage; report those limits.
 
 ## Review sequence

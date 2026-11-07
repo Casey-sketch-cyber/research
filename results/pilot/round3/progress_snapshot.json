@@ -1,10 +1,11 @@
 {
-  "observed_at_utc": "2026-11-07T08:32:07+00:00",
+  "observed_at_utc": "2026-11-07T10:08:53+00:00",
   "execution": {
-    "stage": "waiting_for_reference",
-    "observed_at_utc": "2026-11-07T08:01:42+00:00",
+    "stage": "running_expA",
+    "observed_at_utc": "2026-11-07T08:43:54+00:00",
     "launch_expA_requested": true,
-    "K_started": false
+    "K_started": false,
+    "accepted": true
   },
   "pilot_arms": [
     {
@@ -24,12 +25,16 @@
     {
       "arm": "refresh_reference_w8_s10_t60",
       "expected_cases": 240,
-      "saved_checkpoints": 199,
-      "completed_validated_cases": 0,
-      "status": "running_or_queued"
+      "saved_checkpoints": 240,
+      "completed_validated_cases": 240,
+      "status": "complete"
     }
   ],
-  "ExpA_started": false,
-  "ExpA_progress": null,
+  "ExpA_started": true,
+  "ExpA_progress": {
+    "completed_cases": 534,
+    "expected_cases": 32904,
+    "group": "small"
+  },
   "partial_score_means_published": false
 }
