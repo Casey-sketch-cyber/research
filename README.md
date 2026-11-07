@@ -40,7 +40,7 @@ After each review, tell Codex: *"Pull, read `reviews/Gx_review.md`, address the 
 |---|---|
 | Task L literature | Q-12 permits continuation with narrowed C2/C3; remaining screening due at G3 |
 | G1 data & corpus | G1 review completed; G2 geometry refresh is recorded in current corpus artifacts |
-| G2 method & pilot | Round 2: CHANGES_REQUESTED (R1 mechanism check, R2 anchors); see `reviews/G2_review_round2.md` |
+| G2 method & pilot | Round 3: APPROVED to start Phase 7 once §3 checks pass (see `reviews/G2_review_round3.md`) |
 | G3 results | not started |
 | G4 final package | not started |
 

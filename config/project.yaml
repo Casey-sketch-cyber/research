@@ -147,6 +147,15 @@ ablations:
   walking_width: [0.60, 0.90]
   resolution_m: {values: [0.05, 0.10, 0.20], subset: 50}
   time_limit_s: {values: [30, 60, 120], subset: 50}
+  # G2 round 3: does requiring access on both long sides of double beds suppress time-sharing?
+  double_bed_one_side_access:
+    description: "Variant: double_bed, wall_bed_double, wall_bed_over_sofa and sofa_bed deployed need clearance on ONE long side only (0.60 m; the other long side may touch a wall or another body)."
+    applies_to: [double_bed, wall_bed_double, wall_bed_over_sofa, sofa_bed]
+    units: "Exp. A sample units with NIA <= 20 m2 (all sources)"
+    households: [H3_couple_one_remote, H4_parent_child]
+    strategies: [S0, S1, S2]
+    solver: "small-home setting (4 workers, 120 s, 0.10 m anchors)"
+    status: "sensitivity variant; main runs keep config/furniture.yaml unless the author decides otherwise"
 
 hk_scenario:
   shells: "D3 with areas 8-20 m2"

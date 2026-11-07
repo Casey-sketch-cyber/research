@@ -56,6 +56,7 @@ All parameters live in `config/*.yaml`.
   - **S0 static:** only static items; one footprint all day.
   - **S1 multifunctional, unscheduled:** transformable items allowed, but each item keeps one state for the whole day.
   - **S2 schedule-aware (proposed):** transformable items keep a fixed position and orientation but change state per slot.
+- **Decomposition (added at G2 round 3):** the total gain S2 − S0 splits into a **form effect** S1 − S0 (compact transformable pieces used in one state) and a **time effect** S2 − S1 (switching state during the day). Exp. A reports both by household and NIA bin. In the small-home pilot (16 units ≤ 22 m², long budgets) the time effect was zero for single-person households, positive for couples in 4 of 16 units (+0.17 to +0.28 FCI in three units of 13–14 m², +0.02 at 10 m²), and +0.08 for a parent and child in one 13 m² unit. The full run tests whether this "squeeze band" pattern holds. It is an exploratory pattern from the pilot, not a pre-registered hypothesis.
 - **Functional Capacity Index:**
 
   FCI(u, h, s) = Σ_t Σ_{a∈A_t(h)} w_a · d_t · served(a, t) / Σ_t Σ_{a∈A_t(h)} w_a · d_t
