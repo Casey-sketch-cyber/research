@@ -1,6 +1,6 @@
 # Phase 6: corrected pilot and G2 response
 
-> Current round-2 status takes precedence: see [G2_round2_self_review.md](G2_round2_self_review.md). The earlier median-based production selection and runtime projections below are historical. The author has delegated self-review and paused uploads; formal experiments await the updated quality and runtime checks.
+> Current round-2 status takes precedence: see [G2_round2_self_review.md](G2_round2_self_review.md). The earlier median-based production selection and runtime projections below are historical. The author has delegated self-review and reauthorized sanitized uploads; formal experiments await the updated quality and runtime checks.
 
 
 Status: READY_FOR_CLAUDE_REVIEW. Reviewed baseline: 67af2ee; requested corrections: a228786. No Phase 7, K or R experiment was started. The author requests another review even if the continuation criteria pass.
@@ -95,7 +95,7 @@ The optional prepare-pilot mode can overlap completed D1 / selected D2 conversio
 
 ## Round 2 execution checklist (2026-11-06)
 
-Author delegates self-review and continuation; no uploads. Earlier production selection is provisional and superseded by round-2 mean-quality criteria.
+Author delegates self-review and continuation; sanitized uploads are reauthorized (D-32). Earlier production selection is provisional and superseded by round-2 mean-quality criteria.
 
 - [x] R2: preserve perpendicular wall-flush coordinates; test translated walls and free-standing items.
 - [ ] R2: repeat frozen pilot; require source means within 0.02 and small-unit mean within 0.01 of full-anchor reference.

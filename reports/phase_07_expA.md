@@ -1,7 +1,7 @@
 # Phase 7 — Experiment A
 
 Status: preparation only. No formal Experiment A result is available. The author
-has delegated self-review and continuation and paused uploads. The runner must
+has delegated self-review and continuation and reauthorized sanitized uploads. The runner must
 refuse to start until round-2 mechanism, mean-quality and runtime checks pass.
 
 ## Checklist
@@ -24,6 +24,6 @@ refuse to start until round-2 mechanism, mean-quality and runtime checks pass.
 - [ ] Export fixed-seed example layouts and approximately 10/18/30 m² H3
   showcases; inspect the actual drawings.
 - [ ] Complete the remaining literature screening and evidence limits before G3.
-- [ ] Write an evidence-backed self-review; do not upload until requested again.
+- [ ] Write an evidence-backed self-review and publish only audited, accurately labelled artifacts.
 
 The guarded runner is implemented and its five acceptance-guard tests plus dry-run pass. It has not run Experiment A: the accepted production_selection.json intentionally does not yet exist. Source code and benchmarks remain local; the expanded numerical regression suite passes 103 tests.

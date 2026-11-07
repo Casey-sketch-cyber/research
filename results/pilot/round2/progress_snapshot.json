@@ -1,0 +1,32 @@
+{
+  "observed_at_utc": "2026-11-07T04:35:56+00:00",
+  "frozen_units": 16,
+  "expected_cases_all_arms": 384,
+  "completed_validated_cases": 0,
+  "saved_case_checkpoints": 117,
+  "all_three_arms_complete": false,
+  "partial_scores_published": false,
+  "arms": [
+    {
+      "arm": "small_final_w8_t300",
+      "expected_cases": 128,
+      "saved_case_checkpoints": 117,
+      "status": "running",
+      "completed_validated_cases": 0
+    },
+    {
+      "arm": "small_final_w4_t120",
+      "expected_cases": 128,
+      "saved_case_checkpoints": 0,
+      "status": "queued",
+      "completed_validated_cases": 0
+    },
+    {
+      "arm": "small_final_w1_t30",
+      "expected_cases": 128,
+      "saved_case_checkpoints": 0,
+      "status": "queued",
+      "completed_validated_cases": 0
+    }
+  ]
+}

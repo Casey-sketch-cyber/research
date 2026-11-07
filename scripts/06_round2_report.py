@@ -62,7 +62,7 @@ def main():
         best_known = best_known.reset_index()
         best_known.to_csv(root/"mechanism_cross_run_best_known.csv", index=False)
     lines = ["# G2 round-2 self-review (in progress)", "",
-        "The author delegates continuation and self-review and has paused uploads. This file is an engineering self-review, not a replacement for the immutable reviewer records.", "",
+        "The author delegates continuation and self-review. Publication instructions are recorded in DECISIONS.md. This file is an engineering self-review, not a replacement for the immutable reviewer records.", "",
         "## Wall-flush lattice correction", "",
         "Stride is applied along the wall only for wall-backed furniture. Perpendicular flush coordinates remain eligible. Free-standing items still use both axes. Translated-wall tests exercise all four orientations.", "",
         f"Arm `{args.arm}` completed {summary['completed_cases']} cases in {summary['wall_time_s']:.3f} s; all {summary['validator_pass_cases']} layouts pass independent validation. Mean FCI is {summary['mean_fci']:.9f}.", "",
@@ -78,6 +78,12 @@ def main():
         "Cross-run best independently validated scores (lower bounds, not one timed algorithm arm):", "",
         best_known.to_markdown(index=False, floatfmt=".6f") if len(best_known) else "Pending.", "",
         "Do not infer physical S2 benefit from a weaker S1 search in one arm. Earlier valid S1 results remain evidence even when a later short search scores lower. In particular, the 13 m² fixture already has a stronger constant-state layout in an earlier arm. Mechanism success establishes representability and the ability to find sharing; it does not establish population-wide gains or optimality of every timed output.", "",
+        "## Small-home budget run status", "",
+        pd.read_csv(root/"progress_snapshot.csv").to_markdown(index=False)
+        if (root/"progress_snapshot.csv").exists() else "See the complete per-arm summaries; no current snapshot is available.", "",
+        ("Snapshot observed at "+json.loads((root/"progress_snapshot.json").read_text())["observed_at_utc"]+
+         ". Saved checkpoints are not a completed-arm acceptance. No partial score means are reported.")
+        if (root/"progress_snapshot.json").exists() else "", "",
         "## Remaining acceptance checks", "",
         ("- [x] All six S2 diagnostic searches reach their hand-written lower bounds; at least one shell has a demonstrated time-sharing improvement. Within-arm and cross-run comparisons are both retained above."
          if mechanism_pass else "- [ ] All six S2 diagnostic searches must reach their hand-written lower bounds; at least one diagnostic shell must have S2>S1."),

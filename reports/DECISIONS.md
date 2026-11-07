@@ -42,3 +42,5 @@ Append one line per decision: `D-NN | date | phase | decision | reason | approve
 | D-30 | 2026-11-06 | continuation | Continue under author-delegated self-review; do not upload or push until instructed again | Author supersedes the Claude-wait and publication steps; retain all methodological checks, report null findings, and leave reviews/ unchanged | author |
 
 | D-31 | 2026-11-06 | G2 round 2 | Keep all unsuccessful diagnostic arms; use generic service-aware initialization and complete feasible hints, then repeat the fixed comparisons | The hand-written feasible layouts separate search failure from physical impossibility; no witness is supplied to unconstrained searches and furniture/household defaults stay unchanged | author-delegated self-review |
+
+| D-32 | 2026-11-06 | publication | Resume sanitized GitHub uploads and make current results available for review | The author explicitly reauthorized uploading; keep partial runs labelled incomplete and retain the existing privacy boundary | author |

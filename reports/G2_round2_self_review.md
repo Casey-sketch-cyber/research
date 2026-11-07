@@ -1,6 +1,6 @@
 # G2 round-2 self-review (in progress)
 
-The author delegates continuation and self-review and has paused uploads. This file is an engineering self-review, not a replacement for the immutable reviewer records.
+The author delegates continuation and self-review. Publication instructions are recorded in DECISIONS.md. This file is an engineering self-review, not a replacement for the immutable reviewer records.
 
 ## Wall-flush lattice correction
 
@@ -56,6 +56,16 @@ Cross-run best independently validated scores (lower bounds, not one timed algor
 | mechanism:9  | H3_couple_one_remote | 0.725269 | 0.917577 |                    0.192308 |
 
 Do not infer physical S2 benefit from a weaker S1 search in one arm. Earlier valid S1 results remain evidence even when a later short search scores lower. In particular, the 13 m² fixture already has a stronger constant-state layout in an earlier arm. Mechanism success establishes representability and the ability to find sharing; it does not establish population-wide gains or optimality of every timed output.
+
+## Small-home budget run status
+
+| arm                 |   expected_cases |   saved_case_checkpoints | status   |   completed_validated_cases |
+|:--------------------|-----------------:|-------------------------:|:---------|----------------------------:|
+| small_final_w8_t300 |              128 |                      117 | running  |                           0 |
+| small_final_w4_t120 |              128 |                        0 | queued   |                           0 |
+| small_final_w1_t30  |              128 |                        0 | queued   |                           0 |
+
+Snapshot observed at 2026-11-07T04:35:56+00:00. Saved checkpoints are not a completed-arm acceptance. No partial score means are reported.
 
 ## Remaining acceptance checks
 

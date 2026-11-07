@@ -17,9 +17,9 @@ Research project for a submission to *Urban Science* (MDPI), Special Issue "Urba
 
 ## Workflow
 
-**Current author instruction (2026-11-06):** continue under self-review and pause
-all uploads. The historical push/reviewer sequence below is superseded for the
-current work; preserve the methodological checks and immutable review records.
+**Current author instruction (2026-11-06):** continue under self-review and resume
+sanitized GitHub uploads for review. Preserve the methodological checks and
+immutable review records; unfinished experiments are explicitly labelled.
 
 ```
 Codex: Phases 0–4  → push → GATE G1 (data & corpus)  → review in reviews/G1_review.md
@@ -52,10 +52,12 @@ tests, with a separate additional budget-comparison integration test.
 
 The old w1_s20_t30 selection and its A/K projections are historical and must be
 replaced using the round-2 mean-quality and small-home budget checks. The frozen
-16-unit small-home comparisons are in progress. A guarded Phase 7 runner exists
+16-unit small-home comparisons are in progress; see the dated
+[progress snapshot](results/pilot/round2/progress_snapshot.json). A guarded Phase 7 runner exists
 but refuses to start without accepted current settings and a <=36-hour projection.
 Formal A, K and R remain unstarted; no FEA or population-level hypothesis conclusion
-is claimed. Literature screening remains due at G3. No new work has been uploaded.
+is claimed. Literature screening remains due at G3. Uploads have been reauthorized; the current review package includes completed
+mechanism evidence and a dated snapshot of the unfinished budget comparisons.
 
 ## License
 

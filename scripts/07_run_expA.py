@@ -88,7 +88,7 @@ def main():
     manifest = dict(code_hash=code, numerical_hash=numerical, sample_sha256=sample_hash,
         inputs_hash=input_hash, selection_sha256=hashlib.sha256(selection_path.read_bytes()).hexdigest(),
         base_config_hash=config_hash(config), expected_cases=len(sample)*len(config["households"]["main_households"])*3,
-        selected_units=len(sample), production_settings=selection, publication_authorized=False)
+        selected_units=len(sample), production_settings=selection, automatic_publication=False)
     cache = Path(config["paths"]["interim"])/"expA"/(code[:12]+"_"+manifest["selection_sha256"][:12])
     if (cache/"run.json").exists() and json.loads((cache/"run.json").read_text()) != manifest:
         raise ValueError("Existing run fingerprint differs; do not mix results")
