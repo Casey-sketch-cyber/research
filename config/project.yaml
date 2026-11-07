@@ -155,7 +155,7 @@ ablations:
     households: [H3_couple_one_remote, H4_parent_child]
     strategies: [S0, S1, S2]
     solver: "small-home setting (4 workers, 120 s, 0.10 m anchors)"
-    status: "sensitivity variant; main runs keep config/furniture.yaml unless the author decides otherwise"
+    status: "sensitivity variant only. Author decided 2026-11-07: main runs keep two-side access for double beds (config/furniture.yaml unchanged)."
 
 hk_scenario:
   shells: "D3 with areas 8-20 m2"
