@@ -1,6 +1,6 @@
 # G2 round-3 implementation and status
 
-Observed: 2026-11-07T08:06:46+00:00
+Observed: 2026-11-07T08:13:18+00:00
 
 The reviewer conditionally approves Phase 7. The author requests implementing this review. Main runs keep the two-side double-bed clearances; the approved one-side variant is A2 only. Review files are unchanged.
 
@@ -10,7 +10,7 @@ The reviewer conditionally approves Phase 7. The author requests implementing th
 |:-----------------------------|-----------------:|--------------------:|----------------------------:|:------------------|
 | refresh_large_w1_s20_t30     |              240 |                 240 |                         240 | complete          |
 | refresh_small_w4_s10_t120    |               36 |                  36 |                          36 | complete          |
-| refresh_reference_w8_s10_t60 |              240 |                  81 |                           0 | running_or_queued |
+| refresh_reference_w8_s10_t60 |              240 |                 123 |                           0 | running_or_queued |
 
 Execution stage: `waiting_for_reference`. Formal A has not started at this snapshot. Checkpoints are not completed-arm acceptance. No partial score means are reported.
 
@@ -33,7 +33,7 @@ K has not started. The full grid and the first two prescribed reductions still e
 
 ## Implementation and remaining work
 
-- 18 targeted acceptance, continuation, launch-guard and paired-statistics tests pass. Numerical solver logic is unchanged.
+- 19 targeted acceptance, continuation, launch-guard and paired-statistics tests pass. Numerical solver logic is unchanged.
 - A1 is implemented: paired form/time/total effects, S2>S1 shares, household × 2 m²-bin means, 1,000 unit-bootstrap resamples and 95% intervals. Source-specific tables accompany pooled tables. Single-unit bins have no CI. F4b uses stacked effects and separate form/total intervals; time intervals are in the table.
 - The F4b renderer was checked visually on completed pilot pairs in private scratch output; this is not a formal A figure or result.
 - A2 runs after A on every selected NIA<=20 unit, H3/H4, S0/S1/S2, retaining the small-home budget. It has not run. Main furniture defaults remain unchanged.

@@ -47,7 +47,7 @@ is the only difference before transferring its pilot evidence to the main run.
 - [ ] Complete the remaining literature screening and evidence limits before G3.
 - [ ] Write an evidence-backed self-review and publish only audited, accurately labelled artifacts.
 
-The guarded runner and round-3 continuation are implemented. Eighteen targeted
+The guarded runner and round-3 continuation are implemented. Nineteen targeted
 acceptance, continuation, paired-statistics and launch-guard tests pass; dry-run
 also passes. A1 output generation is gated on complete accepted A results. The
 fresh reference is still running at this preparation snapshot; no accepted

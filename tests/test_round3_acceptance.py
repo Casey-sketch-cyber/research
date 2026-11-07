@@ -37,6 +37,13 @@ def test_missing_strategy_case_cannot_disappear_from_the_comparison():
         module().quality_checks(pilot().iloc[1:], pilot())
 
 
+def test_nonfinite_scores_cannot_be_silently_excluded_from_means():
+    frame = pilot()
+    frame.loc[0, "fci_validator"] = float("nan")
+    with pytest.raises(ValueError, match="Nonfinite"):
+        module().quality_checks(frame, pilot())
+
+
 def test_only_inactive_review_metadata_can_bridge_configurations():
     before = dict(ablations={}, furniture={"clearance": .6})
     after = deepcopy(before)

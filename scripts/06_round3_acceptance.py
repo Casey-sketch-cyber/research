@@ -52,6 +52,8 @@ def quality_checks(hybrid: pd.DataFrame, reference: pd.DataFrame) -> tuple[pd.Da
     for frame in (hybrid, reference):
         if frame.duplicated(KEYS).any() or not frame.validator_pass.all():
             raise ValueError("Duplicate or invalid pilot cases")
+        if not np.isfinite(frame[["fci_validator", "nia_m2"]].to_numpy(float)).all():
+            raise ValueError("Nonfinite pilot measurements must not disappear from means")
     paired = hybrid.merge(reference[KEYS+["fci_validator"]], on=KEYS, how="outer",
                           validate="one_to_one", indicator=True, suffixes=("", "_reference"))
     if len(paired) != len(hybrid) or not paired._merge.eq("both").all():
@@ -91,6 +93,9 @@ def load_arm(name: str, baseline: dict, signature: str) -> tuple[pd.DataFrame, d
     actual = set(frame[KEYS].itertuples(index=False, name=None))
     if actual != expected or len(frame) != len(expected) or not frame.validator_pass.all():
         raise ValueError("Incomplete/invalid pilot arm: "+name)
+    if (not np.isfinite(frame[["fci_validator", "solve_time_s", "nia_m2", "tb"]].to_numpy(float)).all()
+            or not frame.fci_validator.between(-1e-9, 1+1e-9).all() or (frame.solve_time_s < 0).any()):
+        raise ValueError("Pilot has nonfinite or out-of-range measurements")
     if not frame.code_hash.eq(signature).all() or not frame.config_hash.eq(config_hash(config)).all():
         raise ValueError("Mixed pilot provenance")
     households = parse_households(config["households"], config["furniture"])
