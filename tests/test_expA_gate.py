@@ -36,3 +36,21 @@ def test_stale_source_and_over_budget_are_rejected():
     over_budget["projected_expA_hours"] = 36.01
     with pytest.raises(ValueError):
         module.check_selection(over_budget, "tested")
+
+
+def test_configuration_and_benchmark_provenance_are_required_at_launch():
+    m = driver()
+    record = selection()
+    record.update(base_config_hash="config", benchmark_driver_hash="driver")
+    m.check_selection(record, "tested", "config", "driver")
+    with pytest.raises(ValueError):
+        m.check_selection(record, "tested", "changed", "driver")
+    with pytest.raises(ValueError):
+        m.check_selection(record, "tested", "config", "changed")
+
+
+def test_only_reviewed_size_budgets_can_launch():
+    record = selection()
+    record["small"]["time_limit_s"] = 30
+    with pytest.raises(ValueError, match="small-home"):
+        driver().check_selection(record, "tested")

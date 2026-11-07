@@ -1,0 +1,6 @@
+{
+  "benchmark_base_config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b",
+  "production_base_config_hash": "e11cf4c8734ad2e87bb19fd6a09e5a9237df9928e012effed75aff80959d4c14",
+  "allowed_added_path": "ablations.double_bed_one_side_access",
+  "main_numerical_configuration_unchanged": true
+}

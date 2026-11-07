@@ -105,3 +105,15 @@ arm, triggering the size-dependent-budget rule. This is a provisional small-home
 selection, not formal-experiment acceptance. The full source-quality pilot must
 be refreshed after the search changes, followed by current A/K runtime projections.
 All comparison rows, layouts and hashes are linked from the generated report.
+
+## Round 3 — conditional approval implemented
+
+The new `reviews/G2_review_round3.md` authorizes A after fresh hybrid quality and
+runtime acceptance. `06_round3_acceptance.py` verifies matched cases and archived
+layouts, per-source and small-home means, configuration/code provenance and the
+M7 budget floors. `06_round3_continue.py --launch-expA` waits for the reference,
+tries only the prescribed large-setting fallback when eligible, and stops if
+acceptance still fails. The A1 paired decomposition and F4b generator are ready
+and tested, but produce formal outputs only after A completes. A2 is scheduled
+after A; B1 and A3 remain explicit later-phase requirements. See the generated
+[round-3 status](G2_round3_status.md) and [Phase 7 report](phase_07_expA.md).

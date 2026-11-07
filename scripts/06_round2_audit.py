@@ -17,11 +17,15 @@ from fea.validate import validate_layout
 
 def main() -> None:
     """Check Cartesian coverage, provenance, scores and independently valid layouts."""
-    args = prepare_cli(__doc__).parse_args()
+    parser = prepare_cli(__doc__)
+    parser.add_argument("--base-config-snapshot", help="Preserved full configuration JSON for historical arms")
+    args = parser.parse_args()
     base, _, _ = start_run(args, "06_round2_audit")
     if args.dry_run:
         print("Would revalidate completed comparisons and archive portable layout evidence.")
         return
+    if args.base_config_snapshot:
+        base = json.loads(Path(args.base_config_snapshot).read_text())
     root = Path("results/pilot/round2")
     raw_units = json.loads((root/"small_units.json").read_text())["units"]
     units = {u["unit_key"]: Unit.from_dict(u) for u in raw_units}

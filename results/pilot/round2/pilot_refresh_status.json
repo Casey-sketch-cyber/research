@@ -22,9 +22,12 @@
       "max_nia": null
     }
   ],
-  "completed_arms": [],
+  "completed_arms": [
+    "refresh_large_w1_s20_t30",
+    "refresh_small_w4_s10_t120"
+  ],
   "numerical_hash": "21c8cc38317c527075edf93987f9eec0237493ba789367910c6ffd03c852cea8",
   "stage": "running",
   "formal_experiments_started": false,
-  "current_arm": "refresh_large_w1_s20_t30"
+  "current_arm": "refresh_reference_w8_s10_t60"
 }

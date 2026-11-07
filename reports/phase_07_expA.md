@@ -1,8 +1,29 @@
 # Phase 7 — Experiment A
 
-Status: preparation only. No formal Experiment A result is available. The author
-has delegated self-review and continuation and reauthorized sanitized uploads. The runner must
-refuse to start until round-2 mechanism, mean-quality and runtime checks pass.
+Status: round-3 conditional approval; acceptance checks in progress. The reviewer
+authorizes starting Experiment A without another stop once the fresh hybrid
+quality comparison and <=36-hour projection pass. See `reviews/G2_review_round3.md`.
+No formal Experiment A result is available yet. Publication remains authorized.
+
+## Round-3 implementation checklist
+
+- [ ] Finish the fresh 240-case reference and combine the large/small production
+  arms; require per-source mean loss <=0.02 and NIA<=20 loss <=0.01.
+- [ ] If the large setting fails, test 2 workers / 60 s; stop if the fallback fails.
+- [ ] Reproject A with a 15% margin and the M7 cap floors (D1 500, D2 200,
+  all small D3 and at least 60 larger D3); reproject K without reducing solve budgets.
+- [ ] Freeze the verified configuration, sample and code before starting A.
+- [x] A1 implementation: household-by-2-m²-bin form/time decomposition with paired
+  unit-bootstrap intervals, S2>S1 shares and stacked figure F4b.
+- [ ] A2: after A, run the approved one-side double-bed sensitivity for all
+  selected NIA<=20 units, H3/H4 and S0/S1/S2; keep main furniture defaults unchanged.
+- [ ] B1: use only the footprint policy as the Exp. B greedy baseline; identify
+  the portfolio only as CP-SAT initialization.
+- [ ] A3: carry the separate time effect into K and the HK scenario reports.
+
+The new configuration adds an inactive sensitivity declaration. Preserve the
+pre-review benchmark configuration and explicitly verify that this declaration
+is the only difference before transferring its pilot evidence to the main run.
 
 ## Checklist
 
@@ -26,4 +47,10 @@ refuse to start until round-2 mechanism, mean-quality and runtime checks pass.
 - [ ] Complete the remaining literature screening and evidence limits before G3.
 - [ ] Write an evidence-backed self-review and publish only audited, accurately labelled artifacts.
 
-The guarded runner is implemented and its five acceptance-guard tests plus dry-run pass. It has not run Experiment A: the accepted production_selection.json intentionally does not yet exist. Source code and benchmarks remain local; the expanded numerical regression suite passes 103 tests.
+The guarded runner and round-3 continuation are implemented. Eighteen targeted
+acceptance, continuation, paired-statistics and launch-guard tests pass; dry-run
+also passes. A1 output generation is gated on complete accepted A results. The
+fresh reference is still running at this preparation snapshot; no accepted
+production selection or formal A result is claimed here. The numerical solver
+is unchanged from the 103-test regression baseline. The generated, dated
+[round-3 status](G2_round3_status.md) distinguishes implementation from run completion.

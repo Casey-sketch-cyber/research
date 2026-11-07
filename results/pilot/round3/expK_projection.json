@@ -1,0 +1,32 @@
+{
+  "full_scope_hours": 1291.340258335112,
+  "full_scope_within_48h": false,
+  "options": [
+    {
+      "scope": "also_drop_H3",
+      "total_solves": 22606,
+      "projected_hours_with_margin": 394.22595686536675,
+      "within_48h": false
+    },
+    {
+      "scope": "drop_wardrobe_frontage",
+      "total_solves": 33909,
+      "projected_hours_with_margin": 591.3389352980502,
+      "within_48h": false
+    },
+    {
+      "scope": "exploratory_8_kits_30_train_15_holdout_15_real_H1_H2",
+      "total_solves": 2360,
+      "projected_hours_with_margin": 41.15603194737085,
+      "within_48h": true
+    },
+    {
+      "scope": "full_grid",
+      "total_solves": 74049,
+      "projected_hours_with_margin": 1291.340258335112,
+      "within_48h": false
+    }
+  ],
+  "K_started": false,
+  "caveat": "Conservative cap-based workload projection, not measured K runtime; design-domain/FCIq overhead requires a K pilot. Reduced scopes are options, not approved changes."
+}

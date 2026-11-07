@@ -32,3 +32,8 @@ Codex adds questions here between gates, each with the default assumption it is 
 - Q-17 (2026-11-06): The requested wall_bed_over_sofa witness serves sleep_2; the unchanged H1 sleep_1 rule does not accept it. Preserve the rule and report H1's unserved sleep explicitly. H3 supplies the actual sleep/lounge mechanism test.
 - Q-18 (2026-11-06): Hand-built diagnostic service obstacles are intentionally smaller than the D3 pod/kitchen defaults. They test search and geometry only; exclude them from all study-population statistics. D3 defaults remain unchanged.
 - Q-19 (2026-11-06): The author delegates self-review and continuation and pauses uploads. Follow round-2 methodological checks without waiting for Claude; no changes to reviews/.
+
+## Round-3 scope note
+
+- Q-20 (2026-11-07): The full K workload does not fit the two-day time box under the new small-home solve budget. `results/pilot/round3/expK_projection.csv` and the generated `G2_round3_status.md` report the full grid, the first prescribed reductions, and a smaller exploratory option. K remains unstarted; candidate-grid and sample reductions must be frozen before any K search. A continues independently if its own acceptance conditions pass.
+- Historical Q-19's upload pause was superseded by D-32. Sanitized publication is authorized.

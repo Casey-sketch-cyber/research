@@ -1,0 +1,163 @@
+# Project-wide settings. Every script reads this file; never hard-code these values.
+
+seed: 20261105
+
+paths:
+  raw: data/raw                 # git-ignored
+  interim: data/interim         # git-ignored
+  processed: data/processed     # small derived tables may be committed (< 50 MB each)
+  results: results
+  figures: results/figures
+  layouts: results/layouts
+  reports: reports
+
+datasets:
+  D1_swiss_dwellings:
+    url: "https://zenodo.org/records/7788422"
+    doi: "10.5281/zenodo.7788422"
+    file: "swiss-dwellings-v3.0.0.zip"
+    license: "CC BY 4.0"
+  D2_resplan:
+    url: "https://github.com/m-agour/ResPlan"
+    mirror: "https://www.kaggle.com/datasets/resplan/resplan"
+    license: "CC BY 4.0 (data), MIT (code)"
+  D4_abo_listings:
+    url: "https://amazon-berkeley-objects.s3.amazonaws.com/archives/abo-listings.tar"
+    index: "https://amazon-berkeley-objects.s3.amazonaws.com/index.html"
+    license: "CC BY 4.0"
+    note: "Download ONLY abo-listings.tar (83 MB). Do not download images or 3D models."
+  D5_atus:
+    url: "https://www.bls.gov/tus/data.htm"
+    optional: true
+  D6_hk_census_sdu:
+    url: "https://data.gov.hk/en-data/dataset/hk-censtatd-census_geo-2021-population-census-su-by-dcd"
+    license: "DATA.GOV.HK terms (free reuse)"
+
+corpus:
+  # G1 review (M1): "compact" is defined on net internal area (NIA) = union of furnishable,
+  # storage_only, walkable_only and fixed_service spaces (interior, excluding walls, balconies
+  # and other excluded classes). NIA is the primary area axis for f0, FEA and A_min, because
+  # minimum-size standards are stated in internal floor area. Furnishable area is secondary.
+  area_measure: nia
+  max_nia_m2: 50
+  min_nia_m2: 8
+  max_furnishable_area_m2: 45      # superseded by max_nia_m2 (G1 review M1); kept for traceability only
+  min_furnishable_area_m2: 8       # superseded by min_nia_m2 (G1 review M1)
+  require_entrance_door: true
+  require_window: true
+  require_habitable_room: true     # G1 review M2: at least one habitable (furnishable) room
+  require_sanitary: true           # G1 review M2: BATHROOM/SANITARY_ROOMS area, or a TOILET feature
+  require_kitchen: true            # G1 review M2: KITCHEN/KITCHEN_DINING area, or a KITCHEN feature
+  deduplicate: {enabled: true, key: "normalized geometry hash", keep: one representative, record: n_duplicates}  # G1 review M4
+  d1_unit_usage: RESIDENTIAL
+  # Codex fills this mapping in Phase 1 after listing all entity_subtype values:
+  d1_subtype_classes:
+    furnishable: [BEDROOM, DINING, LIVING_DINING, LIVING_ROOM, OFFICE, OFFICE_SPACE, ROOM, STUDIO]
+    storage_only: [CLOAKROOM, STOREROOM]   # G1 review M3: only storage items (wardrobe, shelving) may be placed here
+    walkable_only: [CORRIDOR, CORRIDORS_AND_HALLS, FOYER, LOBBY, COMMON_KITCHEN, KITCHEN, KITCHEN_DINING] # e.g. CORRIDOR
+    fixed_service: [BATHROOM, SANITARY_ROOMS, WASH_AND_DRY_ROOM] # e.g. BATHROOM, KITCHEN
+    excluded: [AIR, ARCADE, ARCHIVE, BALCONY, BASEMENT, BASEMENT_COMPARTMENT, BIKE_STORAGE, BREAK_ROOM, CANTEEN, CARPARK, COLD_STORAGE, COMMUNITY_ROOM, COUNTER_ROOM, DEDICATED_MEDICAL_ROOM, ELECTRICAL_SUPPLY, ELEVATOR, ELEVATOR_FACILITIES, FACTORY_ROOM, GARAGE, GARDEN, GAS, HEATING, HOUSE_TECHNICS_FACILITIES, LIGHTWELL, LOGGIA, LOGISTICS, MEDICAL_ROOM, MEETING_ROOM, NOT_DEFINED, OFFICE_TECH_ROOM, OIL_TANK, OPEN_PLAN_OFFICE, OPERATIONS_FACILITIES, OUTDOOR_VOID, PATIO, PHYSIO_AND_REHABILITATION, PRAM, PRAM_AND_BIKE_STORAGE_ROOM, RADATION_THERAPY, RECEPTION_ROOM, SALESROOM, SHAFT, SHELTER, SHOWROOM, SPORTS_ROOMS, STAIRCASE, TEACHING_ROOM, TECHNICAL_AREA, TERRACE, TRANSPORT_SHAFT, VEHICLE_TRAFFIC_AREA, VOID, WAITING_ROOM, WAREHOUSE, WATER_SUPPLY, WINTERGARTEN, WORKSHOP]      # e.g. BALCONY, SHAFT, STAIRCASE
+  sample_cap_per_source: null      # set an integer only if runtime forces it; report it
+  # G1 review M5: frozen experiment sample, written to results/corpus/expA_sample.csv before the pilot
+  expA_sample:
+    D1: {n_max: 1500, stratify_by: [nia_bin_2m2, n_rooms], max_per_site: 5}
+    D2: {n_max: all}
+    D3: {n_max: all}
+    note: "If the Phase 6 runtime projection exceeds 36 h, reduce D1 n_max first and report it."
+
+shells_D3:
+  areas_m2: [8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 25, 28, 32, 36, 40]
+  aspect_ratios: [1.0, 1.5, 2.0, 2.5, 3.0]   # long side / short side
+  entrance_positions: [short_wall_center, short_wall_corner, long_wall_corner]
+  window_positions: [opposite_short_wall, long_wall]
+  toilet_pod: {footprint: [1.20, 1.50], placement: corner_near_entrance}   # fixed service
+  kitchenette: {footprint: [1.20, 0.60], placement: along_wall_near_entrance} # fixed service
+  ceiling_height: 2.50
+  note: "Area includes the toilet pod and kitchenette (gross internal). Report both gross and furnishable area."
+
+raster:
+  resolution_m: 0.10
+  source_gap_close_m: 0.15
+  anchor_stride_m: 0.20
+  door_swing_keepout: "width x width square on the room side; both sides if the room side is ambiguous"
+  orientations_deg: [0, 90, 180, 270]
+  align_to_dominant_axis: true
+
+solver:
+  engine: ortools_cp_sat
+  time_limit_s: 30
+  num_workers: 1
+  reachability_max_iterations: 30
+  reachability_round_s: 5.0
+  objective: lexicographic   # 1) served weighted hours, 2) transformation burden, 3) window proximity
+  weights: {served: 1000.0, burden: 1.0, window: 0.01}
+
+experiments:
+  A_strategies: {strategies: [S0, S1, S2], households: main}
+  B_algorithms:
+    algorithms: [greedy, simulated_annealing, cp_sat]
+    optional: [local_llm]
+    instances: "stratified sample of 200 (unit, household) pairs under S2"
+    sa: {iterations: 20000, restarts: 3}
+    llm: {model: "Qwen/Qwen2.5-7B-Instruct", instances: 100, temperature: 0.2, max_retries: 2}
+  C_surrogate:
+    models: [linear_area, gbm_features, mlp_features, gnn_graph]
+    targets: [fci_S0, fci_S2, saving_m2]
+    split: {by: site_id, train: 0.70, val: 0.15, test: 0.15}
+    extra_test_sets: [D2, D3]
+  D_metric_validity:
+    indicators: [area_per_person, rooms_per_person, ulrich_threshold, hk_bhu_8m2]
+    ulrich_thresholds_m2: {1: 30, 2: 45, 3: 60, 4: 60}
+    hk_bhu_min_m2: 8
+  adequacy_tau: 0.95
+  tau_sensitivity: [0.90, 0.95, 1.00]
+  bootstrap: {n: 1000, ci: 0.95}
+
+  K_kit_design:           # RESEARCH_PLAN §5.9, H4. All values are author design assumptions (verify / sensitivity).
+    target: {source: D3, nia_m2: [8, 15]}
+    holdout: {aspect_ratio: 2.5, entrance_position: long_wall_corner}
+    real_plan_check: {sources: [D1, D2], max_nia_m2: 20}
+    households: [H1_single_commuter, H2_single_remote_worker, H3_couple_one_remote]
+    variables:                # metres; grid values. q = service quality at that value (linear between points)
+      wall_bed_width_single: {values: [0.80, 0.90, 1.00], q: [0.60, 0.85, 1.00], applies_to: [H1_single_commuter, H2_single_remote_worker]}
+      wall_bed_width_double: {values: [1.20, 1.40, 1.50], q: [0.60, 0.90, 1.00], applies_to: [H3_couple_one_remote]}
+      desk_width: {values: [0.80, 1.00, 1.20], q: [0.70, 0.90, 1.00]}
+      desk_depth_deployed: {values: [0.45, 0.55], q: [0.80, 1.00]}
+      table_width: {values: [0.70, 0.80, 1.00], q: [0.80, 0.90, 1.00]}
+      table_depth_deployed: {values: [0.60, 0.75], q: [0.85, 1.00]}
+      wardrobe_frontage: {values: [0.60, 1.00, 1.40], storage_units: [0.6, 1.0, 1.4]}
+    fixed: {stowed_depths: "as in config/furniture.yaml", clearances: "as in config/furniture.yaml"}
+    objective: fciq_mean      # also report adequacy share (FCIq >= tau)
+    search: {method: successive_halving, stages: [{shells: 10, keep: 0.20}, {shells: 30, keep_top: 5}, {shells: all}], time_limit_s: 20}
+    bespoke_subsample: 30
+    flat_quality_variant: true
+    time_box_days: 2
+    fallback_order: [drop wardrobe_frontage, drop H3_couple_one_remote, report 30-shell exploratory result]
+
+  R_single_room_test:     # RESEARCH_PLAN §5.8 (supporting analysis for the Discussion; not a hypothesis)
+    reference: "Bu & Che Mat (2026), doi:10.13189/cea.2026.140514"
+    reported_values_from_source: true   # every value with page reference in results/expR/source_values.csv
+    households: [H1_single_commuter, H2_single_remote_worker]
+    measure: free_activity_area_day   # floor area not covered by furniture bodies in the 'day' slot (validator)
+    fallback_shells: {area_m2: 12, aspect_ratios: [1.0, 1.25, 1.5]}
+
+ablations:
+  drop_one_transformable: true
+  clearance_scale: [0.8, 1.0, 1.2]
+  walking_width: [0.60, 0.90]
+  resolution_m: {values: [0.05, 0.10, 0.20], subset: 50}
+  time_limit_s: {values: [30, 60, 120], subset: 50}
+  # G2 round 3: does requiring access on both long sides of double beds suppress time-sharing?
+  double_bed_one_side_access:
+    description: "Variant: double_bed, wall_bed_double, wall_bed_over_sofa and sofa_bed deployed need clearance on ONE long side only (0.60 m; the other long side may touch a wall or another body)."
+    applies_to: [double_bed, wall_bed_double, wall_bed_over_sofa, sofa_bed]
+    units: "Exp. A sample units with NIA <= 20 m2 (all sources)"
+    households: [H3_couple_one_remote, H4_parent_child]
+    strategies: [S0, S1, S2]
+    solver: "small-home setting (4 workers, 120 s, 0.10 m anchors)"
+    status: "sensitivity variant only. Author decided 2026-11-07: main runs keep two-side access for double beds (config/furniture.yaml unchanged)."
+
+hk_scenario:
+  shells: "D3 with areas 8-20 m2"
+  households: [H1_single_commuter, H3_couple_one_remote, H4_parent_child]
+  embodied_carbon_kgco2e_per_m2: TODO_VERIFY   # range plus a verified source; the human author supplies it

@@ -1,0 +1,35 @@
+{
+  "observed_at_utc": "2026-11-07T08:06:46+00:00",
+  "execution": {
+    "stage": "waiting_for_reference",
+    "observed_at_utc": "2026-11-07T08:01:42+00:00",
+    "launch_expA_requested": true,
+    "K_started": false
+  },
+  "pilot_arms": [
+    {
+      "arm": "refresh_large_w1_s20_t30",
+      "expected_cases": 240,
+      "saved_checkpoints": 240,
+      "completed_validated_cases": 240,
+      "status": "complete"
+    },
+    {
+      "arm": "refresh_small_w4_s10_t120",
+      "expected_cases": 36,
+      "saved_checkpoints": 36,
+      "completed_validated_cases": 36,
+      "status": "complete"
+    },
+    {
+      "arm": "refresh_reference_w8_s10_t60",
+      "expected_cases": 240,
+      "saved_checkpoints": 81,
+      "completed_validated_cases": 0,
+      "status": "running_or_queued"
+    }
+  ],
+  "ExpA_started": false,
+  "ExpA_progress": null,
+  "partial_score_means_published": false
+}

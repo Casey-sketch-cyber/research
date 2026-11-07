@@ -94,4 +94,4 @@ Independent saved-layout audit: 384/384 valid, 0 score mismatches, exact unit/ho
 - [ ] Rerun the full pilot reference and size-dependent candidate affected by the search correction; check source means.
 - [ ] Reproject A and K; do not start formal A based on the superseded median rule.
 
-Reproduce: `python scripts/06_round2.py --mode prepare`; use the explicit mode/arm/worker/limit arguments in each run.json; then run `06_round2_budget_report.py`, `06_round2_audit.py`, `06_round2_status.py` and `06_round2_report.py --render` under `scripts/`.
+Reproduce: `python scripts/06_round2.py --mode prepare`; use the explicit mode/arm/worker/limit arguments in each run.json; then run `06_round2_budget_report.py`, `06_round2_audit.py`, `06_round2_status.py` and `06_round2_report.py --render` under `scripts/`. After the round-3 metadata addition, pass `--base-config-snapshot results/pilot/round3/benchmark_base_config.json` to the historical round-2 layout audit.

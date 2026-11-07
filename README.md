@@ -45,6 +45,10 @@ After each review, tell Codex: *"Pull, read `reviews/Gx_review.md`, address the 
 | G4 final package | not started |
 
 Current work is recorded in [G2 round-2 self-review](reports/G2_round2_self_review.md).
+The [round-3 implementation and dated status](reports/G2_round3_status.md) records
+the current conditional approval, fresh pilot, A/K projections and automatic
+continuation checks. The updated [Phase 7 checklist](reports/phase_07_expA.md)
+includes paired form/time decomposition and the later double-bed sensitivity.
 The wall-flush correction has been benchmarked on the unchanged 240 cases. The
 six hand-written witnesses and unconstrained mechanism comparisons now pass;
 unsuccessful development arms remain visible. The numerical suite passes 103
@@ -59,7 +63,9 @@ against the 300 s reference in both scopes. See the dated
 [progress snapshot](results/pilot/round2/progress_snapshot.json). A guarded Phase 7 runner exists
 but refuses to start without accepted current settings and a <=36-hour projection.
 Formal A, K and R remain unstarted; no FEA or population-level hypothesis conclusion
-is claimed. Literature screening remains due at G3. Uploads have been reauthorized; the current review package includes completed
+is claimed at the round-3 publication snapshot. A is configured to start when
+the fresh quality and runtime checks pass; its current execution state is in
+`results/pilot/round3/execution_status.json`. Literature screening remains due at G3. Uploads have been reauthorized; the current review package includes completed
 mechanism evidence, all 384 small-home layouts with hashes, and completed budget
 comparisons. Fresh full-pilot source-quality checks and A/K runtime projections
 remain required after the search corrections. The pilot refresh has started;

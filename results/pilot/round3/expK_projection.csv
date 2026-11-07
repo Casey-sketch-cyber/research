@@ -1,0 +1,5 @@
+scope,total_solves,projected_hours_with_margin,within_48h
+also_drop_H3,22606,394.22595686536675,False
+drop_wardrobe_frontage,33909,591.3389352980502,False
+exploratory_8_kits_30_train_15_holdout_15_real_H1_H2,2360,41.15603194737085,True
+full_grid,74049,1291.340258335112,False

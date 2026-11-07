@@ -1,0 +1,359 @@
+{
+  "unit_key": "D2:08f1c19ec3fae64971ce",
+  "source": "D2",
+  "nia_m2": 48.77537904078996,
+  "furnishable_area_m2": 38.16049361730741,
+  "household": "H2_single_remote_worker",
+  "strategy": "S0",
+  "algorithm": "cp_sat",
+  "resolution_m": 0.1,
+  "items": [
+    {
+      "instance_id": "single_bed#1",
+      "type": "single_bed",
+      "x": 1.8,
+      "y": 0.2,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "sofa_2#1",
+      "type": "sofa_2",
+      "x": 6.2,
+      "y": 0.2,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "dining_table_4#1",
+      "type": "dining_table_4",
+      "x": 0.0,
+      "y": 2.0,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "desk#1",
+      "type": "desk",
+      "x": 7.8,
+      "y": 0.2,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    }
+  ],
+  "service": {
+    "normal": {
+      "night": [
+        {
+          "demand_id": "normal:night:0",
+          "need": "sleep_1",
+          "by": [
+            "single_bed#1"
+          ]
+        }
+      ],
+      "morning": [
+        {
+          "demand_id": "normal:morning:0",
+          "need": "storage",
+          "by": []
+        },
+        {
+          "demand_id": "normal:morning:1",
+          "need": "dine_2",
+          "by": [
+            "dining_table_4#1"
+          ]
+        }
+      ],
+      "day": [
+        {
+          "demand_id": "normal:day:0",
+          "need": "work_1",
+          "by": [
+            "desk#1"
+          ]
+        }
+      ],
+      "evening": [
+        {
+          "demand_id": "normal:evening:0",
+          "need": "lounge_1",
+          "by": [
+            "sofa_2#1"
+          ]
+        }
+      ],
+      "dinner": [
+        {
+          "demand_id": "normal:dinner:0",
+          "need": "dine_2",
+          "by": [
+            "dining_table_4#1"
+          ]
+        }
+      ],
+      "leisure": [
+        {
+          "demand_id": "normal:leisure:0",
+          "need": "lounge_1",
+          "by": [
+            "sofa_2#1"
+          ]
+        }
+      ]
+    }
+  },
+  "config_hash": "e75a3caa30b4758de8b9bd1e136d66100365d24b4e6519c3ce226c61dee6a70b",
+  "fci": 0.9230769230769231,
+  "fci_by_variant": {
+    "normal": 0.9230769230769231
+  },
+  "tb": 0.0,
+  "served_hours": 24.0,
+  "demanded_hours": 26.0,
+  "served_hours_by_variant": {
+    "normal": 24.0
+  },
+  "pass": true,
+  "violations": [],
+  "credits": {
+    "normal:night:0": 1.0,
+    "normal:morning:0": 0.0,
+    "normal:morning:1": 1.0,
+    "normal:day:0": 1.0,
+    "normal:evening:0": 1.0,
+    "normal:dinner:0": 1.0,
+    "normal:leisure:0": 1.0
+  },
+  "unreachable_items": [],
+  "greedy": {
+    "algorithm": "service-density/service/footprint portfolio",
+    "fci": 0.9230769230769231,
+    "first_positive_s": 0.021380729973316193,
+    "validated_trials": 376,
+    "arms": [
+      {
+        "validated_trials": 126,
+        "first_positive_s": 0.021379433572292328,
+        "fci": 0.5,
+        "algorithm": "service_density / first improving feasible wall-adjacent pose"
+      },
+      {
+        "validated_trials": 127,
+        "first_positive_s": 0.02037682570517063,
+        "fci": 0.8076923076923077,
+        "algorithm": "service / first improving feasible wall-adjacent pose"
+      },
+      {
+        "validated_trials": 123,
+        "first_positive_s": 0.021125778555870056,
+        "fci": 0.9230769230769231,
+        "algorithm": "footprint / first improving feasible wall-adjacent pose"
+      }
+    ]
+  },
+  "validator": {
+    "fci": 0.9230769230769231,
+    "fci_by_variant": {
+      "normal": 0.9230769230769231
+    },
+    "served_hours_by_variant": {
+      "normal": 24.0
+    },
+    "served_hours": 24.0,
+    "demanded_hours": 26.0,
+    "tb": 0.0,
+    "pass": true,
+    "violations": [],
+    "credits": {
+      "normal:night:0": 1.0,
+      "normal:morning:0": 0.0,
+      "normal:morning:1": 1.0,
+      "normal:day:0": 1.0,
+      "normal:evening:0": 1.0,
+      "normal:dinner:0": 1.0,
+      "normal:leisure:0": 1.0
+    },
+    "unreachable_items": []
+  },
+  "solver": {
+    "status": "TIMEOUT_WITH_INCUMBENT",
+    "last_search_status": "UNKNOWN",
+    "time_s": 30.002823213115335,
+    "build_time_s": 4.537116203457117,
+    "objective": 129982.0,
+    "bound": 130000.0,
+    "first_valid_time_s": 0.04284628480672836,
+    "greedy_time_s": 4.480596877634525,
+    "greedy_fci": 0.9230769230769231,
+    "geometric_cuts": 96,
+    "reach_iterations": 6,
+    "fci_solver": 0.9230769230769231,
+    "raw_last_model_fci": 1.0,
+    "objective_bound_scope": "last solution-bearing raw CP-SAT search; may differ from retained validated layout",
+    "retained_previous_incumbent": false,
+    "trace": [
+      {
+        "status": "FEASIBLE",
+        "model_fci": 1.0,
+        "validator_fci": 0.0,
+        "reachability_failures": 23,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:day:1",
+          "fixed_service_unreachable:normal:day:2",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:dinner:1",
+          "fixed_service_unreachable:normal:dinner:2",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:evening:1",
+          "fixed_service_unreachable:normal:evening:2",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:leisure:1",
+          "fixed_service_unreachable:normal:leisure:2",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:morning:1",
+          "fixed_service_unreachable:normal:morning:2",
+          "fixed_service_unreachable:normal:night:0",
+          "fixed_service_unreachable:normal:night:1",
+          "fixed_service_unreachable:normal:night:2"
+        ],
+        "stopped_at_primary_bound": true
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 1.0,
+        "validator_fci": 0.0,
+        "reachability_failures": 25,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:day:1",
+          "fixed_service_unreachable:normal:day:2",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:dinner:1",
+          "fixed_service_unreachable:normal:dinner:2",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:evening:1",
+          "fixed_service_unreachable:normal:evening:2",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:leisure:1",
+          "fixed_service_unreachable:normal:leisure:2",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:morning:1",
+          "fixed_service_unreachable:normal:morning:2",
+          "fixed_service_unreachable:normal:night:0",
+          "fixed_service_unreachable:normal:night:1",
+          "fixed_service_unreachable:normal:night:2"
+        ],
+        "stopped_at_primary_bound": true
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 1.0,
+        "validator_fci": 0.0,
+        "reachability_failures": 24,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:day:1",
+          "fixed_service_unreachable:normal:day:2",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:dinner:1",
+          "fixed_service_unreachable:normal:dinner:2",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:evening:1",
+          "fixed_service_unreachable:normal:evening:2",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:leisure:1",
+          "fixed_service_unreachable:normal:leisure:2",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:morning:1",
+          "fixed_service_unreachable:normal:morning:2",
+          "fixed_service_unreachable:normal:night:0",
+          "fixed_service_unreachable:normal:night:1",
+          "fixed_service_unreachable:normal:night:2"
+        ],
+        "stopped_at_primary_bound": true
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 1.0,
+        "validator_fci": 0.0,
+        "reachability_failures": 24,
+        "validator_violations": [
+          "fixed_service_unreachable:normal:day:0",
+          "fixed_service_unreachable:normal:day:1",
+          "fixed_service_unreachable:normal:day:2",
+          "fixed_service_unreachable:normal:dinner:0",
+          "fixed_service_unreachable:normal:dinner:1",
+          "fixed_service_unreachable:normal:dinner:2",
+          "fixed_service_unreachable:normal:evening:0",
+          "fixed_service_unreachable:normal:evening:1",
+          "fixed_service_unreachable:normal:evening:2",
+          "fixed_service_unreachable:normal:leisure:0",
+          "fixed_service_unreachable:normal:leisure:1",
+          "fixed_service_unreachable:normal:leisure:2",
+          "fixed_service_unreachable:normal:morning:0",
+          "fixed_service_unreachable:normal:morning:1",
+          "fixed_service_unreachable:normal:morning:2",
+          "fixed_service_unreachable:normal:night:0",
+          "fixed_service_unreachable:normal:night:1",
+          "fixed_service_unreachable:normal:night:2"
+        ],
+        "stopped_at_primary_bound": true
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 25.810491060838103,
+        "reachability_failures": null
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 4.189494084566832,
+        "elapsed_s": 30.002817399799824,
+        "reachability_failures": null
+      }
+    ],
+    "primary_upper_bound": 1.0,
+    "window_tiebreak_optimized": false,
+    "encoding": "configured anchor tables + optional rectangle intervals + guarded geometric frontier cuts"
+  },
+  "code_hash": "21c8cc38317c527075edf93987f9eec0237493ba789367910c6ffd03c852cea8"
+}

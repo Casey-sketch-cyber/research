@@ -34,13 +34,18 @@ def solve_job(job):
     return driver.solve_triplet(job)
 
 
-def check_selection(selection: dict, numerical_hash: str):
+def check_selection(selection: dict, numerical_hash: str, base_hash: str | None = None,
+                    benchmark_hash: str | None = None):
     """Reject an unreviewed or stale production setting, even on resume."""
     for key in ("accepted", "mechanism_pass", "source_quality_pass", "small_quality_pass"):
         if selection.get(key) is not True:
             raise ValueError("Round-2 acceptance missing: "+key)
     if selection.get("numerical_hash") != numerical_hash:
         raise ValueError("Production selection predates the current numerical implementation")
+    if base_hash is not None and selection.get("base_config_hash") != base_hash:
+        raise ValueError("Production configuration changed after acceptance")
+    if benchmark_hash is not None and selection.get("benchmark_driver_hash") != benchmark_hash:
+        raise ValueError("Validated benchmark driver changed after acceptance")
     if not 0 < selection.get("projected_expA_hours", float("inf")) <= 36:
         raise ValueError("Experiment A must fit the reviewed 36-hour projection")
     if selection.get("small_nia_max_m2") != 20:
@@ -51,6 +56,11 @@ def check_selection(selection: dict, numerical_hash: str):
             raise ValueError("Unbenchmarked production parameters")
         if arm["time_limit_s"] not in (30, 60, 120, 300):
             raise ValueError("Unbenchmarked time limit")
+    if selection["small"] != dict(num_workers=4, time_limit_s=120, anchor_stride_m=.1):
+        raise ValueError("Round-3 small-home setting must remain 4 workers / 120 s / full anchors")
+    if selection["large"] not in (dict(num_workers=1, time_limit_s=30, anchor_stride_m=.2),
+                                  dict(num_workers=2, time_limit_s=60, anchor_stride_m=.2)):
+        raise ValueError("Large-home setting is neither the reviewed setting nor its fallback")
 
 
 def main():
@@ -67,7 +77,8 @@ def main():
     selection = json.loads(selection_path.read_text())
     round2 = load_driver("scripts/06_round2.py", "round2_signature")
     numerical = round2.code_hash()
-    check_selection(selection, numerical)
+    revision = load_driver("scripts/06_revision.py", "revision_signature")
+    check_selection(selection, numerical, config_hash(config), revision.signature())
     sample_path = Path(selection.get("sample_path", "results/corpus/expA_sample.csv"))
     sample = pd.read_csv(sample_path)
     sample_hash = hashlib.sha256(sample_path.read_bytes()).hexdigest()
@@ -93,6 +104,9 @@ def main():
     if (cache/"run.json").exists() and json.loads((cache/"run.json").read_text()) != manifest:
         raise ValueError("Existing run fingerprint differs; do not mix results")
     write_json(cache/"run.json", manifest)
+    output = Path("results/expA")
+    output.mkdir(parents=True, exist_ok=True)
+    write_json(output/"run.json", {**manifest, "cache": cache.as_posix(), "status": "running"})
     rows, timing = [], []
     for group in ("small", "large"):
         settings = selection[group]
@@ -120,7 +134,9 @@ def main():
                         job = next(jobs, None)
                         if job is not None:
                             active.add(pool.submit(solve_job, job))
-                    write_json(cache/"progress.json", dict(completed_cases=len(rows), expected_cases=manifest["expected_cases"], group=group))
+                    progress = dict(completed_cases=len(rows), expected_cases=manifest["expected_cases"], group=group)
+                    write_json(cache/"progress.json", progress)
+                    write_json(output/"progress.json", progress)
         timing.append(dict(group=group, wall_time_s=time.perf_counter()-started,
                            prior_checkpoints=before, concurrency=concurrency, num_workers=settings["num_workers"]))
     result = pd.DataFrame(rows).sort_values(["unit_key", "household", "strategy"])
@@ -131,7 +147,7 @@ def main():
     output = Path("results/expA")
     output.mkdir(parents=True, exist_ok=True)
     result.to_csv(output/"solutions.csv", index=False)
-    write_json(output/"run.json", {**manifest, "timing": timing, "cache": cache.as_posix()})
+    write_json(output/"run.json", {**manifest, "timing": timing, "cache": cache.as_posix(), "status": "complete"})
     zero = (result.fci_validator <= 1e-9)
     acceptance = dict(completed_cases=len(result), expected_cases=manifest["expected_cases"],
         invalid_cases=int((~result.validator_pass).sum()), zero_service_cases=int(zero.sum()),

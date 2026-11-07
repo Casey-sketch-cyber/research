@@ -1,0 +1,13 @@
+{
+  "targeted_tests_passed": 18,
+  "numerical_solver_changed": false,
+  "formal_results_available": false,
+  "scope": [
+    "round3_acceptance",
+    "round3_continuation",
+    "paired_decomposition",
+    "expA_launch_guards"
+  ],
+  "F4b_renderer_visually_checked": true,
+  "renderer_evidence": "completed pilot pairs; private diagnostic output only"
+}
