@@ -1,5 +1,5 @@
 {
-  "observed_at_utc": "2026-11-07T10:08:53+00:00",
+  "observed_at_utc": "2026-11-07T13:22:18+00:00",
   "execution": {
     "stage": "running_expA",
     "observed_at_utc": "2026-11-07T08:43:54+00:00",
@@ -32,7 +32,7 @@
   ],
   "ExpA_started": true,
   "ExpA_progress": {
-    "completed_cases": 534,
+    "completed_cases": 1554,
     "expected_cases": 32904,
     "group": "small"
   },

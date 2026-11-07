@@ -20,21 +20,19 @@ Still uncalibrated:
 | D_R_HK                | reuse A layouts where applicable; R reproduction and kit-HK extensions need their own checks |
 | analysis_and_delivery | FEA/adequacy/bootstrap analysis, literature, figures, rendering and review revisions         |
 
-## Provisional remaining delivery schedule
+## Remaining experimental compute time
 
-Using the dated A progress snapshot, the remaining quantified solve budget is 103.274 h (4.303 days). This uses the accepted pilot projection, not a linear extrapolation from early cases.
+Using the dated A progress snapshot, the remaining quantified solve budget is 100.079 h (4.170 days). This uses the accepted pilot projection, not a linear extrapolation from early cases.
 
-The following are explicit, unmeasured engineering planning allowances for work outside those solves, based on the remaining Phase 7–12 task list:
+| experiment            |   remaining_hours | basis                                                                                          |
+|:----------------------|------------------:|:-----------------------------------------------------------------------------------------------|
+| A                     |            21.464 | measured pilot mean costs; conditional on quality acceptance                                   |
+| A2                    |            37.459 | all selected small units, H3/H4, S0/S1/S2; full 120 s cap plus pilot overhead, not measured A2 |
+| K_reduced_exploratory |            41.156 | active planned scope at 120 s cap plus pilot overhead, not measured K                          |
 
-| work                                                  |   low_days |   high_days |
-|:------------------------------------------------------|-----------:|------------:|
-| A metrics, statistical analysis and validation        |        0.5 |         1.0 |
-| B algorithm implementation and comparisons            |        0.5 |         1.0 |
-| other sensitivities plus D/R analysis                 |        1.0 |         2.0 |
-| C surrogate models and HK scenario                    |        1.0 |         2.0 |
-| remaining literature, figures, renders and package QA |        2.0 |         3.0 |
+D-40 withdraws the earlier 10–14-day calendar ETA as an active forecast: it included an unmeasured 5–9-day development/analysis reserve and was not experimental compute time. No fixed analysis-day surcharge is added here. Prepare analysis and figures alongside runs when resources and completed evidence permit, while retaining validation.
 
-Provisional planning range for a complete package ready for review: about **10–14 further days**. This assumes continuous execution and active implementation, the reduced K scope, and no major methodological rework. External review waiting, author writing and submission are excluded. It is a planning allowance, not a measured total runtime or promised completion date.
+The subtotal covers A, A2 and reduced K only. Algorithm comparisons, surrogate training and other sensitivities still need runtime calibration; the complete experimental total remains unknown. Statistical D/R/HK work reuses A results where valid. Do not present the subtotal as a promise that every experiment will finish within that time.
 
 Do not interpret this partial subtotal as the whole project's delivery date. Actual early stopping can shorten solves, while changed parametric domains, implementation, failures and review can extend the calendar. K's reduced scope is exploratory, with limited household and design-grid coverage; report those limits.
 

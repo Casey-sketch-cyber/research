@@ -1,6 +1,6 @@
 # G2 round-3 implementation and status
 
-Observed: 2026-11-07T10:08:53+00:00
+Observed: 2026-11-07T13:22:18+00:00
 
 The reviewer conditionally approves Phase 7. The author requests implementing this review. Main runs keep the two-side double-bed clearances; the approved one-side variant is A2 only. Review files are unchanged.
 

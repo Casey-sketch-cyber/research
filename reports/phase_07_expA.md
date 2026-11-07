@@ -96,9 +96,9 @@ Formal A outputs are not supplied by this acceptance report. A1 analysis require
 <!-- EXPA_PROGRESS_BEGIN -->
 ## Dated formal-run progress
 
-Observed 2026-11-07T10:08:51+00:00; run began 2026-11-07T08:43:57+00:00.
+Observed 2026-11-07T13:20:32+00:00; run began 2026-11-07T08:43:57+00:00.
 
-Status: running. Completed solve cases: 534/32904 (1.62%). Active group: small, 534/4296 cases. Elapsed: 1.415 h. These are completion counts, not a final all-layouts-pass acceptance.
+Status: running. Completed solve cases: 1548/32904 (4.70%). Active group: small, 1548/4296 cases. Elapsed: 4.610 h. These are completion counts, not a final all-layouts-pass acceptance.
 
 The accepted prior A projection is 26.074 h. The case prefix is not representative of the remaining workload; do not convert its overall completion percentage into a linear ETA. No partial score means or final research conclusions are reported.
 <!-- EXPA_PROGRESS_END -->

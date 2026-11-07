@@ -54,6 +54,9 @@ The [execution budget](reports/COMPUTE_BUDGET.md)
 separates pilot-calibrated estimates, full-cap workload projections and work that
 has not yet been timed. The reduced exploratory K scope requires a frozen grid
 and a confirming runtime pilot; the main experiments are unchanged.
+The budget now reports experimental compute time only. The earlier calendar ETA
+with an unmeasured analysis/development reserve is retired; uncalibrated experiments
+remain explicit rather than receiving arbitrary extra days.
 The wall-flush correction has been benchmarked on the unchanged 240 cases. The
 six hand-written witnesses and unconstrained mechanism comparisons now pass;
 unsuccessful development arms remain visible. The numerical suite passes 103

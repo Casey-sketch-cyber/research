@@ -54,63 +54,49 @@
   ],
   "complete_total_hours": null,
   "current_A_progress": {
-    "observed_at_utc": "2026-11-07T10:08:51+00:00",
+    "observed_at_utc": "2026-11-07T13:20:32+00:00",
     "run_started_at_utc": "2026-11-07T08:43:57+00:00",
     "status": "running",
-    "completed_cases": 534,
+    "completed_cases": 1548,
     "expected_cases": 32904,
-    "completion_fraction": 0.016229029905178702,
+    "completion_fraction": 0.047045951859956234,
     "active_group": "small",
-    "group_completed_cases": 534,
+    "group_completed_cases": 1548,
     "group_expected_cases": 4296,
-    "elapsed_wall_hours": 1.4152226872222222,
+    "elapsed_wall_hours": 4.609782307222222,
     "prior_projected_total_hours": 26.073872591717187,
     "resumed_since_initial_observation": false,
     "final_validation_acceptance_pending": true,
-    "remaining_hours_relative_to_prior_projection": 24.658649904494965,
+    "remaining_hours_relative_to_prior_projection": 21.464090284494965,
     "numerical_code_hash": "b92c31ca595906ef1d9dc66760aa1d16ae2224a003fec89468c7f5de7cee551e",
     "source_quality_pass": true,
     "small_quality_pass": true,
     "partial_score_means_published": false,
     "estimate_limit": "Subtracts elapsed time from the accepted pilot budget; it is not a live throughput ETA. Cases are ordered by size/source and early fractions cannot be linearly extrapolated."
   },
-  "remaining_quantified_hours": 103.27364652260844,
-  "unmeasured_engineering_planning_allowances": [
+  "remaining_quantified_hours": 100.07908690260845,
+  "remaining_quantified_experiments": [
     {
-      "work": "A metrics, statistical analysis and validation",
-      "low_days": 0.5,
-      "high_days": 1.0
+      "experiment": "A",
+      "remaining_hours": 21.464090284494965,
+      "basis": "measured pilot mean costs; conditional on quality acceptance"
     },
     {
-      "work": "B algorithm implementation and comparisons",
-      "low_days": 0.5,
-      "high_days": 1.0
+      "experiment": "A2",
+      "remaining_hours": 37.458964670742624,
+      "basis": "all selected small units, H3/H4, S0/S1/S2; full 120 s cap plus pilot overhead, not measured A2"
     },
     {
-      "work": "other sensitivities plus D/R analysis",
-      "low_days": 1.0,
-      "high_days": 2.0
-    },
-    {
-      "work": "C surrogate models and HK scenario",
-      "low_days": 1.0,
-      "high_days": 2.0
-    },
-    {
-      "work": "remaining literature, figures, renders and package QA",
-      "low_days": 2.0,
-      "high_days": 3.0
+      "experiment": "K_reduced_exploratory",
+      "remaining_hours": 41.15603194737085,
+      "basis": "active planned scope at 120 s cap plus pilot overhead, not measured K"
     }
   ],
-  "provisional_remaining_calendar_days": [
-    9.303068605108685,
-    13.303068605108685
-  ],
-  "rounded_planning_days": [
-    10,
-    14
-  ],
-  "planning_conditions": "Continuous execution and active implementation, reduced K scope, no major methodological rework. External reviewer waiting, author writing and submission are excluded. Allowances are judgement, not benchmark evidence or a delivery guarantee.",
+  "runtime_scope": "experimental compute only; no fixed development/analysis/review calendar reserve",
+  "unmeasured_engineering_planning_allowances": [],
+  "provisional_remaining_calendar_days": null,
+  "rounded_planning_days": null,
+  "retired_calendar_estimate": "The earlier 10–14-day calendar estimate included an unmeasured 5–9-day engineering reserve. It was not experiment runtime and is withdrawn as an active ETA (D-40).",
   "assumptions": "Same current concurrency; serial allocation of the same compute budget. Not a minimum, hard upper bound or promised delivery date. No overlap deducted. Optional tasks and review delays are not quantified.",
   "K_runtime_pilot_required": true
 }
