@@ -37,3 +37,4 @@ Codex adds questions here between gates, each with the default assumption it is 
 
 - Q-20 (2026-11-07): The full K workload does not fit the two-day time box under the new small-home solve budget. `results/pilot/round3/expK_projection.csv` and the generated `G2_round3_status.md` report the full grid, the first prescribed reductions, and a smaller exploratory option. K remains unstarted; candidate-grid and sample reductions must be frozen before any K search. A continues independently if its own acceptance conditions pass.
 - Historical Q-19's upload pause was superseded by D-32. Sanitized publication is authorized.
+- Q-20 update (D-37, 2026-11-07): the author permits K to exceed two days. Preserve the planned full scope; a confirming K runtime pilot remains necessary. The reduced scopes are historical options rather than required fallbacks. See `COMPUTE_BUDGET.md` for the quantified subtotal and uncalibrated work.

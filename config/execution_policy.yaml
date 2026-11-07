@@ -1,0 +1,8 @@
+# Execution-only author decisions. This file does not alter solver inputs.
+K_kit_design:
+  two_day_limit_enforced: false
+  replacement_deadline_days: null
+  preserve_planned_full_scope: true
+  require_runtime_pilot: true
+  decision: D-37
+  note: "Author permits K to exceed two days. No replacement deadline was specified. Retain the planned scope and calibrate the full workload with a K pilot before the large run."

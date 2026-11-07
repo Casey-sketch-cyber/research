@@ -1,6 +1,6 @@
 # G2 round-3 implementation and status
 
-Observed: 2026-11-07T08:13:18+00:00
+Observed: 2026-11-07T08:24:03+00:00
 
 The reviewer conditionally approves Phase 7. The author requests implementing this review. Main runs keep the two-side double-bed clearances; the approved one-side variant is A2 only. Review files are unchanged.
 
@@ -10,7 +10,7 @@ The reviewer conditionally approves Phase 7. The author requests implementing th
 |:-----------------------------|-----------------:|--------------------:|----------------------------:|:------------------|
 | refresh_large_w1_s20_t30     |              240 |                 240 |                         240 | complete          |
 | refresh_small_w4_s10_t120    |               36 |                  36 |                          36 | complete          |
-| refresh_reference_w8_s10_t60 |              240 |                 123 |                           0 | running_or_queued |
+| refresh_reference_w8_s10_t60 |              240 |                 165 |                           0 | running_or_queued |
 
 Execution stage: `waiting_for_reference`. Formal A has not started at this snapshot. Checkpoints are not completed-arm acceptance. No partial score means are reported.
 
@@ -29,7 +29,7 @@ K uses the approved 120 s small-home budget, including full S0/S1/S2 evaluations
 | exploratory_8_kits_30_train_15_holdout_15_real_H1_H2 |           2360 |                        41.156 | True         |
 | full_grid                                            |          74049 |                      1291.340 | False        |
 
-K has not started. The full grid and the first two prescribed reductions still exceed 48 h. The reduced exploratory option is a proposal requiring a frozen candidate grid and a confirming K pilot; it is not a selected scope. Per-solve budgets are not shortened.
+K has not started. D-37 waives the two-day limit; the planned full grid and per-solve budgets are retained. A K pilot must calibrate actual costs. The smaller-scope rows are historical alternatives, not selected changes.
 
 ## Implementation and remaining work
 

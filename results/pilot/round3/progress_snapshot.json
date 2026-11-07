@@ -1,5 +1,5 @@
 {
-  "observed_at_utc": "2026-11-07T08:13:18+00:00",
+  "observed_at_utc": "2026-11-07T08:24:03+00:00",
   "execution": {
     "stage": "waiting_for_reference",
     "observed_at_utc": "2026-11-07T08:01:42+00:00",
@@ -24,7 +24,7 @@
     {
       "arm": "refresh_reference_w8_s10_t60",
       "expected_cases": 240,
-      "saved_checkpoints": 123,
+      "saved_checkpoints": 165,
       "completed_validated_cases": 0,
       "status": "running_or_queued"
     }

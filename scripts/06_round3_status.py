@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 import pandas as pd
+import yaml
 
 from fea.io import prepare_cli, start_run, write_json
 
@@ -44,6 +45,8 @@ def main():
         projection_path = root/"expA_provisional_projection.json"
     projection = json.loads(projection_path.read_text())
     kp = json.loads((root/"expK_projection.json").read_text())
+    policy_path = Path("config/execution_policy.yaml")
+    policy = yaml.safe_load(policy_path.read_text())["K_kit_design"] if policy_path.exists() else {}
     phase_status = "Formal A has started; see its run/progress records." if formal_started else "Formal A has not started at this snapshot."
     text = ["# G2 round-3 implementation and status", "", "Observed: "+observed, "",
         "The reviewer conditionally approves Phase 7. The author requests implementing this review. Main runs keep the two-side double-bed clearances; the approved one-side variant is A2 only. Review files are unchanged.", "",
@@ -54,7 +57,9 @@ def main():
         f"A under the measured candidate setting: {projection['retained_hours']:.6f} projected hours including 15% margin; caps: {json.dumps(projection['caps'])}. This remains conditional on the hybrid quality comparison. Source/size cost calibration is in `expA_cost_calibration.csv`; absent small-source pilot cells use the full solve cap plus observed overrun.", "",
         "K uses the approved 120 s small-home budget, including full S0/S1/S2 evaluations for the time effect. The table is a conservative workload projection, not observed K runtime:", "",
         pd.DataFrame(kp["options"]).to_markdown(index=False, floatfmt=".3f"), "",
-        "K has not started. The full grid and the first two prescribed reductions still exceed 48 h. The reduced exploratory option is a proposal requiring a frozen candidate grid and a confirming K pilot; it is not a selected scope. Per-solve budgets are not shortened.", "",
+        ("K has not started. D-37 waives the two-day limit; the planned full grid and per-solve budgets are retained. A K pilot must calibrate actual costs. The smaller-scope rows are historical alternatives, not selected changes."
+         if not policy.get("two_day_limit_enforced", True) else
+         "K has not started. The full grid and the first two prescribed reductions still exceed 48 h. The reduced exploratory option is a proposal requiring a frozen candidate grid and a confirming K pilot; it is not a selected scope. Per-solve budgets are not shortened."), "",
         "## Implementation and remaining work", "",
         f"- {check['targeted_tests_passed']} targeted acceptance, continuation, launch-guard and paired-statistics tests pass. Numerical solver logic is unchanged.",
         "- A1 is implemented: paired form/time/total effects, S2>S1 shares, household × 2 m²-bin means, 1,000 unit-bootstrap resamples and 95% intervals. Source-specific tables accompany pooled tables. Single-unit bins have no CI. F4b uses stacked effects and separate form/total intervals; time intervals are in the table.",

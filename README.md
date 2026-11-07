@@ -49,6 +49,9 @@ The [round-3 implementation and dated status](reports/G2_round3_status.md) recor
 the current conditional approval, fresh pilot, A/K projections and automatic
 continuation checks. The updated [Phase 7 checklist](reports/phase_07_expA.md)
 includes paired form/time decomposition and the later double-bed sensitivity.
+The author has waived K's two-day cap. The [execution budget](reports/COMPUTE_BUDGET.md)
+separates pilot-calibrated estimates, full-cap workload projections and work that
+has not yet been timed; the planned full K scope is retained.
 The wall-flush correction has been benchmarked on the unchanged 240 cases. The
 six hand-written witnesses and unconstrained mechanism comparisons now pass;
 unsuccessful development arms remain visible. The numerical suite passes 103

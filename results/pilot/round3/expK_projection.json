@@ -1,6 +1,17 @@
 {
   "full_scope_hours": 1291.340258335112,
   "full_scope_within_48h": false,
+  "two_day_limit_enforced": false,
+  "planned_full_scope_retained": true,
+  "runtime_pilot_pending": true,
+  "execution_policy": {
+    "two_day_limit_enforced": false,
+    "replacement_deadline_days": null,
+    "preserve_planned_full_scope": true,
+    "require_runtime_pilot": true,
+    "decision": "D-37",
+    "note": "Author permits K to exceed two days. No replacement deadline was specified. Retain the planned scope and calibrate the full workload with a K pilot before the large run."
+  },
   "options": [
     {
       "scope": "also_drop_H3",

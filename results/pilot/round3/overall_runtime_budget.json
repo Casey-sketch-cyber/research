@@ -1,0 +1,55 @@
+{
+  "quantified_budgets": [
+    {
+      "experiment": "A",
+      "solves": 32904,
+      "hours": 26.073872591717187,
+      "basis": "measured pilot mean costs; conditional on quality acceptance"
+    },
+    {
+      "experiment": "A2",
+      "solves": 2148,
+      "hours": 37.458964670742624,
+      "basis": "all selected small units, H3/H4, S0/S1/S2; full 120 s cap plus pilot overhead, not measured A2"
+    },
+    {
+      "experiment": "K_full",
+      "solves": 74049,
+      "hours": 1291.340258335112,
+      "basis": "planned full grid at 120 s cap plus pilot overhead, not measured K"
+    }
+  ],
+  "quantified_subtotal_hours": 1354.8730955975718,
+  "quantified_subtotal_days_at_continuous_execution": 56.453045649898826,
+  "margin_included": 0.15,
+  "still_uncalibrated": [
+    {
+      "experiment": "B",
+      "scope": "200 pairs: footprint greedy, simulated annealing and CP-SAT; optional LLM separate",
+      "hours": null
+    },
+    {
+      "experiment": "other_sensitivities",
+      "scope": "drop-one items, clearance, walking width, raster resolution, solve budget and strict access",
+      "hours": null
+    },
+    {
+      "experiment": "C",
+      "scope": "four surrogate models and validation-only tuning; grids/runtime not yet calibrated",
+      "hours": null
+    },
+    {
+      "experiment": "D_R_HK",
+      "scope": "reuse A layouts where applicable; R reproduction and kit-HK extensions need their own checks",
+      "hours": null
+    },
+    {
+      "experiment": "analysis_and_delivery",
+      "scope": "FEA/adequacy/bootstrap analysis, literature, figures, rendering and review revisions",
+      "hours": null
+    }
+  ],
+  "complete_total_hours": null,
+  "assumptions": "Same current concurrency; serial allocation of the same compute budget. Not a minimum, hard upper bound or promised delivery date. No overlap deducted. Optional tasks and review delays are not quantified.",
+  "K_runtime_pilot_required": true
+}
