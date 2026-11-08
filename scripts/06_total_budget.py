@@ -79,7 +79,7 @@ def main():
         "Still uncalibrated:", "", pd.DataFrame(pending)[["experiment", "scope"]].to_markdown(index=False), "",
         "## Remaining experimental compute time", "",
         (f"Using the dated A progress snapshot, the remaining quantified solve budget is {remaining_quantified:.3f} h ({remaining_quantified/24:.3f} days). This uses the accepted pilot projection, not a linear extrapolation from early cases."
-         if remaining_quantified is not None else "A has exceeded the prior projection; a revised remaining solve estimate is required."), "",
+         if remaining_quantified is not None else "A has no usable remaining runtime estimate. A failed final acceptance requires a repair/revalidation budget; an overrun or resumed run also requires recalibration. No complete remaining subtotal is claimed."), "",
         pd.DataFrame(remaining_rows).to_markdown(index=False, floatfmt=".3f"), "",
         "D-40 withdraws the earlier 10–14-day calendar ETA as an active forecast: it included an unmeasured 5–9-day development/analysis reserve and was not experimental compute time. No fixed analysis-day surcharge is added here. Prepare analysis and figures alongside runs when resources and completed evidence permit, while retaining validation.", "",
         "The subtotal covers A, A2 and reduced K only. Algorithm comparisons, surrogate training and other sensitivities still need runtime calibration; the complete experimental total remains unknown. Statistical D/R/HK work reuses A results where valid. Do not present the subtotal as a promise that every experiment will finish within that time.", "",

@@ -1,0 +1,16 @@
+{
+  "completed_cases": 32904,
+  "expected_cases": 32904,
+  "invalid_cases": 1392,
+  "zero_service_cases": 1546,
+  "zero_service_rate": 0.04698516897641624,
+  "ordering_failures": 0,
+  "status_distribution": {
+    "FEASIBLE": 27206,
+    "TIMEOUT_WITH_INCUMBENT": 2706,
+    "STRUCTURAL_UNREACHABLE": 1392,
+    "OPTIMAL": 1257,
+    "FEASIBLE_ACCESS_ADJUSTED": 343
+  },
+  "passed": false
+}

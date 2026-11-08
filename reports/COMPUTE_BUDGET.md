@@ -22,11 +22,11 @@ Still uncalibrated:
 
 ## Remaining experimental compute time
 
-Using the dated A progress snapshot, the remaining quantified solve budget is 100.079 h (4.170 days). This uses the accepted pilot projection, not a linear extrapolation from early cases.
+A has no usable remaining runtime estimate. A failed final acceptance requires a repair/revalidation budget; an overrun or resumed run also requires recalibration. No complete remaining subtotal is claimed.
 
 | experiment            |   remaining_hours | basis                                                                                          |
 |:----------------------|------------------:|:-----------------------------------------------------------------------------------------------|
-| A                     |            21.464 | measured pilot mean costs; conditional on quality acceptance                                   |
+| A                     |           nan     | measured pilot mean costs; conditional on quality acceptance                                   |
 | A2                    |            37.459 | all selected small units, H3/H4, S0/S1/S2; full 120 s cap plus pilot overhead, not measured A2 |
 | K_reduced_exploratory |            41.156 | active planned scope at 120 s cap plus pilot overhead, not measured K                          |
 

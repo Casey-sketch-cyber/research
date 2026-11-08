@@ -41,6 +41,22 @@
     "K_runtime_pilot_pending": true
   },
   "automatic_publication": false,
+  "timing": [
+    {
+      "group": "small",
+      "wall_time_s": 78107.9102455657,
+      "prior_checkpoints": 0,
+      "concurrency": 3,
+      "num_workers": 4
+    },
+    {
+      "group": "large",
+      "wall_time_s": 13341.734438914806,
+      "prior_checkpoints": 0,
+      "concurrency": 14,
+      "num_workers": 1
+    }
+  ],
   "cache": "data/interim/expA/8cc6832f1b62_784106c2df49",
-  "status": "running"
+  "status": "complete"
 }

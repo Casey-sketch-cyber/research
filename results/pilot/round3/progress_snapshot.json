@@ -1,11 +1,26 @@
 {
-  "observed_at_utc": "2026-11-07T13:22:18+00:00",
+  "observed_at_utc": "2026-11-08T15:52:23+00:00",
   "execution": {
-    "stage": "running_expA",
-    "observed_at_utc": "2026-11-07T08:43:54+00:00",
+    "stage": "stopped_A_solve_acceptance_failed",
+    "observed_at_utc": "2026-11-08T10:08:07+00:00",
     "launch_expA_requested": true,
     "K_started": false,
-    "accepted": true
+    "acceptance": {
+      "completed_cases": 32904,
+      "expected_cases": 32904,
+      "invalid_cases": 1392,
+      "zero_service_cases": 1546,
+      "zero_service_rate": 0.04698516897641624,
+      "ordering_failures": 0,
+      "status_distribution": {
+        "FEASIBLE": 27206,
+        "TIMEOUT_WITH_INCUMBENT": 2706,
+        "STRUCTURAL_UNREACHABLE": 1392,
+        "OPTIMAL": 1257,
+        "FEASIBLE_ACCESS_ADJUSTED": 343
+      },
+      "passed": false
+    }
   },
   "pilot_arms": [
     {
@@ -32,9 +47,9 @@
   ],
   "ExpA_started": true,
   "ExpA_progress": {
-    "completed_cases": 1554,
+    "completed_cases": 32904,
     "expected_cases": 32904,
-    "group": "small"
+    "group": "large"
   },
   "partial_score_means_published": false
 }

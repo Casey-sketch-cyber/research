@@ -1,0 +1,63 @@
+{
+  "observed_at_utc": "2026-11-08T15:52:21+00:00",
+  "completed_at_utc": "2026-11-08T10:08:07+00:00",
+  "completion_timestamp_basis": "final run-manifest write time on the execution filesystem",
+  "completed_cases": 32904,
+  "expected_cases": 32904,
+  "selected_units": 2742,
+  "acceptance": {
+    "completed_cases": 32904,
+    "expected_cases": 32904,
+    "invalid_cases": 1392,
+    "zero_service_cases": 1546,
+    "zero_service_rate": 0.04698516897641624,
+    "ordering_failures": 0,
+    "status_distribution": {
+      "FEASIBLE": 27206,
+      "TIMEOUT_WITH_INCUMBENT": 2706,
+      "STRUCTURAL_UNREACHABLE": 1392,
+      "OPTIMAL": 1257,
+      "FEASIBLE_ACCESS_ADJUSTED": 343
+    },
+    "passed": false
+  },
+  "solve_group_wall_hours": 25.402679079022363,
+  "timing": [
+    {
+      "group": "small",
+      "wall_time_s": 78107.9102455657,
+      "prior_checkpoints": 0,
+      "concurrency": 3,
+      "num_workers": 4
+    },
+    {
+      "group": "large",
+      "wall_time_s": 13341.734438914806,
+      "prior_checkpoints": 0,
+      "concurrency": 14,
+      "num_workers": 1
+    }
+  ],
+  "failed_units": 116,
+  "failed_units_by_source": {
+    "D1": 105,
+    "D2": 11
+  },
+  "failures_per_unit_distribution": {
+    "12": 116
+  },
+  "all_failed_layouts_empty": true,
+  "all_failures_structural": true,
+  "all_violations_fixed_service_access": true,
+  "prior_connectivity_failed_units": 116,
+  "failed_unit_set_equals_prior_connectivity_failures": true,
+  "valid_zero_service_cases": 154,
+  "provenance": {
+    "results/expA/solutions.csv": "9a17959a449d507330a94c15849b17e9c313ba0c31ffa433130672d4f6d1ed79",
+    "results/expA/run.json": "928077c32bd673f7f70de7c3a3bcf075d44a33958460949d3f61447b1c64612c",
+    "results/expA/solve_acceptance.json": "f49cc72a8cd70c0e7e6b795458b6409d59b6516f398c2dcd0175100e2251037c",
+    "results/pilot/gap_connectivity_audit.csv": "f22f3a3179083c4c756be4d850c48a63333e159f8e2e9a6b46ba2fd6d5bdfade"
+  },
+  "disposition": "Retain failed acceptance and all cases; diagnose original geometry versus raster/access rules before correction or inference.",
+  "downstream_started": false
+}

@@ -39,3 +39,7 @@ Codex adds questions here between gates, each with the default assumption it is 
 - Historical Q-19's upload pause was superseded by D-32. Sanitized publication is authorized.
 - Q-20 update (D-37, 2026-11-07): the author permits K to exceed two days. Preserve the planned full scope; a confirming K runtime pilot remains necessary. The reduced scopes are historical options rather than required fallbacks. See `COMPUTE_BUDGET.md` for the quantified subtotal and uncalibrated work.
 - Current Q-20 resolution (D-38, superseding D-37): the author withdraws the full K grid and restores the prior two-day budget. Plan the reduced exploratory scope previously projected within that budget. Freeze its candidate grid and confirm runtime before execution; retain the original per-solve quality budgets and label its reduced coverage.
+
+## Formal A completion issue
+
+- Q-21 (2026-11-08): A completed its solves but failed final validation. The generated `expA_completion_audit.md` identifies empty-shell fixed-service-access failures and their exact match to the earlier full-sample connectivity record. The launch gate omitted resolution of that record. Preserve all outputs and the failed acceptance; investigate original geometry versus conversion/raster/access rules before proposing a correction. Do not silently drop these units or relax validation. A1, A2 and K remain unstarted; repair/revalidation runtime is not yet calibrated.

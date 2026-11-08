@@ -28,7 +28,9 @@ def main():
             code_hash=manifest["code_hash"]))
     metadata = json.loads(marker.read_text())
     assert metadata["code_hash"] == manifest["code_hash"]
-    elapsed = (observed-datetime.fromisoformat(metadata["run_started_at_utc"])).total_seconds()/3600
+    complete = manifest.get("status") == "complete"
+    ended = datetime.fromtimestamp((root/"run.json").stat().st_mtime, timezone.utc) if complete else observed
+    elapsed = (ended-datetime.fromisoformat(metadata["run_started_at_utc"])).total_seconds()/3600
     expected = manifest["expected_cases"]
     completed = progress["completed_cases"]
     assert 0 <= completed <= expected
@@ -39,15 +41,20 @@ def main():
     group_expected = small_cases if group == "small" else expected-small_cases
     group_completed = completed if group == "small" else completed-small_cases
     prior = selection["projected_expA_hours"]
-    complete = manifest.get("status") == "complete"
+    acceptance_path = root/"solve_acceptance.json"
+    acceptance = json.loads(acceptance_path.read_text()) if acceptance_path.exists() else None
     resumed = abs(run_mtime-metadata["initial_manifest_mtime"]) > 1.5
-    remaining = 0. if complete else prior-elapsed if prior > elapsed and not resumed else None
+    remaining = (0. if acceptance and acceptance["passed"] else None) if complete else prior-elapsed if prior > elapsed and not resumed else None
     record = dict(observed_at_utc=observed.isoformat(timespec="seconds"),
         run_started_at_utc=metadata["run_started_at_utc"], status=manifest.get("status"),
         completed_cases=completed, expected_cases=expected, completion_fraction=completed/expected,
         active_group=group, group_completed_cases=group_completed, group_expected_cases=group_expected,
         elapsed_wall_hours=elapsed, prior_projected_total_hours=prior,
-        resumed_since_initial_observation=resumed, final_validation_acceptance_pending=not (root/"solve_acceptance.json").exists(),
+        resumed_since_initial_observation=resumed, final_validation_acceptance_pending=acceptance is None,
+        final_validation_acceptance_passed=acceptance["passed"] if acceptance else None,
+        completed_at_utc=ended.isoformat(timespec="seconds") if complete else None,
+        completion_timestamp_basis="final execution run-manifest write time" if complete else None,
+        repair_runtime_pending=bool(complete and acceptance and not acceptance["passed"]),
         remaining_hours_relative_to_prior_projection=remaining,
         numerical_code_hash=manifest["numerical_hash"], source_quality_pass=selection["source_quality_pass"],
         small_quality_pass=selection["small_quality_pass"], partial_score_means_published=False,
@@ -56,6 +63,7 @@ def main():
     section = ["<!-- EXPA_PROGRESS_BEGIN -->", "## Dated formal-run progress", "",
         f"Observed {record['observed_at_utc']}; run began {record['run_started_at_utc']}.", "",
         f"Status: {record['status']}. Completed solve cases: {completed}/{expected} ({completed/expected:.2%}). Active group: {group}, {group_completed}/{group_expected} cases. Elapsed: {elapsed:.3f} h. These are completion counts, not a final all-layouts-pass acceptance.", "",
+        f"Final solve acceptance: {record['final_validation_acceptance_passed']}. Repair/revalidation runtime pending: {record['repair_runtime_pending']}. See the completion audit when present.", "",
         f"The accepted prior A projection is {prior:.3f} h. The case prefix is not representative of the remaining workload; do not convert its overall completion percentage into a linear ETA. No partial score means or final research conclusions are reported.",
         "<!-- EXPA_PROGRESS_END -->"]
     phase = Path("reports/phase_07_expA.md")

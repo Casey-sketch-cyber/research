@@ -36,6 +36,11 @@ After each review, tell Codex: *"Pull, read `reviews/Gx_review.md`, address the 
 
 ## Status
 
+Experiment A has completed all solves but failed final validation. Downstream
+execution stopped before A1; see the [completion audit](reports/expA_completion_audit.md).
+The affected units exactly match failures in the earlier full-sample connectivity
+record. Cause diagnosis and correction validation remain pending.
+
 | Gate | Status |
 |---|---|
 | Task L literature | Q-12 permits continuation with narrowed C2/C3; remaining screening due at G3 |

@@ -1,10 +1,11 @@
 # Phase 7 — Experiment A
 
-Status: Experiment A is running. The fresh hybrid quality comparison and the
-<=36-hour projection pass; all 516 fresh pilot layouts revalidate. The original
-large-home setting passes, so the fallback was not needed. A started under
-`reviews/G2_review_round3.md` without another review stop. No completed formal A
-result or population-level finding is claimed; see the dated progress below.
+Status: Experiment A solves are complete, but final solve acceptance failed.
+The continuation stopped before A1. See the generated
+[completion audit](expA_completion_audit.md) for counts, measured runtime and
+the exact match to previously recorded full-sample connectivity failures.
+The fresh-pilot acceptance below remains launch evidence, not final A acceptance.
+No population-level finding is claimed.
 
 Execution-policy update D-38 supersedes D-37: restore K's two-day limit and
 withdraw the full grid. Plan the reduced exploratory scope, freeze its candidate
@@ -36,7 +37,7 @@ is the only difference before transferring its pilot evidence to the main run.
 
 - [x] Freeze the final production settings and any authorized sample cap using
   the round-2 mean-quality rules; retain every small D3 shell.
-- [ ] Run the final frozen sample × four households × S0/S1/S2, resuming only
+- [x] Run the final frozen sample × four households × S0/S1/S2, resuming only
   identical code, input and configuration fingerprints; respect the total CPU budget.
 - [ ] Revalidate every layout and strategy exchange; report zero-service,
   time-limit, invalid and ordering rates without hiding failures.
@@ -57,8 +58,9 @@ is the only difference before transferring its pilot evidence to the main run.
 The guarded runner and round-3 continuation are implemented. Nineteen targeted
 acceptance, continuation, paired-statistics and launch-guard tests pass; dry-run
 also passes. A1 output generation is gated on complete accepted A results. The
-fresh reference and acceptance are complete; production settings are frozen and
-A is running. The numerical solver is unchanged from the 103-test regression baseline. The generated, dated
+fresh reference and launch acceptance are complete. A finished its solves and
+failed final acceptance; all outputs and production settings are preserved.
+The numerical solver is unchanged from the 103-test regression baseline. The generated, dated
 [round-3 status](G2_round3_status.md) distinguishes implementation from run completion.
 
 
@@ -96,9 +98,11 @@ Formal A outputs are not supplied by this acceptance report. A1 analysis require
 <!-- EXPA_PROGRESS_BEGIN -->
 ## Dated formal-run progress
 
-Observed 2026-11-07T13:20:32+00:00; run began 2026-11-07T08:43:57+00:00.
+Observed 2026-11-08T15:52:22+00:00; run began 2026-11-07T08:43:57+00:00.
 
-Status: running. Completed solve cases: 1548/32904 (4.70%). Active group: small, 1548/4296 cases. Elapsed: 4.610 h. These are completion counts, not a final all-layouts-pass acceptance.
+Status: complete. Completed solve cases: 32904/32904 (100.00%). Active group: large, 28608/28608 cases. Elapsed: 25.403 h. These are completion counts, not a final all-layouts-pass acceptance.
+
+Final solve acceptance: False. Repair/revalidation runtime pending: True. See the completion audit when present.
 
 The accepted prior A projection is 26.074 h. The case prefix is not representative of the remaining workload; do not convert its overall completion percentage into a linear ETA. No partial score means or final research conclusions are reported.
 <!-- EXPA_PROGRESS_END -->

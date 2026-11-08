@@ -1,6 +1,6 @@
 # G2 round-3 implementation and status
 
-Observed: 2026-11-07T13:22:18+00:00
+Observed: 2026-11-08T15:52:23+00:00
 
 The reviewer conditionally approves Phase 7. The author requests implementing this review. Main runs keep the two-side double-bed clearances; the approved one-side variant is A2 only. Review files are unchanged.
 
@@ -12,7 +12,7 @@ The reviewer conditionally approves Phase 7. The author requests implementing th
 | refresh_small_w4_s10_t120    |               36 |                  36 |                          36 | complete |
 | refresh_reference_w8_s10_t60 |              240 |                 240 |                         240 | complete |
 
-Execution stage: `running_expA`. Formal A has started; see its run/progress records. Checkpoints are not completed-arm acceptance. No partial score means are reported.
+Execution stage: `stopped_A_solve_acceptance_failed`. Formal A has started; see its run/progress records. Checkpoints are not completed-arm acceptance. No partial score means are reported.
 
 The continuation checks the source means, small-home mean, current code/configuration and measured runtime. It tries 2 workers / 60 s only for the reviewed larger-home quality fallback. Failed conditions stop A. Passing conditions launch the guarded A runner without another review stop, then generate A1 only after the complete A table passes solve acceptance.
 
