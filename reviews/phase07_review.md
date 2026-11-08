@@ -62,3 +62,5 @@ The time budget is ahead of plan: day 4 of 21, with A's solves done.
 D-38 restricts K to H1/H2 (both single-person households). The round-2 pilot found the **time effect only in two-person households** (H3, H4). With H1/H2 only, K can't show how kit dimensions interact with time-sharing, which is the most interesting design question.
 
 **Reviewer recommendation:** use **H1 + H3** instead of H1 + H2, at about the same workload, so the kit is tested for a single person and a couple. This needs the author's confirmation, because D-38 is an author decision. Until the author confirms, keep D-38 as recorded.
+
+**Author decision (2026-11-09):** confirmed. Exp. K uses **H1 + H3** (D-39, `config/execution_policy.yaml`). If the K runtime pilot exceeds the two-day limit, reduce the training shells (30 → 24 → 18) before dropping H3.

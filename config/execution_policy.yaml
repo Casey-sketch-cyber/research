@@ -4,14 +4,15 @@ K_kit_design:
   replacement_deadline_days: 2
   preserve_planned_full_scope: false
   full_grid_enabled: false
-  planned_scope: exploratory_8_kits_30_train_15_holdout_15_real_H1_H2
+  planned_scope: exploratory_8_kits_30_train_15_holdout_15_real_H1_H3
   scope_status: pending_candidate_grid_freeze_and_runtime_pilot
   reduced_scope:
-    households: [H1_single_commuter, H2_single_remote_worker]
+    households: [H1_single_commuter, H3_couple_one_remote]   # D-39: couple replaces H2 so K covers the time effect
     candidate_kits: 8
     training_shells: 30
     heldout_shells: 15
     real_plans: 15
   require_runtime_pilot: true
-  decision: D-38
+  decision: D-39 (households), D-38 (budget and scope)
+  if_runtime_pilot_exceeds_two_days: "reduce training shells (30 -> 24 -> 18) before dropping H3; report it"
   note: "Author withdraws the full K scope and restores the prior two-day budget. Plan the previously reported reduced exploratory scope; freeze its candidate grid and confirm runtime before running. Keep per-solve budgets and all non-K experiments unchanged. Supersedes D-37."
