@@ -1,0 +1,15 @@
+{
+  "observed_at_utc": "2026-11-08T16:46:18+00:00",
+  "A1_package_passed": true,
+  "A2_status": "running",
+  "A2_started_at_utc": "2026-11-08T16:40:09+00:00",
+  "start_timestamp_basis": "initial variant-cache manifest timestamp",
+  "A2_units": 348,
+  "A2_expected_cases": 2088,
+  "A2_completed_triplet_cases": 9,
+  "A2_strategy_checkpoints": 10,
+  "A2_final_acceptance_passed": null,
+  "checkpoint_limit": "Individual strategy checkpoints precede complete triplet revalidation/sharing; they are not final accepted case counts.",
+  "partial_outcome_claims": false,
+  "next": "Complete A2 and its comparison, then B, D/R/ablations, C, reduced H1+H3 K, HK, literature, G3."
+}

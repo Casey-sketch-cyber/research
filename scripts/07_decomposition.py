@@ -10,6 +10,7 @@ import numpy as np
 import pandas as pd
 
 from fea.io import prepare_cli, start_run, write_json, sha256_file
+from phase07_analysis import load_evaluable_solutions
 
 
 def paired_effects(solutions: pd.DataFrame) -> pd.DataFrame:
@@ -44,8 +45,8 @@ def summarize(effects: pd.DataFrame, n_bootstrap: int, confidence: float, seed: 
         raise ValueError("Invalid bootstrap settings")
     rng = np.random.default_rng(seed)
     rows = []
-    for pooling in ["pooled"]+sorted(effects.source.unique()):
-        frame = effects if pooling == "pooled" else effects[effects.source == pooling]
+    for pooling in ["pooled", "real_plans"]+sorted(effects.source.unique()):
+        frame = effects if pooling == "pooled" else effects[effects.source.isin(["D1", "D2"])] if pooling == "real_plans" else effects[effects.source == pooling]
         for (household, lo), group in frame.groupby(["household", "area_bin_lo"], sort=True):
             group = group.sort_values("unit_key")
             assert not group.unit_key.duplicated().any()
@@ -73,11 +74,14 @@ def render_f4b(summary: pd.DataFrame, output: Path) -> None:
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    frame = summary[summary.pooling == "pooled"]
+    frame = summary[summary.pooling.isin(["pooled", "real_plans", "D3"])]
     households = sorted(frame.household.unique())
-    fig, axes = plt.subplots(2, 2, figsize=(12, 8), sharex=True, sharey=True, squeeze=False)
-    for ax, household in zip(axes.flat, households):
-        data = frame[frame.household == household].sort_values("area_bin_lo")
+    panels = [("pooled", "Pooled"), ("real_plans", "Real plans: D1+D2"), ("D3", "Designed shells: D3")]
+    fig, axes = plt.subplots(len(households), len(panels), figsize=(16, 3.3*len(households)), sharex=True, sharey=True, squeeze=False)
+    for index, ax in enumerate(axes.flat):
+        household = households[index//len(panels)]
+        pooling, title = panels[index % len(panels)]
+        data = frame[(frame.household == household) & (frame.pooling == pooling)].sort_values("area_bin_lo")
         x = data.area_bin_lo+1
         ax.bar(x, data.mean_form_effect, width=1.7, color="#286c91", label="Form: S1 − S0")
         ax.bar(x, data.mean_time_effect, bottom=data.mean_form_effect, width=1.7, color="#e49b32", label="Time: S2 − S1")
@@ -86,19 +90,17 @@ def render_f4b(summary: pd.DataFrame, output: Path) -> None:
             valid = data[name+"_ci_lo"].notna()
             # Plot quantile endpoints directly: a percentile interval need not contain the point estimate.
             ax.vlines(x[valid], data.loc[valid, name+"_ci_lo"], data.loc[valid, name+"_ci_hi"], color="#222222", lw=.7)
-        ax.set_title(household.replace("_", " "))
+        ax.set_title(title+"\n"+household.replace("_", " "), fontsize=9)
         ax.set_xlabel("Net internal area (m²); 2 m² bins")
         ax.set_ylabel("Mean FCI gain")
         ax.grid(axis="y", alpha=.2)
         ax.set_axisbelow(True)
-    for ax in list(axes.flat)[len(households):]:
-        ax.set_visible(False)
     top = float(np.nanmax(frame[["mean_total_effect", "mean_total_effect_ci_hi", "mean_form_effect_ci_hi"]].to_numpy(float)))
     axes.flat[0].set_ylim(0, max(.05, top)*1.08)
     handles, labels = axes.flat[0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc="upper center", bbox_to_anchor=(.5, .955), ncol=2, frameon=False)
+    fig.legend(handles, labels, loc="upper center", bbox_to_anchor=(.5, .98), ncol=2, frameon=False)
     fig.suptitle("Form and time effects by household", y=.995)
-    fig.tight_layout(rect=(0, 0, 1, .92))
+    fig.tight_layout(rect=(0, 0, 1, .955))
     output.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(output.with_suffix(".png"), dpi=300, bbox_inches="tight")
     fig.savefig(output.with_suffix(".pdf"), bbox_inches="tight")
@@ -112,13 +114,8 @@ def main():
         print("Would require complete, accepted Exp. A cases and generate paired effects and F4b.")
         return
     root = Path("results/expA")
-    acceptance = json.loads((root/"solve_acceptance.json").read_text())
-    if not acceptance["passed"] or acceptance["completed_cases"] != acceptance["expected_cases"]:
-        raise ValueError("Do not analyze an incomplete or failed formal run as complete")
     path = root/"solutions.csv"
-    solutions = pd.read_csv(path)
-    if len(solutions) != acceptance["expected_cases"]:
-        raise ValueError("Formal solutions table is incomplete")
+    solutions, analysis_acceptance = load_evaluable_solutions(config, root)
     effects = paired_effects(solutions)
     options = config["experiments"]["bootstrap"]
     summary = summarize(effects, options["n"], options["ci"], config["seed"])
@@ -126,6 +123,8 @@ def main():
     summary.to_csv(root/"form_time_by_area.csv", index=False)
     render_f4b(summary, Path("results/figures/F4b"))
     write_json(root/"decomposition_manifest.json", dict(source_sha256=sha256_file(path),
+        analysis_acceptance_sha256=sha256_file(root/"analysis_acceptance.json"),
+        evaluability_sha256=analysis_acceptance["evaluability_sha256"],
         units=int(effects.unit_key.nunique()), paired_cases=len(effects), seed=config["seed"],
         bootstrap_resamples=options["n"], confidence=options["ci"], resampling_unit="unit within household and NIA bin",
         bin_rule="[lo,lo+2); 1e-8 m² tolerance for raster serialization at bin boundaries",

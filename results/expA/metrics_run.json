@@ -1,0 +1,28 @@
+{
+  "status": "complete",
+  "inputs": {
+    "raw_sha256": "9a17959a449d507330a94c15849b17e9c313ba0c31ffa433130672d4f6d1ed79",
+    "evaluability_sha256": "6ae0809f962a11d50e0101421ac63bba335bb40112585734d9b8cd0f96d6c811",
+    "bootstrap": {
+      "n": 1000,
+      "ci": 0.95
+    },
+    "taus": [
+      0.9,
+      0.95,
+      1.0
+    ],
+    "seed": 20261105,
+    "implementations": {
+      "scripts/07_metrics.py": "dda7d29de56108e0f3adb6a9d5dc56482ee4dfc61c8ec8ae0f7c2c57432b343b",
+      "scripts/phase07_statistics.py": "da3003e1d126336a8430106f9264e510153f760bf2a55ee330f800333a9d1b6b",
+      "scripts/phase07_analysis.py": "b5444218c4580a07ece5ca0bee5728205c3c658c9709566f947f08e0a6efa1e3"
+    }
+  },
+  "completed_groups": 20,
+  "resampling": "unit vectors; shared indices for all strategies and thresholds; static curve refitted in each draw",
+  "interval_policy": "95% percentile; at least 80% supported bootstrap replicates and two units for an interval",
+  "adequacy_model": "unpenalized logistic MLE; separated, one-class, nonincreasing and out-of-support crossings are withheld",
+  "saving_limit": "saving-bin medians condition on uncensored observations; report censoring and lower-support boundaries",
+  "pooling_limit": "D3 is a designed grid; pooled estimates mix evidence populations; real-plan/D3 panels accompany pooled"
+}

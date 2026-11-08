@@ -1,0 +1,15 @@
+{
+  "seed": 20261105,
+  "sample_sha256": "c4b362f5317cbaaa7f092d4392cf0922ce35e935984ddc6721bda1dfe9f292fb",
+  "diagnostics_sha256": "fdd7bdbda144ee62a3ee991102aea021373a8c49649afb2d57e66881f56b583a",
+  "classification_sha256": "e92fe21ffa39f48d9d1b60b8209abb89ab9e7a03f0e79f7f8bcd8be2f86acca1",
+  "classification_input_sha256": "08435a8a8afd4f356ddc4d35764b781ad1e658367e02a6c744223c6bbcce6bb5",
+  "cause_counts": {
+    "other": 11,
+    "rasterization": 8,
+    "genuinely narrow passage in the source drawing": 1
+  },
+  "geometry_repaired": false,
+  "main_evaluability_changed": false,
+  "sample_units": 20
+}

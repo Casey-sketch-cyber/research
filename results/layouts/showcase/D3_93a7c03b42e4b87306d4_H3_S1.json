@@ -1,0 +1,472 @@
+{
+  "unit_key": "D3:93a7c03b42e4b87306d4",
+  "source": "D3",
+  "nia_m2": 17.99999999898783,
+  "furnishable_area_m2": 15.479999998987829,
+  "household": "H3_couple_one_remote",
+  "strategy": "S1",
+  "algorithm": "cp_sat",
+  "resolution_m": 0.1,
+  "items": [
+    {
+      "instance_id": "extendable_table#1",
+      "type": "extendable_table",
+      "x": 2.6,
+      "y": 1.8,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "deployed",
+          "morning": "deployed",
+          "day": "deployed",
+          "evening": "deployed",
+          "dinner": "deployed",
+          "leisure": "deployed"
+        },
+        "guests": {
+          "night": "deployed",
+          "morning": "deployed",
+          "day": "deployed",
+          "evening": "deployed",
+          "dinner": "deployed",
+          "leisure": "deployed"
+        }
+      }
+    },
+    {
+      "instance_id": "sofa_bed#1",
+      "type": "sofa_bed",
+      "x": 0.0,
+      "y": 4.0,
+      "orientation_deg": 270,
+      "states": {
+        "normal": {
+          "night": "deployed",
+          "morning": "deployed",
+          "day": "deployed",
+          "evening": "deployed",
+          "dinner": "deployed",
+          "leisure": "deployed"
+        },
+        "guests": {
+          "night": "deployed",
+          "morning": "deployed",
+          "day": "deployed",
+          "evening": "deployed",
+          "dinner": "deployed",
+          "leisure": "deployed"
+        }
+      }
+    },
+    {
+      "instance_id": "sofa_2#1",
+      "type": "sofa_2",
+      "x": 4.1,
+      "y": 4.2,
+      "orientation_deg": 180,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        },
+        "guests": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "shelving#1",
+      "type": "shelving",
+      "x": 3.3,
+      "y": 0.0,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        },
+        "guests": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    }
+  ],
+  "service": {
+    "normal": {
+      "night": [
+        {
+          "demand_id": "normal:night:0",
+          "need": "sleep_2",
+          "by": [
+            "sofa_bed#1"
+          ]
+        }
+      ],
+      "morning": [
+        {
+          "demand_id": "normal:morning:0",
+          "need": "storage",
+          "by": [
+            "shelving#1"
+          ]
+        },
+        {
+          "demand_id": "normal:morning:1",
+          "need": "dine_2",
+          "by": [
+            "extendable_table#1"
+          ]
+        }
+      ],
+      "day": [
+        {
+          "demand_id": "normal:day:0",
+          "need": "work_1",
+          "by": [
+            "extendable_table#1"
+          ]
+        }
+      ],
+      "evening": [
+        {
+          "demand_id": "normal:evening:0",
+          "need": "lounge_2",
+          "by": [
+            "sofa_2#1"
+          ]
+        }
+      ],
+      "dinner": [
+        {
+          "demand_id": "normal:dinner:0",
+          "need": "dine_2",
+          "by": [
+            "extendable_table#1"
+          ]
+        }
+      ],
+      "leisure": [
+        {
+          "demand_id": "normal:leisure:0",
+          "need": "lounge_2",
+          "by": [
+            "sofa_2#1"
+          ]
+        }
+      ]
+    },
+    "guests": {
+      "night": [
+        {
+          "demand_id": "guests:night:0",
+          "need": "sleep_2",
+          "by": [
+            "sofa_bed#1"
+          ]
+        }
+      ],
+      "morning": [
+        {
+          "demand_id": "guests:morning:0",
+          "need": "storage",
+          "by": [
+            "shelving#1"
+          ]
+        },
+        {
+          "demand_id": "guests:morning:1",
+          "need": "dine_2",
+          "by": [
+            "extendable_table#1"
+          ]
+        }
+      ],
+      "day": [
+        {
+          "demand_id": "guests:day:0",
+          "need": "work_1",
+          "by": [
+            "extendable_table#1"
+          ]
+        }
+      ],
+      "evening": [
+        {
+          "demand_id": "guests:evening:0",
+          "need": "lounge_2",
+          "by": [
+            "sofa_2#1"
+          ]
+        }
+      ],
+      "dinner": [
+        {
+          "demand_id": "guests:dinner:0",
+          "need": "dine_4",
+          "by": [
+            "extendable_table#1"
+          ]
+        }
+      ],
+      "leisure": [
+        {
+          "demand_id": "guests:leisure:0",
+          "need": "lounge_2",
+          "by": [
+            "sofa_2#1"
+          ]
+        }
+      ]
+    }
+  },
+  "config_hash": "12c5e0e95abc308cfb51598987c38445d5ae15050703dd7ac73899d18f9deb8a",
+  "fci": 0.9423076923076923,
+  "fci_by_variant": {
+    "normal": 0.9423076923076923,
+    "guests": 0.9423076923076923
+  },
+  "served_hours_by_variant": {
+    "normal": 24.5,
+    "guests": 24.5
+  },
+  "served_hours": 24.5,
+  "demanded_hours": 26.0,
+  "tb": 0.0,
+  "pass": true,
+  "violations": [],
+  "credits": {
+    "normal:night:0": 1.0,
+    "normal:morning:0": 0.25,
+    "normal:morning:1": 1.0,
+    "normal:day:0": 1.0,
+    "normal:evening:0": 1.0,
+    "normal:dinner:0": 1.0,
+    "normal:leisure:0": 1.0,
+    "guests:night:0": 1.0,
+    "guests:morning:0": 0.25,
+    "guests:morning:1": 1.0,
+    "guests:day:0": 1.0,
+    "guests:evening:0": 1.0,
+    "guests:dinner:0": 1.0,
+    "guests:leisure:0": 1.0
+  },
+  "unreachable_items": [],
+  "greedy": {
+    "algorithm": "service-density/service/footprint portfolio",
+    "fci": 0.9423076923076923,
+    "first_positive_s": 0.013927729800343513,
+    "validated_trials": 108,
+    "arms": [
+      {
+        "validated_trials": 7,
+        "first_positive_s": 0.013926301151514053,
+        "fci": 0.9368076923076922,
+        "algorithm": "service_density / first improving feasible wall-adjacent pose"
+      },
+      {
+        "validated_trials": 86,
+        "first_positive_s": 0.012573692947626114,
+        "fci": 0.9423076923076923,
+        "algorithm": "service / first improving feasible wall-adjacent pose"
+      },
+      {
+        "validated_trials": 15,
+        "first_positive_s": 0.01121213287115097,
+        "fci": 0.6098846153846155,
+        "algorithm": "footprint / first improving feasible wall-adjacent pose"
+      }
+    ]
+  },
+  "validator": {
+    "fci": 0.9423076923076923,
+    "fci_by_variant": {
+      "normal": 0.9423076923076923,
+      "guests": 0.9423076923076923
+    },
+    "served_hours_by_variant": {
+      "normal": 24.5,
+      "guests": 24.5
+    },
+    "served_hours": 24.5,
+    "demanded_hours": 26.0,
+    "tb": 0.0,
+    "pass": true,
+    "violations": [],
+    "credits": {
+      "normal:night:0": 1.0,
+      "normal:morning:0": 0.25,
+      "normal:morning:1": 1.0,
+      "normal:day:0": 1.0,
+      "normal:evening:0": 1.0,
+      "normal:dinner:0": 1.0,
+      "normal:leisure:0": 1.0,
+      "guests:night:0": 1.0,
+      "guests:morning:0": 0.25,
+      "guests:morning:1": 1.0,
+      "guests:day:0": 1.0,
+      "guests:evening:0": 1.0,
+      "guests:dinner:0": 1.0,
+      "guests:leisure:0": 1.0
+    },
+    "unreachable_items": []
+  },
+  "solver": {
+    "status": "TIMEOUT_WITH_INCUMBENT",
+    "last_search_status": "UNKNOWN",
+    "time_s": 120.04609003290534,
+    "build_time_s": 1.2895620875060558,
+    "objective": 247139996.0,
+    "bound": 260000000.0,
+    "first_valid_time_s": 0.011447090655565262,
+    "greedy_time_s": 1.2187501080334187,
+    "greedy_fci": 0.9423076923076923,
+    "geometric_cuts": 136,
+    "reach_iterations": 17,
+    "fci_solver": 0.9423076923076923,
+    "raw_last_model_fci": 0.9505384615384616,
+    "objective_bound_scope": "last solution-bearing raw CP-SAT search; may differ from retained validated layout",
+    "retained_previous_incumbent": true,
+    "trace": [
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 5.210658967494965,
+        "reachability_failures": null
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.9560384615384615,
+        "validator_fci": 0.0,
+        "reachability_failures": 15,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 19.001658795401454,
+        "reachability_failures": null
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.98625,
+        "validator_fci": 0.0,
+        "reachability_failures": 21,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 33.69378922507167,
+        "reachability_failures": null
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.9423076923076923,
+        "validator_fci": 0.0,
+        "reachability_failures": 16,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 48.10264902934432,
+        "reachability_failures": null
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.9560384615384615,
+        "validator_fci": 0.6153846153846154,
+        "reachability_failures": 9,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 62.35736967995763,
+        "reachability_failures": null
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.9615384615384616,
+        "validator_fci": 0.0,
+        "reachability_failures": 22,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 77.05245486088097,
+        "reachability_failures": null
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.9560384615384615,
+        "validator_fci": 0.0,
+        "reachability_failures": 17,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 91.64056521467865,
+        "reachability_failures": null
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.9423076923076923,
+        "validator_fci": 0.0,
+        "reachability_failures": 18,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 5.0,
+        "elapsed_s": 106.22570645064116,
+        "reachability_failures": null
+      },
+      {
+        "status": "FEASIBLE",
+        "model_fci": 0.9505384615384616,
+        "validator_fci": 0.0,
+        "reachability_failures": 18,
+        "validator_violations": [],
+        "stopped_at_primary_bound": false
+      },
+      {
+        "status": "UNKNOWN",
+        "slice_limit_s": 3.6569073516875505,
+        "elapsed_s": 120.04608043655753,
+        "reachability_failures": null
+      }
+    ],
+    "primary_upper_bound": 1.0,
+    "window_tiebreak_optimized": false,
+    "encoding": "configured anchor tables + optional rectangle intervals + guarded geometric frontier cuts"
+  },
+  "code_hash": "8cc6832f1b626ea2f849dd5e1db3647a25bf0bd716456ebed06e4cf7add9a59f"
+}

@@ -1,0 +1,36 @@
+{
+  "rule": {
+    "walking_width_m": 0.6,
+    "clearance_depth_m": 0.6,
+    "minimum_furnishable_share": 0.5,
+    "furnishable_denominator": "raster FURNISHABLE cells, excluding door keepouts and blocked partial cells",
+    "clearance_metric": "8-neighbour free-cell shortest path; no diagonal corner cutting or wall crossing",
+    "fixed_target_rule": "each target mask intersects entrance-connected walking-disc coverage",
+    "outcome_inputs_used": false,
+    "version": "phase07_E1_v1"
+  },
+  "seed": 20261105,
+  "frozen_sample_sha256": "9e3b60b22c78f357d6e4ea3193c6570a2fd870b360ff3bc7854dc5420e464871",
+  "frozen_input_hash": "3c5e61d3f00e46ff2a588ed0c176327f20eb7817d2b162e62e199b28e78ae044",
+  "config_hash": "e11cf4c8734ad2e87bb19fd6a09e5a9237df9928e012effed75aff80959d4c14",
+  "resolution_m": 0.1,
+  "source_gap_close_m": 0.15,
+  "implementation": {
+    "scripts/07_evaluability.py": "39b1f0dbdfae3cbe6674cd21aa77768e9afd15349029edca28714946c3d233cd",
+    "scripts/phase07_evaluability.py": "e9a6663a79f69561cb98f89d16d70aa9c954411c5261db5291df91da51428e8e"
+  },
+  "evaluability_sha256": "6ae0809f962a11d50e0101421ac63bba335bb40112585734d9b8cd0f96d6c811",
+  "details_sha256": "9cfa2c4f470917fa30b8b3dd6c059225422769737aff0ca2bc27a4fbfeec7c14",
+  "frozen_units": 2742,
+  "evaluable_units": 2619,
+  "excluded_units": 123,
+  "a_fail_units": 116,
+  "b_fail_units": 47,
+  "reasons": {
+    "fixed_service_unreachable": 76,
+    "fixed_service_unreachable;furnishable_reachable_share_below_half": 40,
+    "furnishable_reachable_share_below_half": 7
+  },
+  "outcome_files_read": [],
+  "audit_sample_sha256": "c4b362f5317cbaaa7f092d4392cf0922ce35e935984ddc6721bda1dfe9f292fb"
+}

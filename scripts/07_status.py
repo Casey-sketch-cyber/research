@@ -43,8 +43,11 @@ def main():
     prior = selection["projected_expA_hours"]
     acceptance_path = root/"solve_acceptance.json"
     acceptance = json.loads(acceptance_path.read_text()) if acceptance_path.exists() else None
+    package_path = root/"analysis_package_acceptance.json"
+    package = json.loads(package_path.read_text()) if package_path.exists() else {}
+    analysis_passed = package.get("passed", False)
     resumed = abs(run_mtime-metadata["initial_manifest_mtime"]) > 1.5
-    remaining = (0. if acceptance and acceptance["passed"] else None) if complete else prior-elapsed if prior > elapsed and not resumed else None
+    remaining = (0. if analysis_passed or (acceptance and acceptance["passed"]) else None) if complete else prior-elapsed if prior > elapsed and not resumed else None
     record = dict(observed_at_utc=observed.isoformat(timespec="seconds"),
         run_started_at_utc=metadata["run_started_at_utc"], status=manifest.get("status"),
         completed_cases=completed, expected_cases=expected, completion_fraction=completed/expected,
@@ -54,7 +57,8 @@ def main():
         final_validation_acceptance_passed=acceptance["passed"] if acceptance else None,
         completed_at_utc=ended.isoformat(timespec="seconds") if complete else None,
         completion_timestamp_basis="final execution run-manifest write time" if complete else None,
-        repair_runtime_pending=bool(complete and acceptance and not acceptance["passed"]),
+        repair_runtime_pending=bool(complete and acceptance and not acceptance["passed"] and not analysis_passed),
+        analysis_package_passed=analysis_passed,
         remaining_hours_relative_to_prior_projection=remaining,
         numerical_code_hash=manifest["numerical_hash"], source_quality_pass=selection["source_quality_pass"],
         small_quality_pass=selection["small_quality_pass"], partial_score_means_published=False,
@@ -63,7 +67,7 @@ def main():
     section = ["<!-- EXPA_PROGRESS_BEGIN -->", "## Dated formal-run progress", "",
         f"Observed {record['observed_at_utc']}; run began {record['run_started_at_utc']}.", "",
         f"Status: {record['status']}. Completed solve cases: {completed}/{expected} ({completed/expected:.2%}). Active group: {group}, {group_completed}/{group_expected} cases. Elapsed: {elapsed:.3f} h. These are completion counts, not a final all-layouts-pass acceptance.", "",
-        f"Final solve acceptance: {record['final_validation_acceptance_passed']}. Repair/revalidation runtime pending: {record['repair_runtime_pending']}. See the completion audit when present.", "",
+        f"Final solve acceptance: {record['final_validation_acceptance_passed']}. Separate analysis package accepted: {analysis_passed}. Repair/revalidation runtime pending: {record['repair_runtime_pending']}. See the completion audit when present.", "",
         f"The accepted prior A projection is {prior:.3f} h. The case prefix is not representative of the remaining workload; do not convert its overall completion percentage into a linear ETA. No partial score means or final research conclusions are reported.",
         "<!-- EXPA_PROGRESS_END -->"]
     phase = Path("reports/phase_07_expA.md")

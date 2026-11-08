@@ -1,0 +1,51 @@
+{
+  "unit_key": "D3:a065fdcf63497af514d3",
+  "source": "D3",
+  "group_id": "D3:ca67fa5a18093e8f8af8",
+  "classes": {
+    "furnishable": "POLYGON ((1.897366596 0, 0 0, 0 1.049315237, 0.6 1.049315237, 0.6 2.249315237, 0 2.249315237, 0 3.24341649, 1.2 3.24341649, 1.2 4.74341649, 1.897366596 4.74341649, 1.897366596 0))",
+    "storage_only": "GEOMETRYCOLLECTION EMPTY",
+    "walkable_only": "GEOMETRYCOLLECTION EMPTY",
+    "fixed_service": "MULTIPOLYGON (((0 2.249315237, 0.6 2.249315237, 0.6 1.049315237, 0 1.049315237, 0 2.249315237)), ((0 4.74341649, 1.2 4.74341649, 1.2 3.24341649, 0 3.24341649, 0 4.74341649)))",
+    "excluded": "GEOMETRYCOLLECTION EMPTY"
+  },
+  "walls": "MULTILINESTRING ((1.897366596 0, 1.897366596 4.74341649, 0 4.74341649, 0 0.949315237), (0 0, 1.897366596 0))",
+  "doors": [
+    "LINESTRING (0 0, 0 0.949315237)",
+    "LINESTRING (0.180419611 3.24341649, 1.019580389 3.24341649)"
+  ],
+  "windows": [
+    "LINESTRING (1.897366596 1.664705077, 1.897366596 3.078711414)"
+  ],
+  "entrance": "LINESTRING (0 0, 0 0.949315237)",
+  "gross_area_m2": 9.0,
+  "n_rooms": 1,
+  "meta": {
+    "parameters": {
+      "gross_area_m2": 9,
+      "aspect_ratio": 2.5,
+      "entrance_position": "long_wall_corner",
+      "window_position": "long_wall"
+    },
+    "entrance_method": "generated",
+    "fixed_placement": "ordered nearest-corner/wall candidates; continuous 0.90 m access and empty-raster check",
+    "has_sanitary": true,
+    "has_kitchen": true,
+    "has_kitchen_dining": false,
+    "service_placement": "near_entrance",
+    "service_placement_rule": "near only when both service centroids are in the entrance-wall half",
+    "toilet_geometry": "POLYGON ((0 3.24341649, 0 4.74341649, 1.2 4.74341649, 1.2 3.24341649, 0 3.24341649))",
+    "kitchen_geometry": "POLYGON ((0 1.049315237, 0 2.249315237, 0.6 2.249315237, 0.6 1.049315237, 0 1.049315237))",
+    "opening_width_source": "D1 residential opening-record medians",
+    "entrance_width_m": 0.9493152371351988,
+    "window_width_m": 1.414006336948823,
+    "internal_door_width_m": 0.8391607780404902,
+    "fixed_service_area_m2": 2.5199999999999996,
+    "entrance_keepout_overlap_m2": 0.0,
+    "continuous_access_width_m": 0.9,
+    "candidate_attempts": 2,
+    "normalization_repaired_layers": 0,
+    "numerical_coordinate_grid_m": 1e-09,
+    "coordinates": "dominant-axis-aligned local metres"
+  }
+}

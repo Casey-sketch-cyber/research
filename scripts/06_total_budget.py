@@ -1,94 +1,63 @@
-"""Separate measured/provisional budgets from uncalibrated remaining experiments."""
+"""Report measured A and bounded A2/K planning without a full-project ETA."""
 import json
 from pathlib import Path
-
 import pandas as pd
 import yaml
-
 from fea.io import prepare_cli, start_run, write_json
 
 
 def main():
-    args = prepare_cli(__doc__).parse_args()
-    config, _, _ = start_run(args, "06_total_budget")
+    args=prepare_cli(__doc__).parse_args()
+    start_run(args,"06_total_budget")
     if args.dry_run:
-        print("Would sum A, A2 and the active K scope, and list uncalibrated work; no solves.")
+        print("Would distinguish historical A, active A2 cap and unmeasured H1+H3 K scope.")
         return
-    root = Path("results/pilot/round3")
-    projection_path = root/"expA_projection.json"
-    if not projection_path.exists():
-        projection_path = root/"expA_provisional_projection.json"
-    projection = json.loads(projection_path.read_text())
-    selected = root/"expA_selected_sample.csv"
-    sample = pd.read_csv(selected if selected.exists() else "results/corpus/expA_sample.csv")
-    small = sample[sample.nia_m2 <= 20+1e-8]
-    benchmark = Path("results/pilot/benchmarks/refresh_small_w4_s10_t120")
-    frame = pd.read_csv(benchmark/"cases.csv")
-    summary = json.loads((benchmark/"summary.json").read_text())
-    factor = max(1., summary["wall_time_s"]*summary["concurrent_solves"]/frame.solve_time_s.sum())
-    cap = summary["time_limit_s"]+max(0., frame.solve_time_s.max()-summary["time_limit_s"])
-    per_case_hours = cap*factor/summary["concurrent_solves"]/3600*1.15
-    a2_cases = len(small)*2*3
-    policy_path = Path("config/execution_policy.yaml")
-    policy = yaml.safe_load(policy_path.read_text())["K_kit_design"] if policy_path.exists() else {}
-    k_scope = policy.get("planned_scope", "full_grid")
-    k = pd.read_csv(root/"expK_projection.csv").set_index("scope").loc[k_scope]
-    if policy.get("full_grid_enabled") is False and k_scope == "full_grid":
-        raise ValueError("Withdrawn full K grid cannot enter the active budget")
-    quantified = [dict(experiment="A", solves=len(sample)*12, hours=projection["retained_hours"],
-                        basis="measured pilot mean costs; conditional on quality acceptance"),
-        dict(experiment="A2", solves=a2_cases, hours=a2_cases*per_case_hours,
-             basis="all selected small units, H3/H4, S0/S1/S2; full 120 s cap plus pilot overhead, not measured A2"),
-        dict(experiment="K_full" if k_scope == "full_grid" else "K_reduced_exploratory",
-             solves=int(k.total_solves), hours=float(k.projected_hours_with_margin),
-             basis="active planned scope at 120 s cap plus pilot overhead, not measured K")]
-    pending = [
-        dict(experiment="B", scope="200 pairs: footprint greedy, simulated annealing and CP-SAT; optional LLM separate", hours=None),
-        dict(experiment="other_sensitivities", scope="drop-one items, clearance, walking width, raster resolution, solve budget and strict access", hours=None),
-        dict(experiment="C", scope="four surrogate models and validation-only tuning; grids/runtime not yet calibrated", hours=None),
-        dict(experiment="D_R_HK", scope="reuse A layouts where applicable; R reproduction and kit-HK extensions need their own checks", hours=None),
-        dict(experiment="analysis_and_delivery", scope="FEA/adequacy/bootstrap analysis, literature, figures, rendering and review revisions", hours=None)]
-    total = sum(row["hours"] for row in quantified)
-    progress_path = Path("results/expA/progress_snapshot.json")
-    progress = json.loads(progress_path.read_text()) if progress_path.exists() else None
-    remaining_a = progress["remaining_hours_relative_to_prior_projection"] if progress else projection["retained_hours"]
-    remaining_quantified = None if remaining_a is None else remaining_a+sum(row["hours"] for row in quantified[1:])
-    remaining_rows = [dict(experiment=row["experiment"], remaining_hours=remaining_a if i == 0 else row["hours"],
-                           basis=row["basis"]) for i, row in enumerate(quantified)]
-    result = dict(quantified_budgets=quantified, quantified_subtotal_hours=total, K_scope=k_scope,
-        full_K_grid_selected=k_scope == "full_grid", execution_policy_decision=policy.get("decision"),
-        quantified_subtotal_days_at_continuous_execution=total/24, margin_included=.15,
-        still_uncalibrated=pending, complete_total_hours=None,
-        current_A_progress=progress, remaining_quantified_hours=remaining_quantified,
-        remaining_quantified_experiments=remaining_rows,
-        runtime_scope="experimental compute only; no fixed development/analysis/review calendar reserve",
-        unmeasured_engineering_planning_allowances=[], provisional_remaining_calendar_days=None,
-        rounded_planning_days=None,
-        retired_calendar_estimate="The earlier 10–14-day calendar estimate included an unmeasured 5–9-day engineering reserve. It was not experiment runtime and is withdrawn as an active ETA (D-40).",
-        assumptions="Same current concurrency; serial allocation of the same compute budget. Not a minimum, hard upper bound or promised delivery date. No overlap deducted. Optional tasks and review delays are not quantified.",
-        K_runtime_pilot_required=True)
-    write_json(root/"overall_runtime_budget.json", result)
-    table = pd.DataFrame(quantified)
-    table["days"] = table.hours/24
-    lines = ["# Research execution budget", "",
-        ("D-38 supersedes D-37: the author restores K's two-day budget and withdraws the full grid. Plan the previously reported reduced exploratory scope: H1/H2, eight kits, 30 training shells, 15 held-out shells and 15 real plans. Freeze the candidate grid and confirm runtime before execution; per-solve budgets are unchanged. The rejected full-grid budget is excluded from the active subtotal."
-         if k_scope != "full_grid" else
-         "The author permits K to exceed two days (D-37). Preserve the planned full scope; no per-solve budget is reduced."), "",
-        table.to_markdown(index=False, floatfmt=".3f"), "",
-        f"Quantified subtotal: **{total:.3f} hours / {total/24:.3f} days** of continuous serial use at the current concurrency. These budgets already include a 15% margin. A is pilot-calibrated; A2 and K use the full per-solve cap and are not measured run durations. The subtotal is neither a minimum nor a complete project ETA.", "",
-        "Still uncalibrated:", "", pd.DataFrame(pending)[["experiment", "scope"]].to_markdown(index=False), "",
-        "## Remaining experimental compute time", "",
-        (f"Using the dated A progress snapshot, the remaining quantified solve budget is {remaining_quantified:.3f} h ({remaining_quantified/24:.3f} days). This uses the accepted pilot projection, not a linear extrapolation from early cases."
-         if remaining_quantified is not None else "A has no usable remaining runtime estimate. A failed final acceptance requires a repair/revalidation budget; an overrun or resumed run also requires recalibration. No complete remaining subtotal is claimed."), "",
-        pd.DataFrame(remaining_rows).to_markdown(index=False, floatfmt=".3f"), "",
-        "D-40 withdraws the earlier 10–14-day calendar ETA as an active forecast: it included an unmeasured 5–9-day development/analysis reserve and was not experimental compute time. No fixed analysis-day surcharge is added here. Prepare analysis and figures alongside runs when resources and completed evidence permit, while retaining validation.", "",
-        "The subtotal covers A, A2 and reduced K only. Algorithm comparisons, surrogate training and other sensitivities still need runtime calibration; the complete experimental total remains unknown. Statistical D/R/HK work reuses A results where valid. Do not present the subtotal as a promise that every experiment will finish within that time.", "",
-        "Do not interpret this partial subtotal as the whole project's delivery date. Actual early stopping can shorten solves, while changed parametric domains, implementation, failures and review can extend the calendar. K's reduced scope is exploratory, with limited household and design-grid coverage; report those limits.", "",
-        "## Review sequence", "",
-        "G2 round 3 §3 explicitly permits starting A without another stop if fresh hybrid quality and A runtime checks pass. If the prescribed fallback still fails, stop and report. This does not abolish later G3/G4 reviews. The active K budget follows config/execution_policy.yaml; method validation and the K pilot remain required.", ""]
-    Path("reports/COMPUTE_BUDGET.md").write_text("\n".join(lines), encoding="utf-8")
+    root=Path("results/pilot/round3")
+    policy=yaml.safe_load(Path("config/execution_policy.yaml").read_text())["K_kit_design"]
+    require=lambda condition: condition or (_ for _ in ()).throw(ValueError("Unsupported active K policy"))
+    require(not policy["full_grid_enabled"] and policy["two_day_limit_enforced"])
+    scope=policy["reduced_scope"]
+    require(scope["households"]==["H1_single_commuter","H3_couple_one_remote"])
+    benchmark=Path("results/pilot/benchmarks/refresh_small_w4_s10_t120")
+    cases=pd.read_csv(benchmark/"cases.csv")
+    pilot=json.loads((benchmark/"summary.json").read_text())
+    factor=max(1.,pilot["wall_time_s"]*pilot["concurrent_solves"]/cases.solve_time_s.sum())
+    cap=pilot["time_limit_s"]+max(0.,cases.solve_time_s.max()-pilot["time_limit_s"])
+    per_case=cap*factor/pilot["concurrent_solves"]/3600*1.15
+    e1=pd.read_csv("results/expA/evaluability.csv")
+    small=e1[e1.evaluable & (e1.nia_m2 <=20+1e-8)]
+    a2_cases=len(small)*6
+    a2_progress_path=Path("results/expA2/progress.json")
+    progress=json.loads(a2_progress_path.read_text()) if a2_progress_path.exists() else {}
+    completed=progress.get("completed_cases",0)
+    a2_run_path=Path("results/expA2/run.json")
+    a2_run=json.loads(a2_run_path.read_text()) if a2_run_path.exists() else {}
+    # Historical grid has identical counts, but H3 runtime is not measured by H1/H2 evidence.
+    historical=pd.read_csv(root/"expK_projection.csv").set_index("scope").loc["exploratory_8_kits_30_train_15_holdout_15_real_H1_H2"]
+    require([scope[k] for k in ["candidate_kits","training_shells","heldout_shells","real_plans"]]==[8,30,15,15])
+    a_run=json.loads(Path("results/expA/run.json").read_text())
+    package=json.loads(Path("results/expA/analysis_package_acceptance.json").read_text())
+    result=dict(A_completed_cases=a_run["expected_cases"],A_compute_hours=sum(row["wall_time_s"] for row in a_run["timing"])/3600,
+        A_original_solve_acceptance_passed=False,A_analysis_package_passed=package["passed"],A_resolve_required=False,
+        A2_status=a2_run.get("status","not_started"),A2_units=len(small),A2_expected_cases=a2_cases,A2_completed_cases=completed,
+        A2_planning_cap_hours=a2_cases*per_case,A2_remaining_cap_hours=max(0,a2_cases-completed)*per_case,
+        A2_basis="120-second cap plus prior pilot overhead and 15% margin; not measured A2 duration or hard upper bound",
+        K_scope=policy["planned_scope"],K_households=scope["households"],K_total_solves=int(historical.total_solves),
+        K_count_based_cap_hours=float(historical.projected_hours_with_margin),K_hard_budget_hours=48,
+        K_pilot_measured=False,K_basis="Same work counts as historical H1/H2 scope; H3 costs unmeasured. Runtime pilot required before kit execution.",
+        K_if_over_budget=policy["if_runtime_pilot_exceeds_two_days"],
+        full_project_remaining_hours=None,unmeasured=["B: footprint-only greedy, annealing, CP-SAT comparison","D/R and ablations","C surrogate training","K runtime pilot","HK and literature"],
+        no_fixed_analysis_calendar_surcharge=True)
+    write_json(root/"overall_runtime_budget.json",result)
+    lines=["# Research execution budget","",
+        "A completed 32,904 solves in 25.403 hours. Original solve acceptance remains failed; reviewed E1 filtering and A1 package acceptance now pass. No A re-solve is required.","",
+        f"A2 covers {len(small)} evaluable small units × H3/H4 × three strategies = {a2_cases} solves. Status: {result['A2_status']}; completed {completed}. Planning cap: {result['A2_planning_cap_hours']:.3f} hours; remaining case-cap allowance {result['A2_remaining_cap_hours']:.3f} hours. These use the 120-second cap, prior main-pilot overhead and 15% margin, not measured A2 throughput; warm starts and early stopping may shorten runtime. They are not a promised completion date or strict upper bound.","",
+        f"K follows D-39 (household update) and D-38 (budget): H1+H3, eight kits, 30 training shells, 15 held-out shells and 15 real plans. Identical work counts give {int(historical.total_solves)} solves and the historical cap-based allowance {float(historical.projected_hours_with_margin):.3f} hours. This is not a measured H3 projection. Freeze the grid and run the K pilot; if it exceeds 48 hours, reduce training shells 30 → 24 → 18 before dropping H3. The full grid remains disabled.","",
+        "B, the remaining ablations and C still require runtime calibration. D/R/HK reuse validated A evidence where applicable. No complete remaining experimental runtime is known. The previous 10–14-day calendar estimate is withdrawn; no arbitrary analysis-day reserve is added.","",
+        "Phase-7 review permits continuation in order through A1, A2, B/D/R/ablations, C, K, HK and literature, without another stop before G3. G3/G4 review gates remain.",""]
+    Path("reports/COMPUTE_BUDGET.md").write_text("\n".join(lines),encoding="utf-8")
     print(json.dumps(result))
 
 
-if __name__ == "__main__":
+if __name__=="__main__":
     main()

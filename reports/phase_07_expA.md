@@ -1,7 +1,36 @@
 # Phase 7 — Experiment A
 
-Status: Experiment A solves are complete, but final solve acceptance failed.
-The continuation stopped before A1. See the generated
+## Phase-7 review implementation plan
+
+The author instructs continuation under `reviews/phase07_review.md` (d81e411).
+No A re-solve or geometry repair is authorized or needed for this response.
+Preserve the original failed solve acceptance; create a separate, outcome-independent
+evaluability list and an explicit analysis acceptance record.
+
+- [x] E1: evaluate every frozen unit using the empty main raster at 0.60 m walking width;
+  require all fixed-service targets reachable and at least half of raster-furnishable
+  area covered or reachable within an additional 0.60 m clearance depth.
+  Clearance expansion must stay in free cells and not jump through walls.
+- [x] E2: select 20 excluded units with the fixed seed, draw empty raster, source geometry,
+  entrance, walking coverage and failed targets; inspect and classify causes without repair.
+- [x] E3: compare excluded/retained NIA, room count and source mix; publish tables and histogram.
+- [x] E4: require complete valid 4-household × 3-strategy records for every evaluable unit,
+  enforce whole-unit exclusions matching E1 and strict strategy ordering.
+- [x] Generate A1 FEA, f0 curves, saving curves, adequate-area estimates and bootstrap
+  intervals, paired tests, form/time decomposition and fixed-seed showcases.
+- [x] S1: show real plans (D1+D2), designed shells (D3) and pooled evidence separately.
+- [ ] Run the approved A2 one-side double-bed sensitivity after A1.
+- [ ] Continue B, D/R/ablations, C, reduced K, HK and literature screening in review order;
+  prepare G3 without an intervening review stop.
+
+K follows the current H1+H3 execution policy with the two-day budget. If its pilot
+exceeds that budget, reduce training shells 30 → 24 → 18 before dropping H3.
+The duplicate D-39 identifiers are disambiguated by date and phase in QUESTIONS.
+
+Status: Original A solves are complete with failed raw solve acceptance preserved.
+Following the phase-7 review, E1--E4 and A1 now pass their separate analysis-package acceptance (2619 evaluable units, 31428 valid cases). A2 is running on 348 evaluable small units / 2088 cases.
+See [the review response](phase07_review_response.md) for evidence and the H4 catalogue-ceiling, censoring and fitted-crossing limits.
+The earlier continuation stop is historical. See the generated
 [completion audit](expA_completion_audit.md) for counts, measured runtime and
 the exact match to previously recorded full-sample connectivity failures.
 The fresh-pilot acceptance below remains launch evidence, not final A acceptance.
@@ -39,27 +68,27 @@ is the only difference before transferring its pilot evidence to the main run.
   the round-2 mean-quality rules; retain every small D3 shell.
 - [x] Run the final frozen sample × four households × S0/S1/S2, resuming only
   identical code, input and configuration fingerprints; respect the total CPU budget.
-- [ ] Revalidate every layout and strategy exchange; report zero-service,
+- [x] Revalidate every layout and strategy exchange; report zero-service,
   time-limit, invalid and ordering rates without hiding failures.
-- [ ] Fit household-specific pooled and source-specific isotonic S0 curves on
+- [x] Fit household-specific pooled and source-specific isotonic S0 curves on
   NIA, the primary area axis specified by the G1 review.
-- [ ] Compute FEA, saving and relative saving with explicit right-censoring;
+- [x] Compute FEA, saving and relative saving with explicit right-censoring;
   never extrapolate unsupported equivalent areas.
-- [ ] Estimate 2 m²-bin saving curves and unit-bootstrap 95% intervals using
+- [x] Estimate 2 m²-bin saving curves and unit-bootstrap 95% intervals using
   1,000 resamples, with clear reporting of excluded censored values.
-- [ ] Estimate logistic minimum-adequate areas at tau=0.95 and sensitivity
+- [x] Estimate logistic minimum-adequate areas at tau=0.95 and sensitivity
   thresholds 0.90/1.00; flag unidentifiable or out-of-support crossings.
-- [ ] Report paired S2−S0 and S2−S1 tests and effect sizes by household.
-- [ ] Export fixed-seed example layouts and approximately 10/18/30 m² H3
+- [x] Report paired S2−S0 and S2−S1 tests and effect sizes by household.
+- [x] Export fixed-seed example layouts and approximately 10/18/30 m² H3
   showcases; inspect the actual drawings.
 - [ ] Complete the remaining literature screening and evidence limits before G3.
 - [ ] Write an evidence-backed self-review and publish only audited, accurately labelled artifacts.
 
 The guarded runner and round-3 continuation are implemented. Nineteen targeted
 acceptance, continuation, paired-statistics and launch-guard tests pass; dry-run
-also passes. A1 output generation is gated on complete accepted A results. The
+also passes. A1 output generation is now gated on complete accepted evaluable A records under E1/E4. The
 fresh reference and launch acceptance are complete. A finished its solves and
-failed final acceptance; all outputs and production settings are preserved.
+failed original final acceptance; all outputs and production settings are preserved. The reviewed evaluability and A1 package gates subsequently passed.
 The numerical solver is unchanged from the 103-test regression baseline. The generated, dated
 [round-3 status](G2_round3_status.md) distinguishes implementation from run completion.
 
@@ -98,11 +127,11 @@ Formal A outputs are not supplied by this acceptance report. A1 analysis require
 <!-- EXPA_PROGRESS_BEGIN -->
 ## Dated formal-run progress
 
-Observed 2026-11-08T15:52:22+00:00; run began 2026-11-07T08:43:57+00:00.
+Observed 2026-11-08T16:42:47+00:00; run began 2026-11-07T08:43:57+00:00.
 
 Status: complete. Completed solve cases: 32904/32904 (100.00%). Active group: large, 28608/28608 cases. Elapsed: 25.403 h. These are completion counts, not a final all-layouts-pass acceptance.
 
-Final solve acceptance: False. Repair/revalidation runtime pending: True. See the completion audit when present.
+Final solve acceptance: False. Separate analysis package accepted: True. Repair/revalidation runtime pending: False. See the completion audit when present.
 
 The accepted prior A projection is 26.074 h. The case prefix is not representative of the remaining workload; do not convert its overall completion percentage into a linear ETA. No partial score means or final research conclusions are reported.
 <!-- EXPA_PROGRESS_END -->

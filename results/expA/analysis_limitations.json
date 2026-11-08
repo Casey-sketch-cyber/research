@@ -1,0 +1,15 @@
+{
+  "H4_S0": {
+    "static_sleep_1_items": [
+      "single_bed"
+    ],
+    "max_sleep_1_instances": 1,
+    "unserved_weighted_hours": 8.0,
+    "denominator": 28.0,
+    "capacity_upper_bound": 0.7142857142857143,
+    "observed_max": 0.7142857142857143,
+    "implication": "Catalogue-limited baseline; no H4 static adequate-area or causal area-saving headline."
+  },
+  "independent_logistic_order_reversals": 3,
+  "FEA": "Conditional on uncensored units; negative values and right-censoring retained. Not a household-specific spatial counterfactual."
+}

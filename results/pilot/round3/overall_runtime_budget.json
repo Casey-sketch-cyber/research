@@ -1,106 +1,34 @@
 {
-  "quantified_budgets": [
-    {
-      "experiment": "A",
-      "solves": 32904,
-      "hours": 26.073872591717187,
-      "basis": "measured pilot mean costs; conditional on quality acceptance"
-    },
-    {
-      "experiment": "A2",
-      "solves": 2148,
-      "hours": 37.458964670742624,
-      "basis": "all selected small units, H3/H4, S0/S1/S2; full 120 s cap plus pilot overhead, not measured A2"
-    },
-    {
-      "experiment": "K_reduced_exploratory",
-      "solves": 2360,
-      "hours": 41.15603194737085,
-      "basis": "active planned scope at 120 s cap plus pilot overhead, not measured K"
-    }
+  "A_completed_cases": 32904,
+  "A_compute_hours": 25.402679079022363,
+  "A_original_solve_acceptance_passed": false,
+  "A_analysis_package_passed": true,
+  "A_resolve_required": false,
+  "A2_status": "running",
+  "A2_units": 348,
+  "A2_expected_cases": 2088,
+  "A2_completed_cases": 0,
+  "A2_planning_cap_hours": 36.412624875470485,
+  "A2_remaining_cap_hours": 36.412624875470485,
+  "A2_basis": "120-second cap plus prior pilot overhead and 15% margin; not measured A2 duration or hard upper bound",
+  "K_scope": "exploratory_8_kits_30_train_15_holdout_15_real_H1_H3",
+  "K_households": [
+    "H1_single_commuter",
+    "H3_couple_one_remote"
   ],
-  "quantified_subtotal_hours": 104.68886920983066,
-  "K_scope": "exploratory_8_kits_30_train_15_holdout_15_real_H1_H2",
-  "full_K_grid_selected": false,
-  "execution_policy_decision": "D-38",
-  "quantified_subtotal_days_at_continuous_execution": 4.362036217076278,
-  "margin_included": 0.15,
-  "still_uncalibrated": [
-    {
-      "experiment": "B",
-      "scope": "200 pairs: footprint greedy, simulated annealing and CP-SAT; optional LLM separate",
-      "hours": null
-    },
-    {
-      "experiment": "other_sensitivities",
-      "scope": "drop-one items, clearance, walking width, raster resolution, solve budget and strict access",
-      "hours": null
-    },
-    {
-      "experiment": "C",
-      "scope": "four surrogate models and validation-only tuning; grids/runtime not yet calibrated",
-      "hours": null
-    },
-    {
-      "experiment": "D_R_HK",
-      "scope": "reuse A layouts where applicable; R reproduction and kit-HK extensions need their own checks",
-      "hours": null
-    },
-    {
-      "experiment": "analysis_and_delivery",
-      "scope": "FEA/adequacy/bootstrap analysis, literature, figures, rendering and review revisions",
-      "hours": null
-    }
+  "K_total_solves": 2360,
+  "K_count_based_cap_hours": 41.15603194737085,
+  "K_hard_budget_hours": 48,
+  "K_pilot_measured": false,
+  "K_basis": "Same work counts as historical H1/H2 scope; H3 costs unmeasured. Runtime pilot required before kit execution.",
+  "K_if_over_budget": "reduce training shells (30 -> 24 -> 18) before dropping H3; report it",
+  "full_project_remaining_hours": null,
+  "unmeasured": [
+    "B: footprint-only greedy, annealing, CP-SAT comparison",
+    "D/R and ablations",
+    "C surrogate training",
+    "K runtime pilot",
+    "HK and literature"
   ],
-  "complete_total_hours": null,
-  "current_A_progress": {
-    "observed_at_utc": "2026-11-08T15:52:22+00:00",
-    "run_started_at_utc": "2026-11-07T08:43:57+00:00",
-    "status": "complete",
-    "completed_cases": 32904,
-    "expected_cases": 32904,
-    "completion_fraction": 1.0,
-    "active_group": "large",
-    "group_completed_cases": 28608,
-    "group_expected_cases": 28608,
-    "elapsed_wall_hours": 25.402904161944445,
-    "prior_projected_total_hours": 26.073872591717187,
-    "resumed_since_initial_observation": false,
-    "final_validation_acceptance_pending": false,
-    "final_validation_acceptance_passed": false,
-    "completed_at_utc": "2026-11-08T10:08:07+00:00",
-    "completion_timestamp_basis": "final execution run-manifest write time",
-    "repair_runtime_pending": true,
-    "remaining_hours_relative_to_prior_projection": null,
-    "numerical_code_hash": "b92c31ca595906ef1d9dc66760aa1d16ae2224a003fec89468c7f5de7cee551e",
-    "source_quality_pass": true,
-    "small_quality_pass": true,
-    "partial_score_means_published": false,
-    "estimate_limit": "Subtracts elapsed time from the accepted pilot budget; it is not a live throughput ETA. Cases are ordered by size/source and early fractions cannot be linearly extrapolated."
-  },
-  "remaining_quantified_hours": null,
-  "remaining_quantified_experiments": [
-    {
-      "experiment": "A",
-      "remaining_hours": null,
-      "basis": "measured pilot mean costs; conditional on quality acceptance"
-    },
-    {
-      "experiment": "A2",
-      "remaining_hours": 37.458964670742624,
-      "basis": "all selected small units, H3/H4, S0/S1/S2; full 120 s cap plus pilot overhead, not measured A2"
-    },
-    {
-      "experiment": "K_reduced_exploratory",
-      "remaining_hours": 41.15603194737085,
-      "basis": "active planned scope at 120 s cap plus pilot overhead, not measured K"
-    }
-  ],
-  "runtime_scope": "experimental compute only; no fixed development/analysis/review calendar reserve",
-  "unmeasured_engineering_planning_allowances": [],
-  "provisional_remaining_calendar_days": null,
-  "rounded_planning_days": null,
-  "retired_calendar_estimate": "The earlier 10–14-day calendar estimate included an unmeasured 5–9-day engineering reserve. It was not experiment runtime and is withdrawn as an active ETA (D-40).",
-  "assumptions": "Same current concurrency; serial allocation of the same compute budget. Not a minimum, hard upper bound or promised delivery date. No overlap deducted. Optional tasks and review delays are not quantified.",
-  "K_runtime_pilot_required": true
+  "no_fixed_analysis_calendar_surcharge": true
 }

@@ -1,0 +1,257 @@
+{
+  "unit_key": "D2:f57cbec8b93b8ccb22e4",
+  "source": "D2",
+  "nia_m2": 34.6273446550007,
+  "furnishable_area_m2": 19.747905001635015,
+  "household": "H1_single_commuter",
+  "strategy": "S0",
+  "algorithm": "cp_sat",
+  "resolution_m": 0.1,
+  "items": [
+    {
+      "instance_id": "armchair#1",
+      "type": "armchair",
+      "x": 5.6,
+      "y": 0.0,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "dining_table_2#1",
+      "type": "dining_table_2",
+      "x": 7.4,
+      "y": 1.8,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "single_bed#1",
+      "type": "single_bed",
+      "x": 6.2,
+      "y": 1.8,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "shelving#1",
+      "type": "shelving",
+      "x": 6.4,
+      "y": 0.0,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "shelving#2",
+      "type": "shelving",
+      "x": 0.0,
+      "y": 2.4,
+      "orientation_deg": 0,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    },
+    {
+      "instance_id": "desk#1",
+      "type": "desk",
+      "x": 2.8,
+      "y": 3.4,
+      "orientation_deg": 90,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      }
+    }
+  ],
+  "service": {
+    "normal": {
+      "night": [
+        {
+          "demand_id": "normal:night:0",
+          "need": "sleep_1",
+          "by": [
+            "single_bed#1"
+          ]
+        }
+      ],
+      "morning": [
+        {
+          "demand_id": "normal:morning:0",
+          "need": "storage",
+          "by": [
+            "shelving#1",
+            "shelving#2"
+          ]
+        },
+        {
+          "demand_id": "normal:morning:1",
+          "need": "dine_2",
+          "by": [
+            "dining_table_2#1"
+          ]
+        }
+      ],
+      "day": [],
+      "evening": [
+        {
+          "demand_id": "normal:evening:0",
+          "need": "lounge_1",
+          "by": [
+            "armchair#1"
+          ]
+        }
+      ],
+      "dinner": [
+        {
+          "demand_id": "normal:dinner:0",
+          "need": "dine_2",
+          "by": [
+            "dining_table_2#1"
+          ]
+        }
+      ],
+      "leisure": [
+        {
+          "demand_id": "normal:leisure:0",
+          "need": "lounge_1",
+          "by": [
+            "armchair#1"
+          ]
+        },
+        {
+          "demand_id": "normal:leisure:1",
+          "need": "work_1",
+          "by": [
+            "desk#1"
+          ]
+        }
+      ]
+    }
+  },
+  "config_hash": "e11cf4c8734ad2e87bb19fd6a09e5a9237df9928e012effed75aff80959d4c14",
+  "fci": 1.0,
+  "fci_by_variant": {
+    "normal": 1.0
+  },
+  "tb": 0.0,
+  "served_hours": 18.9,
+  "demanded_hours": 18.9,
+  "served_hours_by_variant": {
+    "normal": 18.9
+  },
+  "pass": true,
+  "violations": [],
+  "credits": {
+    "normal:night:0": 1.0,
+    "normal:morning:0": 1.0,
+    "normal:morning:1": 1.0,
+    "normal:evening:0": 1.0,
+    "normal:dinner:0": 1.0,
+    "normal:leisure:0": 1.0,
+    "normal:leisure:1": 1.0
+  },
+  "unreachable_items": [],
+  "greedy": {
+    "algorithm": "service-density/service/footprint portfolio",
+    "fci": 1.0,
+    "first_positive_s": 0.018148133531212807,
+    "validated_trials": 134,
+    "arms": [
+      {
+        "validated_trials": 134,
+        "first_positive_s": 0.01814669743180275,
+        "fci": 1.0,
+        "algorithm": "service_density / first improving feasible wall-adjacent pose"
+      }
+    ]
+  },
+  "validator": {
+    "fci": 1.0,
+    "fci_by_variant": {
+      "normal": 1.0
+    },
+    "served_hours_by_variant": {
+      "normal": 18.9
+    },
+    "served_hours": 18.9,
+    "demanded_hours": 18.9,
+    "tb": 0.0,
+    "pass": true,
+    "violations": [],
+    "credits": {
+      "normal:night:0": 1.0,
+      "normal:morning:0": 1.0,
+      "normal:morning:1": 1.0,
+      "normal:evening:0": 1.0,
+      "normal:dinner:0": 1.0,
+      "normal:leisure:0": 1.0,
+      "normal:leisure:1": 1.0
+    },
+    "unreachable_items": []
+  },
+  "solver": {
+    "status": "FEASIBLE",
+    "termination": "primary_bound_incumbent",
+    "time_s": 1.3034498244524002,
+    "first_valid_time_s": 0.03657561540603638,
+    "greedy_time_s": 1.2588341906666756,
+    "greedy_fci": 1.0,
+    "build_time_s": 1.3034502193331718,
+    "objective": null,
+    "bound": null,
+    "reach_iterations": 0,
+    "fci_solver": 1.0,
+    "retained_previous_incumbent": true,
+    "window_tiebreak_optimized": false,
+    "primary_upper_bound": 1.0
+  },
+  "code_hash": "8cc6832f1b626ea2f849dd5e1db3647a25bf0bd716456ebed06e4cf7add9a59f"
+}

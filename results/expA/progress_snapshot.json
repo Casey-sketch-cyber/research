@@ -1,5 +1,5 @@
 {
-  "observed_at_utc": "2026-11-08T15:52:22+00:00",
+  "observed_at_utc": "2026-11-08T16:42:47+00:00",
   "run_started_at_utc": "2026-11-07T08:43:57+00:00",
   "status": "complete",
   "completed_cases": 32904,
@@ -15,8 +15,9 @@
   "final_validation_acceptance_passed": false,
   "completed_at_utc": "2026-11-08T10:08:07+00:00",
   "completion_timestamp_basis": "final execution run-manifest write time",
-  "repair_runtime_pending": true,
-  "remaining_hours_relative_to_prior_projection": null,
+  "repair_runtime_pending": false,
+  "analysis_package_passed": true,
+  "remaining_hours_relative_to_prior_projection": 0.0,
   "numerical_code_hash": "b92c31ca595906ef1d9dc66760aa1d16ae2224a003fec89468c7f5de7cee551e",
   "source_quality_pass": true,
   "small_quality_pass": true,

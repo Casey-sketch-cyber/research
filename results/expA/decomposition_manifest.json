@@ -1,0 +1,14 @@
+{
+  "source_sha256": "9a17959a449d507330a94c15849b17e9c313ba0c31ffa433130672d4f6d1ed79",
+  "analysis_acceptance_sha256": "b802feee3db34aa0fa5d23f92734551abb2fa3063fbbb29817842b6f9479c2ae",
+  "evaluability_sha256": "6ae0809f962a11d50e0101421ac63bba335bb40112585734d9b8cd0f96d6c811",
+  "units": 2619,
+  "paired_cases": 10476,
+  "seed": 20261105,
+  "bootstrap_resamples": 1000,
+  "confidence": 0.95,
+  "resampling_unit": "unit within household and NIA bin",
+  "bin_rule": "[lo,lo+2); 1e-8 m² tolerance for raster serialization at bin boundaries",
+  "figure_intervals": "paired bootstrap intervals for form and total; time-effect intervals are in the CSV",
+  "limitations": "Pilot squeeze band is exploratory. Single-unit bins have no interval. Pooled source mix and deterministic D3 design coverage limit population generalization."
+}

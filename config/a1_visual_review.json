@@ -1,0 +1,19 @@
+{
+  "reviewer": "Codex",
+  "method": "Direct visual inspection of rendered F4, F4b and exclusion-bias PNGs; six contact sheets covering every fixed-seed sample/showcase layout. Numerical and geometric validity are separate independent checks.",
+  "passed": true,
+  "reviewed_layouts": 33,
+  "hashes": {
+    "results/expA/layout_audit.csv": "0ef4506803453dc2b2044ab160a6159a3fb92c28c79719f1a6f66b487da736d2",
+    "results/expA/layout_selection.csv": "bf48902495d0ef902f3c0c275ab425d5928640cb23d3352a41f94b605ab5bd93",
+    "results/figures/F4b.png": "5d93f7978ed9017c9e39bd73f7199b4a5cd20a909936a1cb30da034d93c0b966",
+    "results/figures/F4_area_saving.png": "88306ab1039bc1260497c13ab60255cc817913bbd9a22fbd677edccfa000bb44",
+    "results/expA/exclusion_bias.png": "4509023c732bc796b4b2cde941e21578242bc953de1c61cb885aa81e91a807fe"
+  },
+  "observations": [
+    "All 33 layouts have readable slot labels, legends and geometry; no clipping or blank plot observed.",
+    "The 18 m2 H3 showcase visibly changes bed/table states under S2; other showcases retain actual small or zero gains.",
+    "Negative conditional area-saving estimates and unsupported intervals are retained. Wide intervals and censoring limit interpretation."
+  ],
+  "limits": "Contact sheets check rendered presentation; they do not establish architectural feasibility beyond the implemented validator."
+}

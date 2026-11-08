@@ -1,0 +1,27 @@
+# Approved sensitivity only; the main furniture library remains unchanged.
+review: reviews/phase07_review.md
+definition: "Keep 0.60 m clearance on the local left long side only, with the same four rotations. Do not introduce mirrored item families or extra item instances."
+main_library_exception: "The frozen sofa_bed deployed state used front 0.50 m clearance, not bilateral long-side clearance. A2 changes its access direction as well as clearance; the whole variant is therefore not a uniform relaxation of every main item."
+config:
+  solver:
+    num_workers: 4
+    time_limit_s: 120
+  raster:
+    anchor_stride_m: 0.10
+  furniture:
+    static_items:
+      double_bed:
+        clearance: {left: 0.60, right: 0.0, front: 0.0, back: 0.0}
+    transformable_items:
+      wall_bed_double:
+        states:
+          deployed:
+            clearance: {left: 0.60, right: 0.0, front: 0.0, back: 0.0}
+      wall_bed_over_sofa:
+        states:
+          deployed:
+            clearance: {left: 0.60, right: 0.0, front: 0.0, back: 0.0}
+      sofa_bed:
+        states:
+          deployed:
+            clearance: {left: 0.60, right: 0.0, front: 0.0, back: 0.0}
