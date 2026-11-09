@@ -149,6 +149,8 @@ optional_items:
 # How many of each item the solver may place (upper bounds); the solver chooses 0..max.
 max_instances:
   default: 1
+  single_bed: 2        # D-40 (reviewer fix): two-sleeper households (H4, and H3 via two singles) need two sleep_1 places under S0
+  wall_bed_single: 2   # D-40: symmetric with single_bed
   wardrobe: 2
   shelving: 2
   armchair: 2
