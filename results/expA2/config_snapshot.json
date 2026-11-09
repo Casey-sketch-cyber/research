@@ -1,0 +1,1377 @@
+{
+  "seed": 20261105,
+  "paths": {
+    "raw": "data/raw",
+    "interim": "data/interim",
+    "processed": "data/processed",
+    "results": "results",
+    "figures": "results/figures",
+    "layouts": "results/layouts",
+    "reports": "reports"
+  },
+  "datasets": {
+    "D1_swiss_dwellings": {
+      "url": "https://zenodo.org/records/7788422",
+      "doi": "10.5281/zenodo.7788422",
+      "file": "swiss-dwellings-v3.0.0.zip",
+      "license": "CC BY 4.0"
+    },
+    "D2_resplan": {
+      "url": "https://github.com/m-agour/ResPlan",
+      "mirror": "https://www.kaggle.com/datasets/resplan/resplan",
+      "license": "CC BY 4.0 (data), MIT (code)"
+    },
+    "D4_abo_listings": {
+      "url": "https://amazon-berkeley-objects.s3.amazonaws.com/archives/abo-listings.tar",
+      "index": "https://amazon-berkeley-objects.s3.amazonaws.com/index.html",
+      "license": "CC BY 4.0",
+      "note": "Download ONLY abo-listings.tar (83 MB). Do not download images or 3D models."
+    },
+    "D5_atus": {
+      "url": "https://www.bls.gov/tus/data.htm",
+      "optional": true
+    },
+    "D6_hk_census_sdu": {
+      "url": "https://data.gov.hk/en-data/dataset/hk-censtatd-census_geo-2021-population-census-su-by-dcd",
+      "license": "DATA.GOV.HK terms (free reuse)"
+    }
+  },
+  "corpus": {
+    "area_measure": "nia",
+    "max_nia_m2": 50,
+    "min_nia_m2": 8,
+    "max_furnishable_area_m2": 45,
+    "min_furnishable_area_m2": 8,
+    "require_entrance_door": true,
+    "require_window": true,
+    "require_habitable_room": true,
+    "require_sanitary": true,
+    "require_kitchen": true,
+    "deduplicate": {
+      "enabled": true,
+      "key": "normalized geometry hash",
+      "keep": "one representative",
+      "record": "n_duplicates"
+    },
+    "d1_unit_usage": "RESIDENTIAL",
+    "d1_subtype_classes": {
+      "furnishable": [
+        "BEDROOM",
+        "DINING",
+        "LIVING_DINING",
+        "LIVING_ROOM",
+        "OFFICE",
+        "OFFICE_SPACE",
+        "ROOM",
+        "STUDIO"
+      ],
+      "storage_only": [
+        "CLOAKROOM",
+        "STOREROOM"
+      ],
+      "walkable_only": [
+        "CORRIDOR",
+        "CORRIDORS_AND_HALLS",
+        "FOYER",
+        "LOBBY",
+        "COMMON_KITCHEN",
+        "KITCHEN",
+        "KITCHEN_DINING"
+      ],
+      "fixed_service": [
+        "BATHROOM",
+        "SANITARY_ROOMS",
+        "WASH_AND_DRY_ROOM"
+      ],
+      "excluded": [
+        "AIR",
+        "ARCADE",
+        "ARCHIVE",
+        "BALCONY",
+        "BASEMENT",
+        "BASEMENT_COMPARTMENT",
+        "BIKE_STORAGE",
+        "BREAK_ROOM",
+        "CANTEEN",
+        "CARPARK",
+        "COLD_STORAGE",
+        "COMMUNITY_ROOM",
+        "COUNTER_ROOM",
+        "DEDICATED_MEDICAL_ROOM",
+        "ELECTRICAL_SUPPLY",
+        "ELEVATOR",
+        "ELEVATOR_FACILITIES",
+        "FACTORY_ROOM",
+        "GARAGE",
+        "GARDEN",
+        "GAS",
+        "HEATING",
+        "HOUSE_TECHNICS_FACILITIES",
+        "LIGHTWELL",
+        "LOGGIA",
+        "LOGISTICS",
+        "MEDICAL_ROOM",
+        "MEETING_ROOM",
+        "NOT_DEFINED",
+        "OFFICE_TECH_ROOM",
+        "OIL_TANK",
+        "OPEN_PLAN_OFFICE",
+        "OPERATIONS_FACILITIES",
+        "OUTDOOR_VOID",
+        "PATIO",
+        "PHYSIO_AND_REHABILITATION",
+        "PRAM",
+        "PRAM_AND_BIKE_STORAGE_ROOM",
+        "RADATION_THERAPY",
+        "RECEPTION_ROOM",
+        "SALESROOM",
+        "SHAFT",
+        "SHELTER",
+        "SHOWROOM",
+        "SPORTS_ROOMS",
+        "STAIRCASE",
+        "TEACHING_ROOM",
+        "TECHNICAL_AREA",
+        "TERRACE",
+        "TRANSPORT_SHAFT",
+        "VEHICLE_TRAFFIC_AREA",
+        "VOID",
+        "WAITING_ROOM",
+        "WAREHOUSE",
+        "WATER_SUPPLY",
+        "WINTERGARTEN",
+        "WORKSHOP"
+      ]
+    },
+    "sample_cap_per_source": null,
+    "expA_sample": {
+      "D1": {
+        "n_max": 1500,
+        "stratify_by": [
+          "nia_bin_2m2",
+          "n_rooms"
+        ],
+        "max_per_site": 5
+      },
+      "D2": {
+        "n_max": "all"
+      },
+      "D3": {
+        "n_max": "all"
+      },
+      "note": "If the Phase 6 runtime projection exceeds 36 h, reduce D1 n_max first and report it."
+    }
+  },
+  "shells_D3": {
+    "areas_m2": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      18,
+      20,
+      22,
+      25,
+      28,
+      32,
+      36,
+      40
+    ],
+    "aspect_ratios": [
+      1.0,
+      1.5,
+      2.0,
+      2.5,
+      3.0
+    ],
+    "entrance_positions": [
+      "short_wall_center",
+      "short_wall_corner",
+      "long_wall_corner"
+    ],
+    "window_positions": [
+      "opposite_short_wall",
+      "long_wall"
+    ],
+    "toilet_pod": {
+      "footprint": [
+        1.2,
+        1.5
+      ],
+      "placement": "corner_near_entrance"
+    },
+    "kitchenette": {
+      "footprint": [
+        1.2,
+        0.6
+      ],
+      "placement": "along_wall_near_entrance"
+    },
+    "ceiling_height": 2.5,
+    "note": "Area includes the toilet pod and kitchenette (gross internal). Report both gross and furnishable area."
+  },
+  "raster": {
+    "resolution_m": 0.1,
+    "source_gap_close_m": 0.15,
+    "anchor_stride_m": 0.1,
+    "door_swing_keepout": "width x width square on the room side; both sides if the room side is ambiguous",
+    "orientations_deg": [
+      0,
+      90,
+      180,
+      270
+    ],
+    "align_to_dominant_axis": true
+  },
+  "solver": {
+    "engine": "ortools_cp_sat",
+    "time_limit_s": 120,
+    "num_workers": 4,
+    "reachability_max_iterations": 30,
+    "reachability_round_s": 5.0,
+    "objective": "lexicographic",
+    "weights": {
+      "served": 1000.0,
+      "burden": 1.0,
+      "window": 0.01
+    }
+  },
+  "experiments": {
+    "A_strategies": {
+      "strategies": [
+        "S0",
+        "S1",
+        "S2"
+      ],
+      "households": "main"
+    },
+    "B_algorithms": {
+      "algorithms": [
+        "greedy",
+        "simulated_annealing",
+        "cp_sat"
+      ],
+      "optional": [
+        "local_llm"
+      ],
+      "instances": "stratified sample of 200 (unit, household) pairs under S2",
+      "sa": {
+        "iterations": 20000,
+        "restarts": 3
+      },
+      "llm": {
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "instances": 100,
+        "temperature": 0.2,
+        "max_retries": 2
+      }
+    },
+    "C_surrogate": {
+      "models": [
+        "linear_area",
+        "gbm_features",
+        "mlp_features",
+        "gnn_graph"
+      ],
+      "targets": [
+        "fci_S0",
+        "fci_S2",
+        "saving_m2"
+      ],
+      "split": {
+        "by": "site_id",
+        "train": 0.7,
+        "val": 0.15,
+        "test": 0.15
+      },
+      "extra_test_sets": [
+        "D2",
+        "D3"
+      ]
+    },
+    "D_metric_validity": {
+      "indicators": [
+        "area_per_person",
+        "rooms_per_person",
+        "ulrich_threshold",
+        "hk_bhu_8m2"
+      ],
+      "ulrich_thresholds_m2": {
+        "1": 30,
+        "2": 45,
+        "3": 60,
+        "4": 60
+      },
+      "hk_bhu_min_m2": 8
+    },
+    "adequacy_tau": 0.95,
+    "tau_sensitivity": [
+      0.9,
+      0.95,
+      1.0
+    ],
+    "bootstrap": {
+      "n": 1000,
+      "ci": 0.95
+    },
+    "K_kit_design": {
+      "target": {
+        "source": "D3",
+        "nia_m2": [
+          8,
+          15
+        ]
+      },
+      "holdout": {
+        "aspect_ratio": 2.5,
+        "entrance_position": "long_wall_corner"
+      },
+      "real_plan_check": {
+        "sources": [
+          "D1",
+          "D2"
+        ],
+        "max_nia_m2": 20
+      },
+      "households": [
+        "H1_single_commuter",
+        "H2_single_remote_worker",
+        "H3_couple_one_remote"
+      ],
+      "variables": {
+        "wall_bed_width_single": {
+          "values": [
+            0.8,
+            0.9,
+            1.0
+          ],
+          "q": [
+            0.6,
+            0.85,
+            1.0
+          ],
+          "applies_to": [
+            "H1_single_commuter",
+            "H2_single_remote_worker"
+          ]
+        },
+        "wall_bed_width_double": {
+          "values": [
+            1.2,
+            1.4,
+            1.5
+          ],
+          "q": [
+            0.6,
+            0.9,
+            1.0
+          ],
+          "applies_to": [
+            "H3_couple_one_remote"
+          ]
+        },
+        "desk_width": {
+          "values": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "q": [
+            0.7,
+            0.9,
+            1.0
+          ]
+        },
+        "desk_depth_deployed": {
+          "values": [
+            0.45,
+            0.55
+          ],
+          "q": [
+            0.8,
+            1.0
+          ]
+        },
+        "table_width": {
+          "values": [
+            0.7,
+            0.8,
+            1.0
+          ],
+          "q": [
+            0.8,
+            0.9,
+            1.0
+          ]
+        },
+        "table_depth_deployed": {
+          "values": [
+            0.6,
+            0.75
+          ],
+          "q": [
+            0.85,
+            1.0
+          ]
+        },
+        "wardrobe_frontage": {
+          "values": [
+            0.6,
+            1.0,
+            1.4
+          ],
+          "storage_units": [
+            0.6,
+            1.0,
+            1.4
+          ]
+        }
+      },
+      "fixed": {
+        "stowed_depths": "as in config/furniture.yaml",
+        "clearances": "as in config/furniture.yaml"
+      },
+      "objective": "fciq_mean",
+      "search": {
+        "method": "successive_halving",
+        "stages": [
+          {
+            "shells": 10,
+            "keep": 0.2
+          },
+          {
+            "shells": 30,
+            "keep_top": 5
+          },
+          {
+            "shells": "all"
+          }
+        ],
+        "time_limit_s": 20
+      },
+      "bespoke_subsample": 30,
+      "flat_quality_variant": true,
+      "time_box_days": 2,
+      "fallback_order": [
+        "drop wardrobe_frontage",
+        "drop H3_couple_one_remote",
+        "report 30-shell exploratory result"
+      ]
+    },
+    "R_single_room_test": {
+      "reference": "Bu & Che Mat (2026), doi:10.13189/cea.2026.140514",
+      "reported_values_from_source": true,
+      "households": [
+        "H1_single_commuter",
+        "H2_single_remote_worker"
+      ],
+      "measure": "free_activity_area_day",
+      "fallback_shells": {
+        "area_m2": 12,
+        "aspect_ratios": [
+          1.0,
+          1.25,
+          1.5
+        ]
+      }
+    }
+  },
+  "ablations": {
+    "drop_one_transformable": true,
+    "clearance_scale": [
+      0.8,
+      1.0,
+      1.2
+    ],
+    "walking_width": [
+      0.6,
+      0.9
+    ],
+    "resolution_m": {
+      "values": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "subset": 50
+    },
+    "time_limit_s": {
+      "values": [
+        30,
+        60,
+        120
+      ],
+      "subset": 50
+    },
+    "double_bed_one_side_access": {
+      "description": "Variant: double_bed, wall_bed_double, wall_bed_over_sofa and sofa_bed deployed need clearance on ONE long side only (0.60 m; the other long side may touch a wall or another body).",
+      "applies_to": [
+        "double_bed",
+        "wall_bed_double",
+        "wall_bed_over_sofa",
+        "sofa_bed"
+      ],
+      "units": "Exp. A sample units with NIA <= 20 m2 (all sources)",
+      "households": [
+        "H3_couple_one_remote",
+        "H4_parent_child"
+      ],
+      "strategies": [
+        "S0",
+        "S1",
+        "S2"
+      ],
+      "solver": "small-home setting (4 workers, 120 s, 0.10 m anchors)",
+      "status": "sensitivity variant only. Author decided 2026-11-07: main runs keep two-side access for double beds (config/furniture.yaml unchanged)."
+    }
+  },
+  "hk_scenario": {
+    "shells": "D3 with areas 8-20 m2",
+    "households": [
+      "H1_single_commuter",
+      "H3_couple_one_remote",
+      "H4_parent_child"
+    ],
+    "embodied_carbon_kgco2e_per_m2": "TODO_VERIFY"
+  },
+  "furniture": {
+    "meta": {
+      "version": 0.1,
+      "source_note": "author design defaults; verify in Phase 3",
+      "global_clearance_scale": 1.0,
+      "walking_width": 0.6
+    },
+    "static_items": {
+      "single_bed": {
+        "serves": [
+          "sleep_1"
+        ],
+        "footprint": [
+          0.9,
+          2.0
+        ],
+        "clearance": {
+          "left": 0.6
+        },
+        "wall_backed": false,
+        "tall": false
+      },
+      "double_bed": {
+        "serves": [
+          "sleep_2"
+        ],
+        "footprint": [
+          1.4,
+          2.0
+        ],
+        "clearance": {
+          "left": 0.6,
+          "right": 0.0,
+          "front": 0.0,
+          "back": 0.0
+        },
+        "wall_backed": true,
+        "tall": false
+      },
+      "wardrobe": {
+        "serves": [
+          "storage"
+        ],
+        "storage_units": 1.0,
+        "footprint": [
+          1.0,
+          0.6
+        ],
+        "clearance": {
+          "front": 0.7
+        },
+        "wall_backed": true,
+        "tall": true
+      },
+      "shelving": {
+        "serves": [
+          "storage"
+        ],
+        "storage_units": 0.5,
+        "footprint": [
+          0.8,
+          0.35
+        ],
+        "clearance": {
+          "front": 0.6
+        },
+        "wall_backed": true,
+        "tall": true
+      },
+      "desk": {
+        "serves": [
+          "work_1"
+        ],
+        "footprint": [
+          1.2,
+          0.6
+        ],
+        "clearance": {
+          "front": 0.75
+        },
+        "wall_backed": true,
+        "tall": false
+      },
+      "dining_table_2": {
+        "serves": [
+          "dine_2"
+        ],
+        "footprint": [
+          0.75,
+          0.75
+        ],
+        "clearance": {
+          "front": 0.6,
+          "back": 0.6
+        },
+        "wall_backed": false,
+        "tall": false
+      },
+      "dining_table_4": {
+        "serves": [
+          "dine_4",
+          "dine_2"
+        ],
+        "footprint": [
+          1.2,
+          0.8
+        ],
+        "clearance": {
+          "front": 0.6,
+          "back": 0.6
+        },
+        "wall_backed": false,
+        "tall": false
+      },
+      "sofa_2": {
+        "serves": [
+          "lounge_2"
+        ],
+        "footprint": [
+          1.6,
+          0.85
+        ],
+        "clearance": {
+          "front": 0.6
+        },
+        "wall_backed": true,
+        "tall": false
+      },
+      "armchair": {
+        "serves": [
+          "lounge_1"
+        ],
+        "footprint": [
+          0.8,
+          0.8
+        ],
+        "clearance": {
+          "front": 0.5
+        },
+        "wall_backed": false,
+        "tall": false
+      }
+    },
+    "transformable_items": {
+      "wall_bed_single": {
+        "serves": {
+          "deployed": [
+            "sleep_1"
+          ],
+          "stowed": []
+        },
+        "states": {
+          "stowed": {
+            "footprint": [
+              1.0,
+              0.45
+            ],
+            "clearance": {
+              "front": 0.4
+            }
+          },
+          "deployed": {
+            "footprint": [
+              1.0,
+              2.1
+            ],
+            "clearance": {
+              "left": 0.6
+            }
+          }
+        },
+        "wall_backed": true,
+        "tall": true,
+        "effort": 1.0
+      },
+      "wall_bed_double": {
+        "serves": {
+          "deployed": [
+            "sleep_2"
+          ],
+          "stowed": []
+        },
+        "states": {
+          "stowed": {
+            "footprint": [
+              1.5,
+              0.45
+            ],
+            "clearance": {
+              "front": 0.4
+            }
+          },
+          "deployed": {
+            "footprint": [
+              1.5,
+              2.15
+            ],
+            "clearance": {
+              "left": 0.6,
+              "right": 0.0,
+              "front": 0.0,
+              "back": 0.0
+            }
+          }
+        },
+        "wall_backed": true,
+        "tall": true,
+        "effort": 1.0
+      },
+      "wall_bed_over_sofa": {
+        "serves": {
+          "deployed": [
+            "sleep_2"
+          ],
+          "stowed": [
+            "lounge_2"
+          ]
+        },
+        "states": {
+          "stowed": {
+            "footprint": [
+              1.6,
+              0.9
+            ],
+            "clearance": {
+              "front": 0.6
+            }
+          },
+          "deployed": {
+            "footprint": [
+              1.6,
+              2.15
+            ],
+            "clearance": {
+              "left": 0.6,
+              "right": 0.0,
+              "front": 0.0,
+              "back": 0.0
+            }
+          }
+        },
+        "wall_backed": true,
+        "tall": true,
+        "effort": 1.2
+      },
+      "sofa_bed": {
+        "serves": {
+          "deployed": [
+            "sleep_2"
+          ],
+          "stowed": [
+            "lounge_2"
+          ]
+        },
+        "states": {
+          "stowed": {
+            "footprint": [
+              1.9,
+              0.9
+            ],
+            "clearance": {
+              "front": 0.6
+            }
+          },
+          "deployed": {
+            "footprint": [
+              1.9,
+              2.0
+            ],
+            "clearance": {
+              "front": 0.0,
+              "left": 0.6,
+              "right": 0.0,
+              "back": 0.0
+            }
+          }
+        },
+        "wall_backed": true,
+        "tall": false,
+        "effort": 1.5
+      },
+      "drop_leaf_table": {
+        "serves": {
+          "deployed": [
+            "dine_2",
+            "work_1"
+          ],
+          "stowed": []
+        },
+        "states": {
+          "stowed": {
+            "footprint": [
+              0.8,
+              0.2
+            ],
+            "clearance": {}
+          },
+          "deployed": {
+            "footprint": [
+              0.8,
+              0.75
+            ],
+            "clearance": {
+              "front": 0.6
+            }
+          }
+        },
+        "wall_backed": true,
+        "tall": false,
+        "effort": 0.2
+      },
+      "fold_down_desk": {
+        "serves": {
+          "deployed": [
+            "work_1"
+          ],
+          "stowed": []
+        },
+        "states": {
+          "stowed": {
+            "footprint": [
+              1.0,
+              0.25
+            ],
+            "clearance": {
+              "front": 0.4
+            }
+          },
+          "deployed": {
+            "footprint": [
+              1.0,
+              0.55
+            ],
+            "clearance": {
+              "front": 0.75
+            }
+          }
+        },
+        "wall_backed": true,
+        "tall": true,
+        "effort": 0.2
+      },
+      "extendable_table": {
+        "serves": {
+          "deployed": [
+            "dine_4",
+            "dine_2",
+            "work_1"
+          ],
+          "stowed": [
+            "dine_2"
+          ]
+        },
+        "states": {
+          "stowed": {
+            "footprint": [
+              0.8,
+              0.8
+            ],
+            "clearance": {
+              "front": 0.6,
+              "back": 0.6
+            }
+          },
+          "deployed": {
+            "footprint": [
+              1.6,
+              0.8
+            ],
+            "clearance": {
+              "front": 0.6,
+              "back": 0.6
+            }
+          }
+        },
+        "wall_backed": false,
+        "tall": false,
+        "effort": 0.3
+      }
+    },
+    "optional_items": {
+      "loft_bed_over_desk": {
+        "serves": [
+          "sleep_1",
+          "work_1"
+        ],
+        "footprint": [
+          1.0,
+          2.1
+        ],
+        "clearance": {
+          "left": 0.75
+        },
+        "wall_backed": true,
+        "tall": true,
+        "requires_min_ceiling_height": 2.6,
+        "note": "Stacking, not time-transformation. Report separately if run."
+      }
+    },
+    "max_instances": {
+      "default": 1,
+      "wardrobe": 2,
+      "shelving": 2,
+      "armchair": 2,
+      "desk": 2
+    },
+    "strategies": {
+      "S0": {
+        "allow": "static_items",
+        "state_mode": "fixed"
+      },
+      "S1": {
+        "allow": [
+          "static_items",
+          "transformable_items"
+        ],
+        "state_mode": "day_wide"
+      },
+      "S2": {
+        "allow": [
+          "static_items",
+          "transformable_items"
+        ],
+        "state_mode": "per_slot"
+      }
+    }
+  },
+  "households": {
+    "meta": {
+      "version": 0.1,
+      "source_note": "author defaults; optional ATUS calibration in Phase 4"
+    },
+    "slots": {
+      "night": [
+        23,
+        7
+      ],
+      "morning": [
+        7,
+        9
+      ],
+      "day": [
+        9,
+        17
+      ],
+      "evening": [
+        17,
+        19
+      ],
+      "dinner": [
+        19,
+        20
+      ],
+      "leisure": [
+        20,
+        23
+      ]
+    },
+    "capability_rules": {
+      "sleep_1": {
+        "satisfied_by": [
+          [
+            "sleep_1"
+          ]
+        ]
+      },
+      "sleep_2": {
+        "satisfied_by": [
+          [
+            "sleep_2"
+          ],
+          [
+            "sleep_1",
+            "sleep_1"
+          ]
+        ]
+      },
+      "dine_2": {
+        "satisfied_by": [
+          [
+            "dine_2"
+          ],
+          [
+            "dine_4"
+          ]
+        ]
+      },
+      "dine_4": {
+        "satisfied_by": [
+          [
+            "dine_4"
+          ]
+        ]
+      },
+      "work_1": {
+        "satisfied_by": [
+          [
+            "work_1"
+          ]
+        ]
+      },
+      "lounge_1": {
+        "satisfied_by": [
+          [
+            "lounge_1"
+          ],
+          [
+            "lounge_2"
+          ]
+        ]
+      },
+      "lounge_2": {
+        "satisfied_by": [
+          [
+            "lounge_2"
+          ],
+          [
+            "lounge_1",
+            "lounge_1"
+          ]
+        ]
+      },
+      "storage": {
+        "type": "capacity",
+        "attribute": "storage_units",
+        "partial_credit": true
+      }
+    },
+    "households": {
+      "H1_single_commuter": {
+        "persons": 1,
+        "variants": {
+          "normal": {
+            "frequency": 1.0,
+            "demand": {
+              "night": [
+                {
+                  "need": "sleep_1"
+                }
+              ],
+              "morning": [
+                {
+                  "need": "storage",
+                  "units": 1.0
+                },
+                {
+                  "need": "dine_2"
+                }
+              ],
+              "day": [],
+              "evening": [
+                {
+                  "need": "lounge_1"
+                }
+              ],
+              "dinner": [
+                {
+                  "need": "dine_2"
+                }
+              ],
+              "leisure": [
+                {
+                  "need": "lounge_1"
+                },
+                {
+                  "need": "work_1",
+                  "weight": 0.3
+                }
+              ]
+            }
+          }
+        }
+      },
+      "H2_single_remote_worker": {
+        "persons": 1,
+        "variants": {
+          "normal": {
+            "frequency": 1.0,
+            "demand": {
+              "night": [
+                {
+                  "need": "sleep_1"
+                }
+              ],
+              "morning": [
+                {
+                  "need": "storage",
+                  "units": 1.0
+                },
+                {
+                  "need": "dine_2"
+                }
+              ],
+              "day": [
+                {
+                  "need": "work_1"
+                }
+              ],
+              "evening": [
+                {
+                  "need": "lounge_1"
+                }
+              ],
+              "dinner": [
+                {
+                  "need": "dine_2"
+                }
+              ],
+              "leisure": [
+                {
+                  "need": "lounge_1"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "H3_couple_one_remote": {
+        "persons": 2,
+        "variants": {
+          "normal": {
+            "frequency": 0.857,
+            "demand": {
+              "night": [
+                {
+                  "need": "sleep_2"
+                }
+              ],
+              "morning": [
+                {
+                  "need": "storage",
+                  "units": 2.0
+                },
+                {
+                  "need": "dine_2"
+                }
+              ],
+              "day": [
+                {
+                  "need": "work_1"
+                }
+              ],
+              "evening": [
+                {
+                  "need": "lounge_2"
+                }
+              ],
+              "dinner": [
+                {
+                  "need": "dine_2"
+                }
+              ],
+              "leisure": [
+                {
+                  "need": "lounge_2"
+                }
+              ]
+            }
+          },
+          "guests": {
+            "frequency": 0.143,
+            "demand": {
+              "night": [
+                {
+                  "need": "sleep_2"
+                }
+              ],
+              "morning": [
+                {
+                  "need": "storage",
+                  "units": 2.0
+                },
+                {
+                  "need": "dine_2"
+                }
+              ],
+              "day": [
+                {
+                  "need": "work_1"
+                }
+              ],
+              "evening": [
+                {
+                  "need": "lounge_2"
+                }
+              ],
+              "dinner": [
+                {
+                  "need": "dine_4"
+                }
+              ],
+              "leisure": [
+                {
+                  "need": "lounge_2"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "H4_parent_child": {
+        "persons": 2,
+        "variants": {
+          "normal": {
+            "frequency": 1.0,
+            "demand": {
+              "night": [
+                {
+                  "need": "sleep_1"
+                },
+                {
+                  "need": "sleep_1"
+                }
+              ],
+              "morning": [
+                {
+                  "need": "storage",
+                  "units": 1.5
+                },
+                {
+                  "need": "dine_2"
+                }
+              ],
+              "day": [],
+              "evening": [
+                {
+                  "need": "work_1"
+                },
+                {
+                  "need": "lounge_1"
+                }
+              ],
+              "dinner": [
+                {
+                  "need": "dine_2"
+                }
+              ],
+              "leisure": [
+                {
+                  "need": "lounge_2"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "H5_older_adult": {
+        "persons": 1,
+        "overrides": {
+          "walking_width": 0.9,
+          "global_clearance_scale": 1.2
+        },
+        "variants": {
+          "normal": {
+            "frequency": 1.0,
+            "demand": {
+              "night": [
+                {
+                  "need": "sleep_1"
+                }
+              ],
+              "morning": [
+                {
+                  "need": "storage",
+                  "units": 1.0
+                },
+                {
+                  "need": "dine_2"
+                }
+              ],
+              "day": [
+                {
+                  "need": "lounge_1"
+                }
+              ],
+              "evening": [
+                {
+                  "need": "lounge_1"
+                }
+              ],
+              "dinner": [
+                {
+                  "need": "dine_2"
+                }
+              ],
+              "leisure": [
+                {
+                  "need": "lounge_1"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "main_households": [
+      "H1_single_commuter",
+      "H2_single_remote_worker",
+      "H3_couple_one_remote",
+      "H4_parent_child"
+    ],
+    "ablation_households": [
+      "H5_older_adult"
+    ]
+  },
+  "downloads": {
+    "resources": [
+      {
+        "dataset": "D1",
+        "file": "swiss_dwellings/swiss-dwellings-v3.0.0.zip",
+        "url": "https://zenodo.org/records/7788422/files/swiss-dwellings-v3.0.0.zip?download=1",
+        "md5": "3b7915ecd5bf8e492a3e78c598b74123"
+      },
+      {
+        "dataset": "D2",
+        "file": "resplan/ResPlan.zip",
+        "url": "https://raw.githubusercontent.com/m-agour/ResPlan/e2b78fe069aee1ab1e1828a612743f308e3c32a7/ResPlan.zip"
+      },
+      {
+        "dataset": "D4",
+        "file": "abo/abo-listings.tar",
+        "url": "https://amazon-berkeley-objects.s3.amazonaws.com/archives/abo-listings.tar"
+      },
+      {
+        "dataset": "D6",
+        "file": "hk_census/DC_21C_SDU.zip",
+        "url": "https://www.census2021.gov.hk/doc/DC_21C_SDU.zip"
+      },
+      {
+        "dataset": "D6_dictionary",
+        "file": "hk_census/data_dictionary.pdf",
+        "url": "https://www.census2021.gov.hk/doc/2021-statistics-classification-idds-en.pdf"
+      }
+    ]
+  }
+}

@@ -1404,5 +1404,6 @@
   "cache": "data/interim/expA2/8d1fb43808c19f05",
   "warm_start": "original A layouts revalidated under A2 plus preceding strategy; invalid old layouts are not reused",
   "limitations": "Fixed local-left access with four rotations; no mirrored-family search. Original sofa_bed had front-only 0.50 m clearance, so A2 is not a uniform relaxation of all items.",
-  "status": "running"
+  "status": "complete",
+  "wall_time_this_invocation_s": 54294.68553512171
 }

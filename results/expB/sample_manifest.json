@@ -1,0 +1,26 @@
+{
+  "seed": 20261105,
+  "instances": 200,
+  "strata": 36,
+  "strategy": "S2",
+  "source_counts": {
+    "D2": 68,
+    "D1": 67,
+    "D3": 65
+  },
+  "household_counts": {
+    "H2_single_remote_worker": 52,
+    "H3_couple_one_remote": 50,
+    "H1_single_commuter": 49,
+    "H4_parent_child": 49
+  },
+  "evaluability_sha256": "6ae0809f962a11d50e0101421ac63bba335bb40112585734d9b8cd0f96d6c811",
+  "instances_sha256": "38c5be1d5cdc90d37edcdb877eb4d233ead683d5b4d8fd267255fa94e7d030ea",
+  "implementation": {
+    "scripts/08_prepare_expB.py": "38700d8671d0c6a1c90fabb06a6c5042a9249cd9b50d4aa1ed74d70b8b6558b7",
+    "scripts/phase08_sampling.py": "9a1fc30970ba383a14da01431b01ff54f045174ca31a467f959538831150635d"
+  },
+  "selection": "Balanced quotas across source x within-source NIA tercile x household; fixed seed for quotas and units; area ties kept together after rounding NIA to eight decimals.",
+  "outcome_files_read": [],
+  "algorithm_results_started": false
+}

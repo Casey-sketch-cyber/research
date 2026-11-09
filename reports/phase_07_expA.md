@@ -19,7 +19,7 @@ evaluability list and an explicit analysis acceptance record.
 - [x] Generate A1 FEA, f0 curves, saving curves, adequate-area estimates and bootstrap
   intervals, paired tests, form/time decomposition and fixed-seed showcases.
 - [x] S1: show real plans (D1+D2), designed shells (D3) and pooled evidence separately.
-- [ ] Run the approved A2 one-side double-bed sensitivity after A1.
+- [x] Run the approved A2 one-side double-bed sensitivity after A1.
 - [ ] Continue B, D/R/ablations, C, reduced K, HK and literature screening in review order;
   prepare G3 without an intervening review stop.
 
@@ -28,7 +28,7 @@ exceeds that budget, reduce training shells 30 → 24 → 18 before dropping H3.
 The duplicate D-39 identifiers are disambiguated by date and phase in QUESTIONS.
 
 Status: Original A solves are complete with failed raw solve acceptance preserved.
-Following the phase-7 review, E1--E4 and A1 now pass their separate analysis-package acceptance (2619 evaluable units, 31428 valid cases). A2 is running on 348 evaluable small units / 2088 cases.
+Following the phase-7 review, E1--E4 and A1 now pass their separate analysis-package acceptance (2619 evaluable units, 31428 valid cases). A2 completed all 348 evaluable small units / 2088 cases and passed solve acceptance. The paired form/time comparison and independent saved-layout audit also pass; see [A2 completion and limitations](phase_07_A2.md).
 See [the review response](phase07_review_response.md) for evidence and the H4 catalogue-ceiling, censoring and fitted-crossing limits.
 The earlier continuation stop is historical. See the generated
 [completion audit](expA_completion_audit.md) for counts, measured runtime and
@@ -52,7 +52,7 @@ See [COMPUTE_BUDGET.md](COMPUTE_BUDGET.md) for the estimated subtotal and unknow
 - [x] Freeze the verified configuration, sample and code before starting A.
 - [x] A1 implementation: household-by-2-m²-bin form/time decomposition with paired
   unit-bootstrap intervals, S2>S1 shares and stacked figure F4b.
-- [ ] A2: after A, run the approved one-side double-bed sensitivity for all
+- [x] A2: after A, run the approved one-side double-bed sensitivity for all
   selected NIA<=20 units, H3/H4 and S0/S1/S2; keep main furniture defaults unchanged.
 - [ ] B1: use only the footprint policy as the Exp. B greedy baseline; identify
   the portfolio only as CP-SAT initialization.

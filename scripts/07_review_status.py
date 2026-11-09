@@ -27,7 +27,7 @@ def main():
         A2_strategy_checkpoints=len(checkpoints),A2_final_acceptance_passed=accepted.get("passed"),
         checkpoint_limit="Individual strategy checkpoints precede complete triplet revalidation/sharing; they are not final accepted case counts.",
         partial_outcome_claims=False,
-        next="Complete A2 and its comparison, then B, D/R/ablations, C, reduced H1+H3 K, HK, literature, G3.")
+        next=("B algorithm comparison, then D/R/ablations, C, reduced H1+H3 K, HK, literature, G3." if accepted.get("passed") else "Complete A2 and its comparison, then B, D/R/ablations, C, reduced H1+H3 K, HK, literature, G3."))
     write_json(root/"status_snapshot.json",record)
     print(json.dumps(record))
 

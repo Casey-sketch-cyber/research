@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "completed_at_utc": "2026-11-09T07:45:07+00:00",
+  "measured_wall_hours": 15.081857093089363,
+  "solve_acceptance": {
+    "passed": true,
+    "expected_cases": 2088,
+    "completed_cases": 2088,
+    "units": 348,
+    "invalid_cases": 0,
+    "ordering_failures": 0,
+    "zero_cases": 37,
+    "status_distribution": {
+      "TIMEOUT_WITH_INCUMBENT": 978,
+      "FEASIBLE": 494,
+      "OPTIMAL": 493,
+      "FEASIBLE_ACCESS_ADJUSTED": 123
+    }
+  },
+  "independently_revalidated": 2088,
+  "main_revalidated_under_A2": 2088,
+  "valid_original_incumbent_regressions": 0,
+  "negative_changes": 59,
+  "geometry_valid_negative_cases": 9,
+  "analysis_script_sha256": "ea6ae227b23958b51bbc839696d1c29396666e22f3a2572427171a2b3eed287a",
+  "evaluability_sha256": "6ae0809f962a11d50e0101421ac63bba335bb40112585734d9b8cd0f96d6c811",
+  "inputs": {
+    "results/expA2/solutions.csv": "652b4e08c9c11f66439565af2c5177f1041be5ab55e2e8d4c4dfa796acb94444",
+    "results/expA2/run.json": "080cd2af96946a6ec6e11f6a6556b27b785597b3a9e7776175d43b1df7efc073",
+    "results/expA2/sample.csv": "09f26df6a048e12b0c2cbe1adc888b44e4d6a15bf6f3d0e85ffe919d7d28d101",
+    "results/expA/solutions.csv": "9a17959a449d507330a94c15849b17e9c313ba0c31ffa433130672d4f6d1ed79"
+  },
+  "outputs": {
+    "layout_revalidation.csv": "bbeb6bdb56267fe4152c4cdcf252e2b3458fed92ba37e2962e727501c67723b7",
+    "paired_effects.csv": "f88fb014509591fef03dc9dfe9032357fa0ddef9d6443e1945d92ac8efd3e10e",
+    "effect_summary.csv": "1dcfe7de1ba41910c076c7e0bb52a6d2d57974ef8e0188262f34162401c25f29",
+    "negative_changes.csv": "b3a5da70188940d8db57a4368199199c6d3dd9beff8b42ae654134ee94475a97"
+  },
+  "visual_review_pending": false,
+  "visual_review_sha256": "351aa35fa67cc16659cdb440fd7d0475a01a1933948dfec2094bae44cb5afd59"
+}

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "expected_cases": 2088,
+  "completed_cases": 2088,
+  "units": 348,
+  "invalid_cases": 0,
+  "ordering_failures": 0,
+  "zero_cases": 37,
+  "status_distribution": {
+    "TIMEOUT_WITH_INCUMBENT": 978,
+    "FEASIBLE": 494,
+    "OPTIMAL": 493,
+    "FEASIBLE_ACCESS_ADJUSTED": 123
+  }
+}

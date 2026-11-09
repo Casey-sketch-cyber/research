@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "reviewer": "Codex",
+  "method": "Direct visual inspection of the full six-panel F4c_A2 PNG.",
+  "hashes": {
+    "results/figures/F4c_A2.png": "7b969c7ccb83221993a530e6680dbd0bf7690cd4504f1df755e568c9668ae45f",
+    "results/expA2/effect_summary.csv": "1dcfe7de1ba41910c076c7e0bb52a6d2d57974ef8e0188262f34162401c25f29"
+  },
+  "notes": [
+    "All six panels, labels, units, legends and intervals are readable and unclipped.",
+    "Negative changes remain displayed. Real-plan panels contain only D1 small units.",
+    "This is a presentation check; independent layout and statistical checks are recorded separately."
+  ]
+}

@@ -40,6 +40,7 @@ def main():
     result=dict(A_completed_cases=a_run["expected_cases"],A_compute_hours=sum(row["wall_time_s"] for row in a_run["timing"])/3600,
         A_original_solve_acceptance_passed=False,A_analysis_package_passed=package["passed"],A_resolve_required=False,
         A2_status=a2_run.get("status","not_started"),A2_units=len(small),A2_expected_cases=a2_cases,A2_completed_cases=completed,
+        A2_measured_hours=a2_run.get("wall_time_this_invocation_s",0)/3600 if a2_run.get("status")=="complete" else None,
         A2_planning_cap_hours=a2_cases*per_case,A2_remaining_cap_hours=max(0,a2_cases-completed)*per_case,
         A2_basis="120-second cap plus prior pilot overhead and 15% margin; not measured A2 duration or hard upper bound",
         K_scope=policy["planned_scope"],K_households=scope["households"],K_total_solves=int(historical.total_solves),
@@ -53,6 +54,7 @@ def main():
         "A completed 32,904 solves in 25.403 hours. Original solve acceptance remains failed; reviewed E1 filtering and A1 package acceptance now pass. No A re-solve is required.","",
         f"A2 covers {len(small)} evaluable small units × H3/H4 × three strategies = {a2_cases} solves. Status: {result['A2_status']}; completed {completed}. Planning cap: {result['A2_planning_cap_hours']:.3f} hours; remaining case-cap allowance {result['A2_remaining_cap_hours']:.3f} hours. These use the 120-second cap, prior main-pilot overhead and 15% margin, not measured A2 throughput; warm starts and early stopping may shorten runtime. They are not a promised completion date or strict upper bound.","",
         f"K follows D-39 (household update) and D-38 (budget): H1+H3, eight kits, 30 training shells, 15 held-out shells and 15 real plans. Identical work counts give {int(historical.total_solves)} solves and the historical cap-based allowance {float(historical.projected_hours_with_margin):.3f} hours. This is not a measured H3 projection. Freeze the grid and run the K pilot; if it exceeds 48 hours, reduce training shells 30 → 24 → 18 before dropping H3. The full grid remains disabled.","",
+        (f"A2 measured completed runtime: {result['A2_measured_hours']:.3f} hours. No A2 solve time remains." if result["A2_measured_hours"] is not None else "A2 runtime is not final."),"",
         "B, the remaining ablations and C still require runtime calibration. D/R/HK reuse validated A evidence where applicable. No complete remaining experimental runtime is known. The previous 10–14-day calendar estimate is withdrawn; no arbitrary analysis-day reserve is added.","",
         "Phase-7 review permits continuation in order through A1, A2, B/D/R/ablations, C, K, HK and literature, without another stop before G3. G3/G4 review gates remain.",""]
     Path("reports/COMPUTE_BUDGET.md").write_text("\n".join(lines),encoding="utf-8")
