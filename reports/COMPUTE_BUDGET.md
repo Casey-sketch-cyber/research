@@ -1,13 +1,13 @@
 # Research execution budget
 
-A completed 32,904 solves in 25.403 hours. Original solve acceptance remains failed; reviewed E1 filtering and A1 package acceptance now pass. No A re-solve is required.
+Historical A completed 32904 solves in 25.403 hours. Historical fixed-left A2 completed 2088 solves in 15.082 hours. The 2026-11-09 review supersedes H3/H4 main outcomes and the fixed-left A2 interpretation; these are not the runtime of the corrected experiments.
 
-A2 covers 348 evaluable small units × H3/H4 × three strategies = 2088 solves. Status: complete; completed 2088. Planning cap: 36.413 hours; remaining case-cap allowance 0.000 hours. These use the 120-second cap, prior main-pilot overhead and 15% margin, not measured A2 throughput; warm starts and early stopping may shorten runtime. They are not a promised completion date or strict upper bound.
+F1 re-solves all evaluable H3/H4 cases: 15714. Status: running; recorded completed cases: 18. Small-home settings remain 120 seconds / four workers / three concurrent jobs; large-home settings remain 30 seconds / one worker / fourteen concurrent jobs. Nominal full solve-cap allocation: 31.311 hours, excluding geometry and validation overhead. This is neither measured remaining time nor a completion deadline.
 
-K follows D-39 (household update) and D-38 (budget): H1+H3, eight kits, 30 training shells, 15 held-out shells and 15 real plans. Identical work counts give 2360 solves and the historical cap-based allowance 41.156 hours. This is not a measured H3 projection. Freeze the grid and run the K pilot; if it exceeds 48 hours, reduce training shells 30 → 24 → 18 before dropping H3. The full grid remains disabled.
+F3 follows F1 and F2: the same 348 small units × H3 × three strategies = 1044 solves. Nominal full solve-cap allocation: 11.600 hours, excluding overhead. The mirrored-access run is not started, and the old fixed-left duration does not calibrate it.
 
-A2 measured completed runtime: 15.082 hours. No A2 solve time remains.
+K follows D-39 and D-38: H1+H3, eight kits, 30 training shells, 15 held-out shells and 15 real plans; 2360 solves and historical count-based allowance 41.156 hours. H3 costs remain unmeasured. Freeze the grid and run its pilot; if it exceeds 48 hours, reduce training shells 30 → 24 → 18 before dropping H3. The full grid stays disabled.
 
-B, the remaining ablations and C still require runtime calibration. D/R/HK reuse validated A evidence where applicable. No complete remaining experimental runtime is known. The previous 10–14-day calendar estimate is withdrawn; no arbitrary analysis-day reserve is added.
+B, remaining ablations and C still need runtime calibration. D/R/HK reuse validated corrected evidence where applicable. Full remaining experimental time is unknown. The former 10–14-day calendar estimate is retired; no arbitrary analysis-day reserve is added.
 
-Phase-7 review permits continuation in order through A1, A2, B/D/R/ablations, C, K, HK and literature, without another stop before G3. G3/G4 review gates remain.
+Execution order: F1 → F2 → F3 → B → D/R/ablations → C → K → HK → literature → G3. The review requires no additional intermediate reviewer stop. G3/G4 remain.

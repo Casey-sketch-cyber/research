@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "units": 2619,
+  "household_strategy_checks": 15714,
+  "candidate_mismatches": 0,
+  "primary_bound_mismatches": 0,
+  "original_config_hash": "e11cf4c8734ad2e87bb19fd6a09e5a9237df9928e012effed75aff80959d4c14",
+  "corrected_config_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474",
+  "evaluability_sha256": "6ae0809f962a11d50e0101421ac63bba335bb40112585734d9b8cd0f96d6c811",
+  "original_solutions_sha256": "9a17959a449d507330a94c15849b17e9c313ba0c31ffa433130672d4f6d1ed79",
+  "audit_sha256": "8dfefff1ffde5379005790fb01a60ac9587cebcb1907eadda31382ea6b874037",
+  "implementation_sha256": "ec418270a6c50a92771796b7c4b1f3311bf4dd642aa9a8332c7903bbf6e9cea6",
+  "bound_definition": "Exact relaxed primary FCI bound used by Model, after removing item types without feasible candidates. Primary coefficients depend on unchanged demands, frequencies and durations.",
+  "limitation": "Instance-variable counts and the secondary-objective weighting can change. This is not a claim that CP-SAT search traces or every scalar objective coefficient are identical.",
+  "reuse_basis": "Each H1/H2 schedule has one sleep_1 occurrence, only at night, and no alternative-day schedule. Extra single sleepers cannot serve another demand; unused items cannot improve objectives and the model excludes them. Reuse requested by review F1.",
+  "outcomes_relabelled": false
+}

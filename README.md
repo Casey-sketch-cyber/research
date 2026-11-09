@@ -36,55 +36,21 @@ After each review, tell Codex: *"Pull, read `reviews/Gx_review.md`, address the 
 
 ## Status
 
-Experiment A has completed all solves but failed final validation. Downstream
-execution stopped before A1; see the [completion audit](reports/expA_completion_audit.md).
-The affected units exactly match failures in the earlier full-sample connectivity
-record. Cause diagnosis and correction validation remain pending.
+The [2026-11-09 A1/A2 review](reviews/phase07_review_A1A2.md) requires corrected H3/H4 solves, a paired equivalent-area metric and mirrored-access H3 sensitivity. Follow the [current implementation and evidence status](reports/phase_07_F1_F2_F3.md).
+
+H1/H2 compatibility checks passed on all 2,619 evaluable units. The 15,714-case H3/H4 re-solve is running with frozen production settings; numerical F2 analysis is queued after its acceptance. F3 and B have not started. The 200-pair B sample remains frozen. Dated runtime evidence is in [results/expA_f1](results/expA_f1/).
+
+Original A/A1 and fixed-left A2 remain historical records. Their H3/H4 results are superseded pending correction, and the old FEA-minus-own-area saving metric is retired for all households. Their reports retain historical statements and hashes; do not use those statements as the current execution status. E1–E3 evidence and compatible H1/H2 scores remain available.
 
 | Gate | Status |
 |---|---|
 | Task L literature | Q-12 permits continuation with narrowed C2/C3; remaining screening due at G3 |
-| G1 data & corpus | G1 review completed; G2 geometry refresh is recorded in current corpus artifacts |
-| G2 method & pilot | Round 3: APPROVED to start Phase 7 once §3 checks pass (see `reviews/G2_review_round3.md`) |
-| G3 results | not started |
-| G4 final package | not started |
+| G1 data & corpus | Reviewed; geometry refresh and E1 selection are documented |
+| G2 method & pilot | Approved continuation; frozen production settings retained |
+| G3 results | Pending completion of corrected experiments and later phases |
+| G4 final package | Not started |
 
-Current work is recorded in [G2 round-2 self-review](reports/G2_round2_self_review.md).
-The [round-3 implementation and dated status](reports/G2_round3_status.md) records
-the current conditional approval, fresh pilot, A/K projections and automatic
-continuation checks. The updated [Phase 7 checklist](reports/phase_07_expA.md)
-includes paired form/time decomposition and the later double-bed sensitivity.
-The author has restored K's two-day cap and withdrawn the full grid (D-38).
-The [execution budget](reports/COMPUTE_BUDGET.md)
-separates pilot-calibrated estimates, full-cap workload projections and work that
-has not yet been timed. The reduced exploratory K scope requires a frozen grid
-and a confirming runtime pilot; the main experiments are unchanged.
-The budget now reports experimental compute time only. The earlier calendar ETA
-with an unmeasured analysis/development reserve is retired; uncalibrated experiments
-remain explicit rather than receiving arbitrary extra days.
-The wall-flush correction has been benchmarked on the unchanged 240 cases. The
-six hand-written witnesses and unconstrained mechanism comparisons now pass;
-unsuccessful development arms remain visible. The numerical suite passes 103
-tests, with a separate additional budget-comparison integration test.
-
-The old w1_s20_t30 selection and its A/K projections are historical and must be
-replaced using the round-2 mean-quality and small-home budget checks. The frozen
-16-unit small-home comparisons are complete: 384/384 layouts independently
-revalidated, with no score mismatches. The provisional small-home setting is
-4 workers / 120 s / full anchors, satisfying the predeclared S2 mean criterion
-against the 300 s reference in both scopes. See the dated
-[progress snapshot](results/pilot/round2/progress_snapshot.json). A guarded Phase 7 runner exists
-but refuses to start without accepted current settings and a <=36-hour projection.
-Formal A has started after passing the fresh quality and runtime checks; K and R
-remain unstarted. No FEA or population-level hypothesis conclusion is claimed
-from the unfinished A run. Its dated progress snapshot is in
-`results/expA/progress_snapshot.json`; continuation state is in
-`results/pilot/round3/execution_status.json`. Literature screening remains due at G3. Uploads have been reauthorized; the current review package includes completed
-mechanism evidence, all 384 small-home layouts with hashes, and completed budget
-comparisons. The fresh pilot and source-quality checks are complete; A retains
-all 2742 units with a 26.074-hour projection including margin. The pilot plan and
-completion state are in
-[pilot_refresh_status.json](results/pilot/round2/pilot_refresh_status.json).
+The approved order is F1 → F2 → F3 → B → D/R/ablations → C → K → HK → literature → G3, with no further intermediate reviewer stop. K retains H1+H3 and its 48-hour cap; the full grid remains disabled. The [execution budget](reports/COMPUTE_BUDGET.md) distinguishes historical measured time from new workload allocations and unmeasured experiments. The former 10–14-day calendar estimate is retired. Uploads remain authorized after privacy checks.
 
 ## License
 

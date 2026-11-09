@@ -58,3 +58,12 @@ The frozen main library allows one static single bed, but H4 requires two separa
 ## Q25 — Fixed-side A2 service is not a universal relaxation
 
 A2 finished all 2088 cases with valid geometry and strict strategy ordering. Fifty-nine case-level scores decreased from main. For nine, the original layout still passes geometric checks under A2 but its rescored service is lower; fifty original layouts become invalid under the variant. A second audit verifies all returned scores are at least as high as the original valid layout after rescoring under A2. No incumbent was discarded or result replaced. The main service target is the union of the reserved clearance strips: reaching either side suffices for a bed to serve a demand. Fixing access to local-left removes a possible service target; four rotations do not add mirrored families. Thus even the static-bed variant is not a universal relaxation. Report this distinction, preserve main geometry and all A2 results, and carry the limitation to G3. An optimized choice of access side would be a separately specified future variant, not a silent change.
+
+
+## Q26 — Latest A1/A2 review supersedes previous continuation evidence
+
+The 2026-11-09 D-40 bed-cap correction is distinct from the 2026-11-07 D-40 runtime-reporting decision; identify each by date/scope and retain the reviewer record. F1 replaces H3/H4 outcomes, F2 retires the old area-saving definition for every household, and F3 replaces fixed-left A2 with mirrored access for H3. B keeps its frozen sample but waits for corrected evidence. At 0.10 m, the E2 sampled grid failures disproportionately involve oblique kitchen openings; retain the eight-of-twenty finding and source/sample limits.
+
+## Q27 — F2 support and gain-summary conventions
+
+The primary reference uses observed 2 m2 bin midpoints with median S0 capacity, cumulative maximum and linear interpolation; empty bins add no invented observations. Report the mean-isotonic sensitivity separately. Both inverses use one curve. Equal scores give a known zero difference even when the individual inverses exceed support. Unequal doubly censored scores give only a nonnegative difference bound; do not subtract two identical inverse lower bounds and call it an exact zero. Lower-support clamping is flagged. Report FCI-improvement share, known-positive-area-gain share, uncensored-positive median and censoring; also report median identification bounds among FCI-improved units so conditional summaries cannot hide unsupported gains. These conventions do not change the sample or solver.

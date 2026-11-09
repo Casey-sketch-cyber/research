@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 
 from fea.io import sha256_file, write_json
+from fea.config import config_hash
 
 
 def select_evaluable(solutions, evaluability, frozen_sample, households):
@@ -51,6 +52,8 @@ def select_evaluable(solutions, evaluability, frozen_sample, households):
 def load_evaluable_solutions(config, root=Path("results/expA")):
     """Verify rule/input provenance and write a distinct analysis acceptance record."""
     run = json.loads((root/"run.json").read_text())
+    if config_hash(config) != run["base_config_hash"]:
+        raise ValueError("Historical A configuration differs; use the accepted F1 corrected evidence, not old scores with a new label")
     original_acceptance = json.loads((root/"solve_acceptance.json").read_text())
     manifest = json.loads((root/"evaluability_manifest.json").read_text())
     if run["status"] != "complete" or original_acceptance["completed_cases"] != run["expected_cases"]:
