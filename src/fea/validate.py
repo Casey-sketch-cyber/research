@@ -93,6 +93,10 @@ def validate_layout(layout: dict, grid: Raster, config: dict, household: Househo
     counts = Counter(v["type"] for v in items)
     for name, count in counts.items():
         if count > furniture["max_instances"].get(name, furniture["max_instances"]["default"]): violations.append("instance_limit:"+name)
+    # Check family inventory independently from the solver's presence constraints.
+    for family, group in furniture.get("instance_groups", {}).items():
+        if sum(counts[name] for name in set(group["members"])) > group["max_instances"]:
+            violations.append("family_instance_limit:"+family)
     scale = household.overrides.get("global_clearance_scale", furniture["meta"]["global_clearance_scale"])
     width = household.overrides.get("walking_width", furniture["meta"]["walking_width"])
     if abs(layout.get("resolution_m", grid.resolution)-grid.resolution) > 1e-9: violations.append("resolution_mismatch")

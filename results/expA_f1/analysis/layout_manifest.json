@@ -1,0 +1,13 @@
+{
+  "seed": 20261105,
+  "sample_cases": 24,
+  "showcase_cases": 9,
+  "all_revalidated": true,
+  "selection_sha256": "bf48902495d0ef902f3c0c275ab425d5928640cb23d3352a41f94b605ab5bd93",
+  "audit_sha256": "b842fcd18efcb3db5d6d69f67a889dd216ae50b723366d51f32f89e7de5401ee",
+  "evaluability_sha256": "6ae0809f962a11d50e0101421ac63bba335bb40112585734d9b8cd0f96d6c811",
+  "selection_rule": "Exact original 33 example cases; original fixed-seed and geometry-only selection retained; corrected H3/H4 outcomes and unchanged H1/H2 provenance",
+  "F1_solutions_sha256": "ec4fdade4cf07b6e21cd50fcdcd71ef7ca5a9709ed0fef816737d618697881ff",
+  "original_selection_sha256": "bf48902495d0ef902f3c0c275ab425d5928640cb23d3352a41f94b605ab5bd93",
+  "visual_review_pending": true
+}

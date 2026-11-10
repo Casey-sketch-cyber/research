@@ -1,0 +1,49 @@
+{
+  "numerical_checks_passed": true,
+  "inputs": {
+    "solutions_sha256": "ec4fdade4cf07b6e21cd50fcdcd71ef7ca5a9709ed0fef816737d618697881ff",
+    "F1_acceptance_sha256": "ebe9ea3caf5604f55a32ef1fb97037f2dfab7c471135b82bc0569bbca04d5bca",
+    "evaluability_sha256": "6ae0809f962a11d50e0101421ac63bba335bb40112585734d9b8cd0f96d6c811",
+    "bootstrap": {
+      "n": 1000,
+      "ci": 0.95
+    },
+    "taus": [
+      0.9,
+      0.95,
+      1.0
+    ],
+    "seed": 20261105,
+    "implementations": {
+      "scripts/07_f2_analysis.py": "59cf8fe10e6c143e6b4c6d9bf48619f8e3d4b5013b2d6944cf75aea961dbdfcf",
+      "scripts/phase07_corrected.py": "c7f140ed730fc917a6652c1446cc8bdca984798edaa22bd13997f9c3d28f8d4f",
+      "scripts/phase07_f1.py": "eec2b31b8fc9766bb10f739fa1ed5e9e539d672016bbabde6be89b68d164c362",
+      "scripts/phase07_paired_area.py": "ec800d680725e57d625618bda53357a4b65ae6bacba2ffd5604d2deaaed1c6c3",
+      "scripts/phase07_statistics.py": "da3003e1d126336a8430106f9264e510153f760bf2a55ee330f800333a9d1b6b",
+      "scripts/07_decomposition.py": "f278942e05bd486b21c862e88ea58eef645b16b15fed55a9928ef077285d42ee"
+    }
+  },
+  "reference_groups": 40,
+  "outputs": {
+    "adequacy_fit_reversals.csv": "2eec3922dcb516f1e00a654714ef0062f6b59044fde1a124fb45fcc05f05674d",
+    "area_gain_summary.csv": "d132d889c4fd82de94eb8efffad96d2163fd8cca6f12f8804c8503a0b0a1d3a0",
+    "f0_curves.csv": "9c02a5a246a06942e67ff7a26f8d6e6c42872a6281b01d55305ac28c595ad461",
+    "figures/F4_paired_area_gain.pdf": "3ac5bb50c56e60f6ea167548df7c696a0e585c5012ca36029a56b7ca51297344",
+    "figures/F4_paired_area_gain.png": "1c2d04620d38e9c797b465f91c972ad47fe500fd5dc4a17bde06a1cef48f3422",
+    "figures/F4b_corrected.pdf": "20d9416cf85b6314f12ae79a1aa48c7b395ac17b7caf3a2a43356a5f65751592",
+    "figures/F4b_corrected.png": "2719feb6c71866455dd858ca5d779e1be7e9630c6ae43bd96ef5a4c1e2bc39e8",
+    "form_time_by_area.csv": "1a54d00e148692eeb319d6846d3f3f1a94ece7260280eca5d989a11294ea08ef",
+    "form_time_effects.csv": "456b7396e3cd9538d1b138c1d802ee67fe244549f9e43dd8d5020c26da23aa6b",
+    "min_adequate_area.csv": "d1d8e424e05d4369d4b2a255760c9316f1b26a8b1f23b9a53bae5a9cb69e5982",
+    "paired_equivalent_area.csv": "4a7ad8ff6c8f42b533809d07d13234b6b2901dd8db46d6bf627a691b4cbfd752",
+    "primary_effects.csv": "b5e70621b9633a6dc9c2358f1d7f45d86d7583297380a454bea4c531bd4668a2",
+    "run.json": "af1dd472691289549ea8282302510fcfa1ca015c79048b6b862a8a9edde0da01",
+    "supplementary_tests.csv": "48553c316cdacef86590e0f34cd06e4e2522fb38abce2b64d128fb5a646f98b4"
+  },
+  "full_F2_package_complete": false,
+  "pending": [
+    "actual figure inspection",
+    "corrected H3/H4 layout showcases and inspection"
+  ],
+  "permits": "Corrected numerical analysis only; not G3 acceptance."
+}

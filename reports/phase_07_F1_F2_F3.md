@@ -1,39 +1,33 @@
-# Phase 7 — A1/A2 follow-up review
+# Phase 7 — Current review implementation
 
-Review: [phase07_review_A1A2](../reviews/phase07_review_A1A2.md), b3d1a71, 2026-11-09. The author instructs implementation. This re-solve requirement supersedes the previous no-re-solve instruction. No further intermediate reviewer stop is required before G3.
+Review: [phase07_review_A1A2](../reviews/phase07_review_A1A2.md), b3d1a71. Follow-up results are in [the accepted F1/F2 report](phase_07_F1_F2_results.md). No intermediate reviewer stop is required before G3.
 
-- [x] F1: verify that the only main configuration change is single_bed=2 and wall_bed_single=2.
-- [x] Verify H1/H2 candidate-table equality and unchanged primary FCI upper bounds on all 2619 evaluable units (15714 household/strategy checks). Preserve actual old configuration hashes when reusing results.
-- [x] Start isolated H3/H4 × S0/S1/S2 re-solves on every evaluable unit with frozen production settings and independently revalidated original warm starts.
-- [ ] Complete all 15714 re-solves, validate them and join unchanged H1/H2 rows with explicit provenance.
-- [x] Implement and test F2 paired inverse-area gain: median-per-2-m²-bin cumulative-maximum reference, mean-isotonic sensitivity, support flags and censoring bounds.
-- [x] Queue guarded numerical F2 analysis after accepted F1; use 1000 paired unit resamples, refitting both references in each draw.
-- [ ] Finish F2 numerical analysis, actual figure inspection and corrected H3/H4 layout showcases.
-- [ ] F3: implement and test mirrored left/right access with shared family limits; re-run the same 348 small units for H3 only (1044 cases).
-- [ ] Continue B on the frozen 200-pair sample using corrected H3/H4 evidence, then D/R/ablations, C, H1+H3 K, HK, literature and G3.
+- [x] Correct the two reviewed single-bed inventory caps and verify all H1/H2 candidate tables and primary bounds on 2619 units.
+- [x] Re-solve all 15714 H3/H4 cases with frozen production budgets; independently validate and join compatible H1/H2 rows with their original provenance.
+- [x] Complete F2 paired equivalent-area gain, median-bin primary reference and mean-isotonic sensitivity, censoring bounds and 1000 paired unit resamples.
+- [x] Report mean FCI differences, bootstrap intervals and improvement shares as primary; retain Wilcoxon as supplementary. Report single-person real-plan adequate-area nonidentification.
+- [x] Revalidate and visually inspect all 33 original layout examples and both corrected summary figures. Full F2 package accepted.
+- [x] Implement mirrored left/right 0.60 m alternatives with shared family inventory; pass 153 full-suite regression tests.
+- [x] Start F3 on the exact original 348 small units, H3 only, three strategies (1044 cases).
+- [ ] Complete and independently analyse F3; retain negative changes and failed old-layout mappings.
+- [ ] Run B on the frozen 200-pair sample with corrected evidence, then D/R/ablations, C, reduced H1/H3 K, HK, literature and G3.
 
-## Observed execution state
+## Observed state
 
-F1 started at 2026-11-09T08:43:36+00:00. The saved snapshot at 2026-11-09T08:55:37+00:00 records 18/15714 completed cases in the small-home group. This is a dated snapshot, not a completed experiment. Results and isolated cache provenance are in results/expA_f1/. F2 continuation is waiting for this exact F1 input set. A failed or replaced F1 stops continuation.
+F1 completed at 2026-11-10T03:13:28+00:00: 15714/15714 corrected solves, 18.498 hours. All corrected and combined cases validate, with no strategy-ordering failures. The combined evidence has 31428 cases over 2619 evaluable units. H1/H2 scores and actual original configuration hashes are preserved.
 
-H1/H2 verification found zero candidate-table or primary-bound differences. The proof also checks that their single sleep_1 demand occurs only at night; extra single beds cannot satisfy another demand. Instance counts and the scalar weights of secondary objectives may change, so this is not a claim of identical models or search traces.
+F2 completed 20 household/population groups, 40 reference groups including sensitivity. The initial numerical acceptance explicitly left visual review pending; the later results/expA_f1/analysis/package_acceptance.json records completion of the full package. Original example selection is unchanged.
 
-Small homes retain 120 seconds, four solver workers and three concurrent jobs, with 0.10 m anchors; larger homes retain 30 seconds, one worker and fourteen concurrent jobs, with 0.20 m anchors. Every H3/H4 case invokes the unchanged solver. An original layout is used only after validation under the new caps; the new result cannot discard that valid FCI incumbent. There is no geometry repair, sample reduction or solve-budget reduction.
+F3 started at 2026-11-10T07:53:15+00:00, after F1/F2 acceptance and regression checks. It retains 120 seconds per solve, four solver workers, three concurrent jobs and 0.10 m anchors. Current run files are in results/expA_f3/. The solve and its final comparison are not yet complete; B has not started.
 
-## F2 interpretation and checks
+## Evidence and interpretation limits
 
-Both scores are inverted on the same source/household reference. Equal scores identify zero gain even if the individual inverses are unsupported. An unsupported S2 inverse with supported S0 gives a difference lower bound; two unequal unsupported scores give an unidentified nonnegative gain. Such cases are not relabelled as exact zero. Below-support values use the first observed bin midpoint and remain explicitly flagged. See Q27.
+Original A/A1 and fixed-left A2 remain historical records. Old H3/H4 outcomes are superseded by F1; the earlier FEA-minus-own-area saving definition is retired for every household. E1/E2/E3 membership evidence and the B sample are unchanged. Valid zero-score units remain included; at the 0.10 m raster, oblique kitchen openings can be lost.
 
-Tables separate the share already fully functional under S0, the share whose FCI improves, the share with known positive area gain, right censoring, the median among positive uncensored gains, and median identification bounds among FCI-improved units. The conditional median is not an unconditional median for censored gainers. References cover pooled, real-plan, D1, D2 and D3 evidence separately.
+Paired gains invert S0 and S2 on one curve. Equal scores give zero; unsupported unequal scores retain censoring and lower bounds. Positive uncensored medians, gain prevalence and censoring are reported separately. Pooled, real-plan and designed-shell evidence remain distinct.
 
-Mean paired FCI differences, bootstrap confidence intervals and improvement shares are the primary statistics. Wilcoxon and rank-biserial statistics remain supplementary because nonnegative ordering holds by construction. Adequate-area estimates retain unsupported and one-class flags; single-person real-plan nonidentification is reported explicitly, alongside source-labelled D3 and pooled fits. F2 numerical completion alone will not mark figures or corrected layout examples reviewed.
+F3 aliases share their original physical family limit; a side is fixed per item, not changed by time slot. The main right strip was 0.50 m and sofa_bed used front 0.50 m, so this exact 0.60 m variant is not a universal geometric superset. All physical mirror choices of an old layout are independently checked; losses will be retained rather than tuned away. See Q28.
 
-Related regression checks: 18 passed (F1 configuration/case gates, E1 membership, paired-area boundaries, paired analysis and reuse provenance). F1 and F2 driver dry runs passed. No corrected empirical F2 result is claimed yet.
+## Reproducibility
 
-## Superseded evidence and limitations
-
-Original A, A1 and fixed-left A2 remain immutable historical evidence. H3/H4 outcomes from those runs are superseded pending corrected results. The old FEA-minus-own-area saving definition is retired for every household. H1/H2 original scores remain reusable only through the compatibility gate. E1/E2/E3 selection evidence and the B sample stay unchanged. Historical reports retain their original text and hashes; read this report and the current README for their present status.
-
-The E2 audit found 8 of 20 sampled excluded units recoverable at 0.05 m. At 0.10 m, oblique kitchen openings are disproportionately lost. This is a limitation of the fixed raster and selection rule, not grounds for outcome-driven geometry repair.
-
-The numerical solver and validator remain frozen during F1. F3 work must not alter the active F1 execution copy. The duplicated D-40 records are distinguished by date and scope: 2026-11-07 runtime reporting versus 2026-11-09 bed-count correction. Review files remain untouched.
+F1 numerical source remained frozen through completion; its source is available at 022a790 and its exact numerical signature is in the run manifest. Only then were optional family-count constraints added independently to solver and validator. F3 records its own signature, override, driver and preflight hashes. Use 022a790 to reproduce F1, followed by the F3 implementation for the sensitivity. Active F3 numerical source is now frozen. Review files remain untouched.

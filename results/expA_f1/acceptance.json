@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "rerun": {
+    "passed": true,
+    "units": 2619,
+    "completed_cases": 15714,
+    "expected_cases": 15714,
+    "invalid_cases": 0,
+    "ordering_failures": 0,
+    "zero_cases": 52
+  },
+  "combined": {
+    "passed": true,
+    "units": 2619,
+    "completed_cases": 31428,
+    "expected_cases": 31428,
+    "invalid_cases": 0,
+    "ordering_failures": 0,
+    "zero_cases": 94
+  },
+  "excluded_units": 123,
+  "input_provenance": {
+    "corrected_config_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474",
+    "original_config_hash": "e11cf4c8734ad2e87bb19fd6a09e5a9237df9928e012effed75aff80959d4c14",
+    "numerical_signature": "21c8cc38317c527075edf93987f9eec0237493ba789367910c6ffd03c852cea8",
+    "original_solutions_sha256": "9a17959a449d507330a94c15849b17e9c313ba0c31ffa433130672d4f6d1ed79",
+    "evaluability_sha256": "6ae0809f962a11d50e0101421ac63bba335bb40112585734d9b8cd0f96d6c811",
+    "sample_sha256": "e43bdba2738a3bf89c2017e14eaedbf87b87a1d0e779bc76b34e103d4367ff36",
+    "compatibility_sha256": "8feb7ee700c21479d186dfcd23498e71e167e1313892cefcaaf0e93fca3b5c4f",
+    "driver_sha256": "21e970164bdb9291189a1f4c3d0b4a34e25a7adda88d722a3606339e8d8b5ced",
+    "helper_sha256": "eec2b31b8fc9766bb10f739fa1ed5e9e539d672016bbabde6be89b68d164c362"
+  },
+  "H3H4_sha256": "7c6b5fe73f2a6a3dafc820286d70d07f228a59b45f84b448cd2886383d6ef1b1",
+  "combined_sha256": "ec4fdade4cf07b6e21cd50fcdcd71ef7ca5a9709ed0fef816737d618697881ff",
+  "main_original_untouched": true
+}

@@ -142,6 +142,11 @@ class Model:
                             change = m.NewBoolVar(f"{identity}:{variant.name}:change:{index}")
                             m.AddAbsEquality(change, state-cycle[index-1])
                             self.burden_terms.append((change, Fraction(str(item.effort))*Fraction(str(variant.frequency))))
+        # Mirrored alternatives share one physical family inventory limit.
+        for family, group in config["furniture"].get("instance_groups", {}).items():
+            members = set(group["members"])
+            m.Add(sum(instance.present for instance in self.instances.values()
+                      if instance.item.name in members) <= group["max_instances"])
         for variant in household.variants:
             for slot in household.slots:
                 key = variant.name, slot.name

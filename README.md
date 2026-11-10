@@ -38,9 +38,9 @@ After each review, tell Codex: *"Pull, read `reviews/Gx_review.md`, address the 
 
 The [2026-11-09 A1/A2 review](reviews/phase07_review_A1A2.md) requires corrected H3/H4 solves, a paired equivalent-area metric and mirrored-access H3 sensitivity. Follow the [current implementation and evidence status](reports/phase_07_F1_F2_F3.md).
 
-H1/H2 compatibility checks passed on all 2,619 evaluable units. The 15,714-case H3/H4 re-solve is running with frozen production settings; numerical F2 analysis is queued after its acceptance. F3 and B have not started. The 200-pair B sample remains frozen. Dated runtime evidence is in [results/expA_f1](results/expA_f1/).
+F1 has completed all 15,714 corrected H3/H4 solves in 18.498 hours. The combined 31,428-case evidence validates. F2 numerical analysis, both figures and all 33 original layout examples are accepted; see the [F1/F2 results report](reports/phase_07_F1_F2_results.md). F3 is running on the same 348 small units for H3 only (1,044 cases). B has not started and its 200-pair sample remains frozen. Dated evidence is in [results/expA_f1](results/expA_f1/) and [results/expA_f3](results/expA_f3/).
 
-Original A/A1 and fixed-left A2 remain historical records. Their H3/H4 results are superseded pending correction, and the old FEA-minus-own-area saving metric is retired for all households. Their reports retain historical statements and hashes; do not use those statements as the current execution status. E1–E3 evidence and compatible H1/H2 scores remain available.
+Original A/A1 and fixed-left A2 remain historical records. Their H3/H4 results are superseded by F1, and the old FEA-minus-own-area saving metric is retired for all households. Their reports retain historical statements and hashes; do not use those statements as the current execution status. E1–E3 evidence and compatible H1/H2 scores remain available.
 
 | Gate | Status |
 |---|---|

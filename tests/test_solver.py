@@ -41,6 +41,8 @@ def test_solver_respects_occurrence_and_capacity_limits(name, kept, expected):
     household = parse_households(config["households"], config["furniture"])[name]
     config["solver"]["time_limit_s"] = 10
     config["solver"]["num_workers"] = 1
+    if kept == "single_bed":
+        config["furniture"]["max_instances"][kept] = 1  # Explicit one-instance limit fixture; main reviewed cap is two.
     config["furniture"]["static_items"] = {kept: config["furniture"]["static_items"][kept]}
     config["furniture"]["transformable_items"] = {}
     room = empty_room()

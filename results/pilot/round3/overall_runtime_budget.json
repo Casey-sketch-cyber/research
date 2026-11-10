@@ -25,7 +25,6 @@
   "K_if_over_budget": "reduce training shells (30 -> 24 -> 18) before dropping H3; report it",
   "full_project_remaining_hours": null,
   "unmeasured": [
-    "F1 corrected full-run duration",
     "F3 mirrored-access H3 duration",
     "B: footprint-only greedy, annealing, CP-SAT comparison",
     "D/R and ablations",
@@ -34,14 +33,18 @@
     "HK and literature"
   ],
   "no_fixed_analysis_calendar_surcharge": true,
-  "A_A1_H3H4_status": "superseded_pending_F1",
+  "A_A1_H3H4_status": "corrected_F1_F2_accepted",
   "A2_interpretation": "historical_fixed_left_superseded_by_F3",
-  "F1_status": "running",
+  "F1_status": "complete",
   "F1_expected_cases": 15714,
-  "F1_completed_cases": 18,
+  "F1_completed_cases": 15714,
   "F1_nominal_full_caps_hours": 31.310714285714283,
-  "F1_measured_hours": null,
+  "F1_measured_hours": 18.498068391575167,
   "F3_expected_cases": 1044,
   "F3_nominal_full_caps_hours": 11.6,
-  "F1_F3_basis": "Nominal full solve-cap allocations at frozen concurrency; excludes geometry/validation overhead and is not a measured duration or strict upper bound."
+  "F1_F3_basis": "Nominal full solve-cap allocations at frozen concurrency; excludes geometry/validation overhead and is not a measured duration or strict upper bound.",
+  "F3_status": "running",
+  "F3_completed_cases": 0,
+  "F3_measured_hours": null,
+  "F2_package_passed": true
 }

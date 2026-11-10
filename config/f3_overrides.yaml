@@ -1,0 +1,13 @@
+# Approved in the 2026-11-09 review; generated aliases never alter main defaults.
+review: reviews/phase07_review_A1A2.md
+households: [H3_couple_one_remote]
+access_width_m: 0.60
+families:
+  double_bed: static
+  wall_bed_double: deployed
+  wall_bed_over_sofa: deployed
+  sofa_bed: deployed
+sides: [left, right]
+solver: {num_workers: 4, time_limit_s: 120}
+anchor_stride_m: 0.10
+interpretation: "Left/right are fixed physical variants per item, not per-slot choices; both variants share the original family instance cap. Main right clearance was 0.50 m and sofa_bed used front 0.50 m, so this exact 0.60 m sensitivity is not a universal geometric superset."

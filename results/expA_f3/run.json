@@ -1,0 +1,35 @@
+{
+  "inputs": {
+    "preflight_sha256": "cad8a320ba65acd6aab65e79e446c526ad457b87212658f371dd5362a8029b53",
+    "F1_solutions_sha256": "ec4fdade4cf07b6e21cd50fcdcd71ef7ca5a9709ed0fef816737d618697881ff",
+    "F2_package_sha256": "7c263b3c5d61cda5cd8a8614269c2ca3b4be58d75f0df97ee1844bf396e20438",
+    "sample_sha256": "09f26df6a048e12b0c2cbe1adc888b44e4d6a15bf6f3d0e85ffe919d7d28d101",
+    "original_A2_sample_sha256": "09f26df6a048e12b0c2cbe1adc888b44e4d6a15bf6f3d0e85ffe919d7d28d101",
+    "main_config_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474",
+    "variant_config_hash": "bc7b1ec62d5e37a35a69266c3b50a66769649cec08b890aa01fd21559916a5a0",
+    "main_numerical_signature": "21c8cc38317c527075edf93987f9eec0237493ba789367910c6ffd03c852cea8",
+    "F3_numerical_signature": "5bf4337ee570b591cc5b19547b2dcf7f360dde8d8028ad5478dfaedf2877e774",
+    "override_sha256": "c1015af8ea9ae011e0b9f1a947043674268783b4d8b43b0990032a638ea7e738",
+    "driver_sha256": "f66feacc90cb22eb227ccb2074bb7e950d903fc9216dcaa5a14c399a7f842be7",
+    "helper_sha256": "7d8c2050f2fdfcf10cd92f7a46e3bb9343979babd347a8b270c34ecdb42ddafb"
+  },
+  "units": 348,
+  "households": [
+    "H3_couple_one_remote"
+  ],
+  "strategies": [
+    "S0",
+    "S1",
+    "S2"
+  ],
+  "expected_cases": 1044,
+  "cache": "data/interim/expA_f3/8e1e590b9938787c",
+  "concurrency": 3,
+  "time_limit_s": 120,
+  "num_workers": 4,
+  "anchor_stride_m": 0.1,
+  "variant": "Left/right physical variants, 0.60 m on the chosen side only; original family caps shared across aliases.",
+  "limitations": "Main right strips were 0.50 m and sofa_bed used front 0.50 m; this exact sensitivity is not a universal superset. Keep negative changes and mapping failures.",
+  "status": "running",
+  "started_at_utc": "2026-11-10T07:53:15+00:00"
+}

@@ -1,5 +1,5 @@
 {
-  "status": "waiting_for_F1",
+  "status": "numerical_F2_complete_visual_and_layout_review_pending",
   "F1_inputs": {
     "corrected_config_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474",
     "original_config_hash": "e11cf4c8734ad2e87bb19fd6a09e5a9237df9928e012effed75aff80959d4c14",
@@ -11,5 +11,5 @@
     "driver_sha256": "21e970164bdb9291189a1f4c3d0b4a34e25a7adda88d722a3606339e8d8b5ced",
     "helper_sha256": "eec2b31b8fc9766bb10f739fa1ed5e9e539d672016bbabde6be89b68d164c362"
   },
-  "observed_at_utc": "2026-11-09T08:56:50+00:00"
+  "observed_at_utc": "2026-11-10T03:15:44+00:00"
 }

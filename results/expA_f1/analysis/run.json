@@ -1,0 +1,38 @@
+{
+  "status": "complete",
+  "inputs": {
+    "solutions_sha256": "ec4fdade4cf07b6e21cd50fcdcd71ef7ca5a9709ed0fef816737d618697881ff",
+    "F1_acceptance_sha256": "ebe9ea3caf5604f55a32ef1fb97037f2dfab7c471135b82bc0569bbca04d5bca",
+    "evaluability_sha256": "6ae0809f962a11d50e0101421ac63bba335bb40112585734d9b8cd0f96d6c811",
+    "bootstrap": {
+      "n": 1000,
+      "ci": 0.95
+    },
+    "taus": [
+      0.9,
+      0.95,
+      1.0
+    ],
+    "seed": 20261105,
+    "implementations": {
+      "scripts/07_f2_analysis.py": "59cf8fe10e6c143e6b4c6d9bf48619f8e3d4b5013b2d6944cf75aea961dbdfcf",
+      "scripts/phase07_corrected.py": "c7f140ed730fc917a6652c1446cc8bdca984798edaa22bd13997f9c3d28f8d4f",
+      "scripts/phase07_f1.py": "eec2b31b8fc9766bb10f739fa1ed5e9e539d672016bbabde6be89b68d164c362",
+      "scripts/phase07_paired_area.py": "ec800d680725e57d625618bda53357a4b65ae6bacba2ffd5604d2deaaed1c6c3",
+      "scripts/phase07_statistics.py": "da3003e1d126336a8430106f9264e510153f760bf2a55ee330f800333a9d1b6b",
+      "scripts/07_decomposition.py": "f278942e05bd486b21c862e88ea58eef645b16b15fed55a9928ef077285d42ee"
+    }
+  },
+  "completed_groups": 20,
+  "reference_methods": [
+    "median_bin_cummax",
+    "mean_isotonic"
+  ],
+  "primary_statistics": "Paired mean FCI differences, bootstrap confidence intervals and shares improved. Wilcoxon is supplementary because scores are ordered by construction.",
+  "resampling": "Complete unit vectors; both references refitted in each resample; shared indices for strategies and thresholds.",
+  "interval_policy": "Percentile interval with at least 80% supported draws and at least two observed units. Positive-area median conditions on uncensored positive gains; identification bounds also reported.",
+  "adequacy": "One-class, separation, nonincreasing and out-of-support crossings withheld. Real-plan single-person nonidentification is reported; D3/pooled estimates are labelled by evidence source.",
+  "limitations": "Empty-raster E1 selection unchanged; at 0.10 m, oblique kitchen openings can be lost. Designed shells are not a population sample. Independent logistic crossings may reverse.",
+  "visual_review": "pending",
+  "corrected_layout_showcases": "pending"
+}

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "full_F2_package_complete": true,
+  "F1_solutions_sha256": "ec4fdade4cf07b6e21cd50fcdcd71ef7ca5a9709ed0fef816737d618697881ff",
+  "numerical_acceptance_sha256": "6d4e720cafc6449056e74422cc4333ecd9bb969c40135832012b6c5b862425d1",
+  "visual_review_sha256": "1407dff6cdfea9c1cf850a3211392677789da3b7894fd485077e06ac51386a19",
+  "examples_revalidated": 33,
+  "summary_figures_reviewed": 2,
+  "example_audit_sha256": "fb889e5d0caec3df080e1ece472013289ce9504421f266c0e4246a1676acedf9",
+  "layout_manifest_sha256": "ba155ef7db284fa9693e6a78505d6ff352d29174431dcaf5dd82aa67955f3d4d",
+  "report_sha256": "b5004cfe970ee2105715f45eea758533bff56320f0e49aa37bdb5dab14865efc",
+  "permits": "F3 continuation under phase07_review_A1A2; not G3 or full-study acceptance"
+}

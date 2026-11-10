@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "tests_passed": 153,
+  "numerical_signature": "5bf4337ee570b591cc5b19547b2dcf7f360dde8d8028ad5478dfaedf2877e774",
+  "driver_dry_run_passed": true,
+  "implementation": {
+    "scripts/07_run_f3.py": "f66feacc90cb22eb227ccb2074bb7e950d903fc9216dcaa5a14c399a7f842be7",
+    "scripts/phase07_f3.py": "7d8c2050f2fdfcf10cd92f7a46e3bb9343979babd347a8b270c34ecdb42ddafb",
+    "config/f3_overrides.yaml": "c1015af8ea9ae011e0b9f1a947043674268783b4d8b43b0990032a638ea7e738",
+    "src/fea/solve/cpsat.py": "0b043068c08b0999368a3ac981f717130e8b80f22f18a7e8ab29b6d06a6abf11",
+    "src/fea/validate.py": "83a76971206f6b44bfa57de500c508974453a191a381d3051062712c38a1a44d",
+    "tests/test_f3.py": "fe4af4e5ea9582a5795f413b3f5f90fc955a11d3b551b37ff5f362885dc5431d"
+  },
+  "scope": "Full test suite plus driver syntax/dry run; actual first production cases are independently validated by the runner."
+}
