@@ -30,6 +30,8 @@
   "anchor_stride_m": 0.1,
   "variant": "Left/right physical variants, 0.60 m on the chosen side only; original family caps shared across aliases.",
   "limitations": "Main right strips were 0.50 m and sofa_bed used front 0.50 m; this exact sensitivity is not a universal superset. Keep negative changes and mapping failures.",
-  "status": "running",
-  "started_at_utc": "2026-11-10T07:53:15+00:00"
+  "status": "complete",
+  "started_at_utc": "2026-11-10T07:53:15+00:00",
+  "completed_at_utc": "2026-11-10T16:17:08+00:00",
+  "wall_time_this_invocation_s": 30231.02949014865
 }

@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "independently_revalidated": 1044,
+  "main_revalidated_and_remapped": 1044,
+  "valid_mapped_incumbent_regressions": 0,
+  "negative_changes": 59,
+  "negative_without_valid_mapping": 49,
+  "negative_with_rescored_mapping": 10,
+  "solve_acceptance": {
+    "passed": true,
+    "units": 348,
+    "completed_cases": 1044,
+    "expected_cases": 1044,
+    "invalid_cases": 0,
+    "ordering_failures": 0,
+    "zero_cases": 22
+  },
+  "analysis_script_sha256": "3e12665d807c935b92863310a1b80004d4447d4ce72e5202484017a32c9692d0",
+  "inputs": {
+    "results/expA_f3/solutions.csv": "afaf75ea948e3f85900bbf1ef5c29f051f9d78dda82664e0bef5d9e7ca386955",
+    "results/expA_f3/sample.csv": "09f26df6a048e12b0c2cbe1adc888b44e4d6a15bf6f3d0e85ffe919d7d28d101",
+    "results/expA_f3/preflight.json": "cad8a320ba65acd6aab65e79e446c526ad457b87212658f371dd5362a8029b53",
+    "results/expA2/sample.csv": "09f26df6a048e12b0c2cbe1adc888b44e4d6a15bf6f3d0e85ffe919d7d28d101",
+    "results/expA_f1/solutions.csv": "ec4fdade4cf07b6e21cd50fcdcd71ef7ca5a9709ed0fef816737d618697881ff",
+    "results/expA_f1/analysis/package_acceptance.json": "7c263b3c5d61cda5cd8a8614269c2ca3b4be58d75f0df97ee1844bf396e20438",
+    "scripts/07_run_f3.py": "f66feacc90cb22eb227ccb2074bb7e950d903fc9216dcaa5a14c399a7f842be7",
+    "scripts/phase07_f3.py": "7d8c2050f2fdfcf10cd92f7a46e3bb9343979babd347a8b270c34ecdb42ddafb",
+    "config/f3_overrides.yaml": "c1015af8ea9ae011e0b9f1a947043674268783b4d8b43b0990032a638ea7e738",
+    "results/expA_f3/run.json": "7a3dcc4ac9680830c725d8b9f1c88001e506746889927fe594a822be8ba0834a",
+    "results/expA_f3/acceptance.json": "8ff3890a1530699ee59eef6d9c87524087afe26f15017fbfa3bbec5c6f316653",
+    "results/expA_f3/config_snapshot.json": "dd47a94961d2f82adc0de64b8d997b6936893b1b0165fc69a0e0c2e1c376527a",
+    "scripts/phase07_corrected.py": "c7f140ed730fc917a6652c1446cc8bdca984798edaa22bd13997f9c3d28f8d4f",
+    "scripts/phase07_f1.py": "eec2b31b8fc9766bb10f739fa1ed5e9e539d672016bbabde6be89b68d164c362"
+  },
+  "outputs": {
+    "results/expA_f3/layout_revalidation.csv": "f5c93dae881702d29f1249e818b483871426d8c4a36981bb792844003e548c33",
+    "results/expA_f3/paired_effects.csv": "93127223185177be4e9f3946df4a1956ca457f0db19e12191ff879aa72514761",
+    "results/expA_f3/effect_summary.csv": "14a6e3bb2472fb4c3e6c9ab86b887025b81c181e855b41b399460afb8ef5f3e4",
+    "results/expA_f3/negative_changes.csv": "88cfc5d68ab2e2dcbfa617ed1d0bf538ab9edde954f80867b54ae80fd283bac9",
+    "results/figures/F4c_F3.png": "c7159248fa7d3aa556c0ec242f6cc021703938cf92e1673397ed874b9385c1c8",
+    "results/figures/F4c_F3.pdf": "832479fbd6e6c95d089f8d48fe64198eb278999d84a395121ff3c3385feb050b",
+    "reports/phase_07_F3_results.md": "cdb353e3fbcc2e4bf91da82cb169388baaacf0946961fc40d492faec613f5c48"
+  },
+  "numerical_completed_at_utc": "2026-11-11T02:36:19+00:00"
+}

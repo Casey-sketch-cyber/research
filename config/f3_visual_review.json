@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "reviewed_at_utc": "2026-11-11T02:37:17.006Z",
+  "hashes": {
+    "results/figures/F4c_F3.png": "c7159248fa7d3aa556c0ec242f6cc021703938cf92e1673397ed874b9385c1c8"
+  },
+  "checks": [
+    "Three panels readable, no overlapping or clipped labels",
+    "Source labels and sample sizes match summary tables",
+    "Signed differences, zero line and paired intervals shown",
+    "Sparse real-plan coverage and generated-shell dominance visible"
+  ]
+}

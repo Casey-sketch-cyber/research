@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "units": 348,
+  "completed_cases": 1044,
+  "expected_cases": 1044,
+  "invalid_cases": 0,
+  "ordering_failures": 0,
+  "zero_cases": 22,
+  "solutions_sha256": "afaf75ea948e3f85900bbf1ef5c29f051f9d78dda82664e0bef5d9e7ca386955",
+  "negative_vs_main": 59,
+  "status_distribution": {
+    "TIMEOUT_WITH_INCUMBENT": 428,
+    "FEASIBLE": 336,
+    "OPTIMAL": 236,
+    "FEASIBLE_ACCESS_ADJUSTED": 44
+  }
+}

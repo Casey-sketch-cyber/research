@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "instances": 200,
+  "independently_revalidated": 200,
+  "corrected_H3H4_instances": 99,
+  "reused_verified_H1H2_instances": 101,
+  "sample_sha256": "38c5be1d5cdc90d37edcdb877eb4d233ead683d5b4d8fd267255fa94e7d030ea",
+  "F1_solutions_sha256": "ec4fdade4cf07b6e21cd50fcdcd71ef7ca5a9709ed0fef816737d618697881ff",
+  "F3_package_sha256": "ae1d88a50111596d0e48632ab85c947998ffa776595bf47e92a6b2d84c4342e0",
+  "main_config_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474",
+  "outputs": {
+    "corrected_main_reference.csv": "02f23b37642162bb002f1b40b914522bd471a3aa8a52dc8c35b981da2b67c303",
+    "reference_revalidation.csv": "c388db884820176dc394d86eab48ad8834aaeafd1e1c363d6bd8a1d479a71237"
+  },
+  "implementation_sha256": "ca103aec6b8f948bbc3c025782d7cd3e59392bf0ab7731c796e8d1cbac6286ec",
+  "checked_at_utc": "2026-11-11T02:39:37+00:00",
+  "algorithm_comparison_started": false,
+  "limitations": "This is input preparation, not an algorithm comparison or new CP-SAT runtime measurement."
+}
