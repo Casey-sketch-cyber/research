@@ -81,3 +81,11 @@ The completed mirrored variant still has 59 negative case-level changes: 49 corr
 ## Q30 — P1 lower-support identification and frozen evidence
 
 The latest review approves F1/F2/F3 and requires support-limited area gains to be distinguished from identified gains. P1 classifies lower-support and right-censored unequal-score pairs as bounds; equal scores remain exact zeros. Positive lower-bound counts differ from all FCI-improved boundary cases, because some only identify a zero lower bound. Both counts are explicit. Current tables, the replacement F4 figure and the real-plan pooled-reference sensitivity are in results/expA_f1/analysis_p1/ and phase_07_P1_results.md. Historical F2 files and its report remain byte-identical because F3 and B readiness bind that acceptance chain; current README, protocol and phase entrypoints explicitly supersede those area summaries. G3 must use P1 area estimates. No new bed-access variant is introduced after the approved F3 robustness check.
+
+## Q31 — Conventional-indicator cutoffs not specified for two continuous measures
+
+The plan names area/person and rooms/person but provides no binary adequacy threshold for either. Exp. D therefore reports continuous correlations and complete observed-threshold confusion sweeps (primary FCI threshold), without selecting an optimal cutoff or inventing a housing standard. The two explicit configured area rules receive fixed-threshold confusion matrices at every configured FCI threshold. Harmonized habitable-room counts are not bedroom-only or census room counts. All classifications describe agreement with the model, not legal compliance. This reporting gap does not stop the approved research sequence.
+
+## Q32 — R source dimensions and activity-area definition differ
+
+Bu & Che Mat PDF page 12 §6.1 states bed width 1.8 m and wardrobe depth 0.6 m; Figure 10 on page 13 labels 1.5 m and 0.4 m. The source also subtracts clearances in its 5–5.5 m² static activity-area estimate, unlike the plan's body-only measure. R retains both numeric source descriptions with page references, uses the configured fallback and a known-envelope comparison, and does not claim exact geometric reproduction or tune to 60%. Approximation and metric differences must accompany any comparison in G3 and the paper.

@@ -1,0 +1,219 @@
+{
+  "doi": "10.13189/cea.2026.140514",
+  "url": "https://www.hrpub.org/download/20260830/CEA14-14845472.pdf",
+  "sha256": "591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc",
+  "evidence_type": "Conceptual analytical comparison, not measured occupied-home area savings",
+  "source_values": [
+    {
+      "quantity": "room_area",
+      "value": 12,
+      "unit": "m2",
+      "page": 12,
+      "section": "6.1",
+      "note": "All prototypes; room dimensions explicitly stated"
+    },
+    {
+      "quantity": "room_long_side",
+      "value": 4,
+      "unit": "m",
+      "page": 12,
+      "section": "6.1",
+      "note": "Rectangle"
+    },
+    {
+      "quantity": "room_short_side",
+      "value": 3,
+      "unit": "m",
+      "page": 12,
+      "section": "6.1",
+      "note": "Rectangle"
+    },
+    {
+      "quantity": "window_count",
+      "value": 1,
+      "unit": "count",
+      "page": 12,
+      "section": "6.1",
+      "note": "Opening width not specified in prose"
+    },
+    {
+      "quantity": "entry_count",
+      "value": 1,
+      "unit": "count",
+      "page": 12,
+      "section": "6.1",
+      "note": "Entry on shorter side"
+    },
+    {
+      "quantity": "fixed_bed_length_prose",
+      "value": 2,
+      "unit": "m",
+      "page": 12,
+      "section": "6.1",
+      "note": "Body dimension"
+    },
+    {
+      "quantity": "fixed_bed_width_prose",
+      "value": 1.8,
+      "unit": "m",
+      "page": 12,
+      "section": "6.1",
+      "note": "Conflicts with Figure 10 width 1.5 m"
+    },
+    {
+      "quantity": "wardrobe_length_prose",
+      "value": 1.8,
+      "unit": "m",
+      "page": 12,
+      "section": "6.1",
+      "note": "Body dimension"
+    },
+    {
+      "quantity": "wardrobe_depth_prose",
+      "value": 0.6,
+      "unit": "m",
+      "page": 12,
+      "section": "6.1",
+      "note": "Conflicts with Figure 10 depth 0.4 m"
+    },
+    {
+      "quantity": "bedside_table_count",
+      "value": 2,
+      "unit": "count",
+      "page": 12,
+      "section": "6.1",
+      "note": "Complete dimensions not unambiguously specified"
+    },
+    {
+      "quantity": "fixed_furniture_body_area_approx",
+      "value": 5.4,
+      "unit": "m2",
+      "page": 12,
+      "section": "6.1",
+      "note": "Approximate aggregate, distinct from clearance-inclusive activity metric"
+    },
+    {
+      "quantity": "fixed_furniture_plus_clearance_area_low",
+      "value": 6.5,
+      "unit": "m2",
+      "page": 12,
+      "section": "6.1",
+      "note": "Approximate"
+    },
+    {
+      "quantity": "fixed_furniture_plus_clearance_area_high",
+      "value": 7,
+      "unit": "m2",
+      "page": 12,
+      "section": "6.1",
+      "note": "Approximate"
+    },
+    {
+      "quantity": "fixed_bed_width_figure",
+      "value": 1.5,
+      "unit": "m",
+      "page": 13,
+      "section": "Figure 10",
+      "note": "Contradicts prose 1.8 m"
+    },
+    {
+      "quantity": "wardrobe_depth_figure",
+      "value": 0.4,
+      "unit": "m",
+      "page": 13,
+      "section": "Figure 10",
+      "note": "Contradicts prose 0.6 m"
+    },
+    {
+      "quantity": "desk_width_figure",
+      "value": 1.2,
+      "unit": "m",
+      "page": 13,
+      "section": "Figure 10",
+      "note": "Figure label"
+    },
+    {
+      "quantity": "desk_depth_figure",
+      "value": 0.6,
+      "unit": "m",
+      "page": 13,
+      "section": "Figure 10",
+      "note": "Figure label"
+    },
+    {
+      "quantity": "wall_bed_stowed_depth_figure",
+      "value": 0.35,
+      "unit": "m",
+      "page": 13,
+      "section": "Figure 10",
+      "note": "Figure label"
+    },
+    {
+      "quantity": "wall_bed_floor_release_approx",
+      "value": 3,
+      "unit": "m2",
+      "page": 13,
+      "section": "6.1 continuation",
+      "note": "Reported approximation"
+    },
+    {
+      "quantity": "modular_storage_footprint_reduction",
+      "value": 0.2,
+      "unit": "fraction",
+      "page": 13,
+      "section": "6.1 continuation",
+      "note": "Reported approximation"
+    },
+    {
+      "quantity": "activity_area_static_low",
+      "value": 5,
+      "unit": "m2",
+      "page": 14,
+      "section": "Table 2",
+      "note": "Includes clearance deduction; not body-free NIA"
+    },
+    {
+      "quantity": "activity_area_static_high",
+      "value": 5.5,
+      "unit": "m2",
+      "page": 14,
+      "section": "Table 2",
+      "note": "Includes clearance deduction; not body-free NIA"
+    },
+    {
+      "quantity": "activity_area_flexible",
+      "value": 8,
+      "unit": "m2",
+      "page": 14,
+      "section": "Table 2",
+      "note": "Wall bed folded"
+    },
+    {
+      "quantity": "reported_relative_gain",
+      "value": 0.6,
+      "unit": "fraction",
+      "page": 13,
+      "section": "6.3",
+      "note": "Approximate, relative to about 5 m2 baseline"
+    }
+  ],
+  "comparison": {
+    "exact_reproduction": false,
+    "reason": "Source body dimensions conflict and complete furniture/clearance geometry is not consistently specified; source activity area includes clearances.",
+    "fallback": "Configured 12 m2 D3 shells at aspect ratios 1, 1.25 and 1.5; short-wall corner entrance and opposite short-wall window fixed before outcomes. Also a 4 x 3 m empty-bedroom envelope using the unchanged household catalogue, labelled an envelope-only comparison.",
+    "source_text_or_figures_redistributed": false
+  },
+  "analysis": {
+    "near_reported_gain_interval": [
+      0.55,
+      0.65
+    ],
+    "near_interval_interpretation": "Descriptive predeclared ±5 percentage-point band around approximate 60%; not source uncertainty.",
+    "relative_area_denominator": "unit NIA",
+    "main_reference": {
+      "real_plans": "real_plans",
+      "D3": "D3"
+    },
+    "sensitivity_reference": "pooled"
+  }
+}
