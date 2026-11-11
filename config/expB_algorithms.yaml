@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "strategy": "S2",
+  "greedy": {
+    "policy": "footprint",
+    "time_limit": "none; exhaust fixed item/pose scan"
+  },
+  "annealing": {
+    "iterations": 20000,
+    "restarts": 3,
+    "initial_temperature": 0.1,
+    "final_temperature": 0.001,
+    "violation_penalty": 0.25,
+    "burden_weight": 0.000001,
+    "initialization": "standalone footprint greedy, no CP-SAT or A outcomes",
+    "neighborhood": "uniform physical instance; toggle presence, change candidate pose, or change one slot state",
+    "proposal_probabilities": [
+      0.2,
+      0.4,
+      0.4
+    ]
+  },
+  "cp_sat": {
+    "configuration": "reviewed main per-unit small/large settings",
+    "initialization": "normal internal service-aware portfolio; no A/F1/F3 layout supplied",
+    "reuse_historical_result": false
+  },
+  "pilot": {
+    "selection": "one pair per source x household, closest to source area median; deterministic tie by unit key",
+    "instances": 12
+  },
+  "validation": "fast annealing cost is checked independently on every new best and every final output",
+  "seed_source": "project seed plus SHA256 of pair and restart",
+  "concurrency": {
+    "small": 3,
+    "large": 12
+  }
+}

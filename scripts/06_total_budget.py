@@ -70,13 +70,28 @@ def main():
     if result["F3_status"]!="complete":result["unmeasured"]=["F3 mirrored-access H3 duration"]+result["unmeasured"]
     f3_package=Path("results/expA_f3/package_acceptance.json")
     result["F3_package_passed"]=f3_package.exists() and json.loads(f3_package.read_text())["passed"]
+    bpilot_path=Path("results/expB/pilot/run.json");bpilot=json.loads(bpilot_path.read_text()) if bpilot_path.exists() else {}
+    brun_path=Path("results/expB/run.json");brun=json.loads(brun_path.read_text()) if brun_path.exists() else {}
+    bsnapshot_path=Path("results/expB/status_snapshot.json");bsnapshot=json.loads(bsnapshot_path.read_text()) if bsnapshot_path.exists() else {}
+    result.update(B_status=brun.get("status","not_started"),B_pilot_status=bpilot.get("status","not_started"),
+        B_pilot_measured_hours=bpilot.get("wall_time_this_invocation_s",0)/3600 if bpilot.get("status")=="complete" else None,
+        B_completed_outputs_snapshot=bsnapshot.get("completed_algorithm_outputs",0),B_status_observed_at_utc=bsnapshot.get("observed_at_utc"),
+        B_expected_outputs=600,B_full_stage_measured_hours=brun.get("wall_time_this_invocation_s",0)/3600 if brun.get("status")=="complete" else None)
+    bp=Path("results/expB/pilot/runtime_projection.csv")
+    result["B_pilot_projected_parallel_hours"]=float(pd.read_csv(bp).projected_parallel_hours.sum()) if bp.exists() else None
+    result["B_projection_basis"]="12 geometry-selected source/household pilot pairs, matched-stratum timing scaled by full-run concurrency; planning estimate, not a deadline or upper bound. Full stage reuses pilot checkpoints."
+    if bpilot.get("status")=="complete":result["unmeasured"]=[x for x in result["unmeasured"] if not x.startswith("B:")]
+    if brun.get("status")!="complete":result["unmeasured"].append("B full-stage duration (pilot timing measured)")
+    p1_path=Path("results/expA_f1/analysis_p1/package_acceptance.json")
+    result["P1_package_passed"]=p1_path.exists() and json.loads(p1_path.read_text())["passed"]
     write_json(root/"overall_runtime_budget.json",result)
     lines=["# Research execution budget","",
         f"Historical A completed {result['A_completed_cases']} solves in {result['A_compute_hours']:.3f} hours. Historical fixed-left A2 completed {completed} solves in {result['A2_measured_hours']:.3f} hours. The 2026-11-09 review supersedes H3/H4 main outcomes and the fixed-left A2 interpretation; these are not the runtime of the corrected experiments.","",
         f"F1 corrected H3/H4 cases: {result['F1_expected_cases']}. Status: {result['F1_status']}; recorded completed cases: {result['F1_completed_cases']}; measured hours when complete: {result['F1_measured_hours']}. F2 full package passed: {result['F2_package_passed']}. Small-home settings remain 120 seconds / four workers / three concurrent jobs; large-home settings remain 30 seconds / one worker / fourteen concurrent jobs. Nominal full solve-cap allocation: {result['F1_nominal_full_caps_hours']:.3f} hours, excluding geometry and validation overhead. This is neither measured remaining time nor a completion deadline.","",
         f"F3 follows F1 and F2: the same {len(small)} small units × H3 × three strategies = {result['F3_expected_cases']} solves. Nominal full solve-cap allocation: {result['F3_nominal_full_caps_hours']:.3f} hours, excluding overhead. Current status: {result['F3_status']}; recorded completed cases: {result['F3_completed_cases']}; measured hours when complete: {result['F3_measured_hours']}; full package passed: {result['F3_package_passed']}. The old fixed-left duration does not calibrate this mirrored run.","",
         f"K follows D-39 and D-38: H1+H3, eight kits, 30 training shells, 15 held-out shells and 15 real plans; {result['K_total_solves']} solves and historical count-based allowance {result['K_count_based_cap_hours']:.3f} hours. H3 costs remain unmeasured. Freeze the grid and run its pilot; if it exceeds 48 hours, reduce training shells 30 → 24 → 18 before dropping H3. The full grid stays disabled.","",
-        "B, remaining ablations and C still need runtime calibration. D/R/HK reuse validated corrected evidence where applicable. Full remaining experimental time is unknown. The former 10–14-day calendar estimate is retired; no arbitrary analysis-day reserve is added.","",
+        f"B pilot status: {result['B_pilot_status']}; measured pilot hours: {result['B_pilot_measured_hours']}. Full benchmark status: {result['B_status']}; {result['B_completed_outputs_snapshot']}/{result['B_expected_outputs']} outputs in the dated snapshot {result['B_status_observed_at_utc']}. Pilot-based full workload projection: {result['B_pilot_projected_parallel_hours']} parallel hours. {result['B_projection_basis']} Full-stage measured hours are available only after completion: {result['B_full_stage_measured_hours']}. P1 analysis package passed: {result['P1_package_passed']}.","",
+        "Remaining ablations, C and reduced K still need runtime calibration. D/R/HK reuse validated corrected evidence where applicable. Full remaining experimental time is unknown. The former 10–14-day calendar estimate is retired; no arbitrary analysis-day reserve is added.","",
         "Execution order: F1 → F2 → F3 → B → D/R/ablations → C → K → HK → literature → G3. The review requires no additional intermediate reviewer stop. G3/G4 remain.",""]
     Path("reports/COMPUTE_BUDGET.md").write_text("\n".join(lines),encoding="utf-8")
     print(json.dumps(result))

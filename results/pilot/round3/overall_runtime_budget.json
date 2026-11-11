@@ -25,11 +25,11 @@
   "K_if_over_budget": "reduce training shells (30 -> 24 -> 18) before dropping H3; report it",
   "full_project_remaining_hours": null,
   "unmeasured": [
-    "B: footprint-only greedy, annealing, CP-SAT comparison",
     "D/R and ablations",
     "C surrogate training",
     "K runtime pilot",
-    "HK and literature"
+    "HK and literature",
+    "B full-stage duration (pilot timing measured)"
   ],
   "no_fixed_analysis_calendar_surcharge": true,
   "A_A1_H3H4_status": "corrected_F1_F2_accepted",
@@ -46,5 +46,15 @@
   "F3_completed_cases": 1044,
   "F3_measured_hours": 8.397508191707958,
   "F2_package_passed": true,
-  "F3_package_passed": true
+  "F3_package_passed": true,
+  "B_status": "running",
+  "B_pilot_status": "complete",
+  "B_pilot_measured_hours": 0.1778124201002841,
+  "B_completed_outputs_snapshot": 58,
+  "B_status_observed_at_utc": "2026-11-11T03:13:08+00:00",
+  "B_expected_outputs": 600,
+  "B_full_stage_measured_hours": null,
+  "B_pilot_projected_parallel_hours": 1.0423386198362439,
+  "B_projection_basis": "12 geometry-selected source/household pilot pairs, matched-stratum timing scaled by full-run concurrency; planning estimate, not a deadline or upper bound. Full stage reuses pilot checkpoints.",
+  "P1_package_passed": true
 }

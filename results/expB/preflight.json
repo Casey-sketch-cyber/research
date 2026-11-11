@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "tests_passed": 7,
+  "synthetic_random_states_checked": 120,
+  "implementation": {
+    "config/expB_algorithms.yaml": "8b2040a8fbfa8614441e16b6d1a0d3e6db6838afc8020b5ea05b4ba0cb2a955f",
+    "scripts/phase08_algorithms.py": "6c16f0cb54ef1113cc2d3eab90985d173fb12129ed5fa9b41966133f11a93498",
+    "scripts/08_run_expB.py": "a47c26f1560445ba0368119df436f4a1bf0fb7dbbc3ef5665ae1a6aed4801b4a",
+    "tests/test_expB_algorithms.py": "016cdcafa242b5bf30bb6a5d25fa39cbdc7529f611b13c775aec1f9288565a67",
+    "tests/test_expB_runner.py": "c874f2f57ced31840d1b9f72d44d206e27cc140d30039fa81a7b038e050204c3"
+  }
+}

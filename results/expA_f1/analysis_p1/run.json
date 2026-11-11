@@ -1,0 +1,25 @@
+{
+  "status": "complete",
+  "inputs": {
+    "solutions_sha256": "ec4fdade4cf07b6e21cd50fcdcd71ef7ca5a9709ed0fef816737d618697881ff",
+    "F1_acceptance_sha256": "ebe9ea3caf5604f55a32ef1fb97037f2dfab7c471135b82bc0569bbca04d5bca",
+    "frozen_F2_package_sha256": "7c263b3c5d61cda5cd8a8614269c2ca3b4be58d75f0df97ee1844bf396e20438",
+    "review_sha256": "87d7eb16976c6068c85ddd2d961a348b8e98e5aed17f8dc3a65194353cc940e7",
+    "bootstrap": {
+      "n": 1000,
+      "ci": 0.95
+    },
+    "seed": 20261105,
+    "implementations": {
+      "scripts/07_p1_analysis.py": "71f018b55e31c6d7c54df733b5491ec856d136b2d30d830f7710fa6141e8a1e8",
+      "scripts/phase07_p1_area.py": "6e00a8fb2c412b73a1bb32001b59ef7f140baf648c709e8234f2cc1f8bf56ed0",
+      "scripts/phase07_paired_area.py": "ec800d680725e57d625618bda53357a4b65ae6bacba2ffd5604d2deaaed1c6c3",
+      "scripts/phase07_statistics.py": "da3003e1d126336a8430106f9264e510153f760bf2a55ee330f800333a9d1b6b",
+      "scripts/phase07_corrected.py": "c7f140ed730fc917a6652c1446cc8bdca984798edaa22bd13997f9c3d28f8d4f"
+    }
+  },
+  "completed_groups": 20,
+  "reference_target_groups": 48,
+  "cache": "data/interim/expA_p1/4b4221910919342d",
+  "completed_at_utc": "2026-11-11T03:07:42+00:00"
+}

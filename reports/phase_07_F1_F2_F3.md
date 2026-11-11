@@ -18,7 +18,7 @@ F1 completed at 2026-11-10T03:13:28+00:00: 15714/15714 corrected solves, 18.498 
 
 F2 completed 20 household/population groups, 40 reference groups including sensitivity. The initial numerical acceptance explicitly left visual review pending; the later results/expA_f1/analysis/package_acceptance.json records completion of the full package. Original example selection is unchanged.
 
-F3 started at 2026-11-10T07:53:15+00:00, after F1/F2 acceptance and regression checks. It retains 120 seconds per solve, four solver workers, three concurrent jobs and 0.10 m anchors. Current run files are in results/expA_f3/. The solve completed at 2026-11-10T16:17:08+00:00: 1044 cases, zero invalid cases and ordering failures. Independent saved-layout audit, paired comparison, negative-change diagnosis and figure review have passed. All 1044 new layouts and their corrected F1 counterparts revalidate. Measured search time is 8.397508 hours. B input preparation passed for all 200 frozen pairs; algorithm runs have not started.
+F3 started at 2026-11-10T07:53:15+00:00, after F1/F2 acceptance and regression checks. It retains 120 seconds per solve, four solver workers, three concurrent jobs and 0.10 m anchors. Current run files are in results/expA_f3/. The solve completed at 2026-11-10T16:17:08+00:00: 1044 cases, zero invalid cases and ordering failures. Independent saved-layout audit, paired comparison, negative-change diagnosis and figure review have passed. All 1044 new layouts and their corrected F1 counterparts revalidate. Measured search time is 8.397508 hours. B input preparation passed for all 200 frozen pairs; the 12-pair runtime pilot has now passed and the full three-algorithm comparison is running.
 
 ## Evidence and interpretation limits
 
@@ -39,3 +39,15 @@ F1 numerical source remained frozen through completion; its source is available 
 - [x] Paired form/time effects by source and 2 m² bins, 1000 paired unit-bootstrap intervals; retain all negative changes.
 - [x] Inspect F4c_F3 and pass hash-bound package acceptance before B.
 - [x] Revalidate all 200 frozen B main-reference layouts under their actual provenance and the corrected main rules (99 corrected H3/H4, 101 verified H1/H2).
+
+## 2026-11-11 review: P1 and approved continuation
+
+phase07_review_F.md approves F1/F2/F3 and requires no additional access variants. Continue B through G3 without another stop.
+
+- [x] Reclassify lower-support clamped gains as lower bounds; identified-positive medians exclude them.
+- [x] Report lower-bound counts by household/source/bin and retain ≥ notation for real-plan single-person summaries.
+- [x] Add pooled-reference inversion for the same real-plan units with refitted paired bootstrap curves.
+- [x] Publish new P1 tables/figure and inspect them; keep the frozen F2/F3 packages intact and explicitly supersede their old area summaries.
+- [ ] Complete B fixed pilot and full benchmark; proceed with D/R/ablations, C, reduced K, HK and screening to G3.
+
+P1 is accepted in results/expA_f1/analysis_p1/package_acceptance.json. See [the current area-gain report](phase_07_P1_results.md); all 48 reference/target groups, 1000 paired resamples per reference group and the inspected replacement figure are complete. Earlier F2 area summaries are historical, not current identified estimates. Claude approved F3 as a robustness check: its one-side variant changes both reserved space and access options and does not increase the time effect. No additional access variants will be introduced.

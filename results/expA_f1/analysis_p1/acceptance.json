@@ -1,0 +1,32 @@
+{
+  "numerical_checks_passed": true,
+  "reference_target_groups": 48,
+  "inputs": {
+    "solutions_sha256": "ec4fdade4cf07b6e21cd50fcdcd71ef7ca5a9709ed0fef816737d618697881ff",
+    "F1_acceptance_sha256": "ebe9ea3caf5604f55a32ef1fb97037f2dfab7c471135b82bc0569bbca04d5bca",
+    "frozen_F2_package_sha256": "7c263b3c5d61cda5cd8a8614269c2ca3b4be58d75f0df97ee1844bf396e20438",
+    "review_sha256": "87d7eb16976c6068c85ddd2d961a348b8e98e5aed17f8dc3a65194353cc940e7",
+    "bootstrap": {
+      "n": 1000,
+      "ci": 0.95
+    },
+    "seed": 20261105,
+    "implementations": {
+      "scripts/07_p1_analysis.py": "71f018b55e31c6d7c54df733b5491ec856d136b2d30d830f7710fa6141e8a1e8",
+      "scripts/phase07_p1_area.py": "6e00a8fb2c412b73a1bb32001b59ef7f140baf648c709e8234f2cc1f8bf56ed0",
+      "scripts/phase07_paired_area.py": "ec800d680725e57d625618bda53357a4b65ae6bacba2ffd5604d2deaaed1c6c3",
+      "scripts/phase07_statistics.py": "da3003e1d126336a8430106f9264e510153f760bf2a55ee330f800333a9d1b6b",
+      "scripts/phase07_corrected.py": "c7f140ed730fc917a6652c1446cc8bdca984798edaa22bd13997f9c3d28f8d4f"
+    }
+  },
+  "outputs": {
+    "results/expA_f1/analysis_p1/f0_curves.csv": "c281d9a3f234802e0cb74a858d223055a2e3782c177e4cf3e3e33211a16b820b",
+    "results/expA_f1/analysis_p1/paired_equivalent_area.csv": "385b0db1e76e6f0b55c0ec7d880ab44afc2e65624924209eba0f5f176720ec60",
+    "results/expA_f1/analysis_p1/area_gain_summary.csv": "142057d8d54fc02bd8abcc6afcde82cd66e88e1130880a2934fabd80f5a909f0",
+    "results/expA_f1/analysis_p1/figures/F4_paired_area_gain_P1.png": "4fb8634fd83630ac39dca84fd71c71d92e513ede4a7c0f65f88db9bfa66e820b",
+    "results/expA_f1/analysis_p1/figures/F4_paired_area_gain_P1.pdf": "aaa71755b4aa300d35b6625efd70a438597e8cf7f7b8936212dcd897f17967da",
+    "reports/phase_07_P1_results.md": "e57f1b5098cf7f8e3a6c2d8df2a6ae76db7aee2be54fe633178a847de99d7041",
+    "results/expA_f1/analysis_p1/run.json": "4892a6fc6047a6c172999fd6b3eae50ce93659b58b562710ef71ad318296c48f"
+  },
+  "full_package_complete": false
+}

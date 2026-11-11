@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "reviewed_at_utc": "2026-11-11T03:09:40.062Z",
+  "hashes": {
+    "results/expA_f1/analysis_p1/figures/F4_paired_area_gain_P1.png": "4fb8634fd83630ac39dca84fd71c71d92e513ede4a7c0f65f88db9bfa66e820b"
+  },
+  "checks": [
+    "All 12 panels readable without label overlap or cropping",
+    "Real-plan H1 has no identified-median line; 143 positive bounds are marked with triangles and ≥",
+    "Identified-positive and lower-bound-positive counts agree with summary tables",
+    "Unobserved or unidentified bins remain gaps; bounds are not drawn as identified intervals"
+  ]
+}

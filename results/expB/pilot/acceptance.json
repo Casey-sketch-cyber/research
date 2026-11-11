@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "cases": 36,
+  "pairs": 12,
+  "invalid_outputs": 0,
+  "invalid_outputs_retained": true,
+  "code_hash": "a8ee051ff2dc4787751d26ef761e761bc981c90f1e6a01d724848b62d918c39f",
+  "cases_sha256": "c808a35ff63bc76b70fa076ca933a90ee9eed0c49f42fe6886c58afbe7d39b4a",
+  "all_proposals_completed": true
+}

@@ -1,0 +1,104 @@
+{
+  "inputs": {
+    "main_config_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474",
+    "sample_sha256": "38c5be1d5cdc90d37edcdb877eb4d233ead683d5b4d8fd267255fa94e7d030ea",
+    "readiness_sha256": "22f10bcba1aa0115932aee3dfa6cde8a8cf933cdf3a5498768bb6b6f88f13f64",
+    "pilot_sha256": "ce445ee2aac72f213203e28fe6a66fbce5181d79f3fd9d7a14e1f4f2b790a2c0",
+    "settings_sha256": "8b2040a8fbfa8614441e16b6d1a0d3e6db6838afc8020b5ea05b4ba0cb2a955f",
+    "preflight_sha256": "59cf3e85374309ff062832d1bb7bc6f4462c8b4f3c2aa6a843b2c3b4793d8e8f",
+    "implementations": {
+      "src/fea/__init__.py": "2dbb81842d2d16e1c46e2e45a271e8bb9ffcf3d3b7e08ee377139d66042f63d0",
+      "src/fea/config.py": "a8a7adbe0da6fcb3e24ccf4762514efc9ff840dcc8a7aa07651c2c7a76f5b258",
+      "src/fea/corpus.py": "eb2e847c86c58803b9b03e8474fa794c6fa2c91d349a27ba9e7ff76ba375b231",
+      "src/fea/data/__init__.py": "b43dc03544d2fb3740941d8558fecac855648f4c2e46b8d53912eab6b8c9141a",
+      "src/fea/data/abo.py": "23cff145d419175f6e07fe7094791f7a911fae4a78c571ff1aedcabb2a8b70a9",
+      "src/fea/data/archives.py": "51ccd8006606667cbebc53a18d3357fb358360d61c3c5004ab33ca3e12c6925e",
+      "src/fea/data/d1_swiss.py": "ce8dcbe7538e5e543e2625764ce7f7ff810bdb34b0d908b71fa1cae3603a84ea",
+      "src/fea/data/d2_resplan.py": "23f2c52e67b0857eef935d6780f356690954c677fc407f475f1638f89b7e85c4",
+      "src/fea/data/d3_shells.py": "d2a604805cc72900fa3e88073da80fe7ec08d2d2de9a7984c993664a05f84702",
+      "src/fea/data/hk_census.py": "da1cf74e68c03dd2cb502dcefd42001814cca77e2def21092aed64a7473ad872",
+      "src/fea/diagnostics.py": "e87a504f024563feece5ca2dc37e1e452e6f269610c166ca3fc005f09b5b2f2f",
+      "src/fea/furniture/__init__.py": "5f904a809186d9822a79e8527fa5afcfcbc867cf42399eb813e52996f255e97e",
+      "src/fea/furniture/candidates.py": "22c77f8524072b9739b3604afaf9da8cf010fdf6745a17f471cd92899415da93",
+      "src/fea/furniture/checks.py": "560876535b4ae0d7ee7c327c8bea3411f695a35581978b0c3573b604519eb889",
+      "src/fea/furniture/library.py": "512e5f09dabeb1bec24825ce65f8e3471727e74495e398a6d66c11fa8a638a64",
+      "src/fea/geometry/__init__.py": "4fb7e734e684bd4f683a54be53fe13cbbd74e9411f3f52c0280fd3b0a07dbae6",
+      "src/fea/geometry/audit.py": "30ae28b1b0f0ed54fcbb631abee9e3f3a6371d8a0f5237f66125892621c263bb",
+      "src/fea/geometry/normalize.py": "7d6b4abce93935b95deda39f2e3eb0bb53738298283d3926182a60e95b9881cf",
+      "src/fea/geometry/raster.py": "60040ce438f7f9b260df6b29402690ec1fbedd4f2e7e866355deec76e95300c7",
+      "src/fea/geometry/scale.py": "40adf949c7ac10c10b60f4f7449085936cf5f9a5f2211a0fbbf05201d7ed46ac",
+      "src/fea/geometry/unit.py": "4380212f29c5062418efe020a69f1437c942daee6eca40f5ca76573cfc769b65",
+      "src/fea/households.py": "2592498d41765f98c1f5cbea85c498f4da7a498468c0f4466665839148ca615d",
+      "src/fea/io.py": "a080ecef6b8a3f82cc2b8e75ae3af63ef59c4c5987cc7ad30f1700e75f59fd32",
+      "src/fea/literature.py": "18a32548a36652e17a5921ff68d8aaf83748d061decfaf605de6576a17a3daa3",
+      "src/fea/literature_report.py": "3f0709bccc8fbaf68a7020405585cd9624ec6eb437e448efe81311c11cdad495",
+      "src/fea/metrics.py": "c857dcb3fe289c05bde31fc24d911d669ceb915e05f5aa4a761ed427b7b3d521",
+      "src/fea/solve/__init__.py": "c57015e33dd877fcb0ee27a83006633a911075d53d04c0ec87b92f6b6422b24e",
+      "src/fea/solve/cpsat.py": "0b043068c08b0999368a3ac981f717130e8b80f22f18a7e8ab29b6d06a6abf11",
+      "src/fea/solve/greedy.py": "4ef7260290c2c04e88c5dae3aab3f768711a7973fc15979219cbef4fe4b84b8d",
+      "src/fea/solve/reachability.py": "b2301ae1a267d0bf673c9bd84525b465a666b8c0fa28dd0774bdcaae55af0360",
+      "src/fea/validate.py": "83a76971206f6b44bfa57de500c508974453a191a381d3051062712c38a1a44d",
+      "src/fea/viz/__init__.py": "4d7084f09346b00339ab59d61c113ddd2b59da10c6acce3e69e29bf6b017137e",
+      "src/fea/viz/corpus.py": "75c0a6487714aac47ee3dfac02f0825628bed3089405ebefa55c2a6c38ca3f98",
+      "src/fea/viz/layouts.py": "a54067bb2605cdc7ce45fb50869e593424ddd5b1832a9d3ecf651eaeb5e56ec8",
+      "scripts/06_revision.py": "61745e8e5c923add68dc78ee778aa062b61e73bcc1074dd532a51c89574348e2",
+      "scripts/phase08_algorithms.py": "6c16f0cb54ef1113cc2d3eab90985d173fb12129ed5fa9b41966133f11a93498",
+      "scripts/08_run_expB.py": "a47c26f1560445ba0368119df436f4a1bf0fb7dbbc3ef5665ae1a6aed4801b4a"
+    }
+  },
+  "code_hash": "a8ee051ff2dc4787751d26ef761e761bc981c90f1e6a01d724848b62d918c39f",
+  "cache": "data/interim/expB/a8ee051ff2dc4787",
+  "settings": {
+    "version": 1,
+    "strategy": "S2",
+    "greedy": {
+      "policy": "footprint",
+      "time_limit": "none; exhaust fixed item/pose scan"
+    },
+    "annealing": {
+      "iterations": 20000,
+      "restarts": 3,
+      "initial_temperature": 0.1,
+      "final_temperature": 0.001,
+      "violation_penalty": 0.25,
+      "burden_weight": 1e-06,
+      "initialization": "standalone footprint greedy, no CP-SAT or A outcomes",
+      "neighborhood": "uniform physical instance; toggle presence, change candidate pose, or change one slot state",
+      "proposal_probabilities": [
+        0.2,
+        0.4,
+        0.4
+      ]
+    },
+    "cp_sat": {
+      "configuration": "reviewed main per-unit small/large settings",
+      "initialization": "normal internal service-aware portfolio; no A/F1/F3 layout supplied",
+      "reuse_historical_result": false
+    },
+    "pilot": {
+      "selection": "one pair per source x household, closest to source area median; deterministic tie by unit key",
+      "instances": 12
+    },
+    "validation": "fast annealing cost is checked independently on every new best and every final output",
+    "seed_source": "project seed plus SHA256 of pair and restart",
+    "concurrency": {
+      "small": 3,
+      "large": 12
+    }
+  },
+  "stage": "pilot",
+  "expected_pairs": 12,
+  "expected_cases": 36,
+  "strategies": [
+    "S2"
+  ],
+  "algorithms": [
+    "greedy_footprint",
+    "simulated_annealing",
+    "cp_sat"
+  ],
+  "started_at_utc": "2026-11-11T02:56:49+00:00",
+  "status": "complete",
+  "completed_at_utc": "2026-11-11T03:07:33+00:00",
+  "wall_time_this_invocation_s": 640.1247123610228
+}

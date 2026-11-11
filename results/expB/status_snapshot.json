@@ -1,0 +1,17 @@
+{
+  "observed_at_utc": "2026-11-11T03:13:08+00:00",
+  "stage": "full",
+  "status": "running",
+  "expected_pairs": 200,
+  "expected_algorithm_outputs": 600,
+  "completed_algorithm_outputs": 58,
+  "completed_three_algorithm_pairs": 18,
+  "completed_by_algorithm": {
+    "greedy_footprint": 21,
+    "cp_sat": 18,
+    "simulated_annealing": 19
+  },
+  "invalid_outputs": 0,
+  "basis": "Unique completed checkpoints, including identical pilot results reused in full run; incomplete pairs remain partial.",
+  "analysis_status": "waiting_for_full_B"
+}

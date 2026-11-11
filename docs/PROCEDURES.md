@@ -251,17 +251,17 @@ Push, write `reports/GATE_G2.md`, **stop**, and wait for `reviews/G2_review.md`.
 1. Run every included unit × main households × {S0, S1, S2} with parallel workers. Use `n_jobs = max(1, cores // num_workers)` and keep the processes from oversubscribing the CPU. Write JSONL to `data/interim/expA/`, which can be resumed.
 2. Aggregate into `results/expA/solutions.csv`.
 3. Metrics (`metrics.py`):
-   - Fit f₀,h with isotonic regression of FCI_S0 on furnishable area, separately for each household. Use D1+D2+D3 pooled, and also each source separately as a robustness check.
-   - Compute FEA, saving and relative saving per (unit, household). Flag `right_censored`.
-   - Build the area-saving curve: medians per 2 m² bin with bootstrap 95% CIs (resample units).
+   - Per the Phase 7 reviews, fit f₀,h using median S0 FCI per 2 m² NIA bin, cumulative maximum and linear interpolation. Keep mean-isotonic sensitivity; use pooled, real-plan and each-source references.
+   - Invert S0 and S2 on the same curve and compute paired ΔEA. Equal scores identify zero; unequal scores involving lower support boundaries or right censoring yield lower bounds. Separate these from identified gains.
+   - Report identified-positive medians and lower-bound counts by household/source/2 m² bin, refitting references in paired unit bootstrap resamples. Use ≥ for support-limited summaries. Add pooled-reference inversion for the same real-plan units (P1).
    - Compute A_min per (household, strategy) from a logistic fit of `1[FCI ≥ τ]` on area, with bootstrap CIs; ΔA_min = A_min(S0) − A_min(S2).
-   - Wilcoxon signed-rank tests of S2 vs S0 and S2 vs S1 (paired by unit and household), with effect sizes.
+   - Primary statistics are paired mean FCI differences, 95% bootstrap intervals and shares improved. Wilcoxon and rank-biserial results are supplementary because strategy ordering is constructed.
 4. Showcase renders: 3 units (about 10, 18 and 30 m²) × H3 × S0/S1/S2, the draft of figure F3.
 
 **Acceptance**
 - The solver status distribution is reported (OPTIMAL / FEASIBLE / TIMEOUT-without-solution / INFEASIBLE). TIMEOUT-without-solution must be under 5% of instances; if it isn't, report this and propose a fix.
 - The FCI ordering check (S2 ≥ S1 ≥ S0) is reported across all instances.
-- Files written: `fea.csv`, `area_saving_curve.csv`, `min_adequate_area.csv`, `tests.csv`.
+- Current reviewed evidence: corrected F1 solutions, F2 primary effects/adequate-area tables, P1 `paired_equivalent_area.csv` and `area_gain_summary.csv` with lower-bound labels, F3 sensitivity, and their acceptance records. Historical pre-correction area files remain traceable but are superseded.
 
 ## Phase 8: Experiment B, algorithms (day 9)
 

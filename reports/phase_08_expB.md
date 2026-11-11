@@ -2,14 +2,26 @@
 
 - [x] Freeze 200 evaluable (unit, household) S2 pairs, stratified by source × within-source NIA tercile × household, with the fixed seed.
 - [x] Match all 200 frozen pairs to corrected main evidence and independently revalidate their saved layouts.
-- [ ] Use only descending-footprint greedy as the greedy arm (B1); the service-aware portfolio remains CP-SAT initialization only.
-- [ ] Implement and test simulated annealing: same candidates, penalty objective, 20000 iterations × three restarts.
+- [x] Use only descending-footprint greedy as the greedy arm (B1); the service-aware portfolio remains CP-SAT initialization only.
+- [x] Implement and test simulated annealing: same candidates, penalty objective, 20000 iterations × three restarts.
 - [ ] Run the three algorithms, independently validate each result, and report invalid outputs and runtime.
-- [ ] Benchmark runtime before launching the full comparison; keep actual algorithm budgets explicit.
+- [x] Benchmark runtime before launching the full comparison; keep actual algorithm budgets explicit.
 - [ ] Report source/size/household results and algorithm-validity checks.
 
 Optional local LLM omitted to prioritize the required research. Corrected F1/F2 and mirrored F3 have passed full package acceptance; the earlier fixed-left A2 continuation gate is superseded. Sample allocation is balanced across the 36 source/tercile/household strata (five or six each); pooled B results describe this balanced benchmark, not the population mix. Within-source area ties stay together. No outcomes enter sample selection.
 
-Sample preparation passed: 200 unique pairs across 36 strata; source counts D1=67, D2=68, D3=65. Selection uses E1 geometry and household labels only. Algorithm runs have not started. Evidence: results/expB/sample_manifest.json and sampling_allocation.csv. The sampling regression verifies input-row-order invariance, quota balance, unique pairs and exclusion of non-evaluable units.
+Sample preparation passed: 200 unique pairs across 36 strata; source counts D1=67, D2=68, D3=65. Selection uses E1 geometry and household labels only. The 12-pair runtime pilot passed all 36 outputs; the full 200-pair comparison is running. Evidence: results/expB/sample_manifest.json and sampling_allocation.csv. The sampling regression verifies input-row-order invariance, quota balance, unique pairs and exclusion of non-evaluable units.
 
-Input preparation completed with scripts/08_check_expB_ready.py: 99 H3/H4 cases use corrected F1 re-solves and 101 H1/H2 cases retain verified original provenance. All 200 layouts validate both with their actual recorded configuration and the corrected main rules, with unchanged scores. The original sample bytes and stratification remain unchanged. Evidence is in readiness.json, corrected_main_reference.csv and reference_revalidation.csv. These reference checks are not new algorithm runs or fresh CP-SAT timing measurements. Next: implement and test the independent annealing baseline, benchmark the prescribed three arms, then execute the full frozen sample.
+Input preparation completed with scripts/08_check_expB_ready.py: 99 H3/H4 cases use corrected F1 re-solves and 101 H1/H2 cases retain verified original provenance. All 200 layouts validate both with their actual recorded configuration and the corrected main rules, with unchanged scores. The original sample bytes and stratification remain unchanged. Evidence is in readiness.json, corrected_main_reference.csv and reference_revalidation.csv. These reference checks are not new algorithm runs or fresh CP-SAT timing measurements. The independent baseline and runtime pilot are now complete; the full frozen sample is active.
+
+## Approved continuation and pre-run implementation plan
+
+Latest phase07_review_F.md approves F1/F2/F3 and continuation to G3; P1 reporting will run alongside B. Frozen settings are in config/expB_algorithms.yaml. Run fresh standalone S2 CP-SAT with the reviewed per-unit budget, no historical layout supplied, and report the corrected A reference separately. This avoids treating historical shared-strategy runtime as fresh algorithm timing. Greedy uses only the existing descending-footprint policy with its full deterministic scan. Annealing uses the same candidate tables, all physical inventory instances, free per-slot states, 20000 proposals per restart and three restarts, initialized only by standalone greedy. Temperature decreases geometrically from 0.1 to 0.001; cost is negative reachable FCI plus 0.25 per geometric/access violation and a 1e-6 burden term. These defaults are frozen before reading B outcomes, not selected for winning comparisons.
+
+Fast annealing geometry/reachability scoring shares solver-side primitives, while every new feasible best and every final output is checked with the separate validator. Any disagreement stops the run. Validate equivalence on deterministic synthetic layouts before a 12-pair source/household runtime pilot; retain pilot results as part of the fixed 200-pair run if the fingerprint matches. Report both preparation and algorithm time, cold per-algorithm end-to-end time, invalid scores and all termination statuses.
+
+## Observed execution
+
+Pilot completed 2026-11-11T03:07:33+00:00: 12 pairs / 36 outputs, zero invalid outputs, 10.669 measured minutes; every annealing case completed 60000 proposals. The full run started 2026-11-11T03:07:34+00:00 and preserves the exact fingerprint and all pilot checkpoints. Snapshot 2026-11-11T03:13:08+00:00: 58/600 unique completed algorithm outputs, 18/200 complete three-algorithm pairs, zero invalid outputs so far. These are partial results.
+
+Seven preflight tests cover 120 synthetic random layouts against the independent validator, deterministic annealing, fixed proposal counts, invalid-output retention and pilot selection. Six further analysis/sampling/P1 tests pass (13 distinct related tests total). P1 has separately passed numerical and figure acceptance. scripts/08_report_expB.py is waiting for full B completion, then will independently revalidate all 600 saved layouts and generate algorithms.csv, runtime summaries, source/household results and paired physical-unit-cluster bootstrap comparisons. No final B comparison is claimed while it runs.

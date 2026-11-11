@@ -1,0 +1,13 @@
+unit_key,source,nia_m2,area_tercile,household,strategy
+D1:882bfecbe0a54b6445b5,D1,40.74398497933092,2,H1_single_commuter,S2
+D1:635fd19fa7243a87b323,D1,37.67251534052397,2,H2_single_remote_worker,S2
+D1:a0e8f4824171d793a5d1,D1,40.917834646080664,2,H3_couple_one_remote,S2
+D1:c7336771878af6c745f1,D1,38.958533832726424,2,H4_parent_child,S2
+D2:5aec55001b8d9dd8affb,D2,44.63808560799781,2,H1_single_commuter,S2
+D2:f2abd3b43316e3033c16,D2,44.47082524760887,2,H2_single_remote_worker,S2
+D2:f57b0c6391fb054db263,D2,44.41188193134902,2,H3_couple_one_remote,S2
+D2:2f9081896ab7d7bcd377,D2,46.82558262125422,2,H4_parent_child,S2
+D3:265a063ba47b73e0b533,D3,14.999999998402616,2,H1_single_commuter,S2
+D3:4496df9abdc8bc334abb,D3,14.999999998393355,2,H2_single_remote_worker,S2
+D3:80aebfc5b40323edc582,D3,14.000000001691669,2,H3_couple_one_remote,S2
+D3:20318df6da2b66ea7f73,D3,16.00000000103688,2,H4_parent_child,S2
