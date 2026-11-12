@@ -1,0 +1,182 @@
+{
+  "H1_single_commuter": [
+    {
+      "kit_id": "H1_kit_01",
+      "dimensions": {
+        "wall_bed_width_single": 0.8,
+        "desk_width": 0.8,
+        "desk_depth_deployed": 0.45,
+        "table_width": 0.7,
+        "table_depth_deployed": 0.6,
+        "wardrobe_frontage": 0.6
+      }
+    },
+    {
+      "kit_id": "H1_kit_02",
+      "dimensions": {
+        "wall_bed_width_single": 1.0,
+        "desk_width": 1.2,
+        "desk_depth_deployed": 0.55,
+        "table_width": 1.0,
+        "table_depth_deployed": 0.75,
+        "wardrobe_frontage": 1.4
+      }
+    },
+    {
+      "kit_id": "H1_kit_03",
+      "dimensions": {
+        "wall_bed_width_single": 0.8,
+        "desk_width": 0.8,
+        "desk_depth_deployed": 0.45,
+        "table_width": 1.0,
+        "table_depth_deployed": 0.75,
+        "wardrobe_frontage": 1.4
+      }
+    },
+    {
+      "kit_id": "H1_kit_04",
+      "dimensions": {
+        "wall_bed_width_single": 1.0,
+        "desk_width": 1.2,
+        "desk_depth_deployed": 0.55,
+        "table_width": 0.7,
+        "table_depth_deployed": 0.6,
+        "wardrobe_frontage": 0.6
+      }
+    },
+    {
+      "kit_id": "H1_kit_05",
+      "dimensions": {
+        "wall_bed_width_single": 0.9,
+        "desk_width": 0.8,
+        "desk_depth_deployed": 0.55,
+        "table_width": 0.7,
+        "table_depth_deployed": 0.75,
+        "wardrobe_frontage": 1.0
+      }
+    },
+    {
+      "kit_id": "H1_kit_06",
+      "dimensions": {
+        "wall_bed_width_single": 0.9,
+        "desk_width": 1.2,
+        "desk_depth_deployed": 0.45,
+        "table_width": 1.0,
+        "table_depth_deployed": 0.6,
+        "wardrobe_frontage": 1.0
+      }
+    },
+    {
+      "kit_id": "H1_kit_07",
+      "dimensions": {
+        "wall_bed_width_single": 1.0,
+        "desk_width": 1.2,
+        "desk_depth_deployed": 0.45,
+        "table_width": 0.7,
+        "table_depth_deployed": 0.75,
+        "wardrobe_frontage": 1.0
+      }
+    },
+    {
+      "kit_id": "H1_kit_08",
+      "dimensions": {
+        "wall_bed_width_single": 0.8,
+        "desk_width": 0.8,
+        "desk_depth_deployed": 0.55,
+        "table_width": 1.0,
+        "table_depth_deployed": 0.6,
+        "wardrobe_frontage": 1.0
+      }
+    }
+  ],
+  "H3_couple_one_remote": [
+    {
+      "kit_id": "H3_kit_01",
+      "dimensions": {
+        "wall_bed_width_double": 1.2,
+        "desk_width": 0.8,
+        "desk_depth_deployed": 0.45,
+        "table_width": 0.7,
+        "table_depth_deployed": 0.6,
+        "wardrobe_frontage": 0.6
+      }
+    },
+    {
+      "kit_id": "H3_kit_02",
+      "dimensions": {
+        "wall_bed_width_double": 1.5,
+        "desk_width": 1.2,
+        "desk_depth_deployed": 0.55,
+        "table_width": 1.0,
+        "table_depth_deployed": 0.75,
+        "wardrobe_frontage": 1.4
+      }
+    },
+    {
+      "kit_id": "H3_kit_03",
+      "dimensions": {
+        "wall_bed_width_double": 1.2,
+        "desk_width": 1.2,
+        "desk_depth_deployed": 0.45,
+        "table_width": 0.7,
+        "table_depth_deployed": 0.75,
+        "wardrobe_frontage": 1.4
+      }
+    },
+    {
+      "kit_id": "H3_kit_04",
+      "dimensions": {
+        "wall_bed_width_double": 1.5,
+        "desk_width": 0.8,
+        "desk_depth_deployed": 0.55,
+        "table_width": 1.0,
+        "table_depth_deployed": 0.6,
+        "wardrobe_frontage": 0.6
+      }
+    },
+    {
+      "kit_id": "H3_kit_05",
+      "dimensions": {
+        "wall_bed_width_double": 1.4,
+        "desk_width": 0.8,
+        "desk_depth_deployed": 0.45,
+        "table_width": 1.0,
+        "table_depth_deployed": 0.75,
+        "wardrobe_frontage": 1.0
+      }
+    },
+    {
+      "kit_id": "H3_kit_06",
+      "dimensions": {
+        "wall_bed_width_double": 1.2,
+        "desk_width": 1.0,
+        "desk_depth_deployed": 0.55,
+        "table_width": 0.8,
+        "table_depth_deployed": 0.6,
+        "wardrobe_frontage": 1.4
+      }
+    },
+    {
+      "kit_id": "H3_kit_07",
+      "dimensions": {
+        "wall_bed_width_double": 1.4,
+        "desk_width": 1.0,
+        "desk_depth_deployed": 0.55,
+        "table_width": 0.7,
+        "table_depth_deployed": 0.75,
+        "wardrobe_frontage": 0.6
+      }
+    },
+    {
+      "kit_id": "H3_kit_08",
+      "dimensions": {
+        "wall_bed_width_double": 1.5,
+        "desk_width": 1.2,
+        "desk_depth_deployed": 0.45,
+        "table_width": 0.8,
+        "table_depth_deployed": 0.6,
+        "wardrobe_frontage": 1.0
+      }
+    }
+  ]
+}

@@ -89,3 +89,7 @@ The plan names area/person and rooms/person but provides no binary adequacy thre
 ## Q32 — R source dimensions and activity-area definition differ
 
 Bu & Che Mat PDF page 12 §6.1 states bed width 1.8 m and wardrobe depth 0.6 m; Figure 10 on page 13 labels 1.5 m and 0.4 m. The source also subtracts clearances in its 5–5.5 m² static activity-area estimate, unlike the plan's body-only measure. R retains both numeric source descriptions with page references, uses the configured fallback and a known-envelope comparison, and does not claim exact geometric reproduction or tune to 60%. Approximation and metric differences must accompany any comparison in G3 and the paper.
+
+### Q33 — Reduced K solve budget and quality aggregation
+
+The older design-grid entry lists 20 seconds. The G2 round-3 review reprojects K at the approved small-home setting and the D-38 reduced-workload record uses 120 seconds, four workers and 0.10 m anchors. K follows that reviewed setting with the D-39 H1/H3 scope and a measured 48-hour pilot. The multi-dimension desk/table quality and multi-item service quality use the minimum component quality. The flat-quality arm uses ordinary FCI in optimization and retains the physical quality score in evaluation.
