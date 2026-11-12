@@ -1,14 +1,14 @@
 # Phase 9b — Published-room comparison and generalization
 
-B and D passed. The queued R launch stopped before its first solve because the tracked source manifest had not been transferred. The manifest was restored and checked against the frozen source checksum. R entered its first reproduction stage on retry at 2026-11-12T02:57:03+00:00. Five R tests pass, four pre-existing layouts pass an end-to-end read/independent-area check, and all four planned comparison envelopes have verified 12 m² area. These are preflight checks, not completed R results.
+B and D passed. The queued R launch stopped before its first solve because the tracked source manifest had not been transferred. The manifest was restored and checked against the frozen source checksum. R entered its first reproduction stage on retry at 2026-11-12T02:57:03+00:00. All 16 reproduction cases, 10,476 saved-layout checks and the F11 figure review passed. [R results](phase_09_R_results.md). Five R tests pass, four pre-existing layouts pass an end-to-end read/independent-area check, and all four planned comparison envelopes have verified 12 m² area. These are preflight checks, not completed R results.
 
 ## Checklist
 
 - [x] Read PDF pages 12–14 and Figure 10; verify source checksum and record numeric values with PDF page and section.
-- [ ] R1: solve S0/S2 for H1/H2 on the three configured fallback shells and the known 4 × 3 m bedroom envelope; preserve original household/catalogue settings and label the approximation.
-- [ ] R2: independently revalidate all saved H1/H2 S0/S2 layouts on the 2619 evaluable units, and calculate daytime body-free floor area.
-- [ ] R3: join current P1 paired equivalent-area gains, preserving identified values and bounds separately; real units use real reference, D3 uses D3, plus pooled-reference sensitivity.
-- [ ] Produce F11, inspect it, and verify result hashes before declaring the package complete.
+- [x] R1: solve S0/S2 for H1/H2 on the three configured fallback shells and the known 4 × 3 m bedroom envelope; preserve original household/catalogue settings and label the approximation.
+- [x] R2: independently revalidate all saved H1/H2 S0/S2 layouts on the 2619 evaluable units, and calculate daytime body-free floor area.
+- [x] R3: join current P1 paired equivalent-area gains, preserving identified values and bounds separately; real units use real reference, D3 uses D3, plus pooled-reference sensitivity.
+- [x] Produce F11, inspect it, and verify result hashes before declaring the package complete.
 
 ## Source and metric boundary
 

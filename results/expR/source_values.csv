@@ -1,0 +1,25 @@
+quantity,value,unit,page,section,note,doi,source_sha256
+room_area,12.0,m2,12,6.1,All prototypes; room dimensions explicitly stated,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+room_long_side,4.0,m,12,6.1,Rectangle,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+room_short_side,3.0,m,12,6.1,Rectangle,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+window_count,1.0,count,12,6.1,Opening width not specified in prose,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+entry_count,1.0,count,12,6.1,Entry on shorter side,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+fixed_bed_length_prose,2.0,m,12,6.1,Body dimension,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+fixed_bed_width_prose,1.8,m,12,6.1,Conflicts with Figure 10 width 1.5 m,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+wardrobe_length_prose,1.8,m,12,6.1,Body dimension,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+wardrobe_depth_prose,0.6,m,12,6.1,Conflicts with Figure 10 depth 0.4 m,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+bedside_table_count,2.0,count,12,6.1,Complete dimensions not unambiguously specified,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+fixed_furniture_body_area_approx,5.4,m2,12,6.1,"Approximate aggregate, distinct from clearance-inclusive activity metric",10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+fixed_furniture_plus_clearance_area_low,6.5,m2,12,6.1,Approximate,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+fixed_furniture_plus_clearance_area_high,7.0,m2,12,6.1,Approximate,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+fixed_bed_width_figure,1.5,m,13,Figure 10,Contradicts prose 1.8 m,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+wardrobe_depth_figure,0.4,m,13,Figure 10,Contradicts prose 0.6 m,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+desk_width_figure,1.2,m,13,Figure 10,Figure label,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+desk_depth_figure,0.6,m,13,Figure 10,Figure label,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+wall_bed_stowed_depth_figure,0.35,m,13,Figure 10,Figure label,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+wall_bed_floor_release_approx,3.0,m2,13,6.1 continuation,Reported approximation,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+modular_storage_footprint_reduction,0.2,fraction,13,6.1 continuation,Reported approximation,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+activity_area_static_low,5.0,m2,14,Table 2,Includes clearance deduction; not body-free NIA,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+activity_area_static_high,5.5,m2,14,Table 2,Includes clearance deduction; not body-free NIA,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+activity_area_flexible,8.0,m2,14,Table 2,Wall bed folded,10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc
+reported_relative_gain,0.6,fraction,13,6.3,"Approximate, relative to about 5 m2 baseline",10.13189/cea.2026.140514,591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc

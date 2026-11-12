@@ -1,0 +1,187 @@
+{
+  "units": [
+    {
+      "unit_key": "D3:1dc457eed9811d6b95b4",
+      "source": "D3",
+      "group_id": "D3:f59b46208ffa5cbd4b01",
+      "classes": {
+        "furnishable": "POLYGON ((0 0, 0 3.4641016151377544, 3.4641016151377544 3.4641016151377544, 3.4641016151377544 1.2, 1.9641016151377544 1.2, 1.9641016151377544 0, 1.6493152371351987 0, 1.6493152371351987 1.2, 1.0493152371351988 1.2, 1.0493152371351988 0, 0 0))",
+        "storage_only": "GEOMETRYCOLLECTION EMPTY",
+        "walkable_only": "GEOMETRYCOLLECTION EMPTY",
+        "fixed_service": "MULTIPOLYGON (((1.0493152371351988 0, 1.0493152371351988 1.2, 1.6493152371351987 1.2, 1.6493152371351987 0, 1.0493152371351988 0)), ((1.9641016151377544 0, 1.9641016151377544 1.2, 3.4641016151377544 1.2, 3.4641016151377544 0, 1.9641016151377544 0)))",
+        "excluded": "GEOMETRYCOLLECTION EMPTY"
+      },
+      "walls": "MULTILINESTRING ((3.4641016151377544 0, 3.4641016151377544 3.4641016151377544, 0 3.4641016151377544, 0 0), (0.9493152371351988 0, 3.4641016151377544 0))",
+      "doors": [
+        "LINESTRING (0 0, 0.9493152371351988 0)",
+        "LINESTRING (3.1336820041579996 1.2, 2.294521226117509 1.2)"
+      ],
+      "windows": [
+        "LINESTRING (1.0250476390944656 3.4641016151377544, 2.4390539760432888 3.4641016151377544)"
+      ],
+      "entrance": "LINESTRING (0 0, 0.9493152371351988 0)",
+      "gross_area_m2": 12.0,
+      "n_rooms": 1,
+      "meta": {
+        "parameters": {
+          "gross_area_m2": 12,
+          "aspect_ratio": 1.0,
+          "entrance_position": "short_wall_corner",
+          "window_position": "opposite_short_wall"
+        },
+        "entrance_method": "generated",
+        "fixed_placement": "ordered nearest-corner/wall candidates; continuous 0.90 m access and empty-raster check",
+        "has_sanitary": true,
+        "has_kitchen": true,
+        "has_kitchen_dining": false,
+        "service_placement": "near_entrance",
+        "service_placement_rule": "near only when both service centroids are in the entrance-wall half",
+        "toilet_geometry": "POLYGON ((3.4641016151377544 0, 3.4641016151377544 1.2, 1.9641016151377544 1.2, 1.9641016151377544 0, 3.4641016151377544 0))",
+        "kitchen_geometry": "POLYGON ((1.6493152371351987 0, 1.6493152371351987 1.2, 1.0493152371351988 1.2, 1.0493152371351988 0, 1.6493152371351987 0))",
+        "opening_width_source": "D1 residential opening-record medians",
+        "entrance_width_m": 0.9493152371351988,
+        "window_width_m": 1.414006336948823,
+        "internal_door_width_m": 0.8391607780404904,
+        "fixed_service_area_m2": 2.5199999999999996,
+        "entrance_keepout_overlap_m2": 0.0,
+        "continuous_access_width_m": 0.9,
+        "candidate_attempts": 1,
+        "R1_condition": "configured_D3_fallback"
+      }
+    },
+    {
+      "unit_key": "D3:1a736ae208c297e741df",
+      "source": "D3",
+      "group_id": "D3:7cb2357e390cb2f50530",
+      "classes": {
+        "furnishable": "POLYGON ((0 0, 0 3.872983346207417, 3.0983866769659336 3.872983346207417, 3.0983866769659336 1.2, 1.5983866769659336 1.2, 0.9983866769659336 1.2, 0.9983866769659336 0, 0 0))",
+        "storage_only": "GEOMETRYCOLLECTION EMPTY",
+        "walkable_only": "GEOMETRYCOLLECTION EMPTY",
+        "fixed_service": "POLYGON ((0.9983866769659336 0, 0.9983866769659336 1.2, 1.5983866769659336 1.2, 3.0983866769659336 1.2, 3.0983866769659336 0, 1.5983866769659336 0, 0.9983866769659336 0))",
+        "excluded": "GEOMETRYCOLLECTION EMPTY"
+      },
+      "walls": "MULTILINESTRING ((3.0983866769659336 0, 3.0983866769659336 3.872983346207417, 0 3.872983346207417, 0 0), (0.9493152371351988 0, 3.0983866769659336 0))",
+      "doors": [
+        "LINESTRING (0 0, 0.9493152371351988 0)",
+        "LINESTRING (2.767967065986179 1.2, 1.9288062879456884 1.2)"
+      ],
+      "windows": [
+        "LINESTRING (0.8421901700085553 3.872983346207417, 2.2561965069573784 3.872983346207417)"
+      ],
+      "entrance": "LINESTRING (0 0, 0.9493152371351988 0)",
+      "gross_area_m2": 12.0,
+      "n_rooms": 1,
+      "meta": {
+        "parameters": {
+          "gross_area_m2": 12,
+          "aspect_ratio": 1.25,
+          "entrance_position": "short_wall_corner",
+          "window_position": "opposite_short_wall"
+        },
+        "entrance_method": "generated",
+        "fixed_placement": "ordered nearest-corner/wall candidates; continuous 0.90 m access and empty-raster check",
+        "has_sanitary": true,
+        "has_kitchen": true,
+        "has_kitchen_dining": false,
+        "service_placement": "near_entrance",
+        "service_placement_rule": "near only when both service centroids are in the entrance-wall half",
+        "toilet_geometry": "POLYGON ((3.0983866769659336 0, 3.0983866769659336 1.2, 1.5983866769659336 1.2, 1.5983866769659336 0, 3.0983866769659336 0))",
+        "kitchen_geometry": "POLYGON ((1.5983866769659336 0, 1.5983866769659336 1.2, 0.9983866769659336 1.2, 0.9983866769659336 0, 1.5983866769659336 0))",
+        "opening_width_source": "D1 residential opening-record medians",
+        "entrance_width_m": 0.9493152371351988,
+        "window_width_m": 1.414006336948823,
+        "internal_door_width_m": 0.8391607780404904,
+        "fixed_service_area_m2": 2.52,
+        "entrance_keepout_overlap_m2": 0.0,
+        "continuous_access_width_m": 0.9,
+        "candidate_attempts": 1,
+        "R1_condition": "configured_D3_fallback"
+      }
+    },
+    {
+      "unit_key": "D3:5b3da66b8e622d542bc7",
+      "source": "D3",
+      "group_id": "D3:dc1bfb82006fa25d43b2",
+      "classes": {
+        "furnishable": "POLYGON ((0 0, 0 4.242640687119285, 2.8284271247461903 4.242640687119285, 2.8284271247461903 1.7999999999999998, 1.6284271247461903 1.7999999999999998, 1.6284271247461903 1.2, 1.3284271247461903 1.2, 1.3284271247461903 0, 0 0))",
+        "storage_only": "GEOMETRYCOLLECTION EMPTY",
+        "walkable_only": "GEOMETRYCOLLECTION EMPTY",
+        "fixed_service": "POLYGON ((2.8284271247461903 0, 1.3284271247461903 0, 1.3284271247461903 1.2, 1.6284271247461903 1.2, 1.6284271247461903 1.7999999999999998, 2.8284271247461903 1.7999999999999998, 2.8284271247461903 1.2, 2.8284271247461903 0))",
+        "excluded": "GEOMETRYCOLLECTION EMPTY"
+      },
+      "walls": "MULTILINESTRING ((2.8284271247461903 0, 2.8284271247461903 4.242640687119285, 0 4.242640687119285, 0 0), (0.9493152371351988 0, 2.8284271247461903 0))",
+      "doors": [
+        "LINESTRING (0 0, 0.9493152371351988 0)",
+        "LINESTRING (1.3284271247461903 1.019580389020245, 1.3284271247461903 0.1804196109797549)"
+      ],
+      "windows": [
+        "LINESTRING (0.7072103938986837 4.242640687119285, 2.1212167308475065 4.242640687119285)"
+      ],
+      "entrance": "LINESTRING (0 0, 0.9493152371351988 0)",
+      "gross_area_m2": 12.0,
+      "n_rooms": 1,
+      "meta": {
+        "parameters": {
+          "gross_area_m2": 12,
+          "aspect_ratio": 1.5,
+          "entrance_position": "short_wall_corner",
+          "window_position": "opposite_short_wall"
+        },
+        "entrance_method": "generated",
+        "fixed_placement": "ordered nearest-corner/wall candidates; continuous 0.90 m access and empty-raster check",
+        "has_sanitary": true,
+        "has_kitchen": true,
+        "has_kitchen_dining": false,
+        "service_placement": "near_entrance",
+        "service_placement_rule": "near only when both service centroids are in the entrance-wall half",
+        "toilet_geometry": "POLYGON ((2.8284271247461903 0, 2.8284271247461903 1.2, 1.3284271247461903 1.2, 1.3284271247461903 0, 2.8284271247461903 0))",
+        "kitchen_geometry": "POLYGON ((2.8284271247461903 1.2, 2.8284271247461903 1.7999999999999998, 1.6284271247461903 1.7999999999999998, 1.6284271247461903 1.2, 2.8284271247461903 1.2))",
+        "opening_width_source": "D1 residential opening-record medians",
+        "entrance_width_m": 0.9493152371351988,
+        "window_width_m": 1.414006336948823,
+        "internal_door_width_m": 0.8391607780404902,
+        "fixed_service_area_m2": 2.5199999999999996,
+        "entrance_keepout_overlap_m2": 0.0,
+        "continuous_access_width_m": 0.9,
+        "candidate_attempts": 5,
+        "R1_condition": "configured_D3_fallback"
+      }
+    },
+    {
+      "unit_key": "R1:paper_envelope",
+      "source": "R1_envelope",
+      "group_id": "R1:paper_envelope",
+      "classes": {
+        "furnishable": "POLYGON ((3 0, 3 4, 0 4, 0 0, 3 0))",
+        "walkable_only": "GEOMETRYCOLLECTION EMPTY",
+        "storage_only": "GEOMETRYCOLLECTION EMPTY",
+        "fixed_service": "GEOMETRYCOLLECTION EMPTY",
+        "excluded": "GEOMETRYCOLLECTION EMPTY"
+      },
+      "walls": "MULTILINESTRING ((3 0, 3 4, 0 4, 0 0), (0.9493152371351988 0, 3 0))",
+      "doors": [
+        "LINESTRING (0 0, 0.9493152371351988 0)"
+      ],
+      "windows": [
+        "LINESTRING (0.7929968315255885 4, 2.2070031684744116 4)"
+      ],
+      "entrance": "LINESTRING (0 0, 0.9493152371351988 0)",
+      "gross_area_m2": 12.0,
+      "n_rooms": 1,
+      "meta": {
+        "R1_condition": "paper_envelope_catalogue_only",
+        "parameters": {
+          "gross_area_m2": 12,
+          "aspect_ratio": 1.3333333333333333,
+          "entrance_position": "short_wall_corner",
+          "window_position": "opposite_short_wall"
+        },
+        "opening_dimension_source": "D1 medians, not source paper",
+        "source_pdf_page": 12,
+        "source_section": "6.1",
+        "exact_reproduction": false
+      }
+    }
+  ],
+  "exact_source_reproduction": false
+}

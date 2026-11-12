@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "reviewed_files": {
+    "results/expR/figures/F11_supporting_R.png": "0eb2fce2617c327712668f56af7c0cad22112ca11a496b4bee38aaa8c43b77b4",
+    "results/expR/figures/F11_supporting_R.pdf": "8adb81c0ddc38eb85a98da428bf91ebc1397883a1d79328884ded9bd0e45a8eb"
+  },
+  "notes": [
+    "F11 PNG inspected at full figure scale. All three panels, axes, groups and source-measure annotations are readable.",
+    "Panel (b) retains zero and negative body-free area changes. Panel (c) shows support-limited lower bounds as open triangles.",
+    "PDF opens as a single page and includes the text of all three panel headings."
+  ]
+}

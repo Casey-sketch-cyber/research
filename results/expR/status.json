@@ -1,3 +1,5 @@
 {
-  "status": "running_R1"
+  "status": "complete",
+  "R_complete": true,
+  "completed_at_utc": "2026-11-12T03:11:42+00:00"
 }
