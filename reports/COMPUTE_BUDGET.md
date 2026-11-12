@@ -8,7 +8,7 @@ F3 follows F1 and F2: the same 348 small units × H3 × three strategies = 1044 
 
 K follows D-39 and D-38: H1+H3, eight kits, 30 training shells, 15 held-out shells and 15 real plans; 2360 solves and historical count-based allowance 41.156 hours. H3 costs remain unmeasured. Freeze the grid and run its pilot; if it exceeds 48 hours, reduce training shells 30 → 24 → 18 before dropping H3. The full grid stays disabled.
 
-B pilot status: complete; measured pilot hours: 0.1778124201002841. Full benchmark status: running; 58/600 outputs in the dated snapshot 2026-11-11T03:13:08+00:00. Pilot-based full workload projection: 1.0423386198362439 parallel hours. 12 geometry-selected source/household pilot pairs, matched-stratum timing scaled by full-run concurrency; planning estimate, not a deadline or upper bound. Full stage reuses pilot checkpoints. Full-stage measured hours are available only after completion: None. P1 analysis package passed: True.
+B pilot status: complete; measured pilot hours: 0.1778124201002841. Full benchmark status: complete; 600/600 outputs in the dated snapshot 2026-11-12T02:58:24+00:00. Pilot-based full workload projection: 1.0423386198362439 parallel hours. 12 geometry-selected source/household pilot pairs, matched-stratum timing scaled by full-run concurrency; planning estimate, not a deadline or upper bound. Full stage reuses pilot checkpoints. Full-stage measured hours are available only after completion: 0.999104761001654. P1 analysis package passed: True.
 
 Remaining ablations, C and reduced K still need runtime calibration. D/R/HK reuse validated corrected evidence where applicable. Full remaining experimental time is unknown. The former 10–14-day calendar estimate is retired; no arbitrary analysis-day reserve is added.
 

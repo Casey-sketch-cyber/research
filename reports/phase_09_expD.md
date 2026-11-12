@@ -1,15 +1,15 @@
 # Phase 9 — Conventional indicators and functional adequacy
 
-Status: implementation tested and queued while B runs; numerical analysis is gated on accepted full B output. Three D tests pass (counts/missingness, tied cutoff sweeps, and geometry identity). No D numerical result is claimed before acceptance.
+The analysis passed after full B acceptance. It covers 2,619 units and 10,476 unit–household pairs. The three tests cover counts and missingness, tied cutoff sweeps, and geometry identity. [Results](phase_09_D_results.md).
 
 ## Checklist
 
-- [ ] Verify full B report acceptance and corrected F1 evidence.
-- [ ] Join NIA and habitable-room counts to all 2619 evaluable units × four households.
-- [ ] Report Spearman correlations with S0/S2 and FCI IQR within 2 m² bins, separately for real plans, generated shells and each source.
-- [ ] Report binary confusion matrices for the configured Ulrich household-size thresholds and 8 m² area threshold at all configured FCI adequacy thresholds.
-- [ ] For area/person and rooms/person, report complete observed-threshold sweeps at the primary FCI threshold, with no selected optimal cutoff or invented regulatory standard.
-- [ ] Verify counts, ties, missingness and input/output hashes; publish script-generated results.
+- [x] Verify full B report acceptance and corrected F1 evidence.
+- [x] Join NIA and habitable-room counts to all 2619 evaluable units × four households.
+- [x] Report Spearman correlations with S0/S2 and FCI IQR within 2 m² bins, separately for real plans, generated shells and each source.
+- [x] Report binary confusion matrices for the configured Ulrich household-size thresholds and 8 m² area threshold at all configured FCI adequacy thresholds.
+- [x] For area/person and rooms/person, report complete observed-threshold sweeps at the primary FCI threshold, with no selected optimal cutoff or invented regulatory standard.
+- [x] Verify counts, ties, missingness and input/output hashes; publish script-generated results.
 
 ## Scope and interpretation
 

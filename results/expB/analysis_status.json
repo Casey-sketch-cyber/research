@@ -1,3 +1,4 @@
 {
-  "status": "waiting_for_full_B"
+  "status": "complete",
+  "independently_revalidated": 600
 }

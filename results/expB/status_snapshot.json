@@ -1,17 +1,17 @@
 {
-  "observed_at_utc": "2026-11-11T03:45:40+00:00",
+  "observed_at_utc": "2026-11-12T02:58:24+00:00",
   "stage": "full",
-  "status": "running",
+  "status": "complete",
   "expected_pairs": 200,
   "expected_algorithm_outputs": 600,
-  "completed_algorithm_outputs": 313,
-  "completed_three_algorithm_pairs": 100,
+  "completed_algorithm_outputs": 600,
+  "completed_three_algorithm_pairs": 200,
   "completed_by_algorithm": {
-    "greedy_footprint": 111,
-    "cp_sat": 100,
-    "simulated_annealing": 102
+    "greedy_footprint": 200,
+    "cp_sat": 200,
+    "simulated_annealing": 200
   },
   "invalid_outputs": 0,
   "basis": "Unique completed checkpoints, including identical pilot results reused in full run; incomplete pairs remain partial.",
-  "analysis_status": "waiting_for_full_B"
+  "analysis_status": "complete"
 }

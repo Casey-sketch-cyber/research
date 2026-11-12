@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "n_units": 2619,
+  "n_pairs": 10476,
+  "config_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474",
+  "input_sha256": {
+    "results/expB/report_acceptance.json": "d89ba79881615e217de1a4d2e05f84ed5611fa1919cfee09bf57de0810b448ae",
+    "results/expA_f1/acceptance.json": "ebe9ea3caf5604f55a32ef1fb97037f2dfab7c471135b82bc0569bbca04d5bca",
+    "results/expA_f1/solutions.csv": "ec4fdade4cf07b6e21cd50fcdcd71ef7ca5a9709ed0fef816737d618697881ff",
+    "results/corpus/corpus_units.csv": "f1a31bcde69d63b9a0d37a5f4fa2ca9dcb69f1850c770ef29ce6501f6abe1992",
+    "scripts/phase09_metrics.py": "47cfb6d0a1efb0bbfb40b7bf3abe1f3851ec68a03bec10db65560b9e15e1d3cc",
+    "scripts/09_run_expD.py": "9948cef68c2322ff77b8a110c3f6423c6baef0cfec592177fb28d08c98a6aeb7",
+    "scripts/phase07_corrected.py": "c7f140ed730fc917a6652c1446cc8bdca984798edaa22bd13997f9c3d28f8d4f",
+    "tests/test_phase09_metrics.py": "157269d27a1207c8feb0d3e55f69d494910ef1596a04a48133c217f7bac699b9"
+  },
+  "outputs": {
+    "results/expD/correlations.csv": "b92824f1effb27958aa571a8d7c36edc06d029783712a4c25eeab538992c5e76",
+    "results/expD/dispersion.csv": "a1367e1af7083e51047504610101b77ac3cc9e8d1f8775a29da39651ca080e06",
+    "results/expD/confusion.csv": "5c88601f012f9be175908637068bab6b88b589801323b0e2cfdf8b7c1beeddca",
+    "results/expD/threshold_sweeps.csv": "8e27d69593f65120675f571356d7fdcdd147f2442f5c2492cad44f731aa2d34a",
+    "results/expD/indicators.csv": "0baa631f6661549c459bce8297c57a5d82f6dc321bd80f881ab29f163fbe133d",
+    "reports/phase_09_D_results.md": "b4801e1eba26b8985ffd8c3e64cc5159425aa2e2628e3991467bf50c56248c7b"
+  },
+  "analysis_time_s": 3.2958232779055834,
+  "independent_geometry_metadata_checked": true,
+  "chosen_cutoff": false,
+  "completed_at_utc": "2026-11-11T04:08:07+00:00"
+}

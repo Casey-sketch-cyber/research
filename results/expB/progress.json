@@ -1,7 +1,7 @@
 {
-  "completed_pairs": 8,
-  "completed_cases": 24,
+  "completed_pairs": 200,
+  "completed_cases": 600,
   "expected_cases": 600,
-  "elapsed_this_invocation_s": 320.5927154067904,
-  "observed_at_utc": "2026-11-11T03:12:58+00:00"
+  "elapsed_this_invocation_s": 3596.4805565867573,
+  "observed_at_utc": "2026-11-11T04:07:33+00:00"
 }

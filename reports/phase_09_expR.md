@@ -1,6 +1,6 @@
 # Phase 9b — Published-room comparison and generalization
 
-Status: implementation tested and queued before R outputs; execution waits for accepted B and D. Five R tests pass, four pre-existing layouts pass an end-to-end read/independent-area check, and all four planned comparison envelopes have verified 12 m² area. These are preflight checks, not completed R results.
+B and D passed. The queued R launch stopped before its first solve because the tracked source manifest had not been transferred. The manifest was restored and checked against the frozen source checksum. R entered its first reproduction stage on retry at 2026-11-12T02:57:03+00:00. Five R tests pass, four pre-existing layouts pass an end-to-end read/independent-area check, and all four planned comparison envelopes have verified 12 m² area. These are preflight checks, not completed R results.
 
 ## Checklist
 

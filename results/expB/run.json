@@ -98,5 +98,7 @@
     "cp_sat"
   ],
   "started_at_utc": "2026-11-11T03:07:34+00:00",
-  "status": "running"
+  "status": "complete",
+  "completed_at_utc": "2026-11-11T04:07:34+00:00",
+  "wall_time_this_invocation_s": 3596.7771396059543
 }

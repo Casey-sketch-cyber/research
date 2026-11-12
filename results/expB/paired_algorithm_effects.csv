@@ -1,0 +1,4 @@
+comparison,n_pairs,mean_difference,ci_lo,ci_hi,share_better,share_worse,bootstrap_resamples,resampling
+cp_sat minus greedy_footprint,200,0.00631220492470492,-0.02634941604675198,0.03562199074300789,0.33,0.415,1000,Physical-unit clusters within source; all sampled households retained
+cp_sat minus simulated_annealing,200,-0.0666036914936915,-0.08835902540561029,-0.0485207121856874,0.07,0.575,1000,Physical-unit clusters within source; all sampled households retained
+simulated_annealing minus greedy_footprint,200,0.07291589641839642,0.054137825437551794,0.0931343300711634,0.415,0.0,1000,Physical-unit clusters within source; all sampled households retained

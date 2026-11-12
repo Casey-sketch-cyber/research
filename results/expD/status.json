@@ -1,3 +1,5 @@
 {
-  "status": "waiting_for_B_acceptance"
+  "status": "complete",
+  "n_units": 2619,
+  "n_pairs": 10476
 }

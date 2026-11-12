@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "full_B_analysis_complete": true,
+  "independently_revalidated": 600,
+  "cases_sha256": "f7ae31aa6713f14b0b1cbd96163a3391824aa874e0282512e83ce687605a594c",
+  "run_sha256": "a9a0d844b634e021977fb0ac7bc32cd06ac4124d6fff45069b585b8d98c0c70d",
+  "implementation_sha256": "f04a29e9d513a3a20f3be5c01ec09aa016aaf14472f68e64ac9c19bc802d8fc9",
+  "outputs": {
+    "results/expB/algorithms.csv": "a1e61b691d1f4ec6eb78f8d27847d9089c6a26ad4aec447e74c36ee10f22e247",
+    "results/expB/algorithm_summary.csv": "077651d53168951d1a645cf3f9945e1077b65f3845ff9962d1865f412d5fdced",
+    "results/expB/paired_algorithm_effects.csv": "f1eee9e3eb09357d5011c738474c9eca68a522cb16cc48eae8e9cd681ec46400",
+    "results/expB/fresh_vs_historical_CP.csv": "8e0485f21c06078ed171e4ebaf9ba5908199efa7c7ed413ace50b13c7c7a1d91",
+    "results/expB/layout_revalidation.csv": "38dd6c71357cc51a45deef3abab62fb882cc874b04e1d40e2b5649d9cbe4c0a6",
+    "reports/phase_08_B_results.md": "0b7055f2629a1e85465fb7911e729282a0406d55da94595c2632bfd4ad3b186a"
+  },
+  "completed_at_utc": "2026-11-11T04:07:58+00:00"
+}
