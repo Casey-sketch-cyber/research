@@ -21,6 +21,7 @@ If these documents conflict, the order of precedence is: a review file in `revie
   3. Read `reports/DECISIONS.md` and the latest phase report, so you know where you are.
 - **Plan before coding** in each phase: write the checklist from PROCEDURES into the phase report, then tick items off as you go.
 - **Commit small and often.** Push at the end of every phase and at least daily during long runs. Use messages of the form `phase-NN: <what>`.
+- **Branches and merging.** Work on a branch named `codex/phase-NN-<short-name>` (or `<tool>/...` if you are another AI), push it, and open a pull request against `main`. **Do not merge your own work, and do not wait for the human to merge.** A scheduled or on-demand Claude review merges it if it passes, or leaves a PR comment and a `reviews/` file listing what to change. If the next phase depends on work not yet merged, branch from that branch and say so in the PR description. At the start of each session, also check whether one of your PRs was sent back, and fix it first. Never force-push and never rewrite pushed history. Gates are unchanged: at G1–G4 you still stop and wait for `reviews/Gx_review.md`.
 
 ## Non-negotiable research-integrity rules
 
