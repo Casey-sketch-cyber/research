@@ -2,7 +2,7 @@
 
 **Reviewer:** Claude, 2026-11-13. **Package:** PR #2 (`codex/phase-11-g3-results`, commit 2c485be), plus the Phase 8–9 code already on `main` (B, D, R, ablation, C, K and HK runners).
 
-**Verdict: APPROVED WITH REQUIRED CHANGES.** The evidence is accepted and PR #2 is approved for merge as the record. Before G4, address the three **[must]** items in a follow-up PR (`codex/phase-11c-g3-fixes`). K1 changes what the K and HK-kit rows say. B1 changes how the solver benchmark is framed. None of the three needs new production solves of A, D, R, C or the ablations. After that PR is reviewed, continue to Phase 12.
+**Verdict: APPROVED WITH REQUIRED CHANGES.** The evidence is accepted and PR #2 is merged as the record. Before G4, address the three **[must]** items in a follow-up PR (`codex/phase-11c-g3-fixes`). K1 changes what the K and HK-kit rows say. B1 changes how the solver benchmark is framed. None of the three needs new production solves of A, D, R, C or the ablations. After that PR is reviewed, continue to Phase 12.
 
 ## What I checked independently
 
@@ -98,4 +98,4 @@ Smaller furniture buys coverage and pays for it in quality. Tabulate plain FCI a
 
 ## Merge record
 
-PR #2 is approved for merge as the evidence record (the merge itself awaits the repository owner). The follow-up PR for B1, K1 and K2 will be reviewed separately.
+PR #2 merged into `main` on 2026-11-13 (254f456). The follow-up PR for B1, K1 and K2 will be reviewed separately.
