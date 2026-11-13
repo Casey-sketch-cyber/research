@@ -1,0 +1,27 @@
+model,target,household,settings,validation_mae,selected,training_count,validation_count,best_epoch,val_mae_fci_S0,val_mae_fci_S2,val_mae_saving_m2,config_hash
+linear_area,fci_S0,H1_single_commuter,area-only OLS,0.028078916577667628,True,,,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+linear_area,fci_S2,H1_single_commuter,area-only OLS,0.010736954993058021,True,,,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+linear_area,saving_m2,H1_single_commuter,area-only OLS,0.0,True,,,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+linear_area,fci_S0,H2_single_remote_worker,area-only OLS,0.03427649585269022,True,,,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+linear_area,fci_S2,H2_single_remote_worker,area-only OLS,0.00959787526988108,True,,,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+linear_area,saving_m2,H2_single_remote_worker,area-only OLS,0.21461665483078454,True,,,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+linear_area,fci_S0,H3_couple_one_remote,area-only OLS,0.05576626433919613,True,,,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+linear_area,fci_S2,H3_couple_one_remote,area-only OLS,0.026422362482656694,True,,,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+linear_area,saving_m2,H3_couple_one_remote,area-only OLS,2.9160765006021596,True,,,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+linear_area,fci_S0,H4_parent_child,area-only OLS,0.05512959646157411,True,,,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+linear_area,fci_S2,H4_parent_child,area-only OLS,0.03364547620489205,True,,,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+linear_area,saving_m2,H4_parent_child,area-only OLS,3.913708519514109,True,,,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+gbm_features,fci_S0,pooled_training,"{""max_leaf_nodes"": 15, ""learning_rate"": 0.07, ""max_iter"": 150, ""l2_regularization"": 0.1}",0.03681392065558943,False,3536.0,720.0,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+gbm_features,fci_S0,pooled_training,"{""max_leaf_nodes"": 31, ""learning_rate"": 0.07, ""max_iter"": 150, ""l2_regularization"": 1.0}",0.036660274298012004,True,3536.0,720.0,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+gbm_features,fci_S2,pooled_training,"{""max_leaf_nodes"": 15, ""learning_rate"": 0.07, ""max_iter"": 150, ""l2_regularization"": 0.1}",0.01809649520465252,True,3536.0,720.0,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+gbm_features,fci_S2,pooled_training,"{""max_leaf_nodes"": 31, ""learning_rate"": 0.07, ""max_iter"": 150, ""l2_regularization"": 1.0}",0.018270793831780673,False,3536.0,720.0,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+gbm_features,saving_m2,pooled_training,"{""max_leaf_nodes"": 15, ""learning_rate"": 0.07, ""max_iter"": 150, ""l2_regularization"": 0.1}",1.6175417853827279,True,3370.0,694.0,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+gbm_features,saving_m2,pooled_training,"{""max_leaf_nodes"": 31, ""learning_rate"": 0.07, ""max_iter"": 150, ""l2_regularization"": 1.0}",1.6179660115950791,False,3370.0,694.0,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+mlp_features,fci_S0,pooled_training,"{""hidden_layer_sizes"": [32], ""alpha"": 0.005, ""max_iter"": 200}",0.06790659171931834,False,3536.0,720.0,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+mlp_features,fci_S0,pooled_training,"{""hidden_layer_sizes"": [64, 32], ""alpha"": 0.02, ""max_iter"": 200}",0.06054494496415634,True,3536.0,720.0,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+mlp_features,fci_S2,pooled_training,"{""hidden_layer_sizes"": [32], ""alpha"": 0.005, ""max_iter"": 200}",0.05387953918779424,False,3536.0,720.0,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+mlp_features,fci_S2,pooled_training,"{""hidden_layer_sizes"": [64, 32], ""alpha"": 0.02, ""max_iter"": 200}",0.04426822848969855,True,3536.0,720.0,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+mlp_features,saving_m2,pooled_training,"{""hidden_layer_sizes"": [32], ""alpha"": 0.005, ""max_iter"": 200}",1.6851602941454054,True,3370.0,694.0,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+mlp_features,saving_m2,pooled_training,"{""hidden_layer_sizes"": [64, 32], ""alpha"": 0.02, ""max_iter"": 200}",1.8588998634513392,False,3370.0,694.0,,,,,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+gnn_graph,joint_normalized_mae,pooled_training,"{""hidden"": 32, ""lr"": 0.004, ""epochs"": 120}",0.2811161572306872,True,,,120.0,0.03311753532802619,0.01159267796053792,1.7604314161498824,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+gnn_graph,joint_normalized_mae,pooled_training,"{""hidden"": 64, ""lr"": 0.002, ""epochs"": 120}",0.3112380826681092,False,,,116.0,0.03574322211078965,0.015868816295543382,1.8350629840533677,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474

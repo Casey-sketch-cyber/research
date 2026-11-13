@@ -1,0 +1,83 @@
+{
+  "passed": true,
+  "numerical_checks_passed": true,
+  "config_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474",
+  "input_sha256": {
+    "results/ablations/report_acceptance.json": "3d6740c25e408468fe160d16c4dd255b7ea143d9e8e4c2a22d19d0d4bae38b6a",
+    "results/expA_f1/solutions.csv": "ec4fdade4cf07b6e21cd50fcdcd71ef7ca5a9709ed0fef816737d618697881ff",
+    "results/expA_f1/acceptance.json": "ebe9ea3caf5604f55a32ef1fb97037f2dfab7c471135b82bc0569bbca04d5bca",
+    "data/processed/corpus_units.parquet": "2f6e45d2c2a47bccb6a756d35f89d0443cf3e65e67d449f90af6ff90cc473d1c",
+    "scripts/10_run_expC.py": "2fc44a9cb3085db1284ab93ca7e6930c7cf04e6094d508d8ff7fd28f142f2f55",
+    "scripts/phase10_features.py": "413f506dd644d202a81289b88e9da1e45480412e1aac53aa68e9dc53a3d221a4",
+    "scripts/phase10_models.py": "90df642cac38071e8ce997077111823aa436c1d059ad467bf79bb0481fe20f91",
+    "scripts/phase07_p1_area.py": "6e00a8fb2c412b73a1bb32001b59ef7f140baf648c709e8234f2cc1f8bf56ed0",
+    "scripts/phase07_paired_area.py": "ec800d680725e57d625618bda53357a4b65ae6bacba2ffd5604d2deaaed1c6c3",
+    "scripts/phase07_statistics.py": "da3003e1d126336a8430106f9264e510153f760bf2a55ee330f800333a9d1b6b"
+  },
+  "outputs": {
+    "results/expC/splits.csv": "85bb989bbca56c596f4a94cd74f6bd800e5b396bc356fddc879bd34ec63c9a0e",
+    "results/expC/training_area_reference.csv": "1fc2ca8e632ed29586a35d1973280d184f1a4d2d1d56b9a40dfcdc3676400106",
+    "results/expC/tuning.csv": "3426f337c57bbb09e5ba2be699db30aa26b8a73fc7cbde4ec85bc60aba6a86e5",
+    "results/expC/metrics.csv": "f82092589c8a20520655ca812a65e79030715a68f5486728228bc67e18a769e2",
+    "results/expC/predictions.csv": "45c9e9605558a9549160681de99986af56bdc0fd23c42e1d72f0c80795298e37",
+    "results/expC/models/graphsage.pt": "745d7123e0efba4f793cd577462cfa631c33f932bed859fe48a7102153371bdc",
+    "results/figures/F8.png": "ad77881960cb56173791377f901076da75fe68742603f7120db803df1bcc098f",
+    "results/figures/F8.pdf": "332c8cc1bbf5a1ee516853e8bec26bba2671e549e90d4656d70315bb2068a26e",
+    "reports/phase_10_C_results.md": "964ae975593501958584c722fd8e58ea0251a466271f4022f159b3a766233185"
+  },
+  "geometry_only": true,
+  "split_by": "D1 group_id",
+  "models": [
+    "linear_area",
+    "gbm_features",
+    "mlp_features",
+    "gnn_graph"
+  ],
+  "targets": [
+    "fci_S0",
+    "fci_S2",
+    "saving_m2"
+  ],
+  "test_sets": [
+    "D1_test",
+    "D2_external",
+    "D3_external"
+  ],
+  "label_reference": "D1 train groups, P1 median bin curve",
+  "node_features": [
+    "area",
+    "width",
+    "depth",
+    "aspect",
+    "compactness",
+    "window_count",
+    "window_length",
+    "door_count",
+    "furnishable",
+    "storage_only",
+    "walkable_only",
+    "fixed_service"
+  ],
+  "graph_global_features": [
+    "nia",
+    "habitable_rooms",
+    "width",
+    "depth",
+    "aspect",
+    "compactness",
+    "door_count",
+    "window_count",
+    "door_length",
+    "window_length"
+  ],
+  "adjacency_tolerance_m": 0.05,
+  "software": {
+    "python": "3.11.18",
+    "sklearn": "1.9.1",
+    "torch": "2.7.1+cpu"
+  },
+  "metric_rows": 144,
+  "prediction_rows": 18660,
+  "elapsed_seconds": 25.992745088413358,
+  "completed_at_utc": "2026-11-12T10:28:43+00:00"
+}

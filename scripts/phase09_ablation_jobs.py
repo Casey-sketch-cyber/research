@@ -1,6 +1,7 @@
 """Independently validated ablation layouts with exact and saturated-control reuse."""
 from copy import deepcopy
 import importlib.util
+from math import ceil
 from pathlib import Path
 import time
 import json
@@ -24,7 +25,7 @@ revision_spec.loader.exec_module(revision)
 
 
 def changed_config(production, kind, value):
-    """Change only the active ablation variable."""
+    """Change the active variable and keep anchors representable on its grid."""
     cfg = deepcopy(production)
     if kind == "drop_one":
         del cfg["furniture"]["transformable_items"][value]
@@ -33,12 +34,47 @@ def changed_config(production, kind, value):
     elif kind == "walking_width":
         cfg["furniture"]["meta"]["walking_width"] = float(value)
     elif kind == "resolution_m":
-        cfg["raster"]["resolution_m"] = float(value)
+        raster = cfg["raster"]
+        raster["resolution_m"] = resolution = float(value)
+        base_stride = raster["anchor_stride_m"]
+        if abs(base_stride / resolution - round(base_stride / resolution)) > 1e-9:
+            raster["anchor_stride_m"] = round(max(1, ceil(base_stride / resolution - 1e-9)) * resolution, 10)
     elif kind == "time_limit_s":
         cfg["solver"]["time_limit_s"] = int(value)
     elif kind not in ("production", "household"):
         raise ValueError("Unknown ablation")
     return cfg
+
+
+def verified_grid_recovery(job, old_cache, old_fingerprint):
+    """Inherit a complete, configuration-identical triplet without editing its evidence."""
+    if job["anchor_adjusted"]:
+        return None
+    root = old_cache / job["task_key"]
+    done = root / "record.json"
+    if not done.exists():
+        return None
+    prior = load_json(done)
+    if prior["fingerprint"] != old_fingerprint or len(prior["rows"]) != len(STRATEGIES):
+        raise ValueError("Recovered ablation checkpoint has an unexpected fingerprint or size")
+    if set(prior["layouts"]) != {s + ".json" for s in STRATEGIES}:
+        raise ValueError("Recovered ablation checkpoint is missing a layout")
+    cfg, task_key = job["config"], job["task_key"]
+    expected_config = config_hash(cfg)
+    rows = []
+    for strategy, row in zip(STRATEGIES, prior["rows"]):
+        file = strategy + ".json"
+        if (row["strategy"], row["task_key"], row["config_hash"], row["code_hash"],
+                row["ablation"], row["value"], row["sample"], row["household"]) != (
+                strategy, task_key, expected_config, old_fingerprint,
+                job["kind"], job["value"], job["sample"], job["household"]):
+            raise ValueError("Recovered ablation row differs from the required case")
+        if sha256_file(root / file) != prior["layouts"][file] or row["layout_sha256"] != prior["layouts"][file]:
+            raise ValueError("Recovered ablation layout digest differs")
+        rows.append(dict(row, resolution_m=cfg["raster"]["resolution_m"],
+                         anchor_stride_m=cfg["raster"]["anchor_stride_m"],
+                         checkpoint_origin="verified_previous_grid_attempt"))
+    return rows
 
 
 def validated_reference(record, grid, config, household):
@@ -150,6 +186,8 @@ def run_ablation(job):
             "ablation": job["kind"], "value": job["value"], "sample": job["sample"],
             "fci_validator": check["fci"], "tb": check["tb"], "validator_pass": check["pass"],
             "structural_unreachable": structural, "violations": ";".join(check["violations"]),
+            "resolution_m": raster["resolution_m"], "anchor_stride_m": raster["anchor_stride_m"],
+            "checkpoint_origin": "current_grid_implementation",
             "own_search_time_s": timings[strategy], "case_wall_time_s": time.perf_counter() - started,
             "budget_s": cfg["solver"]["time_limit_s"], "solver_workers": cfg["solver"]["num_workers"],
             "own_origin": provenance[strategy][0], "result_origin": final_origin,

@@ -1,0 +1,11 @@
+{
+  "query_id": "Q1_transformable_layout",
+  "missing_page": 3,
+  "retried_at_utc": "2026-11-12T03:46:26.403205+00:00",
+  "prior_records": 200,
+  "status_code": 200,
+  "error_type": "",
+  "records_returned": 85,
+  "source_url": "https://api.openalex.org/works?filter=from_publication_date%3A2000-01-01%2Cto_publication_date%3A2026-12-31%2Clanguage%3Aen%2Ctitle_and_abstract.search%3A%28transformable+OR+convertible+OR+multifunctional+OR+flexible+OR+reconfigurable+OR+foldable%29+AND+furniture+AND+%28layout+OR+arrangement+OR+%22scene+synthesis%22%29+AND+%28optimization+OR+optimisation+OR+generation+OR+planning%29&per_page=100&page=3",
+  "response_sha256": "c570da46f6a365e0d00fed97901a02fd38586107a6002ab78cff7fd6687516b8"
+}

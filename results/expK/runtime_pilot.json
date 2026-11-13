@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "selected_training_shells": 30,
+  "pilot_layouts": 16,
+  "pilot_wall_seconds": 529.1765920482576,
+  "max_observed_per_solve_s": 120.09049733169377,
+  "max_candidate_prep_s": 0.26243980787694454,
+  "conservative_per_solve_seconds": 120.35293713957071,
+  "concurrent_solves": 3,
+  "calibration_factor": 1.0,
+  "pilot_tail_allowance_s": 240.18264124169946,
+  "safety_margin": 0.15,
+  "projection": [
+    {
+      "train_shells": 30,
+      "conservative_solve_count": 2360,
+      "projected_hours": 30.391240849346268,
+      "within_48h": true
+    },
+    {
+      "train_shells": 24,
+      "conservative_solve_count": 2060,
+      "projected_hours": 26.546633135165536,
+      "within_48h": true
+    },
+    {
+      "train_shells": 18,
+      "conservative_solve_count": 1760,
+      "projected_hours": 22.702025420984803,
+      "within_48h": true
+    }
+  ],
+  "code_hash": "46cb35402ad5ff7390ec420fa59ccf4d543631a1a715fadeb09be7769c6ae42b"
+}

@@ -1,0 +1,64 @@
+{
+  "figures": {
+    "F11": {
+      "passed": true,
+      "files": {
+        "results/expR/figures/F11_supporting_R.png": "0eb2fce2617c327712668f56af7c0cad22112ca11a496b4bee38aaa8c43b77b4",
+        "results/g3/figures/F11_supporting_R.pdf": "4ab1f578daedfe6d0f5ddfaf7d398d25668927341827e112b3b9c4cd68af9c14"
+      },
+      "observations": [
+        "The PNG and the rendered one-page release PDF show all three panels with readable headings, axes and legends.",
+        "Panel b retains signed differences; panel c uses open triangles for support-limited lower bounds.",
+        "The accepted and release PDFs have identical page content streams and text. The release copy changes only the creation date representation to UTC."
+      ]
+    },
+    "F8": {
+      "passed": true,
+      "files": {
+        "results/figures/F8.png": "ad77881960cb56173791377f901076da75fe68742603f7120db803df1bcc098f",
+        "results/figures/F8.pdf": "332c8cc1bbf5a1ee516853e8bec26bba2671e549e90d4656d70315bb2068a26e"
+      },
+      "observations": [
+        "The three target rows and four model columns are readable in the PNG and one-page PDF render.",
+        "The D1, D2 and D3 legend matches the held-out sets, and the area-gain row specifies identified labels under the training reference.",
+        "The parity diagonals and axes show the observed prediction dispersion and do not hide weak ranking."
+      ]
+    },
+    "F9": {
+      "passed": true,
+      "files": {
+        "results/figures/F9.png": "d534e7cf16c9ce1e220a93141d669c14c10c8ceffa61408210545a2be1aa1734",
+        "results/figures/F9.pdf": "b73c5f4dc687defba9e40a638bbad3efd37cc17ed985d63db2ff16b856e472fc"
+      },
+      "observations": [
+        "The eight panels and condition labels are readable in the PNG and one-page PDF render.",
+        "Positive and negative bars are present, with crosses identifying unsupported area contrasts. Each panel uses its displayed horizontal scale.",
+        "The plotted differences compare each condition with the matching production control."
+      ]
+    },
+    "F12": {
+      "passed": true,
+      "files": {
+        "results/g3/figures/F12_kit.pdf": "d71c3c17098d895db08a0938a97d27d3757d4c5b19aa010f95ef381ac3089e84",
+        "results/g3/figures/F12_kit.png": "f835a6bae0fec96e61047da6c9a3d69e52d9fe2065cfc57b8b6578211f995820"
+      },
+      "observations": [
+        "PNG and rendered PDF show deployed and stowed bodies for each chosen kit, with legible width and depth arrows in metres.",
+        "Quality factors are inside the beds, desks and tables; wardrobe storage values are in their own labels, clear of the dimension arrows.",
+        "The G3 redraw uses the accepted dimensions and quality factors. The original K outputs remain hash-bound."
+      ]
+    },
+    "F10": {
+      "passed": true,
+      "files": {
+        "results/figures/F10.pdf": "8cf968696c7e05d7b82f742753d195ae1e4802d900adfe9476ff4c7979b6346b",
+        "results/figures/F10.png": "7bb34b7b59baea21c15cbcd418237ae3ac4c681aa109fb622501670c46cd45ee"
+      },
+      "observations": [
+        "The PNG and rendered PDF show the 8–20 m² grid and a common 0–1 adequate-share scale. Each panel has its own household and strategy key.",
+        "The H1 catalogue S1 and S2 lines coincide; H4 S1 and S2 are nearly coincident. The H3 static series stays below 0.5 throughout the plotted range.",
+        "The caption identifies equally weighted shell templates; the figure does not show territory prevalence."
+      ]
+    }
+  }
+}

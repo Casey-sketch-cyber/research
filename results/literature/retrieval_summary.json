@@ -1,20 +1,20 @@
 {
-  "config_hash": "a5d6bc0e20a07cce43e51c76759eec561b2b56b8c863af5a52435b1aca1ae0f4",
-  "project_hash": "a65331afaa04445f3a5510e794c1cea52d481be60b3f93a96f2e2e5224846b70",
-  "raw_query_records": 3451,
-  "deduplicated_records": 2928,
-  "records_with_abstracts": 1069,
+  "config_hash": "2af996623315b8a272484fba6c2cca95c31f81640b83c2401e3bf16293873de1",
+  "project_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474",
+  "raw_query_records": 3534,
+  "deduplicated_records": 3006,
+  "records_with_abstracts": 1147,
   "queries": [
     {
       "source": "openalex",
       "query_id": "Q1_transformable_layout",
-      "reported_hits": 280,
-      "retrieved": 200,
+      "reported_hits": 285,
+      "retrieved": 283,
       "cap": 500,
       "capped": false,
-      "error": "HTTP_401|HTTP_429",
-      "historical_errors": "HTTP_401|HTTP_429",
-      "attempts": 12
+      "error": "HTTP_401",
+      "historical_errors": "HTTP_401",
+      "attempts": 13
     },
     {
       "source": "openalex",
@@ -270,6 +270,6 @@
       "attempts": 1
     }
   ],
-  "runtime_s": 0.5320085999555886,
-  "screening_status": "STOP_REQUIRED_PARTIAL_SCREENING"
+  "runtime_s": 0.6474957999889739,
+  "screening_status": "COMPLETE_RETRIEVED_SNAPSHOT"
 }

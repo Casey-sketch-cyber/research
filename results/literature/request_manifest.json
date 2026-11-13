@@ -1,5 +1,5 @@
 {
-  "config_hash": "a5d6bc0e20a07cce43e51c76759eec561b2b56b8c863af5a52435b1aca1ae0f4",
+  "config_hash": "2af996623315b8a272484fba6c2cca95c31f81640b83c2401e3bf16293873de1",
   "requests": [
     {
       "source": "openalex",
@@ -85,8 +85,8 @@
       "source": "openalex",
       "query_id": "Q1_transformable_layout",
       "url": "https://api.openalex.org/works?filter=from_publication_date%3A2000-01-01%2Cto_publication_date%3A2026-12-31%2Clanguage%3Aen%2Ctitle_and_abstract.search%3A%28transformable+OR+convertible+OR+multifunctional+OR+flexible+OR+reconfigurable+OR+foldable%29+AND+furniture+AND+%28layout+OR+arrangement+OR+%22scene+synthesis%22%29+AND+%28optimization+OR+optimisation+OR+generation+OR+planning%29&per_page=100&page=3",
-      "retrieved_at": "2026-11-05T12:36:41.444953+00:00",
-      "status": 429,
+      "retrieved_at": "2026-11-12T03:46:26.403205+00:00",
+      "status": 200,
       "attempts": [
         {
           "date": "2026-11-05T12:34:59.755462+00:00",
@@ -107,9 +107,14 @@
           "date": "2026-11-05T12:36:41.444953+00:00",
           "status": 429,
           "error_type": ""
+        },
+        {
+          "date": "2026-11-12T03:46:26.403205+00:00",
+          "status": 200,
+          "error_type": ""
         }
       ],
-      "response_sha256": "fa665c3355876e26a52b9bac9497abf468deec7fb8f0eb40d28ad092964d9084"
+      "response_sha256": "c570da46f6a365e0d00fed97901a02fd38586107a6002ab78cff7fd6687516b8"
     },
     {
       "source": "openalex",

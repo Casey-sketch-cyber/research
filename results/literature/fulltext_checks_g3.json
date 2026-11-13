@@ -1,0 +1,97 @@
+{
+  "records": {
+    "L_32b820bba7c8": {
+      "status": "fulltext_checked",
+      "source_url": "https://sjes.univsul.edu.iq/article?id=138",
+      "sections": "Methods, §§3–4, Fig. 1-3 and Tables 1-4/1-5",
+      "established": "Checks primary and secondary functions in eight furnished living-dining types and regresses scores against departure from the Iraqi area standards.",
+      "how_we_add": "We use whole-dwelling activity and access validation to count agreement and disagreement with fixed area rules for each modeled household."
+    },
+    "L_792cecda08ce": {
+      "status": "fulltext_checked",
+      "source_url": "https://www.mdpi.com/2075-5309/16/16/3219",
+      "sections": "§§3.6–3.7, 4.1–4.4 and 5.2",
+      "established": "Compresses depth in 0.10 m steps with ergonomic action domains and behavioral adjacency, then screens five equally weighted circulation paths. The study compares free and fixed structural constraints and checks one occupied-unit plan.",
+      "how_we_add": "We estimate the same-shell fixed-to-transformable equivalent-area difference using daily household demand, common positions, feasible switching and support-aware inversion."
+    },
+    "L_f37afa3aa682": {
+      "status": "fulltext_checked",
+      "source_url": "https://doi.org/10.13189/cea.2026.140514",
+      "sections": "PDF pp. 12–14, §§6.1–6.3, Fig. 10 and Table 2",
+      "established": "Compares estimated activity floor area for fixed and folding furniture in a 12 m² bedroom, including a reported approximately 5–5.5 m² static and 8 m² folded-bed area.",
+      "how_we_add": "R checks the comparison under explicit area definitions. The paired corpus experiment extends the unit of analysis to whole dwellings and daily functional coverage.",
+      "source_sha256": "591c98034aa612dda4784d5e98f1cae70c36c27d5c828b6bef8e6105b6eaddfc"
+    },
+    "L_5392e04d308b": {
+      "status": "abstract_only",
+      "source_url": "https://www.auric.or.kr/user/rdoc/DocRdoc.aspx?dn=289880&returnVal=RD_R",
+      "sections": "Journal index and author abstract",
+      "established": "The abstract combines activity-area requirements, furniture preferences and anthropometry into a single-person older-adult area recommendation. The index lists access points for the full article.",
+      "how_we_add": "We test matched layouts across four household activity schedules. This reference concerns a different population and area-estimation method."
+    },
+    "L_0e7513ddedd2": {
+      "status": "fulltext_checked",
+      "source_url": "https://inlibrary.uz/index.php/imjrd/article/view/126573",
+      "sections": "IMJRD version, Methodology, Table 1, Results and Discussion, Conclusion",
+      "established": "Classifies 84 one-room plans into three typologies, compares dimensions with local requirements and uses AI precedents for conceptual improvements.",
+      "how_we_add": "We evaluate functional coverage against independent geometry checks and quantify classification disagreement under specified adequacy thresholds."
+    },
+    "L_32ba646f90d3": {
+      "status": "fulltext_checked",
+      "source_url": "https://dspace.epoka.edu.al/bitstream/handle/1/942/131.pdf?sequence=1",
+      "sections": "§§2–4 and universality guidelines",
+      "established": "Synthesizes European room standards into size, width and access criteria for spaces that can serve multiple functions.",
+      "how_we_add": "We check how actual furniture states and time-indexed activities affect feasible coverage in each fixed shell and derive an equivalent area."
+    },
+    "L_ce08fbd6cc33": {
+      "status": "fulltext_checked",
+      "source_url": "https://journal.spacestudies.co.uk/index.php/space-ijocp/article/view/36",
+      "sections": "§§2, 4–5 and Tables 1–2",
+      "established": "Applies 12 reference indicators to nine Riga plans, including area, dining seats, storage, bath equipment and daylight. The median reference values support qualitative comparison.",
+      "how_we_add": "We use an explicit household schedule and independent spatial validator to evaluate task-level coverage and fixed-area classification."
+    },
+    "L_6a9ad911d99d": {
+      "status": "fulltext_checked",
+      "source_url": "https://www.az.itu.edu.tr/index.php/jfa/article/view/755",
+      "sections": "§§4–5, Tables 4–5",
+      "established": "Surveys 138 users on current and preferred combinations of room functions and four convertible design features, including folding furniture.",
+      "how_we_add": "We isolate what can be served by furniture form and switching within a fixed shell, using modeled schedules and computational feasibility checks.",
+      "publication_note": "Journal issue date 2023. The retrieved metadata year is retained in the ledger."
+    },
+    "L_65f4adf27ebb": {
+      "status": "project_summary_checked",
+      "source_url": "https://www.ucl.ac.uk/bartlett/equal-profiling-housing-stock-older-people-domesticity",
+      "sections": "Institutional project summary and repository record",
+      "established": "Combines configurational analysis and activity-space profiles with older residents’ experiences and levels of support. The project summary and deposit describe the study, and the original report was unavailable in the checked sources.",
+      "how_we_add": "We compare fixed floor-area thresholds with validated task coverage in the study households. The older-person evidence motivates extending future requirements to care and access."
+    },
+    "L_e5dd101fd616": {
+      "status": "fulltext_checked",
+      "source_url": "https://openaccess.wgtn.ac.nz/articles/thesis/The_Implication_Of_Transformable_Space_Saving_Furniture_On_The_Interior_Design_In_Small_Living_Units/25807507",
+      "sections": "Thesis chapters 3–4 and conclusion, PDF pp. 41–42, 48–56, 86–87",
+      "established": "Design exploration iterates custom furniture and partitions for a simulated Hong Kong live/shop apartment. The thesis describes 35 m² in its methodology and 45 m² in discussion of design limitations.",
+      "how_we_add": "We use a fixed area range and common dwelling-only scenarios across sampled shells to estimate functional coverage and support-aware area differences.",
+      "source_sha256": "542730a87c41b1088fde54fccfca31ebf536d1d6615eb67e33bb444f3adeed81"
+    }
+  },
+  "supplemental": [
+    {
+      "status": "fulltext_checked",
+      "source_url": "https://globalsciences.uz/renessans/article/view/3547",
+      "citation": "Elmurodov and Mametova (2026), Increasing Space Efficiency in Small Apartments Through Furniture Transformation",
+      "sections": "Methods, Results, Fig. 2, Table 1 and Diagram 1",
+      "claim": "C2|C3",
+      "established": "Compares static and transformable arrangements through visibility, circulation and open area, including a modeled 35 m² flat.",
+      "how_we_add": "Report functional coverage at the same shell and support-aware equivalent-area gains across households. The paper’s open-floor fraction has its own geometric denominator."
+    },
+    {
+      "status": "fulltext_checked",
+      "source_url": "https://tuengr.com/V12/12A1H.pdf",
+      "citation": "Husein (2021), Multifunctional Furniture as a Smart Solution for Small Spaces",
+      "sections": "§§3–5 and Table 3",
+      "claim": "C2",
+      "established": "Of 103 responding Erbil residents, 64 preferred multifunctional furniture.",
+      "how_we_add": "The survey informs interpretation of adoption. The paired experiments estimate modeled task feasibility."
+    }
+  ]
+}
