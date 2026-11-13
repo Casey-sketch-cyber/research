@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "numerical_checks_passed": true,
+  "config_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474",
+  "layouts": 14835,
+  "input_sha256": {
+    "results/ablations/acceptance.json": "1a98797156a054348795bae6a0dd80412871d5438610bbb630a7905b6d47a4ef",
+    "results/ablations/run.json": "9963954351a676fee42f504d2e3c47f0461e157ab80187143ad247e4d7f6964a",
+    "scripts/09_report_ablations.py": "43e40421d960a55061280d74da87963373d5d2803a7ee9900cfe2fe951d91844",
+    "results/ablations/grid_recovery_source.json": "19bcf1b542fae70cbae97b1213e4bdeec3eacfca8440235e91ab576a5e1804d6"
+  },
+  "outputs": {
+    "results/ablations/summary.csv": "2428461ece5665e86f94f06a1fcb4af02bb98054ffa6bfcf13bf782b4b8b29eb",
+    "results/ablations/tau_sensitivity.csv": "760164ed357da30422822af7af7ddce91e6cac23fc73311e8357ce8c920d7283",
+    "reports/phase_09_ablation_results.md": "1001753722bf4af3bbce5534d627907373ead6d1f1f2b1514b9dc648a47139f1",
+    "results/figures/F9.png": "d534e7cf16c9ce1e220a93141d669c14c10c8ceffa61408210545a2be1aa1734",
+    "results/figures/F9.pdf": "b73c5f4dc687defba9e40a638bbad3efd37cc17ed985d63db2ff16b856e472fc"
+  },
+  "completed_at_utc": "2026-11-12T10:28:13+00:00"
+}

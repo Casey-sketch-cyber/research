@@ -1,22 +1,38 @@
 {
-  "config_hash": "a5d6bc0e20a07cce43e51c76759eec561b2b56b8c863af5a52435b1aca1ae0f4",
-  "decisions_sha256": "ad23e9d95e4c7344b992bf0bb367e3ff53700c39e842f6a9e4e14a0835c384ef",
-  "status": "STOP_REQUIRED_PARTIAL_SCREENING",
-  "records": 2928,
+  "status": "COMPLETE_RETRIEVED_SNAPSHOT",
+  "config_hash": "2af996623315b8a272484fba6c2cca95c31f81640b83c2401e3bf16293873de1",
+  "raw_query_records": 3534,
+  "retrieved_by_source": {
+    "arxiv": 41,
+    "crossref": 3000,
+    "openalex": 489,
+    "semantic_scholar": 4
+  },
+  "records": 3006,
   "stage1": {
-    "PENDING": 2908,
-    "KEEP": 20
+    "EXCLUDE": 2059,
+    "KEEP": 947
   },
   "stage2": {
-    "PENDING": 2908,
-    "B_related": 15,
-    "C_irrelevant": 4,
-    "A_overlap": 1
+    "A_overlap": 9,
+    "B_related": 253,
+    "C_irrelevant": 132,
+    "KNOWN": 13,
+    "NOT_APPLICABLE": 2059,
+    "NO_ABSTRACT_TITLE_RELEVANT": 540
   },
-  "abstracts_read": 20,
-  "fulltexts_checked": 1,
-  "stop_records": [
-    "L_f37afa3aa682"
-  ],
-  "records_without_api_abstract": 1859
+  "abstracts_read": 407,
+  "missing_abstracts": 540,
+  "crossref_lookup_attempts": 203,
+  "crossref_lookup_outcomes": {
+    "matched_record_without_abstract": 202,
+    "no_exact_metadata_match": 1
+  },
+  "fulltext_dispositions": {
+    "abstract_only": 1,
+    "fulltext_checked": 8,
+    "project_summary_checked": 1
+  },
+  "openalex_q1_retry_status_code": 200,
+  "openalex_q1_retry_records_returned": 85
 }

@@ -1,15 +1,19 @@
 # Research execution budget
 
-Historical A completed 32904 solves in 25.403 hours. Historical fixed-left A2 completed 2088 solves in 15.082 hours. The 2026-11-09 review supersedes H3/H4 main outcomes and the fixed-left A2 interpretation; these are not the runtime of the corrected experiments.
+Historical A completed 32,904 solves in 25.403 hours. Historical fixed-left A2 completed 2,088 solves in 15.082 hours. The November 9 review supersedes H3/H4 main outcomes and the fixed-left A2 interpretation. These are historical execution times.
 
-F1 corrected H3/H4 cases: 15714. Status: complete; recorded completed cases: 15714; measured hours when complete: 18.498068391575167. F2 full package passed: True. Small-home settings remain 120 seconds / four workers / three concurrent jobs; large-home settings remain 30 seconds / one worker / fourteen concurrent jobs. Nominal full solve-cap allocation: 31.311 hours, excluding geometry and validation overhead. This is neither measured remaining time nor a completion deadline.
+F1 completed 15,714 corrected H3/H4 solves in 18.498 hours; the combined 31,428-case dataset passed validation. F3 completed 1,044 new solves in 8.398 hours. The respective nominal solve-cap allocations were 31.311 and 11.600 hours, excluding preparation and validation. The F2 and P1 analysis packages both passed.
 
-F3 follows F1 and F2: the same 348 small units × H3 × three strategies = 1044 solves. Nominal full solve-cap allocation: 11.600 hours, excluding overhead. Current status: complete; recorded completed cases: 1044; measured hours when complete: 8.397508191707958; full package passed: True. The old fixed-left duration does not calibrate this mirrored run.
+| Accepted phase | Measured elapsed | Work included |
+| --- | --- | --- |
+| [B](phase_08_B_results.md) | 0.178 h pilot; 0.999 h full stage | The full stage reused pilot checkpoints; 600 outputs on 200 matched cases |
+| [D](phase_09_D_results.md) | 3.296 s | Reused corrected evidence for 10,476 unit–household pairs |
+| [R](phase_09_R_results.md) | 640.830 s | 16 approximate room reproductions and 10,476 main layout checks |
+| [Ablations](phase_09_ablation_results.md) | 6.156 h initial; 0.708 h resumed | 14,835 layouts; initial attempt stopped at the coarse grid/anchor mismatch; 4,725 unchanged triplets were verified and reused |
+| [C](phase_10_C_results.md) | 25.993 s | Grouped surrogate evaluation and evidence exports |
+| [Reduced K](phase_11b_K_results.md) | 11.360 h including pilot | 1,803 layouts; retained 30 training shells, 15 held-out shells and 15 real plans per household |
+| [Hong Kong](phase_11_HK_results.md) | 8.793 h | 4,290 validated layout records across 390 shell templates; reused eligible corrected catalogue and kit evidence |
 
-K follows D-39 and D-38: H1+H3, eight kits, 30 training shells, 15 held-out shells and 15 real plans; 2360 solves and historical count-based allowance 41.156 hours. H3 costs remain unmeasured. Freeze the grid and run its pilot; if it exceeds 48 hours, reduce training shells 30 → 24 → 18 before dropping H3. The full grid stays disabled.
+The 16-layout K pilot took 0.147 h and projected 30.39 h at the retained scope. The measured K run remained within the 48-hour cap. The full K grid stays disabled. The measured times cover the stated phases and exclude reviewer turnaround. The former 10–14-day calendar estimate was retired.
 
-B pilot status: complete; measured pilot hours: 0.1778124201002841. Full benchmark status: complete; 600/600 outputs in the dated snapshot 2026-11-12T02:58:24+00:00. Pilot-based full workload projection: 1.0423386198362439 parallel hours. 12 geometry-selected source/household pilot pairs, matched-stratum timing scaled by full-run concurrency; planning estimate, not a deadline or upper bound. Full stage reuses pilot checkpoints. Full-stage measured hours are available only after completion: 0.999104761001654. P1 analysis package passed: True.
-
-Remaining ablations, C and reduced K still need runtime calibration. D/R/HK reuse validated corrected evidence where applicable. Full remaining experimental time is unknown. The former 10–14-day calendar estimate is retired; no arbitrary analysis-day reserve is added.
-
-Execution order: F1 → F2 → F3 → B → D/R/ablations → C → K → HK → literature → G3. The review requires no additional intermediate reviewer stop. G3/G4 remain.
+F1, F2, F3, B, D, R, ablations, C, reduced K, the Hong Kong scenario and the retrieved literature screening are complete. The consolidated [G3 package](GATE_G3.md) is ready for results review.

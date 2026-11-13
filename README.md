@@ -17,9 +17,7 @@ Research project for a submission to *Urban Science* (MDPI), Special Issue "Urba
 
 ## Workflow
 
-**Current author instruction (2026-11-06):** continue under self-review and resume
-sanitized GitHub uploads for review. Preserve the methodological checks and
-immutable review records; unfinished experiments are explicitly labelled.
+The current review gate is G3. The [results report](reports/GATE_G3.md) links the accepted outputs, evidence manifest and remaining limitations.
 
 ```
 Codex: Phases 0–4  → push → GATE G1 (data & corpus)  → review in reviews/G1_review.md
@@ -40,7 +38,7 @@ The [2026-11-11 F1/F2/F3 review](reviews/phase07_review_F.md) approves corrected
 
 F1 has completed all 15,714 corrected H3/H4 solves in 18.498 hours. The combined 31,428-case evidence validates. F2 numerical analysis, both figures and all 33 original layout examples are accepted; see the [F1/F2 results report](reports/phase_07_F1_F2_results.md). F3 completed all 1,044 H3 cases over the same 348 small units in 8.398 hours; saved-layout checks, paired sensitivity analysis and figure review passed. See the [F3 results report](reports/phase_07_F3_results.md). The B benchmark independently validated all 600 outputs across 200 pairs and three algorithms. The D indicator analysis passed on 2,619 units and 10,476 unit–household pairs. See the [B results](reports/phase_08_B_results.md) and [D results](reports/phase_09_D_results.md). The R supporting analysis passed independent checks on 16 approximate reproduction cases and 10,476 main layouts. F11 has been visually checked. [R results](reports/phase_09_R_results.md).
 
-The fixed-sample ablations are running. Their accepted report precedes the grouped surrogate, the time-boxed H1/H3 kit design and the Hong Kong scenario. The scenario geometry grid contains 390 eligible templates at the prescribed 13 sizes. [Ablation plan](reports/phase_09_ablations.md) · [Surrogate plan](reports/phase_10_expC.md) · [Kit plan](reports/phase_11b_expK.md) · [Hong Kong plan](reports/phase_11_HK.md). Dated evidence is in [results/expA_f1](results/expA_f1/) and [results/expA_f3](results/expA_f3/).
+The fixed-sample [ablations](reports/phase_09_ablation_results.md), grouped [surrogate evaluation](reports/phase_10_C_results.md), reduced H1/H3 [kit design](reports/phase_11b_K_results.md) and [Hong Kong shell scenario](reports/phase_11_HK_results.md) all passed their acceptance checks. The scenario covers 390 templates at 13 integer sizes.
 
 **Current area-gain tables and figure:** use the [P1 results](reports/phase_07_P1_results.md) and [analysis_p1](results/expA_f1/analysis_p1/). Identified gains and lower bounds are separated; the frozen F2 area summaries and area figure are superseded. FCI effects, adequate-area estimates and layout checks are unchanged.
 
@@ -48,13 +46,13 @@ Original A/A1 and fixed-left A2 remain historical records. Their H3/H4 results a
 
 | Gate | Status |
 |---|---|
-| Task L literature | Q-12 permits continuation with narrowed C2/C3; remaining screening due at G3 |
+| Task L literature | [Retrieved snapshot screened](reports/novelty_check.md#systematic-confirmation-task-l--g3); access gaps documented |
 | G1 data & corpus | Reviewed; geometry refresh and E1 selection are documented |
 | G2 method & pilot | Approved continuation; frozen production settings retained |
-| G3 results | Pending completion of corrected experiments and later phases |
+| G3 results | [Ready for review](reports/GATE_G3.md) |
 | G4 final package | Not started |
 
-The approved order is F1 → F2 → F3 → B → D/R/ablations → C → K → HK → literature → G3, with no further intermediate reviewer stop. K retains H1+H3 and its 48-hour cap; the full grid remains disabled. The [execution budget](reports/COMPUTE_BUDGET.md) distinguishes historical measured time from new workload allocations and unmeasured experiments. The former 10–14-day calendar estimate is retired. Uploads remain authorized after privacy checks.
+The [execution budget](reports/COMPUTE_BUDGET.md) records measured times and the reduced K scope. G4 follows G3 review.
 
 ## License
 

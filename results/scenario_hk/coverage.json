@@ -1,0 +1,8 @@
+{
+  "census_weighting": false,
+  "household_size_distribution_available": false,
+  "floor_area_distribution_available": false,
+  "population": "territory context and balanced D3 scenarios",
+  "carbon_applied": false,
+  "carbon_factor_status": "TODO_VERIFY"
+}

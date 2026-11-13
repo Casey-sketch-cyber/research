@@ -1,5 +1,7 @@
 # Task L: Systematic literature confirmation
 
+> G3 screening is complete for the retrieved snapshot. See the [completed evidence and positioning](novelty_check.md#systematic-confirmation-task-l--g3) and [verification record](../results/literature/acceptance.json). The following task history records the original interim run.
+
 > Current decision: Q-12 authorizes continuation with narrowed claims; see reviews/G1_review_addendum_Q12.md. The stop and category counts below are the historical pre-review record. Remaining screening is due at G3.
 
 **Historical status: STOP REQUIRED; retrieval attempted for all configured queries, screening PARTIAL.**

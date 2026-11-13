@@ -93,3 +93,13 @@ Bu & Che Mat PDF page 12 §6.1 states bed width 1.8 m and wardrobe depth 0.6 m; 
 ### Q33 — Reduced K solve budget and quality aggregation
 
 The older design-grid entry lists 20 seconds. The G2 round-3 review reprojects K at the approved small-home setting and the D-38 reduced-workload record uses 120 seconds, four workers and 0.10 m anchors. K follows that reviewed setting with the D-39 H1/H3 scope and a measured 48-hour pilot. The multi-dimension desk/table quality and multi-item service quality use the minimum component quality. The flat-quality arm uses ordinary FCI in optimization and retains the physical quality score in evaluation.
+
+## Q34 — Closely related functional and area comparisons
+
+Zeng et al. (2026) use ergonomic action domains and a behavioral adjacency matrix to compress dwelling depth under free and fixed structural constraints. Their circulation check weights five paths equally and their external check uses one existing unit. Elmurodov and Mametova (2026) compare the open area, visibility and circulation of static and transformable states and illustrate a 35 m² case. Qaradaghi and Qaradaghi (2022) associate checklist-based living-dining function with departures from area standards across eight types. These comparisons need explicit engagement when interpreting C2–C4. [Zeng et al.](https://doi.org/10.3390/buildings16163219) · [Elmurodov and Mametova](https://globalsciences.uz/renessans/article/view/3547) · [Qaradaghi and Qaradaghi](https://sjes.univsul.edu.iq/article?id=138)
+
+For the manuscript review, relate these outcomes to time-weighted task coverage in the same shell, area-rule classification disagreement and the within-support equivalent-area contrast. A matched-shell comparison between an action-domain circulation measure and functional coverage would help determine how much the endpoints agree. Keep it as a follow-up question for review.
+
+## Q35 — Coarse collision grid requires a compatible anchor stride
+
+The initial 0.20 m resolution ablation stopped when it reached a small-home case with a 0.10 m anchor stride. An anchor must lie on the collision raster. The repair uses the smallest representable stride at least as large as the reviewed stride, which changes the affected cases to 0.20 m anchors. The other grid settings, fixed sample and per-case time budgets remain fixed. The affected contrast includes coarser anchors as well as coarser collision cells. Complete earlier triplets are inherited only after checking their unchanged input configuration, case identity and layout digests. The failed-attempt receipt, both code fingerprints and effective settings accompany the results.

@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "layouts": 14835,
+  "triplets": 4945,
+  "code_hash": "487927483e369e196209cbc79cde325f3bec2d8353d23560fd6bd9084144ccd4",
+  "structurally_unreachable": 552,
+  "own_origin_counts": {
+    "validated_FCI1_TB0": 2513,
+    "fresh_solve": 5054,
+    "identical_accepted_control": 5868,
+    "unchanged_static_inventory": 1400
+  },
+  "verified_previous_triplets": 4725,
+  "adjusted_grid_triplets": 32,
+  "cases_sha256": "44a6db91619c40446f81b1d81296b5ecc3fa95b1a46f03abab69c16729b6961b",
+  "independent_validation": true
+}

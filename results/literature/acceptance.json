@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "status": "COMPLETE_RETRIEVED_SNAPSHOT",
+  "records": 3006,
+  "abstracts_read": 407,
+  "outputs": {
+    "results/literature/raw_hits.csv": "3515d1d280bcd57dc25b7707d9d54bf04709da34656eecc63b873a1319fd66ca",
+    "results/literature/retrieval_queries.csv": "80030577771ab600450a074766712f62ef0d58334e8623759d560836b9cdf467",
+    "results/literature/retrieval_summary.json": "621ed2ca09f2d59e23e9ec61bf5ea1db6816c88996dda44af1e71f412fdff35d",
+    "results/literature/request_manifest.json": "45d48caa28065cd01a75cc14ef348774061e87d84c379c2be2ef35790f64954c",
+    "results/literature/retry_events.json": "c7d15e130b7f287008572c16d922f52ead2d9a3ccbceac40ddde6f0d47a9f36f",
+    "results/literature/openalex_q1_retry.json": "1280668ab29771272bbeb42185aee24392942ce35db61c465802aa6ec57bed04",
+    "results/literature/screened.csv": "9ab9d49b80f28014d2280138a17f40f8922d33f92374b26987b69a86b8727dbb",
+    "results/literature/screening_summary.json": "8126a48c754af31064e1757011473ea5da827b759a48f84fb2a9a662771ca6fb",
+    "results/literature/missing_abstracts.csv": "cbdcb407aeec8289769f21f3cc2d80935d891f0678e736a71e28bad6184c63bf",
+    "results/literature/abstract_lookup_receipts.csv": "ba1c076e02199a24819e93045136f131620aa75d244f855eea65315c5731826f",
+    "results/literature/fulltext_checks_g3.json": "f4ee8e5f6c971a4c262f40b4bdce2e5fd7ed55fecd5f0d5d5d9126007bd6dcf6",
+    "results/literature/fulltext_checks.json": "a77be186d8628c792ec83cbec59527446fd8048f2ada6a4113f055f8ded7d7b9"
+  }
+}

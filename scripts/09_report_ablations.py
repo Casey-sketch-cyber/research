@@ -132,22 +132,36 @@ def summarize(config, digest):
     top = effect.nlargest(12, "abs_change")[["household", "ablation", "value", "n", "paired_mean_fci_S2_change",
                                              "change_median_saving_m2", "change_delta_a_min_m2", "structural_unreachable_layouts"]]
     report = Path("reports/phase_09_ablation_results.md")
+    recovery_path = ROOT/"grid_recovery_source.json"
+    recovery = run.get("grid_recovery_source_sha256")
+    if recovery and sha256_file(recovery_path) != recovery:
+        raise ValueError("Ablation grid recovery evidence changed")
+    recovery_text = [
+        f"The initial attempt stopped after {run['prior_failed_attempt_seconds']/3600:.3f} hours because the 0.20 m raster "
+        "cannot represent the production 0.10 m small-home anchors. In that arm the smallest compatible stride is 0.20 m. "
+        f"The correction affected {gate['adjusted_grid_triplets']} triplets. The resumed run verified and reused "
+        f"{gate['verified_previous_triplets']:,} complete configuration-identical triplets with unchanged layout hashes. "
+        "The coarse-grid contrast for affected units combines coarser collision and anchor grids.", "",
+    ] if recovery else []
     report.write_text("\n".join([
         "# Phase 9 — Completed ablations", "",
         f"Audited {gate['layouts']:,} layouts in {gate['triplets']:,} three-strategy triplets. "
-        f"The full invocation took {run['wall_time_this_invocation_s']/3600:.3f} hours. "
+        f"The final invocation took {run['wall_time_this_invocation_s']/3600:.3f} hours. "
         f"Exact accepted and saturated layouts are traced in the case table. "
         f"Structurally unreachable empty-shell results: {gate['structurally_unreachable']:,}. "
         "They retain zero validator score and an explicit structural status.", "",
+        *recovery_text,
         "Resolution and time-limit conditions share the fixed 50-unit sample. Item removal, walking width and clearance use the B pairs. H5 and all main households are also tabulated on the same distinct B units. F3 remains the accepted mirrored-access result on its separately defined small-home cohort.", "",
         "## Largest matched differences in mean S2 FCI", "", top.to_markdown(index=False, floatfmt=".6f"), "",
         "Positive and negative results are retained. The pooled static curve from corrected main evidence is held fixed per household. Area summaries use identified positive gains and state support-limited counts separately. The median contrast compares the observed identified subsets. Adequate-area differences require two supported crossings. Both finite solver budgets and structural feasibility can contribute to observed differences.", "",
         "## Reproduction", "",
-        "Run scripts/09_run_ablations.py, then scripts/09_report_ablations.py. F9 and the threshold sensitivity table are produced from the accepted cases and frozen corrected main scores.", "",
+        "Run scripts/09_run_ablations.py in a fresh results directory, or use --resume-grid-fix with the archived recovery state. "
+        "Run scripts/09_report_ablations.py to generate F9 and the threshold table from the accepted cases and corrected main scores.", "",
     ]), encoding="utf-8")
     write_json(ROOT/"report_acceptance.json", dict(
         passed=True, numerical_checks_passed=True, config_hash=digest, layouts=gate["layouts"],
-        input_sha256=hash_inputs([ROOT/"acceptance.json", ROOT/"run.json", "scripts/09_report_ablations.py"]),
+        input_sha256=hash_inputs([ROOT/"acceptance.json", ROOT/"run.json", "scripts/09_report_ablations.py"]
+                                 + ([recovery_path] if recovery else [])),
         outputs=hash_inputs([summary_path, tau_path, report, plot_path.with_suffix(".png"), plot_path.with_suffix(".pdf")]),
         completed_at_utc=datetime.now(timezone.utc).isoformat(timespec="seconds"),
     ))
