@@ -49,10 +49,10 @@ Original A/A1 and fixed-left A2 remain historical records. Their H3/H4 results a
 | Task L literature | [Retrieved snapshot screened](reports/novelty_check.md#systematic-confirmation-task-l--g3); access gaps documented |
 | G1 data & corpus | Reviewed; geometry refresh and E1 selection are documented |
 | G2 method & pilot | Approved continuation; frozen production settings retained |
-| G3 results | [Ready for review](reports/GATE_G3.md) |
+| G3 results | Original evidence accepted and merged. [Required revisions ready for review](reports/GATE_G3_response.md). |
 | G4 final package | Not started |
 
-The [execution budget](reports/COMPUTE_BUDGET.md) records measured times and the reduced K scope. G4 follows G3 review.
+The [execution budget](reports/COMPUTE_BUDGET.md) records measured times and the reduced K scope. The [G3 review](reviews/G3_review.md) requires a follow-up review of the revised solver comparison, kit and Hong Kong results before G4.
 
 ## License
 
