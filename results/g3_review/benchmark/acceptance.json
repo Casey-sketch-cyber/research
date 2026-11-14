@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "config_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474",
+  "input_sha256": {
+    "scripts/11c_recheck_B_C.py": "38aab7be479c9be09b4a33d7da203d5253aadee77a316bf3215579f251fa47c0",
+    "results/expB/report_acceptance.json": "d89ba79881615e217de1a4d2e05f84ed5611fa1919cfee09bf57de0810b448ae",
+    "results/expB/cases.csv": "f7ae31aa6713f14b0b1cbd96163a3391824aa874e0282512e83ce687605a594c",
+    "results/expB/corrected_main_reference.csv": "02f23b37642162bb002f1b40b914522bd471a3aa8a52dc8c35b981da2b67c303",
+    "results/expA_f1/acceptance.json": "ebe9ea3caf5604f55a32ef1fb97037f2dfab7c471135b82bc0569bbca04d5bca",
+    "results/expA_f1/solutions.csv": "ec4fdade4cf07b6e21cd50fcdcd71ef7ca5a9709ed0fef816737d618697881ff",
+    "results/expC/acceptance.json": "cc365a447242ec825e0aa9fc55eba70d5827afcdee33344b3d94c4156ac0ea83",
+    "results/expC/predictions.csv": "45c9e9605558a9549160681de99986af56bdc0fd23c42e1d72f0c80795298e37"
+  },
+  "outputs": {
+    "results/g3_review/benchmark/production_pairs.csv": "aa4aa329bf8ad280887fdce104c3db82384172df7c3dc8c03c5b9ea34a1f71e9",
+    "results/g3_review/benchmark/algorithm_summary.csv": "f5d67e4c85e1c2fa74b5d0a6b6b7477bf1bcac590de74bac55e4c07c070fa3c2",
+    "results/g3_review/benchmark/production_shortfalls.csv": "2bb1bc868b8ccfef5217d8801de3a1e833b5f8d1b13fd4d6912d412cddbb6df0",
+    "results/g3_review/benchmark/production_paired_effects.csv": "a76f8aafb888d70fb322fa57dbcff67836a79dbad0b031e6d7c62cf6c4613e52",
+    "results/g3_review/benchmark/c_adequacy_auc.csv": "fb89323859325e31c4e0f76cd320f77eb8a3b6ecb1276f6418a29aeadc36d80e"
+  },
+  "production": {
+    "pairs": 200,
+    "production_at_best_observed": 189,
+    "production_at_or_above_annealing": 189,
+    "production_shortfall_pairs": 11,
+    "mean_shortfall_all_pairs": 0.0034056033781033794,
+    "largest_shortfall": 0.23076923076923084
+  },
+  "auc_rows": 96,
+  "completed_at_utc": "2026-11-14T02:47:20+00:00"
+}
