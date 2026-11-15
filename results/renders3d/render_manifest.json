@@ -1,0 +1,576 @@
+{
+  "passed": true,
+  "renderer_sha256": "c45e006a7433bfbdd4d610b5266da75853af79e1039ed77e0f304fafb2e0824b",
+  "render_config_sha256": "b5db3fb32513caf1f0e81ac7d8de12881ef61ff847d919ea790bdb2d557bde89",
+  "blender_version": "4.5.3 LTS",
+  "cycles_backend": "cuda",
+  "scene_index_sha256": "2587a97c4ec4d7ce00e8c7d7751d203fbe616c79b28f339bd4b68dccc1a4a023",
+  "stills": 30,
+  "frames": [
+    {
+      "scene": "results/renders3d/scenes/D3_9587119217674ee3b748_H3_S0.json",
+      "scene_sha256": "ec5ac84592cdcf065477987feadefae1d8f037f608017ae7c3e8624da71ea931",
+      "alias": "showcase_10",
+      "strategy": "S0",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "night",
+      "still": "results/renders3d/stills/showcase_10_S0_night.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/showcase_10_S0_night.png": "b02d57eb334632bfb9f3cb57736090972141c36a6bd7909f2b87175174e0a876"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_9587119217674ee3b748_H3_S0.json",
+      "scene_sha256": "ec5ac84592cdcf065477987feadefae1d8f037f608017ae7c3e8624da71ea931",
+      "alias": "showcase_10",
+      "strategy": "S0",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "day",
+      "still": "results/renders3d/stills/showcase_10_S0_day.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/showcase_10_S0_day.png": "eeef68634f53aad2235784783466d05936dee35ec9252165ae2dab304781b0b4"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_9587119217674ee3b748_H3_S0.json",
+      "scene_sha256": "ec5ac84592cdcf065477987feadefae1d8f037f608017ae7c3e8624da71ea931",
+      "alias": "showcase_10",
+      "strategy": "S0",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "dinner",
+      "still": "results/renders3d/stills/showcase_10_S0_dinner.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/showcase_10_S0_dinner.png": "79651f905ff3e7a7d264b998e2ffbade1efc2138214e61be7a6caa58a027b133"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_9587119217674ee3b748_H3_S2.json",
+      "scene_sha256": "628e04b291db515653fe349e496925200e711d9b1b47c9ce7695648d940e0eb6",
+      "alias": "showcase_10",
+      "strategy": "S2",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "night",
+      "still": "results/renders3d/stills/showcase_10_S2_night.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/showcase_10_S2_night.png": "5a28871c23c88c2e2912c0c8b42b1f6fa509c476b2eb976cbe6b0b68e88d16c4"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_9587119217674ee3b748_H3_S2.json",
+      "scene_sha256": "628e04b291db515653fe349e496925200e711d9b1b47c9ce7695648d940e0eb6",
+      "alias": "showcase_10",
+      "strategy": "S2",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "day",
+      "still": "results/renders3d/stills/showcase_10_S2_day.png",
+      "audit": "results/renders3d/audits/showcase_10_S2_day",
+      "outputs": {
+        "results/renders3d/stills/showcase_10_S2_day.png": "f928231ff258e859d24fc9f5ea13c879523de097cb439eea77277ad997e0b524",
+        "results/renders3d/audits/showcase_10_S2_day.png": "50928d683897ec300891ecf2f9828f9131e337c3e91a65c275b85358f6fd8ed7",
+        "results/renders3d/audits/showcase_10_S2_day.json": "d6e2112303dabcc8acba51dee6693dfe4133a200ed02e7457d27dc0f670c1913"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_9587119217674ee3b748_H3_S2.json",
+      "scene_sha256": "628e04b291db515653fe349e496925200e711d9b1b47c9ce7695648d940e0eb6",
+      "alias": "showcase_10",
+      "strategy": "S2",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "dinner",
+      "still": "results/renders3d/stills/showcase_10_S2_dinner.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/showcase_10_S2_dinner.png": "88444c37653a7285afd0d86e436ae3c82987eaf4f2a83c23e3ca07eff2288944"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_93a7c03b42e4b87306d4_H3_S0.json",
+      "scene_sha256": "ab9a6b9492e694b25a1cebfaa8ceed705c62399392f7c81f42a5e20b148b6019",
+      "alias": "showcase_18",
+      "strategy": "S0",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "night",
+      "still": "results/renders3d/stills/showcase_18_S0_night.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/showcase_18_S0_night.png": "a3f453d69a43c6aab93b824f6d0c076b7dcd1527ebe13393cf30bb7e50c23da9"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_93a7c03b42e4b87306d4_H3_S0.json",
+      "scene_sha256": "ab9a6b9492e694b25a1cebfaa8ceed705c62399392f7c81f42a5e20b148b6019",
+      "alias": "showcase_18",
+      "strategy": "S0",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "day",
+      "still": "results/renders3d/stills/showcase_18_S0_day.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/showcase_18_S0_day.png": "9c895e7325fa19164da698dcecdbed8f7ae3d6486ceac069e444f507bcf17659"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_93a7c03b42e4b87306d4_H3_S0.json",
+      "scene_sha256": "ab9a6b9492e694b25a1cebfaa8ceed705c62399392f7c81f42a5e20b148b6019",
+      "alias": "showcase_18",
+      "strategy": "S0",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "dinner",
+      "still": "results/renders3d/stills/showcase_18_S0_dinner.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/showcase_18_S0_dinner.png": "2763a794aacbb5f7a73ab36e65f0d47a4e6bd36898ac5b494df78e2e1aaf9024"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_93a7c03b42e4b87306d4_H3_S2.json",
+      "scene_sha256": "324e6f300ba016236267df46fca4637dbba298c36a2eb5585c806bea3138b0fb",
+      "alias": "showcase_18",
+      "strategy": "S2",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "night",
+      "still": "results/renders3d/stills/showcase_18_S2_night.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/showcase_18_S2_night.png": "520002587ecc0f2da206fa38c2b60b289b52f2ace01c13fb20cb750d6311cdff"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_93a7c03b42e4b87306d4_H3_S2.json",
+      "scene_sha256": "324e6f300ba016236267df46fca4637dbba298c36a2eb5585c806bea3138b0fb",
+      "alias": "showcase_18",
+      "strategy": "S2",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "day",
+      "still": "results/renders3d/stills/showcase_18_S2_day.png",
+      "audit": "results/renders3d/audits/showcase_18_S2_day",
+      "outputs": {
+        "results/renders3d/stills/showcase_18_S2_day.png": "8d9174a29f667b013dd8b2717086894dd5500b9f7fa2be2b2ebfcea8ef29ac44",
+        "results/renders3d/audits/showcase_18_S2_day.png": "b471c6ab8ef6aeb0fa0439791d4baeea3eb2c8774d21fe82f886748c8b7e4012",
+        "results/renders3d/audits/showcase_18_S2_day.json": "8da6c21f601bd1e6637a42f93f3189164806438c08dae3d6ce890ea31125ec03"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_93a7c03b42e4b87306d4_H3_S2.json",
+      "scene_sha256": "324e6f300ba016236267df46fca4637dbba298c36a2eb5585c806bea3138b0fb",
+      "alias": "showcase_18",
+      "strategy": "S2",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "dinner",
+      "still": "results/renders3d/stills/showcase_18_S2_dinner.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/showcase_18_S2_dinner.png": "c9877bdf85085e73be65747a0587776208346a6761c049f3704f73ec592c9c59"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D1_73d0620e7f6c6cfcb072_H3_S0.json",
+      "scene_sha256": "09a6818e30a2ec2f8aa01bea646b0f68a7a306f3602223183d9f74407f788713",
+      "alias": "showcase_30",
+      "strategy": "S0",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "night",
+      "still": "results/renders3d/stills/showcase_30_S0_night.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/showcase_30_S0_night.png": "047b453ecc367f0785edf527e0d059b74e1c15f61ef615e48e61b96bf5fd5423"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D1_73d0620e7f6c6cfcb072_H3_S0.json",
+      "scene_sha256": "09a6818e30a2ec2f8aa01bea646b0f68a7a306f3602223183d9f74407f788713",
+      "alias": "showcase_30",
+      "strategy": "S0",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "day",
+      "still": "results/renders3d/stills/showcase_30_S0_day.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/showcase_30_S0_day.png": "7a8c08ff0a1011c271df16a4c5c062333b985f62372b0828f70921b1e2b0b3ff"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D1_73d0620e7f6c6cfcb072_H3_S0.json",
+      "scene_sha256": "09a6818e30a2ec2f8aa01bea646b0f68a7a306f3602223183d9f74407f788713",
+      "alias": "showcase_30",
+      "strategy": "S0",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "dinner",
+      "still": "results/renders3d/stills/showcase_30_S0_dinner.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/showcase_30_S0_dinner.png": "64b53335da48433249aeffabd77b4365c2eed7011a5be3d47347fe84b300afe7"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D1_73d0620e7f6c6cfcb072_H3_S2.json",
+      "scene_sha256": "5ff6128e6d4c4c2b0bb31f5933daae094a40dc8a6306b1a33186407226ddda00",
+      "alias": "showcase_30",
+      "strategy": "S2",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "night",
+      "still": "results/renders3d/stills/showcase_30_S2_night.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/showcase_30_S2_night.png": "c587a40d8dacb4478d69decd04a275d91aebecdc194683d303cf443bed870746"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D1_73d0620e7f6c6cfcb072_H3_S2.json",
+      "scene_sha256": "5ff6128e6d4c4c2b0bb31f5933daae094a40dc8a6306b1a33186407226ddda00",
+      "alias": "showcase_30",
+      "strategy": "S2",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "day",
+      "still": "results/renders3d/stills/showcase_30_S2_day.png",
+      "audit": "results/renders3d/audits/showcase_30_S2_day",
+      "outputs": {
+        "results/renders3d/stills/showcase_30_S2_day.png": "7269e1dcb93f21e00a51cbc49c417cd5828905bc1f600f8bbf0a51b44fefdbfb",
+        "results/renders3d/audits/showcase_30_S2_day.png": "749c3d853257929eef086cf38e00cbdd6dd2bd540e026d784e7ad313380da09a",
+        "results/renders3d/audits/showcase_30_S2_day.json": "a3b833cc7f514a9146e3d2f75c88930a50448172ce5f1369ca6787b056343921"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D1_73d0620e7f6c6cfcb072_H3_S2.json",
+      "scene_sha256": "5ff6128e6d4c4c2b0bb31f5933daae094a40dc8a6306b1a33186407226ddda00",
+      "alias": "showcase_30",
+      "strategy": "S2",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "dinner",
+      "still": "results/renders3d/stills/showcase_30_S2_dinner.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/showcase_30_S2_dinner.png": "d6a96576ed50025ede5088cae94dd8da240c2b4f11aebd5303360f377434ff6b"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_d448f46b81c4fed1b420_H1_S0.json",
+      "scene_sha256": "26af24b2d31053af347f4fdc69923e0e0cfbf95a098443a6d23d48675a6a92a3",
+      "alias": "shell_08",
+      "strategy": "S0",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "night",
+      "still": "results/renders3d/stills/shell_08_S0_night.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/shell_08_S0_night.png": "51d762b7f874cd6435175bc0251ff95b692be4ce1fc872cf6afb26a613af6768"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_d448f46b81c4fed1b420_H1_S0.json",
+      "scene_sha256": "26af24b2d31053af347f4fdc69923e0e0cfbf95a098443a6d23d48675a6a92a3",
+      "alias": "shell_08",
+      "strategy": "S0",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "day",
+      "still": "results/renders3d/stills/shell_08_S0_day.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/shell_08_S0_day.png": "03f54527a55f6c9de624d18ae585fcef0e17fb1c090e2eaab27a061c59154736"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_d448f46b81c4fed1b420_H1_S0.json",
+      "scene_sha256": "26af24b2d31053af347f4fdc69923e0e0cfbf95a098443a6d23d48675a6a92a3",
+      "alias": "shell_08",
+      "strategy": "S0",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "dinner",
+      "still": "results/renders3d/stills/shell_08_S0_dinner.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/shell_08_S0_dinner.png": "2ad8ecca9b8831c6a3daefe90f231519cff530c9ca37bb33e2a21e7217432cf3"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_d448f46b81c4fed1b420_H1_S2.json",
+      "scene_sha256": "99c6f0d708f13dc5963dd336731719d151112592b36e3ce70e82f910616ed9df",
+      "alias": "shell_08",
+      "strategy": "S2",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "night",
+      "still": "results/renders3d/stills/shell_08_S2_night.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/shell_08_S2_night.png": "9692632e969a3e382a78d470058faccfe34385e3b528f30bf941feb0a95aaa92"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_d448f46b81c4fed1b420_H1_S2.json",
+      "scene_sha256": "99c6f0d708f13dc5963dd336731719d151112592b36e3ce70e82f910616ed9df",
+      "alias": "shell_08",
+      "strategy": "S2",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "day",
+      "still": "results/renders3d/stills/shell_08_S2_day.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/shell_08_S2_day.png": "5d2fc35ef2c40f4597b035bf2649c0fa1037ced3e5bbd625de24fa15124293b2"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_d448f46b81c4fed1b420_H1_S2.json",
+      "scene_sha256": "99c6f0d708f13dc5963dd336731719d151112592b36e3ce70e82f910616ed9df",
+      "alias": "shell_08",
+      "strategy": "S2",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "dinner",
+      "still": "results/renders3d/stills/shell_08_S2_dinner.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/shell_08_S2_dinner.png": "0bd6a19224d1b8bcd0c490f40273f32577d715277980dcdc548800eedb19d833"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_c183ac25da9bfc9d1c3a_H1_S0.json",
+      "scene_sha256": "a53783bdd880d6036f1137e315896e14a9fd362449732f8b9857127316acf742",
+      "alias": "shell_12",
+      "strategy": "S0",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "night",
+      "still": "results/renders3d/stills/shell_12_S0_night.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/shell_12_S0_night.png": "510841a3369da0ed3d626683e09cbe5794d53a6691c9ee098efb72bce33d9971"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_c183ac25da9bfc9d1c3a_H1_S0.json",
+      "scene_sha256": "a53783bdd880d6036f1137e315896e14a9fd362449732f8b9857127316acf742",
+      "alias": "shell_12",
+      "strategy": "S0",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "day",
+      "still": "results/renders3d/stills/shell_12_S0_day.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/shell_12_S0_day.png": "f24529acba509cfb88ac3f81096304b92ed58d53a80dc8f92c5347e8b568dd53"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_c183ac25da9bfc9d1c3a_H1_S0.json",
+      "scene_sha256": "a53783bdd880d6036f1137e315896e14a9fd362449732f8b9857127316acf742",
+      "alias": "shell_12",
+      "strategy": "S0",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "dinner",
+      "still": "results/renders3d/stills/shell_12_S0_dinner.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/shell_12_S0_dinner.png": "170ccc53fe09a19c58efc42591a54338e3b453bc2e4f492684c768bb3604cd5e"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_c183ac25da9bfc9d1c3a_H1_S2.json",
+      "scene_sha256": "8fafe0783bf61d3549fd6c1770aaa60f2d1df484b4987e36b40e63367a84d5c2",
+      "alias": "shell_12",
+      "strategy": "S2",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "night",
+      "still": "results/renders3d/stills/shell_12_S2_night.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/shell_12_S2_night.png": "8f9a5c7030078ef10e6eb9f75c46781fd739671bec2625581fcf00c7020ec792"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_c183ac25da9bfc9d1c3a_H1_S2.json",
+      "scene_sha256": "8fafe0783bf61d3549fd6c1770aaa60f2d1df484b4987e36b40e63367a84d5c2",
+      "alias": "shell_12",
+      "strategy": "S2",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "day",
+      "still": "results/renders3d/stills/shell_12_S2_day.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/shell_12_S2_day.png": "a241e9c8374551943ab1b432147e0f9ecdd583fd0c96dbae9d675eeab51899f4"
+      }
+    },
+    {
+      "scene": "results/renders3d/scenes/D3_c183ac25da9bfc9d1c3a_H1_S2.json",
+      "scene_sha256": "8fafe0783bf61d3549fd6c1770aaa60f2d1df484b4987e36b40e63367a84d5c2",
+      "alias": "shell_12",
+      "strategy": "S2",
+      "slots": [
+        "night",
+        "day",
+        "dinner"
+      ],
+      "slot": "dinner",
+      "still": "results/renders3d/stills/shell_12_S2_dinner.png",
+      "audit": null,
+      "outputs": {
+        "results/renders3d/stills/shell_12_S2_dinner.png": "05cbc0abf723a308969fce13053f7a4f57fe42b3fd82d380f4b49840f3ff3ce4"
+      }
+    }
+  ],
+  "elapsed_seconds": 370.35889192298055,
+  "completed_at_utc": "2026-11-15T11:27:29+00:00",
+  "config_normalization": {
+    "line_endings": "CRLF to LF",
+    "original_config_sha256": "b2675588e971799af69f5f5f5ac8e1793d313be9dee9a7bbd0e0fd753b080009",
+    "original_scene_index_sha256": "fb0fdafbdf71f765491f56392e6e576bc02090ca2fc154c72dae53179cc01232",
+    "scene_bindings": {
+      "results/renders3d/scenes/D3_9587119217674ee3b748_H3_S0.json": {
+        "original": "e3b6f738dff06510569430dd85c3375718f8e2d447034882758b8ec1a102df10",
+        "published": "ec5ac84592cdcf065477987feadefae1d8f037f608017ae7c3e8624da71ea931"
+      },
+      "results/renders3d/scenes/D3_9587119217674ee3b748_H3_S2.json": {
+        "original": "d34a6a03b6f85b049b34ffaff2c2796da5a599fcc0fb1075c653e5a46233339a",
+        "published": "628e04b291db515653fe349e496925200e711d9b1b47c9ce7695648d940e0eb6"
+      },
+      "results/renders3d/scenes/D3_93a7c03b42e4b87306d4_H3_S0.json": {
+        "original": "0b1b621502989e15ad29ec6f64b67d59fbe779e37317a74fa09835dad6315d6e",
+        "published": "ab9a6b9492e694b25a1cebfaa8ceed705c62399392f7c81f42a5e20b148b6019"
+      },
+      "results/renders3d/scenes/D3_93a7c03b42e4b87306d4_H3_S2.json": {
+        "original": "0720871b52f3adbdc665138c28abd3daeade62bc90f3b4b09e792aa88ac433fc",
+        "published": "324e6f300ba016236267df46fca4637dbba298c36a2eb5585c806bea3138b0fb"
+      },
+      "results/renders3d/scenes/D1_73d0620e7f6c6cfcb072_H3_S0.json": {
+        "original": "ddf9cd049ed855b7aa5a0874210f832d78469bf64af64274fb7f855c90e01635",
+        "published": "09a6818e30a2ec2f8aa01bea646b0f68a7a306f3602223183d9f74407f788713"
+      },
+      "results/renders3d/scenes/D1_73d0620e7f6c6cfcb072_H3_S2.json": {
+        "original": "31ae0303a5ae3cfbd73a1e1e24b48b088417b08985857da418ae7439fe9598cc",
+        "published": "5ff6128e6d4c4c2b0bb31f5933daae094a40dc8a6306b1a33186407226ddda00"
+      },
+      "results/renders3d/scenes/D3_d448f46b81c4fed1b420_H1_S0.json": {
+        "original": "7b6f46fd15657b1894acba086c6349317480666e95b21e7d6702e37d50d36206",
+        "published": "26af24b2d31053af347f4fdc69923e0e0cfbf95a098443a6d23d48675a6a92a3"
+      },
+      "results/renders3d/scenes/D3_d448f46b81c4fed1b420_H1_S2.json": {
+        "original": "063d7b53ea04065b18a7df3ad206d7e03f71a0682291b882bed231594b5844a6",
+        "published": "99c6f0d708f13dc5963dd336731719d151112592b36e3ce70e82f910616ed9df"
+      },
+      "results/renders3d/scenes/D3_c183ac25da9bfc9d1c3a_H1_S0.json": {
+        "original": "57d2a6d5f1bc42c050079cbf0df84fb748c23e461f6736a3ced9eabb79985ed9",
+        "published": "a53783bdd880d6036f1137e315896e14a9fd362449732f8b9857127316acf742"
+      },
+      "results/renders3d/scenes/D3_c183ac25da9bfc9d1c3a_H1_S2.json": {
+        "original": "b036f112d6f648e02148e1fe88c3a93179b8ad07ed2540009adaf944e23f885e",
+        "published": "8fafe0783bf61d3549fd6c1770aaa60f2d1df484b4987e36b40e63367a84d5c2"
+      }
+    }
+  }
+}

@@ -1,0 +1,1522 @@
+{
+  "unit_key": "D3:9587119217674ee3b748",
+  "source": "D3",
+  "household": "H3_couple_one_remote",
+  "strategy": "S2",
+  "nia_m2": 9.999999997765812,
+  "bounds_m": [
+    0.0,
+    0.0,
+    2.236067977,
+    4.472135955
+  ],
+  "fci": 0.6868076923076923,
+  "tb": 0.0,
+  "layout_sha256": "ec0920bd8b2926d6db519b9fb073ffbbd48a2aa448894e7370b56c38be45754c",
+  "layout_config_hash": "66f5af6e0ba1d95fca3ae621ffb3a4b86a25e70b6dfe8a8a3187971191a0bf8d",
+  "render_config_sha256": "b5db3fb32513caf1f0e81ac7d8de12881ef61ff847d919ea790bdb2d557bde89",
+  "floor_triangles": [
+    [
+      [
+        2.236067977,
+        2.1
+      ],
+      [
+        0.0,
+        4.472135955
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        4.472135955
+      ],
+      [
+        2.236067977,
+        2.1
+      ],
+      [
+        2.236067977,
+        4.472135955
+      ]
+    ],
+    [
+      [
+        2.236067977,
+        1.5
+      ],
+      [
+        1.036067977,
+        0.0
+      ],
+      [
+        2.236067977,
+        0.0
+      ]
+    ],
+    [
+      [
+        2.236067977,
+        1.5
+      ],
+      [
+        2.236067977,
+        2.1
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.949315237,
+        0.0
+      ],
+      [
+        2.236067977,
+        1.5
+      ]
+    ],
+    [
+      [
+        0.949315237,
+        0.0
+      ],
+      [
+        1.036067977,
+        0.0
+      ],
+      [
+        2.236067977,
+        1.5
+      ]
+    ]
+  ],
+  "service_floor_triangles": [
+    [
+      [
+        1.036067977,
+        1.5
+      ],
+      [
+        2.236067977,
+        2.1
+      ],
+      [
+        1.036067977,
+        2.1
+      ]
+    ],
+    [
+      [
+        2.236067977,
+        1.5
+      ],
+      [
+        1.036067977,
+        0.0
+      ],
+      [
+        2.236067977,
+        0.0
+      ]
+    ],
+    [
+      [
+        2.236067977,
+        1.5
+      ],
+      [
+        2.236067977,
+        2.1
+      ],
+      [
+        1.036067977,
+        1.5
+      ]
+    ],
+    [
+      [
+        1.036067977,
+        1.5
+      ],
+      [
+        1.036067977,
+        0.0
+      ],
+      [
+        2.236067977,
+        1.5
+      ]
+    ]
+  ],
+  "walls": [
+    {
+      "triangles": [
+        [
+          [
+            2.236067977,
+            0.0
+          ],
+          [
+            2.336067977,
+            -0.1
+          ],
+          [
+            2.336067977,
+            0.0
+          ]
+        ],
+        [
+          [
+            2.336067977,
+            -0.1
+          ],
+          [
+            2.236067977,
+            0.0
+          ],
+          [
+            2.236067977,
+            -0.1
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            -0.1,
+            -0.1
+          ],
+          [
+            0.0,
+            -0.1
+          ]
+        ],
+        [
+          [
+            2.236067977,
+            4.472135955
+          ],
+          [
+            2.336067977,
+            4.472135955
+          ],
+          [
+            2.336067977,
+            4.572135954999999
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.15000000000000002
+          ],
+          [
+            -0.1,
+            -0.1
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        [
+          [
+            2.336067977,
+            4.572135954999999
+          ],
+          [
+            -0.1,
+            4.572135954999999
+          ],
+          [
+            2.236067977,
+            4.472135955
+          ]
+        ],
+        [
+          [
+            -0.1,
+            4.572135954999999
+          ],
+          [
+            -0.1,
+            -0.1
+          ],
+          [
+            0.0,
+            0.15000000000000002
+          ]
+        ],
+        [
+          [
+            -0.1,
+            4.572135954999999
+          ],
+          [
+            0.0,
+            4.472135955
+          ],
+          [
+            2.236067977,
+            4.472135955
+          ]
+        ],
+        [
+          [
+            0.0,
+            0.15000000000000002
+          ],
+          [
+            0.0,
+            4.472135955
+          ],
+          [
+            -0.1,
+            4.572135954999999
+          ]
+        ]
+      ],
+      "base": 0.0,
+      "top": 2.5,
+      "material": "wall"
+    },
+    {
+      "triangles": [
+        [
+          [
+            1.036067977,
+            0.0
+          ],
+          [
+            0.949315237,
+            -0.1
+          ],
+          [
+            2.236067977,
+            -0.1
+          ]
+        ],
+        [
+          [
+            0.949315237,
+            -0.1
+          ],
+          [
+            1.036067977,
+            0.0
+          ],
+          [
+            0.949315237,
+            0.0
+          ]
+        ],
+        [
+          [
+            2.236067977,
+            -0.1
+          ],
+          [
+            2.236067977,
+            0.0
+          ],
+          [
+            1.036067977,
+            0.0
+          ]
+        ],
+        [
+          [
+            2.236067977,
+            2.1
+          ],
+          [
+            2.336067977,
+            4.472135955
+          ],
+          [
+            2.236067977,
+            4.472135955
+          ]
+        ],
+        [
+          [
+            2.236067977,
+            1.5
+          ],
+          [
+            2.236067977,
+            0.0
+          ],
+          [
+            2.336067977,
+            0.0
+          ]
+        ],
+        [
+          [
+            2.336067977,
+            0.0
+          ],
+          [
+            2.336067977,
+            4.472135955
+          ],
+          [
+            2.236067977,
+            2.1
+          ]
+        ],
+        [
+          [
+            2.236067977,
+            2.1
+          ],
+          [
+            2.236067977,
+            1.5
+          ],
+          [
+            2.336067977,
+            0.0
+          ]
+        ]
+      ],
+      "base": 0.0,
+      "top": 0.07,
+      "material": "wall"
+    }
+  ],
+  "doors_wkt": [
+    "LINESTRING (0 0, 0.949315237 0)",
+    "LINESTRING (1.036067977 1.169580389, 1.036067977 0.330419611)"
+  ],
+  "windows_wkt": [
+    "LINESTRING (2.236067977 1.529064809, 2.236067977 2.943071146)"
+  ],
+  "entrance_wkt": "LINESTRING (0 0, 0.949315237 0)",
+  "fixed_fixtures": [
+    {
+      "item_type": "fixed_kitchenette",
+      "triangles": [
+        [
+          [
+            1.036067977,
+            2.1
+          ],
+          [
+            2.236067977,
+            1.5
+          ],
+          [
+            2.236067977,
+            2.1
+          ]
+        ],
+        [
+          [
+            2.236067977,
+            1.5
+          ],
+          [
+            1.036067977,
+            2.1
+          ],
+          [
+            1.036067977,
+            1.5
+          ]
+        ]
+      ],
+      "height_m": 0.9
+    },
+    {
+      "item_type": "fixed_toilet_pod",
+      "triangles": [
+        [
+          [
+            1.036067977,
+            1.5
+          ],
+          [
+            2.236067977,
+            0.0
+          ],
+          [
+            2.236067977,
+            1.5
+          ]
+        ],
+        [
+          [
+            2.236067977,
+            0.0
+          ],
+          [
+            1.036067977,
+            1.5
+          ],
+          [
+            1.036067977,
+            0.0
+          ]
+        ]
+      ],
+      "height_m": 2.3
+    }
+  ],
+  "furniture": [
+    {
+      "instance_id": "wardrobe#1",
+      "item_type": "wardrobe",
+      "anchor_m": [
+        2.2,
+        3.3
+      ],
+      "orientation_deg": 90,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        },
+        "guests": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      },
+      "normal_day": {
+        "night": {
+          "state": "static",
+          "outline_m": [
+            [
+              1.6,
+              3.3
+            ],
+            [
+              2.2,
+              3.3
+            ],
+            [
+              2.2,
+              4.3
+            ],
+            [
+              1.6,
+              4.3
+            ]
+          ],
+          "height_m": 2.1,
+          "material": "storage"
+        },
+        "morning": {
+          "state": "static",
+          "outline_m": [
+            [
+              1.6,
+              3.3
+            ],
+            [
+              2.2,
+              3.3
+            ],
+            [
+              2.2,
+              4.3
+            ],
+            [
+              1.6,
+              4.3
+            ]
+          ],
+          "height_m": 2.1,
+          "material": "storage"
+        },
+        "day": {
+          "state": "static",
+          "outline_m": [
+            [
+              1.6,
+              3.3
+            ],
+            [
+              2.2,
+              3.3
+            ],
+            [
+              2.2,
+              4.3
+            ],
+            [
+              1.6,
+              4.3
+            ]
+          ],
+          "height_m": 2.1,
+          "material": "storage"
+        },
+        "evening": {
+          "state": "static",
+          "outline_m": [
+            [
+              1.6,
+              3.3
+            ],
+            [
+              2.2,
+              3.3
+            ],
+            [
+              2.2,
+              4.3
+            ],
+            [
+              1.6,
+              4.3
+            ]
+          ],
+          "height_m": 2.1,
+          "material": "storage"
+        },
+        "dinner": {
+          "state": "static",
+          "outline_m": [
+            [
+              1.6,
+              3.3
+            ],
+            [
+              2.2,
+              3.3
+            ],
+            [
+              2.2,
+              4.3
+            ],
+            [
+              1.6,
+              4.3
+            ]
+          ],
+          "height_m": 2.1,
+          "material": "storage"
+        },
+        "leisure": {
+          "state": "static",
+          "outline_m": [
+            [
+              1.6,
+              3.3
+            ],
+            [
+              2.2,
+              3.3
+            ],
+            [
+              2.2,
+              4.3
+            ],
+            [
+              1.6,
+              4.3
+            ]
+          ],
+          "height_m": 2.1,
+          "material": "storage"
+        }
+      }
+    },
+    {
+      "instance_id": "shelving#1",
+      "item_type": "shelving",
+      "anchor_m": [
+        0.0,
+        2.0
+      ],
+      "orientation_deg": 270,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        },
+        "guests": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      },
+      "normal_day": {
+        "night": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              1.2
+            ],
+            [
+              0.4,
+              1.2
+            ],
+            [
+              0.4,
+              2.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "height_m": 1.8,
+          "material": "storage"
+        },
+        "morning": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              1.2
+            ],
+            [
+              0.4,
+              1.2
+            ],
+            [
+              0.4,
+              2.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "height_m": 1.8,
+          "material": "storage"
+        },
+        "day": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              1.2
+            ],
+            [
+              0.4,
+              1.2
+            ],
+            [
+              0.4,
+              2.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "height_m": 1.8,
+          "material": "storage"
+        },
+        "evening": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              1.2
+            ],
+            [
+              0.4,
+              1.2
+            ],
+            [
+              0.4,
+              2.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "height_m": 1.8,
+          "material": "storage"
+        },
+        "dinner": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              1.2
+            ],
+            [
+              0.4,
+              1.2
+            ],
+            [
+              0.4,
+              2.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "height_m": 1.8,
+          "material": "storage"
+        },
+        "leisure": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              1.2
+            ],
+            [
+              0.4,
+              1.2
+            ],
+            [
+              0.4,
+              2.0
+            ],
+            [
+              0.0,
+              2.0
+            ]
+          ],
+          "height_m": 1.8,
+          "material": "storage"
+        }
+      }
+    },
+    {
+      "instance_id": "shelving#2",
+      "item_type": "shelving",
+      "anchor_m": [
+        0.0,
+        2.8
+      ],
+      "orientation_deg": 270,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        },
+        "guests": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      },
+      "normal_day": {
+        "night": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              1.9999999999999998
+            ],
+            [
+              0.4,
+              1.9999999999999998
+            ],
+            [
+              0.4,
+              2.8
+            ],
+            [
+              0.0,
+              2.8
+            ]
+          ],
+          "height_m": 1.8,
+          "material": "storage"
+        },
+        "morning": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              1.9999999999999998
+            ],
+            [
+              0.4,
+              1.9999999999999998
+            ],
+            [
+              0.4,
+              2.8
+            ],
+            [
+              0.0,
+              2.8
+            ]
+          ],
+          "height_m": 1.8,
+          "material": "storage"
+        },
+        "day": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              1.9999999999999998
+            ],
+            [
+              0.4,
+              1.9999999999999998
+            ],
+            [
+              0.4,
+              2.8
+            ],
+            [
+              0.0,
+              2.8
+            ]
+          ],
+          "height_m": 1.8,
+          "material": "storage"
+        },
+        "evening": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              1.9999999999999998
+            ],
+            [
+              0.4,
+              1.9999999999999998
+            ],
+            [
+              0.4,
+              2.8
+            ],
+            [
+              0.0,
+              2.8
+            ]
+          ],
+          "height_m": 1.8,
+          "material": "storage"
+        },
+        "dinner": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              1.9999999999999998
+            ],
+            [
+              0.4,
+              1.9999999999999998
+            ],
+            [
+              0.4,
+              2.8
+            ],
+            [
+              0.0,
+              2.8
+            ]
+          ],
+          "height_m": 1.8,
+          "material": "storage"
+        },
+        "leisure": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              1.9999999999999998
+            ],
+            [
+              0.4,
+              1.9999999999999998
+            ],
+            [
+              0.4,
+              2.8
+            ],
+            [
+              0.0,
+              2.8
+            ]
+          ],
+          "height_m": 1.8,
+          "material": "storage"
+        }
+      }
+    },
+    {
+      "instance_id": "armchair#1",
+      "item_type": "armchair",
+      "anchor_m": [
+        0.0,
+        3.6
+      ],
+      "orientation_deg": 270,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        },
+        "guests": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      },
+      "normal_day": {
+        "night": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              2.8
+            ],
+            [
+              0.8,
+              2.8
+            ],
+            [
+              0.8,
+              3.5999999999999996
+            ],
+            [
+              0.0,
+              3.5999999999999996
+            ]
+          ],
+          "height_m": 0.85,
+          "material": "lounge"
+        },
+        "morning": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              2.8
+            ],
+            [
+              0.8,
+              2.8
+            ],
+            [
+              0.8,
+              3.5999999999999996
+            ],
+            [
+              0.0,
+              3.5999999999999996
+            ]
+          ],
+          "height_m": 0.85,
+          "material": "lounge"
+        },
+        "day": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              2.8
+            ],
+            [
+              0.8,
+              2.8
+            ],
+            [
+              0.8,
+              3.5999999999999996
+            ],
+            [
+              0.0,
+              3.5999999999999996
+            ]
+          ],
+          "height_m": 0.85,
+          "material": "lounge"
+        },
+        "evening": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              2.8
+            ],
+            [
+              0.8,
+              2.8
+            ],
+            [
+              0.8,
+              3.5999999999999996
+            ],
+            [
+              0.0,
+              3.5999999999999996
+            ]
+          ],
+          "height_m": 0.85,
+          "material": "lounge"
+        },
+        "dinner": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              2.8
+            ],
+            [
+              0.8,
+              2.8
+            ],
+            [
+              0.8,
+              3.5999999999999996
+            ],
+            [
+              0.0,
+              3.5999999999999996
+            ]
+          ],
+          "height_m": 0.85,
+          "material": "lounge"
+        },
+        "leisure": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              2.8
+            ],
+            [
+              0.8,
+              2.8
+            ],
+            [
+              0.8,
+              3.5999999999999996
+            ],
+            [
+              0.0,
+              3.5999999999999996
+            ]
+          ],
+          "height_m": 0.85,
+          "material": "lounge"
+        }
+      }
+    },
+    {
+      "instance_id": "armchair#2",
+      "item_type": "armchair",
+      "anchor_m": [
+        0.0,
+        4.4
+      ],
+      "orientation_deg": 270,
+      "states": {
+        "normal": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        },
+        "guests": {
+          "night": "static",
+          "morning": "static",
+          "day": "static",
+          "evening": "static",
+          "dinner": "static",
+          "leisure": "static"
+        }
+      },
+      "normal_day": {
+        "night": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              3.6000000000000005
+            ],
+            [
+              0.8,
+              3.6000000000000005
+            ],
+            [
+              0.8,
+              4.4
+            ],
+            [
+              0.0,
+              4.4
+            ]
+          ],
+          "height_m": 0.85,
+          "material": "lounge"
+        },
+        "morning": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              3.6000000000000005
+            ],
+            [
+              0.8,
+              3.6000000000000005
+            ],
+            [
+              0.8,
+              4.4
+            ],
+            [
+              0.0,
+              4.4
+            ]
+          ],
+          "height_m": 0.85,
+          "material": "lounge"
+        },
+        "day": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              3.6000000000000005
+            ],
+            [
+              0.8,
+              3.6000000000000005
+            ],
+            [
+              0.8,
+              4.4
+            ],
+            [
+              0.0,
+              4.4
+            ]
+          ],
+          "height_m": 0.85,
+          "material": "lounge"
+        },
+        "evening": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              3.6000000000000005
+            ],
+            [
+              0.8,
+              3.6000000000000005
+            ],
+            [
+              0.8,
+              4.4
+            ],
+            [
+              0.0,
+              4.4
+            ]
+          ],
+          "height_m": 0.85,
+          "material": "lounge"
+        },
+        "dinner": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              3.6000000000000005
+            ],
+            [
+              0.8,
+              3.6000000000000005
+            ],
+            [
+              0.8,
+              4.4
+            ],
+            [
+              0.0,
+              4.4
+            ]
+          ],
+          "height_m": 0.85,
+          "material": "lounge"
+        },
+        "leisure": {
+          "state": "static",
+          "outline_m": [
+            [
+              0.0,
+              3.6000000000000005
+            ],
+            [
+              0.8,
+              3.6000000000000005
+            ],
+            [
+              0.8,
+              4.4
+            ],
+            [
+              0.0,
+              4.4
+            ]
+          ],
+          "height_m": 0.85,
+          "material": "lounge"
+        }
+      }
+    },
+    {
+      "instance_id": "drop_leaf_table#1",
+      "item_type": "drop_leaf_table",
+      "anchor_m": [
+        2.2,
+        2.5
+      ],
+      "orientation_deg": 90,
+      "states": {
+        "normal": {
+          "night": "deployed",
+          "morning": "deployed",
+          "day": "deployed",
+          "evening": "deployed",
+          "dinner": "deployed",
+          "leisure": "deployed"
+        },
+        "guests": {
+          "night": "deployed",
+          "morning": "deployed",
+          "day": "deployed",
+          "evening": "deployed",
+          "dinner": "deployed",
+          "leisure": "deployed"
+        }
+      },
+      "normal_day": {
+        "night": {
+          "state": "deployed",
+          "outline_m": [
+            [
+              1.4000000000000001,
+              2.5
+            ],
+            [
+              2.2,
+              2.5
+            ],
+            [
+              2.2,
+              3.3
+            ],
+            [
+              1.4000000000000001,
+              3.3
+            ]
+          ],
+          "height_m": 0.75,
+          "material": "dine"
+        },
+        "morning": {
+          "state": "deployed",
+          "outline_m": [
+            [
+              1.4000000000000001,
+              2.5
+            ],
+            [
+              2.2,
+              2.5
+            ],
+            [
+              2.2,
+              3.3
+            ],
+            [
+              1.4000000000000001,
+              3.3
+            ]
+          ],
+          "height_m": 0.75,
+          "material": "dine"
+        },
+        "day": {
+          "state": "deployed",
+          "outline_m": [
+            [
+              1.4000000000000001,
+              2.5
+            ],
+            [
+              2.2,
+              2.5
+            ],
+            [
+              2.2,
+              3.3
+            ],
+            [
+              1.4000000000000001,
+              3.3
+            ]
+          ],
+          "height_m": 0.75,
+          "material": "dine"
+        },
+        "evening": {
+          "state": "deployed",
+          "outline_m": [
+            [
+              1.4000000000000001,
+              2.5
+            ],
+            [
+              2.2,
+              2.5
+            ],
+            [
+              2.2,
+              3.3
+            ],
+            [
+              1.4000000000000001,
+              3.3
+            ]
+          ],
+          "height_m": 0.75,
+          "material": "dine"
+        },
+        "dinner": {
+          "state": "deployed",
+          "outline_m": [
+            [
+              1.4000000000000001,
+              2.5
+            ],
+            [
+              2.2,
+              2.5
+            ],
+            [
+              2.2,
+              3.3
+            ],
+            [
+              1.4000000000000001,
+              3.3
+            ]
+          ],
+          "height_m": 0.75,
+          "material": "dine"
+        },
+        "leisure": {
+          "state": "deployed",
+          "outline_m": [
+            [
+              1.4000000000000001,
+              2.5
+            ],
+            [
+              2.2,
+              2.5
+            ],
+            [
+              2.2,
+              3.3
+            ],
+            [
+              1.4000000000000001,
+              3.3
+            ]
+          ],
+          "height_m": 0.75,
+          "material": "dine"
+        }
+      }
+    }
+  ],
+  "render": {
+    "tool": {
+      "primary": "blender",
+      "blender_version": ">=4.2",
+      "engine": "CYCLES",
+      "device": "CPU",
+      "samples": 128,
+      "denoise": true,
+      "resolution": [
+        2400,
+        1800
+      ],
+      "fallback_python": "trimesh + pyrender (or matplotlib Poly3DCollection) if Blender is unavailable"
+    },
+    "scene": {
+      "ceiling_height": 2.5,
+      "wall_thickness": 0.1,
+      "cutaway": "remove the two walls facing the camera; keep the others full height",
+      "floor_material": "light_oak",
+      "wall_material": "off_white",
+      "window": "glass opening with a sill at 0.90 m and a head at 2.20 m",
+      "lighting": "sun through the windows plus a soft world light; same for every render",
+      "camera": {
+        "type": "orthographic",
+        "azimuth_deg": -45,
+        "elevation_deg": 35,
+        "framing": "fit the unit bounding box with a 10% margin; same scale for every unit of similar size"
+      }
+    },
+    "palette": {
+      "sleep": "#4C78A8",
+      "work": "#F58518",
+      "dine": "#54A24B",
+      "storage": "#B279A2",
+      "lounge": "#72B7B2",
+      "fixed": "#BDBDBD"
+    }
+  }
+}

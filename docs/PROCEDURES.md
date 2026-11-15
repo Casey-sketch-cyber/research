@@ -84,9 +84,9 @@ A `Unit` (one dwelling) holds:
 ## Phase 0: Environment (day 1)
 
 **Steps**
-1. Create a Python 3.11 virtual environment. Core packages: `numpy pandas pyarrow shapely scipy networkx ortools scikit-learn lightgbm matplotlib pyyaml tqdm joblib pytest`. GPU packages, only for Exp. C or the optional LLM baseline: `torch` (an RTX 5090 needs a CUDA 12.8+ build, PyTorch ≥ 2.7) and `torch_geometric` (optional; fall back to a plain-PyTorch GNN if it fails to install).
+1. Create a Python 3.11 virtual environment. Core packages: `numpy pandas pyarrow shapely scipy networkx ortools scikit-learn lightgbm matplotlib pyyaml tqdm joblib pytest`. GPU packages, only for Exp. C or the optional LLM baseline: `torch` and `torch_geometric` (optional; fall back to a plain-PyTorch GNN if it fails to install).
 2. Write `reports/ENVIRONMENT.md`:
-   - OS, CPU model and core count, RAM, GPU (`nvidia-smi` output, or "no GPU")
+   - Operating system, Python version and dependency versions
    - Python version and `pip freeze` saved to `requirements.lock.txt`
    - Whether outbound internet works
 3. Write `requirements.txt` with minimum versions.

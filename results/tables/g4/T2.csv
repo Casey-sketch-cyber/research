@@ -1,0 +1,24 @@
+item,state,width_m,depth_m,clearance_m,capabilities,applicable_strategies,wall_backed,tall,storage_units,effort_per_change,max_instances,abo_flag,abo_matches
+single_bed,static,0.9,2.0,left 0.60,sleep_1,"S0, S1, S2",False,False,0.0,0.0,2,OUTSIDE_IQR,296
+double_bed,static,1.4,2.0,"left 0.60, right 0.50",sleep_2,"S0, S1, S2",True,False,0.0,0.0,1,WITHIN_IQR,296
+wardrobe,static,1.0,0.6,front 0.70,storage,"S0, S1, S2",True,True,1.0,0.0,2,OUTSIDE_IQR,219
+shelving,static,0.8,0.35,front 0.60,storage,"S0, S1, S2",True,True,0.5,0.0,2,WITHIN_IQR,224
+desk,static,1.2,0.6,front 0.75,work_1,"S0, S1, S2",True,False,0.0,0.0,2,WITHIN_IQR,170
+dining_table_2,static,0.75,0.75,"front 0.60, back 0.60",dine_2,"S0, S1, S2",False,False,0.0,0.0,1,OUTSIDE_IQR,824
+dining_table_4,static,1.2,0.8,"front 0.60, back 0.60","dine_4, dine_2","S0, S1, S2",False,False,0.0,0.0,1,OUTSIDE_IQR,824
+sofa_2,static,1.6,0.85,front 0.60,lounge_2,"S0, S1, S2",True,False,0.0,0.0,1,OUTSIDE_IQR,977
+armchair,static,0.8,0.8,front 0.50,lounge_1,"S0, S1, S2",False,False,0.0,0.0,2,WITHIN_IQR,1621
+wall_bed_single,stowed,1.0,0.45,front 0.40,,"S1, S2",True,True,0.0,1.0,2,NO_MATCH;UNVALIDATED_STATE,0
+wall_bed_single,deployed,1.0,2.1,left 0.60,sleep_1,"S1, S2",True,True,0.0,1.0,2,OUTSIDE_IQR;UNVALIDATED_STATE,296
+wall_bed_double,stowed,1.5,0.45,front 0.40,,"S1, S2",True,True,0.0,1.0,1,NO_MATCH;UNVALIDATED_STATE,0
+wall_bed_double,deployed,1.5,2.15,"left 0.60, right 0.50",sleep_2,"S1, S2",True,True,0.0,1.0,1,UNVALIDATED_STATE,296
+wall_bed_over_sofa,stowed,1.6,0.9,front 0.60,lounge_2,"S1, S2",True,True,0.0,1.2,1,OUTSIDE_IQR;UNVALIDATED_STATE,977
+wall_bed_over_sofa,deployed,1.6,2.15,"left 0.60, right 0.50",sleep_2,"S1, S2",True,True,0.0,1.2,1,UNVALIDATED_STATE,296
+sofa_bed,stowed,1.9,0.9,front 0.60,lounge_2,"S1, S2",True,False,0.0,1.5,1,UNVALIDATED_STATE,977
+sofa_bed,deployed,1.9,2.0,front 0.50,sleep_2,"S1, S2",True,False,0.0,1.5,1,UNVALIDATED_STATE,296
+drop_leaf_table,stowed,0.8,0.2,,,"S1, S2",True,False,0.0,0.2,1,NO_MATCH;UNVALIDATED_STATE,0
+drop_leaf_table,deployed,0.8,0.75,front 0.60,"dine_2, work_1","S1, S2",True,False,0.0,0.2,1,OUTSIDE_IQR;UNVALIDATED_STATE,824
+fold_down_desk,stowed,1.0,0.25,front 0.40,,"S1, S2",True,True,0.0,0.2,1,NO_MATCH;UNVALIDATED_STATE,0
+fold_down_desk,deployed,1.0,0.55,front 0.75,work_1,"S1, S2",True,True,0.0,0.2,1,UNVALIDATED_STATE,170
+extendable_table,stowed,0.8,0.8,"front 0.60, back 0.60",dine_2,"S1, S2",False,False,0.0,0.3,1,OUTSIDE_IQR;UNVALIDATED_STATE,824
+extendable_table,deployed,1.6,0.8,"front 0.60, back 0.60","dine_4, dine_2, work_1","S1, S2",False,False,0.0,0.3,1,OUTSIDE_IQR;UNVALIDATED_STATE,824

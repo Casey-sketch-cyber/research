@@ -1,0 +1,7 @@
+dataset,name,total_records,unique_eligible,selected_exp_a,evaluable_exp_a,min_nia_m2,median_nia_m2,max_nia_m2,role
+D1,Swiss Dwellings,46830,2327,1348,1236,16.749600190319974,40.47116559261106,49.99704396892674,Normalized plans
+D2,ResPlan,17000,884,884,873,25.55960394702257,45.48272588015713,49.957951716488296,Normalized plans
+D3,Generated shells,510,510,510,510,8.0,16.000000000043105,40.00000000289693,Controlled shell grid
+D4,Amazon Berkeley Objects,147702,,,,,,,"Dimension context, 43,002 usable dimension triples"
+D5,American Time Use Survey,,,,,,,,Optional calibration omitted
+D6,Hong Kong 2021 census,108202,,,,,,,"Territory context, number of subdivided units"

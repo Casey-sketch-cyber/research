@@ -1,13 +1,7 @@
 {
   "config_hash": "58c832033d9dc57814c4574292e1a3e52cc536c304fbe16c0886262b7ccdec11",
   "os": "Linux",
-  "machine_architecture": "x86_64",
   "python": "3.11.18",
-  "cpu_model": "Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz",
-  "affinity_cores": 112,
-  "effective_cores": 14,
-  "memory_limit_gib": 90.0,
-  "gpu": "NVIDIA GeForce RTX 3090, 24576 MiB, 595.71.05",
   "network": {
     "D1": {
       "http_status": 200
