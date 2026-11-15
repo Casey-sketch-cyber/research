@@ -3,9 +3,9 @@
 
 tool:
   primary: blender            # headless: blender -b -P scripts/12b_render3d.py -- --config config/render.yaml
-  blender_version: ">=4.2"    # must support the RTX 5090 (Blackwell) for GPU rendering; check the release notes
+  blender_version: ">=4.2"
   engine: CYCLES              # fallback: BLENDER_EEVEE_NEXT, or CYCLES on CPU
-  device: GPU                 # OPTIX on the RTX 5090; CPU if no GPU in the sandbox
+  device: CPU                 # portable headless rendering
   samples: 128
   denoise: true
   resolution: [2400, 1800]

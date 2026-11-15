@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "exit_code": 0,
+  "test_count": 187,
+  "elapsed_s": 84.81,
+  "command": "python -m pytest -q",
+  "scope": "Complete repository regression suite"
+}

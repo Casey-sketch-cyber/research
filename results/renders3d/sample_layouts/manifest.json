@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "source_solutions_sha256": "9a17959a449d507330a94c15849b17e9c313ba0c31ffa433130672d4f6d1ed79",
+  "picks": [
+    [
+      "shell_08",
+      "D3:d448f46b81c4fed1b420",
+      "H1_single_commuter"
+    ],
+    [
+      "shell_12",
+      "D3:c183ac25da9bfc9d1c3a",
+      "H1_single_commuter"
+    ]
+  ],
+  "files": {
+    "results/renders3d/sample_layouts/shell_08_unit.json": "e6d712db34faebd86c1db1f843601baf05a20d858b4620960cdd600e8c5ae08c",
+    "results/renders3d/sample_layouts/shell_08_S0.json": "4e2fcd4e12df60c4b3aafb354363c4d405f3610c2e9d22286ab86d1d0b973257",
+    "results/renders3d/sample_layouts/shell_08_S2.json": "f81db5428f1441723eb9699a2f4874234d16146fd00a3c8f90d13620c6495301",
+    "results/renders3d/sample_layouts/shell_12_unit.json": "29c6223960b62b75ad87906a2e00249a611f53c62231cc8a25cd157e8336218c",
+    "results/renders3d/sample_layouts/shell_12_S0.json": "0965c2e948e9c84e2c30bb48ea6204e9e17708333bf4ebe1d47c82f3f5199ed5",
+    "results/renders3d/sample_layouts/shell_12_S2.json": "45d62622a7d3dc2f27b36d1459efb334ce2a1c318baea1fa98f99779908cb08f"
+  }
+}
