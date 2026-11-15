@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "config_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474",
+  "input_sha256": {
+    "scripts/11d_report_k3.py": "83113f4f54700764acaae7735bd9c9926b4b3a163c6428dec0bc375dce4e8390",
+    "scripts/phase11d_k3_analysis.py": "810d861b3aba318b34d49a06a9ae2c9d4bfd235cafd8a4084fa9917bdb45d49c",
+    "scripts/phase11_hk_report.py": "9ce7bb684429d4054e3213ae21ec995dabefe44236f2bac6b1ad1918714e18c3",
+    "scripts/11c_rescore_catalogue.py": "b3d8bf9100dc2ad865dff1052856b87d991faa5e0b82d081d2bc18e740750997",
+    "scripts/phase07_statistics.py": "da3003e1d126336a8430106f9264e510153f760bf2a55ee330f800333a9d1b6b",
+    "reviews/G3_review_round2.md": "498583bf0de1e61d40ed462f7de0b8641e5cd0b3091e9fbc866c5e3953a1dfe8",
+    "results/g3_review_k3/solve_acceptance.json": "903dfc99dea0ba598d605a2427f58fd6ca46ce9922e15e17b0b49a54c0886f6a",
+    "results/expK/acceptance.json": "66358282417f2f550a405300ff4628a27da48e43eabf31e745a181fabac12fda",
+    "results/expK/run.json": "2b89537bcd55cc5865233fcd44d210bced45bc03c34b55ddcf6226afb1bdaa05",
+    "results/scenario_hk/acceptance.json": "cc6b06adfffd68caee4985d5132a5c61cf9a3a4d09cf9f7019fbfb4f0d67fd8e",
+    "results/scenario_hk/run.json": "2f6eac19852a54dc6ec76091c948e1a1ed9b3599e088c98b7c7c62927da16886",
+    "results/g3_review/kit/acceptance.json": "155eab9d791c4678bca2bfa5e85b074f3c8a0bf2b57f2cab674cbfa220874186",
+    "results/g3_review/catalogue/acceptance.json": "8d83f4b7a3694740769d6ec62c39cc5dacccca49ed19ddba6b09923ecc1ab050",
+    "results/g3_review/hong_kong/acceptance.json": "b39a34e8badf8ba09a6e37ec5b86f3f26a4a316780968c60b74a0d9e32200aa0",
+    "results/g3/evidence_manifest.json": "8f6f9c7a54233d51bcfd59f6b56d98e038b7a9077ba22f89df8329cd996a6a34",
+    "data/processed/corpus_units.parquet": "2f6e45d2c2a47bccb6a756d35f89d0443cf3e65e67d449f90af6ff90cc473d1c"
+  },
+  "outputs": {
+    "results/g3_review_k3/training_best.csv": "03faa5b5523c4e67cd1d061143e1652f8e81ff1f16cb1a4a5edc7eaa05f1edf6",
+    "results/g3_review_k3/design_frontier.csv": "5fb21b285007dcec0baddb6c48773a720929ee7182996e731ab17a19d7140ebc",
+    "results/g3_review_k3/bespoke_choices.csv": "dbfb166692455eaa8eabc7e28e1392f11cba01107568f5680dc673606e125871",
+    "results/g3_review_k3/paired_cases.csv": "71b1def54e1709deada242520d86db5262378c9ef46354b8db0fc17b1037c197",
+    "results/g3_review_k3/paired_effects.csv": "86792b96505368e880ad916ad7e55b1716b6f0a4ee6df1f47dcb13fdaf927ef8",
+    "results/g3_review_k3/hk_kit_cases.csv": "3e60379be964d036d4dd03ec38e1b76d27ef3e9acf4aca5052a6adb4036f238c",
+    "results/g3_review_k3/hk_adequacy_by_size.csv": "2097e28f3e5212aa77cf639fd068101a016bfd7098e2133283e1235f007c5c79",
+    "results/g3_review_k3/hk_scenario_summary.csv": "1e59c20631d6756a4c6799555c2cf52a0340fab4ae92d1bbf8d035b5ae5a63a9",
+    "results/g3_review_k3/hk_h3_size_bands.csv": "2ae2fa57d053532ceb906b030f41eb58e3fa6c461b39869fd6b5cb92f260c235",
+    "results/g3_review_k3/kit.yaml": "0024931e9c5e95bd34cfa8d29730a2bae2adf086fc0ff2350fdbda05a38a25bd"
+  },
+  "training_layouts": 540,
+  "revalidated_hk_layouts": 780,
+  "revalidated_h3_layouts": 390,
+  "new_hk_solves": 0,
+  "selected": {
+    "H1_single_commuter": "H1_kit_01",
+    "H3_couple_one_remote": "H3_kit_02"
+  },
+  "completed_at_utc": "2026-11-15T09:52:15+00:00"
+}

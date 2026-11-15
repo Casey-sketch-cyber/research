@@ -1,0 +1,64 @@
+{
+  "config_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474",
+  "selection": "training_mean_fciq",
+  "by_household": {
+    "H1_single_commuter": {
+      "kit": {
+        "kit_id": "H1_kit_01",
+        "dimensions": {
+          "wall_bed_width_single": 0.8,
+          "desk_width": 0.8,
+          "desk_depth_deployed": 0.45,
+          "table_width": 0.7,
+          "table_depth_deployed": 0.6,
+          "wardrobe_frontage": 0.6
+        },
+        "qualities": {
+          "wall_bed_single": 0.6,
+          "fold_down_desk": 0.7,
+          "drop_leaf_table": 0.8
+        },
+        "dimension_config_hash": "26c1d5736c2f9791819df0bda167d12b1ce32da77bb6b05d01ba6ad47ec71612"
+      },
+      "runner_up": "catalogue",
+      "parity_candidate": "H1_kit_02",
+      "n_training": 30,
+      "catalogue_fciq": 0.7127336860670197,
+      "selected_fciq": 0.714074074074074,
+      "bespoke_fciq": 0.734294532627866,
+      "catalogue_adequate": 13,
+      "selected_adequate": 11,
+      "bespoke_adequate": 13,
+      "share_of_bespoke_gain": 0.0621676891615362
+    },
+    "H3_couple_one_remote": {
+      "kit": {
+        "kit_id": "H3_kit_02",
+        "dimensions": {
+          "wall_bed_width_double": 1.5,
+          "desk_width": 1.2,
+          "desk_depth_deployed": 0.55,
+          "table_width": 1.0,
+          "table_depth_deployed": 0.75,
+          "wardrobe_frontage": 1.4
+        },
+        "qualities": {
+          "wall_bed_double": 1.0,
+          "fold_down_desk": 1.0,
+          "drop_leaf_table": 1.0
+        },
+        "dimension_config_hash": "3de16a10bf46ecf4782bad1c5f90cee5f2260435c90f062af43c32199b8dfda7"
+      },
+      "runner_up": "catalogue",
+      "parity_candidate": "H3_kit_02",
+      "n_training": 30,
+      "catalogue_fciq": 0.6322121794871794,
+      "selected_fciq": 0.6343551282051282,
+      "bespoke_fciq": 0.6611862820512822,
+      "catalogue_adequate": 2,
+      "selected_adequate": 5,
+      "bespoke_adequate": 6,
+      "share_of_bespoke_gain": 0.07396083151178347
+    }
+  }
+}
