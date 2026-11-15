@@ -41,6 +41,7 @@ RENDERS = RESULTS / "renders3d"
 CONFIG = Path("config/project.yaml")
 COLORS = ("#0072B2", "#E69F00", "#009E73", "#CC79A7", "#D55E00")
 INK, MUTED, GRID = "#203048", "#536278", "#DCE4ED"
+SPARSE = "#81858E"
 STRATEGIES = dict(zip(("S0", "S1", "S2"), COLORS))
 RENDER_CONFIG = Path("config/render.yaml")
 FUNCTIONS = yaml.safe_load(RENDER_CONFIG.read_text(encoding="utf-8"))["palette"]
@@ -282,10 +283,12 @@ def f5():
     )
     fig, axs = plt.subplots(2, 4, figsize=(13, 7.1), sharex=True, sharey="row")
     figure(fig, "F5", "Equivalent static area gained by form and time",
-           "All matched pairs, including equal scores. Bands are point-estimate bounds from the static reference support.")
+           "All matched pairs, including equal scores. Bands show reference-support bounds. The smallest observed-plan bin has six pairs.")
     handles = [Line2D([], [], label=l, color=c, marker=m, ms=4)
                for l, c, m in zip(UNITS.values(), COLORS, ("o", "s"))]
-    legend(fig, handles+[Line2D([], [], color=MUTED, marker="^", ls="", label="Upper bound unbounded")], 3)
+    handles.extend([Line2D([], [], color=SPARSE, marker="o", ls="", label="Fewer than 10 pairs"),
+                    Line2D([], [], color=MUTED, marker="^", ls="", label="Upper bound unbounded")])
+    legend(fig, handles, 4)
     for c, (hh, title) in enumerate(HOUSEHOLDS.items()):
         for r, (suffix, label) in enumerate([("m2", "Median gain (m²)"), ("pct_nia", "Median gain (% of NIA)")]):
             ax = axs[r, c]
@@ -297,10 +300,16 @@ def f5():
                 hi = group[f"all_pair_median_delta_ea_upper_{suffix}"]
                 opens = group["all_pair_median_delta_ea_upper_unbounded" if r == 0 else
                               "all_pair_median_delta_ea_upper_pct_nia_unbounded"]
-                ax.plot(x, lo, marker=mark, ms=3.7, color=color, lw=1.25)
-                ax.plot(x, hi, ls=":", color=color, lw=1)
-                ax.fill_between(x, lo, hi, color=color, alpha=.13)
-                ax.scatter(x[opens], lo[opens], marker="^", s=29, color=color, zorder=4)
+                supported = group.n_units.ge(10)
+                ax.plot(x, lo.where(supported), marker=mark, ms=3.7, color=color, lw=1.25)
+                ax.plot(x, hi.where(supported), ls=":", color=color, lw=1)
+                ax.fill_between(x, lo, hi, where=supported, color=color, alpha=.13)
+                sparse_bounds = ~supported & hi.notna() & hi.gt(lo)
+                ax.vlines(x[sparse_bounds], lo[sparse_bounds], hi[sparse_bounds], color=SPARSE, lw=1.2)
+                sparse_points = ~supported & ~opens
+                ax.scatter(x[sparse_points], lo[sparse_points], color=SPARSE, s=18, marker=mark, zorder=4)
+                ax.scatter(x[opens], lo[opens], marker="^", s=33,
+                           color=np.where(supported[opens], color, SPARSE), zorder=5)
             if c == 0:
                 ax.set_ylabel(label)
             if r == 0:
@@ -414,7 +423,7 @@ def f9():
     fig, axes = plt.subplots(2, 4, figsize=(14, 9), sharey=True)
     figure(fig, "F9", "Sensitivity to geometry, furniture and search budget",
            "Changes relative to each matched control. × marks an unidentified contrast. Horizontal scales vary by panel.")
-    metrics = [("change_median_saving_m2", "Change in median gain (m²)"),
+    metrics = [("change_median_saving_m2", "Change in median\nidentified ΔEA (m²)"),
                ("change_delta_a_min_m2", "Change in ΔAₘᵢₙ (m²)")]
     for c, (hh, label) in enumerate(HOUSEHOLDS.items()):
         rows = data[data.household == hh].set_index("condition").reindex(conditions)
@@ -432,7 +441,9 @@ def f9():
             if r == 0:
                 ax.set_title(label, fontsize=9.1)
     axes[0, 0].invert_yaxis()
-    fig.subplots_adjust(top=.853, left=.20, right=.975, bottom=.084, wspace=.19, hspace=.27)
+    fig.text(.055, .027, "The ΔEA median uses the improved pairs with an identified positive gain. This subset can change between conditions.",
+             fontsize=9, color=MUTED)
+    fig.subplots_adjust(top=.853, left=.20, right=.975, bottom=.106, wspace=.19, hspace=.32)
     return export(fig, "F9")
 
 
@@ -638,7 +649,79 @@ def checked_still(path):
         return np.asarray(img.convert("RGB"))
 
 
-def render_panels():
+def checked_polish(index_path, render, frames):
+    """Load the eight source-bound presentation renders used in F3b."""
+    directory = RENDERS / "polish"
+    proof = document(directory / "manifest.json")
+    script = Path("scripts/12c_render_polish.py")
+    INPUTS.add(script)
+    if (not proof["passed"] or proof["scene_index_sha256"] != sha256_file(index_path)
+            or proof["base_renderer_sha256"] != render["renderer_sha256"]
+            or proof["polish_renderer_sha256"] != sha256_file(script)):
+        raise ValueError("Presentation renders do not match their accepted scenes and renderer")
+    expected = {
+        *[("showcase_10", strategy, slot, "cutaway") for strategy in ("S0", "S2") for slot in SLOT_LABELS],
+        *[("showcase_30", strategy, "day", "detail") for strategy in ("S0", "S2")],
+    }
+    views = {}
+    for row in proof["frames"]:
+        key = row["alias"], row["strategy"], row["slot"], row["view"]
+        path = directory / ("_".join(key) + ".png")
+        if (key in views or key not in expected or path.as_posix() != row["still"]
+                or frames[key[:3]]["scene_sha256"] != row["scene_sha256"]
+                or sha256_file(path) != row["sha256"]):
+            raise ValueError("Wrong presentation render or altered frame")
+        views[key] = path
+    if views.keys() != expected:
+        raise ValueError("Incomplete presentation render set")
+    return views
+
+
+def showcase_panel(unit, area, frames, polish):
+    """Compose the three daily states and a matched room detail where supplied."""
+    alias = f"showcase_{area:02d}"
+    strategies = (("S0", "Static"), ("S2", "Form + time"))
+    cuts = area == 10
+    details = area == 30
+    if details:
+        fig = plt.figure(figsize=(11, 10.1))
+        layout = fig.add_gridspec(3, 6, height_ratios=(1, 1, 1.45))
+        panels = [[fig.add_subplot(layout[r, 2*c:2*c+2]) for c in range(3)] for r in range(2)]
+    else:
+        fig, panels = plt.subplots(2, 3, figsize=(11, 7))
+    scenes = {s: document(Path(frames[(alias, s, "day")]["scene"])) for s, _ in strategies}
+    caption = ["Validated H3 layouts on a normal day. Camera, lighting and scale are held fixed within this dwelling."]
+    if details:
+        caption = ["Validated H3 layouts on a normal day. The whole-flat views share camera, lighting and scale."]
+    if scenes["S2"]["tb"] == 0:
+        caption.append("S2 furniture states stay fixed throughout the day (TB = 0).")
+    if cuts:
+        caption[-1] += " The toilet enclosure is cut away to show the furniture."
+    if details:
+        caption[-1] += " The daytime close-ups use low wall sections to expose the main room."
+    figure(fig, "F3b", f"{unit.source} · {unit.interior.area:.2f} m² for a couple", "\n".join(caption))
+    for r, (strategy, strategy_label) in enumerate(strategies):
+        scene = scenes[strategy]
+        for c, (slot, slot_label) in enumerate(SLOT_LABELS.items()):
+            key = alias, strategy, slot
+            path = polish[(*key, "cutaway")] if cuts else Path(frames[key]["still"])
+            ax = panels[r][c]
+            ax.imshow(checked_still(path))
+            ax.set_title(f"{strategy} {strategy_label} · {slot_label}\n"
+                         f"FCI {scene['fci']:.3f}  ·  TB {scene['tb']:.2f}", fontsize=8.8)
+            ax.axis("off")
+    if details:
+        for c, (strategy, strategy_label) in enumerate(strategies):
+            ax = fig.add_subplot(layout[2, 3*c:3*c+3])
+            ax.imshow(checked_still(polish[(alias, strategy, "day", "detail")]))
+            ax.set_title(f"{strategy} {strategy_label} · Main room detail", fontsize=10)
+            ax.axis("off")
+    fig.subplots_adjust(top=.875 if details else .827 if cuts else .86,
+                        left=.038, right=.975, bottom=.041, hspace=.20 if details else .18, wspace=.20 if details else .045)
+    return export(fig, f"F3b_{area:02d}")
+
+
+def render_panels(panel_areas=None):
     manifest_path = RENDERS / "render_manifest.json"
     scenes_path = RENDERS / "scene_index.json"
     render = document(manifest_path)
@@ -653,24 +736,16 @@ def render_panels():
         for path, digest in {**row["outputs"], row["scene"]: row["scene_sha256"]}.items():
             if sha256_file(Path(path)) != digest:
                 raise ValueError(f"Changed rendering input: {path}")
+    polish = checked_polish(scenes_path, render, frames)
     config = load_config(CONFIG)
     production = document(A / "run.json")["production_settings"]
     files, audits = [], []
     for area, unit, hh, layouts in accepted_showcases():
         alias = f"showcase_{area:02d}"
-        fig, axs = plt.subplots(2, 3, figsize=(11, 7))
-        figure(fig, "F3b", f"{unit.source} · {unit.interior.area:.2f} m² for a couple",
-               "Validated H3 layouts on a normal day. Camera, lighting and scale are held fixed within this dwelling.")
-        for r, (strategy, strategy_label) in enumerate((("S0", "Static"), ("S2", "Form + time"))):
-            for c, (slot, slot_label) in enumerate(SLOT_LABELS.items()):
-                frame = frames[(alias, strategy, slot)]
-                scene = document(Path(frame["scene"]))
-                ax = axs[r, c]
-                ax.imshow(checked_still(Path(frame["still"])))
-                ax.set_title(f"{strategy} {strategy_label} · {slot_label}\nFCI {scene['fci']:.3f}  ·  TB {scene['tb']:.2f}", fontsize=8.8)
-                ax.axis("off")
-        fig.subplots_adjust(top=.86, left=.038, right=.975, bottom=.041, hspace=.18, wspace=.045)
-        files.extend(export(fig, f"F3b_{area:02d}"))
+        if panel_areas is None or area in panel_areas:
+            files.extend(showcase_panel(unit, area, frames, polish))
+        if panel_areas is not None:
+            continue
 
         frame = frames[(alias, "S2", "day")]
         stem = Path(frame["audit"])
@@ -704,6 +779,8 @@ def render_panels():
         fig.savefig(overlay, dpi=200)
         plt.close(fig)
         files.append(overlay)
+    if panel_areas is not None:
+        return files
     audit = pd.DataFrame(audits)
     if not audit.passed.all() or audit.showcase.nunique() != 3:
         raise ValueError("At least one projected furniture outline differs by 2 cm or more")
@@ -712,12 +789,42 @@ def render_panels():
     return files+[csv_path]
 
 
+def record_figures(key, outputs, started, refresh=False):
+    path = OUTPUT / f"manifest_{key}.json"
+    current = {"passed": True, "dpi": 300, "package": key,
+               "inputs": {}, "outputs": {}}
+    if refresh:
+        current = json.loads(path.read_text(encoding="utf-8"))
+        refreshed = {p.as_posix() for p in outputs}
+        for name, digest in current["outputs"].items():
+            if name not in refreshed and sha256_file(Path(name)) != digest:
+                raise ValueError(f"Existing figure output changed: {name}")
+        for name, digest in current["inputs"].items():
+            if Path(name) not in INPUTS and sha256_file(Path(name)) != digest:
+                raise ValueError(f"Existing figure source changed: {name}")
+    elapsed = "polish_elapsed_seconds" if refresh else "elapsed_seconds"
+    current[elapsed] = round(time.perf_counter()-started, 3)
+    current["inputs"].update({p.as_posix(): sha256_file(p) for p in sorted(INPUTS)})
+    current["outputs"].update({p.as_posix(): sha256_file(p) for p in outputs})
+    write_manifest(path, current)
+
+
 def main():
     started = time.perf_counter()
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--only", choices=["2d", "3d"], help="Build a subset of the publication figures")
+    parser.add_argument("--only", choices=["2d", "3d", "polish"], help="Build a subset of the publication figures")
     args = parser.parse_args()
     start_style()
+    if args.only == "polish":
+        common_inputs = INPUTS.copy()
+        record_figures("2d", f5()+f9(), started, refresh=True)
+        INPUTS.clear()
+        INPUTS.update(common_inputs)
+        started = time.perf_counter()
+        record_figures("3d", render_panels(panel_areas={10, 30}), started, refresh=True)
+        print("Built F5, F9 and the two revised F3b figures", flush=True)
+        return
+
     outputs = []
     if args.only != "3d":
         for build in (f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12):
@@ -726,13 +833,7 @@ def main():
     if args.only != "2d":
         outputs.extend(render_panels())
         print("Built F3b and three geometry overlays", flush=True)
-    key = (args.only or "all")
-    write_manifest(OUTPUT / f"manifest_{key}.json", {
-        "passed": True, "elapsed_seconds": round(time.perf_counter()-started, 3), "dpi": 300, "package": key,
-        "inputs": {p.as_posix(): sha256_file(p) for p in sorted(INPUTS)},
-        "outputs": {p.as_posix(): sha256_file(p) for p in outputs},
-    })
-
+    record_figures(args.only or "all", outputs, started)
 
 if __name__ == "__main__":
     main()

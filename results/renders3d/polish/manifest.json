@@ -1,0 +1,121 @@
+{
+  "passed": true,
+  "scene_index_sha256": "2587a97c4ec4d7ce00e8c7d7751d203fbe616c79b28f339bd4b68dccc1a4a023",
+  "base_renderer_sha256": "c45e006a7433bfbdd4d610b5266da75853af79e1039ed77e0f304fafb2e0824b",
+  "polish_renderer_sha256": "0a56298216fbb30404be112232cde4c2189f2445c1e752d3f99670db70263f97",
+  "blender_version": "4.5.3 LTS",
+  "cycles_backend": "cuda",
+  "frames": [
+    {
+      "alias": "showcase_10",
+      "strategy": "S0",
+      "slot": "night",
+      "view": "cutaway",
+      "parameters": {
+        "toilet_enclosure_cutaway_height_m": 0.34
+      },
+      "scene_sha256": "ec5ac84592cdcf065477987feadefae1d8f037f608017ae7c3e8624da71ea931",
+      "still": "results/renders3d/polish/showcase_10_S0_night_cutaway.png",
+      "sha256": "15abd45bcd71e64d52b73d0fbc6faf7706f156c7d7250be7d97e4593b64023bd"
+    },
+    {
+      "alias": "showcase_10",
+      "strategy": "S0",
+      "slot": "day",
+      "view": "cutaway",
+      "parameters": {
+        "toilet_enclosure_cutaway_height_m": 0.34
+      },
+      "scene_sha256": "ec5ac84592cdcf065477987feadefae1d8f037f608017ae7c3e8624da71ea931",
+      "still": "results/renders3d/polish/showcase_10_S0_day_cutaway.png",
+      "sha256": "f78115e9a06b85fa4fb720b5d7f6446bfa229f0ef144921af47f2a45232d5c72"
+    },
+    {
+      "alias": "showcase_10",
+      "strategy": "S0",
+      "slot": "dinner",
+      "view": "cutaway",
+      "parameters": {
+        "toilet_enclosure_cutaway_height_m": 0.34
+      },
+      "scene_sha256": "ec5ac84592cdcf065477987feadefae1d8f037f608017ae7c3e8624da71ea931",
+      "still": "results/renders3d/polish/showcase_10_S0_dinner_cutaway.png",
+      "sha256": "91d8675aff32d472f9ef988633af7538aa181d4dfb77b24e54b6079eebd2adc0"
+    },
+    {
+      "alias": "showcase_30",
+      "strategy": "S0",
+      "slot": "day",
+      "view": "detail",
+      "parameters": {
+        "camera_bounds_m": [
+          3.0,
+          1.6,
+          6.8,
+          7.1
+        ],
+        "camera_elevation_deg": 60,
+        "wall_cutaway_height_m": 0.38
+      },
+      "scene_sha256": "09a6818e30a2ec2f8aa01bea646b0f68a7a306f3602223183d9f74407f788713",
+      "still": "results/renders3d/polish/showcase_30_S0_day_detail.png",
+      "sha256": "93b45e32715975683de1d5a34273f0693e3b3231b0b096d4692eb6f82b15f75d"
+    },
+    {
+      "alias": "showcase_10",
+      "strategy": "S2",
+      "slot": "night",
+      "view": "cutaway",
+      "parameters": {
+        "toilet_enclosure_cutaway_height_m": 0.34
+      },
+      "scene_sha256": "628e04b291db515653fe349e496925200e711d9b1b47c9ce7695648d940e0eb6",
+      "still": "results/renders3d/polish/showcase_10_S2_night_cutaway.png",
+      "sha256": "d555c9aca54fa9946dcc4dfacf62249c485209d7fcc4458da143e4982d6ba190"
+    },
+    {
+      "alias": "showcase_10",
+      "strategy": "S2",
+      "slot": "day",
+      "view": "cutaway",
+      "parameters": {
+        "toilet_enclosure_cutaway_height_m": 0.34
+      },
+      "scene_sha256": "628e04b291db515653fe349e496925200e711d9b1b47c9ce7695648d940e0eb6",
+      "still": "results/renders3d/polish/showcase_10_S2_day_cutaway.png",
+      "sha256": "6d63dd996c88e1d1ad98a0a418a35265ef0b81983d3d7da36e94d4ea19c9403e"
+    },
+    {
+      "alias": "showcase_10",
+      "strategy": "S2",
+      "slot": "dinner",
+      "view": "cutaway",
+      "parameters": {
+        "toilet_enclosure_cutaway_height_m": 0.34
+      },
+      "scene_sha256": "628e04b291db515653fe349e496925200e711d9b1b47c9ce7695648d940e0eb6",
+      "still": "results/renders3d/polish/showcase_10_S2_dinner_cutaway.png",
+      "sha256": "df7b124ace35254e976d38872cfed5c3f4aed80378075021cc9b6f12ddae94cd"
+    },
+    {
+      "alias": "showcase_30",
+      "strategy": "S2",
+      "slot": "day",
+      "view": "detail",
+      "parameters": {
+        "camera_bounds_m": [
+          3.0,
+          1.6,
+          6.8,
+          7.1
+        ],
+        "camera_elevation_deg": 60,
+        "wall_cutaway_height_m": 0.38
+      },
+      "scene_sha256": "5ff6128e6d4c4c2b0bb31f5933daae094a40dc8a6306b1a33186407226ddda00",
+      "still": "results/renders3d/polish/showcase_30_S2_day_detail.png",
+      "sha256": "77a2822d0d8e051d503b4f4b8c078c5b1c5ffd3fe8e7e2e899e78e2a7d34b74f"
+    }
+  ],
+  "elapsed_seconds": 96.19450019486248
+}
