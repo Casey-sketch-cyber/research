@@ -1,0 +1,15 @@
+{
+  "F12": {
+    "passed": true,
+    "files": {
+      "results/g3/figures/F12_kit.pdf": "d71c3c17098d895db08a0938a97d27d3757d4c5b19aa010f95ef381ac3089e84",
+      "results/g3/figures/F12_kit.png": "f835a6bae0fec96e61047da6c9a3d69e52d9fe2065cfc57b8b6578211f995820"
+    },
+    "observations": [
+      "The K3-selected body dimensions, quality factors and configuration hashes match the already reviewed F12 drawing for both households.",
+      "PNG and rendered PDF show deployed and stowed bodies for each chosen kit, with legible width and depth arrows in metres.",
+      "Quality factors are inside the beds, desks and tables; wardrobe storage values are in their own labels, clear of the dimension arrows.",
+      "The G3 redraw uses the accepted dimensions and quality factors. The original K outputs remain hash-bound."
+    ]
+  }
+}
