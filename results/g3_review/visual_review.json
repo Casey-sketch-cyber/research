@@ -1,0 +1,25 @@
+{
+  "F12": {
+    "passed": true,
+    "files": {
+      "results/g3_review/kit/F12.pdf": "d98f165e3a953371a200c095228db2b36dbefeded93327f9ae8798289fe9e03b",
+      "results/g3_review/kit/F12.png": "b0d3b10758c36e597a0f94b20423d6c5e9f77fe437998e32620a1c1b640ba135"
+    },
+    "observations": [
+      "The PNG and rendered PDF both show the selected catalogue dimensions for the commuter and couple. Bed widths are 1.00 m and 1.50 m, respectively.",
+      "Both desks and tables display q = 0.90. Bed quality is 1.00 and wardrobe labels show the configured storage unit. Dimension arrows and titles are legible."
+    ]
+  },
+  "F10": {
+    "passed": true,
+    "files": {
+      "results/g3_review/hong_kong/F10.pdf": "634d0700d9d80130e87aece102706059b3077ab880d5a0014c02a1477a579fcb",
+      "results/g3_review/hong_kong/F10.png": "cce5e2d6f3524ce665f8daa7a4c9f93bbc6bec47c3c2b6bc04504fd0d672b62e"
+    },
+    "observations": [
+      "Both the PNG and rendered PDF show the three households on the 8–20 m² grid with a common 0–1 adequate-share scale.",
+      "The commuter and couple panels distinguish the catalogue S2 and the optimized selected vector, whose dimensions are the catalogue. The parent-and-child panel shows three strategies.",
+      "Legends, axes and the equally weighted shell caption are legible. The figure displays the scenario rates, with the paired area intervals reported in the tables."
+    ]
+  }
+}

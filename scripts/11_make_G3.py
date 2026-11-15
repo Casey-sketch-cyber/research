@@ -21,6 +21,7 @@ P1 = Path("results/expA_f1/analysis_p1")
 F11_SOURCE = Path("results/expR/figures/F11_supporting_R.pdf")
 F11_RELEASE = Path("results/g3/figures/F11_supporting_R.pdf")
 F12_RELEASE = Path("results/g3/figures/F12_kit")
+REVIEW_ROOT = Path("results/g3_review")
 PHASE_GATES = {
     "F1": "results/expA_f1/acceptance.json",
     "F2": "results/expA_f1/analysis/package_acceptance.json",
@@ -75,7 +76,12 @@ def f11_release_bytes(repo: Path) -> bytes:
     return cleaned
 
 
-def draw_kit_release(repo: Path) -> None:
+def draw_kit_release(
+    repo: Path,
+    acceptance_path: str = PHASE_GATES["K"],
+    design_path: Path = Path("results/expK/kit.yaml"),
+    output_path: Path = F12_RELEASE,
+) -> None:
     """Draw the accepted K dimensions with the storage labels outside the bodies."""
     cache = repo / ".tmp" / "g3-matplotlib"
     cache.mkdir(parents=True, exist_ok=True)
@@ -88,8 +94,7 @@ def draw_kit_release(repo: Path) -> None:
     from fea.config import config_hash, load_config
     from phase11_kit_design import BED, kit_configuration
 
-    accepted = read_json(repo / PHASE_GATES["K"])
-    design_path = Path("results/expK/kit.yaml")
+    accepted = read_json(repo / acceptance_path)
     require(accepted["passed"] and sha256_file(repo / design_path) == accepted["outputs"][design_path.as_posix()],
             "The chosen dimensions differ from the accepted kit")
     design = read_json(repo / design_path)
@@ -134,7 +139,7 @@ def draw_kit_release(repo: Path) -> None:
                             ha="center", va="center", fontsize=8)
                 ax.set_title(title, fontsize=8.5)
     fig.suptitle("F12  Selected quality-aware kits\nTop-view body dimensions in metres", fontsize=13)
-    output = repo / F12_RELEASE
+    output = repo / output_path
     output.parent.mkdir(parents=True, exist_ok=True)
     for extension in ("pdf", "png"):
         path = output.with_suffix("." + extension)
@@ -287,6 +292,44 @@ def evidence_files(repo: Path) -> dict[str, str]:
         require({Path(name).suffix for name in info["files"]} == {".png", ".pdf"}, f"Missing figure format for {figure}")
         for path, digest in info["files"].items():
             require(hashes.get(path) == digest, f"Figure {figure} differs from the accepted output")
+
+    reviewed = {}
+    for name in ("benchmark", "catalogue", "kit", "hong_kong"):
+        gate = read_json(bind(REVIEW_ROOT / name / "acceptance.json"))
+        require(gate["passed"] and gate["config_hash"] == phases["K"]["config_hash"],
+                f"The G3 review checks differ for {name}")
+        for path, digest in {**gate["input_sha256"], **gate["outputs"]}.items():
+            if path != "data/processed/corpus_units.parquet":
+                bind(path, digest)
+        reviewed[name] = gate
+    require(reviewed["benchmark"]["production"]["pairs"] == 200 and reviewed["benchmark"]["auc_rows"] == 96,
+            "Incomplete B or C review coverage")
+    catalogue = reviewed["catalogue"]
+    require((catalogue["k_rescored"], catalogue["k_optimized"], catalogue["hk_rescored"]) == (360, 120, 3510),
+            "Incomplete catalogue rescoring and optimization")
+    kit = reviewed["kit"]
+    require(kit["candidates_per_household"] == 9 and kit["confirmation_layouts"] == 1080
+            and kit["bespoke_contains_catalogue_and_kit"], "Incomplete reviewed K comparisons")
+    hk = reviewed["hong_kong"]
+    require(hk["shells"] == 390 and hk["cases"] == 4290 and not hk["census_weighting"] and not hk["carbon_applied"],
+            "Unexpected reviewed HK scope")
+    review_checks = read_json(bind(REVIEW_ROOT / "validation.json"))
+    require(review_checks["passed"] and review_checks["tests_passed"] >= suite["tests_passed"],
+            "The revised suite did not pass")
+    for path, digest in review_checks["tested_inputs"].items():
+        bind(path, digest)
+    figures = read_json(bind(REVIEW_ROOT / "visual_review.json"))
+    require(set(figures) == {"F10", "F12"}, "The reviewed F10 and F12 checks are required")
+    for figure, item in figures.items():
+        require(item["passed"] and item["observations"] and {Path(p).suffix for p in item["files"]} == {".png", ".pdf"},
+                f"Incomplete review for {figure}")
+        for path, digest in item["files"].items():
+            if figure == "F10":
+                require(hk["outputs"].get(path) == digest, "Reviewed F10 differs from the HK export")
+            bind(path, digest)
+    bind("reports/GATE_G3_response.md")
+    bind("reports/phase_11c_G3_review.md")
+    bind("reviews/G3_review.md")
     bind("reports/GATE_G3.md")
     bind("reports/novelty_check.md")
     bind("reports/QUESTIONS.md")
@@ -301,13 +344,18 @@ def main() -> None:
     parser.add_argument("--prepare-area", action="store_true")
     parser.add_argument("--prepare-f11", action="store_true")
     parser.add_argument("--prepare-f12", action="store_true")
+    parser.add_argument("--prepare-reviewed-f12", action="store_true")
     parser.add_argument("--verify", action="store_true")
     args = parser.parse_args()
     repo = args.repo.resolve()
     output = repo / "results" / "g3"
-    if args.prepare_f12:
+    if args.prepare_f12 or args.prepare_reviewed_f12:
         require(not args.verify, "Use --verify to check the accepted G3 release")
-        draw_kit_release(repo)
+        if args.prepare_reviewed_f12:
+            draw_kit_release(repo, "results/g3_review/kit/acceptance.json",
+                             Path("results/g3_review/kit/kit.yaml"), Path("results/g3_review/kit/F12"))
+        else:
+            draw_kit_release(repo)
         print("Prepared F12 from the accepted kit dimensions")
         return
     if args.prepare_f11:

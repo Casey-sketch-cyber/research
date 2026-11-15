@@ -1,0 +1,78 @@
+{
+  "config_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474",
+  "selection": "review_nine_vector_training_ranking",
+  "by_household": {
+    "H1_single_commuter": {
+      "kit": {
+        "kit_id": "catalogue",
+        "dimensions": {
+          "wall_bed_width_single": 1.0,
+          "desk_width": 1.0,
+          "desk_depth_deployed": 0.55,
+          "table_width": 0.8,
+          "table_depth_deployed": 0.75,
+          "wardrobe_frontage": 1.0
+        },
+        "qualities": {
+          "wall_bed_single": 1.0,
+          "fold_down_desk": 0.9,
+          "drop_leaf_table": 0.9
+        },
+        "dimension_config_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474"
+      },
+      "flat_quality": {
+        "kit_id": "H1_kit_01",
+        "dimensions": {
+          "wall_bed_width_single": 0.8,
+          "desk_width": 0.8,
+          "desk_depth_deployed": 0.45,
+          "table_width": 0.7,
+          "table_depth_deployed": 0.6,
+          "wardrobe_frontage": 0.6
+        },
+        "qualities": {
+          "wall_bed_single": 0.6,
+          "fold_down_desk": 0.7,
+          "drop_leaf_table": 0.8
+        },
+        "dimension_config_hash": "26c1d5736c2f9791819df0bda167d12b1ce32da77bb6b05d01ba6ad47ec71612"
+      }
+    },
+    "H3_couple_one_remote": {
+      "kit": {
+        "kit_id": "catalogue",
+        "dimensions": {
+          "wall_bed_width_double": 1.5,
+          "desk_width": 1.0,
+          "desk_depth_deployed": 0.55,
+          "table_width": 0.8,
+          "table_depth_deployed": 0.75,
+          "wardrobe_frontage": 1.0
+        },
+        "qualities": {
+          "wall_bed_double": 1.0,
+          "fold_down_desk": 0.9,
+          "drop_leaf_table": 0.9
+        },
+        "dimension_config_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474"
+      },
+      "flat_quality": {
+        "kit_id": "H3_kit_01",
+        "dimensions": {
+          "wall_bed_width_double": 1.2,
+          "desk_width": 0.8,
+          "desk_depth_deployed": 0.45,
+          "table_width": 0.7,
+          "table_depth_deployed": 0.6,
+          "wardrobe_frontage": 0.6
+        },
+        "qualities": {
+          "wall_bed_double": 0.6,
+          "fold_down_desk": 0.7,
+          "drop_leaf_table": 0.8
+        },
+        "dimension_config_hash": "95ef45403de41809b646c302212ed5e3b664554c32e5aae7fc3cb274a10b8a3a"
+      }
+    }
+  }
+}

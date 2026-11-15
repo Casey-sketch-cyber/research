@@ -17,3 +17,7 @@ F1 completed 15,714 corrected H3/H4 solves in 18.498 hours; the combined 31,428-
 The 16-layout K pilot took 0.147 h and projected 30.39 h at the retained scope. The measured K run remained within the 48-hour cap. The full K grid stays disabled. The measured times cover the stated phases and exclude reviewer turnaround. The former 10–14-day calendar estimate was retired.
 
 F1, F2, F3, B, D, R, ablations, C, reduced K, the Hong Kong scenario and the retrieved literature screening are complete. The consolidated [G3 package](GATE_G3.md) is ready for results review.
+
+## G3 review follow-up
+
+Catalogue rescoring and 120 quality-aware K S2 optimizations took 0.810 h. The nine-vector selection and confirmations took 0.01 min, including 0 new kit confirmation solves. The revised Hong Kong scenario took 4.524 h with 517 fresh S2 solves on the fixed shell grid. The B reference and C AUC use existing evidence. [Review response](GATE_G3_response.md)

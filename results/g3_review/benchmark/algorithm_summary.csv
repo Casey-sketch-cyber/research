@@ -1,0 +1,5 @@
+algorithm,n_pairs,validity_rate,mean_fci,median_fci,mean_time_s,median_time_s,timing_basis,base_config_hash
+cp_sat,200,1.0,0.8675112342287342,0.9615384615384615,38.4509346210584,30.440822310745716,standalone S2 elapsed including preparation and validation,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+greedy_footprint,200,1.0,0.8611990293040293,1.0,3.4654121859557927,1.9440714586526155,standalone S2 elapsed including preparation and validation,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+simulated_annealing,200,1.0,0.9341149257224256,1.0,104.1181489897985,108.32806089427322,standalone S2 elapsed including preparation and validation,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474
+production_pipeline,200,1.0,0.9427789468864469,1.0,53.859689785987136,10.67673933506012,accepted production S0 + S1 + S2 recorded solve time,a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474

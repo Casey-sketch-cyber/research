@@ -1,13 +1,13 @@
 # Gate G3 — Functional capacity, equivalent area and furniture design
 
-The study asks how much additional daily activity demand transformable furniture can serve in the same dwelling, how to express that difference as an equivalent area, and what the modeled results imply for compact-home screening and furniture design. The corrected primary analysis uses the accepted F1 inventory and the P1 paired inversion. This package is ready for results review.
+The study asks how much additional daily activity demand transformable furniture can serve in the same dwelling, how to express that difference as an equivalent area, and what the modeled results imply for compact-home screening and furniture design. The corrected primary analysis uses the accepted F1 inventory and the P1 paired inversion. This revision addresses the required changes from the G3 results review.
 
 | Research hypothesis | Evidence at G3 |
 | --- | --- |
 | H1 · Gains peak in the smallest dwellings and shrink as area grows | Partly supported. Transformable furniture raises modeled coverage for a minority of real plans and some small and intermediate D3 shells. The largest median gains for the two-person households occur at intermediate sizes in the generated set. The observed size relationship is nonmonotonic. |
 | H2 · Equal-area plans differ in capacity and area rules disagree with adequacy | Supported within the model. The couple and parent-and-child cases show substantial within-bin FCI variation. On real plans, the 30/45 m² comparator disagrees with modeled S2 adequacy on 55.7% and 52.7% of these cases, respectively. |
 | H3 · A graph model reaches rank correlation of at least 0.80 on held-out sites | Not supported. D1 held-out GraphSAGE rank correlations range from 0.087 to 0.661 for S0 and 0.088 to 0.588 for S2. |
-| H4 · A standard kit improves adequacy over the catalogue and captures most of the bespoke gain | Not supported in the reduced test. Training adequacy falls for both schedules; the two positive transfer results are one net case each. No majority share of a positive bespoke FCIq gain is identified for the selected kit. |
+| H4 · A standard kit improves adequacy over the catalogue and captures most of the bespoke gain | Not supported in the revised reduced experiment. Neither household meets both training criteria. The catalogue ranks first for both households. |
 
 Hypothesis IDs refer to the research claims. Household IDs in the results below refer to the commuter, remote worker, couple and parent-and-child schedules.
 
@@ -52,21 +52,30 @@ A_min is the fitted area where the modeled probability of FCI ≥ 0.95 reaches 0
 | D3 shells | H3 couple | 19.93 [19.37, 20.44] | 14.40 [14.07, 14.73] | 5.53 [4.90, 6.12] |
 | D3 shells | H4 parent and child | 22.76 [21.54, 24.07] | 16.32 [15.85, 16.77] | 6.45 [5.19, 7.75] |
 | Pooled | H1 commuter | 11.48 [9.22, 13.38] | 10.46 [8.70, 11.87] | 1.01 [-0.44, 2.45] |
-| Pooled | H2 remote worker | 14.59 [12.46, 16.27] | 8.27 | 6.32 |
+| Pooled | H2 remote worker | 14.59 [12.46, 16.27] | 8.27 (boundary-limited) | 6.32 (boundary-limited) |
 | Pooled | H3 couple | 27.03 [26.19, 27.82] | 16.26 [15.20, 17.27] | 10.77 [9.66, 11.94] |
 | Pooled | H4 parent and child | 31.14 [30.39, 31.90] | 20.98 [20.08, 21.83] | 10.16 [9.28, 11.06] |
 
-Dashes denote crossings outside observed support or with nonincreasing probability. The pooled H2 point difference is identified, and too few bootstrap fits support an interval. The complete table includes thresholds 0.90 and 1.00 and the status of every fit. [Adequate-area estimates](../results/expA_f1/analysis/min_adequate_area.csv)
+Dashes denote unidentified crossings. The pooled H2 S2 crossing sits near the lower support edge and too few bootstrap fits support its interval. The D3 H2 comparison has a supported estimate of 3.63 m² [2.78, 4.77]. The complete table includes thresholds 0.90 and 1.00 and the status of every fit. [Adequate-area estimates](../results/expA_f1/analysis/min_adequate_area.csv)
 
 ## Experiment B — solver benchmark
 
-| Algorithm | Paired cases | Valid | Mean FCI | Median FCI | Mean elapsed s |
+| Algorithm | Paired cases | Valid | Mean FCI | Median FCI | Mean recorded time (s) |
 | --- | --- | --- | --- | --- | --- |
 | CP-SAT | 200 | 100.0% | 0.8675 | 0.9615 | 38.451 |
 | Greedy footprint | 200 | 100.0% | 0.8612 | 1.0000 | 3.465 |
 | Simulated annealing | 200 | 100.0% | 0.9341 | 1.0000 | 104.118 |
+| Production pipeline (portfolio warm start and shared incumbents) | 200 | 100.0% | 0.9428 | 1.0000 | 53.860 |
 
-All 600 outputs passed the independent validator. The paired mean CP-SAT difference from greedy was +0.0063 FCI [−0.0263, +0.0356]. Simulated annealing started from the greedy layout and used the longest mean elapsed time. Interpret quality together with the measured runtime and tested settings. [Benchmark report](phase_08_B_results.md) · [Algorithm results](../results/expB/algorithm_summary.csv) · [Paired differences](../results/expB/paired_algorithm_effects.csv)
+Standalone S2 CP-SAT scores below annealing under the recorded budgets. It uses the internal greedy initializer. The hybrid used for A attains the highest mean FCI on the 200 matched pairs, with portfolio initialization and shared S0/S1/S2 incumbents. Its time sums the three recorded solve times. The standalone times cover S2 preparation, execution and validation. [Revised benchmark](phase_11c_G3_review.md#b1-benchmark-with-the-production-pipeline) · [Four-method summary](../results/g3_review/benchmark/algorithm_summary.csv)
+
+| Paired comparison | Mean FCI difference [95% CI] | Higher / equal / lower |
+| --- | --- | --- |
+| Production minus standalone CP-SAT | +0.0753 [0.0592, 0.0948] | 112 / 88 / 0 |
+| Production minus footprint greedy | +0.0816 [0.0608, 0.1046] | 82 / 117 / 1 |
+| Production minus simulated annealing | +0.0087 [0.0016, 0.0160] | 17 / 172 / 11 |
+
+Production equals the best observed score on 189 pairs. The mean shortfall is 0.0034 FCI over all 200 pairs. The largest difference is 0.2308 on a D3 remote-worker shell. A's valid FCI scores give achievable lower bounds under the tested budgets. The 11 shortfalls are listed with the scores and the winning method. [Paired effects](../results/g3_review/benchmark/production_paired_effects.csv) · [Case-level shortfalls](../results/g3_review/benchmark/production_shortfalls.csv)
 
 ## Experiment D — area rules and functional adequacy
 
@@ -85,7 +94,7 @@ The table uses FCI ≥ 0.95 as the modeled adequacy criterion. Each row has 2,10
 | H4 parent and child | S0 | 45 | 40.5% (66/789) | 24.7% (520/0) |
 | H4 parent and child | S2 | 45 | 52.7% (22/1090) | 8.3% (175/0) |
 
-The 8 m² threshold accepts every real-plan unit in this sample. For the 30/45 m² rule, most disagreement for the two-person households is from functional layouts below the fixed area rule. Continuous area-per-person and rooms-per-person comparisons retain the complete threshold sweeps, with no selected decision threshold. [D results](phase_09_D_results.md) · [Misclassification tables](../results/expD/confusion.csv) · [Within-bin dispersion](../results/expD/dispersion.csv)
+The smallest sampled real plan has 16.75 m² NIA, so only the D3 and Hong Kong shells cover the 8 m² boundary. The 30/45 m² rule disagrees mainly by rejecting functional plans for the two-person households. The continuous area-per-person and rooms-per-person comparisons retain all observed threshold sweeps. [D results](phase_09_D_results.md) · [Misclassification tables](../results/expD/confusion.csv) · [Within-bin dispersion](../results/expD/dispersion.csv)
 
 ## Supporting analysis R — room-level activity area
 
@@ -128,58 +137,77 @@ The timing column summarizes the feature-ready batch measurements across all tes
 
 In D2, GraphSAGE's S0 and S2 ranking is weaker still. In D3 the S0 rank correlation reaches 0.924 for the couple, and the S0 MAE is 0.135–0.192 across households. The generated-shell rank result coexists with larger prediction errors. Gain MAE uses identified pairs, including exact zeros. The graph model fell below the retained gain lower bound in 23 of 33 D1 test cases with bound-only labels. The commuter's gain rank is undefined where the identified labels are constant. [All 144 metric rows](../results/expC/metrics.csv) · [Predictions and support flags](../results/expC/predictions.csv)
 
+Post-hoc adequacy ROC AUC uses the frozen continuous predictions to rank cases against FCI ≥ 0.95. On D1 held-out S0, GraphSAGE versus the area-only model scores 0.796 versus 0.732 for the couple and 0.888 versus 0.821 for parent and child. The original Spearman criterion governs H3. Single-outcome groups have no ROC AUC. [All AUCs and denominators](../results/g3_review/benchmark/c_adequacy_auc.csv)
+
 ## Experiment K — reduced kit design
 
-The approved exploratory run screened eight vectors per household for H1 (commuter) and H3 (couple). A 16-layout pilot projected 30.39 hours for the full reduced sample. It retained 30 generated training shells, 15 generated held-out shells and 15 eligible real plans per household. The completed run took 11.36 hours including the pilot and independently validated all 1,803 layouts, including 1,080 matched confirmations. The full K grid was not run. [K report](phase_11b_K_results.md) · [Choices and comparisons](../results/expK/) · [F12 dimensions](../results/g3/figures/F12_kit.pdf)
+The revised comparison applies the same size curves to the catalogue and kit. The catalogue fold-down desk and drop-leaf table each score q = 0.90, and its wall beds score q = 1. Storage retains the configured frontage capacity. Every original catalogue layout was independently rescored. The optimized S2 catalogue starts from the best valid layout in the saved S0 → S1 → S2 chain and uses the same per-solve budget as the kit. The rescored S2 provides an achievable lower bound.
 
-The table compares S2 on identical shells. Adequacy means FCIq ≥ 0.95 using the configured quality factors. “Flat” refers to kit selection and layout search with quality set to one; its outcomes are rescored with the configured quality factors. The bespoke comparator is available only on the training shells.
+The selection ranks the original eight candidates and the catalogue on the same 30 training shells per household by mean validated S2 FCIq. The original eight use their accepted S2 search layouts. The catalogue uses the warm-started optimization required by the review. Held-out generated shells and real plans are used for transfer evaluation.
 
-| Household | Cohort | n | Mean FCIq: catalogue → kit | Adequate: catalogue → kit | Adequate with flat selection | Kit gains / losses |
-| --- | --- | --- | --- | --- | --- | --- |
-| H1 commuter | Training | 30 | 0.727 → 0.714 | 43.3% → 36.7% | 20.0% | 0 / 2 |
-| H1 commuter | Held out | 15 | 0.724 → 0.738 | 40.0% → 46.7% | 20.0% | 2 / 1 |
-| H1 commuter | Real | 15 | 0.965 → 0.963 | 86.7% → 86.7% | 73.3% | 0 / 0 |
-| H3 couple | Training | 30 | 0.657 → 0.628 | 16.7% → 13.3% | 3.3% | 1 / 2 |
-| H3 couple | Held out | 15 | 0.724 → 0.669 | 20.0% → 20.0% | 0.0% | 0 / 0 |
-| H3 couple | Real | 15 | 0.892 → 0.888 | 60.0% → 66.7% | 33.3% | 1 / 0 |
+Each S2 row shows saved catalogue after rescoring → catalogue after optimization → selected kit. Adequacy uses FCIq ≥ 0.95.
 
-H1 chose a 0.80 m wall bed, 0.80 × 0.45 m desk, 0.70 × 0.60 m table and 0.60 m wardrobe frontage. Its bed, desk and table quality factors are 0.60, 0.70 and 0.80. Flat selection chose those same dimensions with a different optimization objective. H3 chose a 1.50 m bed, 1.20 × 0.55 m desk, 1.00 × 0.75 m table and 1.40 m wardrobe frontage, with the three quality factors equal to one. Flat selection for H3 chose a 1.20 m bed and the smaller desk, table and wardrobe dimensions above. F12 redraws the accepted selected dimensions and moves storage labels out of the dimension arrows.
+| Household | Cohort | n | Mean FCIq | Adequate share | Adequate with flat selection |
+| --- | --- | --- | --- | --- | --- |
+| H1 commuter | Training | 30 | 0.712 → 0.713 → 0.713 | 43.3% → 43.3% → 43.3% | 20.0% |
+| H1 commuter | Held out | 15 | 0.720 → 0.720 → 0.720 | 40.0% → 40.0% → 40.0% | 20.0% |
+| H1 commuter | Real | 15 | 0.959 → 0.959 → 0.959 | 86.7% → 86.7% → 86.7% | 73.3% |
+| H3 couple | Training | 30 | 0.623 → 0.632 → 0.632 | 6.7% → 6.7% → 6.7% | 3.3% |
+| H3 couple | Held out | 15 | 0.694 → 0.694 → 0.694 | 0.0% → 0.0% → 0.0% | 0.0% |
+| H3 couple | Real | 15 | 0.874 → 0.881 → 0.881 | 46.7% → 53.3% → 53.3% | 33.3% |
 
-The matched form and time effects differ by schedule. On real plans the catalogue S1−S0 and S2−S1 mean FCIq effects are +0.013 and 0.000 for H1, versus +0.061 and +0.141 for H3. With the selected kits these are +0.018 and +0.006 for H1, and +0.078 and +0.141 for H3. [Complete paired effects](../results/expK/form_time_effects.csv)
+H1 commuter selects the catalogue vector. Training mean FCIq is 0.713 for the optimized catalogue, 0.713 for the selected vector and 0.734 for bespoke. The selected vector captures 0.0% of the observed bespoke FCIq gain. H3 couple selects the catalogue vector. Training mean FCIq is 0.632 for the optimized catalogue, 0.632 for the selected vector and 0.658 for bespoke. The selected vector captures 0.0% of the observed bespoke FCIq gain.
 
-The bespoke comparator selects the best observed S2 FCIq per training shell from the finite kit grid, including the confirmed selected-kit layout. H1 bespoke mean FCIq is 0.731 and its adequacy is 40.0%. The small positive FCIq difference over the catalogue gives a negative captured share (−419.5%) because the selected kit scores below the catalogue. H3 bespoke mean FCIq is 0.652 with 16.7% adequacy; its difference from the catalogue is nonpositive, so the gain share is undefined. This comparator bounds the confirmed kit on these shells within the evaluated layouts. The H4 hypothesis is unsupported in this reduced experiment: the selected kit does not improve training adequacy over the catalogue or capture a majority of a positive bespoke gain. The two positive transfer changes are each a net gain of one shell out of 15.
+Bespoke takes the best checked S2 layout per training shell across the nine vectors and the confirmed kit incumbent. Its gain is relative to the reoptimized catalogue and the reported share requires a positive gain.
+
+The size–quality frontier reports plain FCI against the mean of the bed, desk and table size qualities for all nine vectors. Storage is expressed in its own units. The nondominated choices are catalogue, H1_kit_02 for H1 commuter and catalogue, H3_kit_02 for H3 couple.
+
+| Household | Cohort | Catalogue plain FCI | Flat-selected plain FCI | Flat-selected FCIq |
+| --- | --- | --- | --- | --- |
+| H1 commuter | train | 0.727 | 0.749 | 0.673 |
+| H1 commuter | heldout | 0.724 | 0.769 | 0.663 |
+| H3 couple | train | 0.657 | 0.668 | 0.591 |
+| H3 couple | heldout | 0.724 | 0.746 | 0.679 |
+
+The flat-selected layouts gain plain coverage in all four comparisons. The final column applies the size penalties to those same layouts.
+
+[Revised comparisons](../results/g3_review/kit/comparison.csv) · [Nine-vector frontier](../results/g3_review/kit/design_frontier.csv) · [Paired form and time effects](../results/g3_review/kit/form_time_effects.csv) · [Bespoke per-shell evidence](../results/g3_review/kit/bespoke_choices.csv) · [F12 dimensions](../results/g3_review/kit/F12.pdf)
+
+The original G3 comparison credited the catalogue at full quality. Its complete table is retained as a labelled sensitivity. [Catalogue credited at full quality](../results/g3_review/kit/catalogue_full_quality_sensitivity.csv)
 
 ## Hong Kong — modeled adequacy across compact shell sizes
 
-The scenario uses 390 equally weighted templates: 30 shapes at each integer size from 8 to 20 m². It reuses 2,970 corrected catalogue layouts and adds 540 catalogue layouts for 17 and 19 m². The 780 kit layouts include 90 exact accepted K layouts and 98 catalogue layouts independently confirmed to attain FCIq = 1 with zero time burden in the kit configuration. The remaining 592 use new kit solves. All 4,290 scenario records passed. The kit scenario covers H1 and H3; its exact K overlaps include both training and held-out shells. [Scenario report](phase_11_HK_results.md) · [F10](../results/figures/F10.pdf)
+The scenario evaluates 390 equally weighted templates at 13 sizes from 8 to 20 m². All 3,510 saved catalogue layouts were rescored, including the 540 layouts at 17 and 19 m². The quality curves lowered 1,436 catalogue scores. The two selected-kit rows were reevaluated on the same 780 matched cases. They use 517 new quality solves and independently verified saved or saturated layouts for the remaining cases. S0, S1 and S2 in this scenario refer to the rescored saved catalogue layouts. Where the selected kit is the catalogue, S2 kit shows quality optimization at those dimensions.
 
-Each size entry is the number meeting FCIq ≥ 0.95 out of 30. A_min is the fitted 50% adequacy crossing; ΔA_min compares each strategy with its matched catalogue S0 baseline. The 95% intervals use 1,000 paired resamples of shape templates, keeping their sizes and strategies together. The last column averages the shortfall to the fitted A_min over all 390 shells.
+Each size entry counts layouts with FCIq ≥ 0.95. A_min is the fitted 50% adequacy crossing in the observed size range. ΔA_min compares with S0. The 95% intervals resample shape templates with sizes and strategies paired. The final column gives mean shortfall to A_min across the equally weighted templates.
 
 | Household | Strategy | 8 m² | 10 m² | 12 m² | Adequate overall | A_min m² [95% CI] | ΔA_min m² [95% CI] | Mean shell shortfall m² |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | H1 commuter | S0 | 0/30 | 0/30 | 4/30 | 54.6% | 13.40 [13.03, 13.73] | Reference | 1.34 |
 | H1 commuter | S1 | 0/30 | 0/30 | 12/30 | 62.6% | 12.37 [12.00, 12.70] | 1.03 [0.70, 1.43] | 0.91 |
 | H1 commuter | S2 | 0/30 | 0/30 | 12/30 | 62.6% | 12.37 [12.00, 12.70] | 1.03 [0.70, 1.43] | 0.91 |
-| H1 commuter | S2 kit | 0/30 | 0/30 | 5/30 | 47.2% | 14.38 [13.83, 14.98] | −0.98 [−1.53, −0.50] | 1.82 |
+| H1 commuter | S2 kit | 0/30 | 0/30 | 12/30 | 63.1% | 12.30 [11.90, 12.64] | 1.10 [0.73, 1.53] | 0.88 |
 | H3 couple | S0 | 0/30 | 0/30 | 0/30 | 6.7% | — | Reference | — |
-| H3 couple | S1 | 0/30 | 0/30 | 0/30 | 27.7% | 16.91 [16.60, 17.21] | — | 3.40 |
-| H3 couple | S2 | 0/30 | 0/30 | 0/30 | 46.7% | 14.43 [14.00, 14.90] | — | 1.85 |
-| H3 couple | S2 kit | 0/30 | 0/30 | 0/30 | 39.5% | 15.39 [14.67, 16.19] | — | 2.39 |
+| H3 couple | S1 | 0/30 | 0/30 | 0/30 | 16.2% | 18.57 [18.18, 19.02] | — | 4.71 |
+| H3 couple | S2 | 0/30 | 0/30 | 0/30 | 32.3% | 16.33 [15.87, 16.83] | — | 3.00 |
+| H3 couple | S2 kit | 0/30 | 0/30 | 0/30 | 33.8% | 16.12 [15.70, 16.57] | — | 2.85 |
 | H4 parent and child | S0 | 0/30 | 0/30 | 0/30 | 10.3% | 19.58 [18.78, 19.96] | Reference | 5.61 |
-| H4 parent and child | S1 | 0/30 | 0/30 | 0/30 | 30.8% | 16.53 [15.97, 17.18] | 3.05 [2.34, 3.58] | 3.14 |
-| H4 parent and child | S2 | 0/30 | 0/30 | 0/30 | 31.0% | 16.49 [15.95, 17.07] | 3.09 [2.37, 3.61] | 3.11 |
+| H4 parent and child | S1 | 0/30 | 0/30 | 0/30 | 26.2% | 17.15 [16.64, 17.77] | 2.43 [1.76, 2.97] | 3.58 |
+| H4 parent and child | S2 | 0/30 | 0/30 | 0/30 | 26.7% | 17.07 [16.58, 17.64] | 2.51 [1.86, 3.03] | 3.52 |
 
-The catalogue S2 mean shortfall falls by 0.43 m² for the commuter and 2.50 m² for parent and child relative to S0. The couple's static crossing is outside the observed 8–20 m² range, leaving its baseline contrast unidentified. The parent-and-child S0 crossing is close to the upper edge; 812 of 1,000 bootstrap draws support its paired S2 interval. The S2 kits have lower aggregate adequacy than the catalogue S2 for both tested households on this grid.
+For the couple, the separate S1-to-S2 area difference under the common quality rule is 2.24 [1.66, 2.82] m². With the catalogue credited at full quality it is 2.47 [2.07, 2.97] m². The switching table gives the number of paired shape resamples supporting each interval.
 
-The matched mean catalogue form and time effects in FCIq are +0.033 and +0.003 for H1, +0.107 and +0.056 for H3, and +0.078 and +0.007 for H4. The commuter's S1 and S2 share is identical at each size even though switching improves ten individual FCIq scores. The couple's largest pooled contribution is form, with a further time effect visible in the S2 curve. [All sizes and denominators](../results/scenario_hk/adequacy_by_size.csv) · [Crossing and gap support](../results/scenario_hk/scenario_summary.csv) · [Separate form and time effects](../results/scenario_hk/form_time_effects.csv)
+Quality optimization at the selected catalogue dimensions raises adequacy from 244 to 246 of 390 commuter shells and from 126 to 132 of 390 couple shells. In this comparison the dimensions are identical. The couple's S0 crossing remains outside the modeled size range, so its S0-based area differences are unidentified.
 
-The D6 territory aggregate reports 215,709 residents and 107,371 households in 108,202 subdivided units, with 33,658 quarters containing subdivided units. These counts give context. D6 lacks the household-size and area distributions needed to weight the modeled templates. The scenario illustrates functional differences at the same area; it does not estimate stock adequacy, territory-wide floor area or carbon, or set a statutory minimum. [D6 coverage and field definitions](schemas/D6.md) · [Territory counts](../results/scenario_hk/territory_context.csv)
+[F10](../results/g3_review/hong_kong/F10.pdf) · [By-size denominators](../results/g3_review/hong_kong/adequacy_by_size.csv) · [Area estimates and support](../results/g3_review/hong_kong/scenario_summary.csv) · [Couple switching contrast](../results/g3_review/hong_kong/couple_switching.csv) · [Catalogue credited at full quality](../results/g3_review/hong_kong/catalogue_full_quality_sensitivity.csv)
+
+D6 reports 215,709 residents and 107,371 households in 108,202 subdivided units, with 33,658 quarters containing subdivided units. The counts give territory context. Household-size and floor-area distributions are unavailable, so the results describe the modeled templates. [D6 coverage](schemas/D6.md) · [Territory counts](../results/scenario_hk/territory_context.csv)
 
 ## Literature screening and study position
 
 The retrieved snapshot has 3,006 deduplicated titles, 947 retained titles and 407 available abstracts that were all read. The abstract decisions include nine overlap records, 253 related records, 13 known references and 132 irrelevant records. The ledger records 540 retained titles without an available abstract after the planned retrieval and follow-up, including the outcomes of 203 targeted Crossref checks. Eight records in the retrieved set received full-text checks, including seven overlap records. Two overlap records remain at abstract or project-summary access. The closest studies include room-level activity-area measures and circulation-based spatial compression. The present analysis contributes the paired whole-dwelling comparison at a common functional endpoint, with switching, daily demand and support limits made explicit. [Search scope, inclusion flow and positioning](novelty_check.md#systematic-confirmation-task-l--g3) · [Screening decisions](../results/literature/screened.csv) · [Full-text evidence](../results/literature/fulltext_checks_g3.json)
 
-The screening used one reviewer and a bounded four-source retrieval. The remaining abstract and full-text gaps, source query caps and versions with distinct identifiers limit claims about coverage. Two supplemental source checks sit outside the retrieval flow. Q34 records the citation and positioning questions for review.
+The screening used one reviewer and a bounded four-source retrieval. The remaining abstract and full-text gaps, source query caps and versions with distinct identifiers limit claims about coverage. Two supplemental source checks sit outside the retrieval flow. The G3 review adopts the positioning and cites Zeng et al. and Bu and Che Mat as the closest antecedents.
 
 ## Known issues for review
 
@@ -189,4 +217,4 @@ The screening used one reviewer and a bounded four-source retrieval. The remaini
 - The mirrored-access check is a paired robustness comparison on its own sample. It changes the available access targets as well as the reserved space. The room-level R comparison uses an approximate envelope and a body-free-area measure; the source uses a clearance-inclusive measure.
 - The Hong Kong area gaps refer to the prescribed modeled shells. The published D6 counts do not supply the joint household and floor-area distribution needed for city-scale totals. Any claim about territory-wide floor area or carbon would need further data.
 
-Open questions and unresolved limitations are tracked in [QUESTIONS.md](QUESTIONS.md). The [evidence manifest](../results/g3/evidence_manifest.json) binds the phase acceptance receipts, the numeric outputs and reviewed figures. Recheck the package with `python scripts/11_make_G3.py --verify` and `python scripts/11_complete_literature.py --verify` from the repository root after installing the project. The corrected compute version passed [183 tests and a three-layout coarse-grid trial](../results/g3/test_receipt.json). The results-review record is the next gate before the final package.
+Open questions and unresolved limitations are tracked in [QUESTIONS.md](QUESTIONS.md). The [evidence manifest](../results/g3/evidence_manifest.json) binds the phase acceptance receipts, the numeric outputs and reviewed figures. Recheck the package with `python scripts/11_make_G3.py --verify` and `python scripts/11_complete_literature.py --verify` from the repository root after installing the project. The corrected compute version passed [183 tests and a three-layout coarse-grid trial](../results/g3/test_receipt.json). The [G3 response](GATE_G3_response.md) maps the reviewer requests to the revised evidence.

@@ -1,0 +1,8 @@
+{
+  "status": "selected_on_training_only",
+  "config_hash": "a358ba5619fc368359be0e05928c7114df40e06dd29c27a41f8ba1488ae71474",
+  "selected": {
+    "H1_single_commuter": "catalogue",
+    "H3_couple_one_remote": "catalogue"
+  }
+}
