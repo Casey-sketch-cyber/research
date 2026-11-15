@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "elapsed_seconds": 0.083,
+  "elapsed_seconds": 0.079,
   "inputs": {
     "config/downloads.yaml": "9f890492428abab506fb960db76ab751732f036ab7969d1a58d096daa629b3c5",
     "config/furniture.yaml": "2052ccd128c9fa8c8149c103e3a8bdf06e295f82f8171b0ae0cd90132e272300",
@@ -19,23 +19,23 @@
     "results/g3_review/benchmark/algorithm_summary.csv": "f5d67e4c85e1c2fa74b5d0a6b6b7477bf1bcac590de74bac55e4c07c070fa3c2",
     "results/g3_review/benchmark/c_adequacy_auc.csv": "fb89323859325e31c4e0f76cd320f77eb8a3b6ecb1276f6418a29aeadc36d80e",
     "results/scenario_hk/territory_context.csv": "82cc2eef84d1da241c83f094687c2b3606eab1134d55125f10291322463fce86",
-    "scripts/12_make_tables.py": "1afc64a72b5d51aac13dce7e9867c942c3bec7364087aa1e34e0024fb7351e48",
+    "scripts/12_make_tables.py": "a3bd6f90c59759c15c82fc407097eecb88ba44c94f118b007da6601723a91694",
     "scripts/phase12_artifacts.py": "65bdfd8d9295c377dea60d4b312718edd4c7b513205f4437e3513e55bc23bf8b"
   },
   "outputs": {
     "results/tables/g4/T1.csv": "e0e70e521a2c6e290bebd91a46fb2af1e8a22937ecf6212281964257b34ce5a9",
-    "results/tables/g4/T1.md": "865fb4af9771be5d9be5b1ea24302966dbd0fe33cfea2235f6813b1599dbca45",
+    "results/tables/g4/T1.md": "508210e3786e5fba241ff2b5e4067ea7edc78c511b553bc31eedbdaf8fcdab88",
     "results/tables/g4/T2.csv": "e4fad8061ac884d2c689ae965858bdfe429249b8a6caeb94fbea8b61419f1026",
-    "results/tables/g4/T2.md": "b9f0bd91a47191da3da933ab16135a42cfc1cb88710d51e667e42548d8c05075",
+    "results/tables/g4/T2.md": "60be9216e56f83a174cdf56eb17a1cdcc43a0ad649279cf3632b6e61e693c1a3",
     "results/tables/g4/T3.csv": "22e71ed4740ff42383cdcb29d16dc342018a091d1b41fb872ccc0096c3c7fc14",
-    "results/tables/g4/T3.md": "ea69fdd0723250d874b8806339658ef8131aa5ee766acefaec471227a0a19d92",
+    "results/tables/g4/T3.md": "6eadaf19b54f5b30e5b176a6211e38317ee08cc0c0490bbf8e810a04b33092b5",
     "results/tables/g4/T4.csv": "7063b2594668cfe5c3dccea47bb3b44b61abc833cdc3a8a6ac4039685aeb38c4",
-    "results/tables/g4/T4.md": "b84a1ea76e28ffc6f3c37e469ae6066717b73eaf413a795a2a5568d29b42c675",
+    "results/tables/g4/T4.md": "0848413c698fc6a08bdf9483208cb1ce29f4b28d65d7cee5ea131c58f41537b8",
     "results/tables/g4/T5.csv": "f5d67e4c85e1c2fa74b5d0a6b6b7477bf1bcac590de74bac55e4c07c070fa3c2",
-    "results/tables/g4/T5.md": "fa5ac7e8c6199aa6c60f4cdbf8ae1a5ef6af9007dcfb1aa726fcb60c897c5520",
+    "results/tables/g4/T5.md": "3c6363bf1685eda56f5c45b219dd4ea58fea25f740c746b9313e5ab8714d6e1b",
     "results/tables/g4/T6.csv": "a121eb85787dbb8ac8f5c4ec9df5dffd1ac095cc7710015e53c1d1fc96b03395",
-    "results/tables/g4/T6.md": "7b1541240db931fa8410a2dbd5a9a482813686bcbf06f02c0c30d952de51fd42",
-    "results/tables/g4/T7.csv": "eb574ac5f8b8330a54ea70f3b694707fcd4130f8903a6a477bd58eef00e8d278",
-    "results/tables/g4/T7.md": "213d84129834273ec59a40a29c08dc0906531968f2622a2f56ef6063d795a11b"
+    "results/tables/g4/T6.md": "e3be1749a945096ed586065a2f1621d4ea35e02b5cf4d37a752bca864e52d4d0",
+    "results/tables/g4/T7.csv": "9dfa5c2b85e07473d12dbd6d7f5a46b8d8406d6cbfeb35e063b9d05b0d85b14b",
+    "results/tables/g4/T7.md": "93129bdf4f18d5205a54c27bc7bdd6b1b524d246e21e632d3e9d9a13a59001ba"
   }
 }

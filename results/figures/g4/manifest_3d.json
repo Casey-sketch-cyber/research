@@ -56,21 +56,32 @@
     "results/renders3d/stills/showcase_30_S2_day.png": "7269e1dcb93f21e00a51cbc49c417cd5828905bc1f600f8bbf0a51b44fefdbfb",
     "results/renders3d/stills/showcase_30_S2_dinner.png": "d6a96576ed50025ede5088cae94dd8da240c2b4f11aebd5303360f377434ff6b",
     "results/renders3d/stills/showcase_30_S2_night.png": "c587a40d8dacb4478d69decd04a275d91aebecdc194683d303cf443bed870746",
-    "scripts/12_make_figures.py": "e8d2212f7720dcaa61cc93dd58e0047960ca6b575855ded8cc1840e5d7b6465d",
+    "scripts/12_make_figures.py": "7858f1abbfb2a5530294a14a99cfb8f5a796e63bc605c147a045149271c7e8b8",
     "scripts/phase09_execution.py": "6be2e31eeb080e7c3e37607aeedeb3a3d7de3f330e736b53e7a1e7b76c2c7bdf",
     "scripts/phase11_kit_design.py": "83db45dbe3832ed26f0ddf3c616c3fcafcc178286b6bed0cc1386f89f084d7d7",
-    "scripts/phase12_artifacts.py": "65bdfd8d9295c377dea60d4b312718edd4c7b513205f4437e3513e55bc23bf8b"
+    "scripts/phase12_artifacts.py": "65bdfd8d9295c377dea60d4b312718edd4c7b513205f4437e3513e55bc23bf8b",
+    "results/renders3d/polish/manifest.json": "776484e9d76ac60ba5d3dda0780de5297bebaa4234035b8d2adc127410cd8acd",
+    "results/renders3d/polish/showcase_10_S0_day_cutaway.png": "f78115e9a06b85fa4fb720b5d7f6446bfa229f0ef144921af47f2a45232d5c72",
+    "results/renders3d/polish/showcase_10_S0_dinner_cutaway.png": "91d8675aff32d472f9ef988633af7538aa181d4dfb77b24e54b6079eebd2adc0",
+    "results/renders3d/polish/showcase_10_S0_night_cutaway.png": "15abd45bcd71e64d52b73d0fbc6faf7706f156c7d7250be7d97e4593b64023bd",
+    "results/renders3d/polish/showcase_10_S2_day_cutaway.png": "6d63dd996c88e1d1ad98a0a418a35265ef0b81983d3d7da36e94d4ea19c9403e",
+    "results/renders3d/polish/showcase_10_S2_dinner_cutaway.png": "df7b124ace35254e976d38872cfed5c3f4aed80378075021cc9b6f12ddae94cd",
+    "results/renders3d/polish/showcase_10_S2_night_cutaway.png": "d555c9aca54fa9946dcc4dfacf62249c485209d7fcc4458da143e4982d6ba190",
+    "results/renders3d/polish/showcase_30_S0_day_detail.png": "93b45e32715975683de1d5a34273f0693e3b3231b0b096d4692eb6f82b15f75d",
+    "results/renders3d/polish/showcase_30_S2_day_detail.png": "77a2822d0d8e051d503b4f4b8c078c5b1c5ffd3fe8e7e2e899e78e2a7d34b74f",
+    "scripts/12c_render_polish.py": "0a56298216fbb30404be112232cde4c2189f2445c1e752d3f99670db70263f97"
   },
   "outputs": {
-    "results/figures/g4/F3b_10.pdf": "e0bd09307b51d653141e5ec919373c86722432cac1b0270149bd153ad1703c2c",
-    "results/figures/g4/F3b_10.png": "ebc4a48aec8e393bead3501b8958c4f35fa7c30bbe08191f15c30fa7880a9151",
+    "results/figures/g4/F3b_10.pdf": "3682ad6942a25b9cf704d88b254f52d8d61ff2c638043c65a35fcd0710ba529b",
+    "results/figures/g4/F3b_10.png": "ddb16e2618e0d4f561a3edf6fa11cb2c2c3a7a86a8b7c1bb26a354a425452740",
     "results/renders3d/audits/showcase_10_S2_day_overlay.png": "a5f7374ad6cca3eebc93fcfe4c68b938b4c839b7bf47859862052a130d5ccacd",
     "results/figures/g4/F3b_18.pdf": "83cfdf9a9a7a71b37e7e7756b51ff0b7cd42c18073476e1e474366ec50b12412",
     "results/figures/g4/F3b_18.png": "9ecee1f0e87101c48d463f7595d5e4bd0e926cbfc9234ecddbce453ebb0c38e9",
     "results/renders3d/audits/showcase_18_S2_day_overlay.png": "94ff037d5a323676cb55387ffe140fc52be79a454bcb53e2a99f4744060a0515",
-    "results/figures/g4/F3b_30.pdf": "00c96da53533679dde76af332d409c06af16952cf5b93999285971272d1a03e9",
-    "results/figures/g4/F3b_30.png": "ba185354731930668b209b223a3a2599aad5b9b2639949a9911ef9aa60f3e130",
+    "results/figures/g4/F3b_30.pdf": "40d45a6b3c12ee4a7c72747355adce64c44468d0a1cbb3614fee05974547e112",
+    "results/figures/g4/F3b_30.png": "d765f77b668a64425488a2daea0b1e4809e0ae4a80394846eb26864ab0f7d5f9",
     "results/renders3d/audits/showcase_30_S2_day_overlay.png": "b0f1949b02c2d3172be1ebcc19b9c09ccdf2d71d36ca1ac1685c78ef11132d17",
     "results/renders3d/geometry_audit.csv": "ad0d76fa8f1c4562b62933a499c5b71d0303e27e7765dd5ddd25db8cda75e0da"
-  }
+  },
+  "polish_elapsed_seconds": 8.028
 }

@@ -60,7 +60,7 @@ def percent(value):
 
 
 def source_notes(paths):
-    return " · ".join(f"[{Path(p).name}](../../../{p})" for p in paths) + "."
+    return " · ".join(f"[{p.name}](../../../{p.as_posix()})" for p in map(Path, paths)) + "."
 
 
 def publish(name, title, data, text):
@@ -261,11 +261,17 @@ def t6():
 def t7():
     path = RESULTS / "expD/confusion.csv"
     frame = read(path).query("tau == 0.95").copy()
+    names = {
+        "ulrich_threshold": "Ulrich (2025) area comparator",
+        "hk_bhu_8m2": "Hong Kong basic housing unit area minimum",
+    }
+    frame = frame.rename(columns={"indicator": "comparator"})
+    frame["comparator"] = frame["comparator"].replace(names)
     INPUTS.add(RESULTS / "expD/threshold_sweeps.csv")
     sections = []
     for population, group in frame.groupby("population", sort=False):
         sections.append(f"## {population.replace('_', ' ')}")
-        rows = [[r.household[:2], r.strategy, r.indicator, fmt(r.threshold_m2, 0), r.n,
+        rows = [[r.household[:2], r.strategy, r.comparator, fmt(r.threshold_m2, 0), r.n,
                  r.tp, r.tn, r.fp, r.fn, percent(r.misclassification_rate)]
                 for r in group.itertuples(index=False)]
         sections.append(markdown_table(["Household", "Strategy", "Comparator", "NIA cutoff (m²)", "Cases",

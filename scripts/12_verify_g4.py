@@ -32,7 +32,7 @@ SANITIZED = {Path(p) for p in ("docs/PROCEDURES.md", "reports/ENVIRONMENT.md",
                                 "reports/environment.json", "scripts/00_env_report.py")}
 DRAFTS = [Path("manuscript/draft_methods.md"), Path("manuscript/draft_results.md")]
 REPORTS = [Path(f"reports/{name}.md") for name in (
-    "GATE_G4", "FINAL_SUMMARY", "phase_12_G4", "DECISIONS",
+    "GATE_G4", "FINAL_SUMMARY", "phase_12_G4", "phase_12c_polish", "DECISIONS",
 )]
 
 
@@ -77,6 +77,8 @@ def check_figures_and_tables():
     for pdf in (p for p in figure_set if p.suffix == ".pdf"):
         with pdf.open("rb") as stream:
             require(stream.read(5) == b"%PDF-", f"Invalid PDF: {pdf}")
+    for table in (p for p in table_set if p.suffix == ".md"):
+        check_links(table)
     return files | outputs, figure_set
 
 
@@ -160,17 +162,24 @@ def check_render_set():
     return files | {audit_path}, len(audit), float(audit.error_m.max())
 
 
+def check_links(path):
+    text = path.read_text(encoding="utf-8")
+    for match in re.findall(r"\]\(([^)\s]+)\)", text):
+        if "://" in match:
+            continue
+        target = match.split("#", 1)[0]
+        require("\\" not in target, f"Non-portable relative link in {path}: {target}")
+        require(not target or (path.parent / target).exists() or
+                (path.parent / target).resolve() == MANIFEST.resolve(),
+                f"Missing link target {target} in {path}")
+
+
 def check_paper_and_review():
     refs = set()
-    for path in DRAFTS + REPORTS[:3]:
+    for path in DRAFTS + REPORTS[:-1]:
         prose = path.read_text(encoding="utf-8")
         require("{{" not in prose, f"Unresolved field in {path}")
-        for match in re.findall(r"\]\(([^)\s]+)\)", prose):
-            if "://" not in match:
-                target = match.split("#", 1)[0]
-                require(not target or (path.parent / target).exists() or
-                        (path.parent / target).resolve() == MANIFEST.resolve(),
-                        f"Missing link target {target} in {path}")
+        check_links(path)
         for ref in re.findall(r"(?:config|docs|reports|results|scripts|src)/[\w./-]+\.(?:yaml|md|csv|json|py)",
                               "\n".join(re.findall(r"<!--(.*?)-->", prose, re.S))):
             refs.add(Path(ref))
@@ -202,7 +211,7 @@ def check_paper_and_review():
     require(np.allclose(below.loc[list(strategies)], [.448, .500], atol=.0005), "The small-shell trade-off changed")
     pairs = fit.loc[[(h3, s) for s in strategies]]
     require(np.allclose(pairs.a_min.to_numpy(), [15.39, 16.12], atol=.005, rtol=0), "HK crossings changed")
-    return refs | {K / "release_manifest.json", Path("reviews/G3_review_round3.md")}
+    return refs | {K / "release_manifest.json", Path("reviews/G3_review_round3.md"), Path("reviews/G4_review.md")}
 
 
 def check():
@@ -213,13 +222,18 @@ def check():
             "Review evidence incomplete")
     seen = hashes(visual["files"])
     expected = {p for p in figures if p.suffix == ".pdf"} | {p for p in files if p.name.endswith("_overlay.png")}
-    require(expected <= seen and len(expected) == 18, "Figure proof or geometry overlay missing")
+    presentation = read(RENDERS / "polish/manifest.json")
+    presentation_stills = {Path(row["still"]) for row in presentation["frames"]}
+    require(len(presentation["frames"]) == len(presentation_stills) == 8 and presentation_stills <= files,
+            "Incomplete source evidence for the presentation renders")
+    require(expected | presentation_stills <= seen and len(expected) == 18,
+            "Figure proof, geometry overlay or presentation render missing")
     paper = check_paper_and_review()
     package = files | render_files | paper | seen | SANITIZED | {VISUAL, TESTS, *SCRIPTS, *REPORTS, *DRAFTS}
     return {
         "passed": True,
         "checks": {"publication_figures": len(figures)//2, "table_pairs": 7, "scenes": 10, "stills": 30,
-                   "overlaid_examples": 3, "projected_instances": instances, "max_projection_error_m": error,
+                   "presentation_stills": len(presentation_stills), "overlaid_examples": 3, "projected_instances": instances, "max_projection_error_m": error,
                    "reported_regression_tests": tests["test_count"]},
         "files": {p.as_posix(): sha256_file(p) for p in sorted(package)},
     }

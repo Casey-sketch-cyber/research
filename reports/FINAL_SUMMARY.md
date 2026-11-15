@@ -66,12 +66,13 @@ Rebuild the G4 visuals and tables in a separate checkout to preserve the release
 ~~~sh
 python scripts/12b_export_scenes.py
 blender -b -P scripts/12b_render3d.py -- --config config/render.yaml
+blender -b -P scripts/12c_render_polish.py -- --config config/render.yaml
 python scripts/12_make_figures.py --only 2d
 python scripts/12_make_figures.py --only 3d
 python scripts/12_make_tables.py
 ~~~
 
-Blender 4.5 LTS was used. A CUDA installation can pass `--device cuda` after the script options. The equivalent invocation with that Blender version's Python module is `python scripts/12b_render3d.py --config config/render.yaml`. Fresh outputs record fresh runtimes and PDF creation dates. Scene and score digests can be compared independently of those records.
+Blender 4.5 LTS was used. A CUDA installation can pass `--device cuda` after the script options. The equivalent invocation with that Blender version's Python module is `python scripts/12b_render3d.py --config config/render.yaml`. Use the same invocation with `scripts/12c_render_polish.py` for the presentation views. Fresh outputs record fresh runtimes and PDF creation dates. Scene and score digests can be compared independently of those records.
 
 ### Numerical stage commands
 

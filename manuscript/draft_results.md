@@ -17,6 +17,8 @@ In the observed plans, the static layouts provided full FCI for 90.8% of commute
 
 The all-pair median equivalent-area gain was 0 m² for each household in observed plans. Among identified positive gains, the median was 1.33 m² [0.75, 3.11] for the remote worker, 6.21 m² [4.20, 10.00] for the couple and 5.00 m² [4.20, 8.00] for the parent and child. All improved commuter pairs were support-limited, with a median gain lower bound of ≥2.00 m². The comparable lower bound across all improved remote-worker pairs was ≥1.33 m². The commuter identified-positive median was unavailable on the observed-plan reference. <!-- results/g3/area_summary.csv; results/expA_f1/analysis_p1/paired_equivalent_area.csv -->
 
+For the six observed-plan couple pairs at 16–18 m², the observed-plan reference gave a median gain lower bound of 16.6 m² with no finite upper bound, while the pooled reference identified a median gain of 8.2 m². <!-- results/g3/area_summary.csv, real_plans cohort, 16–18 m² bin, real_plans and pooled references -->
+
 In D3, the couple's all-pair median gain rose from 0.75 m² (9.2% of NIA) in the 8–10 m² bin to 7.32 m² (49.8%) in the 14–16 m² bin. The median reached zero in the evaluated bins from 24 m² onward. The parent-and-child median increased from 0.69 m² at 8–10 m² to 6.00 m² at 18–20 m². <!-- results/g3/area_summary.csv -->
 
 The observed-plan estimate of ΔAₘᵢₙ at FCI ≥ 0.95 was supported for the parent-and-child schedule, 10.78 m² [9.15, 12.70]. The other observed-plan contrasts had at least one unsupported crossing. The D3 reductions were 1.68 m² [1.12, 2.38] for the commuter, 3.63 m² [2.78, 4.77] for the remote worker, 5.53 m² [4.90, 6.12] for the couple and 6.45 m² [5.19, 7.75] for the parent and child. The pooled remote-worker point contrast was 6.32 m², with too few supported resamples for an interval. <!-- results/expA_f1/analysis/min_adequate_area.csv -->
@@ -46,6 +48,8 @@ No tested kit established an improvement over the optimized catalogue for the si
 For the couple, the larger H3_kit_02 ranked first by mean FCIq under matched additional search. Its paired mean difference was +0.0021 [−0.0336, +0.0279], with a higher score in 21 shells, a tie in 3 and a lower score in 6. It reached adequacy in 5 of 30 training shells versus 2 for the catalogue and captured 7.4% of the observed bespoke gain. The couple's fixed kit reached adequacy on 3 of 15 held-out shells versus 0 for the catalogue, and 10 of 15 small observed plans versus 8. The corresponding mean FCIq contrasts were −0.0242 [−0.0946, +0.0315] and +0.0066 [−0.0040, +0.0181]. <!-- results/g3_review_k3/kit.yaml; results/g3_review_k3/paired_effects.csv -->
 
 ## Hong Kong scenario · Size-dependent adequacy
+
+Under the shared quality rule, the commuter's estimated minimum adequate area fell from 13.40 m² with S0 to 12.37 m² with catalogue S2. For the parent and child, it fell from 19.58 m² to 17.07 m². <!-- results/g3_review_k3/hk_scenario_summary.csv, H1 and H4, S0 and S2 -->
 
 The couple's S1-to-S2 switching contrast under the shared quality rule was 2.24 m² [1.66, 2.82]. With the larger kit, the modeled Aₘᵢₙ was 15.39 m² [14.67, 16.19], versus 16.12 m² [15.70, 16.57] for the optimized catalogue. The two point estimates differ by 0.73 m². Across the modeled grid, 154 of 390 shells were adequate with the larger kit versus 132 with the optimized catalogue. <!-- results/g3_review/hong_kong/couple_switching.csv; results/g3_review_k3/hk_scenario_summary.csv; results/g3_review_k3/paired_effects.csv -->
 

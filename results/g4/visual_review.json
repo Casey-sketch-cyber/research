@@ -3,12 +3,14 @@
   "scope": {
     "pdf_pages": 15,
     "rendered_stills": 30,
-    "geometry_overlays": 3
+    "geometry_overlays": 3,
+    "presentation_stills": 8
   },
   "observations": [
     "PDF proof pages: panel labels, units, reference limits, comparators and legends were inspected.",
     "All five sets of stills were checked for framing and visibility of the modeled furniture.",
-    "The three top-view outlines were checked against the model footprints. The geometry CSV reports the computed errors."
+    "The three top-view outlines were checked against the model footprints. The geometry CSV reports the computed errors.",
+    "Phase 12c: reviewed all four revised PDF pages and all eight presentation views. F5 distinguishes sparse and unbounded bins. F9 states the identified-positive estimand. Both F3b captions identify zero switching, and the main-room details expose the furniture."
   ],
   "files": {
     "results/figures/g4/F1.pdf": "159acb11080f93ad98a1cb6361173a504590fd91edd9d3d56c678c9ffd68cc0d",
@@ -17,18 +19,26 @@
     "results/figures/g4/F12.pdf": "4c453f881fbaf7bb1b89f648808a3f9384265205a0e13cdda9e7c735fd0ccde1",
     "results/figures/g4/F2.pdf": "904fcfdc2f9488e0d6874e339cae35b64d00068b9a5517dbe9927df9b61b13f9",
     "results/figures/g4/F3.pdf": "e56faa851e5d35c55f0979a88818f3d17f8be1e15a2f163a5364b848f5cd7873",
-    "results/figures/g4/F3b_10.pdf": "e0bd09307b51d653141e5ec919373c86722432cac1b0270149bd153ad1703c2c",
+    "results/figures/g4/F3b_10.pdf": "3682ad6942a25b9cf704d88b254f52d8d61ff2c638043c65a35fcd0710ba529b",
     "results/figures/g4/F3b_18.pdf": "83cfdf9a9a7a71b37e7e7756b51ff0b7cd42c18073476e1e474366ec50b12412",
-    "results/figures/g4/F3b_30.pdf": "00c96da53533679dde76af332d409c06af16952cf5b93999285971272d1a03e9",
+    "results/figures/g4/F3b_30.pdf": "40d45a6b3c12ee4a7c72747355adce64c44468d0a1cbb3614fee05974547e112",
     "results/figures/g4/F4.pdf": "ab4ee13b73c4a0d7e88f6be535202078caca76755d199a86b864f8af7440bfe2",
-    "results/figures/g4/F5.pdf": "d6a538f5a073d6b4fa1b6e6a852f07a8293a3995c05cb8cbd0d414780afdaee5",
+    "results/figures/g4/F5.pdf": "69be93da0df5754969beb9fd7551e215ca443cfb3a221f503a854d4f7ed70739",
     "results/figures/g4/F6.pdf": "d29b04e417f2116d5e469976c811cd81cf46b79f66198f867035ccc95f46102a",
     "results/figures/g4/F7.pdf": "da061ed0538601fa0ffffaf90043ed3899234eda21ca526eaa9154ef47d63682",
     "results/figures/g4/F8.pdf": "99d935a1b8b042ee61b513c69718de6501330510c32ead864c973b2e602868ab",
-    "results/figures/g4/F9.pdf": "743e3dc42bcd490754c1407de63cb666cef98d1d6ca41dd8a8aebd94a1cbb63c",
+    "results/figures/g4/F9.pdf": "efb31e15d595402f8a717c0a6b56207914456a8e068ef61918db11d4e9907fdf",
     "results/renders3d/audits/showcase_10_S2_day_overlay.png": "a5f7374ad6cca3eebc93fcfe4c68b938b4c839b7bf47859862052a130d5ccacd",
     "results/renders3d/audits/showcase_18_S2_day_overlay.png": "94ff037d5a323676cb55387ffe140fc52be79a454bcb53e2a99f4744060a0515",
     "results/renders3d/audits/showcase_30_S2_day_overlay.png": "b0f1949b02c2d3172be1ebcc19b9c09ccdf2d71d36ca1ac1685c78ef11132d17",
+    "results/renders3d/polish/showcase_10_S0_day_cutaway.png": "f78115e9a06b85fa4fb720b5d7f6446bfa229f0ef144921af47f2a45232d5c72",
+    "results/renders3d/polish/showcase_10_S0_dinner_cutaway.png": "91d8675aff32d472f9ef988633af7538aa181d4dfb77b24e54b6079eebd2adc0",
+    "results/renders3d/polish/showcase_10_S0_night_cutaway.png": "15abd45bcd71e64d52b73d0fbc6faf7706f156c7d7250be7d97e4593b64023bd",
+    "results/renders3d/polish/showcase_10_S2_day_cutaway.png": "6d63dd996c88e1d1ad98a0a418a35265ef0b81983d3d7da36e94d4ea19c9403e",
+    "results/renders3d/polish/showcase_10_S2_dinner_cutaway.png": "df7b124ace35254e976d38872cfed5c3f4aed80378075021cc9b6f12ddae94cd",
+    "results/renders3d/polish/showcase_10_S2_night_cutaway.png": "d555c9aca54fa9946dcc4dfacf62249c485209d7fcc4458da143e4982d6ba190",
+    "results/renders3d/polish/showcase_30_S0_day_detail.png": "93b45e32715975683de1d5a34273f0693e3b3231b0b096d4692eb6f82b15f75d",
+    "results/renders3d/polish/showcase_30_S2_day_detail.png": "77a2822d0d8e051d503b4f4b8c078c5b1c5ffd3fe8e7e2e899e78e2a7d34b74f",
     "results/renders3d/stills/shell_08_S0_day.png": "03f54527a55f6c9de624d18ae585fcef0e17fb1c090e2eaab27a061c59154736",
     "results/renders3d/stills/shell_08_S0_dinner.png": "2ad8ecca9b8831c6a3daefe90f231519cff530c9ca37bb33e2a21e7217432cf3",
     "results/renders3d/stills/shell_08_S0_night.png": "51d762b7f874cd6435175bc0251ff95b692be4ce1fc872cf6afb26a613af6768",

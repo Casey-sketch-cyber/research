@@ -1,6 +1,6 @@
 # Gate G4 — Final figures, drafts and research package
 
-The [third G3 review](../reviews/G3_review_round3.md) approved the results and advanced the project to Phases 12 and 12b. This package is ready for G4 review.
+The [G4 review](../reviews/G4_review.md) approved the computational package and requested six publication revisions. [Phase 12c report](phase_12c_polish.md)
 
 | Requested change | G4 evidence |
 | --- | --- |
@@ -15,4 +15,4 @@ The [third G3 review](../reviews/G3_review_round3.md) approved the results and a
 - [Scene and still files](../results/renders3d/) and [geometry audit](../results/renders3d/geometry_audit.csv)
 - [Phase report and acceptance checks](phase_12_G4.md) and [G4 release manifest](../results/g4/release_manifest.json)
 
-Run `python scripts/12_verify_g4.py --verify` to check the artifact hashes and G4 acceptance. The G3 evidence remains verifiable. Further publication work awaits the G4 review.
+Run `python scripts/12_verify_g4.py --verify` to check the artifact hashes and G4 acceptance.
