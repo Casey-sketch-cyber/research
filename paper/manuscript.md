@@ -251,7 +251,7 @@ The authors declare no competing interests. [AUTHOR TO VERIFY/FILL]
 - Rakhmatillaeva, Z. (2025). Spatial Analysis of Contemporary One-Room Apartment Layouts in Tashkent's New Residential Buildings. *International Multidisciplinary Journal for Research & Development*. https://inlibrary.uz/index.php/imjrd/article/view/126573
 - ResPlan (2025). ResPlan: A Large-Scale Vector-Graph Dataset of 17,000 Residential Floor Plans. arXiv:2508.14006. https://github.com/m-agour/ResPlan
 - Sun, F.-Y., et al. (2025). LayoutVLM: Differentiable Optimization of 3D Layout via Vision-Language Models. In *Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)*. arXiv:2412.02193.
-- Ulrich, K. T. (2025). Minimum Spatial Housing Requirements for Human Flourishing. *Buildings*, 15(15), 2623. https://doi.org/10.3390/buildings15152623
+- Ulrich, K. T. (2025). Minimum Spatial Housing Requirements for Human Flourishing. *Buildings*, 15, 2623. [CITE: verify issue number and DOI]
 - Weber, R. E., Mueller, C., and Reinhart, C. (2024). A hypergraph model shows the carbon reduction potential of effective space use in housing. *Nature Communications*, 15. https://doi.org/10.1038/s41467-024-52506-z
 - Xiang, C., et al. (2025). Co-Layout: LLM-driven Co-optimization for Interior Layout. arXiv:2511.12474.
 - Xiong, G., Cai, S., and Luo, G. (2026). MAFC-Driven Dynamic Layout Transformation System for Reconfigurable Furniture. *Computer Animation and Virtual Worlds*. https://doi.org/10.1002/cav.70113

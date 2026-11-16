@@ -34,6 +34,7 @@
 2. **`[CITE: ...]` (9 distinct items across 11 occurrences in `STAR Methods` and `References`):**
    - Software citations not listed in `docs/RESEARCH_PLAN.md` §10: `[CITE: Google OR-Tools CP-SAT solver]`, `[CITE: PyTorch]`, `[CITE: LightGBM]`, `[CITE: scikit-learn]`, `[CITE: GraphSAGE (Hamilton et al.)]`.
    - Incomplete metadata fields flagged for verification in `docs/RESEARCH_PLAN.md` §10 / `docs/REFERENCES_TASK.md`: `[CITE: verify dataset release year]` for Archilyse AG (Swiss Dwellings v3.0.0), `[CITE: verify volume and pages]` for Bu and Che Mat (2026), `[CITE: verify journal volume and pages]` for Elmurodov and Mametova (2026), and `[CITE: verify issue year and volume]` for Xiong et al. (2020).
+   - `[CITE: verify issue number and DOI]` for Ulrich (2025). Added at review: draft v1 had built the DOI and issue number from the MDPI pattern, but neither appears in `docs/RESEARCH_PLAN.md` §10 or `reports/novelty_check.md`.
    - Note: `Yunitsyna (2014)` is currently cited from `reports/novelty_check.md` (C4 table); if `codex/paper-refs` drops Epoka repository PDFs under `docs/REFERENCES_TASK.md` ("Skip theses, repository copies and low-quality venues"), remove `Yunitsyna, 2014` from the two parenthetical citation lists (`Introduction P2` and `Discussion P2`).
 3. **Author / archive placeholders:**
    - `[AUTHOR TO FILL]` (author names, affiliations, lead contact, eTOC author name, acknowledgments, author contributions, declaration of interests) and `[TO MINT]` (Zenodo archive DOI).
