@@ -13,7 +13,7 @@ You are drafting the manuscript of this research project for **iScience** (Cell 
 ## Rules
 
 - **Numbers:** every number must come from a committed file listed in `docs/PAPER_STORY.md` §8 or in the drafts above. If a number you need is missing, write `[NEEDS EVIDENCE: …]`. Never compute, estimate or round differently from the source.
-- **References:** if `paper/references.bib` exists, cite only from it. Until then, use only `docs/RESEARCH_PLAN.md` §10 and the records in `reports/novelty_check.md`, and write `[CITE: what is needed]` for anything else. Never invent references, DOIs or page numbers. The reference list is being expanded separately (`docs/REFERENCES_TASK.md`).
+- **References:** if `paper/references.bib` exists, cite only from it. Until then, use only `docs/RESEARCH_PLAN.md` §10 and the records in `reports/novelty_check.md`, and write `[CITE: what is needed]` for anything else. Never invent references, DOIs or page numbers. The verified list is being consolidated separately (`docs/REFERENCES_TASK.md`, about 40 references); do not add more.
 - **Claims:** no "first", "novel" or "unprecedented". Follow `docs/PAPER_STORY.md` §7.
 - **Terminology:** use the table in `docs/PAPER_STORY.md` §6 exactly.
 - **Do not edit** `reviews/`, `results/`, `config/`, `src/`, `scripts/` or `docs/` (except to add notes in `paper/NOTES_FROM_WRITER.md`).
