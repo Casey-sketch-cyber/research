@@ -1,6 +1,6 @@
 # Writing guide for this repository
 
-This is a copy of the `research-paper-story-writing` skill, for writers without access to Claude skills (Gemini, Codex, people). Project-specific content is in [`PAPER_STORY.md`](PAPER_STORY.md).
+This is a copy of the `research-paper-story-writing` skill, for writers without access to Claude skills (Gemini, Codex, people). The canonical version is https://github.com/Casey-sketch-cyber/paperwrite/blob/main/skills/research-paper-story-writing/SKILL.md; if the two differ, follow the canonical version. Project-specific content is in [`PAPER_STORY.md`](PAPER_STORY.md).
 
 # Research paper story writing
 
