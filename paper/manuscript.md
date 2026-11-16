@@ -1,3 +1,31 @@
+# Transformable furniture saves floor area mainly for two-person households in mid-sized compact homes
+
+**Title options (Cell Press declarative style):**
+1. **Recommended:** *Transformable furniture saves floor area mainly for two-person households in mid-sized compact homes*
+2. *Floor area alone misjudges how well compact homes work*
+3. *How much floor area can transformable furniture save? Evidence from 2,619 compact homes*
+
+**Authors:** [AUTHOR TO FILL]¹,*
+**Affiliations:** ¹[AUTHOR TO FILL]
+**Lead contact:** *Correspondence: [AUTHOR TO FILL]
+
+**Keywords:** compact housing, minimum space standards, transformable furniture, functional capacity, layout optimization, equivalent area
+
+## Summary
+
+Shrinking urban homes are regulated mainly by floor area, while transformable furniture is promoted to make small dwellings work. Yet area rules, single-room studies, and layout generators cannot establish how much usable area transformable furniture saves across diverse homes and daily routines. Here, we compare each home with itself under static, form-only, and time-switched furniture strategies—each arranged by constraint optimization and independently verified—and translate capacity differences into equivalent floor area (m²). Across 2,619 compact plans and four household types, most observed plans already function with static furniture. Gains concentrate in two-person households of intermediate compact size, with median identified equivalent-area gains of 6.21 m² for couples and 5.00 m² for parent-and-child households. Fixed 45 m² cutoffs disagree with modeled adequacy on 55.7% of couple and 52.7% of parent-and-child cases, while daily switching saves 2.24 m² for couples in Hong Kong model shells, supporting performance-based supplements to area rules.
+
+## Highlights
+
+- Verified layouts for 2,619 compact plans and four household types
+- Transformable furniture helps a minority of plans, mostly two-person households
+- Floor-area cutoffs misclassify about half of two-person homes in our model
+- Switching furniture states is worth about 2.2 m² for couples in Hong Kong shells
+
+## eTOC blurb
+
+Evaluating 2,619 compact floor plans across four daily household schedules with constraint optimization and independent geometric validation, [AUTHOR TO FILL] show that transformable furniture saves floor area mainly for two-person households in mid-sized compact homes, whereas fixed floor-area cutoffs misclassify roughly half of two-person dwellings, motivating performance-based supplements to area standards.
+
 ## Introduction
 
 Urban housing pressure and rising construction costs are shrinking homes across dense cities, and governments largely regulate these compact dwellings by internal floor area alone. Hong Kong's Basic Housing Units Ordinance, for instance, sets a statutory minimum internal floor area of 8 m² for subdivided units, mostly commencing on 1 March 2026 (Hong Kong SAR Government, 2025), whereas normative scholarship on human flourishing proposes 30, 45, and 60 m² for one-, two-, and three-person households (Ulrich, 2025). How much floor area a household requires also carries major environmental stakes, as effective space use in existing housing can cut operational and embodied carbon more than envelope retrofits across many urban building types (Weber et al., 2024). Within this squeeze, transformable furniture—such as wall beds, fold-down desks, and drop-leaf tables—is widely promoted to make small homes work without expanding physical footprints (Goessler and Kaluarachchi, 2023; Daglio et al., 2023).
@@ -189,6 +217,18 @@ Finally, we evaluated the Hong Kong subdivided-unit scenario across 390 model sh
 ### Quantification and statistical analysis
 
 All statistical summaries and uncertainty intervals were computed in Python (`numpy 2.4.6`, `scipy 1.17.1`, `scikit-learn 1.9.1`) using fixed random seed `20261105`. Because strategies S0, S1, and S2 (and alternative solvers or furniture kits) are evaluated on the exact same dwellings, all primary comparisons are paired within physical dwelling units. Two-sided 95% confidence intervals use 1,000 non-parametric paired bootstrap resamples: on D1, D2, and D3, the resampling unit is the physical dwelling unit stratified by source (retaining all paired household and strategy evaluations for each resampled unit); in the 390-shell Hong Kong scenario, the resampling unit is the 30-shape geometric template cluster (resampling whole 8–20 m² area trajectories per template to preserve cross-area correlation). Within every bootstrap draw, static reference curves $\hat{f}_0(A)$, equivalent-area inversions, and unpenalized logistic $A_{\min}$ crossings are refitted from scratch before taking the 2.5th and 97.5th percentiles. Confidence intervals for area statistics ($\Delta\text{EA}$ medians and $A_{\min}$ or $\Delta A_{\min}$ crossings) are reported only when at least two distinct units contribute and at least 80% of the 1,000 bootstrap draws produce finite within-support estimates; otherwise point estimates are reported without intervals or withheld as unsupported, and boundary-censored equivalent-area estimates are explicitly denoted with `≥` lower bounds or lower–upper support intervals. Sample sizes ($n$, representing physical dwellings, unit–household pairs, or template shells as labeled) are stated in every table, figure legend, and Results subsection.
+
+## Acknowledgments
+
+[AUTHOR TO FILL]
+
+## Author contributions
+
+[AUTHOR TO FILL]
+
+## Declaration of interests
+
+The authors declare no competing interests. [AUTHOR TO VERIFY/FILL]
 
 ## References
 
