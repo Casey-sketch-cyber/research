@@ -15,6 +15,10 @@ Research project for a submission to *Urban Science* (MDPI), Special Issue "Urba
 | [`config/`](config/) | Codex | All parameters: project, furniture library, household schedules |
 | [`data/README.md`](data/README.md) | Codex / author | Dataset sources and download paths (all open, no application needed) |
 
+## Paper writing (current phase)
+
+Target journal: *iScience*. The manuscript brief is [`docs/PAPER_STORY.md`](docs/PAPER_STORY.md), the writing method is [`docs/WRITING_GUIDE.md`](docs/WRITING_GUIDE.md), and the Figure 1 drawing spec is [`docs/FIGURE1_SPEC.md`](docs/FIGURE1_SPEC.md). The writer's instructions are in [`GEMINI.md`](GEMINI.md). Drafts go to `paper/` on `gemini/...` or `codex/...` branches, through pull requests reviewed by Claude.
+
 ## Workflow
 
 The current review gate is G3. The [results report](reports/GATE_G3.md) links the accepted outputs, evidence manifest and remaining limitations.
