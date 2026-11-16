@@ -103,3 +103,7 @@ For the manuscript review, relate these outcomes to time-weighted task coverage 
 ## Q35 — Coarse collision grid requires a compatible anchor stride
 
 The initial 0.20 m resolution ablation stopped when it reached a small-home case with a 0.10 m anchor stride. An anchor must lie on the collision raster. The repair uses the smallest representable stride at least as large as the reviewed stride, which changes the affected cases to 0.20 m anchors. The other grid settings, fixed sample and per-case time budgets remain fixed. The affected contrast includes coarser anchors as well as coarser collision cells. Complete earlier triplets are inherited only after checking their unchanged input configuration, case identity and layout digests. The failed-attempt receipt, both code fingerprints and effective settings accompany the results.
+
+## Q36 — Figure 1 schematic and the accepted area estimands
+
+The drawing brief places the left endpoint of the equivalent-area bracket at the dwelling's own area and marks minimum adequate area at the static FCI curve's threshold crossing. Figure 1 and the graphical abstract follow the accepted F2/P1 definitions in [RESEARCH_PLAN §3](../docs/RESEARCH_PLAN.md#3-key-definitions) and the manuscript Methods. The paired gain spans the inverse scores for S0 and S2 on the same static reference. Figure 1 shows FCI ≥ 0.95 as the adequacy criterion and gives minimum adequate area separately at the 50% point of the logistic adequacy fit.
