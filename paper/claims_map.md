@@ -1,4 +1,4 @@
-# Claims-to-evidence map (`paper/manuscript.md`)
+# Claims-to-evidence map (`paper/manuscript.md`, draft v4)
 
 Format per `GEMINI.md` and `docs/WRITING_GUIDE.md` §11: one line per claim in the **Summary**, **Introduction**, and **Discussion** (including **Limitations of the study**), formatted as `Claim | Evidence file | Status` (`supported`, `needs evidence`, or `weakened`).
 

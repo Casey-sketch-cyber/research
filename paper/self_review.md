@@ -1,6 +1,6 @@
-# Adversarial self-review (`paper/manuscript.md`, draft v3)
+# Adversarial self-review (`paper/manuscript.md`, draft v4)
 
-Prepared per `GEMINI.md` and `docs/WRITING_GUIDE.md` §9, and updated for `gemini/paper-draft-v3` following `reviews/paper_round2_review.md` ("Draft v3"). Each item is answered with specific evidence from `paper/manuscript.md`, `paper/references.bib`, `paper/figures/fig1/Figure1.pdf`, and the committed result files, and graded as **`pass`**, **`needs revision`**, or **`needs new analysis`**.
+Prepared per `GEMINI.md` and `docs/WRITING_GUIDE.md` §9, and updated for `gemini/paper-draft-v4` following `reviews/paper_final_pass.md`. Each item is answered with specific evidence from `paper/manuscript.md`, `paper/references.bib`, `paper/figures/fig1/Figure1.pdf`, `paper/figures/fig1/GraphicalAbstract.pdf`, and the committed result files, and graded as **`pass`**, **`needs revision`**, or **`needs new analysis`**.
 
 ---
 
@@ -91,5 +91,4 @@ Prepared per `GEMINI.md` and `docs/WRITING_GUIDE.md` §9, and updated for `gemin
 
 ## Unresolved items before journal submission
 
-1. **Optional graphic polish (`codex/paper-fig1-v3`, `reviews/fig1_v2_review.md`):** Add muted `FCI` and `Area (m²)` axis labels on `Figure 1D` (which the `Figure 1` legend in `paper/manuscript.md` already describes explicitly) and apply the minor Graphical Abstract label polish.
-2. **Author metadata (`[AUTHOR TO FILL]` / `[TO MINT]`):** Fill author names, affiliations, lead contact email, acknowledgments, author contributions, declaration of interests, and the minted Zenodo archive DOI in `paper/manuscript.md`.
+1. **Author metadata and archive DOI (`[AUTHOR TO FILL]` / `[TO MINT]`):** Fill author names, affiliations, lead contact email, eTOC author name, acknowledgments, author contributions, declaration of interests, and the minted Zenodo archive DOI in `paper/manuscript.md` (`Figure 1` and the `Graphical Abstract` under `paper/figures/fig1/` are finalized per `reviews/ga_v5_review.md`).
