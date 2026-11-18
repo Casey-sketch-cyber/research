@@ -1,7 +1,8 @@
-# Transformable furniture saves floor area mainly for two-person households in mid-sized compact homes
+# Translating furniture into floor area shows where compact homes gain space
 
 **Title options (Cell Press declarative style):**
-1. **Recommended:** *Transformable furniture saves floor area mainly for two-person households in mid-sized compact homes*
+1. **Selected by the author (2026-11-18):** *Translating furniture into floor area shows where compact homes gain space*
+1. *Transformable furniture saves floor area mainly for two-person households in mid-sized compact homes*
 2. *Floor area alone misjudges how well compact homes work*
 3. *How much floor area can transformable furniture save? Evidence from 2,619 compact homes*
 
