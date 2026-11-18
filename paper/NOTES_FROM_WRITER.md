@@ -1,10 +1,10 @@
-# Writer handover notes (`gemini/paper-draft-v3`)
+# Writer handover notes (`gemini/paper-draft-v4`)
 
 ## 1. Manuscript-to-artifact mapping
 
 ### Main figures and graphical abstract
-- **Graphical Abstract** → `paper/figures/fig1/GraphicalAbstract.pdf` (`paper/figures/fig1/GraphicalAbstract.png`)
-- **Figure 1** → `paper/figures/fig1/Figure1.pdf` (`paper/figures/fig1/Figure1.png`; four-panel layout `A–D`)
+- **Graphical Abstract** → `paper/figures/fig1/GraphicalAbstract.pdf` (`paper/figures/fig1/GraphicalAbstract.png`). The Graphical Abstract's `"+3.5 m²"` (`"equivalent floor area gained vs static furniture"`) is the point-identified equivalent-area gain ($\Delta\text{EA}$) of the 18.00 m² generated couple showcase shell shown in Figure 1B and Figure 2 (`results/expA_f1/analysis_p1/paired_equivalent_area.csv`: `unit_key = D3:93a7c03b42e4b87306d4`, `household_id = H3_couple_one_remote`, `method = median_bin_cummax`, `reference_pooling = D3`, `delta_ea_m2 = 3.481462`; reported as $\Delta\text{EA} = 3.48\text{ m}^2$ in `Results §1`).
+- **Figure 1** → `paper/figures/fig1/Figure1.pdf` (`paper/figures/fig1/Figure1.png`; final four-panel layout `A–D`)
 - **Figure 2** → `results/figures/g4/F3.pdf` (Panel A: 2D plans across Night, Workday, Dinner for 10.00, 18.00, and 29.97 m²) + `results/figures/g4/F3b_18.pdf` (Panel B: 3D renders of 18.00 m² couple shell)
 - **Figure 3** → `results/figures/g4/F4.pdf` (Median FCI by 2 m² NIA bin and fitted monotone static reference)
 - **Figure 4** → `results/figures/g4/F5.pdf` (All-pair median ΔEA in m² and % of NIA with support bounds)
@@ -45,3 +45,11 @@
 - **Item 3 (Crossref author form):** Retained `Mustafa and Ali (2022)` in inline citations and `## References` (`Mustafa, C., and Ali, A. (2022)` with `9(2), 23–37` and `https://doi.org/10.17656/sjes.10154` from `qaradaghi2022area`).
 - **Item 4 (`Figure 1` legend rewritten for Figure 1 v2):** Rewrote the `Figure 1` legend (`paper/figures/fig1/Figure1.pdf`) for the decluttered four-panel layout (`A Inputs`, `B Strategies`, `C Verified optimization`, `D Function → area`), incorporating all corpus, strategy, validator, FCI, $\Delta\text{EA}$, $A_{\min}$, and form/time decomposition definitions moved out of the figure.
 - **Item 5 (Preserve everything else):** Kept all quantitative results, tables, and prose outside the requested reference and `Figure 1` legend updates unchanged.
+
+## 4. Changes in draft v4 (`gemini/paper-draft-v4`, addressing `reviews/paper_final_pass.md`)
+
+- **Section 1 (`Figure 1` legend replaced):** Replaced the ~330-word `Figure 1` legend with the concise four-panel legend (140 body words; 152 words including title) naming the `night, workday, and dinner` slots without writing `"six"`, keeping $A_{\min}$, support bounds, and anchor details in `STAR Methods`, and removing all repository paths and code backticks.
+- **Section 2 (Graphical Abstract `+3.5 m²` traceability):** Documented the exact `paired_equivalent_area.csv` source of the Graphical Abstract's `"+3.5 m²"` (`unit_key = D3:93a7c03b42e4b87306d4`, `H3_couple_one_remote`, `median_bin_cummax`, `D3` reference, `delta_ea_m2 = 3.481462`) in Section 1 above and added `$\Delta\text{EA} = 3.48\text{ m}^2$` where the 18.00 m² couple shell is introduced in `Results §1`.
+- **Section 3.1 (Title block & keywords):** Retained the author-selected title on line 1 (`Translating furniture into floor area shows where compact homes gain space`), labelled the three unused title options below it `2–4. **Not used:**`, and verified `"transformable furniture"` remains in `Keywords` and the first sentence of `Summary`.
+- **Section 3.2 (Code formatting & repository paths):** Removed all backticks and internal repository paths from the main text, `STAR Methods` prose, all main and supplemental figure legends (`Figures 1–6`, `Figures S1–S6`), and all main and supplemental table legends and cells (`Tables 1–4`, `Tables S1–S4`), replacing raw configuration tokens (`sleep_1`, `OUTSIDE_IQR`, `fci_S0`, `gbm_features`, `H1_kit_01`, etc.) with reader-facing labels while keeping public archive URLs in the `Key resources table` and `Data and code availability`.
+- **Section 3.3–3.5 (Terminology, references, word counts, and numerical integrity):** Standardized `form + time (S2)` / `form-only (S1)` phrasing in `Results §6`, verified 1-to-1 parity across all 30 cited references, verified `Summary` (148 words $\le 150$), `Highlights` (all $\le 80$ characters), and main text ($\sim 4,500$ words $\le 4,800$), and left `paper/figures/` completely untouched.
