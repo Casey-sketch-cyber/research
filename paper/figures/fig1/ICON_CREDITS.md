@@ -17,6 +17,7 @@ All SVGs in `assets/icons/tabler/` are outline icons from Tabler Icons by Paweł
 | `home` | [Tabler Icons](https://github.com/tabler/tabler-icons/blob/4581ad20d8d13e24f6c3be75caaea1c4ad6c4b35/icons/outline/home.svg) | MIT | Figure 1 v1 |
 | `moon` | [Tabler Icons](https://github.com/tabler/tabler-icons/blob/4581ad20d8d13e24f6c3be75caaea1c4ad6c4b35/icons/outline/moon.svg) | MIT | Figure 1 and graphical abstract |
 | `ruler-measure` | [Tabler Icons](https://github.com/tabler/tabler-icons/blob/4581ad20d8d13e24f6c3be75caaea1c4ad6c4b35/icons/outline/ruler-measure.svg) | MIT | Graphical abstract |
+| `scale` | [Tabler Icons](https://github.com/tabler/tabler-icons/blob/4581ad20d8d13e24f6c3be75caaea1c4ad6c4b35/icons/outline/scale.svg) | MIT | Graphical abstract |
 | `shield-check` | [Tabler Icons](https://github.com/tabler/tabler-icons/blob/4581ad20d8d13e24f6c3be75caaea1c4ad6c4b35/icons/outline/shield-check.svg) | MIT | Figure 1 |
 | `sun` | [Tabler Icons](https://github.com/tabler/tabler-icons/blob/4581ad20d8d13e24f6c3be75caaea1c4ad6c4b35/icons/outline/sun.svg) | MIT | Figure 1 and graphical abstract |
 | `table` | [Tabler Icons](https://github.com/tabler/tabler-icons/blob/4581ad20d8d13e24f6c3be75caaea1c4ad6c4b35/icons/outline/table.svg) | MIT | Figure 1 |
