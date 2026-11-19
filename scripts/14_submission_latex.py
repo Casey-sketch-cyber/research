@@ -4,12 +4,15 @@
 from __future__ import annotations
 
 import argparse
+from hashlib import sha256
 import json
 import os
 from importlib import import_module
 from pathlib import Path
 import re
 import subprocess
+from shutil import copyfile
+from zipfile import ZipFile
 
 from pypdf import PdfReader, PdfWriter
 
@@ -22,23 +25,17 @@ DISCLOSURE = (
     "During preparation of this manuscript, Gemini and Claude assisted with drafting and editing, "
     "and OpenAI Codex assisted with formatting and preparation of submission files."
 )
-HEADER = r"""
-\usepackage{graphicx}
+TEMPLATE_SHA256 = "d5fea9a7718bd857ae5e71753eed4a7dfc62303992656775ee15d5b2068b5dfe"
+SUPERSCRIPTS = "⁰¹²³⁴⁵⁶⁷⁸⁹"
+TITLE_MARKERS = str.maketrans(SUPERSCRIPTS, "0123456789")
+TABLE_SUPPORT = r"""
+\usepackage{array,booktabs,calc,longtable}
 \usepackage{pdflscape}
-\usepackage{setspace}
-\usepackage{lineno}
-\usepackage[numbers,super,sort&compress]{natbib}
+\usepackage{xurl}
 \newcommand{\SubmissionCite}[1]{\unskip\citep{#1}}
-\providecommand{\SubmissionUploadPath}{}
-\makeatletter
-\renewcommand{\maketitle}{%
-  \begin{center}
-    \parbox{.76\linewidth}{\centering\LARGE\bfseries\@title}
-  \end{center}
-  \vspace{1em}
-}
-\makeatother
-\AtBeginDocument{\onehalfspacing\linenumbers}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+\setcounter{Maxaffil}{0}
 \setlength{\emergencystretch}{3em}
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.12}
@@ -125,12 +122,9 @@ def number_citations(source: str, labels: dict) -> tuple[str, list[str], int]:
     return converted, list(order), occurrences
 
 
-def make_submission_text(draft: str) -> tuple[str, str]:
-    front = draft.split("\n## Summary\n", 1)[0].strip()
-    title, authors = front.split("\n", 1)
-    title = title.removeprefix("# ").strip()
-    authors = re.sub(r"(?m)^\*\*Keywords:\*\*[^\n]*\n?", "", authors).strip()
+def make_submission_text(draft: str) -> str:
     summary = extract_between(draft, "## Summary", "## Highlights")
+    keywords = draft.split("**Keywords:** ", 1)[1].splitlines()[0]
     intro = draft.split("\n## Introduction\n", 1)[1].split("\n## Discussion\n", 1)[0].strip()
     discussion = extract_between(draft, "## Discussion", "### Limitations of the study")
     limitations = extract_between(draft, "### Limitations of the study", "## STAR Methods")
@@ -146,8 +140,8 @@ def make_submission_text(draft: str) -> tuple[str, str]:
     if table_s4 is None:
         raise ValueError("Could not locate the approved Table S4 Excel legend")
     blocks = [
-        authors.strip(), r"\clearpage",
         f"## Summary\n\n{summary}",
+        f"## Keywords\n\n{keywords}",
         f"## Introduction\n\n{intro}",
         f"## Discussion\n\n{discussion}",
         f"## Resource Availability\n\n{resource_availability}",
@@ -166,19 +160,72 @@ def make_submission_text(draft: str) -> tuple[str, str]:
         + "```{=latex}\n" + r"\normalsize\end{landscape}" + "\n```",
         f"## STAR Methods\n\n### Method details\n\n{methods}",
         f"## Supplemental Information\n\n{table_s4.group(0).strip()}",
-        r"\input{\SubmissionUploadPath Manuscript.bbl}",
+        r"\bibliography{\SubmissionUploadPath references}",
     ])
     content = "\n\n".join(blocks) + "\n"
     if LEAKED_EDITING_NOTES.search(content):
         raise ValueError("Internal editing notes found in the main document")
-    return title, content
+    return content
 
 
 def pandoc_tex(pandoc, source, *options):
     return subprocess.run(
-        [str(pandoc), "--from=markdown-smart+raw_tex", "--to=latex", "--wrap=none", *options],
+        [str(pandoc), "--from=markdown-smart+raw_tex+autolink_bare_uris", "--to=latex", "--ascii", "--wrap=none", *options],
         input=source, encoding="utf-8", capture_output=True, check=True,
     ).stdout
+
+
+def official_preamble(template_zip, output):
+    if sha256(Path(template_zip).read_bytes()).hexdigest() != TEMPLATE_SHA256:
+        raise ValueError("Expected the verified Cell Press LaTeX template archive")
+    root = "cell-press-latex-template/"
+    with ZipFile(template_zip) as archive:
+        sample = archive.read(root+"article-template.tex").decode("utf-8-sig")
+        for file in ("numbered.bst", "numcompress.sty"):
+            (output/file).write_bytes(archive.read(root+file))
+    header = sample.split("%%%  Insert title below", 1)[0].strip()
+    if "version 1.10" not in header or r"\usepackage{authblk}" not in header:
+        raise ValueError("The archive does not contain the expected publisher preamble")
+    # XeTeX needs an OpenType Helvetica-compatible face to retain the template's sans serif.
+    xetex_fonts = r"""
+\ifdefined\XeTeXversion
+\usepackage{fontspec}
+\setsansfont[BoldFont=texgyreheros-bold.otf,ItalicFont=texgyreheros-italic.otf,BoldItalicFont=texgyreheros-bolditalic.otf]{texgyreheros-regular.otf}
+\fi
+"""
+    header = header.replace(r"\usepackage{helvet}", r"\usepackage{helvet}" + "\n" + xetex_fonts.strip(), 1)
+    # A reading copy can compile from the package root using sibling upload files.
+    header = header.replace(r"\bibliographystyle{numbered}",
+                            "\n" + r"\providecommand{\SubmissionUploadPath}{}" + "\n"
+                            + r"\bibliographystyle{\SubmissionUploadPath numbered}", 1)
+    header = "\n".join(line.rstrip() for line in header.splitlines())
+    return header + "\n" + TABLE_SUPPORT.strip()
+
+
+def title_commands(pandoc, draft):
+    rows = [row.strip() for row in draft.split("\n## Summary\n", 1)[0].splitlines() if row.strip()]
+    title = rows[0].removeprefix("# ")
+    authors = rows[1].removeprefix("**Authors:** ")
+    if rows[2] != "**Affiliations:**" or len(title) > 145:
+        raise ValueError("The approved title-page metadata could not be parsed")
+    commands = [rf"\title{{{pandoc_tex(pandoc, title).strip()}}}", r"\date{}"]
+    for person in re.split(r",\s+(?:and\s+)?", authors):
+        match = re.fullmatch(rf"([^,]+?)([{SUPERSCRIPTS}][{SUPERSCRIPTS},*]*)", person)
+        if not match:
+            raise ValueError("An author is missing the approved affiliation markers")
+        name, markers = match.groups()
+        commands.append(rf"\author[{markers.translate(TITLE_MARKERS)}]{{{pandoc_tex(pandoc, name).strip()}}}")
+    for row in rows[3:]:
+        if row[0] in SUPERSCRIPTS:
+            marker, label = row[0].translate(TITLE_MARKERS), row[1:].strip()
+        elif row.startswith("**Correspondence:** "):
+            marker, label = "*", row.replace("**Correspondence:**", "Correspondence:", 1)
+        elif row.startswith("**Keywords:** "):
+            continue
+        else:
+            raise ValueError("Unexpected text before the Summary")
+        commands.append(rf"\affil[{marker}]{{{pandoc_tex(pandoc, label).strip()}}}")
+    return "\n".join(commands)
 
 
 def figure_appendix(pandoc, draft):
@@ -199,12 +246,12 @@ def figure_appendix(pandoc, draft):
     return "\n".join(commands)
 
 
-def export_tex(repo, pandoc, output):
-    """Export one main TeX file plus the exact reviewed reference strings."""
+def export_tex(repo, pandoc, output, template_zip):
+    """Build the manuscript on the official Cell Press preamble and numeric style."""
     output.mkdir(parents=True, exist_ok=True)
     draft = (repo/"paper/manuscript.md").read_text(encoding="utf-8-sig")
     bib = (repo/"paper/references.bib").read_text(encoding="utf-8-sig")
-    title, body = make_submission_text(draft)
+    body = make_submission_text(draft)
     labels, entries = match_references(draft, bib)
     body, order, occurrences = number_citations(body, labels)
     if set(order) != set(entries):
@@ -217,23 +264,16 @@ def export_tex(repo, pandoc, output):
                          "↓":r"\ensuremath{\downarrow}", "≥":r"\ensuremath{\geq}",
                          "≤":r"\ensuremath{\leq}"}.items():
         section_body = section_body.replace(glyph, macro)
-    for digit, glyph in enumerate("⁰¹²³⁴⁵⁶⁷⁸⁹"):
+    for digit, glyph in enumerate(SUPERSCRIPTS):
         section_body = section_body.replace(glyph, rf"\textsuperscript{{{digit}}}")
-    header = output/"submission-header.tex"
-    header.write_text(HEADER.lstrip(), encoding="utf-8", newline="\n")
-    tex = pandoc_tex(
-        pandoc, section_body, "--standalone", f"--metadata=title:{title}", "--variable=fontsize:11pt",
-        "--variable=geometry:letterpaper,margin=0.82in", f"--include-in-header={header}",
-    )
-    tex = tex.replace(r"\end{document}", figure_appendix(pandoc, draft) + "\n" + r"\end{document}", 1)
-    # The header is embedded by Pandoc; the main TeX file only needs the companion bibliography output.
+    tex = "\n\n".join([
+        official_preamble(template_zip, output),
+        title_commands(pandoc, draft),
+        r"\begin{document}", r"\maketitle", r"\clearpage",
+        pandoc_tex(pandoc, section_body).strip(),
+        figure_appendix(pandoc, draft), r"\end{document}",
+    ]) + "\n"
     (output/"Manuscript.tex").write_text(tex,encoding="utf-8",newline="\n")
-    header.unlink()
-    bibliography = [r"\begin{thebibliography}{99}"]
-    for key in order:
-        bibliography.extend([rf"\bibitem{{{key}}}", pandoc_tex(pandoc, entries[key]).strip(), ""])
-    bibliography.append(r"\end{thebibliography}")
-    (output/"Manuscript.bbl").write_text("\n".join(bibliography)+"\n",encoding="utf-8",newline="\n")
     (output/"references.bib").write_text(bib,encoding="utf-8",newline="\n")
     return {"bibliography_entries":len(order), "citations":occurrences, "ordered_keys":order}
 
@@ -262,7 +302,9 @@ def compile_pdf(source, output, cwd, tectonic, work, pdf_title):
 
 
 def build_pdf(tex_dir, tectonic, work):
-    return compile_pdf(tex_dir/"Manuscript.tex",tex_dir/"Manuscript.pdf",tex_dir,tectonic,work,"Manuscript")
+    pages = compile_pdf(tex_dir/"Manuscript.tex",tex_dir/"Manuscript.pdf",tex_dir,tectonic,work,"Manuscript")
+    copyfile(work/"Manuscript.bbl", tex_dir/"Manuscript.bbl")
+    return pages
 
 
 def build_reading_pdf(tex_dir, review_dir, tectonic, work):
@@ -284,12 +326,13 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--pandoc",default="pandoc")
     parser.add_argument("--tectonic",default="tectonic")
+    parser.add_argument("--template",type=Path,required=True,help="Verified Cell Press LaTeX template ZIP")
     parser.add_argument("--out",type=Path,required=True)
     parser.add_argument("--work-dir",type=Path,required=True)
     parser.add_argument("--review-dir",type=Path,help="Optional sibling review directory for a LaTeX proof with Figures 1–6")
     args=parser.parse_args()
     output, work=args.out.resolve(), args.work_dir.resolve()
-    result=export_tex(ROOT,args.pandoc,output)
+    result=export_tex(ROOT,args.pandoc,output,args.template)
     result["pages"]=build_pdf(output,args.tectonic,work)
     if args.review_dir:
         result["reading_pages"]=build_reading_pdf(output,args.review_dir.resolve(),args.tectonic,work)

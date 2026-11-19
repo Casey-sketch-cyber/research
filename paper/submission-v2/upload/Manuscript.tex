@@ -1,113 +1,105 @@
-% Options for packages loaded elsewhere
-\PassOptionsToPackage{unicode}{hyperref}
-\PassOptionsToPackage{hyphens}{url}
-\documentclass[
-  11pt,
-]{article}
-\usepackage{xcolor}
-\usepackage[letterpaper,margin=0.82in]{geometry}
-\usepackage{amsmath,amssymb}
-\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
-\usepackage{iftex}
-\ifPDFTeX
-  \usepackage[T1]{fontenc}
-  \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provide euro and other symbols
-\else % if luatex or xetex
-  \usepackage{unicode-math} % this also loads fontspec
-  \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
-\fi
-\usepackage{lmodern}
-\ifPDFTeX\else
-  % xetex/luatex font selection
-\fi
-% Use upquote if available, for straight quotes in verbatim environments
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-\IfFileExists{microtype.sty}{% use microtype if available
-  \usepackage[]{microtype}
-  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
-}{}
-\makeatletter
-\@ifundefined{KOMAClassName}{% if non-KOMA class
-  \IfFileExists{parskip.sty}{%
-    \usepackage{parskip}
-  }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-}{% if KOMA class
-  \KOMAoptions{parskip=half}}
-\makeatother
-\usepackage{longtable,booktabs,array}
-\usepackage{caption}
-\captionsetup[table]{skip=6pt}
-\newcounter{none} % for unnumbered tables
-\usepackage{calc} % for calculating minipage widths
-% Correct order of tables after \paragraph or \subparagraph
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
-\makeatother
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%  Welcome to the Cell Press LaTeX template,
+%%%  version 1.10. This is a minimalist template
+%%%  to help you organize your article for
+%%%  publication at Cell Press. PLEASE NOTE:
+
+%%%  (1) If you submit your final manuscript materials
+%%%  in LaTeX format, our typesetters will prepare
+%%%  a Word file for use in production. This conversion
+%%%  process allows us to copyedit your paper, fix
+%%%  any typos, and add formatting and tagging. The
+%%%  conversion process will add approximately 3
+%%%  business days to the production timeline.
+%%%  Authors using LaTeX should keep this in mind
+%%%  when considering deadlines.
+
+%%%  (2) Keep your LaTeX files as simple as possible.
+%%%  Avoid the use of elaborate local macros and/or
+%%%  customized external style files. If you need
+%%%  additional macros, please keep them simple and
+%%%  include them in the actual .tex document preamble.
+%%%  Source code should be set up so that all .sty
+%%%  and .bst files called by the main .tex file are
+%%%  in the same directory as the main .tex file.
+
+%%%  (3) Cell Press publishes more than 40 journals,
+%%%  some of which may have different or additional
+%%%  formatting requirements not specified in this
+%%%  template. When revising your paper before
+%%%  acceptance, please review the formatting
+%%%  guidelines, including the Final Files Requirements,
+%%%  for the journal you are publishing with.
+
+%%%  Please send feedback on this template to lshipp@cell.com.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt,letterpaper]{article}
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\renewcommand{\familydefault}{\sfdefault}
 \usepackage{graphicx}
-\usepackage{pdflscape}
-\usepackage{setspace}
-\usepackage{lineno}
-\usepackage[numbers,super,sort&compress]{natbib}
-\newcommand{\SubmissionCite}[1]{\unskip\citep{#1}}
+\usepackage{helvet}
+\ifdefined\XeTeXversion
+\usepackage{fontspec}
+\setsansfont[BoldFont=texgyreheros-bold.otf,ItalicFont=texgyreheros-italic.otf,BoldItalicFont=texgyreheros-bolditalic.otf]{texgyreheros-regular.otf}
+\fi
+\usepackage{authblk}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{orcidlink}
+\usepackage[super,comma,sort&compress]
+   {natbib}
 \providecommand{\SubmissionUploadPath}{}
+\bibliographystyle{\SubmissionUploadPath numbered}
+\usepackage[right]{lineno} \linenumbers
+
+
 \makeatletter
-\renewcommand{\maketitle}{%
-  \begin{center}
-    \parbox{.76\linewidth}{\centering\LARGE\bfseries\@title}
-  \end{center}
-  \vspace{1em}
-}
+\renewcommand{\maketitle}{\bgroup\setlength{\parindent}{0pt}
+\begin{flushleft}
+  \textbf{\@title}
+
+  \@author
+\end{flushleft}\egroup}
 \makeatother
-\AtBeginDocument{\onehalfspacing\linenumbers}
+\usepackage{array,booktabs,calc,longtable}
+\usepackage{pdflscape}
+\usepackage{xurl}
+\newcommand{\SubmissionCite}[1]{\unskip\citep{#1}}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+\setcounter{Maxaffil}{0}
 \setlength{\emergencystretch}{3em}
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.12}
-\usepackage{bookmark}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same}
-% fallback for those not using the hyperref driver hyperxmp:
-\makeatletter
-\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
-\makeatother
-\hypersetup{
-  pdftitle={Translating furniture into floor area shows where compact homes gain space},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
 
 \title{Translating furniture into floor area shows where compact homes gain space}
-\author{}
 \date{}
+\author[1]{Feng He}
+\author[2]{Dan Zhang}
+\author[3,4,*]{Zhantu Liang}
+\affil[1]{Faculty of Art and Design, Guangxi Polytechnic University, Nanning 530226, China}
+\affil[2]{School of Art and Design, Guangzhou Polytechnic University, Guangzhou 511483, China}
+\affil[3]{Institute of Ultrasonic Technology, Shenzhen Polytechnic University, Shenzhen 518055, China}
+\affil[4]{Lead contact}
+\affil[*]{Correspondence: \href{mailto:liangzhantu@szpu.edu.cn}{\nolinkurl{liangzhantu@szpu.edu.cn}}}
 
 \begin{document}
+
 \maketitle
-
-\textbf{Authors:} Feng He\textsuperscript{1}, Dan Zhang\textsuperscript{2}, and Zhantu Liang\textsuperscript{3},\textsuperscript{4},*
-
-\textbf{Affiliations:}
-
-\textsuperscript{1} Faculty of Art and Design, Guangxi Polytechnic University, Nanning 530226, China
-
-\textsuperscript{2} School of Art and Design, Guangzhou Polytechnic University, Guangzhou 511483, China
-
-\textsuperscript{3} Institute of Ultrasonic Technology, Shenzhen Polytechnic University, Shenzhen 518055, China
-
-\textsuperscript{4} Lead contact
-
-\textbf{Correspondence:} liangzhantu@szpu.edu.cn
 
 \clearpage
 
 \section{Summary}\label{summary}
 
 Shrinking urban homes are regulated mainly by floor area, while transformable furniture is promoted to make small dwellings work. Yet area rules, single-room studies, and layout generators cannot establish how much usable area transformable furniture saves across diverse homes and daily routines. Here, we compare each home with itself under static, form-only, and time-switched furniture strategies---each arranged by constraint optimization and independently verified---and translate capacity differences into equivalent floor area (m\textsuperscript{2}). Across 2,619 compact plans and four household types, most observed plans already function with static furniture. Gains concentrate in two-person households of intermediate compact size, with median identified equivalent-area gains of 6.21 m\textsuperscript{2} for couples and 5.00 m\textsuperscript{2} for parent-and-child households. Fixed 45 m\textsuperscript{2} cutoffs disagree with modeled adequacy on 55.7\% of couple and 52.7\% of parent-and-child cases, while daily switching saves 2.24 m\textsuperscript{2} for couples in Hong Kong model shells, supporting performance-based supplements to area rules.
+
+\section{Keywords}\label{keywords}
+
+compact housing, minimum space standards, transformable furniture, functional capacity, layout optimization, equivalent area
 
 \section{Introduction}\label{introduction}
 
@@ -155,7 +147,7 @@ Sensitivity analyses indicate that this mechanistic split is not driven by bed-c
 
 Testing statutory and normative floor-area cutoffs against modeled functional adequacy (\(\text{FCI} \ge 0.95\)) shows that area thresholds frequently misclassify two-person compact homes (Figure 5; Table 4). Evaluated across all 2,109 observed plans under S2, Ulrich\textquotesingle s \SubmissionCite{ulrich2025minimum} 45 m\textsuperscript{2} two-person benchmark disagrees with modeled adequacy on 55.7\% of couple cases and 52.7\% of parent-and-child cases (Table 4). Nearly all of these disagreements are false negatives---dwellings smaller than 45 m\textsuperscript{2} that nonetheless serve at least 95\% of scheduled activity-hours with independently verified clearances and access (1,150 false negatives versus 25 false positives for couples; 1,090 false negatives versus 22 false positives for parent and child; Table 4). Disagreement is already large under static furniture (S0), reaching 47.0\% for couples (940 false negatives, 52 false positives) and 40.5\% for parent-and-child households (789 false negatives, 66 false positives), and increases under S2 because transformable layouts make additional sub-45 m\textsuperscript{2} plans adequate. For one-person schedules on observed plans, Ulrich\textquotesingle s 30 m\textsuperscript{2} benchmark disagrees with S2 adequacy on 10.4\% of single-commuter and 11.1\% of single-remote-worker cases (versus 14.5\% and 16.4\% under S0; Table 4).
 
-This classification error arises because dwellings of identical floor area vary widely in usable capacity owing to room proportions, partition walls, and door and window positions---consistent with Özer and Jacoby\textquotesingle s \SubmissionCite{ozer2022dwelling} static usability findings and extending them to scheduled and transformable layouts (Figure 5). Within narrow 2 m\textsuperscript{2} NIA bins on observed plans, the interquartile range of static (S0) FCI reaches 0.205 for couples at 26--28 m\textsuperscript{2} and 0.190 for parent-and-child households at 24--26 m\textsuperscript{2} (Figure 5). At the opposite regulatory extreme, Hong Kong\textquotesingle s statutory 8 m\textsuperscript{2} basic housing unit minimum sits below every observed plan in Swiss Dwellings and ResPlan (all \(\ge 16.75\text{ m}^2\)), yielding zero negative predictions on observed plans (Table 4). On the 510 generated shells (8.00--40.00 m\textsuperscript{2}), however, an 8 m\textsuperscript{2} pass threshold disagrees with S2 adequacy on 30.0\% of single-commuter, 27.3\% of single-remote-worker, 40.4\% of couple (206 false positives), and 49.6\% of parent-and-child (253 false positives) cases, passing ultra-small shells that cannot support basic daily schedules (Table 4).
+This classification error arises because dwellings of identical floor area vary widely in usable capacity owing to room proportions, partition walls, and door and window positions---consistent with \"{O}zer and Jacoby\textquotesingle s \SubmissionCite{ozer2022dwelling} static usability findings and extending them to scheduled and transformable layouts (Figure 5). Within narrow 2 m\textsuperscript{2} NIA bins on observed plans, the interquartile range of static (S0) FCI reaches 0.205 for couples at 26--28 m\textsuperscript{2} and 0.190 for parent-and-child households at 24--26 m\textsuperscript{2} (Figure 5). At the opposite regulatory extreme, Hong Kong\textquotesingle s statutory 8 m\textsuperscript{2} basic housing unit minimum sits below every observed plan in Swiss Dwellings and ResPlan (all \(\ge 16.75\text{ m}^2\)), yielding zero negative predictions on observed plans (Table 4). On the 510 generated shells (8.00--40.00 m\textsuperscript{2}), however, an 8 m\textsuperscript{2} pass threshold disagrees with S2 adequacy on 30.0\% of single-commuter, 27.3\% of single-remote-worker, 40.4\% of couple (206 false positives), and 49.6\% of parent-and-child (253 false positives) cases, passing ultra-small shells that cannot support basic daily schedules (Table 4).
 
 \subsection{What this means for Hong Kong\textquotesingle s smallest homes}\label{what-this-means-for-hong-kongs-smallest-homes}
 
@@ -179,7 +171,7 @@ For housing and computational design researchers, our modular evaluation pipelin
 
 \subsection{Lead contact}\label{lead-contact}
 
-Further information and requests for resources should be directed to and will be fulfilled by the lead contact, Zhantu Liang (liangzhantu@szpu.edu.cn).
+Further information and requests for resources should be directed to and will be fulfilled by the lead contact, Zhantu Liang (\href{mailto:liangzhantu@szpu.edu.cn}{\nolinkurl{liangzhantu@szpu.edu.cn}}).
 
 \subsection{Materials availability}\label{materials-availability}
 
@@ -190,9 +182,9 @@ This study did not generate new physical materials or reagents.
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Data:} All empirical datasets analyzed in this study are publicly available from their original repositories: Swiss Dwellings v3.0.0 \SubmissionCite{standfest2022swiss} (https://doi.org/10.5281/zenodo.7788422), ResPlan \SubmissionCite{abouagour2025resplan} (https://doi.org/10.48550/arXiv.2508.14006; https://github.com/m-agour/ResPlan), Amazon Berkeley Objects listings (https://amazon-berkeley-objects.s3.amazonaws.com/index.html), and Hong Kong 2021 Population Census Subdivided Units tabulations (https://data.gov.hk/en-data/dataset/hk-censtatd-census\_geo-2021-population-census-su-by-dcd). Derived summary tables, validated showcase layouts, and scene verification manifests are committed in the study repository.
+  \textbf{Data:} All empirical datasets analyzed in this study are publicly available from their original repositories: Swiss Dwellings v3.0.0 \SubmissionCite{standfest2022swiss} (\url{https://doi.org/10.5281/zenodo.7788422}), ResPlan \SubmissionCite{abouagour2025resplan} (\url{https://doi.org/10.48550/arXiv.2508.14006}; \url{https://github.com/m-agour/ResPlan}), Amazon Berkeley Objects listings (\url{https://amazon-berkeley-objects.s3.amazonaws.com/index.html}), and Hong Kong 2021 Population Census Subdivided Units tabulations (\url{https://data.gov.hk/en-data/dataset/hk-censtatd-census_geo-2021-population-census-su-by-dcd}). Derived summary tables, validated showcase layouts, and scene verification manifests are committed in the study repository.
 \item
-  \textbf{Code:} All original source code for corpus normalization, candidate pose generation, warm-started CP-SAT optimization, independent geometric validation, statistical resampling, 2D plotting, and 3D Blender Cycles scene verification is publicly available at https://github.com/Casey-sketch-cyber/research as of the date of publication.
+  \textbf{Code:} All original source code for corpus normalization, candidate pose generation, warm-started CP-SAT optimization, independent geometric validation, statistical resampling, 2D plotting, and 3D Blender Cycles scene verification is publicly available at \url{https://github.com/Casey-sketch-cyber/research} as of the date of publication.
 \item
   \textbf{Additional information:} Any additional information required to reanalyze the data reported in this paper is available from the lead contact upon request.
 \end{itemize}
@@ -200,6 +192,10 @@ This study did not generate new physical materials or reagents.
 \section{Limitations of Study}\label{limitations-of-study}
 
 Three scope boundaries frame the interpretation of our results and point to future research. (1) FCI measures geometric fit and walkable access for scheduled furniture activities, not acoustic or visual privacy, daylight quality, thermal comfort, ceiling-height perception, or occupant satisfaction; future post-occupancy and immersive-evaluation studies should link FCI and transformation burden to resident wellbeing and observed daily switching behavior. (2) Our four primary households and audited furniture library represent stylized daily schedules and representative product dimensions rather than exhaustive population heterogeneity, although the open pipeline accepts custom time-use diaries, assistive-mobility clearances, and local furniture catalogues. (3) Our Hong Kong analysis evaluates a controlled grid of 8--20 m\textsuperscript{2} model shells rather than weighted territory-wide stock totals because public census tables lack the joint distribution of household size and subdivided-unit floor area, motivating future linkage with measured subdivided-unit floor-plan surveys.
+
+\section{Acknowledgments}\label{acknowledgments}
+
+Funding: This work is supported by Shenzhen Polytechnic University Postdoctoral Fund (Grant No. 6026331014K)
 
 \section{Author Contributions}\label{author-contributions}
 
@@ -583,7 +579,7 @@ All statistical summaries and uncertainty intervals were computed in Python (Num
 
 \textbf{Table S4. Geometry-only surrogate accuracy on held-out Swiss Dwellings sites and external transfer sets, related to Discussion and Figure S7} Held-out Swiss Dwellings site-group test performance (\(n = 172\) units across 70 sites) for predicting static FCI (S0 FCI), form + time FCI (S2 FCI), and D1-training-referenced equivalent-area gain (\(\Delta\text{EA}\), in m\textsuperscript{2}) across area-only linear, LightGBM, tabular MLP, and GraphSAGE models (full external transfer tables for ResPlan {[}\(n = 873\){]} and generated shells {[}\(n = 510\){]} are archived in the study repository). Point errors (MAE, RMSE, \(R^2\), Spearman \(\rho\)) evaluate point-identified labels including exact zeros; Bounds \(n\) counts left- or right-bounded equivalent-area cases evaluated separately against lower bounds. Post-hoc adequacy ROC AUC evaluates whether continuous FCI predictions rank cases at or above \(\text{FCI} \ge 0.95\).
 
-\input{\SubmissionUploadPath Manuscript.bbl}
+\bibliography{\SubmissionUploadPath references}
 
 \ifdefined\SubmissionWithFigures
 \clearpage
@@ -617,4 +613,5 @@ All statistical summaries and uncertainty intervals were computed in Python (Num
 \includegraphics[width=\linewidth,height=.80\textheight,keepaspectratio]{\SubmissionUploadPath Figure6.pdf}
 \end{center}
 \fi
+
 \end{document}

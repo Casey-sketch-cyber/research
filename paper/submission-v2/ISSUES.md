@@ -1,6 +1,5 @@
 # Author Actions and Scope
 
-- Confirm the funding and acknowledgments wording. The previous editing prompt has been removed from both proofs and the final-format manuscript. The source contains no approved funding sentence.
 - Complete and upload the blank publisher Declaration of Interests form after author review. The form is in the author folder. The manuscript keeps the approved interests statement.
 - Confirm the AI-use disclosure in the final-format manuscript, then complete the publisher's author review and responsibility statement. The declaration describes documented drafting, editing and formatting assistance. Internal title alternatives and the author-selection note were removed upstream.
 - Confirm permissions for any adapted figures where needed. Figure 1 asset credits identify its public sources and licenses.

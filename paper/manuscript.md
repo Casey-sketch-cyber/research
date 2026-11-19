@@ -230,7 +230,7 @@ All statistical summaries and uncertainty intervals were computed in Python (Num
 
 ## Acknowledgments
 
-[AUTHOR TO FILL: funding sources and acknowledgments, or delete if none]
+Funding: This work is supported by Shenzhen Polytechnic University Postdoctoral Fund (Grant No. 6026331014K)
 
 ## Author contributions
 
