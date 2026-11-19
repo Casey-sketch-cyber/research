@@ -1,0 +1,4 @@
+Verified layouts for 2,619 compact plans and four household types
+Transformable furniture helps a minority of plans, mostly two-person households
+Floor-area cutoffs misclassify about half of two-person homes in our model
+Switching furniture states is worth about 2.2 m² for couples in Hong Kong shells
