@@ -1,11 +1,17 @@
 # Translating furniture into floor area shows where compact homes gain space
 
 **Authors:** Feng He¹, Dan Zhang², and Zhantu Liang³,⁴,*
+
 **Affiliations:**
-¹Faculty of Art and Design, Guangxi Polytechnic University, Nanning 530226, China
-²School of Art and Design, Guangzhou Polytechnic University, Guangzhou 511483, China
-³Institute of Ultrasonic Technology, Shenzhen Polytechnic University, Shenzhen 518055, China
-⁴Lead contact
+
+¹ Faculty of Art and Design, Guangxi Polytechnic University, Nanning 530226, China
+
+² School of Art and Design, Guangzhou Polytechnic University, Guangzhou 511483, China
+
+³ Institute of Ultrasonic Technology, Shenzhen Polytechnic University, Shenzhen 518055, China
+
+⁴ Lead contact
+
 **Correspondence:** liangzhantu@szpu.edu.cn
 
 **Keywords:** compact housing, minimum space standards, transformable furniture, functional capacity, layout optimization, equivalent area

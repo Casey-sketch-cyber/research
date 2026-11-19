@@ -23,11 +23,21 @@ DISCLOSURE = (
     "and OpenAI Codex assisted with formatting and preparation of submission files."
 )
 HEADER = r"""
+\usepackage{graphicx}
 \usepackage{pdflscape}
 \usepackage{setspace}
 \usepackage{lineno}
 \usepackage[numbers,super,sort&compress]{natbib}
 \newcommand{\SubmissionCite}[1]{\unskip\citep{#1}}
+\providecommand{\SubmissionUploadPath}{}
+\makeatletter
+\renewcommand{\maketitle}{%
+  \begin{center}
+    \parbox{.76\linewidth}{\centering\LARGE\bfseries\@title}
+  \end{center}
+  \vspace{1em}
+}
+\makeatother
 \AtBeginDocument{\onehalfspacing\linenumbers}
 \setlength{\emergencystretch}{3em}
 \setlength{\tabcolsep}{3pt}
@@ -156,7 +166,7 @@ def make_submission_text(draft: str) -> tuple[str, str]:
         + "```{=latex}\n" + r"\normalsize\end{landscape}" + "\n```",
         f"## STAR Methods\n\n### Method details\n\n{methods}",
         f"## Supplemental Information\n\n{table_s4.group(0).strip()}",
-        r"\input{Manuscript.bbl}",
+        r"\input{\SubmissionUploadPath Manuscript.bbl}",
     ])
     content = "\n\n".join(blocks) + "\n"
     if LEAKED_EDITING_NOTES.search(content):
@@ -169,6 +179,24 @@ def pandoc_tex(pandoc, source, *options):
         [str(pandoc), "--from=markdown-smart+raw_tex", "--to=latex", "--wrap=none", *options],
         input=source, encoding="utf-8", capture_output=True, check=True,
     ).stdout
+
+
+def figure_appendix(pandoc, draft):
+    legends, _ = captions_and_tables(draft)
+    titles = re.findall(r"(?m)^\*\*(Figure [1-6]\. .+?)\*\*$", legends)
+    if len(titles) != 6:
+        raise ValueError("Expected six approved figure titles for the reading copy")
+    commands = [r"\ifdefined\SubmissionWithFigures"]
+    for number, title in enumerate(titles, 1):
+        commands.extend([
+            r"\clearpage",
+            r"\begin{center}",
+            r"\large\bfseries " + pandoc_tex(pandoc, title).strip() + r"\par\medskip",
+            rf"\includegraphics[width=\linewidth,height=.80\textheight,keepaspectratio]{{\SubmissionUploadPath Figure{number}.pdf}}",
+            r"\end{center}",
+        ])
+    commands.append(r"\fi")
+    return "\n".join(commands)
 
 
 def export_tex(repo, pandoc, output):
@@ -197,6 +225,7 @@ def export_tex(repo, pandoc, output):
         pandoc, section_body, "--standalone", f"--metadata=title:{title}", "--variable=fontsize:11pt",
         "--variable=geometry:letterpaper,margin=0.82in", f"--include-in-header={header}",
     )
+    tex = tex.replace(r"\end{document}", figure_appendix(pandoc, draft) + "\n" + r"\end{document}", 1)
     # The header is embedded by Pandoc; the main TeX file only needs the companion bibliography output.
     (output/"Manuscript.tex").write_text(tex,encoding="utf-8",newline="\n")
     header.unlink()
@@ -209,27 +238,46 @@ def export_tex(repo, pandoc, output):
     return {"bibliography_entries":len(order), "citations":occurrences, "ordered_keys":order}
 
 
-def build_pdf(tex_dir, tectonic, work):
-    """Run the XeTeX-based Tectonic engine and retain the compiler diagnostic log in the build directory."""
+def compile_pdf(source, output, cwd, tectonic, work, pdf_title):
+    """Compile TeX with Tectonic and save a PDF with neutral metadata."""
     work.mkdir(parents=True, exist_ok=True)
     env = os.environ | {name:str(work) for name in ("TEMP","TMP","TMPDIR")}
     env.setdefault("TECTONIC_CACHE_DIR",str(work/"tex-cache"))
     subprocess.run(
         [str(tectonic), "-X", "compile", "--keep-logs", "--keep-intermediates",
-         "--outdir", str(work), "Manuscript.tex"],
-        cwd=tex_dir, env=env, check=True,
+         "--outdir", str(work), str(source.relative_to(cwd))],
+        cwd=cwd, env=env, check=True,
     )
-    log = (work/"Manuscript.log").read_text(encoding="utf-8",errors="replace")
+    log = (work/f"{source.stem}.log").read_text(encoding="utf-8",errors="replace")
     if re.search(r"undefined citations|Citation .+ undefined|Missing character:|There were undefined references",log):
         raise ValueError("LaTeX logged a missing glyph, citation, or reference")
-    raw = PdfReader(work/"Manuscript.pdf")
+    raw = PdfReader(work/f"{source.stem}.pdf")
     writer = PdfWriter(clone_from=raw)
     writer.metadata = None
     writer.root_object.pop("/Metadata",None)
-    writer.add_metadata({"/Title":"Manuscript","/Producer":"Tectonic / XeTeX"})
-    with (tex_dir/"Manuscript.pdf").open("wb") as file:
+    writer.add_metadata({"/Title":pdf_title,"/Producer":"Tectonic / XeTeX"})
+    with output.open("wb") as file:
         writer.write(file)
     return len(raw.pages)
+
+
+def build_pdf(tex_dir, tectonic, work):
+    return compile_pdf(tex_dir/"Manuscript.tex",tex_dir/"Manuscript.pdf",tex_dir,tectonic,work,"Manuscript")
+
+
+def build_reading_pdf(tex_dir, review_dir, tectonic, work):
+    package = tex_dir.parent
+    if review_dir.parent != package or tex_dir.name != "upload":
+        raise ValueError("The LaTeX reading copy requires sibling upload and review directories")
+    review_dir.mkdir(parents=True, exist_ok=True)
+    source = package/"Manuscript_LaTeX_with_figures.tex"
+    source.write_text(
+        "\\def\\SubmissionWithFigures{1}\n"
+        "\\def\\SubmissionUploadPath{upload/}\n"
+        "\\input{upload/Manuscript.tex}\n",
+        encoding="utf-8",newline="\n",
+    )
+    return compile_pdf(source, review_dir/(source.stem + ".pdf"), package, tectonic, work, "Manuscript with figures")
 
 
 def main():
@@ -238,10 +286,13 @@ def main():
     parser.add_argument("--tectonic",default="tectonic")
     parser.add_argument("--out",type=Path,required=True)
     parser.add_argument("--work-dir",type=Path,required=True)
+    parser.add_argument("--review-dir",type=Path,help="Optional sibling review directory for a LaTeX proof with Figures 1–6")
     args=parser.parse_args()
     output, work=args.out.resolve(), args.work_dir.resolve()
     result=export_tex(ROOT,args.pandoc,output)
     result["pages"]=build_pdf(output,args.tectonic,work)
+    if args.review_dir:
+        result["reading_pages"]=build_reading_pdf(output,args.review_dir.resolve(),args.tectonic,work)
     print(json.dumps(result,indent=2))
 
 

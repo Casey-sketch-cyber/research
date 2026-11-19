@@ -51,11 +51,21 @@
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{graphicx}
 \usepackage{pdflscape}
 \usepackage{setspace}
 \usepackage{lineno}
 \usepackage[numbers,super,sort&compress]{natbib}
 \newcommand{\SubmissionCite}[1]{\unskip\citep{#1}}
+\providecommand{\SubmissionUploadPath}{}
+\makeatletter
+\renewcommand{\maketitle}{%
+  \begin{center}
+    \parbox{.76\linewidth}{\centering\LARGE\bfseries\@title}
+  \end{center}
+  \vspace{1em}
+}
+\makeatother
 \AtBeginDocument{\onehalfspacing\linenumbers}
 \setlength{\emergencystretch}{3em}
 \setlength{\tabcolsep}{3pt}
@@ -79,7 +89,19 @@
 \begin{document}
 \maketitle
 
-\textbf{Authors:} Feng He\textsuperscript{1}, Dan Zhang\textsuperscript{2}, and Zhantu Liang\textsuperscript{3},\textsuperscript{4},* \textbf{Affiliations:} \textsuperscript{1}Faculty of Art and Design, Guangxi Polytechnic University, Nanning 530226, China \textsuperscript{2}School of Art and Design, Guangzhou Polytechnic University, Guangzhou 511483, China \textsuperscript{3}Institute of Ultrasonic Technology, Shenzhen Polytechnic University, Shenzhen 518055, China \textsuperscript{4}Lead contact \textbf{Correspondence:} liangzhantu@szpu.edu.cn
+\textbf{Authors:} Feng He\textsuperscript{1}, Dan Zhang\textsuperscript{2}, and Zhantu Liang\textsuperscript{3},\textsuperscript{4},*
+
+\textbf{Affiliations:}
+
+\textsuperscript{1} Faculty of Art and Design, Guangxi Polytechnic University, Nanning 530226, China
+
+\textsuperscript{2} School of Art and Design, Guangzhou Polytechnic University, Guangzhou 511483, China
+
+\textsuperscript{3} Institute of Ultrasonic Technology, Shenzhen Polytechnic University, Shenzhen 518055, China
+
+\textsuperscript{4} Lead contact
+
+\textbf{Correspondence:} liangzhantu@szpu.edu.cn
 
 \clearpage
 
@@ -561,6 +583,38 @@ All statistical summaries and uncertainty intervals were computed in Python (Num
 
 \textbf{Table S4. Geometry-only surrogate accuracy on held-out Swiss Dwellings sites and external transfer sets, related to Discussion and Figure S7} Held-out Swiss Dwellings site-group test performance (\(n = 172\) units across 70 sites) for predicting static FCI (S0 FCI), form + time FCI (S2 FCI), and D1-training-referenced equivalent-area gain (\(\Delta\text{EA}\), in m\textsuperscript{2}) across area-only linear, LightGBM, tabular MLP, and GraphSAGE models (full external transfer tables for ResPlan {[}\(n = 873\){]} and generated shells {[}\(n = 510\){]} are archived in the study repository). Point errors (MAE, RMSE, \(R^2\), Spearman \(\rho\)) evaluate point-identified labels including exact zeros; Bounds \(n\) counts left- or right-bounded equivalent-area cases evaluated separately against lower bounds. Post-hoc adequacy ROC AUC evaluates whether continuous FCI predictions rank cases at or above \(\text{FCI} \ge 0.95\).
 
-\input{Manuscript.bbl}
+\input{\SubmissionUploadPath Manuscript.bbl}
 
+\ifdefined\SubmissionWithFigures
+\clearpage
+\begin{center}
+\large\bfseries Figure 1. A schedule-aware, verified framework for translating furniture into floor area\par\medskip
+\includegraphics[width=\linewidth,height=.80\textheight,keepaspectratio]{\SubmissionUploadPath Figure1.pdf}
+\end{center}
+\clearpage
+\begin{center}
+\large\bfseries Figure 2. Validated couple layouts across daily slots and strategies in 2D plan and 3D orthographic views\par\medskip
+\includegraphics[width=\linewidth,height=.80\textheight,keepaspectratio]{\SubmissionUploadPath Figure2.pdf}
+\end{center}
+\clearpage
+\begin{center}
+\large\bfseries Figure 3. Functional capacity across net internal area by household and furniture strategy\par\medskip
+\includegraphics[width=\linewidth,height=.80\textheight,keepaspectratio]{\SubmissionUploadPath Figure3.pdf}
+\end{center}
+\clearpage
+\begin{center}
+\large\bfseries Figure 4. Equivalent-area gains from transformable form and daily state switching across dwelling sizes\par\medskip
+\includegraphics[width=\linewidth,height=.80\textheight,keepaspectratio]{\SubmissionUploadPath Figure4.pdf}
+\end{center}
+\clearpage
+\begin{center}
+\large\bfseries Figure 5. Within-bin dispersion of functional capacity across equal-sized dwellings\par\medskip
+\includegraphics[width=\linewidth,height=.80\textheight,keepaspectratio]{\SubmissionUploadPath Figure5.pdf}
+\end{center}
+\clearpage
+\begin{center}
+\large\bfseries Figure 6. Adequacy, daily state switching, and parametric furniture kit trade-offs in Hong Kong model shells\par\medskip
+\includegraphics[width=\linewidth,height=.80\textheight,keepaspectratio]{\SubmissionUploadPath Figure6.pdf}
+\end{center}
+\fi
 \end{document}

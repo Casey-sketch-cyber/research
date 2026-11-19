@@ -2,8 +2,9 @@
 
 ## Final-format files
 
-The upload directory contains the XeTeX-compiled main manuscript PDF, its TeX/BibTeX sources, standalone figures, graphical abstract, supplemental PDF and spreadsheet, and Word attachments. The review directory provides a separate Word and PDF reading copy with the six main figures appended.
+The upload directory contains the XeTeX-compiled main manuscript PDF, its TeX/BibTeX sources, standalone figures, graphical abstract, supplemental PDF and spreadsheet, and Word attachments. The review directory includes a XeTeX-compiled reading PDF with Figures 1–6 appended, plus the Word-based reading copy. Each affiliation, the lead-contact footnote and correspondence occupy separate lines on the title page.
 
+- The main source uses a custom LaTeX article layout built against the iScience final-file checklist. The publisher's template download landing page returned HTTP 403.
 - The publisher's [iScience Final File Requirements](https://www.cell.com/pb-assets/journals/EM/MasterFFCs/ISCIFFC.pdf) prefer editable Word and also accept LaTeX with a compiled PDF and source/support files. The manuscript follows the listed section order, moves the Key Resources Table to its own attachment and keeps main figures separate.
 - Main citations use consecutive superscript numbering. Thirty approved bibliography entries are in first-citation order. The TeX log had no unresolved citations or missing glyphs.
 - Main figures are 174 mm wide, with single-page PDF and 300 dpi LZW TIFF options. The refreshed plots use approximately 6.5–7 pt labels. Figure 6 contains A–F. Former panel G is Figure S5, with the reviewer’s reader-facing kit labels.
@@ -18,13 +19,15 @@ See [Author Actions and Scope](ISSUES.md) for author-supplied items and remainin
 
 | File | Bytes |
 | --- | ---: |
-| BUILD.md | 2,299 |
-| CHECKLIST.md | 3,234 |
+| BUILD.md | 2,698 |
+| CHECKLIST.md | 3,625 |
 | ISSUES.md | 1,496 |
+| Manuscript_LaTeX_with_figures.tex | 95 |
 | author/DeclarationOfInterestsForm_pending.pdf | 221,875 |
 | author/EditorialManagerText.md | 601 |
-| review/Manuscript_with_figures.docx | 1,746,984 |
-| review/Manuscript_with_figures.pdf | 2,444,415 |
+| review/Manuscript_LaTeX_with_figures.pdf | 1,400,220 |
+| review/Manuscript_with_figures.docx | 1,746,987 |
+| review/Manuscript_with_figures.pdf | 2,445,369 |
 | upload/CoverLetter.docx | 12,286 |
 | upload/Figure1.pdf | 155,533 |
 | upload/Figure1.tif | 470,362 |
@@ -43,8 +46,8 @@ See [Author Actions and Scope](ISSUES.md) for author-supplied items and remainin
 | upload/Highlights.docx | 36,875 |
 | upload/KeyResourcesTable.docx | 11,630 |
 | upload/Manuscript.bbl | 8,621 |
-| upload/Manuscript.pdf | 226,467 |
-| upload/Manuscript.tex | 97,589 |
+| upload/Manuscript.pdf | 222,398 |
+| upload/Manuscript.tex | 99,519 |
 | upload/SupplementalInformation.pdf | 2,860,554 |
 | upload/TableS4.xlsx | 7,966 |
 | upload/references.bib | 15,299 |
