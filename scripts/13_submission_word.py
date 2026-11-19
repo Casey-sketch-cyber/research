@@ -257,8 +257,15 @@ def primary_text_and_math(path):
     return atoms, counts
 
 
-def make_manuscript(repo, pandoc, work, out, figure_dir=None):
+def make_manuscript(repo, pandoc, work, out, figure_dir=None, *, mark_funding=True):
     source = main_manuscript(parsed_pandoc(pandoc, repo / "paper/manuscript.md"))
+    if not mark_funding:
+        blocks = source["blocks"]
+        if any(block["t"] == "Para" and inline_text(block["c"]) == FUNDING for block in blocks):
+            source["blocks"] = [block for block in blocks if not (
+                (block["t"] == "Para" and inline_text(block["c"]) == FUNDING)
+                or (block["t"] == "Header" and inline_text(block["c"][2]) == "Acknowledgments")
+            )]
     raw = work / "pandoc-manuscript.docx"
     write_pandoc_docx(pandoc, source, raw)
     atoms_before, counts_before = primary_text_and_math(raw)
@@ -280,7 +287,7 @@ def make_manuscript(repo, pandoc, work, out, figure_dir=None):
             highlighted = True
         if re.match(r"^Table [1-4]\.", paragraph.text):
             paragraph.paragraph_format.keep_with_next = True
-    if not highlighted:
+    if mark_funding and not highlighted:
         raise ValueError("The source funding placeholder could not be located in Word")
     layout_tables(document)
     titles = figure_titles(source["blocks"]) if figure_dir is not None else {}

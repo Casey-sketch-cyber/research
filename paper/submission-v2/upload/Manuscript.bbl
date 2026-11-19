@@ -1,0 +1,315 @@
+\begin{thebibliography}{30}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi: }
+\providecommand{\ArXivprefix}{arXiv: }
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid: }
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\BIBand}{and}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\undefined \def\xfnm[#1]{\unskip,\space#1}\fi
+\makeatletter\def\@biblabel#1{#1.}\makeatother
+%Type = Misc
+\bibitem[{{Government of the Hong Kong Special Administrative
+  Region}(2025)}]{hksar2025basic}
+\bibinfo{author}{{Government of the Hong Kong Special Administrative Region}}
+  (\bibinfo{year}{2025}).
+\newblock \bibinfo{title}{Basic housing units ordinance (cap. 658)}.
+\newblock \bibinfo{howpublished}{Ordinance No. 41 of 2025, Hong Kong Government
+  Gazette}. .
+\newblock \URLprefix \url{https://www.elegislation.gov.hk/hk/cap658}
+  \bibinfo{note}{schedule 1, section 1. Phase one commenced on 1 March 2026}.
+%Type = Article
+\bibitem[{Ulrich(2025)}]{ulrich2025minimum}
+\bibinfo{author}{Ulrich, K.T.} (\bibinfo{year}{2025}). \bibinfo{title}{Minimum
+  spatial housing requirements for human flourishing}.
+\newblock \bibinfo{journal}{Buildings} \emph{\bibinfo{volume}{15}},
+  \bibinfo{pages}{2623}. \DOIprefix\doi{10.3390/buildings15152623}.
+%Type = Article
+\bibitem[{Weber et~al.(2024)Weber, Mueller and Reinhart}]{weber2024hypergraph}
+\bibinfo{author}{Weber, R.E.}, \bibinfo{author}{Mueller, C.}, and
+  \bibinfo{author}{Reinhart, C.} (\bibinfo{year}{2024}). \bibinfo{title}{A
+  hypergraph model shows the carbon reduction potential of effective space use
+  in housing}.
+\newblock \bibinfo{journal}{Nature Communications} \emph{\bibinfo{volume}{15}},
+  \bibinfo{pages}{8327}. \URLprefix
+  \url{https://www.nature.com/articles/s41467-024-52506-z}.
+  \DOIprefix\doi{10.1038/s41467-024-52506-z}.
+%Type = Article
+\bibitem[{Goessler and Kaluarachchi(2023)}]{goessler2023adaptive}
+\bibinfo{author}{Goessler, T.}, and \bibinfo{author}{Kaluarachchi, Y.}
+  (\bibinfo{year}{2023}). \bibinfo{title}{Smart adaptive homes and their
+  potential to improve space efficiency and personalisation}.
+\newblock \bibinfo{journal}{Buildings} \emph{\bibinfo{volume}{13}},
+  \bibinfo{pages}{1132}. \DOIprefix\doi{10.3390/buildings13051132}.
+%Type = Article
+\bibitem[{Daglio et~al.(2023)Daglio, Ginelli and Vignati}]{daglio2023housing}
+\bibinfo{author}{Daglio, L.}, \bibinfo{author}{Ginelli, E.}, and
+  \bibinfo{author}{Vignati, G.} (\bibinfo{year}{2023}). \bibinfo{title}{Housing
+  design: Furniture or fixtures? accommodating change through technological and
+  typological innovation}.
+\newblock \bibinfo{journal}{Buildings} \emph{\bibinfo{volume}{13}},
+  \bibinfo{pages}{1862}. \DOIprefix\doi{10.3390/buildings13071862}.
+%Type = Article
+\bibitem[{Özer and Jacoby(2022)}]{ozer2022dwelling}
+\bibinfo{author}{Özer, S.}, and \bibinfo{author}{Jacoby, S.}
+  (\bibinfo{year}{2022}). \bibinfo{title}{Dwelling size and usability in
+  {London}: a study of floor plan data using machine learning}.
+\newblock \bibinfo{journal}{Building Research \& Information}
+  \emph{\bibinfo{volume}{50}}, \bibinfo{pages}{694--708}.
+  \DOIprefix\doi{10.1080/09613218.2022.2070452}.
+%Type = Article
+\bibitem[{Pedro(2009)}]{pedro2009dwellings}
+\bibinfo{author}{Pedro, J.A.C.B.d.O.} (\bibinfo{year}{2009}).
+  \bibinfo{title}{How small can a dwelling be? a revision of {Portuguese}
+  building regulations}.
+\newblock \bibinfo{journal}{Structural Survey} \emph{\bibinfo{volume}{27}},
+  \bibinfo{pages}{390--410}. \DOIprefix\doi{10.1108/02630800911002648}.
+%Type = Article
+\bibitem[{Qaradaghi and Qaradaghi(2022)}]{qaradaghi2022area}
+\bibinfo{author}{Qaradaghi, C.Q.M.}, and \bibinfo{author}{Qaradaghi, A.M.A.}
+  (\bibinfo{year}{2022}). \bibinfo{title}{The effect of architectural area
+  standards on living room’s spatial functional efficiency for low- prize
+  residential complexes in {Sulaymaniyah} city}.
+\newblock \bibinfo{journal}{Sulaimani Journal for Engineering Sciences}
+  \emph{\bibinfo{volume}{9}}, \bibinfo{pages}{23--37}. \URLprefix
+  \url{https://sjes.univsul.edu.iq/article?id=138}.
+  \DOIprefix\doi{10.17656/sjes.10154}.
+%Type = Article
+\bibitem[{Freimane(2022)}]{freimane2022riga}
+\bibinfo{author}{Freimane, S.} (\bibinfo{year}{2022}). \bibinfo{title}{Quality
+  of apartment layouts in contemporary urban housing: The study of {Riga}}.
+\newblock \bibinfo{journal}{SPACE International Journal of Conference
+  Proceedings} \emph{\bibinfo{volume}{2}}, \bibinfo{pages}{19--27}. \URLprefix
+  \url{https://journal.spacestudies.co.uk/index.php/space-ijocp/article/view/36}.
+  \DOIprefix\doi{10.51596/sijocp.v2i1.36}.
+%Type = Article
+\bibitem[{Rakhmatillaeva(2025)}]{rakhmatillaeva2025spatial}
+\bibinfo{author}{Rakhmatillaeva, Z.} (\bibinfo{year}{2025}).
+  \bibinfo{title}{Spatial analysis of contemporary one-room apartment layouts
+  in {Tashkent}’s new residential buildings}.
+\newblock \bibinfo{journal}{International Multidisciplinary Journal for
+  Research \& Development} \emph{\bibinfo{volume}{12}}. \URLprefix
+  \url{https://www.ijmrd.in/index.php/imjrd/article/view/3565}.
+%Type = Article
+\bibitem[{Bu and Che~Mat(2026)}]{bu2026compact}
+\bibinfo{author}{Bu, S.}, and \bibinfo{author}{Che~Mat, R.}
+  (\bibinfo{year}{2026}). \bibinfo{title}{Research on space optimization design
+  strategies for compact bedrooms based on smart built environment}.
+\newblock \bibinfo{journal}{Civil Engineering and Architecture}
+  \emph{\bibinfo{volume}{14}}, \bibinfo{pages}{3617--3633}. \URLprefix
+  \url{https://www.hrpub.org/journals/article_info.php?aid=16213}.
+  \DOIprefix\doi{10.13189/cea.2026.140514}.
+%Type = Article
+\bibitem[{Zeng et~al.(2026)Zeng, Feng, Zou and Lei}]{zeng2026sbf}
+\bibinfo{author}{Zeng, F.}, \bibinfo{author}{Feng, X.}, \bibinfo{author}{Zou,
+  D.}, and \bibinfo{author}{Lei, J.} (\bibinfo{year}{2026}).
+  \bibinfo{title}{Breaking the fixed-room bottleneck: Generative {SBF} model,
+  power-law scaling, and adaptability surcharge index for extreme residential
+  intensification}.
+\newblock \bibinfo{journal}{Buildings} \emph{\bibinfo{volume}{16}},
+  \bibinfo{pages}{3219}. \DOIprefix\doi{10.3390/buildings16163219}.
+%Type = Article
+\bibitem[{Ashkevari and Farhady(2023)}]{ashkevari2023flexibility}
+\bibinfo{author}{Ashkevari, S.}, and \bibinfo{author}{Farhady, M.}
+  (\bibinfo{year}{2023}). \bibinfo{title}{Evaluation of functional flexibility
+  in contemporary {Japanese} housing layouts: Integration of user perspective}.
+\newblock \bibinfo{journal}{A|Z ITU Journal of the Faculty of Architecture}
+  \emph{\bibinfo{volume}{20}}, \bibinfo{pages}{101--116}. \URLprefix
+  \url{https://www.az.itu.edu.tr/jfa/article/view/755}.
+%Type = Article
+\bibitem[{Merrell et~al.(2011)Merrell, Schkufza, Li, Agrawala and
+  Koltun}]{merrell2011furniture}
+\bibinfo{author}{Merrell, P.}, \bibinfo{author}{Schkufza, E.},
+  \bibinfo{author}{Li, Z.}, \bibinfo{author}{Agrawala, M.}, and
+  \bibinfo{author}{Koltun, V.} (\bibinfo{year}{2011}).
+  \bibinfo{title}{Interactive furniture layout using interior design
+  guidelines}.
+\newblock \bibinfo{journal}{ACM Transactions on Graphics}
+  \emph{\bibinfo{volume}{30}}, \bibinfo{pages}{1--10}.
+  \DOIprefix\doi{10.1145/2010324.1964982}.
+%Type = Article
+\bibitem[{Yu et~al.(2011)Yu, Yeung, Tang, Terzopoulos, Chan and
+  Osher}]{yu2011makeithome}
+\bibinfo{author}{Yu, L.F.}, \bibinfo{author}{Yeung, S.K.},
+  \bibinfo{author}{Tang, C.K.}, \bibinfo{author}{Terzopoulos, D.},
+  \bibinfo{author}{Chan, T.F.}, and \bibinfo{author}{Osher, S.J.}
+  (\bibinfo{year}{2011}). \bibinfo{title}{Make it home: automatic optimization
+  of furniture arrangement}.
+\newblock \bibinfo{journal}{ACM Transactions on Graphics}
+  \emph{\bibinfo{volume}{30}}, \bibinfo{pages}{1--12}.
+  \DOIprefix\doi{10.1145/2010324.1964981}.
+%Type = Inproceedings
+\bibitem[{Sun et~al.(2025)Sun, Liu, Gu, Lim, Bhat, Tombari, Li, Haber and
+  Wu}]{sun2025layoutvlm}
+\bibinfo{author}{Sun, F.Y.}, \bibinfo{author}{Liu, W.}, \bibinfo{author}{Gu,
+  S.}, \bibinfo{author}{Lim, D.}, \bibinfo{author}{Bhat, G.},
+  \bibinfo{author}{Tombari, F.}, \bibinfo{author}{Li, M.},
+  \bibinfo{author}{Haber, N.}, and \bibinfo{author}{Wu, J.}
+  (\bibinfo{year}{2025}). \bibinfo{title}{{LayoutVLM}: Differentiable
+  optimization of {3D} layout via vision-language models}.
+\newblock In \bibinfo{booktitle}{2025 IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition (CVPR)}. pp. \bibinfo{pages}{29469--29478}.
+\newblock \URLprefix
+  \url{https://openaccess.thecvf.com/content/CVPR2025/html/Sun_LayoutVLM_Differentiable_Optimization_of_3D_Layout_via_Vision-Language_Models_CVPR_2025_paper.html}.
+  \DOIprefix\doi{10.1109/cvpr52734.2025.02744}.
+%Type = Inproceedings
+\bibitem[{Li et~al.(2026)Li, Ju, Qin, Fang and Li}]{li2026homeworld}
+\bibinfo{author}{Li, W.}, \bibinfo{author}{Ju, X.}, \bibinfo{author}{Qin, Z.},
+  \bibinfo{author}{Fang, R.}, and \bibinfo{author}{Li, H.}
+  (\bibinfo{year}{2026}). \bibinfo{title}{{HomeWorld}: A unified
+  floorplan-to-furnished framework for generating controllable, densely
+  interactive whole-home scenes}.
+\newblock In \bibinfo{booktitle}{Computer Vision – ECCV 2026}. pp.
+  \bibinfo{pages}{40--58}.
+\newblock \URLprefix
+  \url{https://link.springer.com/chapter/10.1007/978-3-032-37335-9_3}.
+  \DOIprefix\doi{10.1007/978-3-032-37335-9_3}.
+%Type = Inproceedings
+\bibitem[{{Nieciecki, Piotr} et~al.(2026){Nieciecki, Piotr}, {Plocharski,
+  Aleksander} and {Musialski, Przemyslaw}}]{nieciecki2026comfortable}
+\bibinfo{author}{{Nieciecki, Piotr}}, \bibinfo{author}{{Plocharski,
+  Aleksander}}, and \bibinfo{author}{{Musialski, Przemyslaw}}
+  (\bibinfo{year}{2026}). \bibinfo{title}{What a {ComfortableWorld}: Ergonomic
+  principles guided apartment layout generation}.
+\newblock In \bibinfo{booktitle}{Eurographics 2026 – Short Papers}.
+  \bibinfo{publisher}{The Eurographics Association}.
+\newblock \URLprefix \url{https://eg2026.github.io/program/}.
+  \DOIprefix\doi{10.2312/egs.20261019}.
+%Type = Article
+\bibitem[{Xiang et~al.(2026)Xiang, Bao, Feng, Wu, Liu, Guan and
+  Liu}]{xiang2026colayout}
+\bibinfo{author}{Xiang, C.}, \bibinfo{author}{Bao, R.}, \bibinfo{author}{Feng,
+  B.}, \bibinfo{author}{Wu, W.}, \bibinfo{author}{Liu, Z.},
+  \bibinfo{author}{Guan, Y.}, and \bibinfo{author}{Liu, L.}
+  (\bibinfo{year}{2026}). \bibinfo{title}{{Co-Layout}: {LLM}-driven
+  co-optimization for interior layout}.
+\newblock \bibinfo{journal}{Proceedings of the AAAI Conference on Artificial
+  Intelligence} \emph{\bibinfo{volume}{40}}, \bibinfo{pages}{14371--14379}.
+  \URLprefix \url{https://ojs.aaai.org/index.php/AAAI/article/view/38452}.
+  \DOIprefix\doi{10.1609/aaai.v40i17.38452}.
+%Type = Article
+\bibitem[{Garg et~al.(2016)Garg, Jacobson and
+  Grinspun}]{garg2016reconfigurables}
+\bibinfo{author}{Garg, A.}, \bibinfo{author}{Jacobson, A.}, and
+  \bibinfo{author}{Grinspun, E.} (\bibinfo{year}{2016}).
+  \bibinfo{title}{Computational design of reconfigurables}.
+\newblock \bibinfo{journal}{ACM Transactions on Graphics}
+  \emph{\bibinfo{volume}{35}}, \bibinfo{pages}{1--14}.
+  \DOIprefix\doi{10.1145/2897824.2925900}.
+%Type = Article
+\bibitem[{Xiong et~al.(2021)Xiong, Fu, Fu, Zhou, Luo and
+  Deng}]{xiong2021motion}
+\bibinfo{author}{Xiong, G.}, \bibinfo{author}{Fu, Q.}, \bibinfo{author}{Fu,
+  H.}, \bibinfo{author}{Zhou, B.}, \bibinfo{author}{Luo, G.}, and
+  \bibinfo{author}{Deng, Z.} (\bibinfo{year}{2021}). \bibinfo{title}{Motion
+  planning for convertible indoor scene layout design}.
+\newblock \bibinfo{journal}{IEEE Transactions on Visualization and Computer
+  Graphics} \emph{\bibinfo{volume}{27}}, \bibinfo{pages}{4413--4424}.
+  \DOIprefix\doi{10.1109/tvcg.2020.3005680}.
+%Type = Article
+\bibitem[{Fu et~al.(2024)Fu, Zhang, Li and Fu}]{fu2024magic}
+\bibinfo{author}{Fu, Q.}, \bibinfo{author}{Zhang, F.}, \bibinfo{author}{Li,
+  X.}, and \bibinfo{author}{Fu, H.} (\bibinfo{year}{2024}).
+  \bibinfo{title}{Magic furniture: Design paradigm of multi-function assembly}.
+\newblock \bibinfo{journal}{IEEE Transactions on Visualization and Computer
+  Graphics} \emph{\bibinfo{volume}{30}}, \bibinfo{pages}{4068--4079}.
+  \DOIprefix\doi{10.1109/tvcg.2023.3250488}.
+%Type = Article
+\bibitem[{Liu et~al.(2025)Liu, Zhang, Sun, Wang and Zhang}]{liu2025diff}
+\bibinfo{author}{Liu, J.H.}, \bibinfo{author}{Zhang, S.K.},
+  \bibinfo{author}{Sun, S.}, \bibinfo{author}{Wang, Z.}, and
+  \bibinfo{author}{Zhang, S.H.} (\bibinfo{year}{2025}). \bibinfo{title}{{DIFF}:
+  A dataset for indoor flexible furniture}.
+\newblock \bibinfo{journal}{Graphical Models} \emph{\bibinfo{volume}{141}},
+  \bibinfo{pages}{101293}. \DOIprefix\doi{10.1016/j.gmod.2025.101293}.
+%Type = Article
+\bibitem[{Zhang et~al.(2025)Zhang, Liu, Huang, Chi, Tam, Yang and
+  Zhang}]{zhang2025sceneexplorer}
+\bibinfo{author}{Zhang, S.K.}, \bibinfo{author}{Liu, J.H.},
+  \bibinfo{author}{Huang, J.}, \bibinfo{author}{Chi, Z.}, \bibinfo{author}{Tam,
+  H.}, \bibinfo{author}{Yang, Y.L.}, and \bibinfo{author}{Zhang, S.H.}
+  (\bibinfo{year}{2025}). \bibinfo{title}{{SceneExplorer}: An interactive
+  system for expanding, scheduling, and organizing transformable layouts}.
+\newblock \bibinfo{journal}{IEEE Transactions on Visualization and Computer
+  Graphics} \emph{\bibinfo{volume}{31}}, \bibinfo{pages}{6008--6021}.
+  \DOIprefix\doi{10.1109/tvcg.2024.3488744}.
+%Type = Article
+\bibitem[{Xiong et~al.(2026)Xiong, Cai and Luo}]{xiong2026mafc}
+\bibinfo{author}{Xiong, G.}, \bibinfo{author}{Cai, S.}, and
+  \bibinfo{author}{Luo, G.} (\bibinfo{year}{2026}).
+  \bibinfo{title}{{MAFC}-driven dynamic layout transformation system for
+  reconfigurable furniture}.
+\newblock \bibinfo{journal}{Computer Animation and Virtual Worlds}
+  \emph{\bibinfo{volume}{37}}, \bibinfo{pages}{e70113}.
+  \DOIprefix\doi{10.1002/cav.70113}.
+%Type = Article
+\bibitem[{Elmurodov and Mametova(2026)}]{elmurodov2026efficiency}
+\bibinfo{author}{Elmurodov, S.}, and \bibinfo{author}{Mametova, N.}
+  (\bibinfo{year}{2026}). \bibinfo{title}{Increasing space efficiency in small
+  apartments through furniture transformation}.
+\newblock \bibinfo{journal}{O‘zbekistonda Uchinchi Renessans va innovatsion
+  jarayonlar jurnali} \emph{\bibinfo{volume}{2}}, \bibinfo{pages}{172--188}.
+  \URLprefix \url{https://globalsciences.uz/renessans/article/view/3547}.
+%Type = Misc
+\bibitem[{{Standfest, Matthias} et~al.(2022){Standfest, Matthias}, {Franzen,
+  Michael}, {Schröder, Yvonne}, {Medina, Luis Gonzalez}, {Yarilo Villanueva
+  Hernandez}, {Buck, Jan Hendrik}, {Yen-Ling Tan}, {Niedzwiecka, Milena} and
+  {Colmegna, Rachele}}]{standfest2022swiss}
+\bibinfo{author}{{Standfest, Matthias}}, \bibinfo{author}{{Franzen, Michael}},
+  \bibinfo{author}{{Schröder, Yvonne}}, \bibinfo{author}{{Medina, Luis
+  Gonzalez}}, \bibinfo{author}{{Yarilo Villanueva Hernandez}},
+  \bibinfo{author}{{Buck, Jan Hendrik}}, \bibinfo{author}{{Yen-Ling Tan}},
+  \bibinfo{author}{{Niedzwiecka, Milena}}, and \bibinfo{author}{{Colmegna,
+  Rachele}} (\bibinfo{year}{2022}).
+\newblock \bibinfo{title}{{Swiss} dwellings: A large dataset of apartment
+  models including aggregated geolocation-based simulation results covering
+  viewshed, natural light, traffic noise, centrality and geometric analysis}.
+\newblock \bibinfo{howpublished}{Zenodo}. .
+\newblock \URLprefix \url{https://zenodo.org/records/7788422}.
+  \DOIprefix\doi{10.5281/zenodo.7788422} \bibinfo{note}{dataset, version
+  3.0.0}.
+%Type = Misc
+\bibitem[{Abouagour and Garyfallidis(2025)}]{abouagour2025resplan}
+\bibinfo{author}{Abouagour, M.}, and \bibinfo{author}{Garyfallidis, E.}
+  (\bibinfo{year}{2025}).
+\newblock \bibinfo{title}{{ResPlan}: A large-scale vector-graph dataset of
+  17,000 residential floor plans}.
+\newblock \bibinfo{howpublished}{arXiv preprint}. .
+\newblock \URLprefix \url{https://arxiv.org/abs/2508.14006}.
+  \DOIprefix\doi{10.48550/arXiv.2508.14006}.
+  \href{http://arxiv.org/abs/2508.14006}{\tt arXiv:2508.14006}.
+%Type = Inproceedings
+\bibitem[{Collins et~al.(2022)Collins, Goel, Deng, Luthra, Xu, Gundogdu, Zhang,
+  Vicente, Dideriksen, Arora, Guillaumin and Malik}]{collins2022abo}
+\bibinfo{author}{Collins, J.}, \bibinfo{author}{Goel, S.},
+  \bibinfo{author}{Deng, K.}, \bibinfo{author}{Luthra, A.},
+  \bibinfo{author}{Xu, L.}, \bibinfo{author}{Gundogdu, E.},
+  \bibinfo{author}{Zhang, X.}, \bibinfo{author}{Vicente, T.F.Y.},
+  \bibinfo{author}{Dideriksen, T.}, \bibinfo{author}{Arora, H.},
+  \bibinfo{author}{Guillaumin, M.}, and \bibinfo{author}{Malik, J.}
+  (\bibinfo{year}{2022}). \bibinfo{title}{{ABO}: Dataset and benchmarks for
+  real-world {3D} object understanding}.
+\newblock In \bibinfo{booktitle}{2022 IEEE/CVF Conference on Computer Vision
+  and Pattern Recognition (CVPR)}. pp. \bibinfo{pages}{21094--21104}.
+\newblock \URLprefix \url{https://ieeexplore.ieee.org/document/9879101/}.
+  \DOIprefix\doi{10.1109/cvpr52688.2022.02045}.
+%Type = Inproceedings
+\bibitem[{Perron et~al.(2023)Perron, Didier and Gay}]{perron2023cpsat}
+\bibinfo{author}{Perron, L.}, \bibinfo{author}{Didier, F.}, and
+  \bibinfo{author}{Gay, S.} (\bibinfo{year}{2023}). \bibinfo{title}{The
+  {CP-SAT-LP} solver (invited talk)}.
+\newblock In \bibinfo{booktitle}{29th International Conference on Principles
+  and Practice of Constraint Programming (CP 2023)} vol. \bibinfo{volume}{280}
+  of \emph{\bibinfo{series}{Leibniz International Proceedings in Informatics
+  (LIPIcs)}}. \bibinfo{publisher}{Schloss Dagstuhl – Leibniz-Zentrum für
+  Informatik} pp. \bibinfo{pages}{3:1--3:2}.
+\newblock \URLprefix
+  \url{https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.CP.2023.3}.
+  \DOIprefix\doi{10.4230/LIPIcs.CP.2023.3}.
+
+\end{thebibliography}
