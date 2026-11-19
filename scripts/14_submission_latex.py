@@ -21,10 +21,7 @@ AUDIT = import_module("13_submission_audit")
 FUNDING_MARKER = re.compile(r"^\[AUTHOR TO FILL:.*\]\s*$", re.M)
 LEAKED_EDITING_NOTES = re.compile(r"Title options|Selected by the author|Not used:|\[AUTHOR TO FILL", re.I)
 SOURCE_BIB_KEY = re.compile(r"^@\w+\{\s*([a-z0-9:_-]+),", re.M)
-DISCLOSURE = (
-    "During preparation of this manuscript, Gemini and Claude assisted with drafting and editing, "
-    "and OpenAI Codex assisted with formatting and preparation of submission files."
-)
+DISCLOSURE_HEADING = "## Declaration of generative AI and AI-assisted technologies in the manuscript preparation process"
 TEMPLATE_SHA256 = "d5fea9a7718bd857ae5e71753eed4a7dfc62303992656775ee15d5b2068b5dfe"
 SUPERSCRIPTS = "⁰¹²³⁴⁵⁶⁷⁸⁹"
 TITLE_MARKERS = str.maketrans(SUPERSCRIPTS, "0123456789")
@@ -134,7 +131,8 @@ def make_submission_text(draft: str) -> str:
     acknowledgments = extract_between(draft, "## Acknowledgments", "## Author contributions")
     acknowledgments = FUNDING_MARKER.sub("", acknowledgments).strip()
     contributions = extract_between(draft, "## Author contributions", "## Declaration of interests")
-    interests = extract_between(draft, "## Declaration of interests", "## References")
+    interests = extract_between(draft, "## Declaration of interests", DISCLOSURE_HEADING)
+    disclosure = extract_between(draft, DISCLOSURE_HEADING, "## References")
     figures, tables = captions_and_tables(draft)
     table_s4 = re.search(r"(?ms)^\*\*Table S4\..*?(?=^\|\s*Household\b)", draft)
     if table_s4 is None:
@@ -152,8 +150,7 @@ def make_submission_text(draft: str) -> str:
     blocks.extend([
         f"## Author Contributions\n\n{contributions}",
         f"## Declaration of Interests\n\n{interests}",
-        "## Declaration of generative AI and AI-assisted technologies in the manuscript preparation process\n\n"
-        + DISCLOSURE,
+        f"{DISCLOSURE_HEADING}\n\n{disclosure}",
         f"## Figure Titles and Legends\n\n{figures}",
         "```{=latex}\n" + r"\clearpage\begin{landscape}\small" + "\n```"
         + f"\n\n## Tables\n\n{tables}\n\n"
