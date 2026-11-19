@@ -1,0 +1,566 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  11pt,
+]{article}
+\usepackage{xcolor}
+\usepackage[letterpaper,margin=0.82in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{caption}
+\captionsetup[table]{skip=6pt}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{pdflscape}
+\usepackage{setspace}
+\usepackage{lineno}
+\usepackage[numbers,super,sort&compress]{natbib}
+\newcommand{\SubmissionCite}[1]{\unskip\citep{#1}}
+\AtBeginDocument{\onehalfspacing\linenumbers}
+\setlength{\emergencystretch}{3em}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
+\hypersetup{
+  pdftitle={Translating furniture into floor area shows where compact homes gain space},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Translating furniture into floor area shows where compact homes gain space}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\textbf{Authors:} Feng He\textsuperscript{1}, Dan Zhang\textsuperscript{2}, and Zhantu Liang\textsuperscript{3},\textsuperscript{4},* \textbf{Affiliations:} \textsuperscript{1}Faculty of Art and Design, Guangxi Polytechnic University, Nanning 530226, China \textsuperscript{2}School of Art and Design, Guangzhou Polytechnic University, Guangzhou 511483, China \textsuperscript{3}Institute of Ultrasonic Technology, Shenzhen Polytechnic University, Shenzhen 518055, China \textsuperscript{4}Lead contact \textbf{Correspondence:} liangzhantu@szpu.edu.cn
+
+\clearpage
+
+\section{Summary}\label{summary}
+
+Shrinking urban homes are regulated mainly by floor area, while transformable furniture is promoted to make small dwellings work. Yet area rules, single-room studies, and layout generators cannot establish how much usable area transformable furniture saves across diverse homes and daily routines. Here, we compare each home with itself under static, form-only, and time-switched furniture strategies---each arranged by constraint optimization and independently verified---and translate capacity differences into equivalent floor area (m\textsuperscript{2}). Across 2,619 compact plans and four household types, most observed plans already function with static furniture. Gains concentrate in two-person households of intermediate compact size, with median identified equivalent-area gains of 6.21 m\textsuperscript{2} for couples and 5.00 m\textsuperscript{2} for parent-and-child households. Fixed 45 m\textsuperscript{2} cutoffs disagree with modeled adequacy on 55.7\% of couple and 52.7\% of parent-and-child cases, while daily switching saves 2.24 m\textsuperscript{2} for couples in Hong Kong model shells, supporting performance-based supplements to area rules.
+
+\section{Introduction}\label{introduction}
+
+Urban housing pressure and rising construction costs are shrinking homes across dense cities, and governments largely regulate these compact dwellings by internal floor area alone. Hong Kong\textquotesingle s Basic Housing Units Ordinance, for instance, sets a statutory minimum internal floor area of 8 m\textsuperscript{2} for subdivided units, mostly commencing on 1 March 2026 \SubmissionCite{hksar2025basic}, whereas normative scholarship on human flourishing proposes 30, 45, and 60 m\textsuperscript{2} for one-, two-, and three-person households \SubmissionCite{ulrich2025minimum}. How much floor area a household requires also carries major environmental stakes, as effective space use in existing housing can cut operational and embodied carbon more than envelope retrofits for many buildings in the cities studied \SubmissionCite{weber2024hypergraph}. Within this squeeze, transformable furniture---such as wall beds, fold-down desks, and drop-leaf tables---is widely promoted to make small homes work without expanding physical footprints \SubmissionCite{goessler2023adaptive,daglio2023housing}.
+
+Despite this promotion, current space regulations and functional housing standards cannot establish how much usable floor area transformable furniture adds across diverse homes and households. Area-only rules count square meters of net internal area (NIA) without testing whether beds, tables, storage, and walking paths fit inside a specific plan, making size an incomplete measure of usability \SubmissionCite{ozer2022dwelling}. Functional space standards and layout audits improve on area thresholds by checking rooms against furniture lists and dimensional indicators \SubmissionCite{pedro2009dwellings,qaradaghi2022area,freimane2022riga,rakhmatillaeva2025spatial,ulrich2025minimum}, yet they rely on static furniture in fixed, hand-drawn arrangements and omit time-of-day sharing across a household\textquotesingle s daily routine.
+
+Existing transformable-interior studies and computational layout generators leave a complementary gap. Architectural and ergonomic analyses report large localized gains---such as roughly 60\% more activity area in one 12 m\textsuperscript{2} bedroom when a wall bed folds up \SubmissionCite{bu2026compact}, depth compression under ergonomic action domains \SubmissionCite{zeng2026sbf}, or user-reported flexibility \SubmissionCite{ashkevari2023flexibility,daglio2023housing}---but examine single rooms or designer-chosen layouts that mix furniture capability with manual drawing skill. Meanwhile, computational layout methods synthesize static or ergonomics-guided residential scenes \SubmissionCite{merrell2011furniture,yu2011makeithome,sun2025layoutvlm,li2026homeworld,nieciecki2026comfortable,xiang2026colayout} or design reconfigurable assemblies and multi-state transitions \SubmissionCite{garg2016reconfigurables,xiong2021motion,fu2024magic,liu2025diff,zhang2025sceneexplorer,xiong2026mafc}, yet they do not tie shared-position furniture states to a 24-hour household schedule, guarantee walkable reachability from the entrance, or translate capacity gains into floor area across housing stocks. No existing method jointly represents who uses a home and when, which furniture can change state, and whether every scheduled arrangement is collision-free and reachable, expressed in m\textsuperscript{2}.
+
+In this paper, we quantify schedule-weighted residential capacity across compact homes and translate the effect of transformable furniture into equivalent floor area (Figure 1). Our key idea is to compare each home with itself under three furniture strategies---static (S0), form only (S1, admitting transformable furniture in a single daily state), and form + time (S2, allowing transformable furniture at fixed positions to switch states between daily time slots)---giving each strategy its best optimized arrangement and checking every layout with an independent geometric validator. Specifically, we measure a functional capacity index (FCI) as the share of scheduled, weighted activity-hours served over 24 h; optimize discrete poses via constraint programming with greedy warm starts and lazy reachability cuts; independently verify zero overlap, unobstructed clearances, and 0.60 m walkable access; and map paired S2 versus S0 differences onto the static area--capacity curve to obtain equivalent-area gain (\(\Delta\text{EA}\), in m\textsuperscript{2}) and adequate area (\(A_{\min}\) at \(\text{FCI} \ge 0.95\)). Optimizing each strategy within the same shell isolates furniture capability from designer skill, while separating the form effect (\(\text{S1} - \text{S0}\)) from the time or switching effect (\(\text{S2} - \text{S1}\)) distinguishes compact geometry from daily temporal reuse.
+
+Across 2,619 compact plans and four household types, we find that the space-saving value of transformable furniture is substantial where static layouts bottleneck, but conditional on household composition and dwelling size. Most observed plans already function with static furniture, concentrating gains in two-person homes of intermediate compact size, where median identified positive \(\Delta\text{EA}\) reaches 6.21 m\textsuperscript{2} for couples and 5.00 m\textsuperscript{2} for parent-and-child households. Because plan geometry creates wide functional spread at a given area, a 45 m\textsuperscript{2} two-person cutoff disagrees with modeled S2 adequacy on 55.7\% of couple and 52.7\% of parent-and-child cases, mostly rejecting workable compact homes. In Hong Kong model shells, switching furniture states over the day is worth 2.24 m\textsuperscript{2} of minimum adequate area for couples.
+
+This study makes three contributions: (1) a schedule-aware, independently verifiable measure of functional capacity (FCI) translatable to equivalent floor area (\(\Delta\text{EA}\)) and adequate area (\(A_{\min}\)); (2) corpus-scale paired evidence showing where transformable form and daily switching save floor area and why the smallest and largest compact homes gain little; and (3) an empirical test of area-only housing standards, with a Hong Kong scenario demonstrating that furniture dimensions should be chosen by size band.
+
+\section{Results}\label{results}
+
+\subsection{A verified, schedule-aware comparison of furniture strategies}\label{a-verified-schedule-aware-comparison-of-furniture-strategies}
+
+To evaluate furniture strategies across diverse residential geometries, we assembled 2,742 compact dwelling units within 8--50 m\textsuperscript{2} of net internal area (NIA)---defined as interior furnishable, storage-only, walkable-only, and fixed-service floor space, excluding walls and balconies---and screened each unfurnished plan on a 0.10 m raster for unobstructed 0.60 m entrance-to-service access (Figure 1; Table 1; Figure S1). Excluding 123 units that failed this empty-geometry walkability screen yielded 2,619 evaluable dwellings: 2,109 observed plans drawn from Swiss Dwellings (1,236 plans; NIA 16.75--50.00 m\textsuperscript{2}, median 40.47 m\textsuperscript{2}) and ResPlan (873 plans; NIA 25.56--49.96 m\textsuperscript{2}, median 45.48 m\textsuperscript{2}), alongside 510 controlled generated shells spanning 8.00--40.00 m\textsuperscript{2} NIA (median 16.00 m\textsuperscript{2}) that extend coverage down to Hong Kong\textquotesingle s 8 m\textsuperscript{2} statutory threshold, below the smallest observed plan at 16.75 m\textsuperscript{2} NIA (Table 1; Figure S1). Each dwelling was evaluated against four 24-hour household schedules partitioned into six daily slots---single commuter, single remote worker, couple (including one remote worker and an alternate guest-dining day occurring at frequency 0.143 alongside normal days at 0.857), and parent and child (requiring two separate single sleeping surfaces)---using a dimension-audited static and transformable furniture library (Table 1; Table 2; Table S1). Across all 2,619 dwellings, four households, and three strategies (S0, S1, and S2), the search and independent validator produced 31,428 geometrically verified layouts.
+
+Tracking individual homes across Night, Workday, and Dinner slots illustrates when daily state switching unlocks capacity and when plan geometry prevents it (Figure 2; Figure S2). In an 18.00 m\textsuperscript{2} generated shell occupied by a couple, static furniture (S0) achieves an FCI of 0.937 with zero transformation burden (\(\text{TB} = 0.00\)), and form-only transformable furniture (S1) reaches 0.942 (\(\text{TB} = 0.00\)), because neither single-state arrangement can simultaneously fit a double sleeping surface, a dedicated daytime workspace, two-person lounging, and dining clearances without collision (Figure 2). Allowing daily state switching at fixed furniture anchors (S2; \(\text{TB} = 3.00\)) deploys a double wall bed at night and stows it during daytime slots, raising coverage to full capacity (\(\text{FCI} = 1.000\), \(\Delta\text{EA} = 3.48\text{ m}^2\); Figure 2). By contrast, in a 10.00 m\textsuperscript{2} generated shell, no double sleeping surface fits with valid clearance and access in any slot, capping FCI at 0.577 under S0 and 0.687 under both S1 and S2 with no daily state changes (\(\text{TB} = 0.00\); Figure 2; Figure S2). Similarly, in a partitioned 29.97 m\textsuperscript{2} observed plan from Swiss Dwellings, narrow room dimensions and doorway keep-outs restrict FCI to 0.668 under S0 and 0.687 under S1 and S2 (\(\text{TB} = 0.00\); Figure 2; Figure S2), showing that interior geometry---not total floor area alone---governs whether multi-state furniture can expand usable capacity.
+
+To check whether paired differences reflect furniture capability rather than incomplete layout search, we benchmarked the warm-started production pipeline against standalone CP-SAT, greedy footprint placement, and standalone simulated annealing across 200 stratified unit--household pairs under S2 (Figure S3; Table S2). Every method returned 100.0\% independently valid layouts across all 200 pairs. The production pipeline achieved the highest mean FCI at 0.9428 (median 1.0000; summed S0 + S1 + S2 mean solve time 53.86 s, median 10.68 s), exceeding greedy placement (mean FCI 0.8612; mean 3.47 s), standalone CP-SAT (0.8675; 38.45 s), and standalone simulated annealing (0.9341; 104.12 s, median 108.33 s; paired production-minus-annealing difference +0.0087 FCI, 95\% CI {[}0.0016, 0.0160{]}). Production matched the highest FCI observed across all four search methods on 189 of the 200 pairs, with a mean shortfall of only 0.0034 FCI across the remaining 11 cases (Figure S3; Table S2).
+
+\subsection{Most compact plans already function with static furniture}\label{most-compact-plans-already-function-with-static-furniture}
+
+Across the 2,109 observed compact plans, static furniture (S0) already serves the entire daily activity schedule (\(\text{FCI} = 1\)) in the clear majority of dwellings for every household type (Figure 3; Table 3). Specifically, S0 achieves full functional capacity in 90.8\% of observed plans for a single commuter, 89.1\% for a single remote worker, 72.7\% for a couple, and 61.0\% for a parent and child---spanning 88.5\%, 85.9\%, 59.1\%, and 43.2\% in Swiss Dwellings and 94.0\%, 93.6\%, 92.1\%, and 86.3\% in the larger-footprint ResPlan sample (Table 3).
+
+Because static layouts already saturate scheduled demand in more than half of observed plans for every household---and pairs with identical S0 and S2 scores map to an exact zero area difference---the all-pair median equivalent-area gain (\(\Delta\text{EA}\)) on observed plans is 0 m\textsuperscript{2} (support bounds 0.00--0.00 m\textsuperscript{2}) across all four household schedules (Table 3). Even across the 510 generated shells, which deliberately concentrate sampling in 8--16 m\textsuperscript{2} footprints, S0 provides full functional capacity (\(\text{FCI} = 1\)) for 54.9\% of single commuters and 53.9\% of single remote workers (yielding 0.00--0.00 m\textsuperscript{2} all-pair median \(\Delta\text{EA}\)), compared with 31.6\% for couples (all-pair median \(\Delta\text{EA}\) 1.34 m\textsuperscript{2}) and 26.7\% for parent-and-child households (all-pair median bounds 0.83--0.86 m\textsuperscript{2}; Table 3). Transformable furniture therefore acts not as an across-the-board space multiplier, but as a targeted intervention for plans and households where static furniture hits a geometric ceiling.
+
+\subsection{Gains concentrate in two-person households at intermediate sizes}\label{gains-concentrate-in-two-person-households-at-intermediate-sizes}
+
+Allowing transformable form and daily state switching (S2 versus S0) improves FCI in a small fraction of single-person observed plans---7.5\% (159 of 2,109) for the single commuter and 8.7\% (184 of 2,109) for the single remote worker---but in a substantial share of two-person observed plans: 23.5\% (496 of 2,109) for the couple and 35.9\% (757 of 2,109) for the parent and child (Figure 3; Figure 4; Table 3). Among improved observed-plan pairs whose S0 and S2 scores invert within the interior support of the observed-plan static reference curve, the median identified positive \(\Delta\text{EA}\) is 1.33 m\textsuperscript{2} (95\% CI {[}0.75, 3.11{]}, \(n = 160\) identified plus 24 support-bounded pairs; improved-group median lower bound \(\ge 1.33\text{ m}^2\)) for the single remote worker, 6.21 m\textsuperscript{2} ({[}4.20, 10.00{]}, \(n = 448\) identified plus 48 bounded; lower bound \(\ge 6.21\text{ m}^2\)) for the couple, and 5.00 m\textsuperscript{2} ({[}4.20, 8.00{]}, \(n = 721\) identified plus 36 bounded; lower bound \(\ge 5.00\text{ m}^2\)) for the parent and child (Table 3). For the single commuter, all 159 improved observed-plan pairs invert at the lower boundary of the observed-plan static curve (16.75 m\textsuperscript{2}), leaving the point-identified median unavailable and establishing a support-limited lower bound of \(\ge 2.00\text{ m}^2\) among improved pairs (Table 3). Likewise, for the six observed-plan couple pairs in the smallest observed bin (16--18 m\textsuperscript{2}), the observed-plan reference yields a median \(\Delta\text{EA}\) lower bound of 16.6 m\textsuperscript{2} with no finite upper bound, whereas re-inverting those same scores on the pooled static reference (which incorporates generated shells down to 8 m\textsuperscript{2}) identifies a median gain of 8.2 m\textsuperscript{2} (Figure 4).
+
+Evaluating the controlled generated shells (8.00--40.00 m\textsuperscript{2} NIA) resolves the complete size profile and reveals a nonmonotonic relationship between dwelling area and space savings (Figure 4). Rather than peaking in the smallest shells, two-person equivalent-area gains start small, peak at intermediate compact sizes, and decline to zero once static layouts fit. For a couple in generated shells, the all-pair median \(\Delta\text{EA}\) rises from 0.75 m\textsuperscript{2} (9.2\% of NIA) at 8--10 m\textsuperscript{2} to a peak of 7.32 m\textsuperscript{2} (49.8\% of NIA) at 14--16 m\textsuperscript{2}, before declining to 0 m\textsuperscript{2} in evaluated bins from 24 m\textsuperscript{2} onward (Figure 4). Similarly, for a parent and child, the all-pair median \(\Delta\text{EA}\) increases from 0.69 m\textsuperscript{2} (7.6\% of NIA) at 8--10 m\textsuperscript{2} to 6.00 m\textsuperscript{2} (33.3\% of NIA) at 18--20 m\textsuperscript{2} and reaches 0 m\textsuperscript{2} from 28 m\textsuperscript{2} onward (Figure 4). In the tightest 8--10 m\textsuperscript{2} shells, even stowed or deployed transformable footprints and operating clearances cannot fit alongside wet-service access, limiting how much capacity transformability can add. Measured at the adequacy crossing (\(\text{FCI} \ge 0.95\)), S2 reduces the minimum adequate area \(A_{\min}\) on observed plans by 10.78 m\textsuperscript{2} (95\% CI {[}9.15, 12.70{]}, from 33.96 m\textsuperscript{2} {[}33.21, 34.67{]} under S0 to 23.18 m\textsuperscript{2} {[}21.27, 24.73{]} under S2) for the parent-and-child household---the one observed-plan contrast with both crossings inside observed NIA support---and reduces \(A_{\min}\) across generated shells by 1.68 m\textsuperscript{2} ({[}1.12, 2.38{]}) for a single commuter, 3.63 m\textsuperscript{2} ({[}2.78, 4.77{]}) for a single remote worker, 5.53 m\textsuperscript{2} ({[}4.90, 6.12{]}) for a couple, and 6.45 m\textsuperscript{2} ({[}5.19, 7.75{]}) for a parent and child (Table 3).
+
+\subsection{Changing form and changing over time help different households}\label{changing-form-and-changing-over-time-help-different-households}
+
+Decomposing the total functional gain (\(\text{S2} - \text{S0}\)) into the form effect (\(\text{S1} - \text{S0}\)) and the time or switching effect (\(\text{S2} - \text{S1}\)) shows that households benefit through distinct physical mechanisms (Figure 3; Table 3). On observed plans, single-person improvements stem almost entirely from compact transformable form rather than slot-to-slot state changes: the mean form effect is 0.0085 FCI (95\% CI {[}0.0071, 0.0100{]}) versus a mean time effect of 0.0002 FCI ({[}0.0000, 0.0003{]}) for the single commuter, and 0.0107 FCI ({[}0.0090, 0.0125{]}) versus 0.0001 FCI ({[}0.0000, 0.0002{]}) for the single remote worker (Table 3). Between the two-person households, however, the roles of form and time diverge. For the parent-and-child schedule, which requires two single sleeping surfaces at night and concurrent work and lounging in the early evening, the mean form effect on observed plans is 0.0271 FCI ({[}0.0249, 0.0292{]}) while the mean time effect is only 0.0017 FCI ({[}0.0013, 0.0022{]}), indicating that compact item footprints do nearly all the work without daily state switching. For the couple, by contrast, the mean form effect (0.0130 FCI, {[}0.0112, 0.0148{]}) and mean time effect (0.0112 FCI, {[}0.0094, 0.0130{]}) contribute almost equally on observed plans---and both remain substantial in generated shells (0.0709 {[}0.0621, 0.0795{]} and 0.0372 {[}0.0303, 0.0447{]} FCI, respectively; Table 3)---because stowing a double wall bed by day directly frees floor space for daytime remote work, dining, and two-person lounging.
+
+Sensitivity analyses indicate that this mechanistic split is not driven by bed-clearance conventions or solver settings, while highlighting the acute sensitivity of compact plans to circulation width (Figure S4). Because the standard catalogue requires left and right side clearances on double beds and deployed double wall beds (Table S1), we tested a separate variant allowing mirrored one-side access across 348 small units (\(\le 20\text{ m}^2\) NIA); the couple\textquotesingle s mean time effect changed by only \(-0.0122\) FCI (95\% CI {[}\(-0.0203\), \(-0.0040\){]}), and across the 18 observed plans in that size band the interval included zero. Across the 200 benchmark pairs and 50-unit solver subsamples, the largest absolute changes in mean S2 FCI were \(-0.0160\) when scaling operating clearances by \(0.8\times\) or \(1.2\times\) (couple at \(1.2\times\)) and \(-0.0102\) when varying solver caps across 30, 60, and 120 s (parent and child at 60 s), while among single-item transformable removals, dropping the drop-leaf table produced the largest reduction (\(-0.0267\) for couples and \(-0.0199\) for parent and child; Figure S4). In contrast, widening required walking circulation from 0.60 m to 0.90 m reduced mean S2 FCI by 0.5151 for the parent-and-child schedule across 49 matched units (Figure S4), showing that accessibility-grade circulation demands substantially larger shells than standard 0.60 m passage rules.
+
+\subsection{Floor area alone misjudges functional adequacy}\label{floor-area-alone-misjudges-functional-adequacy}
+
+Testing statutory and normative floor-area cutoffs against modeled functional adequacy (\(\text{FCI} \ge 0.95\)) shows that area thresholds frequently misclassify two-person compact homes (Figure 5; Table 4). Evaluated across all 2,109 observed plans under S2, Ulrich\textquotesingle s \SubmissionCite{ulrich2025minimum} 45 m\textsuperscript{2} two-person benchmark disagrees with modeled adequacy on 55.7\% of couple cases and 52.7\% of parent-and-child cases (Table 4). Nearly all of these disagreements are false negatives---dwellings smaller than 45 m\textsuperscript{2} that nonetheless serve at least 95\% of scheduled activity-hours with independently verified clearances and access (1,150 false negatives versus 25 false positives for couples; 1,090 false negatives versus 22 false positives for parent and child; Table 4). Disagreement is already large under static furniture (S0), reaching 47.0\% for couples (940 false negatives, 52 false positives) and 40.5\% for parent-and-child households (789 false negatives, 66 false positives), and increases under S2 because transformable layouts make additional sub-45 m\textsuperscript{2} plans adequate. For one-person schedules on observed plans, Ulrich\textquotesingle s 30 m\textsuperscript{2} benchmark disagrees with S2 adequacy on 10.4\% of single-commuter and 11.1\% of single-remote-worker cases (versus 14.5\% and 16.4\% under S0; Table 4).
+
+This classification error arises because dwellings of identical floor area vary widely in usable capacity owing to room proportions, partition walls, and door and window positions---consistent with Özer and Jacoby\textquotesingle s \SubmissionCite{ozer2022dwelling} static usability findings and extending them to scheduled and transformable layouts (Figure 5). Within narrow 2 m\textsuperscript{2} NIA bins on observed plans, the interquartile range of static (S0) FCI reaches 0.205 for couples at 26--28 m\textsuperscript{2} and 0.190 for parent-and-child households at 24--26 m\textsuperscript{2} (Figure 5). At the opposite regulatory extreme, Hong Kong\textquotesingle s statutory 8 m\textsuperscript{2} basic housing unit minimum sits below every observed plan in Swiss Dwellings and ResPlan (all \(\ge 16.75\text{ m}^2\)), yielding zero negative predictions on observed plans (Table 4). On the 510 generated shells (8.00--40.00 m\textsuperscript{2}), however, an 8 m\textsuperscript{2} pass threshold disagrees with S2 adequacy on 30.0\% of single-commuter, 27.3\% of single-remote-worker, 40.4\% of couple (206 false positives), and 49.6\% of parent-and-child (253 false positives) cases, passing ultra-small shells that cannot support basic daily schedules (Table 4).
+
+\subsection{What this means for Hong Kong\textquotesingle s smallest homes}\label{what-this-means-for-hong-kongs-smallest-homes}
+
+To examine how floor-area minimums, daily switching, and furniture dimensions interact in ultra-compact housing, we evaluated 390 Hong Kong model shells---30 matched aspect-ratio and opening templates at each integer NIA from 8 to 20 m\textsuperscript{2}---using a shared dimension-sensitive quality index (\(\text{FCI}_q\), with adequacy at \(\text{FCI}_q \ge 0.95\); Figure 6; Table S3). Hong Kong\textquotesingle s 2021 Population Census records 215,709 residents and 107,371 households living in 108,202 subdivided units across 33,658 quarters (Table 1), but public tabulations omit the joint distribution of household size and floor area required to weight territory-wide stock totals; our scenario estimates therefore describe the modeled shell templates directly. With standard catalogue dimensions, moving from static (S0) to form + time (S2) transformable furniture reduces the minimum adequate area \(A_{\min}\) from 13.40 m\textsuperscript{2} (95\% CI {[}13.03, 13.73{]}) to 12.37 m\textsuperscript{2} ({[}12.00, 12.70{]}; 12.30 m\textsuperscript{2} {[}11.90, 12.64{]} under matched extra catalogue search) for a single commuter, and from 19.58 m\textsuperscript{2} ({[}18.78, 19.96{]}) to 17.07 m\textsuperscript{2} ({[}16.58, 17.64{]}) for a parent and child---a reduction of 2.51 m\textsuperscript{2} ({[}1.86, 3.03{]}; Figure 6). For a couple, static furniture leaves \(A_{\min}\) above the 20 m\textsuperscript{2} grid support (only 11 of 30 shells are adequate at 20 m\textsuperscript{2}), whereas moving from form-only (S1) to form + time (S2) transformable furniture lowers \(A_{\min}\) from 18.57 m\textsuperscript{2} ({[}18.18, 19.02{]}) to 16.33 m\textsuperscript{2} ({[}15.87, 16.83{]}), isolating a daily state-switching reduction of 2.24 m\textsuperscript{2} ({[}1.66, 2.82{]}; Figure 6).
+
+Testing parametric furniture kits on 8--15 m\textsuperscript{2} training shells (\(n = 30\)) and transferring the selected fixed designs to held-out generated shells (\(n = 15\)), small observed plans (\(\le 20\text{ m}^2\), \(n = 15\)), and the 390 Hong Kong model shells shows that custom kit sizing offers no improvement over standard dimensions for a single commuter (Figure 6; Figure S5; Table S3). Across the training shells, the highest-ranking commuter kit (0.80 m single wall bed, \(0.80 \times 0.45\text{ m}\) fold-down desk, \(0.70 \times 0.60\text{ m}\) drop-leaf table, and 0.60 m wardrobe frontage) differed from the standard catalogue by \(+0.0013\) \(\text{FCI}_q\) (95\% CI {[}\(-0.0153\), \(+0.0200\){]}) while reaching adequacy on fewer shells (11 of 30 versus 13 of 30; Table S3). Across the 390 Hong Kong model shells, this compact kit reached adequacy in 184 of 390 shells versus 246 of 390 for the optimized catalogue (paired mean \(\text{FCI}_q\) difference \(-0.0389\), {[}\(-0.0564\), \(-0.0230\){]}), because downsized surfaces incur quality penalties without unlocking enough ultra-small shells (Figure 6; Table S3).
+
+For a couple, by contrast, a larger parametric kit (1.50 m double wall bed, \(1.20 \times 0.55\text{ m}\) fold-down desk, \(1.00 \times 0.75\text{ m}\) drop-leaf table, and 1.40 m wardrobe frontage) creates a clear size-band trade-off (Figure 6; Table S3). On the 30 training shells under matched extra search, its paired mean \(\text{FCI}_q\) difference over the catalogue was \(+0.0021\) (95\% CI {[}\(-0.0336\), \(+0.0279\){]}, confidence interval including zero), reaching adequacy on 5 of 30 shells versus 2 of 30 for the catalogue (Table S3). Across the 390 Hong Kong model shells, this larger kit yielded a modeled \(A_{\min}\) of 15.39 m\textsuperscript{2} ({[}14.67, 16.19{]}) compared with 16.12 m\textsuperscript{2} ({[}15.70, 16.57{]}) for the optimized catalogue (154 versus 132 adequate shells overall), raising adequacy in the 13--16 m\textsuperscript{2} band from 30 of 120 to 51 of 120 shells (+21 shells) while achieving adequacy on 0 of 150 shells at 8--12 m\textsuperscript{2} and reducing mean \(\text{FCI}_q\) below 13 m\textsuperscript{2} from 0.500 to 0.448 (Figure 6; Table S3). Furniture dimensions should therefore be chosen per floor-area band rather than fixed across all compact homes.
+
+\section{Discussion}\label{discussion}
+
+Across 2,619 compact residential plans and four household schedules, our analysis shows that the space-saving value of transformable furniture is substantial where static arrangements hit geometric bottlenecks, yet conditional on household composition and dwelling size. Most observed compact homes already serve scheduled daily activities with static furniture, concentrating equivalent-area gains in two-person households occupying intermediate compact sizes---driven primarily by compact multi-state form for a parent and child, and by nearly equal contributions of form and daily state switching for a couple---whereas the smallest shells lack room even for stowed or deployed transformable clearances. At the same time, dwellings of identical net internal area exhibit wide differences in verified functional capacity, causing fixed area thresholds to misclassify roughly half of observed two-person cases. Floor area alone is therefore a weak proxy for whether a compact dwelling works, whereas schedule-aware geometric verification pinpoints where furniture substitutes for space and where physical footprint remains binding.
+
+These results clarify how large localized gains reported in single-room design studies relate to whole-dwelling performance across housing stocks. Analytical and prototype studies of individual rooms---such as Bu and Che Mat\textquotesingle s \SubmissionCite{bu2026compact} comparison of a \(4 \times 3\text{ m}\) bedroom reporting roughly 60\% more clearance-inclusive free activity area (from about 5--5.5 m\textsuperscript{2} to about 8 m\textsuperscript{2}) when a wall bed is folded, open-floor comparisons in a modeled 35 m\textsuperscript{2} flat \SubmissionCite{elmurodov2026efficiency}, or case-study projections of adaptive space efficiency \SubmissionCite{goessler2023adaptive}---measure open floor space under a chosen arrangement. Evaluating an approximate \(4 \times 3\text{ m}\) room envelope and 12 m\textsuperscript{2} generated analogues under scheduled single-person demand and whole-home body-free accounting (Figure S6) yields 7.60 m\textsuperscript{2} of daytime body-free area under both S0 and S2 in the approximate room because static placement already satisfies the full schedule without forced folding, \(-0.52\) to \(+1.38\text{ m}^2\) across the 12 m\textsuperscript{2} analogues, and a median daytime body-free area change of 0 m\textsuperscript{2} across all 2,109 observed plans and 510 generated shells for both single-person schedules. Rather than contradicting single-room designs, this difference reflects measure and scope: maximizing open daytime floor space in one room answers a different question than whether a whole dwelling\textquotesingle s sleeping, work, dining, lounging, storage, cooking, and sanitary needs are jointly reachable over 24 h. Coupling multi-state furniture and daily schedules with independent access checks thus extends static functional standards \SubmissionCite{pedro2009dwellings,ulrich2025minimum}, empirical plan-usability evaluations \SubmissionCite{ozer2022dwelling,freimane2022riga,qaradaghi2022area,rakhmatillaeva2025spatial}, and ergonomic depth-compression models \SubmissionCite{zeng2026sbf}, while complementing Weber et al.\textquotesingle s \SubmissionCite{weber2024hypergraph} static excess-area carbon model.
+
+Translating functional capacity into square meters offers actionable guidance for housing regulators, interior designers, and furniture manufacturers. For regulators, fixed floor-area minimums face a sharp classification dilemma: generous cutoffs such as 45 m\textsuperscript{2} reject more than a thousand observed two-person compact plans that accommodate scheduled activities with verified clearances, whereas ultra-low minimums such as 8 m\textsuperscript{2} pass shells in which basic one- and two-person schedules cannot physically fit. Performance-based checks---such as allowing compact units near a regulatory threshold to demonstrate compliance through an independently verified, reachable layout for an intended household schedule---can supplement statutory area minimums without rewarding unworkable micro-shells. For designers and manufacturers, space-saving investment should target two-person dwellings of roughly 12--30 m\textsuperscript{2} NIA, prioritizing reliable day--night state switching for couples and compact multi-state footprints for parent-and-child households. Moreover, standardized furniture kits should be sized by floor-area band rather than marketed as universal micro-living packages, as larger couple surfaces expand adequacy across 13--16 m\textsuperscript{2} Hong Kong model shells while reducing capacity below 13 m\textsuperscript{2}, and downsized commuter kits do not improve upon standard catalogue pieces.
+
+For housing and computational design researchers, our modular evaluation pipeline and negative surrogate findings highlight both transferability and the continuing need for explicit geometric search. Because plan rasterization, household schedules, furniture catalogues, constraint solving, and independent validation are decoupled, the framework transfers directly to housing stocks in other cities, alternative cultural schedules, or stricter accessibility rules such as 0.90 m wheelchair circulation (Figure S4). Conversely, geometry-only learned models---including GraphSAGE over room-and-opening graphs---did not reach the prespecified ranking criterion on held-out observed sites (Figure S7; Table S4), showing that doorway keep-outs, discrete pose packing, and multi-slot reachability create sharp geometric thresholds where explicit optimization with independent validation remains necessary.
+
+\section{Resource Availability}\label{resource-availability}
+
+\subsection{Lead contact}\label{lead-contact}
+
+Further information and requests for resources should be directed to and will be fulfilled by the lead contact, Zhantu Liang (liangzhantu@szpu.edu.cn).
+
+\subsection{Materials availability}\label{materials-availability}
+
+This study did not generate new physical materials or reagents.
+
+\subsection{Data and code availability}\label{data-and-code-availability}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Data:} All empirical datasets analyzed in this study are publicly available from their original repositories: Swiss Dwellings v3.0.0 \SubmissionCite{standfest2022swiss} (https://doi.org/10.5281/zenodo.7788422), ResPlan \SubmissionCite{abouagour2025resplan} (https://doi.org/10.48550/arXiv.2508.14006; https://github.com/m-agour/ResPlan), Amazon Berkeley Objects listings (https://amazon-berkeley-objects.s3.amazonaws.com/index.html), and Hong Kong 2021 Population Census Subdivided Units tabulations (https://data.gov.hk/en-data/dataset/hk-censtatd-census\_geo-2021-population-census-su-by-dcd). Derived summary tables, validated showcase layouts, and scene verification manifests are committed in the study repository.
+\item
+  \textbf{Code:} All original source code for corpus normalization, candidate pose generation, warm-started CP-SAT optimization, independent geometric validation, statistical resampling, 2D plotting, and 3D Blender Cycles scene verification is publicly available at https://github.com/Casey-sketch-cyber/research as of the date of publication.
+\item
+  \textbf{Additional information:} Any additional information required to reanalyze the data reported in this paper is available from the lead contact upon request.
+\end{itemize}
+
+\section{Limitations of Study}\label{limitations-of-study}
+
+Three scope boundaries frame the interpretation of our results and point to future research. (1) FCI measures geometric fit and walkable access for scheduled furniture activities, not acoustic or visual privacy, daylight quality, thermal comfort, ceiling-height perception, or occupant satisfaction; future post-occupancy and immersive-evaluation studies should link FCI and transformation burden to resident wellbeing and observed daily switching behavior. (2) Our four primary households and audited furniture library represent stylized daily schedules and representative product dimensions rather than exhaustive population heterogeneity, although the open pipeline accepts custom time-use diaries, assistive-mobility clearances, and local furniture catalogues. (3) Our Hong Kong analysis evaluates a controlled grid of 8--20 m\textsuperscript{2} model shells rather than weighted territory-wide stock totals because public census tables lack the joint distribution of household size and subdivided-unit floor area, motivating future linkage with measured subdivided-unit floor-plan surveys.
+
+\section{Author Contributions}\label{author-contributions}
+
+Conceptualization, Z.L.; investigation, F.H. and D.Z.; writing -- original draft, F.H.; supervision, Z.L.
+
+\section{Declaration of Interests}\label{declaration-of-interests}
+
+The authors declare no competing interests.
+
+\section{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process}\label{declaration-of-generative-ai-and-ai-assisted-technologies-in-the-manuscript-preparation-process}
+
+During preparation of this manuscript, Gemini and Claude assisted with drafting and editing, and OpenAI Codex assisted with formatting and preparation of submission files.
+
+\section{Figure Titles and Legends}\label{figure-titles-and-legends}
+
+\textbf{Figure 1. A schedule-aware, verified framework for translating furniture into floor area} (A) Inputs: 2,619 compact homes (8--50 m\textsuperscript{2} net internal area, NIA), four household schedules, and a furniture library of static and two-state transformable items (\ensuremath{\rightleftarrows}). (B) The same 18 m\textsuperscript{2} couple home under three strategies across night, workday, and dinner slots: static (S0), form only (S1), and form + time (S2). In S2, the double wall bed is deployed at night and stowed (hatched) by day. (C) A constraint-programming optimizer (CP-SAT) finds the best layout per strategy, and an independent validator checks non-overlap, free clearances, and walkable access of at least 0.6 m, yielding 31,428 verified layouts. (D) The functional capacity index (FCI) measures the share of scheduled activity-hours served. Mapping paired S0 and S2 scores onto the static reference curve gives equivalent-area gain (\(\Delta\text{EA}\)), while capacity gain splits into form (\(\text{S1} - \text{S0}\)) and time (\(\text{S2} - \text{S1}\)) effects.
+
+\textbf{Figure 2. Validated couple layouts across daily slots and strategies in 2D plan and 3D orthographic views} (A) Validated 2D floor-plan arrangements for a couple on a normal day across Night, Workday, and Dinner slots under static (S0), form only (S1), and form + time (S2) strategies in three showcase dwellings: a 10.00 m\textsuperscript{2} generated shell (top row), an 18.00 m\textsuperscript{2} generated shell (middle row), and a 29.97 m\textsuperscript{2} observed plan from Swiss Dwellings (bottom row). Furniture bodies are colored by activity function (sleep, work, dine, lounge, storage, fixed service); hatched polygons indicate stowed transformable states, and scale is held constant within each row. In the 10.00 m\textsuperscript{2} shell, no double sleeping surface fits with valid clearance in any slot (\(\text{FCI} = 0.577\) under S0; \(\text{FCI} = 0.687\) under S1 and S2), and in both the 10.00 m\textsuperscript{2} and 29.97 m\textsuperscript{2} showcases S2 furniture states remain fixed across the day (\(\text{TB} = 0.00\)). (B) Matched Blender Cycles 3D orthographic renders of the 18.00 m\textsuperscript{2} generated shell under S0 (\(\text{FCI} = 0.937\), \(\text{TB} = 0.00\)) and S2 (\(\text{FCI} = 1.000\), \(\text{TB} = 3.00\)) across Night, Workday, and Dinner with fixed camera, lighting, and scale. Deploying the double wall bed at night and stowing it by day unlocks full schedule coverage in the 18.00 m\textsuperscript{2} shell. See also Figure S2 for 3D renders of the 10.00 m\textsuperscript{2} and 29.97 m\textsuperscript{2} showcases.
+
+\textbf{Figure 3. Functional capacity across net internal area by household and furniture strategy} Median validated functional capacity index (FCI) per 2 m\textsuperscript{2} net internal area (NIA) bin under static (S0, blue), form only (S1, orange), and form + time (S2, green) strategies for single commuter, single remote worker, couple, and parent-and-child schedules across observed plans (\(\text{D1} + \text{D2}\), \(n = 2,109\) dwellings; top row) and generated shells (\(\text{D3}\), \(n = 510\) dwellings; bottom row). Dashed dark lines show the cumulative-maximum monotone static reference curve \(\hat{f}_0(A)\) fitted to S0 bin medians for equivalent-area inversion; horizontal dotted lines mark the \(\text{FCI} = 0.95\) adequacy threshold. Strategy separation is minimal for single-person schedules on observed plans and largest for two-person schedules across compact intermediate bins.
+
+\textbf{Figure 4. Equivalent-area gains from transformable form and daily state switching across dwelling sizes} All-pair median equivalent-area gain (\(\Delta\text{EA}\)) between S2 and S0 per 2 m\textsuperscript{2} NIA bin expressed in absolute floor area (m\textsuperscript{2}, top row) and percentage of dwelling NIA (\%, bottom row) across the four primary households on observed plans (\(n = 2,109\), circles) and generated shells (\(n = 510\), squares), including pairs with equal S0 and S2 scores. Solid lines mark lower support bounds, dotted lines and shaded bands indicate upper support bounds where finite, grey markers denote sparse bins with fewer than 10 unit--household pairs (the smallest observed-plan bin at 16--18 m\textsuperscript{2} contains \(n = 6\) pairs), and upward triangles indicate bins whose upper median bound is unbounded on the within-population static curve. Equivalent-area gains peak at intermediate compact sizes for two-person households rather than in the smallest shells.
+
+\textbf{Figure 5. Within-bin dispersion of functional capacity across equal-sized dwellings} Interquartile range (75th minus 25th percentile) of validated FCI within each 2 m\textsuperscript{2} NIA bin under static (S0, blue), form only (S1, orange), and form + time (S2, green) strategies across observed plans (\(n = 2,109\); top row) and generated shells (\(n = 510\); bottom row) for the four primary households. Dwellings in the same narrow floor-area bin exhibit substantial spread in usable capacity, explaining why area-only cutoffs misclassify individual plans.
+
+\textbf{Figure 6. Adequacy, daily state switching, and parametric furniture kit trade-offs in Hong Kong model shells} (A--C) Share of modeled shells achieving quality-weighted adequacy (\(\text{FCI}_q \ge 0.95\)) at each integer NIA from 8 to 20 m\textsuperscript{2} (\(n = 30\) matched shape templates per integer m\textsuperscript{2}, 390 shells per household) for a single commuter, couple, and parent and child under S0, S1, S2, matched extra-search catalogue S2, the tested compact commuter kit, and the selected larger couple kit (top row; shaded band highlights 13--16 m\textsuperscript{2} for the couple). (D--F) Couple quality-scored capacity and size-band trade-offs (bottom row): (D) mean \(\text{FCI}_q\) by integer area comparing the larger couple kit against the optimized catalogue (shaded band highlights 8--12 m\textsuperscript{2}); (E) modeled 50\% adequate area crossings (\(A_{\min}\)) with 95\% template-cluster bootstrap confidence intervals (1,000 resamples of the 30 shape templates); and (F) enumeration counts at 13--16 m\textsuperscript{2} (\(51/120\) versus \(30/120\) adequate shells) and mean \(\text{FCI}_q\) at 8--12 m\textsuperscript{2} (\(0.448\) versus \(0.500\)). Kit dimensions and training and transfer summaries are shown in Figure S5 and Table S3.
+
+\clearpage\begin{landscape}\small
+
+\section{Tables}\label{tables}
+
+\textbf{Table 1. Datasets and analysis coverage} Summary of floor-plan, product-dimension, and census sources, showing raw record counts, unique eligible compact residential plans (8--50 m\textsuperscript{2} NIA), units selected for the primary experiment, evaluable units passing the predeclared 0.10 m empty-geometry walkability screen, and NIA range statistics.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1250}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+ID
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Dataset
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Raw records
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Unique eligible
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Selected
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Evaluable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+NIA min / median / max (m\textsuperscript{2})
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role in study
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+D1 & Swiss Dwellings & 46,830 & 2,327 & 1,348 & 1,236 & 16.75 / 40.47 / 50.00 & Observed floor plans (normalized) \\
+D2 & ResPlan & 17,000 & 884 & 884 & 873 & 25.56 / 45.48 / 49.96 & Observed floor plans (normalized) \\
+D3 & Generated shells & 510 & 510 & 510 & 510 & 8.00 / 16.00 / 40.00 & Controlled parametric shell grid \\
+D4 & Amazon Berkeley Objects & 147,702 & --- & --- & --- & --- & Furniture dimension audit (43,002 usable triples) \\
+D5 & American Time Use Survey & --- & --- & --- & --- & --- & Optional schedule calibration (omitted) \\
+D6 & Hong Kong 2021 Census & 108,202 & --- & --- & --- & --- & Territory context (subdivided units) \\
+\end{longtable}
+}
+
+\textbf{Table 2. Household daily activity schedules} Twenty-four-hour slot partitions, day-variant frequencies, and furniture-supported capability demands for the four primary households and the older-adult sensitivity schedule. Fixed bathroom and kitchen spaces serve hygiene and cooking; storage is credited proportionally up to required capacity units.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1429}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Household
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Persons
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Day variant
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Frequency
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Slot
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Clock (duration)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Scheduled furniture demand
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Single commuter & 1 & normal & 1.000 & night & 23:00--07:00 (8 h) & Single sleeping \\
+Single commuter & 1 & normal & 1.000 & morning & 07:00--09:00 (2 h) & Storage (1.0 unit), two-person dining \\
+Single commuter & 1 & normal & 1.000 & day & 09:00--17:00 (8 h) & Away \\
+Single commuter & 1 & normal & 1.000 & evening & 17:00--19:00 (2 h) & One-person lounging \\
+Single commuter & 1 & normal & 1.000 & dinner & 19:00--20:00 (1 h) & Two-person dining \\
+Single commuter & 1 & normal & 1.000 & leisure & 20:00--23:00 (3 h) & One-person lounging, individual work (weight 0.3) \\
+Single remote worker & 1 & normal & 1.000 & night & 23:00--07:00 (8 h) & Single sleeping \\
+Single remote worker & 1 & normal & 1.000 & morning & 07:00--09:00 (2 h) & Storage (1.0 unit), two-person dining \\
+Single remote worker & 1 & normal & 1.000 & day & 09:00--17:00 (8 h) & Individual work \\
+Single remote worker & 1 & normal & 1.000 & evening & 17:00--19:00 (2 h) & One-person lounging \\
+Single remote worker & 1 & normal & 1.000 & dinner & 19:00--20:00 (1 h) & Two-person dining \\
+Single remote worker & 1 & normal & 1.000 & leisure & 20:00--23:00 (3 h) & One-person lounging \\
+Couple & 2 & normal & 0.857 & night & 23:00--07:00 (8 h) & Double-occupancy sleeping \\
+Couple & 2 & normal & 0.857 & morning & 07:00--09:00 (2 h) & Storage (2.0 units), two-person dining \\
+Couple & 2 & normal & 0.857 & day & 09:00--17:00 (8 h) & Individual work \\
+Couple & 2 & normal & 0.857 & evening & 17:00--19:00 (2 h) & Two-person lounging \\
+Couple & 2 & normal & 0.857 & dinner & 19:00--20:00 (1 h) & Two-person dining \\
+Couple & 2 & normal & 0.857 & leisure & 20:00--23:00 (3 h) & Two-person lounging \\
+Couple & 2 & guests & 0.143 & night & 23:00--07:00 (8 h) & Double-occupancy sleeping \\
+Couple & 2 & guests & 0.143 & morning & 07:00--09:00 (2 h) & Storage (2.0 units), two-person dining \\
+Couple & 2 & guests & 0.143 & day & 09:00--17:00 (8 h) & Individual work \\
+Couple & 2 & guests & 0.143 & evening & 17:00--19:00 (2 h) & Two-person lounging \\
+Couple & 2 & guests & 0.143 & dinner & 19:00--20:00 (1 h) & Four-person dining \\
+Couple & 2 & guests & 0.143 & leisure & 20:00--23:00 (3 h) & Two-person lounging \\
+Parent and child & 2 & normal & 1.000 & night & 23:00--07:00 (8 h) & Two separate single sleeping surfaces \\
+Parent and child & 2 & normal & 1.000 & morning & 07:00--09:00 (2 h) & Storage (1.5 units), two-person dining \\
+Parent and child & 2 & normal & 1.000 & day & 09:00--17:00 (8 h) & Away \\
+Parent and child & 2 & normal & 1.000 & evening & 17:00--19:00 (2 h) & Individual work, one-person lounging \\
+Parent and child & 2 & normal & 1.000 & dinner & 19:00--20:00 (1 h) & Two-person dining \\
+Parent and child & 2 & normal & 1.000 & leisure & 20:00--23:00 (3 h) & Two-person lounging \\
+Older adult (sensitivity) & 1 & normal & 1.000 & night & 23:00--07:00 (8 h) & Single sleeping \\
+Older adult (sensitivity) & 1 & normal & 1.000 & morning & 07:00--09:00 (2 h) & Storage (1.0 unit), two-person dining \\
+Older adult (sensitivity) & 1 & normal & 1.000 & day & 09:00--17:00 (8 h) & One-person lounging \\
+Older adult (sensitivity) & 1 & normal & 1.000 & evening & 17:00--19:00 (2 h) & One-person lounging \\
+Older adult (sensitivity) & 1 & normal & 1.000 & dinner & 19:00--20:00 (1 h) & Two-person dining \\
+Older adult (sensitivity) & 1 & normal & 1.000 & leisure & 20:00--23:00 (3 h) & One-person lounging \\
+\end{longtable}
+}
+
+\textbf{Table 3. Matched functional capacity effects, equivalent-area gains (\(\Delta\text{EA}\)), and minimum adequate area reductions (\(\Delta A_{\min}\))} Paired within-dwelling outcomes across observed plans (\(\text{D1} + \text{D2}\)), generated shells (\(\text{D3}\)), individual observed datasets, and the pooled sensitivity reference. Bracketed ranges indicate 95\% unit-bootstrap confidence intervals (1,000 resamples) where supported (\(\ge 2\) contributing units and \(\ge 80\%\) supported draws); \ensuremath{\geq} denotes reference-curve support lower bounds; --- indicates unavailable point identification or unsupported logistic crossings. Higher values indicate greater capacity or floor-area savings.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 22\tabcolsep) * \real{0.0833}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 22\tabcolsep) * \real{0.0833}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Sample / Household
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Pairs (\(n\))
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Full S0 (\(\text{FCI}=1\))
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+S2 improves (\(\text{S2}>\text{S0}\))
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Mean form effect (\(\text{S1}-\text{S0}\), FCI \ensuremath{\uparrow})
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Mean time effect (\(\text{S2}-\text{S1}\), FCI \ensuremath{\uparrow})
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Identified positive \(n\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median identified \(\Delta\text{EA}\) (m\textsuperscript{2} \ensuremath{\uparrow})
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Bound-only improved \(n\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Improved-group median lower bound (m\textsuperscript{2} \ensuremath{\uparrow})
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+All-pair median \(\Delta\text{EA}\) bounds (m\textsuperscript{2} \ensuremath{\uparrow})
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\(\Delta A_{\min}\) at \(\tau=0.95\) (m\textsuperscript{2} \ensuremath{\uparrow})
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Observed plans (D1 + D2)} & & & & & & & & & & & \\
+Single commuter & 2,109 & 90.8\% & 7.5\% & 0.0085 {[}0.0071, 0.0100{]} & 0.0002 {[}0.0000, 0.0003{]} & 0 & --- & 159 & \ensuremath{\geq}2.00 & 0.00--0.00 & --- \\
+Single remote worker & 2,109 & 89.1\% & 8.7\% & 0.0107 {[}0.0090, 0.0125{]} & 0.0001 {[}0.0000, 0.0002{]} & 160 & 1.33 {[}0.75, 3.11{]} & 24 & \ensuremath{\geq}1.33 & 0.00--0.00 & --- \\
+Couple & 2,109 & 72.7\% & 23.5\% & 0.0130 {[}0.0112, 0.0148{]} & 0.0112 {[}0.0094, 0.0130{]} & 448 & 6.21 {[}4.20, 10.00{]} & 48 & \ensuremath{\geq}6.21 & 0.00--0.00 & --- \\
+Parent and child & 2,109 & 61.0\% & 35.9\% & 0.0271 {[}0.0249, 0.0292{]} & 0.0017 {[}0.0013, 0.0022{]} & 721 & 5.00 {[}4.20, 8.00{]} & 36 & \ensuremath{\geq}5.00 & 0.00--0.00 & 10.78 {[}9.15, 12.70{]} \\
+\textbf{Generated shells (D3)} & & & & & & & & & & & \\
+Single commuter & 510 & 54.9\% & 29.4\% & 0.0280 {[}0.0234, 0.0328{]} & 0.0023 {[}0.0009, 0.0041{]} & 148 & 2.00 {[}0.95, 2.00{]} & 2 & \ensuremath{\geq}2.00 & 0.00--0.00 & 1.68 {[}1.12, 2.38{]} \\
+Single remote worker & 510 & 53.9\% & 37.8\% & 0.0594 {[}0.0516, 0.0667{]} & 0.0009 {[}0.0003, 0.0017{]} & 180 & 2.29 {[}2.00, 2.33{]} & 13 & \ensuremath{\geq}2.00 & 0.00--0.00 & 3.63 {[}2.78, 4.77{]} \\
+Couple & 510 & 31.6\% & 59.2\% & 0.0709 {[}0.0621, 0.0795{]} & 0.0372 {[}0.0303, 0.0447{]} & 286 & 3.34 {[}2.32, 4.07{]} & 16 & \ensuremath{\geq}2.81 & 1.34--1.34 & 5.53 {[}4.90, 6.12{]} \\
+Parent and child & 510 & 26.7\% & 65.7\% & 0.0595 {[}0.0542, 0.0652{]} & 0.0052 {[}0.0034, 0.0071{]} & 322 & 1.79 {[}1.16, 2.44{]} & 13 & \ensuremath{\geq}1.73 & 0.83--0.86 & 6.45 {[}5.19, 7.75{]} \\
+\textbf{Swiss Dwellings (D1)} & & & & & & & & & & & \\
+Single commuter & 1,236 & 88.5\% & 10.1\% & 0.0119 {[}0.0097, 0.0142{]} & 0.0000 {[}0.0000, 0.0001{]} & 0 & --- & 125 & \ensuremath{\geq}2.00 & 0.00--0.00 & --- \\
+Single remote worker & 1,236 & 85.9\% & 12.7\% & 0.0164 {[}0.0138, 0.0192{]} & 0.0001 {[}0.0000, 0.0002{]} & 133 & 1.33 {[}0.75, 3.06{]} & 24 & \ensuremath{\geq}1.33 & 0.00--0.00 & --- \\
+Couple & 1,236 & 59.1\% & 36.0\% & 0.0182 {[}0.0157, 0.0209{]} & 0.0176 {[}0.0149, 0.0203{]} & 398 & 8.00 {[}4.36, 12.00{]} & 47 & \ensuremath{\geq}8.00 & 0.00--0.00 & --- \\
+Parent and child & 1,236 & 43.2\% & 51.9\% & 0.0413 {[}0.0381, 0.0445{]} & 0.0027 {[}0.0020, 0.0035{]} & 606 & 7.00 {[}5.75, 10.00{]} & 35 & \ensuremath{\geq}6.00 & 0.91--2.00 & 12.63 {[}10.78, 15.16{]} \\
+\textbf{ResPlan (D2)} & & & & & & & & & & & \\
+Single commuter & 873 & 94.0\% & 3.9\% & 0.0037 {[}0.0024, 0.0051{]} & 0.0003 {[}0.0000, 0.0007{]} & 0 & --- & 34 & \ensuremath{\geq}0.00 & 0.00--0.00 & --- \\
+Single remote worker & 873 & 93.6\% & 3.1\% & 0.0027 {[}0.0017, 0.0038{]} & 0.0001 {[}0.0000, 0.0003{]} & 0 & --- & 27 & \ensuremath{\geq}0.00 & 0.00--0.00 & --- \\
+Couple & 873 & 92.1\% & 5.8\% & 0.0055 {[}0.0032, 0.0081{]} & 0.0021 {[}0.0010, 0.0035{]} & 35 & 0.68 {[}0.25, 6.23{]} & 16 & \ensuremath{\geq}1.95 & 0.00--0.00 & --- \\
+Parent and child & 873 & 86.3\% & 13.3\% & 0.0070 {[}0.0054, 0.0088{]} & 0.0004 {[}0.0001, 0.0009{]} & 82 & 0.50 & 34 & \ensuremath{\geq}0.50 & 0.00--0.00 & --- \\
+\textbf{Pooled sensitivity (D1 + D2 + D3)} & & & & & & & & & & & \\
+Single commuter & 2,619 & 83.8\% & 11.8\% & 0.0123 {[}0.0108, 0.0140{]} & 0.0006 {[}0.0003, 0.0009{]} & 306 & 2.10 {[}1.38, 2.40{]} & 3 & \ensuremath{\geq}2.00 & 0.00--0.00 & 1.01 {[}−0.44, 2.45{]} \\
+Single remote worker & 2,619 & 82.2\% & 14.4\% & 0.0202 {[}0.0179, 0.0226{]} & 0.0002 {[}0.0001, 0.0004{]} & 363 & 2.57 {[}2.29, 3.00{]} & 14 & \ensuremath{\geq}2.57 & 0.00--0.00 & 6.32 \\
+Couple & 2,619 & 64.7\% & 30.5\% & 0.0243 {[}0.0217, 0.0267{]} & 0.0162 {[}0.0143, 0.0181{]} & 782 & 6.29 {[}2.29, 9.37{]} & 16 & \ensuremath{\geq}6.29 & 0.00--0.00 & 10.77 {[}9.66, 11.94{]} \\
+Parent and child & 2,619 & 54.3\% & 41.7\% & 0.0334 {[}0.0312, 0.0356{]} & 0.0024 {[}0.0019, 0.0030{]} & 1,079 & 5.00 {[}2.80, 12.00{]} & 13 & \ensuremath{\geq}4.41 & 0.00--0.00 & 10.16 {[}9.28, 11.06{]} \\
+\end{longtable}
+}
+
+\textbf{Table 4. Classification disagreement between fixed floor-area cutoffs and modeled functional adequacy (\(\text{FCI} \ge 0.95\))} Confusion counts and disagreement shares ((FP + FN) / Cases, lower is better) comparing Ulrich\textquotesingle s \SubmissionCite{ulrich2025minimum} normative area cutoffs (30 m\textsuperscript{2} for one person; 45 m\textsuperscript{2} applied to two-person schedules) and Hong Kong\textquotesingle s statutory 8 m\textsuperscript{2} basic housing unit minimum against validated layout adequacy under static (S0) and form + time (S2) strategies across observed plans and generated shells. Positive prediction means \(\text{NIA} \ge \text{cutoff}\); true positive (TP) means both \(\text{NIA} \ge \text{cutoff}\) and \(\text{FCI} \ge 0.95\); false negative (FN) means \(\text{NIA} < \text{cutoff}\) while \(\text{FCI} \ge 0.95\); false positive (FP) means \(\text{NIA} \ge \text{cutoff}\) while \(\text{FCI} < 0.95\).
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 18\tabcolsep) * \real{0.1000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Sample / Household
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Strategy
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Area comparator
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+NIA cutoff (m\textsuperscript{2})
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Cases (\(n\))
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+TP
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+TN
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+FP
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+FN
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Disagreement (\ensuremath{\downarrow})
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Observed plans (D1 + D2)} & & & & & & & & & \\
+Single commuter & S0 & Ulrich \SubmissionCite{ulrich2025minimum} area comparator & 30 & 2,109 & 1,787 & 16 & 135 & 171 & 14.5\% \\
+Single commuter & S0 & Hong Kong basic housing unit minimum & 8 & 2,109 & 1,958 & 0 & 151 & 0 & 7.2\% \\
+Single commuter & S2 & Ulrich \SubmissionCite{ulrich2025minimum} area comparator & 30 & 2,109 & 1,883 & 7 & 39 & 180 & 10.4\% \\
+Single commuter & S2 & Hong Kong basic housing unit minimum & 8 & 2,109 & 2,063 & 0 & 46 & 0 & 2.2\% \\
+Single remote worker & S0 & Ulrich \SubmissionCite{ulrich2025minimum} area comparator & 30 & 2,109 & 1,736 & 28 & 186 & 159 & 16.4\% \\
+Single remote worker & S0 & Hong Kong basic housing unit minimum & 8 & 2,109 & 1,895 & 0 & 214 & 0 & 10.1\% \\
+Single remote worker & S2 & Ulrich \SubmissionCite{ulrich2025minimum} area comparator & 30 & 2,109 & 1,870 & 5 & 52 & 182 & 11.1\% \\
+Single remote worker & S2 & Hong Kong basic housing unit minimum & 8 & 2,109 & 2,052 & 0 & 57 & 0 & 2.7\% \\
+Couple & S0 & Ulrich \SubmissionCite{ulrich2025minimum} area comparator & 45 & 2,109 & 814 & 303 & 52 & 940 & 47.0\% \\
+Couple & S0 & Hong Kong basic housing unit minimum & 8 & 2,109 & 1,754 & 0 & 355 & 0 & 16.8\% \\
+Couple & S2 & Ulrich \SubmissionCite{ulrich2025minimum} area comparator & 45 & 2,109 & 841 & 93 & 25 & 1,150 & 55.7\% \\
+Couple & S2 & Hong Kong basic housing unit minimum & 8 & 2,109 & 1,991 & 0 & 118 & 0 & 5.6\% \\
+Parent and child & S0 & Ulrich \SubmissionCite{ulrich2025minimum} area comparator & 45 & 2,109 & 800 & 454 & 66 & 789 & 40.5\% \\
+Parent and child & S0 & Hong Kong basic housing unit minimum & 8 & 2,109 & 1,589 & 0 & 520 & 0 & 24.7\% \\
+Parent and child & S2 & Ulrich \SubmissionCite{ulrich2025minimum} area comparator & 45 & 2,109 & 844 & 153 & 22 & 1,090 & 52.7\% \\
+Parent and child & S2 & Hong Kong basic housing unit minimum & 8 & 2,109 & 1,934 & 0 & 175 & 0 & 8.3\% \\
+\textbf{Generated shells (D3)} & & & & & & & & & \\
+Single commuter & S0 & Ulrich \SubmissionCite{ulrich2025minimum} area comparator & 30 & 510 & 77 & 177 & 13 & 243 & 50.2\% \\
+Single commuter & S0 & Hong Kong basic housing unit minimum & 8 & 510 & 320 & 0 & 190 & 0 & 37.3\% \\
+Single commuter & S2 & Ulrich \SubmissionCite{ulrich2025minimum} area comparator & 30 & 510 & 83 & 146 & 7 & 274 & 55.1\% \\
+Single commuter & S2 & Hong Kong basic housing unit minimum & 8 & 510 & 357 & 0 & 153 & 0 & 30.0\% \\
+Single remote worker & S0 & Ulrich \SubmissionCite{ulrich2025minimum} area comparator & 30 & 510 & 74 & 200 & 16 & 220 & 46.3\% \\
+Single remote worker & S0 & Hong Kong basic housing unit minimum & 8 & 510 & 294 & 0 & 216 & 0 & 42.4\% \\
+Single remote worker & S2 & Ulrich \SubmissionCite{ulrich2025minimum} area comparator & 30 & 510 & 85 & 134 & 5 & 286 & 57.1\% \\
+Single remote worker & S2 & Hong Kong basic housing unit minimum & 8 & 510 & 371 & 0 & 139 & 0 & 27.3\% \\
+Couple & S0 & Ulrich \SubmissionCite{ulrich2025minimum} area comparator & 45 & 510 & 0 & 313 & 0 & 197 & 38.6\% \\
+Couple & S0 & Hong Kong basic housing unit minimum & 8 & 510 & 197 & 0 & 313 & 0 & 61.4\% \\
+Couple & S2 & Ulrich \SubmissionCite{ulrich2025minimum} area comparator & 45 & 510 & 0 & 206 & 0 & 304 & 59.6\% \\
+Couple & S2 & Hong Kong basic housing unit minimum & 8 & 510 & 304 & 0 & 206 & 0 & 40.4\% \\
+Parent and child & S0 & Ulrich \SubmissionCite{ulrich2025minimum} area comparator & 45 & 510 & 0 & 337 & 0 & 173 & 33.9\% \\
+Parent and child & S0 & Hong Kong basic housing unit minimum & 8 & 510 & 173 & 0 & 337 & 0 & 66.1\% \\
+Parent and child & S2 & Ulrich \SubmissionCite{ulrich2025minimum} area comparator & 45 & 510 & 0 & 253 & 0 & 257 & 50.4\% \\
+Parent and child & S2 & Hong Kong basic housing unit minimum & 8 & 510 & 257 & 0 & 253 & 0 & 49.6\% \\
+\end{longtable}
+}
+
+\normalsize\end{landscape}
+
+\section{STAR Methods}\label{star-methods}
+
+\subsection{Method details}\label{method-details}
+
+\subsubsection{Overview of the evaluation framework}\label{overview-of-the-evaluation-framework}
+
+To measure how much usable floor area transformable furniture adds without confounding furniture capability with manual layout drawing, we evaluate each compact dwelling against itself across three furniture strategies---static (S0), form only (S1), and form + time (S2)---using automated constraint optimization followed by an independent geometric and reachability validator (Figure 1). The pipeline comprises eleven modular stages: (1) plan normalization, net internal area (NIA) measurement, and empty-geometry evaluability screening; (2) 24-hour household activity schedules; (3) an audited static and transformable furniture library; (4) within-shell strategy definitions; (5) discrete candidate generation and warm-started CP-SAT optimization; (6) independent validation of collisions, clearances, and walkable access; (7) schedule-weighted scoring of the functional capacity index (FCI) and transformation burden (TB); (8) monotone static curve inversion for equivalent-area gain (\(\Delta\text{EA}\)) and support bounds; (9) logistic crossing estimation for adequate area (\(A_{\min}\)); (10) solver benchmarking, area-cutoff comparisons, sensitivity analyses, room-level comparisons, and geometry-only surrogate tests; and (11) parametric furniture kit sizing and the Hong Kong subdivided-unit scenario.
+
+\subsubsection{Dwelling corpus, net internal area, and evaluability screen}\label{dwelling-corpus-net-internal-area-and-evaluability-screen}
+
+Comparing housing standards and furniture strategies across floor-plan collections requires a consistent interior floor-area definition and a check that unfurnished geometries are physically traversable. We assembled compact dwellings in the inclusion band of 8--50 m\textsuperscript{2} of net internal area (NIA) from two public repositories of observed plans---Swiss Dwellings v3.0.0 \SubmissionCite{standfest2022swiss} (D1) and ResPlan \SubmissionCite{abouagour2025resplan} (D2)---together with a controlled parametric grid of generated shells (D3; Table 1; Figure S1). NIA is defined as the union of interior furnishable space (bedrooms, living rooms, dining rooms, studies, studios, and general habitable rooms), storage-only space (cloakrooms and storerooms), walkable-only circulation and kitchen circulation space (corridors, halls, foyers, lobbies, and kitchen/kitchen-dining zones), and fixed-service space (bathrooms, sanitary rooms, and wash/dry rooms), excluding structural walls, balconies, loggias, shafts, staircases, basements, and exterior areas. Eligibility required residential usage, at least one habitable furnishable room, an entrance door, at least one window segment, sanitary provision, and kitchen provision.
+
+After normalizing coordinates to meters, closing minor vectorization gaps up to 0.15 m, aligning each plan to its dominant wall axis, and removing normalized geometric duplicates within each source while preserving site identifiers, D1 yielded 2,327 unique eligible compact units (from 46,830 raw records) and D2 yielded 884 unique eligible compact units (from 17,000 raw records; retaining the corpus metric scale calibration). For D1, we drew a stratified sample capped at up to 5 units per building site across 2 m\textsuperscript{2} NIA bins and room counts (\(n = 1,348\) selected); all 884 eligible D2 units were retained. Because no eligible observed plan in D1 or D2 had NIA below 16.75 m\textsuperscript{2}, we constructed 510 generated shells (D3) spanning 17 target areas (8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 25, 28, 32, 36, and 40 m\textsuperscript{2} NIA) crossed with five aspect ratios (1.0, 1.5, 2.0, 2.5, and 3.0), three entrance positions (short-wall center, short-wall corner, and long-wall corner), and two window positions (opposite short wall and long wall), each containing a fixed \(1.20 \times 1.50\text{ m}\) corner toilet pod and a \(1.20 \times 0.60\text{ m}\) wall kitchenette near the entrance (2.50 m ceiling height). Observed plans and generated shells are analyzed separately throughout the main text, with pooled curves reported only as an explicit sensitivity analysis.
+
+Before placing furniture, each selected plan was rasterized onto a 0.10 m grid and subjected to a predeclared empty-geometry evaluability screen. To pass, an unfurnished plan had to provide continuous 0.60 m walkable access from the entrance to every fixed-service target and leave at least half of its furnishable raster cells either directly inside the 0.60 m walking coverage or reachable within an additional 0.60 m across unobstructed cells without crossing walls or diagonal corners. Exactly 123 observed units (112 in D1 and 11 in D2, often due to narrow or oblique doorway vectorizations at 0.10 m resolution) failed this unfurnished screen and were excluded altogether, leaving 2,619 evaluable dwellings: 1,236 in D1, 873 in D2 (2,109 observed plans total), and 510 in D3 (Table 1). Any evaluable dwelling in which no furniture item could be feasibly placed retained its independently validated empty layout with \(\text{FCI} = 0\) (94 layouts across the primary run), preventing survivor bias in small shells.
+
+\subsubsection{Household activity schedules}\label{household-activity-schedules}
+
+Static furniture checklists ignore whether household members need different activities at different hours or multiple surfaces simultaneously. We therefore represent daily domestic demand over six contiguous time slots summing to 24 h: night (23:00--07:00, 8 h), morning (07:00--09:00, 2 h), day (09:00--17:00, 8 h), evening (17:00--19:00, 2 h), dinner (19:00--20:00, 1 h), and leisure (20:00--23:00, 3 h; Table 2). Four primary household schedules are evaluated on every dwelling: (1) a single commuter (1 person; away during the 8 h day slot, evening/leisure lounging, two-person-capable dining table use in morning and dinner, 1.0 storage unit, and optional leisure desk work weighted at 0.3); (2) a single remote worker (1 person; adding an 8 h daytime individual work requirement); (3) a couple with one remote worker (2 persons; requiring double-occupancy sleeping---satisfiable by one double sleeping surface or two single sleeping surfaces---2.0 storage units, daytime individual work, two-person lounging, and two day variants: normal days at frequency 0.857 requiring two-person dining and guest-dinner days at frequency 0.143 requiring four-person dining); and (4) a parent and child (2 persons; requiring two separate single sleeping surfaces at night, 1.5 storage units, away during the day, simultaneous individual homework and parent lounging in the evening, two-person dining at dinner, and two-person lounging during leisure). A fifth schedule representing an older adult staying home by day with 0.90 m walking width and \(1.2\times\) operating clearances is evaluated in sensitivity analyses (Table 2). Cooking and sanitary hygiene are served by the required fixed kitchen and bathroom zones, whose doorways and service targets constrain walkable circulation in every slot. Within any slot, simultaneous non-storage activity tokens must be served by distinct, simultaneously reachable furniture instances; storage demand receives proportional credit \(\min(1, \text{reachable placed capacity} / \text{required units})\).
+
+\subsubsection{Furniture library and operating clearances}\label{furniture-library-and-operating-clearances}
+
+Evaluating transformability fairly requires explicit, dimensionally realistic footprints and user clearances for every static and multi-state item. Our reviewed catalogue comprises nine static item types (single bed, double bed, wardrobe, shelving, desk, two-person dining table, four-person dining table, two-seat sofa, and armchair) and seven two-state transformable item types (single wall bed, double wall bed, wall bed over sofa, sofa bed, drop-leaf table, fold-down desk, and extendable dining table; Table S1). Each item state specifies a rigid rectangular body footprint (width along the wall by depth into the room), directional operating clearance strips (front, back, left, right), wall-backing requirements, height class (tall items may not back onto window segments), storage capacity units (1.0 for standard wardrobe, 0.5 for shelving), maximum instance counts (up to 2 for single beds, single wall beds, wardrobes, shelving, armchairs, and desks---ensuring two-sleeper households can place two single beds or two single wall beds---and 1 otherwise), and per-transition effort weights (0.2 for fold-down desks and drop-leaf tables, 0.3 for extendable tables, 1.0 for single and double wall beds, 1.2 for wall beds over sofas, and 1.5 for sofa beds; Table S1). Catalogue dimensions were audited against 43,002 usable product dimension triples extracted from 147,702 Amazon Berkeley Objects listings \SubmissionCite{collins2022abo} (Table 1; Table S1). Furniture bodies may never overlap walls, fixed services, door-swing keep-out squares (width \(\times\) width on the room side, or both sides where ambiguous), or other active furniture bodies; clearance zones may overlap walkable space and other items\textquotesingle{} clearances, but never another active item\textquotesingle s body.
+
+\subsubsection{Furniture strategies (S0, S1, S2)}\label{furniture-strategies-s0-s1-s2}
+
+To separate the geometric benefit of compact multi-state product forms from the temporal benefit of reconfiguring rooms across the day, we evaluate three nested strategies on every unit--household pair: 1. \textbf{Static (S0):} admits only the nine static furniture types in fixed poses. 2. \textbf{Form only (S1):} admits both static and transformable furniture types, but restricts each placed item to a single constant state across all slots and day variants (capturing compact product footprints without daily switching). 3. \textbf{Form + time (S2):} admits static and transformable furniture at fixed anchor coordinates and orientations across the day and across day variants, while allowing each transformable item to switch between its stowed and deployed states across the six daily slots (and between normal and guest days).
+
+Comparing \(\text{S1} - \text{S0}\) isolates the \textbf{form effect}, comparing \(\text{S2} - \text{S1}\) isolates the \textbf{time effect} (or \textbf{switching effect}), and comparing \(\text{S2} - \text{S0}\) measures the total transformable gain.
+
+\subsubsection{Schedule-constrained layout optimization}\label{schedule-constrained-layout-optimization}
+
+Because discrete furniture packing with doorway keep-outs and multi-slot pedestrian connectivity is combinatorial, manual layouts risk understating one strategy relative to another. For each dwelling, we generate candidate anchor poses aligned with the four orthogonal orientations (\(0^\circ, 90^\circ, 180^\circ, 270^\circ\)) on the 0.10 m collision grid, filtering out poses whose bodies, clearances, wall-backing strips, or tall-item window restrictions violate empty-shell boundaries. In the accepted production configuration, dwellings with \(\text{NIA} \le 20\text{ m}^2\) use a 0.10 m candidate anchor stride and a 120 s solver wall-clock cap per strategy run; dwellings with \(\text{NIA} > 20\text{ m}^2\) use a 0.20 m anchor stride (retaining the 0.10 m collision and walkability raster) and a 30 s solver cap.
+
+Each unit--household--strategy instance is solved with Google OR-Tools CP-SAT \SubmissionCite{perron2023cpsat} using boolean pose-selection, per-slot state-selection, and slot-demand assignment variables under pairwise body-body and body-clearance conflict constraints. Optimization maximizes a lexicographic-style weighted objective prioritizing served weighted activity-hours (weight \(1000.0\)), then minimizing cyclic transformation burden (weight \(-1.0\)), with a minor tie-breaking preference for window proximity (weight \(0.01\)). To ensure continuous walkable paths without encoding full grid-flow variables upfront, the solver starts from a deterministic greedy feasible layout (and, for S1 and S2 in the production pipeline, can warm-start from the revalidated preceding-strategy solution on the same unit and household, guaranteeing monotonic warm-start availability without relaxing independent validation), solves CP-SAT in rounds of up to 5.0 s (up to 30 lazy-constraint iterations), checks each incumbent with the exact reachability test, adds nogood cuts excluding unreachable pose-state combinations when needed, and retains the highest-scoring independently verified incumbent.
+
+\subsubsection{Independent geometric and reachability validator}\label{independent-geometric-and-reachability-validator}
+
+Solver models can harbor subtle discretization or constraint-encoding bugs if evaluated only by their internal objective. Every layout reported in this paper therefore passes an independent validator that shares zero code or data structures with candidate generation or CP-SAT modeling. From raw configuration files and placed item coordinates \((x, y, \theta)\) plus slot states, the validator independently reconstructs outward-rounded 0.10 m raster masks for every item body, clearance strip, and wall-backing strip, and verifies: (1) strategy and instance-count limits; (2) full containment of non-storage bodies in furnishable cells, storage bodies in furnishable or storage-only cells, and clearances in furnishable, storage-only, or walkable cells; (3) wall contact for wall-backed items and zero window overlap for tall wall-backed items; (4) zero body-body overlap and zero clearance-body collision in every slot and day variant; and (5) continuous 0.60 m walkable reachability from the entrance to every fixed-service target and to at least one clearance cell of every active furniture item credited with serving a scheduled activity. Walkable reachability is computed via explicit disc erosion of diameter \(0.60\text{ m}\) on free walkable cells, four-neighbor breadth-first search from the entrance extension, and matching disc dilation. Unreachable items receive zero service credit; any structural or fixed-service access violation invalidates the layout. For 3D visual verification, we exported 10 validated scenes across five showcase dwellings to Blender 4.5.3 LTS (Cycles renderer), generating 30 orthographic stills (\(2400 \times 1800\text{ px}\)) and auditing projected 3D mesh outlines against 2D validator footprints across 17 placed furniture instances; the maximum Hausdorff outline discrepancy was 2.79 mm, well below the 20 mm tolerance (Figure 2; Figure S2).
+
+\subsubsection{Functional capacity index (FCI) and transformation burden (TB)}\label{functional-capacity-index-fci-and-transformation-burden-tb}
+
+To compare diverse schedules on a common \([0, 1]\) scale, let \(V\) denote a household\textquotesingle s day variants with frequencies \(p_v\) (\(\sum_{v \in V} p_v = 1\)), \(S\) the six daily slots with durations \(h_s\) (hours), and \(D_{v,s}\) the set of furniture-supported activity demands \(d\) in variant \(v\) and slot \(s\) with importance weights \(w_d\) (\(w_d = 1.0\) unless specified otherwise). Given validator-verified service credits \(c_d \in [0, 1]\) (\(c_d \in \{0, 1\}\) for discrete activities and \(c_d = \min(1, U_{\text{placed}} / U_{\text{req}})\) for storage), the variant functional capacity index is
+
+\[\text{FCI}_v = \frac{\sum_{s \in S} h_s \sum_{d \in D_{v,s}} w_d \, c_d}{\sum_{s \in S} h_s \sum_{d \in D_{v,s}} w_d}\]
+
+and the household functional capacity index is \(\text{FCI} = \sum_{v \in V} p_v \, \text{FCI}_v\). By design, FCI measures physical activity fit and walkable reachability for scheduled domestic tasks, not acoustic or visual privacy, thermal or daylight quality, or subjective comfort. Daily transformation burden (TB) sums effort-weighted cyclic state transitions across all placed items \(i \in I\) over the six consecutive slots (including the wrap-around transition from leisure back to night, \(s_0 \equiv s_6\)):
+
+\[\text{TB} = \sum_{v \in V} p_v \sum_{i \in I} e_i \sum_{k=1}^{6} \mathbb{I}\!\left[\sigma_{i,v,s_k} \neq \sigma_{i,v,s_{k-1}}\right]\]
+
+where \(e_i\) is item \(i\)\textquotesingle s effort weight and \(\sigma_{i,v,s_k}\) is its state in slot \(s_k\).
+
+\subsubsection{\texorpdfstring{Equivalent-area gain (\(\Delta\text{EA}\)) and support bounds}{Equivalent-area gain (\textbackslash Delta\textbackslash text\{EA\}) and support bounds}}\label{equivalent-area-gain-deltatextea-and-support-bounds}
+
+Expressing functional capacity differences in square meters translates layout performance into the unit used by building codes and housing policy. For each household and reference population (observed plans \(\text{D1}+\text{D2}\), generated shells D3, individual sources, or the pooled sensitivity sample), we group dwellings into 2 m\textsuperscript{2} NIA bins \([8, 10), [10, 12), \dots, [48, 50]\), compute the median validated static score \(\text{FCI}(\text{S0})\) at each bin midpoint \(x_b\), apply a cumulative maximum \(y_b = \max_{j \le b} \tilde{y}_j\) to enforce non-decreasing static capacity with area, and linearly interpolate between midpoints to obtain the continuous monotone static reference curve \(\hat{f}_0(A)\) over supported midpoints \([A_{\text{lo}}, A_{\text{hi}}]\) (Figure 1D; Figure 3).
+
+For any matched dwelling--household pair \(u\) with validated scores \(y_0 = \text{FCI}_u(\text{S0})\) and \(y_2 = \text{FCI}_u(\text{S2})\), we invert both scores on \(\hat{f}_0\) at the smallest supported area attaining each target: \(A^*(y) = \inf \{A \in [A_{\text{lo}}, A_{\text{hi}}] : \hat{f}_0(A) \ge y\}\). Three identification cases arise without extrapolation: 1. \textbf{Exact zero:} if \(y_2 = y_0\), then \(\Delta\text{EA}_u = 0\text{ m}^2\) exactly. 2. \textbf{Point-identified gain:} if \(y_2 > y_0\), \(y_0 > \hat{f}_0(A_{\text{lo}})\) (so \(A^*(y_0) > A_{\text{lo}}\)), and \(y_2 \le \hat{f}_0(A_{\text{hi}})\), both inverses lie strictly within interior curve support and \(\Delta\text{EA}_u = A^*(y_2) - A^*(y_0)\) is point-identified. 3. \textbf{Support-bounded gain:} if \(y_2 > y_0\) and either \(A^*(y_0) = A_{\text{lo}}\) (left-boundary censoring, because a smaller shell might already achieve \(y_0\) below observed NIA support) or \(y_2 > \hat{f}_0(A_{\text{hi}})\) (right-boundary censoring, where \(A^*(y_2)\) is bounded below by \(A_{\text{hi}}\) and unbounded above), the pair yields an identified lower bound \(\Delta\text{EA}_u^{\text{lo}} = \max(0, A_{\text{lo or } *}(y_2) - A^*(y_0))\) rather than an extrapolated point value.
+
+Accordingly, we report three complementary summaries per household and population (Table 3; Figure 4): (i) the median among point-identified positive gains, (ii) the support-valid lower bound on the median across all improved pairs (\(y_2 > y_0\)), and (iii) lower and upper support bounds on the all-pair median across every evaluated dwelling (including unchanged pairs). A pooled-reference sensitivity re-inverts observed-plan scores onto the combined \(\text{D1}+\text{D2}+\text{D3}\) static curve extending down to 8 m\textsuperscript{2} NIA.
+
+\subsubsection{\texorpdfstring{Minimum adequate area (\(A_{\min}\))}{Minimum adequate area (A\_\{\textbackslash min\})}}\label{minimum-adequate-area-a_min}
+
+To estimate the floor area at which half of dwellings satisfy a household\textquotesingle s daily schedule, we define binary functional adequacy at threshold \(\tau = 0.95\) (\(\text{FCI} \ge 0.95\), with sensitivity checks at \(\tau = 0.90\) and \(\tau = 1.00\)). For each household, population, and strategy, we fit an unpenalized logistic regression \(\Pr(\text{FCI} \ge \tau \mid \text{NIA} = A) = \text{logit}^{-1}(\beta_0 + \beta_1 A)\) and define the minimum adequate area \(A_{\min} = -\beta_0 / \beta_1\) as the 50\% adequacy crossing, yielding the strategy reduction \(\Delta A_{\min} = A_{\min}(\text{S0}) - A_{\min}(\text{S2})\). Crossings are reported only when \(\beta_1 > 0\), both adequate and inadequate outcomes occur without complete separation, and \(A_{\min}\) lies within the population\textquotesingle s observed NIA range; otherwise the crossing is withheld as unsupported (Table 3).
+
+\subsubsection{Solver benchmark, area comparators, sensitivity analyses, room comparison, and geometry-only surrogates}\label{solver-benchmark-area-comparators-sensitivity-analyses-room-comparison-and-geometry-only-surrogates}
+
+To verify that search quality does not drive our findings, we froze a stratified benchmark of 200 unit--household pairs balanced across data source, area tercile, and household schedule, and compared standalone S2 CP-SAT, descending-footprint greedy wall-adjacent placement, and standalone simulated annealing (20,000 proposals \(\times\) 3 restarts with a geometric cooling schedule initialized from standalone greedy) against the accepted production pipeline, re-scoring every output with the independent validator (Figure S3; Table S2).
+
+To test how well floor-area rules proxy for modeled adequacy (\(\text{FCI} \ge 0.95\)), we measured within-bin FCI interquartile ranges across 2 m\textsuperscript{2} NIA bins (Figure 5) and computed confusion matrices (true positives, true negatives, false positives, false negatives, and total disagreement) against Ulrich\textquotesingle s \SubmissionCite{ulrich2025minimum} normative thresholds (30 m\textsuperscript{2} for one-person schedules and 45 m\textsuperscript{2} applied to both two-person schedules; Ulrich proposes 60 m\textsuperscript{2} for three-person households) and Hong Kong\textquotesingle s statutory 8 m\textsuperscript{2} basic housing unit minimum internal floor area \SubmissionCite{hksar2025basic}, alongside continuous receiver-operating threshold sweeps on area per person and rooms per person (Table 4). Sensitivity analyses varied single-item transformable availability (drop-one ablations), global operating-clearance scale (\(0.8\times, 1.0\times, 1.2\times\)), required walking width (0.60 m versus 0.90 m), and the older-adult schedule across the 200 benchmark pairs, tested raster/anchor resolution (0.05, 0.10, and 0.20 m) and CP-SAT time limits (30, 60, and 120 s) across a 50-unit subsample, and ran a dedicated 348-unit small-home (\(\text{NIA} \le 20\text{ m}^2\)) comparison allowing mirrored one-side access (\(0.60\text{ m}\) on one long side) for double beds, double wall beds, wall beds over sofas, and deployed sofa beds (Figure S4).
+
+To connect whole-dwelling results with single-room literature, we constructed an approximate \(4 \times 3\text{ m}\) bedroom envelope based on Bu and Che Mat \SubmissionCite{bu2026compact} plus three 12 m\textsuperscript{2} generated shell analogues (aspect ratios 1.0, 1.25, and 1.5), comparing daytime body-free floor area (\(\text{NIA}\) minus placed daytime furniture bodies, retaining wet-service footprints where present) against Bu and Che Mat\textquotesingle s clearance-deducted room figures and across all single-person pairs in \(\text{D1}+\text{D2}\) and D3 (Figure S6). To test whether fast learned models could replace optimization, we partitioned D1 by building site into 70\% training (884 units across 323 sites), 15\% validation (180 units across 69 sites), and 15\% held-out test groups (172 units across 70 sites), using D2 (\(n = 873\)) and D3 (\(n = 510\)) as external transfer sets. Four models---an area-only linear model, LightGBM gradient-boosted trees, a tabular multilayer perceptron, and a GraphSAGE network over room-polygon and opening adjacency graphs---predicted \(\text{FCI}(\text{S0})\), \(\text{FCI}(\text{S2})\), and D1-training-referenced \(\Delta\text{EA}\) against a prespecified \(\text{Spearman } \rho \ge 0.80\) criterion, supplemented by a post-hoc ROC AUC check on ranking \(\text{FCI} \ge 0.95\) (Figure S7; Table S4).
+
+\subsubsection{Parametric furniture kits and Hong Kong subdivided-unit scenario}\label{parametric-furniture-kits-and-hong-kong-subdivided-unit-scenario}
+
+Standard furniture pieces may be either too wide to fit or unnecessarily narrow in micro-units. We therefore formulated a dimension-sensitive quality index \(\text{FCI}_q\) that weights served activities by piecewise-linear dimensional quality factors \(q \in [0.60, 1.00]\) across six design variables: single wall-bed width (\(0.80, 0.90, 1.00\text{ m}\) with \(q = 0.60, 0.85, 1.00\)), double wall-bed width (\(1.20, 1.40, 1.50\text{ m}\) with \(q = 0.60, 0.90, 1.00\)), fold-down desk width (\(0.80, 1.00, 1.20\text{ m}\) with \(q = 0.70, 0.90, 1.00\)) and deployed depth (\(0.45, 0.55\text{ m}\) with \(q = 0.80, 1.00\)), drop-leaf table width (\(0.70, 0.80, 1.00\text{ m}\) with \(q = 0.80, 0.90, 1.00\)) and deployed depth (\(0.60, 0.75\text{ m}\) with \(q = 0.85, 1.00\)), and wardrobe frontage (\(0.60, 1.00, 1.40\text{ m}\) providing \(0.6, 1.0, 1.4\) storage units), keeping stowed depths and operating clearances fixed as in the main catalogue. Identical quality curves were applied to standard catalogue items and candidate kits, with adequacy defined at \(\text{FCI}_q \ge 0.95\). Candidate kits for the single commuter and couple were screened via successive halving and ranked by mean \(\text{FCI}_q\) (with TB breaking ties) on 30 frozen D3 training shells in the 8--15 m\textsuperscript{2} target band, compared against a per-shell bespoke upper bound (selecting the highest-scoring tested kit vector separately on each shell), evaluated on 15 held-out D3 shells (aspect ratio 2.5, long-wall-corner entrance) and 15 small observed plans (\(\text{NIA} \le 20\text{ m}^2\)), and checked under matched additional 120 s warm-started S2 search alongside the catalogue (Figure 6; Table S3).
+
+Finally, we evaluated the Hong Kong subdivided-unit scenario across 390 model shells---30 matched aspect-ratio, entrance, and window templates at every integer NIA from 8 to 20 m\textsuperscript{2}---for the single commuter, couple, and parent and child under standard strategies and selected kits using the shared \(\text{FCI}_q \ge 0.95\) adequacy rule (Figure 6; Table S3). Territory-wide context counts (108,202 subdivided units, 107,371 households, and 215,709 residents across 33,658 quarters) were extracted from the Hong Kong 2021 Population Census (Table 1); because census tables omit the joint household-size-by-floor-area distribution, results are reported directly on the 390-shell template grid without territory-wide stock weighting.
+
+\subsection{Quantification and statistical analysis}\label{quantification-and-statistical-analysis}
+
+All statistical summaries and uncertainty intervals were computed in Python (NumPy 2.4.6, SciPy 1.17.1, scikit-learn 1.9.1) using fixed random seed 20261105. Because strategies S0, S1, and S2 (and alternative solvers or furniture kits) are evaluated on the exact same dwellings, all primary comparisons are paired within physical dwelling units. Two-sided 95\% confidence intervals use 1,000 non-parametric paired bootstrap resamples: on D1, D2, and D3, the resampling unit is the physical dwelling unit stratified by source (retaining all paired household and strategy evaluations for each resampled unit); in the 390-shell Hong Kong scenario, the resampling unit is the 30-shape geometric template cluster (resampling whole 8--20 m\textsuperscript{2} area trajectories per template to preserve cross-area correlation). Within every bootstrap draw, static reference curves \(\hat{f}_0(A)\), equivalent-area inversions, and unpenalized logistic \(A_{\min}\) crossings are refitted from scratch before taking the 2.5th and 97.5th percentiles. Confidence intervals for area statistics (\(\Delta\text{EA}\) medians and \(A_{\min}\) or \(\Delta A_{\min}\) crossings) are reported only when at least two distinct units contribute and at least 80\% of the 1,000 bootstrap draws produce finite within-support estimates; otherwise point estimates are reported without intervals or withheld as unsupported, and boundary-censored equivalent-area estimates are explicitly denoted with \ensuremath{\geq} lower bounds or lower--upper support intervals. Sample sizes (\(n\), representing physical dwellings, unit--household pairs, or template shells as labeled) are stated in every table, figure legend, and Results subsection.
+
+\section{Supplemental Information}\label{supplemental-information}
+
+\textbf{Table S4. Geometry-only surrogate accuracy on held-out Swiss Dwellings sites and external transfer sets, related to Discussion and Figure S7} Held-out Swiss Dwellings site-group test performance (\(n = 172\) units across 70 sites) for predicting static FCI (S0 FCI), form + time FCI (S2 FCI), and D1-training-referenced equivalent-area gain (\(\Delta\text{EA}\), in m\textsuperscript{2}) across area-only linear, LightGBM, tabular MLP, and GraphSAGE models (full external transfer tables for ResPlan {[}\(n = 873\){]} and generated shells {[}\(n = 510\){]} are archived in the study repository). Point errors (MAE, RMSE, \(R^2\), Spearman \(\rho\)) evaluate point-identified labels including exact zeros; Bounds \(n\) counts left- or right-bounded equivalent-area cases evaluated separately against lower bounds. Post-hoc adequacy ROC AUC evaluates whether continuous FCI predictions rank cases at or above \(\text{FCI} \ge 0.95\).
+
+\input{Manuscript.bbl}
+
+\end{document}

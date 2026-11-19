@@ -1,0 +1,92 @@
+\begin{thebibliography}{99}
+\bibitem{hksar2025basic}
+Government of the Hong Kong Special Administrative Region (2025). Basic Housing Units Ordinance (Cap. 658). Ordinance No. 41 of 2025, Hong Kong Government Gazette (Schedule 1, section 1. Phase one commenced on 1 March 2026). https://www.elegislation.gov.hk/hk/cap658
+
+\bibitem{ulrich2025minimum}
+Ulrich, K. T. (2025). Minimum Spatial Housing Requirements for Human Flourishing. \emph{Buildings}, 15(15), 2623. https://doi.org/10.3390/buildings15152623
+
+\bibitem{weber2024hypergraph}
+Weber, R. E., Mueller, C., and Reinhart, C. (2024). A hypergraph model shows the carbon reduction potential of effective space use in housing. \emph{Nature Communications}, 15(1), 8327. https://doi.org/10.1038/s41467-024-52506-z
+
+\bibitem{goessler2023adaptive}
+Goessler, T., and Kaluarachchi, Y. (2023). Smart Adaptive Homes and Their Potential to Improve Space Efficiency and Personalisation. \emph{Buildings}, 13(5), 1132. https://doi.org/10.3390/buildings13051132
+
+\bibitem{daglio2023housing}
+Daglio, L., Ginelli, E., and Vignati, G. (2023). Housing Design: Furniture or Fixtures? Accommodating Change through Technological and Typological Innovation. \emph{Buildings}, 13(7), 1862. https://doi.org/10.3390/buildings13071862
+
+\bibitem{ozer2022dwelling}
+Özer, S., and Jacoby, S. (2022). Dwelling size and usability in London: a study of floor plan data using machine learning. \emph{Building Research \& Information}, 50(6), 694--708. https://doi.org/10.1080/09613218.2022.2070452
+
+\bibitem{pedro2009dwellings}
+Pedro, J. A. C. B. de O. (2009). How small can a dwelling be? A revision of Portuguese building regulations. \emph{Structural Survey}, 27(5), 390--410. https://doi.org/10.1108/02630800911002648
+
+\bibitem{qaradaghi2022area}
+Mustafa, C., and Ali, A. (2022). The Effect of Architectural Area Standards on Living Room's Spatial Functional efficiency for Low- Prize Residential Complexes in Sulaymaniyah City. \emph{Sulaimani Journal for Engineering Sciences}, 9(2), 23--37. https://doi.org/10.17656/sjes.10154
+
+\bibitem{freimane2022riga}
+Freimane, S. (2022). Quality of Apartment Layouts in Contemporary Urban Housing: The Study of Riga. \emph{SPACE International Journal of Conference Proceedings}, 2(1), 19--27. https://doi.org/10.51596/sijocp.v2i1.36
+
+\bibitem{rakhmatillaeva2025spatial}
+Rakhmatillaeva, Z. (2025). Spatial Analysis of Contemporary One-Room Apartment Layouts in Tashkent's New Residential Buildings. \emph{International Multidisciplinary Journal for Research \& Development}, 12(7). https://www.ijmrd.in/index.php/imjrd/article/view/3565
+
+\bibitem{bu2026compact}
+Bu, S., and Che Mat, R. (2026). Research on Space Optimization Design Strategies for Compact Bedrooms Based on Smart Built Environment. \emph{Civil Engineering and Architecture}, 14(5), 3617--3633. https://doi.org/10.13189/cea.2026.140514
+
+\bibitem{zeng2026sbf}
+Zeng, F., Feng, X., Zou, D., and Lei, J. (2026). Breaking the Fixed-Room Bottleneck: Generative SBF Model, Power-Law Scaling, and Adaptability Surcharge Index for Extreme Residential Intensification. \emph{Buildings}, 16(16), 3219. https://doi.org/10.3390/buildings16163219
+
+\bibitem{ashkevari2023flexibility}
+Ashkevari, S., and Farhady, M. (2023). Evaluation of Functional Flexibility in Contemporary Japanese Housing Layouts: Integration of User Perspective. \emph{A\textbar Z ITU Journal of the Faculty of Architecture}, 20(1), 101--116. https://www.az.itu.edu.tr/jfa/article/view/755
+
+\bibitem{merrell2011furniture}
+Merrell, P., Schkufza, E., Li, Z., Agrawala, M., and Koltun, V. (2011). Interactive furniture layout using interior design guidelines. \emph{ACM Transactions on Graphics}, 30(4), 1--10. https://doi.org/10.1145/2010324.1964982
+
+\bibitem{yu2011makeithome}
+Yu, L.-F., Yeung, S.-K., Tang, C.-K., Terzopoulos, D., Chan, T. F., and Osher, S. J. (2011). Make it home: automatic optimization of furniture arrangement. \emph{ACM Transactions on Graphics}, 30(4), 1--12. https://doi.org/10.1145/2010324.1964981
+
+\bibitem{sun2025layoutvlm}
+Sun, F.-Y., Liu, W., Gu, S., Lim, D., Bhat, G., Tombari, F., Li, M., Haber, N., and Wu, J. (2025). LayoutVLM: Differentiable Optimization of 3D Layout via Vision-Language Models. In \emph{2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, pp. 29469--29478. https://doi.org/10.1109/cvpr52734.2025.02744
+
+\bibitem{li2026homeworld}
+Li, W., Ju, X., Qin, Z., Fang, R., and Li, H. (2026). HomeWorld: A Unified Floorplan-to-Furnished Framework for Generating Controllable, Densely Interactive Whole-Home Scenes. In \emph{Computer Vision -- ECCV 2026}, pp. 40--58. https://doi.org/10.1007/978-3-032-37335-9\_3
+
+\bibitem{nieciecki2026comfortable}
+Nieciecki, P., Plocharski, A., and Musialski, P. (2026). What a ComfortableWorld: Ergonomic Principles Guided Apartment Layout Generation. In \emph{Eurographics 2026 -- Short Papers} (The Eurographics Association). https://doi.org/10.2312/egs.20261019
+
+\bibitem{xiang2026colayout}
+Xiang, C., Bao, R., Feng, B., Wu, W., Liu, Z., Guan, Y., and Liu, L. (2026). Co-Layout: LLM-driven Co-optimization for Interior Layout. \emph{Proceedings of the AAAI Conference on Artificial Intelligence}, 40(17), 14371--14379. https://doi.org/10.1609/aaai.v40i17.38452
+
+\bibitem{garg2016reconfigurables}
+Garg, A., Jacobson, A., and Grinspun, E. (2016). Computational design of reconfigurables. \emph{ACM Transactions on Graphics}, 35(4), 1--14. https://doi.org/10.1145/2897824.2925900
+
+\bibitem{xiong2021motion}
+Xiong, G., Fu, Q., Fu, H., Zhou, B., Luo, G., and Deng, Z. (2021). Motion Planning for Convertible Indoor Scene Layout Design. \emph{IEEE Transactions on Visualization and Computer Graphics}, 27(12), 4413--4424. https://doi.org/10.1109/tvcg.2020.3005680
+
+\bibitem{fu2024magic}
+Fu, Q., Zhang, F., Li, X., and Fu, H. (2024). Magic Furniture: Design Paradigm of Multi-Function Assembly. \emph{IEEE Transactions on Visualization and Computer Graphics}, 30(7), 4068--4079. https://doi.org/10.1109/tvcg.2023.3250488
+
+\bibitem{liu2025diff}
+Liu, J.-H., Zhang, S.-K., Sun, S., Wang, Z., and Zhang, S.-H. (2025). DIFF: A dataset for indoor flexible furniture. \emph{Graphical Models}, 141, 101293. https://doi.org/10.1016/j.gmod.2025.101293
+
+\bibitem{zhang2025sceneexplorer}
+Zhang, S.-K., Liu, J.-H., Huang, J., Chi, Z., Tam, H., Yang, Y.-L., and Zhang, S.-H. (2025). SceneExplorer: An Interactive System for Expanding, Scheduling, and Organizing Transformable Layouts. \emph{IEEE Transactions on Visualization and Computer Graphics}, 31(9), 6008--6021. https://doi.org/10.1109/tvcg.2024.3488744
+
+\bibitem{xiong2026mafc}
+Xiong, G., Cai, S., and Luo, G. (2026). MAFC-Driven Dynamic Layout Transformation System for Reconfigurable Furniture. \emph{Computer Animation and Virtual Worlds}, 37(2), e70113. https://doi.org/10.1002/cav.70113
+
+\bibitem{elmurodov2026efficiency}
+Elmurodov, S., and Mametova, N. (2026). Increasing Space Efficiency in Small Apartments Through Furniture Transformation. \emph{O`zbekistonda Uchinchi Renessans va innovatsion jarayonlar jurnali}, 2(4), 172--188. https://globalsciences.uz/renessans/article/view/3547
+
+\bibitem{standfest2022swiss}
+Standfest, M., Franzen, M., Schröder, Y., Medina, L. G., Villanueva Hernandez, Y., Buck, J. H., Tan, Y.-L., Niedzwiecka, M., and Colmegna, R. (2022). Swiss Dwellings: A large dataset of apartment models including aggregated geolocation-based simulation results covering viewshed, natural light, traffic noise, centrality and geometric analysis. Zenodo (Dataset, version 3.0.0). https://doi.org/10.5281/zenodo.7788422
+
+\bibitem{abouagour2025resplan}
+Abouagour, M., and Garyfallidis, E. (2025). ResPlan: A Large-Scale Vector-Graph Dataset of 17,000 Residential Floor Plans. arXiv preprint, arXiv:2508.14006. https://doi.org/10.48550/arXiv.2508.14006
+
+\bibitem{collins2022abo}
+Collins, J., Goel, S., Deng, K., Luthra, A., Xu, L., Gundogdu, E., Zhang, X., Vicente, T. F. Y., Dideriksen, T., Arora, H., Guillaumin, M., and Malik, J. (2022). ABO: Dataset and Benchmarks for Real-World 3D Object Understanding. In \emph{2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, pp. 21094--21104. https://doi.org/10.1109/cvpr52688.2022.02045
+
+\bibitem{perron2023cpsat}
+Perron, L., Didier, F., and Gay, S. (2023). The CP-SAT-LP Solver (Invited Talk). In \emph{29th International Conference on Principles and Practice of Constraint Programming (CP 2023)}, Leibniz International Proceedings in Informatics (LIPIcs), vol. 280 (Schloss Dagstuhl -- Leibniz-Zentrum für Informatik), pp. 3:1--3:2. https://doi.org/10.4230/LIPIcs.CP.2023.3
+
+\end{thebibliography}

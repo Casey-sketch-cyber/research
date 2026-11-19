@@ -34,3 +34,5 @@ All SVGs in `assets/icons/tabler/` are outline icons from Tabler Icons by Paweł
 ## Export formats
 
 Figure 1 is 174 × 110 mm. It includes a vector PDF and a 600 dpi PNG. The graphical abstract is 5.5 in square. It includes a vector PDF and a 1,650 × 1,650 px, 300 dpi PNG. The [Cell Press graphical abstract guidelines](https://crosstalk.cell.com/hubfs/Files/GA_guide.pdf) list TIFF, PDF and JPG as preferred submission formats.
+
+The editable iScience upload variant is GraphicalAbstract_4in.pptx. Its exported 4-inch square PDF and 1,200 × 1,200 TIFF at 300 dpi are in the submission v2 package. [iScience final-file checklist](https://www.cell.com/pb-assets/journals/EM/MasterFFCs/ISCIFFC.pdf)
