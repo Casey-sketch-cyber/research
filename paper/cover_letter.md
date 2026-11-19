@@ -4,7 +4,7 @@ Shenzhen Polytechnic University
 Shenzhen 518055, China
 liangzhantu@szpu.edu.cn
 
-[DATE]
+19 November 2026
 
 The Editors
 *iScience*

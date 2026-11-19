@@ -40,7 +40,7 @@ The text is final: `paper/manuscript.md` (draft v4 plus author fields) and `pape
 3. **`GraphicalAbstract.tif`/`.pdf`**, from `paper/figures/fig1/GraphicalAbstract.*` (final). Use a square canvas; check the journal's current pixel requirement.
 4. **`Highlights.txt`**: the four highlights, one per line.
 5. **`SupplementalInformation.pdf`**: Figures S1–S6 and Tables S1–S4, each with its legend from the manuscript's Supplemental information section. Map them to the existing `results/figures/g4/` and `results/tables/g4/` files by legend, and report any mismatch.
-6. **`CoverLetter.docx`** from `paper/cover_letter.md`. Leave `[DATE]` for the author.
+6. **`CoverLetter.docx`** from `paper/cover_letter.md`.
 7. **`CHECKLIST.md`**:
    - the journal requirements checked (with URL and date);
    - every file, with its size;
