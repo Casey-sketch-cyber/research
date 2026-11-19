@@ -6,9 +6,13 @@
 3. **Not used:** *Floor area alone misjudges how well compact homes work*
 4. **Not used:** *How much floor area can transformable furniture save? Evidence from 2,619 compact homes*
 
-**Authors:** [AUTHOR TO FILL]¹,*
-**Affiliations:** ¹[AUTHOR TO FILL]
-**Lead contact:** *Correspondence: [AUTHOR TO FILL]
+**Authors:** Feng He¹, Dan Zhang², and Zhantu Liang³,⁴,*
+**Affiliations:**
+¹Faculty of Art and Design, Guangxi Polytechnic University, Nanning 530226, China
+²School of Art and Design, Guangzhou Polytechnic University, Guangzhou 511483, China
+³Institute of Ultrasonic Technology, Shenzhen Polytechnic University, Shenzhen 518055, China
+⁴Lead contact
+**Correspondence:** liangzhantu@szpu.edu.cn
 
 **Keywords:** compact housing, minimum space standards, transformable furniture, functional capacity, layout optimization, equivalent area
 
@@ -25,7 +29,7 @@ Shrinking urban homes are regulated mainly by floor area, while transformable fu
 
 ## eTOC blurb
 
-Evaluating 2,619 compact floor plans across four daily household schedules with constraint optimization and independent geometric validation, [AUTHOR TO FILL] show that transformable furniture saves floor area mainly for two-person households in mid-sized compact homes, whereas fixed floor-area cutoffs misclassify roughly half of two-person dwellings, motivating performance-based supplements to area standards.
+Evaluating 2,619 compact floor plans across four daily household schedules with constraint optimization and independent geometric validation, He et al. show that transformable furniture saves floor area mainly for two-person households in mid-sized compact homes, whereas fixed floor-area cutoffs misclassify roughly half of two-person dwellings, motivating performance-based supplements to area standards.
 
 ## Introduction
 
@@ -120,13 +124,13 @@ Three scope boundaries frame the interpretation of our results and point to futu
 | NetworkX 3.6.1 | NetworkX developers | https://networkx.org/ |
 | NumPy 2.4.6, pandas 3.1.1, SciPy 1.17.1, Matplotlib 3.11.2 | Scientific Python ecosystem | https://numpy.org/; https://pandas.pydata.org/; https://scipy.org/; https://matplotlib.org/ |
 | Blender 4.5.3 LTS | Blender Foundation | https://www.blender.org/ |
-| Schedule-constrained layout optimization, independent validator, and analysis pipeline | This paper | https://github.com/Casey-sketch-cyber/research; Zenodo DOI: [TO MINT] |
+| Schedule-constrained layout optimization, independent validator, and analysis pipeline | This paper | https://github.com/Casey-sketch-cyber/research |
 
 ### Resource availability
 
 #### Lead contact
 
-Further information and requests for resources should be directed to and will be fulfilled by the lead contact, [AUTHOR TO FILL].
+Further information and requests for resources should be directed to and will be fulfilled by the lead contact, Zhantu Liang (liangzhantu@szpu.edu.cn).
 
 #### Materials availability
 
@@ -135,7 +139,7 @@ This study did not generate new physical materials or reagents.
 #### Data and code availability
 
 - **Data:** All empirical datasets analyzed in this study are publicly available from their original repositories: Swiss Dwellings v3.0.0 (Standfest et al., 2022; https://doi.org/10.5281/zenodo.7788422), ResPlan (Abouagour and Garyfallidis, 2025; https://doi.org/10.48550/arXiv.2508.14006; https://github.com/m-agour/ResPlan), Amazon Berkeley Objects listings (https://amazon-berkeley-objects.s3.amazonaws.com/index.html), and Hong Kong 2021 Population Census Subdivided Units tabulations (https://data.gov.hk/en-data/dataset/hk-censtatd-census_geo-2021-population-census-su-by-dcd). Derived summary tables, validated showcase layouts, and scene verification manifests are committed in the study repository.
-- **Code:** All original source code for corpus normalization, candidate pose generation, warm-started CP-SAT optimization, independent geometric validation, statistical resampling, 2D plotting, and 3D Blender Cycles scene verification is publicly available at https://github.com/Casey-sketch-cyber/research and archived on Zenodo at DOI [TO MINT].
+- **Code:** All original source code for corpus normalization, candidate pose generation, warm-started CP-SAT optimization, independent geometric validation, statistical resampling, 2D plotting, and 3D Blender Cycles scene verification is publicly available at https://github.com/Casey-sketch-cyber/research as of the date of publication.
 - **Additional information:** Any additional information required to reanalyze the data reported in this paper is available from the lead contact upon request.
 
 ### Method details
@@ -226,15 +230,15 @@ All statistical summaries and uncertainty intervals were computed in Python (Num
 
 ## Acknowledgments
 
-[AUTHOR TO FILL]
+[AUTHOR TO FILL: funding sources and acknowledgments, or delete if none]
 
 ## Author contributions
 
-[AUTHOR TO FILL]
+Conceptualization, Z.L.; investigation, F.H. and D.Z.; writing – original draft, F.H.; supervision, Z.L.
 
 ## Declaration of interests
 
-The authors declare no competing interests. [AUTHOR TO VERIFY/FILL]
+The authors declare no competing interests.
 
 ## References
 
