@@ -1,5 +1,7 @@
 # Instructions for Gemini (manuscript writer)
 
+> **Current task (2026-11-25): rewrite the paper for *Buildings* (MDPI).** Follow `docs/BUILDINGS_REWRITE_TASK.md`, Stage 1. Work on branch `gemini/buildings-rewrite`. The rules below still apply. Where they mention iScience, Cell Press, STAR Methods, Highlights or the eTOC blurb, the task file takes precedence.
+
 You are drafting the manuscript of this research project for **iScience** (Cell Press). The computations are finished and reviewed (gates G1–G4). Your job is to write the paper, not to run or change experiments.
 
 ## Read first, in this order
