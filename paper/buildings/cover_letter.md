@@ -2,7 +2,7 @@
 
 Dear Editors of *Buildings*,
 
-We are pleased to submit our original research article, *"Translating furniture into floor area shows where compact homes gain space"*, for consideration in *Buildings* under the section **"Architectural Design, Urban Science, and Real Estate"**.
+We are pleased to submit our original research article, *"Evaluating Transformable Furniture in Compact Housing: Schedule-Aware Equivalent Floor Area and Implications for Minimum Space Standards"*, for consideration in *Buildings* under the section **"Architectural Design, Urban Science, and Real Estate"**.
 
 Across dense cities, shrinking residential footprints are still regulated primarily through fixed internal floor-area minimums, while transformable furniture—such as wall beds, fold-down desks, and drop-leaf tables—is widely promoted to expand livable space. Yet area-only housing rules, static functional space standards, single-room architectural prototypes, and computational layout generators have not established how much usable floor area transformable furniture actually saves across heterogeneous housing stocks and 24-hour household routines.
 

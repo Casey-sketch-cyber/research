@@ -1,4 +1,4 @@
-# Translating furniture into floor area shows where compact homes gain space
+# Evaluating Transformable Furniture in Compact Housing: Schedule-Aware Equivalent Floor Area and Implications for Minimum Space Standards
 
 **Authors:** Feng He ¹, Dan Zhang ² and Zhantu Liang ³,*
 

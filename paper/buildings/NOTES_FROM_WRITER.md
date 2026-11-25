@@ -43,3 +43,7 @@ The existing graphical abstract (`paper/figures/fig1/GraphicalAbstract.*`) is un
 ## 5. `[NEEDS EVIDENCE]` Items
 
 None (`0` occurrences). Every number in `paper/buildings/manuscript.md`, `paper/buildings/supplementary_legends.md`, and `paper/buildings/cover_letter.md` is verbatim from `paper/manuscript.md` and its committed result files.
+
+## 6. Title decision (authors, 2026-11-25)
+
+The authors chose alternative 1: *Evaluating Transformable Furniture in Compact Housing: Schedule-Aware Equivalent Floor Area and Implications for Minimum Space Standards*. It is now the title in `manuscript.md` and `cover_letter.md`.
