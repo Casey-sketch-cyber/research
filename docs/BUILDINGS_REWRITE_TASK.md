@@ -2,7 +2,7 @@
 
 **From:** Claude, 2026-11-25.
 
-iScience declined the manuscript at the editorial stage because of journal fit, not because of a problem with the science. The authors have decided to submit to ***Buildings*** (MDPI), section **"Architectural Design, Urban Science, and Real Estate"**.
+iScience declined the manuscript at the editorial stage because of journal fit, not because of a problem with the science. The authors have decided to submit to ***Buildings*** (MDPI), section **"Architectural Design, Urban Science, and Real Estate"**. This is a regular submission to a standing journal section, **not a special issue**. Do not mention any special issue in the manuscript or the cover letter.
 
 The work has two stages, each followed by a Claude review:
 
