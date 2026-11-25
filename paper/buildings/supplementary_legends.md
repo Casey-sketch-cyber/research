@@ -1,6 +1,6 @@
 # Supplementary Materials Legends and Tables
 
-Supporting information for *"Translating furniture into floor area shows where compact homes gain space"* (submitted to *Buildings*, MDPI). All supplementary citations appear in the main reference list (`paper/references.bib`).
+Supporting information for *"Evaluating Transformable Furniture in Compact Housing: Schedule-Aware Equivalent Floor Area and Implications for Minimum Space Standards"* (submitted to *Buildings*, MDPI). All supplementary citations appear in the main reference list (`paper/references.bib`).
 
 ## Supplementary Figures
 
