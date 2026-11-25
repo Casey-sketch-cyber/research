@@ -8,6 +8,7 @@ The upload directory contains the XeTeX-compiled main manuscript PDF, its TeX/Bi
 - The publisher's [iScience Final File Requirements](https://www.cell.com/pb-assets/journals/EM/MasterFFCs/ISCIFFC.pdf) prefer editable Word and also accept LaTeX with a compiled PDF and source/support files. The manuscript follows the listed section order, moves the Key Resources Table to its own attachment and keeps main figures separate.
 - Main citations use consecutive superscript numbering. Thirty approved bibliography entries are in first-citation order. The TeX log had no unresolved citations or missing glyphs.
 - Acknowledgments include the Shenzhen Polytechnic University Postdoctoral Fund (Grant No. 6026331014K).
+- The AI declaration uses the wording supplied by the author. The manuscript, Key Resources Table and cover letter point to the [public code and experiment-data repository](https://github.com/liangdagongjue-code/research).
 - Main figures are 174 mm wide, with single-page PDF and 300 dpi LZW TIFF options. The refreshed plots use approximately 6.5–7 pt labels. Figure 6 contains A–F. Former panel G is Figure S5, with the reviewer’s reader-facing kit labels.
 - GraphicalAbstract.tif is RGB, LZW compressed, 1,200 × 1,200 pixels at 300 dpi, as specified by the iScience final-file checklist. The 4-inch PDF and the revised editable source use 16 pt title, 14 pt column headings and 12 pt body text, with a larger numeric callout.
 - Supplemental figures are S1–S7 in citation order. Table S4 is an editable spreadsheet. The supplemental PDF excludes page numbers and includes its own bracketed reference.
@@ -21,15 +22,15 @@ See [Author Actions and Scope](ISSUES.md) for author-supplied items and remainin
 | File | Bytes |
 | --- | ---: |
 | BUILD.md | 3,137 |
-| CHECKLIST.md | 3,973 |
-| ISSUES.md | 1,300 |
+| CHECKLIST.md | 4,195 |
+| ISSUES.md | 999 |
 | Manuscript_LaTeX_with_figures.tex | 95 |
 | author/DeclarationOfInterestsForm_pending.pdf | 221,875 |
 | author/EditorialManagerText.md | 601 |
-| review/Manuscript_LaTeX_with_figures.pdf | 1,438,042 |
-| review/Manuscript_with_figures.docx | 1,747,090 |
-| review/Manuscript_with_figures.pdf | 2,446,096 |
-| upload/CoverLetter.docx | 12,286 |
+| review/Manuscript_LaTeX_with_figures.pdf | 1,438,180 |
+| review/Manuscript_with_figures.docx | 1,747,309 |
+| review/Manuscript_with_figures.pdf | 2,447,676 |
+| upload/CoverLetter.docx | 12,287 |
 | upload/Figure1.pdf | 155,533 |
 | upload/Figure1.tif | 470,362 |
 | upload/Figure2.pdf | 938,205 |
@@ -45,10 +46,10 @@ See [Author Actions and Scope](ISSUES.md) for author-supplied items and remainin
 | upload/GraphicalAbstract.pdf | 89,874 |
 | upload/GraphicalAbstract.tif | 226,010 |
 | upload/Highlights.docx | 36,875 |
-| upload/KeyResourcesTable.docx | 11,630 |
+| upload/KeyResourcesTable.docx | 11,631 |
 | upload/Manuscript.bbl | 17,702 |
-| upload/Manuscript.pdf | 261,050 |
-| upload/Manuscript.tex | 99,903 |
+| upload/Manuscript.pdf | 261,186 |
+| upload/Manuscript.tex | 100,017 |
 | upload/SupplementalInformation.pdf | 2,860,554 |
 | upload/TableS4.xlsx | 7,966 |
 | upload/numbered.bst | 30,606 |
