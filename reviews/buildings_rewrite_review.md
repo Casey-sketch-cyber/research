@@ -22,7 +22,7 @@
 
 1. **Results 3.1, first paragraph.** It repeated the corpus counts from Section 2.2. I replaced it with three sentences that point back to Methods.
 2. **4.1.** "strictly conditional" → "conditional" (same rule as `paper_draft_v1_review.md` item 10).
-3. **Introduction P4.** "Yet none ties …" → "Yet none of these methods ties …", so the claim is limited to the cited work.
+3. **Introduction P4.** "Yet none ties …" → "Yet none of these methods ties …". *Reverted at the authors' request (2026-11-25): the original "Yet none ties …" stands.*
 4. **4.2.** Calibrated three new evaluative phrases that went beyond the evidence:
    - "highest return" → "best targeted at" (as in the iScience text);
    - "high-leverage investments" → "matter most for this household";
