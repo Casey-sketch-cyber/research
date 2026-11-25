@@ -19,7 +19,7 @@ Core belief: a paper is accepted for its **story**: what new understanding reade
 ## 1. Workflow (in this order)
 
 1. **Key content map** (Section 2). Fill it before any prose.
-2. **Figure 1 sketch** (pipeline/teaser, or the graphical abstract for Cell Press). It must show what is new, not the whole system.
+2. **Figure 1 sketch** (pipeline/teaser, or the graphical abstract for Cell Press), drawn with FigGenie or in PowerPoint (Section 6, Figures). It must show what is new, not the whole system.
 3. **Story and Introduction outline**: think backward, then forward (Section 3). At the same time, list the evidence each claim needs (Section 6).
 4. **Methods outline, then Methods draft.** Use `\todo{}` for open details.
 5. **Results/Experiments outline, then draft**, with figures, tables and captions.
@@ -164,6 +164,9 @@ Tables:
 Figures:
 - First impression decides reviews. Use a beautiful teaser or pipeline figure, clean result plots and tidy layout.
 - The pipeline figure highlights what is new; the text makes it understandable.
+- A framework figure is not there to make the reader understand; it is there to make the novelty stand out, and the text does the explaining (Peng Sida). So the figure holds pictures, shapes and short names (model names, two- or three-word panel titles), no explanatory sentences and, as a rule, no numbers: numbers go in the caption and the text. Mark what is new by colour and position, and leave everything else white and grey.
+- Draw the pipeline and teaser figures with [FigGenie](https://github.com/Sleepy-Avacado/FigGenie-paper-diagram-skill) (MIT): brief, spec, exemplars of the venue's Figure 1s, a hand-written SVG in pt, then `check.py` until the lint reports 0 errors and the rendered PNG has been looked at. Export PDF for the paper (`embed_fonts.py`, `export_pdf.py`) and an editable PowerPoint copy (`svg2pptx.py`), which keeps Peng Sida's practice of PowerPoint pipeline figures; strip the theme shadow that svg2pptx inherits. Follow its print rules (body 6.5 pt, at most three sizes, nothing below 6 pt) and give red/green verdicts a tick or cross as well. Its exemplar figures and parts are cut from other papers: study them, never paste them into a figure.
+- Without FigGenie, draw the pipeline and teaser figures in PowerPoint (or Keynote): native shapes, text boxes and arrows, with result thumbnails embedded as images. Keep the editable `.pptx` in the repository next to the paper and export PDF for submission. Do not draw pipeline figures with plotting libraries or Mermaid; use scripts only for data plots.
 - Place single-column figures in the right column where the layout allows.
 
 ## 7. Related work and Discussion
