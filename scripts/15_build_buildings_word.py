@@ -5,17 +5,19 @@ from __future__ import annotations
 import argparse
 from copy import deepcopy
 from datetime import datetime, timezone
+from importlib import import_module
 from pathlib import Path
 import re
 import subprocess
 from zipfile import ZipFile
 
 from docx import Document
+from docx.enum.style import WD_STYLE_TYPE
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.opc.constants import RELATIONSHIP_TYPE as RT
-from docx.shared import Mm, Pt
+from docx.shared import Mm, Pt, RGBColor
 from docx.table import Table
 from docx.text.paragraph import Paragraph
 from PIL import Image
@@ -139,11 +141,85 @@ def clean_chrome(doc: Document) -> None:
             for p in footer.paragraphs:
                 if "10.3390/xxxxx" in p.text or "16, x" in p.text:
                     p.clear()
+
+
+def keep_picture_resolution(doc: Document) -> None:
     settings = doc.settings._element
-    settings.append(OxmlElement("w:doNotAutoCompressPictures"))
-    update = OxmlElement("w:updateFields")
+    if settings.find(qn("w:doNotAutoCompressPictures")) is None:
+        settings.append(OxmlElement("w:doNotAutoCompressPictures"))
+    update = settings.find(qn("w:updateFields"))
+    if update is None:
+        update = OxmlElement("w:updateFields")
+        settings.append(update)
     update.set(qn("w:val"), "true")
-    settings.append(update)
+
+
+def review_styles(doc: Document) -> dict:
+    """Apply neutral Word styles without opening or copying a publisher file."""
+    section = doc.sections[0]
+    section.page_width = Mm(210)
+    section.page_height = Mm(297)
+    section.top_margin = section.bottom_margin = Mm(16)
+    section.left_margin = section.right_margin = Mm(13)
+
+    normal = doc.styles["Normal"]
+    normal.font.name = "Cambria"
+    normal.font.size = Pt(11)
+    normal.font.color.rgb = RGBColor.from_string("222222")
+    normal.paragraph_format.space_after = Pt(6)
+    normal.paragraph_format.line_spacing = 1.12
+    normal.paragraph_format.widow_control = True
+    for name, size in (("Title", 20), ("Heading 1", 14), ("Heading 2", 12), ("Heading 3", 11)):
+        style = doc.styles[name]
+        style.font.name = "Cambria"
+        style.font.size = Pt(size)
+        style.font.bold = True
+        style.font.color.rgb = RGBColor.from_string("171717")
+        style.paragraph_format.space_before = Pt(11)
+        style.paragraph_format.space_after = Pt(6)
+        style.paragraph_format.keep_with_next = True
+    for border in doc.styles["Title"].element.xpath("./w:pPr/w:pBdr"):
+        border.getparent().remove(border)
+
+    def paragraph_style(name, size, *, bold=False, centered=False):
+        style = doc.styles.add_style(name, WD_STYLE_TYPE.PARAGRAPH)
+        style.base_style = normal
+        style.font.size = Pt(size)
+        style.font.bold = bold
+        if centered:
+            style.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        return style
+
+    authors = paragraph_style("Author Names", 11, bold=True)
+    authors.paragraph_format.space_before = Pt(6)
+    affiliations = paragraph_style("Affiliation", 9)
+    affiliations.paragraph_format.space_after = Pt(3)
+    caption = paragraph_style("Caption Text", 10)
+    caption.paragraph_format.space_before = Pt(7)
+    refs = paragraph_style("Reference Entry", 9)
+    refs.paragraph_format.space_after = Pt(4)
+    refs.paragraph_format.keep_together = True
+    footer = section.footer.paragraphs[0]
+    footer.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    page = OxmlElement("w:fldSimple")
+    page.set(qn("w:instr"), "PAGE")
+    footer._p.append(page)
+    # Reuse the same content roles as the submission layout with ordinary Word styles.
+    return {
+        "MDPI12title": doc.styles["Title"],
+        "MDPI21heading1": doc.styles["Heading 1"],
+        "MDPI22heading2": doc.styles["Heading 2"],
+        "MDPI23heading3": doc.styles["Heading 3"],
+        "MDPI13authornames": authors, "MDPI16affiliation": affiliations,
+        "MDPI17abstract": normal, "MDPI18keywords": normal,
+        "MDPI31text": normal, "MDPI62backmatter": normal,
+        "MDPI38bullet": doc.styles["List Bullet"], "MDPI37itemize": doc.styles["List Number"],
+        "MDPI39equation": paragraph_style("Display Equation", 11, centered=True),
+        "MDPI51figurecaption": caption, "MDPI41tablecaption": caption,
+        "MDPI52figure": paragraph_style("Figure Image", 10, centered=True),
+        "MDPI42tablebody": normal, "MDPItable": doc.styles["Normal Table"],
+        "MDPI81references": refs,
+    }
 
 
 def scrub_core(doc: Document, title: str) -> None:
@@ -154,8 +230,9 @@ def scrub_core(doc: Document, title: str) -> None:
     props.revision = 1
 
 
-def journal_list(doc: Document, paragraph: Paragraph, template_id: int, lists: dict[int, int]) -> None:
-    """Restart each source list using the corresponding MDPI numbering definition."""
+def restart_list(doc: Document, paragraph: Paragraph, template_id: int, lists: dict[int, int], *,
+                 numbered: bool) -> None:
+    """Restart each source list using the selected Word numbering definition."""
     num_pr = paragraph._p.pPr.numPr
     source_id = num_pr.numId.val
     if source_id not in lists:
@@ -164,7 +241,7 @@ def journal_list(doc: Document, paragraph: Paragraph, template_id: int, lists: d
         style_num, = numbering.xpath(f"./w:num[@w:numId='{template_id}']")
         copy = deepcopy(style_num)
         copy.set(qn("w:numId"), str(next_id))
-        if template_id == 22:
+        if numbered:
             override = OxmlElement("w:lvlOverride")
             override.set(qn("w:ilvl"), "0")
             restart = OxmlElement("w:startOverride")
@@ -269,17 +346,23 @@ def build_manuscript(args) -> None:
     convert(args.pandoc, references, bib_docx, "latex-smart")
     source = Document(native)
     bibliography = Document(bib_docx)
-    doc = normalized_template(args.template, args.work_dir / "template-converted.docx")
-    styles = {style.style_id: style for style in doc.styles}
-    body = doc._body._element
-    body.clear_content()
-    for rid, relation in tuple(doc.part.rels.items()):
-        if relation.reltype in (RT.IMAGE, RT.HYPERLINK):
-            doc.part.drop_rel(rid)
-    clean_chrome(doc)
+    if args.review_copy:
+        doc = Document()
+        styles = review_styles(doc)
+    else:
+        doc = normalized_template(args.template, args.work_dir / "template-converted.docx")
+        styles = {style.style_id: style for style in doc.styles}
+        doc._body._element.clear_content()
+        for rid, relation in tuple(doc.part.rels.items()):
+            if relation.reltype in (RT.IMAGE, RT.HYPERLINK):
+                doc.part.drop_rel(rid)
+        clean_chrome(doc)
+        doc.add_paragraph("Article", style=styles["MDPI11articletype"])
+    keep_picture_resolution(doc)
     title = source.paragraphs[0].text
     scrub_core(doc, title)
-    doc.add_paragraph("Article", style=styles["MDPI11articletype"])
+    bullet_id = styles["MDPI38bullet"].element.pPr.numPr.numId.val
+    numbered_id = styles["MDPI37itemize"].element.pPr.numPr.numId.val
     front_count, table_count = 0, 0
     main_text = False
     figures = []
@@ -308,7 +391,7 @@ def build_manuscript(args) -> None:
             elif not main_text:
                 paragraph.style = styles[FRONT_STYLES[front_count]]
                 front_count += 1
-                if front_count == len(FRONT_STYLES):
+                if front_count == len(FRONT_STYLES) and not args.review_copy:
                     doc.add_paragraph(style=styles["MDPI19line"])
             elif match and match[1] == "Figure":
                 number = int(match[2])
@@ -325,9 +408,9 @@ def build_manuscript(args) -> None:
                                   "Data Availability Statement:", "Acknowledgments:", "Conflicts of Interest:")):
                 paragraph.style = styles["MDPI62backmatter"]
             elif clone.xpath("./w:pPr/w:numPr"):
-                list_roles = ("MDPI38bullet", 20) if plain.startswith("RQ") else ("MDPI37itemize", 22)
-                paragraph.style = styles[list_roles[0]]
-                journal_list(doc, paragraph, list_roles[1], lists)
+                numbered = not plain.startswith("RQ")
+                paragraph.style = styles["MDPI37itemize" if numbered else "MDPI38bullet"]
+                restart_list(doc, paragraph, numbered_id if numbered else bullet_id, lists, numbered=numbered)
             else:
                 paragraph.style = styles["MDPI31text"]
                 if clone.xpath("./m:oMathPara"):
@@ -341,7 +424,13 @@ def build_manuscript(args) -> None:
         raise ValueError("Pandoc bibliography formatting did not preserve each entry")
     for entry in entries:
         clone = transplant(entry._p, bibliography, doc)
-        Paragraph(clone, doc._body).style = styles["MDPI81references"]
+        paragraph = Paragraph(clone, doc._body)
+        paragraph.style = styles["MDPI81references"]
+        if args.review_copy:
+            num_pr = clone.get_or_add_pPr().get_or_add_numPr()
+            num_pr.get_or_add_ilvl().val = 0
+            num_pr.get_or_add_numId().val = numbered_id
+            restart_list(doc, paragraph, numbered_id, lists, numbered=True)
     doc.save(args.out / "manuscript.docx")
 
 
@@ -379,7 +468,9 @@ def build_cover(args) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo", type=Path, default=Path.cwd())
-    parser.add_argument("--template", type=Path, required=True)
+    layout = parser.add_mutually_exclusive_group(required=True)
+    layout.add_argument("--template", type=Path, help="Official Buildings Word template")
+    layout.add_argument("--review-copy", action="store_true", help="Produce neutral DOCX and PDF review files")
     parser.add_argument("--bbl", type=Path, required=True)
     parser.add_argument("--figure-dir", type=Path, required=True)
     parser.add_argument("--pandoc", required=True)
@@ -390,6 +481,9 @@ def main() -> None:
         path.mkdir(parents=True, exist_ok=True)
     build_manuscript(args)
     build_cover(args)
+    if args.review_copy:
+        export_pdf = import_module("13_submission_word").export_word_pdf
+        export_pdf(args.out / "manuscript.docx", args.out / "manuscript.pdf")
 
 
 if __name__ == "__main__":
