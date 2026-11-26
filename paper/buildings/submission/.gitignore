@@ -1,8 +1,9 @@
 /Definitions/
-/figures/
-/manuscript.*
+/manuscript.tex
+/manuscript.aux
+/manuscript.bbl
+/manuscript.blg
+/manuscript.log
+/manuscript.out
 /references.bib
-/CoverLetter.docx
 /LaTeX_Source.zip
-/SupplementaryMaterials.pdf
-/TableS4.xlsx
