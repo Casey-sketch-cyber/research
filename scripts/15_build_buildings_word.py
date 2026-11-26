@@ -34,7 +34,7 @@ HEADING_STYLES = {
 }
 FRONT_STYLES = ("MDPI13authornames", *("MDPI16affiliation",) * 4, "MDPI17abstract", "MDPI18keywords")
 TABLE_WIDTHS = (
-    (10, 27, 17, 17, 14, 15, 37, 44),
+    (10, 27, 17, 17, 14, 19, 35, 42),
     (28, 13, 19, 16, 17, 35, 53),
     (23, 8, 11, 12, 20, 20, 12, 16, 11, 16, 16, 16),
     (31, 11, 45, 16, 12, 9, 9, 9, 9, 30),
