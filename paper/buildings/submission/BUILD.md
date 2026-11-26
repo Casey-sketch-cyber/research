@@ -1,6 +1,6 @@
 # Build the Buildings submission package
 
-The approved Stage 2b input is commit `c10053e` on main, which includes Claude's edits to the numbers-trim revision. Run the commands from the repository root. Use Pandoc 3.14, Tectonic 0.17, Python 3.12, pypdf, pypdfium2, Pillow and python-docx. The Word proof was paginated with Microsoft Word.
+The Stage 2c inputs are the approved Stage 2b manuscript and the bibliography and cover letter on main at `d4f66cb`. Run the commands from the repository root. Use Pandoc 3.14, Tectonic 0.17, Python 3.12, pypdf, pypdfium2, Pillow and python-docx. The Word proof was paginated with Microsoft Word.
 
 1. Download the MDPI ACS archive linked in the journal instructions. The build expects the 12 November 2026 archive, SHA-256 `f6d5ae546a3d246bd73ee1dbaefc60a8b7398496ef7cfc8e10b7cc83d26067b7`. Download the official Buildings Word template. [MDPI LaTeX archive](https://res.mdpi.com/data/MDPI_template_ACS.zip?v=20261112) · [Buildings Word template](https://mdpi-res.com/files/word-templates/buildings-template.dot)
 2. Set `TEMP`, `TMP`, `TMPDIR` and `TECTONIC_CACHE_DIR` to directories in the scratch area. Use a separate output directory for the journal-format build.
@@ -20,4 +20,4 @@ python scripts/15_submission_artwork.py --repo . --out REVIEW --work-dir SCRATCH
 python scripts/15_build_buildings_word.py --repo . --review-copy --bbl OFFICIAL/manuscript.bbl --figure-dir OFFICIAL/figures --pandoc PANDOC --work-dir SCRATCH --out REVIEW
 ```
 
-The local distribution includes `LaTeX_Source.zip` with the manuscript, BibTeX and its dependencies. Unzip it and compile `manuscript.tex` from its root. The cover letter, supplementary PDF, editable Table S4 and optional graphical abstract accompany either the LaTeX or Word submission route. See the [format audit](CHECKLIST.md) and [review decisions](ISSUES.md).
+The local distribution includes `LaTeX_Source.zip` with the manuscript, BibTeX and its dependencies. Unzip it and compile `manuscript.tex` from its root. The cover letter, supplementary PDF, editable Table S4 and optional graphical abstract accompany either the LaTeX or Word submission route. See the [format audit](CHECKLIST.md), [review decisions](ISSUES.md) and [submission form sheet](SUBMISSION_FORM.md).
